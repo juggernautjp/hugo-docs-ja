@@ -1,4 +1,5 @@
-baseURL = "https://gohugo.io/"
+# baseURL = "https://gohugo.io/"
+baseURL = "https://juggernautjp.github.io/hugo-docs-ja"
 paginate = 100
 defaultContentLanguage = "en"
 enableEmoji = true

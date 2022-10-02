@@ -1,8 +1,10 @@
-baseURL = "https://gohugo.io/"
+# baseURL = "https://gohugo.io/"
+baseURL = "https://juggernautjp.github.io/hugo-docs-ja"
 paginate =  100
 defaultContentLanguage = "en"
 enableEmoji = true
-timeZone = "Europe/Oslo"
+# timeZone = "Europe/Oslo"
+timeZone = "Japan"
 # Set the unicode character used for the "return" link in page footnotes.
 footnotereturnlinkcontents = "↩"
 languageCode = "en-us"
