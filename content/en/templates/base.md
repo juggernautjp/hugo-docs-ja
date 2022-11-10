@@ -4,7 +4,6 @@ linktitle:
 description: The base and block constructs allow you to define the outer shell of your master templates (i.e., the chrome of the page).
 date: 2017-02-01
 publishdate: 2017-02-01
-lastmod: 2017-02-01
 categories: [templates,fundamentals]
 keywords: [blocks,base]
 menu:
@@ -75,7 +74,7 @@ This replaces the contents of our (basically empty) "main" block with something 
 {{% warning %}}
 Code that you put outside the block definitions *can* break your layout. This even includes HTML comments. For example:
 
-```
+```go-html-template
 <!-- Seemingly harmless HTML comment..that will break your layout at build -->
 {{ define "main" }}
 ...your code here

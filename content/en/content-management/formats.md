@@ -55,13 +55,13 @@ Because additional formats are external commands, generation performance will re
 
 ### External Helper AsciiDoc
 
-[AsciiDoc](https://github.com/asciidoc/asciidoc) implementation EOLs in Jan 2020 and is no longer supported. 
-AsciiDoc development is being continued under [Asciidoctor](https://github.com/asciidoctor). The format AsciiDoc 
+[AsciiDoc](https://github.com/asciidoc/asciidoc) implementation EOLs in Jan 2020 and is no longer supported.
+AsciiDoc development is being continued under [Asciidoctor](https://github.com/asciidoctor). The format AsciiDoc
 remains of course. Please continue with the implementation Asciidoctor.
 
 ### External Helper Asciidoctor
 
-The Asciidoctor community offers a wide set of tools for the AsciiDoc format that can be installed additionally to Hugo. 
+The Asciidoctor community offers a wide set of tools for the AsciiDoc format that can be installed additionally to Hugo.
 [See the Asciidoctor docs for installation instructions](https://asciidoctor.org/docs/install-toolchain/). Make sure that also all
 optional extensions like `asciidoctor-diagram` or `asciidoctor-html5s` are installed if required.
 
@@ -100,7 +100,7 @@ Notice that for security concerns only extensions that do not have path separato
 
 Example of how to set extensions and attributes:
 
-```
+```yml
 [markup.asciidocExt]
     extensions = ["asciidoctor-html5s", "asciidoctor-diagram"]
     workingFolderCurrent = true
@@ -109,10 +109,10 @@ Example of how to set extensions and attributes:
         my-attribute-name = "my value"
 ```
 
-In a complex Asciidoctor environment it is sometimes helpful to debug the exact call to your external helper with all 
+In a complex Asciidoctor environment it is sometimes helpful to debug the exact call to your external helper with all
 parameters. Run Hugo with `-v`. You will get an output like
 
-```
+```txt
 INFO 2019/12/22 09:08:48 Rendering book-as-pdf.adoc with C:\Ruby26-x64\bin\asciidoctor.bat using asciidoc args [--no-header-footer -r asciidoctor-html5s -b html5s -r asciidoctor-diagram --base-dir D:\prototypes\hugo_asciidoc_ddd\docs -a outdir=D:\prototypes\hugo_asciidoc_ddd\build -] ...
 ```
 

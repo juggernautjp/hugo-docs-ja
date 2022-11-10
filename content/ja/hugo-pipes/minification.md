@@ -1,0 +1,26 @@
+---
+categories:
+- asset management
+date: "2018-07-14"
+description: Hugo Pipes allows the minification of any CSS, JS, JSON, HTML, SVG or
+  XML resource.
+draft: true
+keywords: []
+menu:
+  docs:
+    parent: pipes
+    weight: 50
+publishdate: "2018-07-14"
+sections_weight: 50
+title: Asset minification
+weight: 50
+---
+
+Any resource of the aforementioned types can be minified using `resources.Minify` which takes for argument the resource object.
+
+```go-html-template
+{{ $css := resources.Get "css/main.css" }}
+{{ $style := $css | resources.Minify }}
+```
+
+Note that you can also minify the final HTML output to `/public` by running `hugo --minify`.

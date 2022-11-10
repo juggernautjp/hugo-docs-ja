@@ -90,16 +90,17 @@ MediaType.Suffixes
 : A slice of possible suffixes for the resource's MIME type.
 
 ## Methods
+
 ByType
 : Returns the page resources of the given type.
 
-```go
+```go-html-template
 {{ .Resources.ByType "image" }}
 ```
 Match
 : Returns all the page resources (as a slice) whose `Name` matches the given Glob pattern ([examples](https://github.com/gobwas/glob/blob/master/readme.md)). The matching is case-insensitive.
 
-```go
+```go-html-template
 {{ .Resources.Match "images/*" }}
 ```
 
@@ -107,6 +108,7 @@ GetMatch
 : Same as `Match` but will return the first match.
 
 ### Pattern Matching
+
 ```go
 // Using Match/GetMatch to find this images/sunset.jpg ?
 .Resources.Match "images/sun*" ✅
@@ -131,7 +133,7 @@ name
 : Sets the value returned in `Name`.
 
 {{% warning %}}
-The methods `Match` and `GetMatch` use `Name` to match the resources.
+The methods `Match`, `Get` and `GetMatch` use `Name` to match the resources.
 {{%/ warning %}}
 
 title
@@ -140,8 +142,7 @@ title
 params
 : A map of custom key/values.
 
-
-###  Resources metadata example
+### Resources metadata example
 
 {{< code-toggle copy="false">}}
 title: Application

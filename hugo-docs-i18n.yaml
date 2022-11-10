@@ -1,0 +1,7 @@
+# This is an example hugo-docs-i18n.yaml file with some sensible defaults.
+# Make sure to check the documentation at https://github.com/juggernautjp/hugo-docs-i18n/
+source-dir: content/en
+content-dir: content
+data-dir: data/i18n
+iso-md: ISO_639-1.md
+iso-json: ISO_639-1.json
