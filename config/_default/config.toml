@@ -1,6 +1,6 @@
 # baseURL = "https://gohugo.io/"
-# baseURL = "https://juggernautjp.github.io/hugo-docs-ja"
-baseURL = "https://localhost:1313/hugo-docs-ja"
+baseURL = "https://juggernautjp.github.io/hugo-docs-ja"
+# baseURL = "https://localhost:1313/hugo-docs-ja"
 # defaultContentLanguage = "en"
 defaultContentLanguage = "ja"
 enableEmoji = true
