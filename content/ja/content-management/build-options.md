@@ -4,26 +4,25 @@ aliases:
 categories:
 - content management
 date: "2020-03-02"
-description: Build options help define how Hugo must treat a given page when building
-  the site.
-draft: true
+description: ビルドオプションは、サイトをビルドするときに Hugo が特定のページをどのように処理する必要があるかを定義するのに役立ちます。
+draft: false
 keywords:
 - build
 - content
 - front matter
 - page resources
-linktitle: Build Options
+linktitle: ビルドオプション
 menu:
   docs:
     parent: content-management
     weight: 31
 publishdate: "2020-03-02"
-title: Build Options
+title: ビルドオプション
 toc: true
 weight: 31
 ---
 
-They are stored in a reserved Front Matter object named `_build` with the following defaults:
+これらは、`_build` という名前の予約されたフロントマター オブジェクトに格納され、以下のようなデフォルトが設定されています。
 
 {{< code-toggle >}}
 _build:
@@ -34,52 +33,52 @@ _build:
 
 #### render
 
-If `always`, the page will be treated as a published page, holding its dedicated output files (`index.html`, etc...) and permalink.
+値が `always` の場合、そのページは公開ページとして扱われ、専用の出力ファイル (`index.html` など) とパーマリンクが保持されます。
 
-{{< new-in "0.76.0" >}} We extended this property from a boolean to an enum in Hugo 0.76.0. Valid values are:
+{{< new-in "0.76.0" >}} Hugo 0.76.0 で、このプロパティをブール値から列挙型に拡張しました。 有効な値は以下のとおりです。
 
 never
-: The page will not be included in any page collection.
+: ページは、どのページコレクションにも含まれません。
 
-always (default)
-: The page will be rendered to disk and get a `RelPermalink` etc.
+always (デフォルト)
+: ページはディスクにレンダリングされ、`RelPermalink` などを取得します。
 
 link
-: The page will be not be rendered to disk, but will get a `RelPermalink`.
+: ページはディスクにレンダリングされませんが、`RelPermalink` を取得します。
 
 #### list
 
-Note that we extended this property from a boolean to an enum in Hugo 0.68.0.
+Hugo 0.68.0 で、このプロパティをブール値から列挙型に拡張したことに注意してください。
 
-Valid values are:
+有効な値は以下のとおりです。
 
 never
-: The page will not be included in any page collection.
+: ページは、どのページコレクションにも含まれません。
 
-always (default)
-: The page will be included in all page collections, e.g. `site.RegularPages`, `$page.Pages`.
+always (デフォルト)
+: ページはすべてのページコレクション、たとえば、 `site.RegularPages`、 `$page.Pages` などに含まれます。
 
 local
-: The page will be included in any _local_ page collection, e.g. `$page.RegularPages`, `$page.Pages`. One use case for this would be to create fully navigable, but headless content sections. {{< new-in "0.68.0" >}}
+: ページは、任意の _local_ ページコレクション、たとえば `$page.RegularPages` や `$page.Pages` に含まれます。この使用例の 1 つは、完全にナビゲート可能で、かつ、ヘッドレスのコンテンツ セクションを作成することです。 {{< new-in "0.68.0" >}}
 
-If true, the page will be treated as part of the project's collections and, when appropriate, returned by Hugo's listing methods (`.Pages`, `.RegularPages` etc...).
+true の場合、ページはプロジェクトのコレクションの一部として扱われ、必要に応じて Hugo のリストメソッド (`.Pages`、`.RegularPages` など) で返されるようになります。
 
 #### publishResources
 
-If set to true the [Bundle's Resources]({{< relref "content-management/page-bundles" >}}) will be published.
-Setting this to false will still publish Resources on demand (when a resource's `.Permalink` or `.RelPermalink` is invoked from the templates) but will skip the others.
+true に設定すると、[バンドル内のリソース]({{< relref "content-management/page-bundles" >}}) が公開されます。
+これを false に設定すると、引き続きリソースがオンデマンドで公開されますが (リソースの `.Permalink` または `.RelPermalink` がテンプレートから呼び出された場合)、それ以外のリソースはスキップされます。
 
 {{% note %}}
-Any page, regardless of their build options, will always be available using the [`.GetPage`]({{< relref "functions/GetPage" >}}) methods.
+どのページも、ビルドオプションに関係なく、常に [`.GetPage`]({{< relref "functions/GetPage" >}}) メソッドを使用して利用することができます。
 {{% /note %}}
 
 ------
 
-### Illustrative use cases
+### ユースケースの例 {#illustrative-use-cases}
 
-#### Not publishing a page
+#### ページを公開しない {#not-publishing-a-page}
 
-Project needs a "Who We Are" content file for Front Matter and body to be used by the homepage but nowhere else.
+プロジェクトでは、フロントマターとボディに "Who We Are" というコンテンツファイルが必要で、ホームページで使用されますが、それ以外の場所では使用されません。
 
 ```yaml
 # content/who-we-are.md`
@@ -98,11 +97,11 @@ _build:
 </section>
 ```
 
-#### Listing pages without publishing them
+#### ページを公開せずに一覧表示する {#listing-pages-without-publishing-them}
 
-Website needs to showcase a few of the hundred "testimonials" available as content files without publishing any of them.
+Web サイトは、コンテンツファイルとして利用できる 100 の「お客様の声」のうちのいくつかを公開せずに紹介する必要があります。
 
-To avoid setting the build options on every testimonials, one can use [`cascade`]({{< relref "/content-management/front-matter#front-matter-cascade" >}}) on the testimonial section's content file.
+すべての「お客様の声」にビルドオプションを設定しないようにするためには、「お客様の声」セクションのコンテンツファイルで [`cascade`]({{< relref "/content-management/front-matter#front-matter-cascade" >}}) を使用できます。
 
 {{< code-toggle >}}
 title: Testimonials

@@ -5,7 +5,7 @@ categories:
 date: "2017-02-01"
 deprecated: false
 description: Calls page or site variables into your template.
-draft: true
+draft: false
 hugoversion: null
 keywords:
 - front matter

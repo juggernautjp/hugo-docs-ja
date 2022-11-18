@@ -2,7 +2,7 @@
 categories:
 - content management
 date: "2022-02-20"
-draft: true
+draft: false
 keywords:
 - diagrams
 - drawing
@@ -10,7 +10,7 @@ menu:
   docs:
     parent: content-management
     weight: 22
-title: Diagrams
+title: ダイアグラム
 toc: true
 weight: 22
 ---
@@ -19,9 +19,9 @@ weight: 22
 {{< new-in "0.93.0" >}}
 
 
-## GoAT Diagrams (Ascii)
+## GoAT ダイアグラム (アスキー) {#goat-diagrams-ascii}
 
-Hugo! supports [GoAT](https://github.com/bep/goat) natively. This means that this code block:
+Hugo は [GoAT](https://github.com/bep/goat) をネイティブにサポートしています。つまり、
 
 ````txt
 ```goat
@@ -36,7 +36,7 @@ Hugo! supports [GoAT](https://github.com/bep/goat) natively. This means that thi
 ```
 ````
 
-Will be rendered as:
+上記のコードブロックは、以下のようにレンダーされます。
 
 ```goat
 
@@ -49,9 +49,9 @@ Will be rendered as:
      1   2 3   4    1   2   3   4    1   2   3   4         '--- 4          '-- 4     \ 4
 ```
 
-## Mermaid Diagrams
+## Mermaid ダイアグラム {#mermaid-diagrams}
 
-Hugo currently does not provide default templates for Mermaid diagrams. But you can easily add your own. One way to do it would be to create `layouts/_default/_markup/render-codeblock-mermaid.html`:
+Hugo は現在、Mermaid ダイアグラムのデフォルト テンプレートを提供していません。しかし、自分で簡単に追加できます。一つの方法は `layouts/_default/_markup/render-codeblock-mermaid.html` を作成することです。
 
 ```go-html-template
 <div class="mermaid">
@@ -60,7 +60,7 @@ Hugo currently does not provide default templates for Mermaid diagrams. But you 
 {{ .Page.Store.Set "hasMermaid" true }}
 ```
 
-And then include this snippet at the bottom of the content template (**Note**: below `.Content` as the render hook is not processed until `.Content` is executed):
+そして、このスニペットをコンテンツテンプレートの下部に含めます (**注意**: レンダーフックは `.Content` が実行されるまで処理されないので `.Content` より下になります)。 
 
 ```go-html-template
 {{ if .Page.Store.Get "hasMermaid" }}
@@ -71,7 +71,7 @@ And then include this snippet at the bottom of the content template (**Note**: b
 {{ end }}
 ```
 
-With that you can use the `mermaid` language in Markdown code blocks:
+これにより、Markdown コードブロックで `mermaid` 言語を使用できます。
 
 ```mermaid
 sequenceDiagram
@@ -87,9 +87,9 @@ sequenceDiagram
     Bob-->>John: Jolly good!
 ```
 
-## Goat Ascii Diagram Examples
+## Goat アスキー ダイアグラムの例 {#goat-ascii-diagram-examples}
 
-### Graphics
+### グラフィックス {#graphics}
 
 ```goat
                                                                              .
@@ -106,7 +106,7 @@ sequenceDiagram
 
 ```
 
-### Complex
+### コンプレックス {#complex}
 
 ```goat
 +-------------------+                           ^                      .---.
@@ -136,7 +136,7 @@ sequenceDiagram
 
 ```
 
-### Process
+### プロセス {#process}
 
 ```goat
                                       .
@@ -155,9 +155,9 @@ sequenceDiagram
   '-----------'                 '-----------'        '-'
 ```
 
-### File tree
+### ファイルツリー {#file-tree}
 
-Created from <https://arthursonzogni.com/Diagon/#Tree>
+<https://arthursonzogni.com/Diagon/#Tree> から作成されました。
 
 ```goat  { width=300  color="orange" }
 ───Linux─┬─Android
@@ -171,7 +171,7 @@ Created from <https://arthursonzogni.com/Diagon/#Tree>
 ```
 
 
-### Sequence Diagram
+### シーケンス図 {#sequence-diagram}
 
 <https://arthursonzogni.com/Diagon/#Sequence>
 
@@ -192,7 +192,7 @@ Created from <https://arthursonzogni.com/Diagon/#Tree>
 ```
 
 
-### Flowchart
+### フローチャート {#flowchart}
 
 <https://arthursonzogni.com/Diagon/#Flowchart>
 
@@ -238,7 +238,7 @@ Created from <https://arthursonzogni.com/Diagon/#Tree>
 ```
 
 
-### Table
+### 表 {#table}
 
 <https://arthursonzogni.com/Diagon/#Table>
 

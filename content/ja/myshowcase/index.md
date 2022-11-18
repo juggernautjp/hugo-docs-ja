@@ -2,7 +2,7 @@
 byline: '[bep](https://github.com/bep), Hugo Lead'
 date: "2021-01-14"
 description: A short description of this page.
-draft: true
+draft: false
 siteSource: https://github.com/gohugoio/hugoDocs
 siteURL: https://gohugo.io/
 title: Myshowcase

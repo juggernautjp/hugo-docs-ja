@@ -5,7 +5,7 @@ categories:
 date: "2017-02-01"
 description: Page-level variables are defined in a content file's front matter, derived
   from the content's file location, or extracted from the content body itself.
-draft: true
+draft: false
 keywords:
 - pages
 linktitle: null

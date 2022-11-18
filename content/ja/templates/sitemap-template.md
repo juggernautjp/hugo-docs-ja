@@ -6,7 +6,7 @@ categories:
 - templates
 date: "2017-02-01"
 description: Hugo provides built-in sitemap templates.
-draft: true
+draft: false
 keywords:
 - sitemap
 - xml

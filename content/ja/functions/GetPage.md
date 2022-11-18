@@ -4,8 +4,8 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: Gets a `Page` of a given `path`.
-draft: true
+description: 指定された `path` の `Page` を取得します。
+draft: false
 hugoversion: null
 keywords:
 - sections

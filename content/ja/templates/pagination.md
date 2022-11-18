@@ -6,7 +6,7 @@ categories:
 - templates
 date: "2017-02-01"
 description: Hugo supports pagination for your homepage, section pages, and taxonomies.
-draft: true
+draft: false
 keywords:
 - lists
 - sections

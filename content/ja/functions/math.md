@@ -5,7 +5,7 @@ categories:
 date: "2017-02-01"
 deprecated: false
 description: Hugo provides mathematical operators in templates.
-draft: true
+draft: false
 hugoversion: null
 keywords:
 - math

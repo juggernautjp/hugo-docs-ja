@@ -5,31 +5,30 @@ aliases:
 categories:
 - content management
 date: "2017-01-10"
-description: Hugo supports the creation of websites with multiple languages side by
-  side.
-draft: true
+description: Hugo は、複数の言語を併記した Web サイトの作成をサポートしています。
+draft: false
 keywords:
 - multilingual
 - i18n
 - internationalization
-linktitle: Multilingual
+linktitle: 多言語対応
 menu:
   docs:
     parent: content-management
     weight: 150
 publishdate: "2017-01-10"
-title: Multilingual Mode
+title: 多言語対応モード
 toc: true
 weight: 150
 ---
 
-You should define the available languages in a `languages` section in your site configuration.
+利用可能な言語は、サイト設定の `languages` セクションで定義する必要があります。
 
-> Also See [Hugo Multilingual Part 1: Content translation]
+> [Hugo の多言語対応 パート1: コンテンツの翻訳][Hugo Multilingual Part 1: Content translation] も参照してください。
 
-## Configure Languages
+## 言語を設定する {#configure-languages}
 
-The following is an example of a site configuration for a multilingual Hugo project:
+以下は、多言語対応した Hugo プロジェクトのサイト構成の例です。
 
 {{< code-toggle file="config" >}}
 defaultContentLanguage = "en"
@@ -64,50 +63,49 @@ title = "O meu blog"
 weight = 3
 {{< /code-toggle >}}
 
-Anything not defined in a `languages` block will fall back to the global value for that key (e.g., `copyright` for the English `en` language). This also works for `params`, as demonstrated with `help` above: You will get the value `Aide` in French and `Help` in all the languages without this parameter set.
+`languages` ブロックで定義されていないものは、そのキーのグローバルな値にフォールバックします (たとえば、英語の `en` 言語では `copyright` となります)。これは、上記の `help` で示したように、 `params` でも動作します。フランス語では `Aide` という値になり、このパラメータが設定されていない他のすべての言語では `Help` という値になります。
 
-With the configuration above, all content, sitemap, RSS feeds, pagination,
-and taxonomy pages will be rendered below `/` in English (your default content language) and then below `/fr` in French.
+上記の設定により、すべてのコンテンツ、サイトマップ、RSS フィード、ページネーション、およびタクソノミーのページは、英語 (デフォルトのコンテンツ言語) では `/` の下にレンダリングされ、フランス語では `/fr` の下にレンダリングされます。
 
-When working with front matter `Params` in [single page templates], omit the `params` in the key for the translation.
+[シングルページ テンプレート][single page templates] でフロントマターの `Params` を使用する場合は、翻訳用のキーで `params` を省略します。
 
-`defaultContentLanguage` sets the project's default language. If not set, the default language will be `en`.
+`defaultContentLanguage` は、プロジェクトのデフォルト言語を設定します。 設定されていない場合、デフォルトの言語は `en` になります。.
 
-If the default language needs to be rendered below its own language code (`/en`) like the others, set `defaultContentLanguageInSubdir: true`.
+デフォルトの言語を他の言語と同じように言語コード (`/en`) の下にレンダリングする必要がある場合は、 `defaultContentLanguageInSubdir: true` を設定します。
 
-Only the obvious non-global options can be overridden per language. Examples of global options are `baseURL`, `buildDrafts`, etc.
+言語ごとにオーバーライドできるのは、明らかに非グローバルなオプションのみです。グローバルオプションの例としては、 `baseURL` や `buildDrafts` などがあります。
 
-**Please note:** use lowercase language codes, even when using regional languages (ie. use pt-pt instead of pt-PT). Currently Hugo language internals lowercase language codes, which can cause conflicts with settings like `defaultContentLanguage` which are not lowercased. Please track the evolution of this issue in [Hugo repository issue tracker](https://github.com/gohugoio/hugo/issues/7344)
+**注意事項:** 地域言語を使用する場合でも、小文字の言語コードを使用します (例えば、pt-PT の代わりに pt-pt を使用します)。現在、Hugo 言語の内部では言語コードを小文字にしており、小文字にしない `defaultContentLanguage` のような設定と競合する可能性があります。この問題の進展は、[Hugo リポジトリの issue tracker](https://github.com/gohugoio/hugo/issues/7344) で追跡してください。
 
-### Disable a Language
+### 言語を無効にする {#disable-a-language}
 
-You can disable one or more languages. This can be useful when working on a new translation.
+1 つ以上の言語を無効にすることができます。 これは、新しい翻訳に取り組むときに役立ちます。
 
 {{< code-toggle file="config" >}}
 disableLanguages = ["fr", "ja"]
 {{< /code-toggle >}}
 
-Note that you cannot disable the default content language.
+デフォルトのコンテンツ言語を無効にすることはできないことに注意してください。
 
-We kept this as a standalone setting to make it easier to set via [OS environment]:
+[OS 環境][OS environment] を介して設定しやすくするために、これをスタンドアロン設定として残しています。
 
 ```bash
 HUGO_DISABLELANGUAGES="fr ja" hugo
 ```
 
-If you have already a list of disabled languages in `config.toml`, you can enable them in development like this:
+すでに `config.toml` に無効な言語のリストがある場合は、以下のように開発時に有効にすることができます。
 
 ```bash
 HUGO_DISABLELANGUAGES=" " hugo server
 ```
 
-### Configure Multilingual Multihost
+### 多言語対応マルチホストの設定 {#configure-multilingual-multihost}
 
-From **Hugo 0.31** we support multiple languages in a multihost configuration. See [this issue](https://github.com/gohugoio/hugo/issues/4027) for details.
+**Hugo 0.31** 以降、マルチホスト構成で複数の言語をサポートしています。 詳細については、[「この Issue」](https://github.com/gohugoio/hugo/issues/4027) を参照してください。
 
-This means that you can now configure a `baseURL` per `language`:
+つまり、`language` ごとに `baseURL` を設定できるようになったということです。
 
-> If a `baseURL` is set on the `language` level, then all languages must have one and they must all be different.
+> `baseURL` が `language` レベルで設定されている場合、すべての言語に `baseURL` が必要であり、それらはすべて異なっている必要があります。
 
 Example:
 
@@ -126,7 +124,7 @@ weight = 2
 title = "In English"
 {{</ code-toggle >}}
 
-With the above, the two sites will be generated into `public` with their own root:
+上記により、2 つのサイトが独自のルートを持つ `public` に生成されます。
 
 ```text
 public
@@ -134,9 +132,9 @@ public
 └── fr
 ```
 
-**All URLs (i.e `.Permalink` etc.) will be generated from that root. So the English home page above will have its `.Permalink` set to `https://example.com/`.**
+**すべてのURL（つまり `.Permalink` など）は、このルートから生成されます。つまり、上記の英語のホームページの `.Permalink` は `https://example.com/` に設定されることになります。**
 
-When you run `hugo server` we will start multiple HTTP servers. You will typically see something like this in the console:
+`hugo server` を実行すると、複数の HTTP サーバが起動されます。通常、コンソールには以下のような表示が出力されます。
 
 ```text
 Web Server is available at 127.0.0.1:1313 (bind address 127.0.0.1)
@@ -144,34 +142,34 @@ Web Server is available at 127.0.0.1:1314 (bind address 127.0.0.1)
 Press Ctrl+C to stop
 ```
 
-Live reload and `--navigateToChanged` between the servers work as expected.
+サーバー間のライブリロードと `--navigateToChanged` は期待通りに動作しています。
 
 
-## Translate Your Content
+## コンテンツを翻訳する {#translate-your-content}
 
-There are two ways to manage your content translations. Both ensure each page is assigned a language and is linked to its counterpart translations.
+コンテンツの翻訳を管理するには、2 つの方法があります。 どちらも、各ページに言語が割り当てられ、対応する翻訳にリンクされていることを確認します。
 
-### Translation by filename
+### ファイル名による翻訳 {#translation-by-filename}
 
-Considering the following example:
+以下の例で考えてみます。
 
 1. `/content/about.en.md`
 2. `/content/about.fr.md`
 
-The first file is assigned the English language and is linked to the second.
-The second file is assigned the French language and is linked to the first.
+最初のファイルには英語が割り当てられ、2 番目のファイルにリンクされています。
+2 番目のファイルにはフランス語が割り当てられ、最初のファイルにリンクされています。
 
-Their language is __assigned__ according to the language code added as a __suffix to the filename__.
+それぞれの言語は、__ファイル名のサフィックス__ として付加される言語コードに従って __割り当てられます__。
 
-By having the same **path and base filename**, the content pieces are __linked__ together as translated pages.
+同じ **パスとベース ファイル名** を 持つことで、コンテンツの断片は翻訳されたページとして一緒に __リンク__ されます。
 
 {{< note >}}
-If a file has no language code, it will be assigned the default language.
+ファイルに言語コードがない場合、デフォルトの言語が割り当てられます。
 {{</ note >}}
 
-### Translation by content directory
+### コンテンツディレクトリによる翻訳 {#translation-by-content-directory}
 
-This system uses different content directories for each of the languages. Each language's content directory is set using the `contentDir` param.
+このシステムでは、各言語ごとに異なるコンテンツディレクトリを使用します。各言語のコンテンツディレクトリは `contentDir` パラメータで設定します。
 
 {{< code-toggle file="config" >}}
 languages:
@@ -185,25 +183,25 @@ languages:
     contentDir: "content/french"
 {{< /code-toggle >}}
 
-The value of `contentDir` can be any valid path -- even absolute path references. The only restriction is that the content directories cannot overlap.
+`contentDir` の値には、任意の有効なパス (絶対パス参照も含む) を指定することができます。唯一の制限は、コンテンツディレクトリは重複できないことです。
 
-Considering the following example in conjunction with the configuration above:
+上記の設定と合わせて、以下の例を考えてみます。
 
 1. `/content/english/about.md`
 2. `/content/french/about.md`
 
-The first file is assigned the English language and is linked to the second.
-The second file is assigned the French language and is linked to the first.
+最初のファイルには英語が割り当てられ、2 番目のファイルにリンクされています。
+2 番目のファイルにはフランス語が割り当てられ、最初のファイルにリンクされています。
 
-Their language is __assigned__ according to the content directory they are __placed__ in.
+それらの言語は、__配置されている__ コンテンツディレクトリに従って __割り当てられます__。
 
-By having the same **path and basename** (relative to their language content directory), the content pieces are __linked__ together as translated pages.
+同じ **パスとベース名** (言語コンテンツ ディレクトリからの相対パス) を持つことで、コンテンツの断片は翻訳されたページとして一緒に __リンク__ されます。
 
-### Bypassing default linking
+### デフォルトのリンクを回避する {#bypassing-default-linking}
 
-Any pages sharing the same `translationKey` set in front matter will be linked as translated pages regardless of basename or location.
+フロントマターに設定された `translationKey` を共有するすべてのページは、ベース名や場所に関係なく、翻訳されたページとしてリンクされます。
 
-Considering the following example:
+以下の例で考えてみます。
 
 1. `/content/about-us.en.md`
 2. `/content/om.nn.md`
@@ -213,45 +211,45 @@ Considering the following example:
 translationKey: "about"
 {{< /code-toggle >}}
 
-By setting the `translationKey` front matter param to `about` in all three pages, they will be __linked__ as translated pages.
+3 つのページで `translationKey` フロントマター パラメータを `about` に設定することで、翻訳されたページとして __リンクされます__。
 
-### Localizing permalinks
+### パーマリンクのローカライズ {#localizing-permalinks}
 
-Because paths and filenames are used to handle linking, all translated pages will share the same URL (apart from the language subdirectory).
+パスとファイル名はリンクの処理に使用されるため、翻訳されたすべてのページは (言語サブディレクトリを除いて) 同じ URL を共有します。
 
-To localize the URLs, the [`slug`]({{< ref "/content-management/organization/index.md#slug" >}}) or [`url`]({{< ref "/content-management/organization/index.md#url" >}}) front matter param can be set in any of the non-default language file.
+URL をローカライズするには、[`slug`]({{< ref "/content-management/organization/index.md#slug" >}}) または [`url`]({{< ref "/content-management/organization/index.md#url" >}}) フロントマター パラメータは、デフォルト以外の言語ファイルのいずれかに設定できます。
 
-For example, a French translation (`content/about.fr.md`) can have its own localized slug.
+たとえば、フランス語の翻訳 (`content/about.fr.md`) は、独自のローカライズされたスラグを持つことができます。
 
 {{< code-toggle >}}
 Title: A Propos
 slug: "a-propos"
 {{< /code-toggle >}}
 
-At render, Hugo will build both `/about/` and `/fr/a-propos/` while maintaining their translation linking.
+レンダリング時に、Hugo は `/about/` と `/fr/a-propos/` の翻訳リンクを維持したまま、両方をビルドします。
 
 {{% note %}}
-If using `url`, remember to include the language part as well: `/fr/compagnie/a-propos/`.
+`url` を使用する場合は、`/fr/companie/a-propos/` のように忘れずに言語部分も含めてください。
 {{%/ note %}}
 
-### Page Bundles
+### ページバンドル {#page-bundles}
 
-To avoid the burden of having to duplicate files, each Page Bundle inherits the resources of its linked translated pages' bundles except for the content files (Markdown files, HTML files etc...).
+ファイルの重複を避けるため、各ページバンドルは、コンテンツファイル (Markdown ファイル、HTML ファイルなど) を除き、リンク先の翻訳ページバンドルのリソースを継承します。
 
-Therefore, from within a template, the page will have access to the files from all linked pages' bundles.
+したがって、テンプレート内から、ページはリンクされたすべてのページのバンドルからファイルにアクセスできるようになります。
 
-If, across the linked bundles, two or more files share the same basename, only one will be included and chosen as follows:
+リンクされたバンドル全体で、2つ以上のファイルが同じベースネームを共有している場合、1 つのファイルだけが含まれ、以下のように選択されます。
 
-* File from current language bundle, if present.
-* First file found across bundles by order of language `Weight`.
+* 現在の言語バンドルのファイル (存在する場合)。
+* バンドル間で、言語 `Weight` の順番で最初に見つかったファイル。
 
 {{% note %}}
-Page Bundle resources follow the same language assignment logic as content files, both by filename (`image.jpg`, `image.fr.jpg`) and by directory (`english/about/header.jpg`, `french/about/header.jpg`).
+ページバンドルのリソースは、ファイル名 (`image.jpg`、`image.fr.jpg`) とディレクトリ (`english/about/header.jpg`、`french/about/header.jpg`) によって、コンテンツファイルと同じ言語割り当てロジックに従います。
 {{%/ note %}}
 
-## Reference the Translated Content
+## 翻訳されたコンテンツを参照する {#reference-the-translated-content}
 
-To create a list of links to translated content, use a template similar to the following:
+翻訳コンテンツへのリンク集を作成する場合は、以下のようなテンプレートを使用します。
 
 {{< code file="layouts/partials/i18nlist.html" >}}
 {{ if .IsTranslated }}
@@ -266,13 +264,13 @@ To create a list of links to translated content, use a template similar to the f
 {{ end }}
 {{< /code >}}
 
-The above can be put in a `partial` (i.e., inside `layouts/partials/`) and included in any template, whether a [single content page][contenttemplate] or the [homepage]. It will not print anything if there are no translations for a given page.
+上記は `partial` (つまり、`layouts/partials/` 内) に配置でき、[単一のコンテンツページ][contenttemplate] または [ホームページ][homepage] のいずれのテンプレートにも含めることができます。 指定されたページに翻訳がない場合、何も出力されません。
 
-The above also uses the [`i18n` function][i18func] described in the next section.
+上記では、次のセクションで説明する [`i18n` 関数][i18func] も使用します。
 
-### List All Available Languages
+### 利用可能なすべての言語を一覧表示する {#list-all-available-languages}
 
-`.AllTranslations` on a `Page` can be used to list all translations, including the page itself. On the home page it can be used to build a language navigator:
+`Page` の `.AllTranslations` を使用して、ページ自体を含むすべての翻訳を一覧表示できます。 ホームページでは、言語ナビゲーターを構築するために使用できます。
 
 {{< code file="layouts/partials/allLanguages.html" >}}
 <ul>
@@ -282,72 +280,72 @@ The above also uses the [`i18n` function][i18func] described in the next section
 </ul>
 {{< /code >}}
 
-## Translation of Strings
+## 文字列の翻訳 {#translation-of-strings}
 
-Hugo uses [go-i18n] to support string translations. [See the project's source repository][go-i18n-source] to find tools that will help you manage your translation workflows.
+Hugo は [go-i18n] を使用して文字列の翻訳をサポートしています。 [プロジェクトのソースリポジトリ][go-i18n-source] には、翻訳ワークフローの管理に役立つツールがあります。
 
-Translations are collected from the `themes/<THEME>/i18n/` folder (built into the theme), as well as translations present in `i18n/` at the root of your project. In the `i18n`, the translations will be merged and take precedence over what is in the theme folder. Language files should be named according to [RFC 5646] with names such as `en-US.toml`, `fr.toml`, etc.
+翻訳は `themes/<THEME>/i18n/` フォルダー (テーマに組み込まれている) から集められ、プロジェクトのルートにある `i18n/` に存在する翻訳も同様に集められます。 `i18n` では、翻訳がマージされ、テーマフォルダーにあるものよりも優先されます。 言語ファイルは [RFC 5646] に従って、 `en-US.toml` や `fr.toml` などの名前を付ける必要があります。
 
-Artificial languages with private use subtags as defined in [RFC 5646 &#167; 2.2.7](https://datatracker.ietf.org/doc/html/rfc5646#section-2.2.7) are also supported. You may omit the `art-x-` prefix for brevity. For example:
+[RFC 5646 &#167; 2.2.7](https://datatracker.ietf.org/doc/html/rfc5646#section-2.2.7) で定義されている私的利用のサブタグを持つ人工言語もサポートされています。簡潔さを保つために `art-x-` という接頭辞を省略することができます。例えば、以下の通りです。
 
 ```text
 art-x-hugolang
 hugolang
 ```
 
-Private use subtags must not exceed 8 alphanumeric characters.
+私的利用のサブタグは、英数字で8文字以内でなければなりません。
 
-### Query basic translation
+### 基本翻訳をクエリする {#query-basic-translation}
 
-From within your templates, use the `i18n` function like this:
+テンプレートの中から、以下のように `i18n` 関数を使用します。
 
 ```go-html-template
 {{ i18n "home" }}
 ```
 
-The function will search for the `"home"` id:
+この関数は `"home"` という ID を検索します。
 
 {{< code-toggle file="i18n/en-US" >}}
 [home]
 other = "Home"
 {{< /code-toggle >}}
 
-The result will be
+結果は以下のようになります。
 
 ```text
 Home
 ```
 
-### Query a flexible translation with variables
+### 変数を使用して柔軟な翻訳をクエリする {#query-a-flexible-translation-with-variables}
 
-Often you will want to use the page variables in the translation strings. To do so, pass the `.` context when calling `i18n`:
+多くの場合、翻訳文字列でページ変数を使用したいと思うでしょう。 そのためには、`i18n` を呼び出すときに、以下のように `.` コンテキストを渡します。
 
 ```go-html-template
 {{ i18n "wordCount" . }}
 ```
 
-The function will pass the `.` context to the `"wordCount"` id:
+この関数は `.` コンテキストを `"wordCount"` id に渡します。
 
 {{< code-toggle file="i18n/en-US" >}}
 [wordCount]
 other = "This article has {{ .WordCount }} words."
 {{< /code-toggle >}}
 
-Assume `.WordCount` in the context has value is 101. The result will be:
+コンテキストの `.WordCount` の値が 101 であると仮定します。結果は以下のようになります。
 
 ```text
 This article has 101 words.
 ```
 
-### Query a singular/plural translation
+### 単数形/複数形の翻訳をクエリする {#query-a-singular-plural-translation}
 
-In other to meet singular/plural requirement, you must pass a dictionary (map) with a numeric `.Count` property to the `i18n` function. The below example uses `.ReadingTime` variable which has a built-in `.Count` property.
+その他、単数/複数の要件を満たすには、 `.Count` という数値プロパティを持つ辞書 (マップ) を `i18n` 関数に渡す必要があります。 以下の例では、組み込みの `.Count` プロパティを持つ `.ReadingTime` 変数を使用しています。
 
 ```go-html-template
 {{ i18n "readingTime" .ReadingTime }}
 ```
 
-The function will read `.Count` from `.ReadingTime` and evaluate whether the number is singular (`one`) or plural (`other`). After that, it will pass to `readingTime` id in `i18n/en-US.toml` file:
+この関数は `.ReadingTime` から `.Count` を読み込み、その数が単数 (`one`) か複数 (`other`) かを判断します。その後、`i18n/en-US.toml` ファイルにある `readingTime` の id を渡します。
 
 {{< code-toggle file="i18n/en-US" >}}
 [readingTime]
@@ -355,27 +353,27 @@ one = "One minute to read"
 other = "{{.Count}} minutes to read"
 {{< /code-toggle >}}
 
-Assuming `.ReadingTime.Count` in the context has value is 525600. The result will be:
+コンテキストの `.ReadingTime.Count` の値が 525600 であると仮定すると、結果は以下のようになります。
 
 ```text
 525600 minutes to read
 ```
 
-If `.ReadingTime.Count` in the context has value is 1. The result is:
+コンテキストの `.ReadingTime.Count` の値が 1 の場合、結果は以下のようになります。
 
 ```text
 One minute to read
 ```
 
-In case you need to pass a custom data: (`(dict "Count" numeric_value_only)` is minimum requirement)
+カスタムデータを渡す必要がある場合: (`(dict "Count" numeric_value_only)` が最低限必要)
 
 ```go-html-template
 {{ i18n "readingTime" (dict "Count" 25 "FirstArgument" true "SecondArgument" false "Etc" "so on, so far") }}
 ```
 
-## Localization
+## ローカライズ {#localization}
 
-The following localization examples assume your site's primary language is English, with translations to French and German.
+以下のローカライズの例では、サイトの主要言語を英語とし、フランス語とドイツ語への翻訳を想定しています。
 
 {{< code-toggle file="config" >}}
 defaultContentLang = 'en'
@@ -396,21 +394,21 @@ weight = 3
 
 {{< /code-toggle >}}
 
-### Dates
+### 日付 {#dates}
 
-With this front matter:
+以下のフロントマター
 
 {{< code-toggle >}}
 date = 2021-11-03T12:34:56+01:00
 {{< /code-toggle >}}
 
-And this template code:
+および、以下のテンプレート コード
 
 ```go-html-template
 {{ .Date | time.Format ":date_full" }}
 ```
 
-The rendered page displays:
+で、以下のレンダリングされたページが表示されます。
 
 Language|Value
 :--|:--
@@ -418,17 +416,17 @@ English|Wednesday, November 3, 2021
 Français|mercredi 3 novembre 2021
 Deutsch|Mittwoch, 3. November 2021
 
-See [time.Format] for details.
+詳細については、[「time.Format」] を参照してください。
 
-### Currency
+### 通貨 {#currency}
 
-With this template code:
+以下のテンプレート コード
 
 ```go-html-template
 {{ 512.5032 | lang.FormatCurrency 2 "USD" }}
 ```
 
-The rendered page displays:
+で、以下のレンダリングされたページが表示されます。
 
 Language|Value
 :--|:--
@@ -436,17 +434,17 @@ English|$512.50
 Français|512,50 $US
 Deutsch|512,50 $
 
-See [lang.FormatCurrency] and [lang.FormatAccounting] for details.
+詳細については、[「lang.FormatCurrency」] と [「lang.FormatAccounting」] を参照してください。
 
-### Numbers
+### 数値 {#numbers}
 
-With this template code:
+以下のテンプレート コード
 
 ```go-html-template
 {{ 512.5032 | lang.FormatNumber 2 }}
 ```
 
-The rendered page displays:
+で、以下のレンダリングされたページが表示されます。
 
 Language|Value
 :--|:--
@@ -454,17 +452,17 @@ English|512.50
 Français|512,50
 Deutsch|512,50
 
-See [lang.FormatNumber] and [lang.FormatNumberCustom] for details.
+詳細については、[「lang.FormatNumber」] と [「lang.FormatNumberCustom」] を参照してください。
 
-### Percentages
+### パーセント {#percentages}
 
-With this template code:
+以下のテンプレート コード
 
 ```go-html-template
 {{ 512.5032 | lang.FormatPercent 2 }} ---> 512.50%
 ```
 
-The rendered page displays:
+で、以下のレンダリングされたページが表示されます。
 
 Language|Value
 :--|:--
@@ -472,11 +470,11 @@ English|512.50%
 Français|512,50 %
 Deutsch|512,50 %
 
-See [lang.FormatPercent] for details.
+詳細については、[「lang.FormatPercent」] を参照してください。
 
-## Menus
+## メニュー {#menus}
 
-You can define your menus for each language independently. Creating multilingual menus works just like [creating regular menus][menus], except they're defined in language-specific blocks in the configuration file:
+各言語のメニューは独立して定義することができます。多言語メニューの作成は、設定ファイルの言語固有のブロックに定義されることを除けば、[通常のメニューの作成][menus] と同様に機能します。
 
 {{< code-toggle file="config" >}}
 defaultContentLanguage = "en"
@@ -500,7 +498,7 @@ name   = "Startseite"
 weight = 0
 {{< /code-toggle >}}
 
-The rendering of the main navigation works as usual. `.Site.Menus` will just contain the menu in the current language. Note that `absLangURL` below will link to the correct locale of your website. Without it, menu entries in all languages would link to the English version, since it's the default content language that resides in the root directory.
+メインナビゲーションのレンダリングは通常通り動作します。`.Site.Menus` は現在の言語でのメニューのみを含みます。下記の `absLangURL` は、Web サイトの正しいロケールにリンクすることに注意してください。これがないと、英語がルートディレクトリに常駐する既定のコンテンツ言語であるため、すべての言語のメニューエントリが英語版にリンクされてしまいます。
 
 ```go-html-template
 <ul>
@@ -513,11 +511,11 @@ The rendering of the main navigation works as usual. `.Site.Menus` will just con
 </ul>
 ```
 
-### Dynamically localizing menus with i18n
+### i18n でメニューを動的にローカライズする {#dynamically-localizing-menus-with-i18n}
 
-While customizing menus per language is useful, your config file can become hard to maintain if you have a lot of languages
+言語ごとにメニューをカスタマイズするのは便利ですが、言語数が多くなると設定ファイルのメンテナンスが大変になります。
 
-If your menus are the same in all languages (ie. if the only thing that changes is the translated name) you can use the `.Identifier` as a translation key for the menu name:
+メニューがすべての言語で同じである場合 (つまり、翻訳された名前だけが変わる場合)、`.Identifier` をメニュー名の翻訳キーとして使用できます。
 
 {{< code-toggle file="config" >}}
 [[menu.main]]
@@ -527,14 +525,14 @@ weight = 1
 identifier = "about"
 {{< /code-toggle >}}
 
-You now need to specify the translations for the menu keys in the i18n files:
+以下のように、i18n ファイルでメニューキーの翻訳を指定する必要があります。
 
 {{< code file="i18n/pt.toml" >}}
 [about]
 other="Sobre mim"
 {{< /code >}}
 
-And do the appropriate changes in the menu code to use the `i18n` tag with the `.Identifier` as a key. You will also note that here we are using a `default` to fall back to `.Name`, in case the `.Identifier` key is also not present in the language specified in the `defaultContentLanguage` configuration.
+そして、 `.Identifier` をキーとして `i18n` タグを使用するようにメニューコードに適切な変更を加えます。また、ここでは `defaultContentLanguage` 設定で指定した言語に `.Identifier` キーが存在しない場合に備えて、 `.Name` にフォールバックするために `default` を使用していることに注意してください。
 
 {{< code file="layouts/partials/menu.html" >}}
 <ul>
@@ -547,38 +545,38 @@ And do the appropriate changes in the menu code to use the `i18n` tag with the `
 </ul>
 {{< /code >}}
 
-## Missing Translations
+## 不足している翻訳 {#missing-translations}
 
-If a string does not have a translation for the current language, Hugo will use the value from the default language. If no default value is set, an empty string will be shown.
+文字列に現在の言語の翻訳がない場合、Hugo はデフォルト言語の値を使用します。 デフォルト値が設定されていない場合、空の文字列が表示されます。
 
-While translating a Hugo website, it can be handy to have a visual indicator of missing translations. The [`enableMissingTranslationPlaceholders` configuration option][config] will flag all untranslated strings with the placeholder `[i18n] identifier`, where `identifier` is the id of the missing translation.
+Hugo の Web サイトを翻訳しているとき、翻訳の欠落箇所を視覚的に確認できると便利です。設定オプションの [`enableMissingTranslationPlaceholders`][config] は、すべての未翻訳の文字列に `[i18n] identifier` というプレースホルダーを付けてフラグを立てます (ここで `identifier` は未翻訳部分の ID です。
 
 {{% note %}}
-Hugo will generate your website with these missing translation placeholders. It might not be suitable for production environments.
+Hugo は、これらの不足している翻訳プレースホルダーを含む Web サイトを生成します。本番環境には適さないかもしれません。
 {{% /note %}}
 
-For merging of content from other languages (i.e. missing content translations), see [lang.Merge].
+他の言語からのコンテンツのマージ (つまり、コンテンツの翻訳がない場合) については、[「lang.Merge」] を参照してください。
 
-To track down missing translation strings, run Hugo with the `--printI18nWarnings` flag:
+不足している翻訳文字列を追跡するには、以下のように、Hugo を `--printI18nWarnings` フラグ付きで実行してください。
 
 ```bash
 hugo --printI18nWarnings | grep i18n
 i18n|MISSING_TRANSLATION|en|wordCount
 ```
 
-## Multilingual Themes support
+## 多言語テーマへの対応 {#multilingual-themes-support}
 
-To support Multilingual mode in your themes, some considerations must be taken for the URLs in the templates. If there is more than one language, URLs must meet the following criteria:
+テーマで多言語モードをサポートするためには、テンプレート内の URL について、いくつかの配慮が必要です。複数の言語が存在する場合、URL は以下の条件を満たす必要があります。
 
-* Come from the built-in `.Permalink` or `.RelPermalink`
-* Be constructed with the [`relLangURL` template function][rellangurl] or the [`absLangURL` template function][abslangurl] **OR** be prefixed with `{{ .LanguagePrefix }}`
+* 組み込みの `.Permalink` または `.RelPermalink` から来ること
+* [`relLangURL` テンプレート関数][rellangurl] または [`absLangURL` テンプレート関数][abslangurl] で構築されること **または** `{{ .LanguagePrefix }}` をプレフィックスとして持つこと
 
-If there is more than one language defined, the `LanguagePrefix` variable will equal `/en` (or whatever your `CurrentLanguage` is). If not enabled, it will be an empty string (and is therefore harmless for single-language Hugo websites).
+複数の言語が定義されている場合、`LanguagePrefix` 変数は `/en` (または、どのような値でも `CurrentLanguage`) と等しくなります。 有効にしない場合、空の文字列になります (したがって、単一言語の Hugo Web サイトには無害です)。
 
 
-## Generate multilingual content with `hugo new`
+## `hugo new` で多言語コンテンツを生成する {#generate-multilingual-content-with-hugo-new}
 
-Currently, `hugo new` is not ready to support generating multilingual content. But there is a [proposal topic](https://github.com/gohugoio/hugo/issues/7732) about this in GitHub issue to discuss how it should work.
+現在、`hugo new` は多言語コンテンツの生成に対応する準備ができていません。しかし、これについては GitHub issue に [提案トピック](https://github.com/gohugoio/hugo/issues/7732) があり、どのように動作させるべきか議論されています。
 
 [abslangurl]: /functions/abslangurl
 [config]: /getting-started/configuration/

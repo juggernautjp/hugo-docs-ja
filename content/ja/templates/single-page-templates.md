@@ -4,9 +4,8 @@ aliases:
 categories:
 - templates
 date: "2017-02-01"
-description: The primary view of content in Hugo is the single view. Hugo will render
-  every Markdown file provided with a corresponding single template.
-draft: true
+description: Hugo におけるコンテンツの主要なビューは、シングルビューです。 Hugo は提供されたすべての Markdown ファイルを、対応する単一のテンプレートでレンダリングします。
+draft: false
 keywords:
 - page
 - templates
@@ -18,22 +17,22 @@ menu:
     weight: 60
 publishdate: "2017-02-01"
 sections_weight: 60
-title: Single Page Templates
+title: シングルページ テンプレート
 toc: true
 weight: 60
 ---
 
-## Single Page Template Lookup Order
+## シングルページ テンプレートの検索順序 {#single-page-template-lookup-order}
 
-See [Template Lookup](/templates/lookup-order/).
+[テンプレートの検索順序](/templates/lookup-order/) を参照してください。
 
-## Example Single Page Templates
+## シングルページ テンプレートの例 {#example-single-page-templates}
 
-Content pages are of the type `page` and will therefore have all the [page variables][pagevars] and [site variables][] available to use in their templates.
+コンテンツページは `page` タイプであるため、テンプレートで使用できるすべての [ページ変数][pagevars] と [サイト変数][site variables] を持つことになります。
 
 ### `posts/single.html`
 
-This single page template makes use of Hugo [base templates][], the [`.Format` function][] for dates, the [`.WordCount` page variable][pagevars], and ranges through the single content's specific [taxonomies][pagetaxonomy]. [`with`][] is also used to check whether the taxonomies are set in the front matter.
+このシングルページ テンプレートは、Hugo の [ベーステンプレート][base templates]、日付のための [`.Format` 関数][`.Format` function]、[`.WordCount` ページ変数][`.WordCount` page variable]、そしてシングルコンテンツ特有の [タクソノミー][pagetaxonomy] を通して範囲を使用します。 また、[`with`][] は、フロントマターにタクソノミーが設定されているかどうかをチェックするために使用されます。
 
 {{< code file="layouts/posts/single.html" download="single.html" >}}
 {{ define "main" }}
@@ -78,7 +77,7 @@ This single page template makes use of Hugo [base templates][], the [`.Format` f
 {{ end }}
 {{< /code >}}
 
-To easily generate new instances of a content type (e.g., new `.md` files in a section like `project/`) with preconfigured front matter, use [content archetypes][archetypes].
+コンテンツタイプの新しいインスタンス (たとえば、`project/` のようなセクションの新しい `.md` ファイル) を、あらかじめ設定されたフロントマターで簡単に生成するには、[コンテンツ アーキタイプ][archetypes] を使用します。
 
 [archetypes]: /content-management/archetypes/
 [base templates]: /templates/base/

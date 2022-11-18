@@ -3,8 +3,8 @@ aliases:
 - /overview/introduction/
 - /about/why-i-built-hugo/
 date: "2017-02-01"
-description: Hugo は Go で書かれた高速でモダンな静的サイトジェネレーターで、ウェブサイト制作を再び楽しくするように設計されています。
-draft: true
+description: Hugo は Go で書かれた高速でモダンな静的サイトジェネレーターで、Web サイト制作を再び楽しくするように設計されています。
+draft: false
 lastmod: "2017-02-01"
 layout: single
 linktitle: Hugo とは

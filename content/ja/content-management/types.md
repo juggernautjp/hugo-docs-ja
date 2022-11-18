@@ -4,8 +4,8 @@ aliases:
 categories:
 - content management
 date: "2017-02-01"
-description: Hugo is built around content organized in sections.
-draft: true
+description: Hugo は、セクションで構成されたコンテンツを中心に構成されています。
+draft: false
 keywords:
 - lists
 - sections
@@ -16,14 +16,14 @@ menu:
   docs:
     parent: content-management
     weight: 60
-title: Content Types
+title: コンテンツタイプ
 toc: true
 weight: 60
 ---
 
-A **content type** is a way to organize your content. Hugo resolves the content type from either the `type` in front matter or, if not set, the first directory in the file path. E.g. `content/blog/my-first-event.md` will be of type `blog` if no `type` is set.
+**コンテンツタイプ** とは、コンテンツを整理するための方法です。Hugo はコンテンツタイプを、フロントマターにある `type` か、設定されていない場合はファイルパスの最初のディレクトリから解決します。たとえば、 `type` が設定されていない場合、 `content/blog/my-first-event.md` は `blog` というタイプになります。
 
-A content type is used to
+コンテンツタイプは、以下の目的で使用されます。
 
-- Determine how the content is rendered. See [Template Lookup Order](/templates/lookup-order/) and [Content Views](https://gohugo.io/templates/views) for more.
-- Determine which [archetype](/content-management/archetypes/) template to use for new content.
+- コンテンツのレンダリング方法を決定します。 詳細については、[「テンプレートの検索順序」](/templates/lookup-order/) と [「コンテンツ ビュー」](https://gohugo.io/templates/views) を参照してください。
+- 新しいコンテンツにどの [アーキタイプ](/content-management/archetypes/) テンプレートを使用するかを決定します。

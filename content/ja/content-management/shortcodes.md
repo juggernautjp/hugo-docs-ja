@@ -4,9 +4,8 @@ aliases:
 categories:
 - content management
 date: "2017-02-01"
-description: Shortcodes are simple snippets inside your content files calling built-in
-  or custom templates.
-draft: true
+description: ショートコードは、コンテンツファイル内のシンプルなスニペットで、組み込みテンプレートやカスタム テンプレートを呼び出します。
+draft: false
 keywords:
 - markdown
 - content
@@ -19,32 +18,32 @@ menu:
     weight: 35
 publishdate: "2017-02-01"
 testparam: Hugo Rocks!
-title: Shortcodes
+title: ショートコード
 toc: true
 weight: 35
 ---
 
-## What a Shortcode is
+## ショートコードとは {#what-a-shortcode-is}
 
-Hugo loves Markdown because of its simple content format, but there are times when Markdown falls short. Often, content authors are forced to add raw HTML (e.g., video `<iframe>`'s) to Markdown content. We think this contradicts the beautiful simplicity of Markdown's syntax.
+Hugo は、そのシンプルなコンテンツ形式のために Markdown を気に入っていますが、Markdown が不十分な場合もあります。 多くの場合、コンテンツの作成者は生の HTML (たとえば、動画の `<iframe>` タグ) を Markdown コンテンツに追加することを余儀なくされます。 これは、Markdown の構文の美しいシンプルさと矛盾していると思います。
 
-Hugo created **shortcodes** to circumvent these limitations.
+Hugo は、これらの制限を回避するために **ショートコード** を作成しました。
 
-A shortcode is a simple snippet inside a content file that Hugo will render using a predefined template. Note that shortcodes will not work in template files. If you need the type of drop-in functionality that shortcodes provide but in a template, you most likely want a [partial template][partials] instead.
+ショートコードとは、事前定義されたテンプレートを使用して Hugo がレンダリングする、コンテンツファイル内の単純なスニペットです。 ショートコードはテンプレートファイルでは動作しないことに注意してください。ショートコードのようなドロップイン機能が必要な場合は、代わりに [部分テンプレート][Partials] を使用することになるでしょう。
 
-In addition to cleaner Markdown, shortcodes can be updated any time to reflect new classes, techniques, or standards. At the point of site generation, Hugo shortcodes will easily merge in your changes. You avoid a possibly complicated search and replace operation.
+よりきれいな Markdown に加え、ショートコードは新しいクラス、テクニック、標準を反映するためにいつでも更新することができます。サイト生成時に、Hugo ショートコードは簡単に変更をマージさせ、複雑な検索と置換の操作を避けることができます。
 
-## Use Shortcodes
+## ショートコードを使用する {#use-shortcodes}
 
 {{< youtube 2xkNJL4gJ9E >}}
 
-In your content files, a shortcode can be called by calling `{{%/* shortcodename parameters */%}}`. Shortcode parameters are space delimited, and parameters with internal spaces can be quoted.
+コンテンツファイル内で、`{%/* shortcodename parameters */%}}` を呼び出すことで、ショートコードを呼び出すことができます。ショートコードのパラメータはスペースで区切られ、内部スペースを含むパラメータは引用符で囲むことができます。
 
-The first word in the shortcode declaration is always the name of the shortcode. Parameters follow the name. Depending upon how the shortcode is defined, the parameters may be named, positional, or both, although you can't mix parameter types in a single call. The format for named parameters models that of HTML with the format `name="value"`.
+ショートコード宣言の最初の単語は、常にショートコードの名前です。 名前の後にパラメータが続きます。 ショートコードの定義方法に応じて、パラメーターは名前付き、位置指定、またはその両方になりますが、1 回の呼び出しでパラメーターの種類を混在させることはできません。 名前付きパラメーターの形式は、HTML の `name="value"` という書式に倣っています。
 
-Some shortcodes use or require closing shortcodes. Again like HTML, the opening and closing shortcodes match (name only) with the closing declaration, which is prepended with a slash.
+ショートコードの中には、終了ショートコードを使用するもの、または終了ショートコードを必要とするものがあります。これも HTML と同様に、開始ショートコードと終了ショートコードは (名前のみ) 一致し、前にスラッシュが追加されます。
 
-Here are two examples of paired shortcodes:
+ここでは、ペアとなるショートコードの例を 2 つ紹介します。
 
 ```go-html-template
 {{%/* mdshortcode */%}}Stuff to `process` in the *center*.{{%/* /mdshortcode */%}}
@@ -54,94 +53,94 @@ Here are two examples of paired shortcodes:
 {{</* highlight go */>}} A bunch of code here {{</* /highlight */>}}
 ```
 
-The examples above use two different delimiters, the difference being the `%` character in the first and the `<>` characters in the second.
+上記の例では、2 つの異なる区切り文字を使用しています。違いは、最初の `%` 文字と 2 番目の `<>` 文字です。
 
-### Shortcodes with raw string parameters
+### Raw (生) 文字列パラメータを使用するショートコード {#shortcodes-with-raw-string-parameters}
 
 {{< new-in "0.64.1" >}}
 
-You can pass multiple lines as parameters to a shortcode by using raw string literals:
+Raw (生) 文字列リテラルを使用することで、以下のように、ショートコードに複数の行をパラメータとして渡すことができます。
 
 ```go-html-template
 {{</*  myshortcode `This is some <b>HTML</b>,
 and a new line with a "quoted string".` */>}}
 ```
 
-### Shortcodes with Markdown
+### Markdown を使用したショートコード {#shortcodes-with-markdown}
 
-In Hugo `0.55` we changed how the `%` delimiter works. Shortcodes using the `%` as the outer-most delimiter will now be fully rendered when sent to the content renderer. They can be part of the generated table of contents, footnotes, etc.
+Hugo `0.55` では、`%` 区切り文字の動作を変更しました。 最も外側の区切り文字として `%` を使用するショートコードは、コンテンツ レンダラーに送信されると完全にレンダリングされるようになりました。 これらは、生成された目次や脚注などの一部にすることができます。
 
-If you want the old behavior, you can put the following line in the start of your shortcode template:
+旧来の動作をさせたい場合は、ショートコード テンプレートの冒頭に以下の行を追加できます。
 
 ```go-html-template
 {{ $_hugo_config := `{ "version": 1 }` }}
 ```
 
-### Shortcodes Without Markdown
+### Markdown を使用しないショートコード {#shortcodes-without-markdown}
 
-The `<` character indicates that the shortcode's inner content does *not* need further rendering. Often shortcodes without Markdown include internal HTML:
+文字 `<` は、ショートコードの内部コンテンツがさらなるレンダリングを必要と *しない* ことを示します。 Markdown を使用しないショートコードには、以下のように、しばしば内部の HTML が含まれます。
 
 ```go-html-template
 {{</* myshortcode */>}}<p>Hello <strong>World!</strong></p>{{</* /myshortcode */>}}
 ```
 
-### Nested Shortcodes
+### ネストされたショートコード {#nested-shortcodes}
 
-You can call shortcodes within other shortcodes by creating your own templates that leverage the `.Parent` variable. `.Parent` allows you to check the context in which the shortcode is being called. See [Shortcode templates][sctemps].
+`.Parent` 変数を利用した独自のテンプレートを作成することで、他のショートコードの中にあるショートコードを呼び出すことができます。 `.Parent` を使用すると、ショートコードが呼び出されているコンテキストを確認できます。 詳細は、[「ショートコード テンプレート」][sctemps] を参照してください。
 
-## Use Hugo's Built-in Shortcodes
+## Hugo の組み込みショートコードを使用する {#use-hugos-built-in-shortcodes}
 
-Hugo ships with a set of predefined shortcodes that represent very common usage. These shortcodes are provided for author convenience and to keep your Markdown content clean.
+Hugo には非常に一般的な使用方法を示す、定義済みのショートコード一式が同梱されています。これらのショートコードは作者の利便性と Markdown コンテンツをきれいに保つために提供されています。
 
 ### `figure`
 
-`figure` is an extension of the image syntax in Markdown, which does not provide a shorthand for the more semantic [HTML5 `<figure>` element][figureelement].
+`figure` は Markdown の画像構文の拡張であり、よりセマンティックな [HTML5 `<figure>` 要素][figureelement] の短縮形を提供しません。
 
-The `figure` shortcode can use the following named parameters:
+`figure` ショートコードでは、以下の名前付きパラメータを使用できます。
 
 src
-: URL of the image to be displayed.
+: 表示する画像の URL です。
 
 link
-: If the image needs to be hyperlinked, URL of the destination.
+: 画像をハイパーリンクする必要がある場合、リンク先の URL を指定します。
 
 target
-: Optional `target` attribute for the URL if `link` parameter is set.
+: `link` パラメータが設定されている場合、URL のオプションの `target` 属性を指定します。
 
 rel
-: Optional `rel` attribute for the URL if `link` parameter is set.
+: `link` パラメータが設定されている場合、URL のオプションの `rel` 属性を指定します。
 
 alt
-: Alternate text for the image if the image cannot be displayed.
+: 画像を表示できない場合の画像の代替テキストを指定します。
 
 title
-: Image title.
+: 画像のタイトルです。
 
 caption
-: Image caption.  Markdown within the value of `caption` will be rendered.
+: 画像のキャプションです。` caption` の値内の Markdown がレンダリングされます。
 
 class
-: `class` attribute of the HTML `figure` tag.
+: HTML の `figure` タグの `class` 属性を指定します。
 
 height
-: `height` attribute of the image.
+: 画像の `height` 属性を指定します。
 
 width
-: `width` attribute of the image.
+: 画像の `width` 属性を指定します。
 
 attr
-: Image attribution text. Markdown within the value of `attr` will be rendered.
+: 画像の属性テキスト。 `attr` の値内の Markdown がレンダリングされます。
 
 attrlink
-: If the attribution text needs to be hyperlinked, URL of the destination.
+: 属性テキストをハイパーリンクする必要がある場合は、リンク先の URL を指定します。
 
-#### Example `figure` Input
+#### `figure` 入力の例 {#example-figure-input}
 
 {{< code file="figure-input-example.md" >}}
 {{</* figure src="/media/spf13.jpg" title="Steve Francia" */>}}
 {{< /code >}}
 
-#### Example `figure` Output
+#### `figure` 出力の例 {#example-figure-output}
 
 {{< output file="figure-output-example.html" >}}
 <figure>
@@ -154,19 +153,19 @@ attrlink
 
 ### `gist`
 
-Bloggers often want to include GitHub gists when writing posts. Let's suppose we want to use the [gist at the following url][examplegist]:
+ブロガーは、記事を書くときに GitHub の gist を含めたいと思うことがよくあります。たとえば、[以下の URL の gist][examplegist] を使いたいとします。
 
 ```txt
 https://gist.github.com/spf13/7896402
 ```
 
-We can embed the gist in our content via username and gist ID pulled from the URL:
+以下のように、URL から取得したユーザー名と gist ID を介して、コンテンツに gist を埋め込むことができます。
 
 ```go-html-template
 {{</* gist spf13 7896402 */>}}
 ```
 
-#### Example `gist` Input
+#### `gist` 入力の例 {#example-gist-input}
 
 If the gist contains several files and you want to quote just one of them, you can pass the filename (quoted) as an optional third argument:
 
@@ -174,23 +173,23 @@ If the gist contains several files and you want to quote just one of them, you c
 {{</* gist spf13 7896402 "img.html" */>}}
 {{< /code >}}
 
-#### Example `gist` Output
+#### `gist` 出力の例 {#example-gist-output}
 
 {{< output file="gist-output.html" >}}
 {{< gist spf13 7896402 >}}
 {{< /output >}}
 
-#### Example `gist` Display
+#### `gist` 表示の例 {#example-gist-display}
 
-To demonstrate the remarkable efficiency of Hugo's shortcode feature, we have embedded the `spf13` `gist` example in this page. The following simulates the experience for visitors to your website. Naturally, the final display will depend on your stylesheets and surrounding markup.
+Hugo のショートコード機能の顕著な効率性を示すために、このページでは `spf13` の `gist` の例を埋め込んでいます。 以下は、あなたの Web サイトを訪れた人が体験することをシミュレートしたものです。当然ながら、最終的な表示はスタイルシートや周辺のマークアップに依存します。
 
 {{< gist spf13 7896402 >}}
 
 ### `highlight`
 
-This shortcode will convert the source code provided into syntax-highlighted HTML. Read more on [highlighting](/content-management/syntax-highlighting/). `highlight` takes exactly one required `language` parameter and requires a closing shortcode.
+このショートコードは、提供されたソースコードをシンタックスハイライトされた HTML に変換します。詳細は、 [「ハイライト」](/content-management/syntax-highlighting/) を参照してください。 `highlight` は 1 つの必須パラメータ `language` を受け取り、終了ショートコードを必要とします。
 
-#### Example `highlight` Input
+#### `highlight` 入力の例 {#example-highlight-input}
 
 {{< code file="content/tutorials/learn-html.md" >}}
 {{</* highlight html */>}}
@@ -205,9 +204,9 @@ This shortcode will convert the source code provided into syntax-highlighted HTM
 {{</* /highlight */>}}
 {{< /code >}}
 
-#### Example `highlight` Output
+#### `highlight` 出力の例 {#example-highlight-output}
 
-The `highlight` shortcode example above would produce the following HTML when the site is rendered:
+上記の `highlight` ショートコードの例では、サイトがレンダリングされる際に以下の HTML が生成されます。
 
 {{< output file="tutorials/learn-html/index.html" >}}
 <span style="color: #f92672">&lt;section</span> <span style="color: #a6e22e">id=</span><span style="color: #e6db74">&quot;main&quot;</span><span style="color: #f92672">&gt;</span>
@@ -221,88 +220,88 @@ The `highlight` shortcode example above would produce the following HTML when th
 {{< /output >}}
 
 {{% note "More on Syntax Highlighting" %}}
-To see even more options for adding syntax-highlighted code blocks to your website, see [Syntax Highlighting in Developer Tools](/tools/syntax-highlighting/).
+シンタックスハイライトされたコードブロックを Web サイトに追加するためのさらなるオプションについては、[「デベロッパーツールのシンタックスハイライト」](/tools/syntax-highlighting/)  を参照してください。
 {{% /note %}}
 
 ### `instagram`
 
-If you'd like to embed a photo from [Instagram][], you only need the photo's ID. You can discern an Instagram photo ID from the URL:
+[Instagram][] の写真を埋め込む場合は、写真の ID だけが必要です。 URL から Instagram の写真 ID を識別できます。
 
 ```txt
 https://www.instagram.com/p/BWNjjyYFxVx/
 ```
 
-#### Example `instagram` Input
+#### `instagram` 入力の例 {#example-instagram-input}
 
 {{< code file="instagram-input.md" >}}
 {{</* instagram BWNjjyYFxVx */>}}
 {{< /code >}}
 
-You also have the option to hide the caption:
+以下のように、キャプションを非表示にするオプションもあります。
 
 {{< code file="instagram-input-hide-caption.md" >}}
 {{</* instagram BWNjjyYFxVx hidecaption */>}}
 {{< /code >}}
 
-#### Example `instagram` Output
+#### `instagram` 出力の例 {#example-instagram-output}
 
-By adding the preceding `hidecaption` example, the following HTML will be added to your rendered website's markup:
+先の `hidecaption` の例を追加すると、レンダリングされた Web サイトのマークアップに以下の HTML が追加されます。
 
 {{< output file="instagram-hide-caption-output.html" >}}
 {{< instagram BWNjjyYFxVx hidecaption >}}
 {{< /output >}}
 
-#### Example `instagram` Display
+#### `instagram` 出力の例 {#example-instagram-display}
 
-Using the preceding `instagram` with `hidecaption` example above, the following simulates the displayed experience for visitors to your website. Naturally, the final display will be contingent on your style sheets and surrounding markup.
+上記の `hidecaption` 付き `instagram` の例を用いて、以下はあなたの Web サイトへの訪問者のために表示される経験をシミュレートします。もちろん、最終的な表示は、スタイルシートや周辺のマークアップに依存します。
 
 {{< instagram BWNjjyYFxVx hidecaption >}}
 
 
 {{% note %}}
-The `instagram`-shortcode refers an endpoint of Instagram's API, that's deprecated since October 24th, 2020. Thus, no images can be fetched from this API endpoint, resulting in an error when the `instagram`-shortcode is used. For more information please have a look at GitHub issue [#7879](https://github.com/gohugoio/hugo/issues/7879).
+`instagram` ショートコードは Instagram の API のエンドポイントを参照していますが、これは 2020年10月24日から非推奨となっています。そのため、この API エンドポイントから画像を取得することができず、結果として `instagram` ショートコードが使用されるとエラーになります。詳細については、、GitHub issue [#7879](https://github.com/gohugoio/hugo/issues/7879) を参照してください。
 {{% /note %}}
 
 ### `param`
 
-Gets a value from the current `Page's` params set in front matter, with a fallback to the site param value. It will log an `ERROR` if the param with the given key could not be found in either.
+サイトパラメータ値へのフォールバックを使用して、フロントマターに設定されている現在の `Page's` パラメータから値を取得します。与えられたキーを持つパラメータがどちらにも見つからなかった場合は、 `ERROR` がログに記録されます。
 
 ```bash
 {{</* param testparam */>}}
 ```
 
-Since `testparam` is a param defined in front matter of this page with the value `Hugo Rocks!`, the above will print:
+`testparam` はこのページのフロントマターで定義されたパラメータで、値は `Hugo Rocks!` なので、上記は以下のように表示されます。
 
 {{< param testparam >}}
 
-To access deeply nested params, use "dot syntax", e.g:
+深くネストされたパラメータにアクセスするには、「ドット構文」を使用します。たとえば、以下の通りです。
 
 ```bash
 {{</* param "my.nested.param" */>}}
 ```
 
-### `ref` and `relref`
+### `ref` と `relref`
 
-These shortcodes will look up the pages by their relative path (e.g., `blog/post.md`) or their logical name (`post.md`) and return the permalink (`ref`) or relative permalink (`relref`) for the found page.
+これらのショートコードは、相対パス (たとえば、 `blog/post.md`) または論理名 (`post.md`) でページを検索し、見つかったページのパーマリンク (`ref`) または相対パーマリンク (`relref`) を返します。
 
-`ref` and `relref` also make it possible to make fragmentary links that work for the header links generated by Hugo.
+また、`ref` と `relref` は、Hugo によって生成されたヘッダーリンクに対して機能する断片的なリンクを作成することも可能にします。
 
 {{% note "More on Cross References" %}}
-Read a more extensive description of `ref` and `relref` in the [cross references](/content-management/cross-references/) documentation.
+[クロスリファレンス](/content-management/cross-references/) のドキュメントで、 `ref` と `relref` のより詳細な説明を読むことができます。
 {{% /note %}}
 
-`ref` and `relref` take exactly one required parameter of _reference_, quoted and in position `0`.
+`ref` と `relref` は、引用符で囲まれた `0` 位置にある _reference_ のパラメータを正確に 1 つだけ受け取ります。
 
-#### Example `ref` and `relref` Input
+#### `ref` と `relref` 入力の例 {#example-ref-and-relref-input}
 
 ```go-html-template
 [Neat]({{</* ref "blog/neat.md" */>}})
 [Who]({{</* relref "about.md#who" */>}})
 ```
 
-#### Example `ref` and `relref` Output
+#### `ref` と `relref` 入力の例 {#example-ref-and-relref-output}
 
-Assuming that standard Hugo pretty URLs are turned on.
+標準の Hugo のプリティ URL がオンになっていると仮定します。
 
 ```html
 <a href="https://example.com/blog/neat">Neat</a>
@@ -311,122 +310,124 @@ Assuming that standard Hugo pretty URLs are turned on.
 
 ### `tweet`
 
-You want to include a single tweet into your blog post? Everything you need is the URL of the tweet:
+ブログ投稿に単一のツイートを含めたいですか? 必要なのは、そのツイートの URL だけです。
 
 ```txt
 https://twitter.com/SanDiegoZoo/status/1453110110599868418
 ```
 
-#### Example `tweet` Input
+#### `tweet` 入力の例 {#example-tweet-input}
 
-Pass the tweet's user (case-insensitive) and ID from the URL as parameters to the `tweet` shortcode.
+URL にあるツイートのユーザー名 (大文字小文字を区別) と ID を `tweet` ショートコードにパラメータとして渡します。
 
 {{< code file="example-tweet-input.md" >}}
 {{</* tweet user="SanDiegoZoo" id="1453110110599868418" */>}}
 {{< /code >}}
 
-#### Example `tweet` Output
+#### `tweet` 出力の例 {#example-tweet-output}
 
-Using the preceding `tweet` example, the following HTML will be added to your rendered website's markup:
+先ほどの `tweet` の例では、レンダリングした Web サイトのマークアップに以下の HTML が追加されます。
 
 {{< output file="example-tweet-output.html" >}}
 {{< tweet user="SanDiegoZoo" id="1453110110599868418" >}}
 {{< /output >}}
 
-#### Example `tweet` Display
+#### `tweet` 表示の例 {#example-tweet-display}
 
-Using the preceding `tweet` example, the following simulates the displayed experience for visitors to your website. Naturally, the final display will be contingent on your stylesheets and surrounding markup.
+先ほどの `tweet` の例で、あなたの Web サイトへの訪問者に表示される体験をシミュレートすると、以下のようになります。もちろん、最終的な表示はスタイルシートとその周辺のマークアップに依存します。
 
 {{< tweet user="SanDiegoZoo" id="1453110110599868418" >}}
 
 ### `vimeo`
 
-Adding a video from [Vimeo][] is equivalent to the [YouTube Input shortcode][].
+[Vimeo][] からの動画の追加は、[YouTube 入力ショートコード][YouTube Input shortcode] と同等です。
 
 ```txt
 https://vimeo.com/channels/staffpicks/146022717
 ```
 
-#### Example `vimeo` Input
+#### `vimeo` 入力の例 {#example-vimeo-input}
 
-Extract the ID from the video's URL and pass it to the `vimeo` shortcode:
+動画の URL から ID を抽出し、それを `vimeo` ショートコードに渡します。
 
 {{< code file="example-vimeo-input.md" >}}
 {{</* vimeo 146022717 */>}}
 {{< /code >}}
 
-#### Example `vimeo` Output
+#### `vimeo` 出力の例 {#example-vimeop-output}
 
-Using the preceding `vimeo` example, the following HTML will be added to your rendered website's markup:
+前述の `vimeo` の例では、レンダリングされた Web サイトのマークアップに以下の HTML が追加されます。
 
 {{< output file="example-vimeo-output.html" >}}
 {{< vimeo 146022717 >}}
 {{< /output >}}
 
 {{% tip %}}
-If you want to further customize the visual styling of the YouTube or Vimeo output, add a `class` named parameter when calling the shortcode. The new `class` will be added to the `<div>` that wraps the `<iframe>` *and* will remove the inline styles. Note that you will need to call the `id` as a named parameter as well. You can also give the vimeo video a descriptive title with `title`.
+YouTube や Vimeo 出力のビジュアル スタイルをさらにカスタマイズしたい場合は、ショートコードを呼び出す際に `class` という名前のパラメータを追加します。
+新しい `class` は `<iframe>` をラップする `<div>` に追加され、 **かつ** インラインスタイルが削除されます。
+`id` を名前付きパラメータとして呼び出す必要があることに注意してください。また、`title` を使用すると、vimeo 動画にわかりやすいタイトルを付けることができます。
 
 ```go
 {{</* vimeo id="146022717" class="my-vimeo-wrapper-class" title="My vimeo video" */>}}
 ```
 {{% /tip %}}
 
-#### Example `vimeo` Display
+#### `vimeo` 表示の例 {#example-vimeo-display}
 
-Using the preceding `vimeo` example, the following simulates the displayed experience for visitors to your website. Naturally, the final display will be contingent on your stylesheets and surrounding markup.
+先ほどの `vimeo` の例を使って、あなたの Web サイトへの訪問者に表示される体験をシミュレートすると、以下のようになります。もちろん、最終的な表示はスタイルシートとその周辺のマークアップに依存することになります。
 
 {{< vimeo 146022717 >}}
 
 ### `youtube`
 
-The `youtube` shortcode embeds a responsive video player for [YouTube videos][]. Only the ID of the video is required, e.g.:
+`youtube` ショートコードは、[YouTube 動画][YouTube videos] のレスポンシブな動画プレーヤーを埋め込みます。 このとき、動画の ID のみが必要で、たとえば、以下のようになります。
 
 ```txt
 https://www.youtube.com/watch?v=w7Ft2ymGmfc
 ```
 
-#### Example `youtube` Input
+#### `youtube` 入力の例 {#example-youtube-input}
 
-Copy the YouTube video ID that follows `v=` in the video's URL and pass it to the `youtube` shortcode:
+動画の URL の `v=` に続く YouTube 動画 ID をコピーして、`youtube` ショートコードに渡します。
 
 {{< code file="example-youtube-input.md" >}}
 {{</* youtube w7Ft2ymGmfc */>}}
 {{< /code >}}
 
-Furthermore, you can automatically start playback of the embedded video by setting the `autoplay` parameter to `true`. Remember that you can't mix named and unnamed parameters, so you'll need to assign the yet unnamed video ID to the parameter `id`:
+さらに、`autoplay` パラメータを `true` に設定することで、埋め込まれた動画の再生を自動的に開始させることができます。名前付きのパラメータと名前なしのパラメータを混在させることはできないので、まだ名前のない動画 ID をパラメータ `id` に代入する必要があることを覚えておいてください。
 
 
 {{< code file="example-youtube-input-with-autoplay.md" >}}
 {{</* youtube id="w7Ft2ymGmfc" autoplay="true" */>}}
 {{< /code >}}
 
-For [accessibility reasons](https://dequeuniversity.com/tips/provide-iframe-titles), it's best to provide a title for your YouTube video.  You  can do this using the shortcode by providing a `title` parameter. If no title is provided, a default of "YouTube Video" will be used.
+[アクセシビリティ上の理由](https://dequeuniversity.com/tips/provide-iframe-titles) により、YouTube 動画にタイトルを付けることが推奨されます。 ショートコードで `title` パラメータを指定することで、これを行うことができます。タイトルを指定しない場合、デフォルトで "YouTube Video" が使用されます。
 
 {{< code file="example-youtube-input-with-title.md" >}}
 {{</* youtube id="w7Ft2ymGmfc" title="A New Hugo Site in Under Two Minutes" */>}}
 {{< /code >}}
 
-#### Example `youtube` Output
+#### `youtube` 出力の例 {#example-youtube-output}
 
-Using the preceding `youtube` example, the following HTML will be added to your rendered website's markup:
+前述の `youtube` の例では、レンダリングされた Web サイトのマークアップに以下の HTML が追加されます。
 
 {{< code file="example-youtube-output.html" >}}
 {{< youtube id="w7Ft2ymGmfc" autoplay="true" >}}
 {{< /code >}}
 
-#### Example `youtube` Display
+#### `youtube` 表示の例 {#example-youtube-display}
 
-Using the preceding `youtube` example (without `autoplay="true"`), the following simulates the displayed experience for visitors to your website. Naturally, the final display will be contingent on your style sheets and surrounding markup. The video is also include in the [Quick Start of the Hugo documentation][quickstart].
+前述の `youtube` の例 (`autoplay="true"` なし) を使用して、Web サイトの訪問者に表示される体験をシミュレートすると以下のようになります。もちろん、最終的な表示内容はスタイルシートや周辺のマークアップに依存します。この動画は、[Hugo ドキュメントのクイックスタート][quickstart] にも収録されています。
 
 {{< youtube w7Ft2ymGmfc >}}
 
-## Privacy Config
+## プライバシー設定 {#privacy-config}
 
-To learn how to configure your Hugo site to meet the new EU privacy regulation, see [Hugo and the GDPR][].
+EU の新しいプライバシー規制を満たすために Hugo サイトを設定する方法については、[「Hugo と GDPR」][Hugo and the GDPR] を参照してください。
 
-## Create Custom Shortcodes
+## カスタムショートコードを作成する {#create-custom-shortcodes}
 
-To learn more about creating custom shortcodes, see the [shortcode template documentation][].
+カスタム ショートコードの作成についての詳細は、[「ショートコード テンプレート」のドキュメント][shortcode template documentation] を参照してください。
 
 [`figure` shortcode]: #figure
 [contentmanagementsection]: /content-management/formats/

@@ -2,23 +2,23 @@
 categories:
 - asset management
 date: "2018-07-14"
-description: Hugo Pipes allows the creation of a resource from a string.
-draft: true
+description: Hugo パイプでは、文字列からリソースを作成できます。
+draft: false
 keywords: []
-linkTitle: Resource from String
+linkTitle: 文字列からのリソース
 menu:
   docs:
     parent: pipes
     weight: 90
 publishdate: "2018-07-14"
 sections_weight: 90
-title: Creating a resource from a string
+title: 文字列からリソースを作成する
 weight: 90
 ---
 
-It is possible to create a resource directly from the template using `resources.FromString` which takes two arguments, the given string and the resource target path.
+指定された文字列とリソースのターゲットパスの 2 つの引数を取る `resources.FromString` を使用して、テンプレートから直接リソースを作成できます。
 
-The following example creates a resource file containing localized variables for every project's languages.
+以下の例では、各プロジェクトの言語用にローカライズされた変数を含むリソースファイルを作成します。
 
 ```go-html-template
 {{ $string := (printf "var rootURL = '%s'; var apiURL = '%s';" (absURL "/") (.Param "API_URL")) }}

@@ -6,31 +6,30 @@ aliases:
 categories:
 - templates
 date: "2017-03-22"
-description: Hugo can output content in multiple formats, including calendar events,
-  e-book formats, Google AMP, and JSON search indexes, or any custom text format.
-draft: true
+description: Hugo can output content in multiple formats, including calendar events, e-book formats, Google AMP, and JSON search indexes, or any custom text format.
+draft: false
 keywords:
 - amp
 - outputs
 - rss
 lastmod: "2019-12-11"
-linktitle: Custom Output Formats
+linktitle: カスタム出力形式
 menu:
   docs:
     parent: templates
     weight: 18
 publishdate: "2017-03-22"
 sections_weight: 18
-title: Custom Output Formats
+title: カスタム出力形式
 toc: true
 weight: 18
 ---
 
 This page describes how to properly configure your site with the media types and output formats, as well as where to create your templates for your custom outputs.
 
-## Media Types
+## メディアタイプ {#media-types}
 
-A [media type][] (also known as _MIME type_ and _content type_) is a two-part identifier for file formats and format contents transmitted on the internet.
+A [media type][media type] (also known as _MIME type_ and _content type_) is a two-part identifier for file formats and format contents transmitted on the internet.
 
 This is the full set of built-in media types in Hugo:
 

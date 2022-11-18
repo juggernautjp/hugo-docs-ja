@@ -6,34 +6,32 @@ categories:
 - getting started
 - fundamentals
 date: "2013-07-01"
-description: How to configure your Hugo site.
-draft: true
+description: Hugo サイトの設定方法。
+draft: false
 keywords:
 - configuration
 - toml
 - yaml
 - json
-linktitle: Configuration
+linktitle: 設定
 menu:
   docs:
     parent: getting-started
     weight: 60
 publishdate: "2017-01-02"
 sections_weight: 60
-title: Configure Hugo
+title: Hugo の設定
 toc: true
 weight: 60
 ---
 
-## Configuration File
+## 設定ファイル {#configuration-file}
 
-Hugo uses the `config.toml`, `config.yaml`, or `config.json` (if found in the
-site root) as the default site config file.
+Hugo は  (サイトルートにある場合) `config.toml`、`config.yaml`、または `config.json` をデフォルトのサイト設定ファイルとして使用します。
 
-The user can choose to override that default with one or more site config files
-using the command-line `--config` switch.
+ユーザーは、コマンドラインの `--config` スイッチを使用して、1 つまたは複数のサイト設定ファイルでそのデフォルトをオーバーライドすることを選択できます。
 
-Examples:
+例:
 
 ```txt
 hugo --config debugconfig.toml
@@ -41,17 +39,17 @@ hugo --config a.toml,b.toml,c.toml
 ```
 
 {{% note %}}
-Multiple site config files can be specified as a comma-separated string to the `--config` switch.
+複数のサイト設定ファイルをカンマ区切りの文字列として `--config` スイッチに指定できます。
 {{% /note %}}
 
-{{< todo >}}TODO: distinct config.toml and others (the root object files){{< /todo >}}
+{{< todo >}}TODO: 個別の config.toml など (ルートオブジェクトファイル){{< /todo >}}
 
-## Configuration Directory
+## 設定ディレクトリ {#configuration-directory}
 
-In addition to using a single site config file, one can use the `configDir` directory (default to `config/`) to maintain easier organization and environment specific settings.
+単一のサイト設定ファイルを使用することに加えて、 `configDir` ディレクトリ (デフォルトは `config/`) を使用すると、組織や環境固有の設定を簡単に維持することができます。
 
-- Each file represents a configuration root object, such as `params.toml` for `[Params]`, `menu(s).toml` for `[Menu]`, `languages.toml` for `[Languages]` etc...
-- Each file's content must be top-level, for example:
+- 各ファイルは、`[Params]` には `params.toml`、`[Menu]` には `menu(s).toml`、`[Languages]` には `languages.toml` など、設定のルートオブジェクトを表します。
+- 各ファイルの内容は、たとえば以下のように、トップレベルでなければなりません。
 
 {{< code-toggle file="config" >}}
 [Params]
@@ -62,8 +60,8 @@ In addition to using a single site config file, one can use the `configDir` dire
 foo = "bar"
 {{< /code-toggle >}}
 
-- Each directory holds a group of files containing settings unique to an environment.
-- Files can be localized to become language specific.
+- 各ディレクトリは、環境固有の設定を含むファイル群を保持します。
+- ファイルは言語ごとにローカライズすることが可能です。
 
 
 ```txt
@@ -82,332 +80,331 @@ foo = "bar"
 │       └── params.toml
 ```
 
-Considering the structure above, when running `hugo --environment staging`, Hugo will use every setting from `config/_default` and merge `staging`'s on top of those.
+上記の構造を考えると、`hugo --environment staging` を実行すると、Hugo は `config/_default` のすべての設定を使用し、その上に `staging` の設定をマージします。
 
-Let's take an example to understand this better. Let's say you are using Google Analytics for your website. This requires you to specify `googleAnalytics = "G-XXXXXXXX"` in `config.toml`. Now consider the following scenario:
-- You don't want the Analytics code to be loaded in development i.e. in your `localhost`
-- You want to use separate googleAnalytics IDs for your production & staging environments (say):
-  - `G-PPPPPPPP` for production
-  - `G-SSSSSSSS` for staging
+これをよりよく理解するために、例を挙げてみましょう。たとえば、あなたの Web サイトに Google アナリティクスを利用しているとします。この場合、`googleAnalytics = "G-XXXXXXXX"` を `config.toml` で指定する必要があります。ここで、次のようなシナリオを考えてみましょう。
+- Analytics コードを開発中に、つまり `localhost` にロードしたくない場合
+- 本番環境とステージング環境に別々の Google アナリティクス ID を使用したい (たとえば、以下のような)
+  - 本番環境に `G-PPPPPPPP`
+  - ステージング環境に `G-SSSSSSSS`
 
-This is how you need to configure your `config.toml` files considering the above scenario:
-1. In `_default/config.toml` you don't need to mention `googleAnalytics` parameter at all. This ensures that no Google Analytics code is loaded in your development server i.e. when you run `hugo serve`. This works since, by default Hugo sets `Environment=development` when you run `hugo serve` which uses the config files from `_default` folder
-2. In `production/config.toml` you just need to have one line:
+上記のシナリオを考慮して、`config.toml` ファイルを以下のように設定する必要があります。
+1. `default/config.toml` では、`googleAnalytics` パラメータを記述する必要は全くありません。これにより、開発用サーバ、つまり `hugo serve` を実行したときに、Google アナリティクスのコードがロードされないようになります。デフォルトでは、Hugo は `hugo serve` を実行するときに `Environment=development` を設定し、 `_default` フォルダーにある設定ファイルを使用するので、これはうまくいきます。
+2. `production/config.toml` には、以下の 1 行が必要です。
 
     ```googleAnalytics = "G-PPPPPPPP"```
 
-    You don't need to mention all other parameters like `title`, `baseURL`, `theme` etc. again in this config file. You need to mention only those parameters which are different or new for the production environment. This is due to the fact that Hugo is going to __merge__ this on top of `_default/config.toml`. Now when you run `hugo` (build command), by default hugo sets `Environment=production`, so the `G-PPPPPPPP` analytics code will be there in your production website
-3. Similarly in `staging/config.toml` you just need to have one line:
+    この設定ファイルでは、`title`、`baseURL`、`theme` などの他のすべてのパラメータを改めて記述する必要はありません。本番環境では異なる、あるいは新しいパラメータのみを記述する必要があります。これは、Hugo が `_default/config.toml` の上に __マージ__ するためです。これで `hugo` (ビルドコマンド) を実行すると、デフォルトで `Environment=production` が設定されます。したがって、 `G-PPPPPPP` の解析コードが本番環境の Web サイトに存在することになります。
+3. 同様に `staging/config.toml` にも、以下の 1行だけ記述すればよいです。
 
     ```googleAnalytics = "G-SSSSSSSS"```
 
-    Now you need to tell Hugo that you are using the staging environment. So your build command should be `hugo --environment staging` which will load the `G-SSSSSSSS` analytics code in your staging website
+    ここで、ステージング環境を使用していることを Hugo に伝える必要があります。ビルドコマンドは `hugo --environment staging` で、ステージング Web サイトに `G-SSSSSS` の解析コードをロードします。
 
 {{% note %}}
-Default environments are __development__ with `hugo server` and __production__ with `hugo`.
+デフォルトの環境は、__development (ステージング環境)__ では `hugo server` コマンドを、__production (本番環境)__ では `hugo` コマンドを使用します。
 {{%/ note %}}
 
-## Merge Configuration from Themes
+## テーマから設定をマージする {#merge-configuration-from-themes}
 
-{{< new-in "0.84.0" >}} The configuration merge described below was improved in Hugo 0.84.0 and made fully configurable. The big change/improvement was that we now, by default, do deep merging of `params` maps from themes.
+{{< new-in "0.84.0" >}} Hugo 0.84.0 では、以下で説明するように設定のマージ方法が改良され、完全に設定可能になりました。大きな変更・改良点は、デフォルトでテーマから `params` マップをディープマージするようになったことです。
 
-The configuration value for `_merge` can be one of:
+`_merge` の設定値は、以下のいずれかを指定できます。
 
 none
-: No merge.
+: マージはしない。
 
 shallow
-: Only add values for new keys.
+: 新しいキーの値だけを追加する。
 
 deep
-: Add values for new keys, merge existing.
+: 新しいキーの値を追加し、既存のキーをマージする。
 
-Note that you don't need to be so verbose as in the default setup below; a `_merge` value higher up will be inherited if not set.
+以下のデフォルト設定のように、それほど冗長にする必要はないことに注意してください。 設定されていない場合は、上位の `_merge` 値が継承されます。
 
 {{< code-toggle config="mergeStrategy" skipHeader=true />}}
 
-## All Configuration Settings
+## すべてのコンフィギュレーション設定 {#all-configuration-settings}
 
-The following is the full list of Hugo-defined variables with their default
-value in parentheses. Users may choose to override those values in their site
-config file(s).
+以下は Hugo で定義された変数の完全なリストで、括弧内にデフォルト値が示されています。 ユーザーは、サイト設定ファイルでこれらの値をオーバーライドすることができます。
 
 ### archetypeDir
 
-**Default value:** "archetypes"
+**デフォルト値:** "archetypes"
 
-The directory where Hugo finds archetype files (content templates). {{% module-mounts-note %}}
+Hugo がアーキタイプ ファイル (コンテンツ テンプレート) を検索するディレクトリ。 {{% module-mounts-note %}}
 
 ### assetDir
 
-**Default value:** "assets"
+**デフォルト値:** "assets"
 
-The directory where Hugo finds asset files used in [Hugo Pipes](/hugo-pipes/). {{% module-mounts-note %}}
+Hugo が [Hugo パイプ](/hugo-pipes/) で使用するアセットファイルを検索するディレクトリ。 {{% module-mounts-note %}}
 
 ### baseURL
 
-Hostname (and path) to the root, e.g. https://bep.is/
+ルートへのホスト名 (およびパス)、たとえば、https://bep.is/
 
 ### build
 
-See [Configure Build](#configure-build)
+[「ビルドを設定する」](#configure-build) を参照してください。
 
 ### buildDrafts (false)
 
-**Default value:** false
+**デフォルト値:** false
 
-Include drafts when building.
+ビルド時にドラフトを含めます。
 
 ### buildExpired
 
-**Default value:** false
+**デフォルト値:** false
 
-Include content already expired.
+期限切れのコンテンツを含めます。
 
 ### buildFuture
 
-**Default value:** false
+**デフォルト値:** false
 
-Include content with publishdate in the future.
+publishdate (発行日) が将来のコンテンツを含めます。
 
 ### caches
 
-See [Configure File Caches](#configure-file-caches)
+[「ファイルキャッシュを設定する」](#configure-file-caches) を参照してください。
 
 ### cascade
 
 {{< new-in "0.86.0" >}}
 
-Pass down default configuration values (front matter) to pages in the content tree. The options in site config is the same as in page front matter, see [Front Matter Cascade](/content-management/front-matter#front-matter-cascade).
+コンテンツツリー内のページに、デフォルトの設定値 (フロントマター) を渡します。サイト設定でのオプションは、ページのフロントマターと同じです。[フロントマター カスケード](/content-management/front-matter#front-matter-cascade) をご覧ください。
 
 ### canonifyURLs
 
-**Default value:** false
+**デフォルト値:** false
 
-Enable to turn relative URLs into absolute.
+相対 URL を絶対 URL に変換できるようにします。
 
 ### contentDir
 
-**Default value:** "content"
+**デフォルト値:** "content"
 
-The directory from where Hugo reads content files. {{% module-mounts-note %}}
+Hugo がコンテンツファイルを読み込むディレクトリ。 {{% module-mounts-note %}}
 
 ### copyright
 
-**Default value:** ""
+**デフォルト値:** ""
 
-Copyright notice for your site, typically displayed in the footer.
+サイトの著作権表示で、通常はフッターに表示されます。
 
 ### dataDir
 
-**Default value:** "data"
+**デフォルト値:** "data"
 
-The directory from where Hugo reads data files. {{% module-mounts-note %}}
+Hugo がデータ ファイルを読み取るディレクトリ。 {{% module-mounts-note %}}
 
 ### defaultContentLanguage
 
-**Default value:** "en"
+**デフォルト値:** "en"
 
-Content without language indicator will default to this language.
+言語インジケーターのないコンテンツは、デフォルトでこの言語になります。
 
 ### defaultContentLanguageInSubdir
 
-**Default value:**  false
+**デフォルト値:**  false
 
-Render the default content language in subdir, e.g. `content/en/`. The site root `/` will then redirect to `/en/`.
+サブディレクトリにあるデフォルトのコンテンツ言語を、たとえば `content/en/` のようにレンダリングします。サイトルート `/` は `/en/` にリダイレクトされます。
 
 ### disableAliases
 
-**Default value:**  false
+**デフォルト値:**  false
 
-Will disable generation of alias redirects. Note that even if `disableAliases` is set, the aliases themselves are preserved on the page. The motivation with this is to be able to generate 301 redirects in an `.htaccess`, a Netlify `_redirects` file or similar using a custom output format.
+エイリアス リダイレクトの生成を無効にします。 `disableAliases` が設定されていても、エイリアス自体はページに保持されることに注意してください。 これの動機は、`.htaccess` や Netlify の `_redirects` ファイルなどでカスタム出力形式を使用して 301 リダイレクトを生成できるようにするためのものです。
 
 ### disableHugoGeneratorInject
 
-**Default value:**  false
+**デフォルト値:**  false
 
-Hugo will, by default, inject a generator meta tag in the HTML head on the _home page only_. You can turn it off, but we would really appreciate if you don't, as this is a good way to watch Hugo's popularity on the rise.
+デフォルトでは、Hugo は _home page only_ の HTML ヘッドにジェネレーター メタタグを挿入します。 これをオフにすることもできますが、Hugo の人気が上昇するのを見るには良い方法なので、オフにしていただけるとありがたいです。
 
 ### disableKinds
 
-**Default value:**  []
+**デフォルト値:**  []
 
-Enable disabling of all pages of the specified *Kinds*. Allowed values in this list: `"page"`, `"home"`, `"section"`, `"taxonomy"`, `"term"`, `"RSS"`, `"sitemap"`, `"robotsTXT"`, `"404"`.
+指定された *Kinds* のすべてのページの無効化を有効にします。 このリストで使用できる値は、 `"page"`、`"home"`、`"section"`、`"taxonomy"`、`"term"`、`"RSS"`、`"sitemap"`、`" robotsTXT"`、`"404"` です。
 
 ### disableLiveReload
 
-**Default value:**  false
+**デフォルト値:**  false
 
-Disable automatic live reloading of browser window.
+ブラウザ ウィンドウの自動ライブリロードを無効にします。
 
 ### disablePathToLower
 
-**Default value:**  false
+**デフォルト値:**  false
 
-: Do not convert the url/path to lowercase.
+: URL/パスを小文字に変換しないようにします。
 
 ### enableEmoji
 
-**Default value:**  false
+**デフォルト値:**  false
 
-Enable Emoji emoticons support for page content; see the [Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet/).
+ページ コンテンツで絵文字のサポートを有効にします。[「絵文字チートシート」](https://www.webpagefx.com/tools/emoji-cheat-sheet/) を参照してください。
 
 ### enableGitInfo
 
-**Default value:**  false
+**デフォルト値:**  false
 
-Enable `.GitInfo` object for each page (if the Hugo site is versioned by Git). This will then update the `Lastmod` parameter for each page using the last git commit date for that content file.
+各ページの `.GitInfo` オブジェクトを有効にします (Hugo サイトが Git でバージョン管理されている場合)。これにより、各ページの `Lastmod` パラメータが、そのコンテンツファイルの最終 git commit 日時を使用して更新されます。
 
 ### enableInlineShortcodes
 
-**Default value:**  false
+**デフォルト値:**  false
 
-Enable inline shortcode support. See [Inline Shortcodes](/templates/shortcode-templates/#inline-shortcodes).
+インライン ショートコードのサポートを有効にします。 詳細は、[「インライン ショートコード」](/templates/shortcode-templates/#inline-shortcodes) を参照してください。
 
 ### enableMissingTranslationPlaceholders
 
-**Default value:**  false
+**デフォルト値:**  false
 
-Show a placeholder instead of the default value or an empty string if a translation is missing.
+デフォルト値の代わりにプレースホルダーを表示するか、翻訳がない場合は空の文字列を表示します。
 
 ### enableRobotsTXT
 
-**Default value:**  false
+**デフォルト値:**  false
 
-Enable generation of `robots.txt` file.
+`robots.txt` ファイルの生成を有効にします。
 
 ### frontmatter
 
-See [Front matter Configuration](#configure-front-matter).
+[「フロントマターの設定」](#configure-front-matter) を参照してください。
 
 ### googleAnalytics
 
-**Default value:**  ""
+**デフォルト値:**  ""
 
-Google Analytics tracking ID.
+Google アナリティクスのトラッキング ID です。
 
 ### hasCJKLanguage
 
-**Default value:** false
+**デフォルト値:** false
 
-If true, auto-detect Chinese/Japanese/Korean Languages in the content. This will make `.Summary` and `.WordCount` behave correctly for CJK languages.
+true の場合、コンテンツ内の中国語/日本語/韓国語の自動検出を行います。これにより、`.Summary` と `.WordCount` が日中韓 (CJK) の言語に対して正しく動作するようになります。
+
 
 ### imaging
 
-See [Image Processing Config](/content-management/image-processing/#imaging-configuration).
+[「画像処理の設定」](/content-management/image-processing/#imaging-configuration) を参照してください。
 
 ### languageCode
 
-**Default value:**  ""
+**デフォルト値:**  ""
 
-A language tag as defined by [RFC 5646](https://datatracker.ietf.org/doc/html/rfc5646). This value is used to populate:
+[RFC 5646](https://datatracker.ietf.org/doc/html/rfc5646) で定義された言語タグでう。この値は、以下の値を設定するために使用されます。
 
-- The `<language>` element in the internal [RSS template](https://github.com/gohugoio/hugo/blob/master/tpl/tplimpl/embedded/templates/_default/rss.xml)
-- The `lang` attribute of the `<html>` element in the internal [alias template](https://github.com/gohugoio/hugo/blob/master/tpl/tplimpl/embedded/templates/alias.html)
+- 内部の [RSS テンプレート](https://github.com/gohugoio/hugo/blob/master/tpl/tplimpl/embedded/templates/_default/rss.xml) の `<language>` 要素 
+- 内部の [エイリアス テンプレート](https://github.com/gohugoio/hugo/blob/master/tpl/tplimpl/embedded/templates/alias.html) にある `<html>` 要素の `lang` 属性。
 
 ### languages
 
-See [Configure Languages](/content-management/multilingual/#configure-languages).
+[「言語を設定する」](/content-management/multilingual/#configure-languages) を参照してください。
 
 ### disableLanguages
 
-See [Disable a Language](/content-management/multilingual/#disable-a-language)
+[「言語を無効にする」](/content-management/multilingual/#disable-a-language) を参照してください。
 
 ### markup
 
-See [Configure Markup](/getting-started/configuration-markup).{{< new-in "0.60.0" >}}
+[「マークアップを設定する」](/getting-started/configuration-markup) を参照してください。{{< new-in "0.60.0" >}}
 
 ### mediaTypes
 
-See [Configure Media Types](/templates/output-formats/#media-types).
+[「メディアタイプを設定する」](/templates/output-formats/#media-types) を参照してください。
 
 ### menus
 
-See [Add Non-content Entries to a Menu](/content-management/menus/#add-non-content-entries-to-a-menu).
+[「メニューにコンテンツ以外のエントリーを追加する」](/content-management/menus/#add-non-content-entries-to-a-menu) を参照してください。
 
 ### minify
 
-See [Configure Minify](#configure-minify)
+[「ミニファイを設定する」](#configure-minify) を参照してください。
 
 ### module
 
-Module config see [Module Config](/hugo-modules/configuration/).{{< new-in "0.56.0" >}}
+モジュール設定です。[「モジュール設定」](/hugo-modules/configuration/) を参照してください。{{< new-in "0.56.0" >}}
 
 ### newContentEditor
 
-**Default value:** ""
+**デフォルト値:** ""
 
-The editor to use when creating new content.
+新しいコンテンツを作成する際に使用するエディターです。
 
 ### noChmod
 
-**Default value:** false
+**デフォルト値:** false
 
-Don't sync permission mode of files.
+ファイルのパーミッションモードを同期させません。
 
 ### noTimes
 
-**Default value:** false
+**デフォルト値:** false
 
-Don't sync modification time of files.
+ファイルの修正時刻を同期させません。
 
 ### outputFormats
 
-See [Configure Output Formats](#configure-additional-output-formats).
+[「出力形式を設定する」](#configure-additional-output-formats) を参照してください。
 
 ### paginate
 
-**Default value:** 10
+**デフォルト値:** 10
 
-Default number of elements per page in [pagination](/templates/pagination/).
+[ページネーション](/templates/pagination/) における、1ページあたりの要素のデフォルト数です。
 
 ### paginatePath
 
-**Default value:** "page"
+**デフォルト値:** "page"
 
-The path element used during pagination (`https://example.com/page/2`).
+ページネーション中に使用されるパス要素 (`https://example.com/page/2`)。
 
 ### permalinks
 
-See [Content Management](/content-management/urls/#permalinks).
+[「コンテンツ管理」](/content-management/urls/#permalinks) を参照してください。
 
 ### pluralizeListTitles
 
-**Default value:** true
+**デフォルト値:** true
 
-Pluralize titles in lists.
+リスト内のタイトルを複数形にします。
 
 ### publishDir
 
-**Default value:** "public"
+**デフォルト値:** "public"
 
-The directory to where Hugo will write the final static site (the HTML files etc.).
+Hugo が最終的な静的サイト (HTML ファイルなど) を書き込むディレクトリです。
 
 ### related
 
-: See [Related Content](/content-management/related/#configure-related-content).{{< new-in "0.27" >}}
+: [「関連コンテンツ」](/content-management/related/#configure-related-content) を参照してください。{{< new-in "0.27" >}}
 
 ### relativeURLs
 
-**Default value:** false
+**デフォルト値:** false
 
-Enable this to make all relative URLs relative to content root. Note that this does not affect absolute URLs.
+これを有効にすると、すべての相対 URL はコンテンツルートからの相対的になります。絶対 URL には影響しないことに注意してください。
 
 ### refLinksErrorLevel
 
-**Default value:** "ERROR"
+**デフォルト値:** "ERROR"
 
-When using `ref` or `relref` to resolve page links and a link cannot be resolved, it will be logged with this log level. Valid values are `ERROR` (default) or `WARNING`. Any `ERROR` will fail the build (`exit -1`).
+ページリンクを解決するために `ref` または `relref` を使用し、リンクが解決できなかった場合に、このログレベルでログに記録されます。有効な値は `ERROR` (デフォルト) または `WARNING` です。 `ERROR` が指定された場合は、ビルドに失敗します (`exit -1`)。
 
 ### refLinksNotFoundURL
 
-URL to be used as a placeholder when a page reference cannot be found in `ref` or `relref`. Is used as-is.
+`ref` または `relref` でページ参照が見つからない場合に、プレースホルダとして使用する URL。そのまま使用される。
 
 ### removePathAccents
 
-**Default value:** false
+**デフォルト値:** false
 
-Removes [non-spacing marks](https://www.compart.com/en/unicode/category/Mn) from [composite characters](https://en.wikipedia.org/wiki/Precomposed_character) in content paths.
+コンテンツ パスの [複合文字](https://en.wikipedia.org/wiki/Precomposed_character) から [非空白記号](https://www.compart.com/en/unicode/category/Mn) を削除します。
 
 ```text
 content/post/hügó.md --> https://example.org/post/hugo/
@@ -415,95 +412,95 @@ content/post/hügó.md --> https://example.org/post/hugo/
 
 ### rssLimit
 
-**Default value:** -1 (unlimited)
+**デフォルト値:** -1 (unlimited)
 
-Maximum number of items in the RSS feed.
+RSS フィードの最大アイテム数。
 
 ### sectionPagesMenu
 
-See ["Section Menu for Lazy Bloggers"](/templates/menu-templates/#section-menu-for-lazy-bloggers).
+[「怠惰なブロガーのためのセクションメニュー」](/templates/menu-templates/#section-menu-for-lazy-bloggers) を参照してください。
 
 ### security
 
-See [Security Policy](/about/security-model/#security-policy)
+[「セキュリティポリシー」](/about/security-model/#security-policy) を参照してください。
 
 ### sitemap
 
-Default [sitemap configuration](/templates/sitemap-template/#configuration).
+デフォルトの [サイトマップ設定](/templates/sitemap-template/#configuration) です。
 
 ### summaryLength
 
-**Default value:** 70
+**デフォルト値:** 70
 
-The length of text in words to show in a [`.Summary`](/content-management/summaries/#automatic-summary-splitting).
+[`.Summary`](/content-management/summaries/#automatic-summary-splitting) に表示するテキストの長さを単語単位で指定します。
 
 ### taxonomies
 
-See [Configure Taxonomies](/content-management/taxonomies#configure-taxonomies).
+[「タクソノミーを設定する」](/content-management/taxonomies#configure-taxonomies) を参照してください。
 
 ### theme
 
-: See [Module Config](/hugo-modules/configuration/#module-config-imports) for how to import a theme.
+: テーマをインポートする方法については、[「モジュール設定」](/hugo-modules/configuration/#module-config-imports) を参照してください。
 
 ### themesDir
 
-**Default value:**  "themes"
+**デフォルト値:**  "themes"
 
-The directory where Hugo reads the themes from.
+Hugo がテーマを読み込むディレクトリ。
 
 ### timeout
 
-**Default value:** "30s"
+**デフォルト値:** "30s"
 
-Timeout for generating page contents, specified as a [duration](https://pkg.go.dev/time#Duration) or in milliseconds. *Note:*&nbsp;this is used to bail out of recursive content generation. You might need to raise this limit if your pages are slow to generate (e.g., because they require large image processing or depend on remote contents).
+[duration](https://pkg.go.dev/time#Duration) またはミリ秒単位で指定される、ページコンテンツ生成のためのタイムアウト。*注意:* &nbsp;これは再帰的なコンテンツ生成から抜け出すために使用されます。ページの生成に時間がかかる場合、この制限を上げる必要があるかもしれません (例えば、大きな画像処理を必要としたり、リモートコンテンツに依存するため)。
 
 ### timeZone
 
 {{< new-in "0.87.0" >}}
 
-The time zone (or location), e.g. `Europe/Oslo`,  used to parse front matter dates without such information and in the [`time` function](/functions/time/). The list of valid values may be system dependent, but should include `UTC`, `Local`, and any location in the [IANA Time Zone database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+[`time` 関数](/functions/time/) で、そのような情報なしでフロントマターの日付を解析するために使用される、たとえば `Europe/Oslo` のようなタイムゾーン (または場所)。有効な値のリストはシステムに依存しますが、 `UTC`、`Local`、そして [IANA タイムゾーンデータベース](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) にある任意の場所を含める必要があります。
 
 ### title
 
-Site title.
+サイトのタイトルです。
 
 ### titleCaseStyle
 
-**Default value:**  "AP"
+**デフォルト値:**  "AP"
 
-See [Configure Title Case](#configure-title-case)
+[Configure Title Case](#configure-title-case) を参照してください。
 
 ### uglyURLs
 
-**Default value:** false
+**デフォルト値:** false
 
-When enabled, creates URL of the form `/filename.html` instead of `/filename/`.
+有効にすると、`/filename/` の代わりに `/filename.html` の形式の URL が作成されます。
 
 ### watch
 
-**Default value:** false
+**デフォルト値:** false
 
-Watch filesystem for changes and recreate as needed.
+ファイルシステムの変更を監視し、必要に応じて再作成します。
 
 {{% note %}}
-If you are developing your site on a \*nix machine, here is a handy shortcut for finding a configuration option from the command line:
+\*nix マシン上でサイトを開発しているならば、ここでは、コマンドラインから設定オプションを見つけるための便利なショートカットを紹介します。
 ```txt
 cd ~/sites/yourhugosite
 hugo config | grep emoji
 ```
 
-which shows output like
+以下のような出力を示します。
 
 ```txt
 enableemoji: true
 ```
 {{% /note %}}
 
-## Configure Build
+## ビルドを設定する {#configure-build}
 
 {{< new-in "0.66.0" >}}
 
-The `build` configuration section contains global build-related configuration options.
+`build` 設定セクションには、ビルドに関連するグローバルな設定オプションが含まれています。
 
 {{< code-toggle file="config">}}
 [build]
@@ -514,21 +511,21 @@ noJSConfigInAssets = false
 
 
 useResourceCacheWhen
-: When to use the cached resources in `/resources/_gen` for PostCSS and ToCSS. Valid values are `never`, `always` and `fallback`. The last value means that the cache will be tried if PostCSS/extended version is not available.
+: PostCSS と ToCSS で、`/resources/_gen` にあるキャッシュされたリソースをいつ使用するかを指定します。有効な値は `never`、`always` および `fallback` です。最後の値は、PostCSS/拡張版が利用できない場合に、キャッシュを試行することを意味します。
 
 writeStats {{< new-in "0.69.0" >}}
-: When enabled, a file named `hugo_stats.json` will be written to your project root with some aggregated data about the build, e.g. list of HTML entities published to be used to do [CSS pruning](/hugo-pipes/postprocess/#css-purging-with-postcss). If you're only using this for the production build, you should consider placing it below [config/production](/getting-started/configuration/#configuration-directory). It's also worth mentioning that, due to the nature of the partial server builds, new HTML entities will be added when you add or change them while the server is running, but the old values will not be removed until you restart the server or run a regular `hugo` build.
+: 有効にすると、`hugo_stats.json` という名前のファイルがプロジェクト ルートに書き込まれ、ビルドに関する集計データが含まれます。たとえば、[CSS プルーニング](/hugo-pipes/postprocess/#css-purging-with-postcss) に使用する、公開された HTML エンティティのリストなどです。本番ビルドにしか使わないのであれば、[config/production](/getting-started/configuration/#configuration-directory) の下に置くことを検討する必要があります。また、部分的なサーバービルドの性質上、サーバーの実行中に HTML エンティティを追加・変更すると新しいものが追加されますが、古い値はサーバーを再起動するか、通常の `hugo` ビルドを実行するまで削除されないことにも注意してください。
 
-**Note** that the prime use case for this is purging of unused CSS; it is built for speed and there may be false positives (e.g., detection of HTML elements that are not HTML elements).
+**注意** これの主な使用例は、未使用の CSS の削除です。 これは速度を重視して構築されており、誤検知が発生する可能性があります (たとえば、HTML 要素ではない HTML 要素の検出など)。
 
 noJSConfigInAssets {{< new-in "0.78.0" >}}
-: Turn off writing a `jsconfig.json` into your `/assets` folder with mapping of imports from running [js.Build](https://gohugo.io/hugo-pipes/js). This file is intended to help with intellisense/navigation inside code editors such as [VS Code](https://code.visualstudio.com/). Note that if you do not use `js.Build`, no file will be written.
+: [js.Build](https://gohugo.io/hugo-pipes/js) を実行すると、インポートのマッピングを含む `jsconfig.json` を `/assets` フォルダーに書き込まないようにします。このファイルは、[VS Code](https://code.visualstudio.com/) のようなコードエディターでのインテリセンスやナビゲーションを支援するためのものです。なお、`js.Build` を使用しない場合は、このファイルは書き込まれません。
 
-## Configure Server
+## サーバーを設定する {#configure-server}
 
 {{< new-in "0.67.0" >}}
 
-This is only relevant when running `hugo server`, and it allows to set HTTP headers during development, which allows you to test out your Content Security Policy and similar. The configuration format matches [Netlify's](https://docs.netlify.com/routing/headers/#syntax-for-the-netlify-configuration-file) with slightly more powerful [Glob matching](https://github.com/gobwas/glob):
+これは `hugo server` を実行するときにのみ関係し、開発中に HTTP ヘッダーを設定することができるので、コンテンツ セキュリティ ポリシーなどをテストすることができます。設定形式は、[Netlify の](https://docs.netlify.com/routing/headers/#syntax-for-the-netlify-configuration-file) と少し強力な [Glob マッチング](https://github.com/gobwas/glob) にマッチしています。
 
 
 {{< code-toggle file="config">}}
@@ -544,7 +541,7 @@ Referrer-Policy = "strict-origin-when-cross-origin"
 Content-Security-Policy = "script-src localhost:1313"
 {{< /code-toggle >}}
 
-Since this is "development only", it may make sense to put it below the `development` environment:
+これは「開発専用」なので、以下のように `development` 環境の下に置くのが理にかなっているかもしれません。
 
 
 {{< code-toggle file="config/development/server">}}
@@ -562,9 +559,9 @@ Content-Security-Policy = "script-src localhost:1313"
 
 {{< new-in "0.72.0" >}}
 
-You can also specify simple redirects rules for the server. The syntax is again similar to Netlify's.
+また、サーバーの簡単なリダイレクトルールを指定することもできます。この構文もまた、Netlify のものと同様です。
 
-Note that a `status` code of 200 will trigger a [URL rewrite](https://docs.netlify.com/routing/redirects/rewrites-proxies/), which is what you want in SPA situations, e.g:
+`status` コード 200 は [URL リライト](https://docs.netlify.com/routing/redirects/rewrites-proxies/) をトリガーすることに注意してください。これは、SPA の状況で必要なものです。たとえば、次のようにします。
 
 {{< code-toggle file="config/development/server">}}
 [[redirects]]
@@ -574,13 +571,13 @@ status = 200
 force = false
 {{< /code-toggle >}}
 
-{{< new-in "0.76.0" >}} Setting `force=true` will make a redirect even if there is existing content in the path. Note that before Hugo 0.76  `force` was the default behavior, but this is inline with how Netlify does it.
+{{< new-in "0.76.0" >}} `force=true` を設定すると、パスに既存のコンテンツがある場合でもリダイレクトを行います。Hugo 0.76 以前は `force` がデフォルトの動作でしたが、これはNetlify が行う方法と一致していることに注意してください。
 
-## 404 Server Error Page
+## 404 サーバーエラーページ {#404-server-error-page}
 
 {{< new-in "0.103.0" >}}
 
-Hugo will, by default, render all 404 errors when running `hugo server` with the `404.html` template. Note that if you have already added one or more redirects to your [Server Config](#configure-server), you need to add the 404 redirect explicitly, e.g:
+Hugo は、`404.html` テンプレートで `hugo server` を実行すると、デフォルトですべての 404 エラーをレンダリングします。 [サーバー設定](#configure-server) に 1 つ以上のリダイレクトを既に追加している場合は、404 リダイレクトを明示的に追加する必要があることに注意してください。たとえば、以下のようにします。
 
 ```toml
 [[redirects]]
@@ -589,29 +586,29 @@ Hugo will, by default, render all 404 errors when running `hugo server` with the
     status = 404
 ```
 
-## Configure Title Case
+## タイトルケースを設定する {#configure-title-case}
 
-Set `titleCaseStyle` to specify the title style used by the [title](/functions/title/) template function and the automatic section titles in Hugo. It defaults to [AP Stylebook](https://www.apstylebook.com/) for title casing, but you can also set it to `Chicago` or `Go` (every word starts with a capital letter).
+[title](/functions/title/) テンプレート関数と Hugo の自動セクションタイトルで使用されるタイトルスタイルを指定するには、`titleCaseStyle` を設定します。タイトルケースのデフォルトは [AP Stylebook](https://www.apstylebook.com/) ですが、`Chicago` や `Go` (すべての単語を大文字で始める) に設定することもできます。
 
-## Configuration Environment Variables
+## コンフィギュレーション環境変数 {#configuration-environment-variables}
 
 HUGO_NUMWORKERMULTIPLIER
-: Can be set to increase or reduce the number of workers used in parallel processing in Hugo. If not set, the number of logical CPUs will be used.
+: Hugo の並列処理で使用するワーカーの数を増減するように設定できます。 設定されていない場合、論理 CPU の数が使用されます。
 
-## Configuration Lookup Order
+## 設定ファイルの検索順序 {#configuration-lookup-order}
 
-Similar to the template [lookup order][], Hugo has a default set of rules for searching for a configuration file in the root of your website's source directory as a default behavior:
+テンプレート [検索順序][lookup order] と同様に、Hugo にはデフォルトの動作として、Web サイトのソースディレクトリのルートにある設定ファイルを検索するためのデフォルトのルールセットが用意されています。
 
 1. `./config.toml`
 2. `./config.yaml`
 3. `./config.json`
 
-In your `config` file, you can direct Hugo as to how you want your website rendered, control your website's menus, and arbitrarily define site-wide parameters specific to your project.
+`config` ファイルでは、Hugo に Web サイトのレンダリング方法を指示したり、Web サイトのメニューを制御したり、プロジェクトに特有のサイト全体のパラメータを任意に定義したりすることが可能です。
 
 
-## Example Configuration
+## 設定例 {#example-configuration}
 
-The following is a typical example of a configuration file. The values nested under `params:` will populate the [`.Site.Params`][] variable for use in [templates][]:
+以下は、設定ファイルの典型的な例です。 `params:` の下にネストされた値は、[テンプレート][templates] で使用するために [`.Site.Params`][] 変数に格納されます。
 
 {{< code-toggle file="config">}}
 baseURL: "https://yoursite.example.com/"
@@ -628,53 +625,53 @@ params:
   SidebarRecentLimit: 5
 {{< /code-toggle >}}
 
-## Configure with Environment Variables
+## 環境変数で設定する {#configure-with-environment-variables}
 
-In addition to the 3 config options already mentioned, configuration key-values can be defined through operating system environment variables.
+前述の 3 つの設定オプションに加え、OS の環境変数を使用して設定キー値を定義することができます。
 
-For example, the following command will effectively set a website's title on Unix-like systems:
+たとえば、以下のコマンドは、Unix 系システムにおいて、Web サイトのタイトルを効果的に設定します。
 
-```txt
+```bash
 $ env HUGO_TITLE="Some Title" hugo
 ```
 
-This is really useful if you use a service such as Netlify to deploy your site. Look at the Hugo docs [Netlify configuration file](https://github.com/gohugoio/hugoDocs/blob/master/netlify.toml) for an example.
+これは Netlify のようなサービスを利用してサイトをデプロイする場合にとても便利です。Hugo のドキュメント [Netlify 設定ファイル](https://github.com/gohugoio/hugoDocs/blob/master/netlify.toml) に例があります。
 
 {{% note "Setting Environment Variables" %}}
-Names must be prefixed with `HUGO_` and the configuration key must be set in uppercase when setting operating system environment variables.
+OS の環境変数を設定する際には、名前の前に `HUGO_` を付け、設定キーを大文字で設定する必要があります。
 
-To set config params, prefix the name with `HUGO_PARAMS_`
+設定パラメータを設定するには、名前の前に `HUGO_PARAMS_` を付けます。
 {{% /note %}}
 
-{{< new-in "0.79.0" >}} If you are using snake_cased variable names, the above will not work, so since Hugo 0.79.0 Hugo determines the delimiter to use by the first character after `HUGO`. This allows you to define environment variables on the form `HUGOxPARAMSxAPI_KEY=abcdefgh`, using any [allowed](https://stackoverflow.com/questions/2821043/allowed-characters-in-linux-environment-variable-names#:~:text=So%20names%20may%20contain%20any,not%20begin%20with%20a%20digit.) delimiter.
+{{< new-in "0.79.0" >}} Hugo 0.79.0 以降では、Hugo は `HUGO` の後の最初の文字で使用する区切り文字を決定しています。これにより、任意の [有効な (allowed)](https://stackoverflow.com/questions/2821043/allowed-characters-in-linux-environment-variable-names#:~:text=So%20names%20may%20contain%20any,not%20begin%20with%20a%20digit.) 区切り文字を使用して、 `HUGOxPARAMSxAPI_KEY=abcdefgh` という形式の環境変数を定義することができるようになりました。
 
 {{< todo >}}
 Test and document setting params via JSON env var.
 {{< /todo >}}
 
-## Ignore Content and Data Files when Rendering
+## レンダリング時にコンテンツとデータ ファイルを無視する {#ignore-content-and-data-files-when-rendering}
 
-To exclude specific files from the `content` and `data` directories when rendering your site, set `ignoreFiles` to one or more regular expressions to match against the absolute file path.
+サイトのレンダリング時に `content` と `data` ディレクトリから特定のファイルを除外するには、 `ignoreFiles` に一つ以上の正規表現を設定して、ファイルの絶対パスに対してマッチングさせます。
 
-To ignore files ending with `.foo` or `.boo`:
+`.foo` や `.boo` で終わるファイルを無視するには、以下のようにします。
 
 {{< code-toggle copy="false" >}}
 ignoreFiles = ['\.foo$', '\.boo$']
 {{< /code-toggle >}}
 
-To ignore a file using the absolute file path:
+絶対ファイルパスを使ってファイルを無視するには、以下のようにします。
 
 {{< code-toggle copy="false" >}}
 ignoreFiles = ['^/home/user/project/content/test\.md$']
 {{< /code-toggle >}}
 
-## Configure Front Matter
+## フロントマターを設定する {#configure-front-matter}
 
-### Configure Dates
+### 日付を設定する {#configure-dates}
 
-Dates are important in Hugo, and you can configure how Hugo assigns dates to your content pages. You do this by adding a `frontmatter` section to your `config.toml`.
+Hugo では日付が重要であり、Hugo がコンテンツページにどのように日付を割り当てるか設定できます。これは、`config.toml` に `frontmatter` セクションを追加することで行います。
 
-The default configuration is:
+デフォルトの設定は以下のとおりです。
 
 {{< code-toggle file="config" >}}
 [frontmatter]
@@ -684,24 +681,24 @@ publishDate = ["publishDate", "date"]
 expiryDate = ["expiryDate"]
 {{< /code-toggle >}}
 
-If you, as an example, have a non-standard date parameter in some of your content, you can override the setting for `date`:
+たとえば、コンテンツの一部に非標準の日付パラメータがある場合、 `date` の設定をオーバーライドできます。
 
 {{< code-toggle file="config" >}}
 [frontmatter]
 date = ["myDate", ":default"]
 {{< /code-toggle >}}
 
-The `:default` is a shortcut to the default settings. The above will set `.Date` to the date value in `myDate` if present, if not we will look in `date`,`publishDate`, `lastmod` and pick the first valid date.
+`:default` は、デフォルト設定へのショートカットです。上記の例では、 `.Date` が存在すれば `myDate` の日付値を設定し、存在しなければ `date`、`publishDate`、`lastmod` を調べて、最初に有効な日付を選択することになります。
 
-In the list to the right, values starting with ":" are date handlers with a special meaning (see below). The others are just names of date parameters (case insensitive) in your front matter configuration.  Also note that Hugo have some built-in aliases to the above: `lastmod` => `modified`, `publishDate` => `pubdate`, `published` and `expiryDate` => `unpublishdate`. With that, as an example, using `pubDate` as a date in front matter, will, by default, be assigned to `.PublishDate`.
+右側のリストで、`:` で始まる値は特別な意味を持つ日付ハンドラーです (下記参照)。それ以外は、フロントマターの設定にある日付パラメータの名前 (大文字小文字は区別されません) です。 また、Hugo には上記のようなエイリアスがいくつか組み込まれていることに注意してください。たとえば、 `lastmod` => `modified`. `publishDate` => `pubdate`. `published`. `expiryDate` => `unpublishdate` などです。これを例にとると、フロントマターの日付として `pubDate` を使用すると、デフォルトで `.PublishDate` に代入されることになります。
 
-The special date handlers are:
+特別な日付ハンドラーは、以下のとおりです。
 
 
 `:fileModTime`
-: Fetches the date from the content file's last modification timestamp.
+: コンテンツファイルの最終更新タイムスタンプから日付を取得します。
 
-An example:
+例:
 
 {{< code-toggle file="config" >}}
 [frontmatter]
@@ -709,40 +706,40 @@ lastmod = ["lastmod", ":fileModTime", ":default"]
 {{< /code-toggle >}}
 
 
-The above will try first to extract the value for `.Lastmod` starting with the `lastmod` front matter parameter, then the content file's modification timestamp. The last, `:default` should not be needed here, but Hugo will finally look for a valid date in `:git`, `date` and then `publishDate`.
+上記では、まず `.Lastmod` の値を抽出しようとします。まず フロントマターの `lastmod` パラメータから始まり、次にコンテンツファイルの変更タイムスタンプを抽出します。最後の `:default` はここでは必要ありませんが、Hugo は最後に `:git`、`date`、そして `publishDate` の中から有効な日付を探します。
 
 
 `:filename`
-: Fetches the date from the content file's filename. For example, `2018-02-22-mypage.md` will extract the date `2018-02-22`. Also, if `slug` is not set, `mypage` will be used as the value for `.Slug`.
+: コンテンツファイルのファイル名から日付を取得します。たとえば、 `2018-02-22-mypage.md` とすると、`2018-02-22` という日付が取り出されます。また、`slug` が設定されていない場合は、 `mypage` が `.Slug` の値として使用されます。
 
-An example:
+例:
 
 {{< code-toggle file="config" >}}
 [frontmatter]
 date  = [":filename", ":default"]
 {{< /code-toggle >}}
 
-The above will try first to extract the value for `.Date` from the filename, then it will look in front matter parameters `date`, `publishDate` and lastly `lastmod`.
+上記は、まずファイル名から `.Date` の値を抽出し、次にフロントマターのパラメータ `date`、`publishDate`、最後に `lastmod` を調べます。
 
 
 `:git`
-: This is the Git author date for the last revision of this content file. This will only be set if `--enableGitInfo` is set or `enableGitInfo = true` is set in site config.
+: このコンテンツファイルの最終リビジョンの Git 作成日時です。これは、 `--enableGitInfo` が設定されているか、サイト設定で `enableGitInfo = true` が設定されている場合のみ、設定されます。
 
-## Configure Additional Output Formats
+## 追加の出力形式を設定する {#configure-additional-output-formats}
 
-Hugo v0.20 introduced the ability to render your content to multiple output formats (e.g., to JSON, AMP html, or CSV). See [Output Formats][] for information on how to add these values to your Hugo project's configuration file.
+Hugo v0.20 では、コンテンツを複数の出力形式 (JSON、AMP html、CSV など) にレンダリングする機能が導入されました。これらの値を Hugo プロジェクトの設定ファイルに追加する方法については、[「出力形式」][Output Formats] を参照してください。
 
-## Configure Minify
+## ミニファイを設定する {#configure-minify}
 
 {{< new-in "0.68.0" >}}
 
-Default configuration:
+デフォルト設定:
 
 {{< code-toggle config="minify" />}}
 
-## Configure File Caches
+## ファイルキャッシュを設定する {#configure-file-caches}
 
-Since Hugo 0.52 you can configure more than just the `cacheDir`. This is the default configuration:
+Hugo 0.52 以降では、`cacheDir` 以外も設定することができます。以下はデフォルトの設定です。
 
 {{< code-toggle >}}
 [caches]
@@ -766,30 +763,30 @@ dir = ":cacheDir/modules"
 maxAge = -1
 {{< /code-toggle >}}
 
-You can override any of these cache settings in your own `config.toml`.
+これらのキャッシュ設定は、あなた自身の `config.toml` でオーバーライドすることができます。
 
-### The keywords explained
+### キーワードの説明 {#the-keywords-explained}
 
 `:cacheDir`
-: This is the value of the `cacheDir` config option if set (can also be set via OS env variable `HUGO_CACHEDIR`). It will fall back to `/opt/build/cache/hugo_cache/` on Netlify, or a `hugo_cache` directory below the OS temp dir for the others. This means that if you run your builds on Netlify, all caches configured with `:cacheDir` will be saved and restored on the next build. For other CI vendors, please read their documentation. For an CircleCI example, see [this configuration](https://github.com/bep/hugo-sass-test/blob/6c3960a8f4b90e8938228688bc49bdcdd6b2d99e/.circleci/config.yml).
+: これは `cacheDir` 設定オプションが設定されている場合の値です (OS 環境変数 `HUGO_CACHEDIR` からも設定できます)。Netlify では `/opt/build/cache/hugo_cache/` に、それ以外では OS の一時ディレクトリの下にある `hugo_cache` ディレクトリにフォールバックします。つまり、Netlify 上でビルドを実行すると、`:cacheDir` で設定されたすべてのキャッシュが保存され、次のビルドでリストアされます。他の CI ベンダーについては、それぞれのドキュメントを読んでください。CircleCI の例としては、[この設定](https://github.com/bep/hugo-sass-test/blob/6c3960a8f4b90e8938228688bc49bdcdd6b2d99e/.circleci/config.yml) を参照してください。
 
 `:project`
-: The base directory name of the current Hugo project. This means that, in its default setting, every project will have separated file caches, which means that when you do `hugo --gc` you will not touch files related to other Hugo projects running on the same PC.
+: 現在の Hugo プロジェクトのベースディレクトリ名です。これは、デフォルトの設定では、すべてのプロジェクトでファイルキャッシュが分離され、`hugo --gc` を実行したときに、同じ PC で動作している他の Hugo プロジェクトに関連するファイルに触れないことを意味します。
 
 `:resourceDir`
-: This is the value of the `resourceDir` config option.
+: これは `resourceDir` 設定オプションの値です。
 
 maxAge
-: This is the duration before a cache entry will be evicted, -1 means forever and 0 effectively turns that particular cache off. Uses Go's `time.Duration`, so valid values are `"10s"` (10 seconds), `"10m"` (10 minutes) and `"10h"` (10 hours).
+: これはキャッシュが削除されるまでの時間で、-1 は永久、0 はキャッシュを削除します。Go の `time.Duration` を使用するので、有効な値は `"10s"` (10秒)、 `"10m"` (10分)、 `"10h"` (10時間) です。
 
 dir
-: The absolute path to where the files for this cache will be stored. Allowed starting placeholders are `:cacheDir` and `:resourceDir` (see above).
+: このキャッシュのファイルが保存される場所への絶対パス。 許可されている開始プレースホルダーは `:cacheDir` と `:resourceDir` (上記を参照) です。
 
-## Configuration Format Specs
+## 設定ファイルのフォーマット仕様 {#Configuration-format-specs}
 
-- [TOML Spec][toml]
-- [YAML Spec][yaml]
-- [JSON Spec][json]
+- [TOML 仕様][toml]
+- [YAML 仕様][yaml]
+- [JSON 仕様][json]
 
 [`.Site.Params`]: /variables/site/
 [directory structure]: /getting-started/directory-structure

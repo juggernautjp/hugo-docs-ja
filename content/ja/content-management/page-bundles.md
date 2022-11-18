@@ -2,48 +2,47 @@
 categories:
 - content management
 date: "2018-01-24T13:09:00-05:00"
-description: Content organization using Page Bundles
-draft: true
+description: ページバンドルを使用したコンテンツ構成
+draft: false
 keywords:
 - page
 - bundle
 - leaf
 - branch
-linktitle: Page Bundles
+linktitle: ページバンドル
 menu:
   docs:
     identifier: page-bundles
     parent: content-management
     weight: 11
-title: Page Bundles
+title: ページバンドル
 toc: true
 ---
 
-Page Bundles are a way to group [Page Resources](/content-management/page-resources/).
+ページバンドルは、[ページリソース](/content-management/page-resources/) をグループ化するための方法です。
 
-A Page Bundle can be one of:
+ページバンドルは、以下のいずれかになります。
 
-- Leaf Bundle (leaf means it has no children)
-- Branch Bundle (home page, section, taxonomy terms, taxonomy list)
+- リーフバンドル (「リーフ」は、子がないことを意味します)
+- ブランチバンドル (ホームページ、セクション、タクソノミー用語、タクソノミーリスト)
 
-|                                     | Leaf Bundle                                              | Branch Bundle                                                                                                                                                                                                      |
-|-------------------------------------|----------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  |
-| Usage                               | Collection of content and attachments for single pages   | Collection of attachments for section pages (home page, section, taxonomy terms, taxonomy list)                                                                                                                    |
-| Index filename                     | `index.md` [^fn:1]                                       | `_index.md` [^fn:1]                                                                                                                                                                                                |
-| Allowed Resources                   | Page and non-page (like images, PDF, etc.) types         | Only non-page (like images, PDF, etc.) types                                                                                                                                                                       |
-| Where can the Resources live?       | At any directory level within the leaf bundle directory. | Only in the directory level **of** the branch bundle directory i.e. the directory containing the `_index.md` ([ref](https://discourse.gohugo.io/t/question-about-content-folder-structure/11822/4?u=kaushalmodi)). |
-| Layout type                         | `single`                                                 | `list`                                                                                                                                                                                                             |
-| Nesting                             | Does not allow nesting of more bundles under it          | Allows nesting of leaf or branch bundles under it                                                                                                                                                                  |
-| Example                             | `content/posts/my-post/index.md`                         | `content/posts/_index.md`                                                                                                                                                                                          |
-| Content from non-index page files... | Accessed only as page resources                          | Accessed only as regular pages                                                                                                                                                                                     |
+|                        | リーフバンドル                           | ブランチバンドル                              |
+|------------------------|-----------------------------------------|----------------------------------------------|
+| 使用方法                | シングルページのコンテンツと添付ファイル集     | セクションページ (トップページ、セクション、タクソノミー用語、タクソノミーリスト) の添付ファイル集       |
+| インデックス ファイル名  | `index.md` [^fn:1]                    | `_index.md` [^fn:1]                |
+| 使用可能なリソース       | ページと非ページ (画像、PDF など) のタイプ         | 非ページ (画像、PDF など) タイプのみ        |
+| リソースを置く場所       | リーフバンドルのディレクトリ内の任意のディレクトリレベル。 | ブランチバンドルのディレクトリ **の** ディレクトリレベル、つまり `_index.md` を含むディレクトリのみ ([参照](https://discourse.gohugo.io/t/question-about-content-folder-structure/11822/4?u=kaushalmodi)). |
+| レイアウトタイプ         | `single`                                | `list`                                      |
+| ネスト                  | その下にさらにバンドルをネストできません    | その下にリーフバンドルまたはブランチバンドルを入れ子にできます      |
+| 例                      | `content/posts/my-post/index.md`        | `content/posts/_index.md`                 |
+| 非インデックスページ ファイルからのコンテンツ... | ページリソースとしてのみアクセス可能    | 通常のページとしてのみアクセス可能     |
 
 
-## Leaf Bundles {#leaf-bundles}
+## リーフバンドル {#leaf-bundles}
 
-A _Leaf Bundle_ is a directory at any hierarchy within the `content/`
-directory, that contains an **`index.md`** file.
+_リーフバンドル_ とは、`content/` ディレクトリ内の任意の階層にある、**`index.md`** ファイルを含むディレクトリのことを指します。
 
-### Examples of Leaf Bundle organization {#examples-of-leaf-bundle-organization}
+### リーフバンドル構成の例 {#examples-of-leaf-bundle-organization}
 
 ```text
 content/
@@ -67,48 +66,40 @@ content/
             └── index.md
 ```
 
-In the above example `content/` directory, there are four leaf
-bundles:
+上記の例の `content/` ディレクトリには、以下の 4 つのリーフバンドルがあります。
 
 `about`
-: This leaf bundle is at the root level (directly under
-    `content` directory) and has only the `index.md`.
+: このリーフバンドルはルートレベル (`content` ディレクトリの直下) にあり、`index.md` のみを持ちます。
 
 `my-post`
-: This leaf bundle has the `index.md`, two other content
-    Markdown files and two image files.
+: このリーフバンドルには、`index.md` と他の2つのコンテンツの Markdown ファイル、そして2つの画像ファイルが含まれています。
 
 - image1, image2:
-These images are page resources of `my-post`
-    and only available in `my-post/index.md` resources.
+これらの画像は `my-post` のページリソースであり、 `my-post/index.md` リソースでのみ利用可能です。
 
 - content1, content2:
-These content files are page resources of `my-post`
-    and only available in `my-post/index.md` resources.
-    They will **not** be rendered as individual pages.
+これらのコンテンツファイルは `my-post` のページリソースであり、 `my-post/index.md` リソースでのみ利用可能です。
+   これらのコンテンツファイルは、個別のページとしてレンダリングされることは **ありません** 。
 
 `my-other-post`
-: This leaf bundle has only the `index.md`.
+: このリーフバンドルには `index.md` のみが含まれています。
 
 `another-leaf-bundle`
-: This leaf bundle is nested under couple of
-    directories. This bundle also has only the `index.md`.
+: このリーフバンドルは、いくつかのディレクトリの下にネストされています。このバンドルには `index.md` のみが含まれています。
 
 {{% note %}}
-The hierarchy depth at which a leaf bundle is created does not matter,
-as long as it is not inside another **leaf** bundle.
+リーフバンドルが作成される階層の深さは、他の **リーフバンドル** 内にない限り、重要ではありません。
 {{% /note %}}
 
 
-### Headless Bundle {#headless-bundle}
+### ヘッドレス バンドル {#headless-bundle}
 
-A headless bundle is a bundle that is configured to not get published
-anywhere:
+ヘッドレス バンドルとは、以下のような、どこにも公開されないように設定されたバンドルのことです。
 
-- It will have no `Permalink` and no rendered HTML in `public/`.
-- It will not be part of `.Site.RegularPages`, etc.
+- `Permalink` を持たず、`public/` にレンダリングされた HTML を持ちません。
+- `.Site.RegularPages` などの一部にはなりません。
 
-But you can get it by `.Site.GetPage`. Here is an example:
+しかし、`.Site.GetPage` で取得することができます。以下はその例です。
 
 ```go-html-template
 {{ $headless := .Site.GetPage "/some-headless-bundle" }}
@@ -120,46 +111,39 @@ But you can get it by `.Site.GetPage`. Here is an example:
 {{ end }}
 ```
 
-_In this example, we are assuming the `some-headless-bundle` to be a headless
-   bundle containing one or more **page** resources whose `.Name` matches
-   `"author*"`._
+_この例では、`some-headless-bundle` は、`.Name` が `"author*` に一致する 1 つ以上の **ページ** リソースを含むヘッドレス バンドルであると想定しています。_
 
-Explanation of the above example:
+上記の例の説明::
 
-1. Get the `some-headless-bundle` Page "object".
-2. Collect a _slice_ of resources in this _Page Bundle_ that matches
-   `"author*"` using `.Resources.Match`.
-3. Loop through that _slice_ of nested pages, and output their `.Title` and
-   `.Content`.
+1. `some-headless-bundle` ページの "object" を取得します。
+2. この _ページバンドル_ に含まれるリソースのうち、 `.Resources.Match` を使って `"author*"` にマッチするものを _スライス_ として収集します。
+3. ネストされたページの _スライス_ をループして、その `.Title` と `.Content` を出力します。
 
 ---
 
-A leaf bundle can be made headless by adding below in the Front Matter
-(in the `index.md`):
+リーフバンドルは、フロントマター (`index.md` 内) に以下を追加することでヘッドレス バンドルにすることができます。
 
 ```toml
 headless = true
 ```
 
-There are many use cases of such headless page bundles:
+このようなヘッドレス ページバンドルには、さまざまな使用例があります。
 
-- Shared media galleries
-- Reusable page content "snippets"
+- メディアギャラリーの共有
+- 再利用可能なページコンテンツ "スニペット"
 
-## Branch Bundles {#branch-bundles}
+## ブランチバンドル {#branch-bundles}
 
-A _Branch Bundle_ is any directory at any hierarchy within the
-`content/` directory, that contains at least an **`_index.md`** file.
+_ブランチバンドル_ とは、`content/` ディレクトリ内の任意の階層にある、少なくとも **`_index.md`** ファイルを含むディレクトリのことを指します。
 
-This `_index.md` can also be directly under the `content/` directory.
+この `_index.md` は、 `content/` ディレクトリの直下に置くこともできます。
 
 {{% note %}}
-Here `md` (markdown) is used just as an example. You can use any file
-type as a content resource as long as it is a content type recognized by Hugo.
+ここでは例として md (markdown) を使用します。 Hugo によって認識されるコンテンツ タイプである限り、任意のファイル タイプをコンテンツ リソースとして使用できます。
 {{% /note %}}
 
 
-### Examples of Branch Bundle organization {#examples-of-branch-bundle-organization}
+### ブランチバンドル構成の例 {#examples-of-branch-bundle-organization}
 
 ```text
 content/
@@ -175,20 +159,16 @@ content/
         └── index.md
 ```
 
-In the above example `content/` directory, there are two branch
-bundles (and a leaf bundle):
+上記の例の `content/` ディレクトリには、2つのブランチバンドル(とリーフバンドル)があります。
 
 `branch-bundle-1`
-: This branch bundle has the `_index.md`, two
-    other content Markdown files and two image files.
+: このブランチバンドルには、`_index.md`、その他 2つのコンテンツの Markdown ファイル、2つの画像ファイルが含まれています。
 
 `branch-bundle-2`
-: This branch bundle has the `_index.md` and a
-    nested leaf bundle.
+: このブランチバンドルは `_index.md` とネストしたリーフバンドルが含まれています。
 
 {{% note %}}
-The hierarchy depth at which a branch bundle is created does not
-matter.
+ブランチバンドルが作成される階層の深さは重要ではありません。
 {{% /note %}}
 
-[^fn:1]: The `.md` extension is just an example. The extension can be `.html`, `.json` or any valid MIME type.
+[^fn:1]: `.md` 拡張子 はほんの一例です。拡張子は `.html` や `.json` など、有効な MIME タイプであれば何でも構いません。

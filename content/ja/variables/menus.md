@@ -6,11 +6,11 @@ categories:
 date: "2017-03-12"
 description: A menu entry in a menu-template has specific variables and functions
   to make menu management easier.
-draft: true
+draft: false
 keywords:
 - menus
 lastmod: "2017-03-12"
-linktitle: Menu Entry Properties
+linktitle: メニューエントリ プロパティ
 menu:
   docs:
     parent: variables
@@ -18,7 +18,7 @@ menu:
     weight: 50
 publishdate: "2017-03-12"
 sections_weight: 50
-title: Menu Entry Properties
+title: メニューエントリ プロパティ
 toc: false
 weight: 50
 ---

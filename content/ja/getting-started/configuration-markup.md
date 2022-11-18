@@ -3,54 +3,58 @@ categories:
 - getting started
 - fundamentals
 date: "2019-11-15"
-description: How to handle Markdown and other markup related configuration.
-draft: true
+description: Markdown およびその他のマークアップ関連の構成を処理する方法です。
+draft: false
 keywords:
 - configuration
 - highlighting
 sections_weight: 65
 slug: configuration-markup
-title: Configure Markup
+menu:
+  docs:
+    parent: getting-started
+    weight: 65
+title: マークアップの設定
 toc: true
 weight: 65
 ---
 
-## Configure Markup
+## マークアップの設定 {#configure-markup}
 
 {{< new-in "0.60.0" >}}
 
-See [Goldmark](#goldmark) for settings related to the default Markdown handler in Hugo.
+Hugo のデフォルトの Markdown ハンドラーに関連する設定については、[Goldmark](#goldmark) を参照してください。
 
-Below are all markup related configuration in Hugo with their default settings:
+以下は、Hugo のマークアップ関連の設定とその初期設定です。
 
 {{< code-toggle config="markup" />}}
 
-**See each section below for details.**
+**詳細については、以下の各セクションを参照してください。**
 
 ### Goldmark
 
-[Goldmark](https://github.com/yuin/goldmark/) is from Hugo 0.60 the default library used for Markdown. It's fast, it's [CommonMark](https://spec.commonmark.org/0.29/) compliant and it's very flexible.
+[Goldmark](https://github.com/yuin/goldmark/) は Hugo 0.60 から Markdown に使用されるデフォルトのライブラリです。 これは高速で、[CommonMark](https://spec.commonmark.org/0.29/) に準拠しており、非常に柔軟です。
 
-This is the default configuration:
+以下がデフォルト設定です。
 
 {{< code-toggle config="markup.goldmark" />}}
 
-For details on the extensions, refer to [this section](https://github.com/yuin/goldmark/#built-in-extensions) of the Goldmark documentation
+拡張機能の詳細については、Goldmark ドキュメントの [このセクション](https://github.com/yuin/goldmark/#built-in-extensions) を参照してください。
 
-Some settings explained:
+以下に、一部の設定について説明します。
 
 unsafe
-: By default, Goldmark does not render raw HTMLs and potentially dangerous links. If you have lots of inline HTML and/or JavaScript, you may need to turn this on.
+: デフォルトでは、Goldmark は生の HTML と潜在的に危険なリンクをレンダリングしません。 インライン HTML や JavaScript がたくさんある場合は、これをオンにする必要があるかもしれません。
 
 typographer
-: This extension substitutes punctuations with typographic entities like [smartypants](https://daringfireball.net/projects/smartypants/).
+: この拡張機能は、句読点を [smartypants](https://daringfireball.net/projects/smartypants/) のようなタイポグラフィの実体に置き換えます。
 
 attribute
-: Enable custom attribute support for titles and blocks by adding attribute lists inside single curly brackets (`{.myclass class="class1 class2" }`) and placing it _after the Markdown element it decorates_, on the same line for titles and on a new line directly below for blocks.
+: タイトルとブロックのカスタム属性サポートを有効にするには、1つの中括弧内に属性リスト (`{.myclass class="class1 class2" }`) を追加し、_それを装飾する Markdown 要素の後に_ タイトルの場合は同じ行、ブロックの場合はそのすぐ下の新しい行に配置します。
 
-{{< new-in "0.81.0" >}} In Hugo 0.81.0 we added support for adding attributes (e.g. CSS classes) to Markdown blocks, e.g. tables, lists, paragraphs etc.
+{{< new-in "0.81.0" >}} Hugo 0.81.0 ではテーブル、リスト、パラグラフなどの Markdown ブロックに属性 (たとえば、CSS クラス) を追加する機能を追加しました。
 
-A blockquote with a CSS class:
+CSS クラスを持つ blockquote の例:
 
 ```md
 > foo
@@ -58,7 +62,7 @@ A blockquote with a CSS class:
 {.myclass}
 ```
 
-There are some current limitations: For tables you can currently only apply it to the full table, and for lists the `ul`/`ol`-nodes only, e.g.:
+現在のところ、いくつかの制限があります。現在のところ、テーブルの場合はテーブル全体に対してのみ、リストの場合は `ul`/`ol` ノードのみに適用できます。たとえば、以下の通りです。
 
 ```md
 * Fruit
@@ -73,7 +77,7 @@ There are some current limitations: For tables you can currently only apply it t
 {.list}
 ```
 
-Note that attributes in [code fences](/content-management/syntax-highlighting/#highlighting-in-code-fences) must come after the opening tag, with any other highlighting processing instruction, e.g.:
+[コードフェンス](/content-management/syntax-highlighting/#highlighting-in-code-fences) の属性は、他のハイライト処理命令と一緒に、開始タグの後に配置しなければならないことに注意してください。例えば、以下の通りです。
 
 ````txt
 ```go {.myclass linenos=table,hl_lines=[8,"15-17"],linenostart=199}
@@ -82,36 +86,36 @@ Note that attributes in [code fences](/content-management/syntax-highlighting/#h
 ````
 
 autoHeadingIDType ("github") {{< new-in "0.62.2" >}}
-: The strategy used for creating auto IDs (anchor names). Available types are `github`, `github-ascii` and `blackfriday`. `github` produces GitHub-compatible IDs, `github-ascii` will drop any non-Ascii characters after accent normalization, and `blackfriday` will make the IDs compatible with Blackfriday, the default Markdown engine before Hugo 0.60. Note that if Goldmark is your default Markdown engine, this is also the strategy used in the [anchorize](/functions/anchorize/) template func.
+: 自動生成される ID (アンカー名) を作成する際に使用するストラテジー。利用可能なタイプは `github`、`github-ascii`、`blackfriday` です。`github` は GitHub 互換の ID を作成し、 `github-ascii` はアクセントの正規化後に非アスキー文字を削除し、`blackfriday` は Hugo 0.60 以前のデフォルト Markdown エンジンである Blackfriday と互換性のある ID を作成します。 Goldmark がデフォルトの Markdown エンジンである場合、これは [anchorize](/functions/anchorize/) テンプレート関数で使用される戦略でもあることに注意してください。
 
-### Highlight
+### ハイライト {#highlight}
 
-This is the default `highlight` configuration. Note that some of these settings can be set per code block, see [Syntax Highlighting](/content-management/syntax-highlighting/).
+これはデフォルトの `highlight` 設定です。これらの設定のいくつかはコードブロックごとに設定できることに注意してください。詳細は、[「シンタックスハイライト」](/content-management/syntax-highlighting/) を参照してください。
 
 {{< code-toggle config="markup.highlight" />}}
 
-For `style`, see these galleries:
+`style` については、以下のギャラリーを参照してください。
 
-* [Short snippets](https://xyproto.github.io/splash/docs/all.html)
-* [Long snippets](https://xyproto.github.io/splash/docs/longer/all.html)
+* [ショートスニペット](https://xyproto.github.io/splash/docs/all.html)
+* [ロングスニペット](https://xyproto.github.io/splash/docs/longer/all.html)
 
-For CSS, see [Generate Syntax Highlighter CSS](/content-management/syntax-highlighting/#generate-syntax-highlighter-css).
+CSS については、[「シンタックスハイライト CSS の生成」](/content-management/syntax-highlighting/#generate-syntax-highlighter-css) を参照してください。
 
-### Table Of Contents
+### 目次 {#table-of-contents}
 
 {{< code-toggle config="markup.tableOfContents" />}}
 
-These settings only works for the Goldmark renderer:
+以下の設定は、Goldmark レンダラーでのみ機能します。
 
 startLevel
-: The heading level, values starting at 1 (`h1`), to start render the table of contents.
+: 目次のレンダリングを開始する見出しレベル。値は 1 (`h1`) から始まります。
 
 endLevel
-: The heading level, inclusive, to stop render the table of contents.
+: 目次のレンダリングを停止するための見出しレベル (含む)。
 
 ordered
-: Whether or not to generate an ordered list instead of an unordered list.
+: 順序なしリストの代わりに順序付きリストを生成するかどうか。
 
-## Markdown Render Hooks
+## Markdown レンダーフック {#markdown-render-hooks}
 
-See [Markdown Render Hooks](/templates/render-hooks/).
+[「Markdown レンダーフック」](/templates/render-hooks/) を参照してください。

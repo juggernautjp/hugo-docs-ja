@@ -4,19 +4,18 @@ aliases:
 categories:
 - functions
 date: "2017-02-01"
-description: The images namespace provides a list of filters and other image related
-  functions.
-draft: true
+description: images 名前空間は、フィルターおよびその他の画像関連関数のリストを提供します。
+draft: false
 keywords:
 - images
 menu:
   docs:
     parent: functions
-title: Image Filters
+title: 画像フィルター
 toc: true
 ---
 
-See [images.Filter](#filter) for how to apply these filters to an image.
+これらのフィルターを画像に適用する方法については、[images.Filter](#filter) を参照してください。
 
 ## Overlay
 
@@ -26,7 +25,7 @@ See [images.Filter](#filter) for how to apply these filters to an image.
 images.Overlay SRC X Y
 {{% /funcsig %}}
 
-Overlay creates a filter that overlays the source image at position x y, e.g:
+Overlay は、元画像を x y の位置でオーバーレイするフィルタを作成します。たとえば、以下のとおりです。
 
 
 ```go-html-template
@@ -34,25 +33,25 @@ Overlay creates a filter that overlays the source image at position x y, e.g:
 {{ $img := $img | images.Filter $logoFilter }}
 ```
 
-A shorter version of the above, if you only need to apply the filter once:
+フィルターを 1 回だけ適用する必要がある場合は、上記の短縮版の以下を使用します。
 
 ```go-html-template
 {{ $img := $img.Filter (images.Overlay $logo 50 50 )}}
 ```
 
-The above will overlay `$logo` in the upper left corner of `$img` (at position `x=50, y=50`).
+上記は、`$img` の左上隅 (`x=50, y=50` の位置) に `$logo` をオーバーレイ表示します。
 
 ## Text
 
 {{< new-in "0.90.0" >}}
 
-Using the `Text` filter, you can add text to an image.
+`Text` フィルターを使用すると、画像にテキストを追加できます。
 
 {{% funcsig %}}
 images.Text TEXT DICT)
 {{% /funcsig %}}
 
-The following example will add the text `Hugo rocks!` to the image with the specified color, size and position.
+以下の例では、指定した色、サイズ、位置の画像に、テキスト `Hugo rocks!` を追加します。
 
 ```go-html-template
 {{ $img := resources.Get "/images/background.png"}}
@@ -65,7 +64,7 @@ The following example will add the text `Hugo rocks!` to the image with the spec
 ))}}
 ```
 
-You can load a custom font if needed. Load the font as a Hugo `Resource` and set it as an option:
+必要に応じて、カスタムフォントをロードすることができます。 フォントを Hugo の `Resource` としてロードし、オプションとして設定します。
 
 ```go-html-template
 
@@ -83,8 +82,8 @@ You can load a custom font if needed. Load the font as a Hugo `Resource` and set
 images.Brightness PERCENTAGE
 {{% /funcsig %}}
 
-Brightness creates a filter that changes the brightness of an image.
-The percentage parameter must be in range (-100, 100).
+Brightness は、画像の明るさを変更するフィルターを作成します。
+パーセント パラメーターは範囲内 (-100、100) である必要があります。
 
 ### ColorBalance
 
@@ -92,8 +91,8 @@ The percentage parameter must be in range (-100, 100).
 images.ColorBalance PERCENTAGERED PERCENTAGEGREEN PERCENTAGEBLUE
 {{% /funcsig %}}
 
-ColorBalance creates a filter that changes the color balance of an image.
-The percentage parameters for each color channel (red, green, blue) must be in range (-100, 500).
+ColorBalance は、画像のカラー バランスを変更するフィルターを作成します。
+各カラー チャネル (赤、緑、青) のパーセント パラメーターは、範囲 (-100、500) である必要があります。
 
 ## Colorize
 
@@ -101,10 +100,10 @@ The percentage parameters for each color channel (red, green, blue) must be in r
 images.Colorize HUE SATURATION PERCENTAGE
 {{% /funcsig %}}
 
-Colorize creates a filter that produces a colorized version of an image.
-The hue parameter is the angle on the color wheel, typically in range (0, 360).
-The saturation parameter must be in range (0, 100).
-The percentage parameter specifies the strength of the effect, it must be in range (0, 100).
+Colorize は、画像をカラー化するフィルタを作成します。
+hue パラメーターはカラーホイール上の角度で、通常は (0, 360) の範囲です。
+saturation パラメーターは、範囲 (0、100) でなければなりません。
+パーセント パラメーターは効果の強さを指定し、範囲（0、100）である必要があります。
 
 ## Contrast
 
@@ -112,8 +111,8 @@ The percentage parameter specifies the strength of the effect, it must be in ran
 images.Contrast PERCENTAGE
 {{% /funcsig %}}
 
-Contrast creates a filter that changes the contrast of an image.
-The percentage parameter must be in range (-100, 100).
+Contrast は、画像のコントラストを変更するフィルターを作成します。
+パーセントパラメーターは、範囲 (-100、100) である必要があります。
 
 ## Gamma
 
@@ -121,7 +120,7 @@ The percentage parameter must be in range (-100, 100).
 images.Gamma GAMMA
 {{% /funcsig %}}
 
-Gamma creates a filter that performs a gamma correction on an image.
+Gamma は、画像にガンマ補正を行うフィルターを作成します。
 The gamma parameter must be positive. Gamma = 1 gives the original image.
 Gamma less than 1 darkens the image and gamma greater than 1 lightens it.
 

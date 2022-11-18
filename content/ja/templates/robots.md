@@ -6,7 +6,7 @@ categories:
 date: "2017-02-01"
 description: Hugo can generate a customized robots.txt in the same way as any other
   template.
-draft: true
+draft: false
 keywords:
 - robots
 - search engines

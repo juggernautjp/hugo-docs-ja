@@ -5,30 +5,29 @@ categories:
 - getting started
 - fundamentals
 date: "2017-01-02"
-description: Hugo's CLI scaffolds a project directory structure and then takes that
-  single directory and uses it as the input to create a complete website.
-draft: true
+description: Hugo の CLI は、プロジェクトのディレクトリ構造を足場にして、その 1 つのディレクトリを入力として、完全なウェブサイトを作成できます。
+draft: false
 keywords:
 - source
 - organization
 - directories
-linktitle: Directory Structure
+linktitle: ディレクトリ構造
 menu:
   docs:
     parent: getting-started
     weight: 50
 publishdate: "2017-02-01"
 sections_weight: 50
-title: Directory Structure
+title: ディレクトリ構造
 toc: true
 weight: 50
 ---
 
-## New Site Scaffolding
+## 新しいサイトの足場かけ (スキャフォールディング) {#new-site-scaffolding}
 
 {{< youtube sB0HLHjgQ7E >}}
 
-Running the `hugo new site` generator from the command-line will create a directory structure with the following elements:
+コマンドラインから `hugo new site` ジェネレーターを実行すると、以下の要素からなるディレクトリ構造が作成されます。
 
 ```txt
 .
@@ -42,43 +41,43 @@ Running the `hugo new site` generator from the command-line will create a direct
 └── themes
 ```
 
-## Directory Structure Explained
+## ディレクトリ構造の説明 {#directory-structure-explained}
 
-The following is a high-level overview of each of the directories with links to each of their respective sections within the Hugo docs.
+以下は、各ディレクトリの概要と、Hugo ドキュメント内の各セクションへのリンクです。
 
 [`archetypes`](/content-management/archetypes/)
-: You can create new content files in Hugo using the `hugo new` command.
-By default, Hugo will create new content files with at least `date`, `title` (inferred from the filename), and `draft = true`. This saves time and promotes consistency for sites using multiple content types. You can create your own [archetypes][] with custom preconfigured front matter fields as well.
+: Hugo では `hugo new` コマンドを使用して、新しいコンテンツファイルを作成することができます。
+デフォルトでは、Hugo は少なくとも `date`、`title` (ファイル名から推測)、`draft = true` を含む新しいコンテンツファイルを作成します。これは時間を節約し、複数のコンテンツタイプを使用するサイトの一貫性が促進されます。また、独自の [アーキタイプ][archetypes] を作成し、事前に設定されたカスタム フロントマター フィールドを使用することもできます。
 
 [`assets`][]
-: Stores all the files which need be processed by [Hugo Pipes](/hugo-pipes/). Only the files whose `.Permalink` or `.RelPermalink` are used will be published to the `public` directory. Note: assets directory is not created by default.
+: [Hugo パイプ](/hugo-pipes/) で処理する必要のあるすべてのファイルを保存します。 `.Permalink` または `.RelPermalink` が使用されているファイルだけが、 `public` ディレクトリに公開されます。**注意**: assets ディレクトリはデフォルトでは作成されません。
 
 [`config`](/getting-started/configuration/)
-: Hugo ships with a large number of [configuration directives][].
-The [config directory](/getting-started/configuration/#configuration-directory) is where those directives are stored as JSON, YAML, or TOML files. Every root setting object can stand as its own file and structured by environments.
-Projects with minimal settings and no need for environment awareness can use a single `config.toml` file at its root.
+: Hugo には多数の [設定ディレクティブ][configuration directives] が同梱されています。
+[config ディレクトリ](/getting-started/configuration/#configuration-directory) は、これらのディレクティブが JSON、YAML、または TOML ファイルとして格納される場所です。すべてのルート設定オブジェクトはそれ自身のファイルとして存在することができ、環境ごとに構造化されます。
+最小限の設定しか行わず、環境を意識する必要のないプロジェクトでは、ルートで 1 つの `config.toml` ファイルを使用できます。
 
-Many sites may need little to no configuration, but Hugo ships with a large number of [configuration directives][] for more granular directions on how you want Hugo to build your website. Note: config directory is not created by default.
+多くのサイトではほとんど設定が必要ないかもしれませんが、Hugo には数多くの [設定ディレクティブ][configuration directives] が同梱されており、Hugo にどのようにウェブサイトを構築させたいかを詳細に指示することができます。**注意**: デフォルトでは config ディレクトリは作成されません。
 
 [`content`][]
-: All content for your website will live inside this directory. Each top-level folder in Hugo is considered a [content section][]. For example, if your site has three main sections---`blog`, `articles`, and `tutorials`---you will have three directories at `content/blog`, `content/articles`, and `content/tutorials`. Hugo uses sections to assign default [content types][].
+: Web サイトのすべてのコンテンツは、このディレクトリの中に置かれます。Hugo のトップレベルの各フォルダーは、[コンテンツ セクション][content section] と呼ばれます。たとえば、あなたのサイトに 3 つのメインセクション --- `blog`、`articles`、`tutorials `-- がある場合、`content/blog`、`content/articles`、`content/tutorials` という 3 つのディレクトリを持つことになります。Hugo はセクションを使用して、デフォルトの [コンテンツタイプ][content types] を割り当てます。
 
 [`data`](/templates/data-templates/)
-: This directory is used to store configuration files that can be
-used by Hugo when generating your website. You can write these files in YAML, JSON, or TOML format. In addition to the files you add to this folder, you can also create [data templates][] that pull from dynamic content.
+: このディレクトリは、Web サイトを生成する際に Hugo が使用する設定ファイルを格納するために使用されます。
+これらのファイルは、YAML、JSON、または TOML 形式で記述できます。このフォルダーに追加するファイルに加えて、動的なコンテンツから取得する [データテンプレート][data templates] を作成することもできます。
 
 [`layouts`][]
-: Stores templates in the form of `.html` files that specify how views of your content will be rendered into a static website. Templates include [list pages][lists], your [homepage][], [taxonomy templates][], [partials][], [single page templates][singles], and more.
+: 静的な Web サイトへコンテンツをレンダリングする方法を指定する、`.html` ファイル形式のテンプレートが保存されます。テンプレートには、[リストページ][lists]、[ホームページ][homepage]、[タクソノミー テンプレート][taxonomy templates]、[パーシャル (部分テンプレート)][partials]、[シングルページ テンプレート][singles]、その他多数が含まれます。
 
 [`static`][]
-: Stores all the static content: images, CSS, JavaScript, etc. When Hugo builds your site, all assets inside your static directory are copied over as-is. A good example of using the `static` folder is for [verifying site ownership on Google Search Console][searchconsole], where you want Hugo to copy over a complete HTML file without modifying its content.
+: すべての静的コンテンツ (画像、CSS、JavaScript など) を格納します。Hugo がサイトをビルドするとき、静的ディレクトリ内のすべてのアセットがそのままコピーされます。 `static` フォルダーーを使用する良い例としては、[Google Search Console でサイトの所有権を確認する][searchconsole] 場合で、Hugo に HTML ファイルの内容を変更せずに完全にコピーさせたい場合です。
 
 {{% note %}}
-From **Hugo 0.31** you can have multiple static directories.
+**Hugo 0.31** からは、複数の静的ディレクトリを持つことができるようになりました。
 {{% /note %}}
 
 [`resources`][]
-: Caches some files to speed up generation. Can be also used by template authors to distribute built Sass files, so you don't have to have the preprocessor installed. Note: resources directory is not created by default.
+: いくつかのファイルをキャッシュし、生成を高速化します。テンプレート作成者がビルドされた Sass ファイルを配布するために使用することもできますので、プリプロセッサをインストールする必要はありません。**注意**: resources ディレクトリはデフォルトでは作成されません。
 
 [archetypes]: /content-management/archetypes/
 [`assets`]: /hugo-pipes/introduction#asset-directory/

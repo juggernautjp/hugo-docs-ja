@@ -3,21 +3,20 @@ aliases: []
 categories:
 - templates
 date: "2017-03-06"
-description: Hugo ships with a group of boilerplate templates that cover the most
-  common use cases for static websites.
-draft: true
+description: Hugo は、静的 Web サイトの最も一般的な使用例 (ユースケース) をカバーする定型 (ボイラープレート) テンプレートのグループを同梱しています。
+draft: false
 keywords:
 - internal
 - analytics
 lastmod: "2017-03-06"
-linktitle: Internal Templates
+linktitle: 内部テンプレート
 menu:
   docs:
     parent: templates
     weight: 168
 publishdate: "2017-03-06"
 sections_weight: 168
-title: Internal Templates
+title: 内部テンプレート
 toc: true
 weight: 168
 wip: true
@@ -26,81 +25,81 @@ wip: true
 code: https://github.com/gohugoio/hugo/blob/e445c35d6a0c7f5fc2f90f31226cd1d46e048bbc/tpl/template_embedded.go#L147 -->
 
 {{% warning %}}
-While the following internal templates are called similar to partials, they do *not* observe the partial template lookup order.
+以下の内部テンプレートはパーシャル (部分テンプレート) と同様に呼ばれますが、部分テンプレートの検索順序を *守りません*。
 {{% /warning %}}
 
-## Google Analytics
+## Google アナリティクス {#google-analytics}
 
-Hugo ships with internal templates supporting Google Analytics, both [Google Analytics 4][GA4] (GA4) and Universal Analytics.
+Hugo には、[Google アナリティクス 4][GA4] (GA4) とユニバーサル アナリティクスの両方の Google アナリティクスをサポートする内部テンプレートが付属しています。
 
-**Note:** Universal Analytics are deprecated. For details, see [Universal Analytics will be going away][].
+**注意:** ユニバーサル アナリティクスは非推奨となります。詳細については、[「ユニバーサル アナリティクスの廃止予定」][Universal Analytics will be going away] を参照してください。
 
 [GA4]: https://support.google.com/analytics/answer/10089681
 [Universal Analytics will be going away]: https://support.google.com/analytics/answer/11583528
 
-### Configure Google Analytics
+### Google アナリティクスを設定する {#configure-google-analytics}
 
-Provide your tracking ID in your configuration file:
+以下のように、設定ファイルにトラッキング ID を指定します。
 
-**Google Analytics 4 (gtag.js)**
+**Google アナリティクス 4 (gtag.js)**
 {{< code-toggle file="config" >}}
 googleAnalytics = "G-MEASUREMENT_ID"
 {{</ code-toggle >}}
 
-**Google Universal Analytics (analytics.js)**
+**Google ユニバーサル アナリティクス (analytics.js)**
 {{< code-toggle file="config" >}}
 googleAnalytics = "UA-PROPERTY_ID"
 {{</ code-toggle >}}
 
-### Use the Google Analytics Template
+### Google アナリティクス テンプレートを使用する {#use-the-google-analytics-template}
 
-You can then include the Google Analytics internal template:
+次に、以下のように、Google アナリティクスの内部テンプレートを含めることができます。
 
 ```go-html-template
 {{ template "_internal/google_analytics_async.html" . }}
 ```
 
-**Note:** The async template is _not_ suitable for Google Analytics 4.
+**注意:** 非同期テンプレートは、Google アナリティクス 4 には適して *いません*。
 
 ```go-html-template
 {{ template "_internal/google_analytics.html" . }}
 ```
 
-If you want to create your own template, you can access the configured ID with `{{ site.Config.Services.GoogleAnalytics.ID }}`.
+独自のテンプレートを作成したい場合は、 `{{ site.Config.Services.GoogleAnalytics.ID }}` で設定された ID にアクセスできます。
 
 ## Disqus
 
-Hugo also ships with an internal template for [Disqus comments][disqus], a popular commenting system for both static and dynamic websites. In order to effectively use Disqus, you will need to secure a Disqus "shortname" by [signing up for the free service][disqussignup].
+Hugo には、[Disqus コメント][disqus] の内部テンプレートも同梱されています。これは、静的および動的 Web サイトの両方で人気のあるコメントシステムです。 Disqus を効果的に使用するには、[無料サービスにサインアップ][disqussignup] して Disqus の「ショートネーム」を確保する必要があります。
 
-### Configure Disqus
+### Disqus を設定する {#configure-disqus}
 
-To use Hugo's Disqus template, you first need to set a single configuration value:
+Hugo の Disqus テンプレートを使用するには、まず、以下の設定値を一つ設定する必要があります。
 
 {{< code-toggle file="config" >}}
 disqusShortname = "your-disqus-shortname"
 {{</ code-toggle >}}
 
-You also have the option to set the following in the front matter for a given piece of content:
+また、特定のコンテンツのフロントマターに以下を設定するオプションもあります。
 
 * `disqus_identifier`
 * `disqus_title`
 * `disqus_url`
 
-### Use the Disqus Template
+### Disqus テンプレートを使用する {#use-the-disqus-template}
 
-To add Disqus, include the following line in templates where you want your comments to appear:
+Disqus を追加するには、コメントを表示するテンプレートに以下の行を含めます。
 
 ```go-html-template
 {{ template "_internal/disqus.html" . }}
 ```
 
-A `.Site.DisqusShortname` variable is also exposed from the config.
+また、`.Site.DisqusShortname` という変数も設定から公開されています。
 
-### Conditional Loading of Disqus Comments
+### Disqus コメントの条件付き読み込み {#conditional-loading-of-disqus-comments}
 
-Users have noticed that enabling Disqus comments when running the Hugo web server on `localhost` (i.e. via `hugo server`) causes the creation of unwanted discussions on the associated Disqus account.
+Hugo Web サーバーをを `localhost` で実行しているときに (つまり `hugo server` 経由で)、Disqus コメントを有効にすると、関連する Disqus アカウントに不要なディスカッションが作成されることにユーザーが気づきました。
 
-You can create the following `layouts/partials/disqus.html`:
+以下の `layouts/partials/disqus.html` を作成できます。
 
 {{< code file="layouts/partials/disqus.html" download="disqus.html" >}}
 <div id="disqus_thread"></div>
@@ -122,9 +121,9 @@ You can create the following `layouts/partials/disqus.html`:
 <a href="https://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 {{< /code >}}
 
-The `if` statement skips the initialization of the Disqus comment injection when you are running on `localhost`.
+`if` 文は、`localhost` で実行している場合、 Disqus のコメント インジェクションの初期化をスキップします。
 
-You can then render your custom Disqus partial template as follows:
+次に、カスタムの Disqus 部分テンプレートを以下のようにレンダリングできます。
 
 ```go-html-template
 {{ partial "disqus.html" . }}
@@ -132,12 +131,12 @@ You can then render your custom Disqus partial template as follows:
 
 ## Open Graph
 
-An internal template for the [Open Graph protocol](https://ogp.me/), metadata that enables a page to become a rich object in a social graph.
-This format is used for Facebook and some other sites.
+[Open Graph プロトコル](https://ogp.me/) の内部テンプレートで、ページをソーシャルグラフのリッチオブジェクトにするためのメタデータです。
+この形式は、Facebook や他のいくつかのサイトで使用されています。
 
-### Configure Open Graph
+### Open Graph を設定する {#configure-open-graph}
 
-Hugo's Open Graph template is configured using a mix of configuration variables and [front-matter](/content-management/front-matter/) on individual pages.
+Hugo の Open Graph テンプレートは、個々のページで設定変数と [フロントマター](/content-management/front-matter/) を組み合わせて設定されています。
 
 {{< code-toggle file="config" >}}
 [params]
@@ -159,35 +158,34 @@ series = []
 tags = []
 {{</ code-toggle >}}
 
-Hugo uses the page title and description for the title and description metadata.
-The first 6 URLs from the `images` array are used for image metadata.
-If [page bundles](/content-management/page-bundles/) are used and the `images` array is empty or undefined, images with filenames matching `*feature*` or `*cover*,*thumbnail*` are used for image metadata.
+Hugo は、ページのタイトルと説明文をタイトルと説明文のメタデータに使用しています。
+`images` 配列の最初の 6 つの URL は、画像のメタデータに使用されます。
+[ページバンドル](/content-management/page-bundles/) が使用され、`images` 配列が空または未定義の場合、`*feature*` または `*cover*,*thumbnail*` に一致するファイル名を持つ画像が画像のメタデータに使用されます。
 
-Various optional metadata can also be set:
+また、オプションで以下のような様々なメタデータを設定することができます。
 
-- Date, published date, and last modified data are used to set the published time metadata if specified.
-- `audio` and `videos` are URL arrays like `images` for the audio and video metadata tags, respectively.
-- The first 6 `tags` on the page are used for the tags metadata.
-- The `series` taxonomy is used to specify related "see also" pages by placing them in the same series.
+- 日付、公開日、最終更新日データは、指定された場合、公開時刻メタデータを設定するために使用されます。
+- `audio` と `videos` はそれぞれ、音声と動画のメタデータタグを表す `images` のような URL 配列です。
+- ページの最初の 6 つの `tags` は、タグのメタデータに使用されます。
+- `series` タクソノミーは、関連する "see also" ページを同じシリーズに配置するように指定するために使用されます。
 
-If using YouTube this will produce a og:video tag like `<meta property="og:video" content="url">`. Use the `https://youtu.be/<id>` format with YouTube videos (example: `https://youtu.be/qtIqKaDlqXo`).
+YouTube を使用している場合、`<meta property="og:video" content="url">` のような og:video タグが生成されます。 YouTube の動画では `https://youtu.be/<id>` 形式を使用します (たとえば、 `https://youtu.be/qtIqKaDlqXo`)。
 
-### Use the Open Graph Template
+### Open Graph テンプレートを使用する {#use-the-open-graph-template}
 
-To add Open Graph metadata, include the following line between the `<head>` tags in your templates:
+Open Graph のメタデータを追加するには、テンプレート内の `<head>` タグの間に以下の行を含めます。
 
 ```go-html-template
 {{ template "_internal/opengraph.html" . }}
 ```
 
-## Twitter Cards
+## Twitter カード {#twitter-cards}
 
-An internal template for [Twitter Cards](https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/abouts-cards),
-metadata used to attach rich media to Tweets linking to your site.
+[Twitter カード](https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/abouts-cards) 用の内部テンプレートで、自分のサイトへリンクするツイートにリッチメディアを添付するために使用されるメタデータになります。
 
-### Configure Twitter Cards
+### Twitter カードを設定する {#configure-twitter-cards}
 
-Hugo's Twitter Card template is configured using a mix of configuration variables and [front-matter](/content-management/front-matter/) on individual pages.
+Hugo の Twitter カード テンプレートは、個々のページで設定変数と [フロントマター](/content-management/front-matter/) を組み合わせて設定されています。
 
 {{< code-toggle file="config" >}}
 [params]
@@ -201,36 +199,36 @@ description = "Text about this post"
 images = ["post-cover.png"]
 {{</ code-toggle >}}
 
-If `images` aren't specified in the page front-matter, then hugo searches for [image page resources](/content-management/image-processing/) with `feature`, `cover`, or `thumbnail` in their name.
-If no image resources with those names are found, the images defined in the [site config](/getting-started/configuration/) are used instead.
-If no images are found at all, then an image-less Twitter `summary` card is used instead of `summary_large_image`.
+もし `images` がページのフロントマターで指定されていなければ、hugo は `feature`、`cover` または `thumbnail` を名前に含む [画像ページのリソース](/content-management/image-processing/) を検索します。
+これらの名前の画像リソースが見つからない場合、代わりに [サイト設定](/getting-started/configuration/) で定義された画像が使用されます。
+画像がまったく見つからない場合は、`summary_large_image` の代わりに画像のない Twitter の `summary` カードが使用されます。
 
-Hugo uses the page title and description for the card's title and description fields. The page summary is used if no description is given.
+Hugo は、カードのタイトルと説明のフィールドに、ページのタイトルと説明を使用します。説明がない場合は、ページの概要が使用されます。
 
-The `.Site.Social.twitter` variable is exposed from the config as the value for `twitter:site`.
+`.Site.Social.twitter` 変数は、設定から `twitter:site` の値として公開されます。
 
 {{< code-toggle file="config" >}}
 [social]
   twitter = "GoHugoIO"
 {{</ code-toggle >}}
 
-NOTE: The `@` will be added for you
+**注意**: `@` が追加されます
 
 ```html
 <meta name="twitter:site" content="@GoHugoIO"/>
 ```
 
-### Use the Twitter Cards Template
+### Twitter カード テンプレートを使用する {#use-the-twitter-cards-template}
 
-To add Twitter card metadata, include the following line immediately after the `<head>` element in your templates:
+Twitter カードのメタデータを追加するには、テンプレート内の `<head>` 要素の直後に以下の行を含めます。
 
 ```go-html-template
 {{ template "_internal/twitter_cards.html" . }}
 ```
 
-## The Internal Templates
+## 内部テンプレート {#the-internal-templates}
 
-The code for these templates is located [here](https://github.com/gohugoio/hugo/tree/master/tpl/tplimpl/embedded/templates).
+以下のテンプレートのコードは、[ここ](https://github.com/gohugoio/hugo/tree/master/tpl/tplimpl/embedded/templates) にあります。
 
 * `_internal/disqus.html`
 * `_internal/google_analytics.html`

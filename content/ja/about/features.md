@@ -1,7 +1,7 @@
 ---
 date: "2017-02-01"
 description: Hugo は、圧倒的なスピード、堅牢なコンテンツ管理、強力なテンプレート言語が特徴で、あらゆる種類の静的な Web サイトに最適なソフトウェアです。
-draft: true
+draft: false
 lastmod: "2017-02-01"
 linktitle: Hugo の機能
 menu:
@@ -18,7 +18,7 @@ weight: 20
 ## 一般 {#general}
 
 * [非常に高速な][Extremely fast] ビルド時間 (1 ページあたり 1 ミリ秒未満)
-* 完全なクロスプラットフォームで、macOS、Linux、Windows などに [簡単インストール][install] が可能 
+* 完全なクロスプラットフォームで、macOS、Linux、Windows などに [簡単にインストール][install] が可能 
 * [LiveReload][] を利用して開発中の変更をその場でレンダリング
 * [強力なテーマ][Powerful theming]
 * [どこでもホスティング可能][hostanywhere]

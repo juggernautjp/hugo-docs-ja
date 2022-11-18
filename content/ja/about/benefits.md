@@ -2,7 +2,7 @@
 aliases: []
 date: "2017-02-01"
 description: パフォーマンス、セキュリティ、使いやすさの向上は、静的サイトジェネレーターが魅力的な理由のほんの一部です。
-draft: true
+draft: false
 keywords:
 - ssg
 - static

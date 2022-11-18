@@ -2,8 +2,8 @@
 categories:
 - asset management
 date: "2018-07-14"
-description: Hugo Pipes allows the processing of Sass and SCSS files.
-draft: true
+description: Hugo パイプでは、Sass ファイルおよび SCSS ファイルを処理できます。
+draft: false
 keywords: []
 menu:
   docs:
@@ -15,33 +15,32 @@ title: Sass / SCSS
 weight: 2
 ---
 
-Any Sass or SCSS file can be transformed into a CSS file using `resources.ToCSS` which takes two arguments, the resource object and a map of options listed below.
+どのような Sass や SCSS ファイルでも、リソースオブジェクトと以下に示すオプションのマップの 2 つの引数を取る `resources.ToCSS` を使って CSS ファイルに変換できます。
 
 ```go-html-template
 {{ $sass := resources.Get "sass/main.scss" }}
 {{ $style := $sass | resources.ToCSS }}
 ```
 
-### Options
+### オプション {#options}
 
 transpiler [string] {{< new-in "0.80.0" >}}
-
-: The `transpiler` to use, valid values are `libsass` (default) and `dartsass`. Note that the Embedded Dart Sass project is still in beta. We will try to improve the installation process when it has stable releases, but if you want to use Hugo with Dart Sass you need to download a release binary from [Embedded Dart Sass](https://github.com/sass/dart-sass-embedded/releases) (Hugo after 0.81.0 requires beta 6 or newer) and make sure it's in your PC's `$PATH` (or `%PATH%` on Windows).
+: 使用する `transpiler` を指定します。有効な値は `libsass` (デフォルト) と `dartsass` です。 Embedded Dart Sass プロジェクトは、まだベータ版であることに注意してください。 安定版がリリースされたら、インストール方法を改善する予定ですが、Hugo を Dart Sass と一緒に使いたい場合は、[Embedded Dart Sass](https://github.com/sass/dart-sass-embedded/releases) (0.81.0 以降の Hugo にはベータ 6 以降が必要です) からリリースバイナリをダウンロードして、PC の `$PATH` (Windows では `%PATH%`) にそれが存在することを確認する必要があります。
 
 targetPath [string]
-: If not set, the resource's target path will be the asset file original path with its extension replaced by `.css`.
+: 設定されていない場合、リソースのターゲットパスはアセットファイルの元のパスであり、その拡張子は `.css` に置き換えられます。
 
 outputStyle [string]
-: Default is `nested` (LibSass) and `expanded` (Dart Sass). Other available output styles for LibSass are `expanded`, `compact` and `compressed`. Dart Sass only supports `expanded` and `compressed`.
+: デフォルトは `nested` (LibSass) と `expanded` (Dart Sass) です。LibSass で利用可能なその他の出力スタイルは、`expanded`、`compact`、`compressed` です。 Dart Sass は、 `expanded` と `compressed` のみをサポートします。
 
 precision [int]
-: Precision of floating point math. **Note:** This option is not supported by Dart Sass.
+: 浮動小数点演算の精度です。**注意:** このオプションは、Dart Sass ではサポートされていません。
 
 enableSourceMap [bool]
-: When enabled, a source map will be generated.
+: 有効にすると、ソースマップが生成されます。
 
 includePaths [string slice]
-: Additional SCSS/Sass include paths. Paths must be relative to the project directory.
+: SCSS/Sass のインクルードパスを追加します。パスは、プロジェクト ディレクトリからの相対パスである必要があります。
 
 ```go-html-template
 {{ $options := (dict "targetPath" "style.css" "outputStyle" "compressed" "enableSourceMap" (not hugo.IsProduction) "includePaths" (slice "node_modules/myscss")) }}
@@ -49,5 +48,5 @@ includePaths [string slice]
 ```
 
 {{% note %}}
-Setting `outputStyle` to `compressed` will handle Sass/SCSS files minification better than the more generic [`resources.Minify`]({{< ref "minification">}}).
+`outputStyle` に `compressed` を設定すると、Sass/SCSS ファイルのミニファイ (minification) を、より一般的な [`resources.Minify`]({{< ref "minification">}}) よりも適切に処理できるようになります。
 {{% /note %}}

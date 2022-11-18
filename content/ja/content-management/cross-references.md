@@ -4,8 +4,8 @@ aliases:
 categories:
 - content management
 date: "2017-02-01"
-description: Shortcodes for creating links to documents.
-draft: true
+description: ドキュメントへのリンクを作成するためのショートコードです。
+draft: false
 keywords:
 - cross references
 - references
@@ -17,14 +17,14 @@ menu:
     parent: content-management
     weight: 100
 publishdate: "2017-02-01"
-title: Links and Cross References
+title: リンクとクロスリファレンス
 toc: true
 weight: 100
 ---
 
-The `ref` and `relref` shortcodes display the absolute and relative permalinks to a document, respectively.
+ショートコードの `ref` と `relref` は、それぞれドキュメントへの絶対パーマリンクと相対パーマリンクを表示します。
 
-## Use `ref` and `relref`
+## `ref` と `relref` を使用する {#use-ref-and-relref}
 
 ```go-html-template
 {{</* ref "document" */>}}
@@ -40,70 +40,70 @@ The `ref` and `relref` shortcodes display the absolute and relative permalinks t
 {{</* relref "/blog/my-post.md" */>}}
 ```
 
-To generate a hyperlink using `ref` or `relref` in markdown:
+Markdown で `ref` または `relref` を使用してハイパーリンクを生成する方法は、以下の通りです。
 
 ```md
 [About]({{</* ref "/page/about" */>}} "About Us")
 ```
 
-The `ref` and `relref` shortcodes require a single parameter: the path to a content document, with or without a file extension, with or without an anchor.
+`ref` と `relref` ショートコードは、1 つのパラメータを必要とします。それは、コンテンツ ドキュメントへのパスで、ファイル拡張子やアンカーを含むか含まないかです。
 
-**Paths without a leading `/` are first resolved relative to the current page, then to the remainder of the site.
+**先頭に `/` がないパスは、まず現在のページからの相対パスが解決され、次にサイトの残りの部分からの相対パスが解決されます。
 
-Hugo emits an error or warning if a document cannot be uniquely resolved. The error behavior is configurable; see below.
+Hugo は、ドキュメントを一意に解決できない場合にエラーや警告を発します。エラーの動作は設定可能です。下記を参照してください。
 
-### Link to another language version
+### 他言語版にリンクする {#link-to-another-language-version}
 
-To link to another language version of a document, use this syntax:
+別の言語版のドキュメントにリンクする場合は、以下の構文を使用します。
 
 ```go-html-template
 {{</* relref path="document.md" lang="ja" */>}}
 ```
 
-### Get another Output Format
+### 別の出力形式を取得する {#get-another-output-format}
 
-To link to another Output Format of a document, use this syntax:
+ドキュメントの別の出力形式にリンクするには、以下の構文を使用します。
 
 ```go-html-template
 {{</* relref path="document.md" outputFormat="rss" */>}}
 ```
 
-### Heading IDs
+### 見出し ID {#heading-ids}
 
-When using Markdown document types, Hugo generates element IDs for every heading on a page. For example:
+Markdown ドキュメント タイプを使用する場合、Hugo はページのすべての見出しの要素 ID を生成します。 たとえば、
 
 ```md
 ## Reference
 ```
 
-produces this HTML:
+は、以下の HTML を生成します。
 
 ```html
 <h2 id="reference">Reference</h2>
 ```
 
-Get the permalink to a heading by appending the ID to the path when using the `ref` or `relref` shortcodes:
+`ref` または `relref` ショートコードを使用する場合、パスに ID を追加して、見出しへのパーマリンクを取得します。
 
 ```go-html-template
 {{</* ref "document.md#reference" */>}}
 {{</* relref "document.md#reference" */>}}
 ```
 
-Generate a custom heading ID by including an attribute. For example:
+属性を含めてカスタムの見出し ID を生成します。 たとえば、
 
 ```md
 ## Reference A {#foo}
 ## Reference B {id="bar"}
 ```
 
-produces this HTML:
+は、以下の HTML を生成します。
 
 ```html
 <h2 id="foo">Reference A</h2>
 <h2 id="bar">Reference B</h2>
 ```
 
-Hugo will generate unique element IDs if the same heading appears more than once on a page. For example:
+同じ見出しがページに複数回表示される場合、Hugo は一意の要素 ID を生成します。 たとえば、
 
 ```md
 ## Reference
@@ -111,7 +111,7 @@ Hugo will generate unique element IDs if the same heading appears more than once
 ## Reference
 ```
 
-produces this HTML:
+は、以下の HTML を生成します。
 
 ```html
 <h2 id="reference">Reference</h2>
@@ -119,15 +119,15 @@ produces this HTML:
 <h2 id="reference-2">Reference</h2>
 ```
 
-## Ref and RelRef Configuration
+## Ref と RelRef の設定 {#ref-and-relref-configuration}
 
-The behavior can, since Hugo 0.45, be configured in `config.toml`:
+Hugo 0.45 以降では、`config.toml` で動作を設定できます。
 
 refLinksErrorLevel ("ERROR")
-: When using `ref` or `relref` to resolve page links and a link cannot resolved, it will be logged with this log level. Valid values are `ERROR` (default) or `WARNING`. Any `ERROR` will fail the build (`exit -1`).
+: ページリンクの解決に `ref` や `relref` を使用していて、リンクが解決できなかった場合に、このログレベルでログに記録されます。有効な値は `ERROR` (デフォルト) または `WARNING` (警告) です。 `ERROR` が指定された場合は、ビルドに失敗します (`exit -1`).
 
 refLinksNotFoundURL
-: URL to be used as a placeholder when a page reference cannot be found in `ref` or `relref`. Is used as-is.
+: `ref` または `relref` でページ参照が見つからない場合に、プレースホルダとして使用する URL で、そのまま使用されます。
 
 
 [lists]: /templates/lists/

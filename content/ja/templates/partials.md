@@ -6,29 +6,28 @@ aliases:
 categories:
 - templates
 date: "2017-02-01"
-description: Partials are smaller, context-aware components in your list and page
-  templates that can be used economically to keep your templating DRY.
-draft: true
+description: パーシャル (部分テンプレート) は、リストやページのテンプレートに含まれる、文脈を考慮した小さなコンポーネントで、テンプレートを DRY に保つために経済的に使用できます。
+draft: false
 keywords:
 - lists
 - sections
 - partials
 lastmod: "2017-02-01"
-linktitle: Partial Templates
+linktitle: 部分テンプレート
 menu:
   docs:
     parent: templates
     weight: 90
 publishdate: "2017-02-01"
 sections_weight: 90
-title: Partial Templates
+title: 部分テンプレート
 toc: true
 weight: 90
 ---
 
 {{< youtube pjS4pOLyB7c >}}
 
-## Partial Template Lookup Order
+## 部分テンプレートの検索順序 {#partial-template-lookup-order}
 
 Partial templates---like [single page templates][singletemps] and [list page templates][listtemps]---have a specific [lookup order][]. However, partials are simpler in that Hugo will only check in two places:
 

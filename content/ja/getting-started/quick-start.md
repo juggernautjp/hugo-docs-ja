@@ -26,11 +26,11 @@ weight: 10
 ---
 
 {{% note %}}
-このクイックスタートでは、例として `macOS` を使用します。他のオペレーティングシステムに Hugo をインストールする方法については、[インストール](/getting-started/installing) を参照してください。
+このクイックスタートでは、例として `macOS` を使用します。他のオペレーティングシステムに Hugo をインストールする方法については、[「インストール」](/getting-started/installing) を参照してください。
 
 このチュートリアルを実行するには、[Git のインストール](https://git-scm.com/downloads) が必要です。
 
-Hugo を学習するその他の方法 (本やビデオ チュートリアルなど) については、[外部学習リソース](/getting-started/external-learning-resources/) ページを参照してください。
+Hugo を学習するその他の方法 (本やビデオ チュートリアルなど) については、[「外部学習リソース」](/getting-started/external-learning-resources/) ページを参照してください。
 {{% /note %}}
 
 ## ステップ 1: Hugo をインストールする {#Step-1-install-hugo}
@@ -38,7 +38,7 @@ Hugo を学習するその他の方法 (本やビデオ チュートリアルな
 **Hugo の拡張版** をインストールします (現在使用しているテーマに必要です)。
 
 {{% note %}}
-MacOS 用のパッケージマネージャである `Homebrew` と `MacPorts` は、それぞれ [brew.sh](https://brew.sh/) と [macports.org](https://www.macports.org/) からインストールすることができます。Windows などを使っている場合は、[インストール](/getting-started/installing) を参照してください。
+MacOS 用のパッケージマネージャである `Homebrew` と `MacPorts` は、それぞれ [brew.sh](https://brew.sh/) と [macports.org](https://www.macports.org/) からインストールすることができます。Windows などを使っている場合は、[「インストール」](/getting-started/installing) を参照してください。
 {{% /note %}}
 
 ```bash
@@ -64,7 +64,7 @@ hugo version
 hugo new site quickstart
 ```
 
-上記のコマンド実行により、`quickstart` という名前のフォルダに新しい Hugo サイトが作成されます。
+上記のコマンド実行により、`quickstart` という名前のフォルダーに新しい Hugo サイトが作成されます。
 
 {{< asciicast 3mf1JGaN0AX0Z7j5kLGl3hSh8 >}}
 
@@ -98,7 +98,7 @@ hugo new posts/my-first-post.md
 
 {{< asciicast eUojYCfRTZvkEiqc52fUsJRBR >}}
 
-必要に応じて、新しく作成されたコンテンツ ファイルを編集します。次のような内容で始まります。
+必要に応じて、新しく作成されたコンテンツファイルを編集します。次のような内容で始まります。
 
 ```md
 ---
@@ -168,9 +168,9 @@ theme = "ananke"
 **ヒント:** Hugo サーバーの実行中にサイト構成またはサイト内のその他のファイルに変更を加えると、ブラウザに変更がすぐに反映されますが、[キャッシュのクリア](https://kb.iu.edu/d/ahic) が必要な場合があります。
 {{% /note %}}
 
-テーマ固有の設定オプションについては、[テーマサイト](https://github.com/theNewDynamic/gohugo-theme-ananke) を参照してください。
+テーマ固有の設定オプションについては、[「テーマサイト」](https://github.com/theNewDynamic/gohugo-theme-ananke) を参照してください。
 
-**テーマのカスタマイズについては、[テーマのカスタマイズ](/themes/customizing/) を参照してください。**
+**テーマのカスタマイズについては、[「テーマのカスタマイズ」](/themes/customizing/) を参照してください。**
 
 ### ステップ 7: 静的ページを作成する {#step-7-build-static-pages}
 

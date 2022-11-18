@@ -4,9 +4,8 @@ aliases:
 categories:
 - content management
 date: "2017-01-09"
-description: Hugo allows you to add front matter in yaml, toml, or json to your content
-  files.
-draft: true
+description: Hugo では、コンテンツファイルに yaml、toml、json で記述されたフロントマターを追加できます。
+draft: false
 keywords:
 - front matter
 - yaml
@@ -21,33 +20,33 @@ menu:
     parent: content-management
     weight: 30
 publishdate: "2017-01-09"
-title: Front Matter
+title: フロントマター
 toc: true
 weight: 30
 ---
 
-**Front matter** allows you to keep metadata attached to an instance of a [content type][]---i.e., embedded inside a content file---and is one of the many features that gives Hugo its strength.
+**フロントマター** は、[コンテンツタイプ][content type] のインスタンスに付けられたメタデータを保持できます --- つまり、コンテンツファイルの中に埋め込むことができます --- そして、Hugo の強みを示す多くの機能のうちの 1 つです。
 
 {{< youtube Yh2xKRJGff4 >}}
 
-## Front Matter Formats
+## フロントマターのフォーマット {#front-matter-formats}
 
-Hugo supports four formats for front matter, each with their own identifying tokens.
+Hugo は、フロントマターの 4 つのフォーマットをサポートしており、それぞれに識別用のトークンが用意されています。
 
 TOML
-: identified by opening and closing `+++`.
+: 開始と終了に `+++` を使うことで識別されます
 
 YAML
-: identified by opening and closing `---`.
+: 開始と終了に  `---` を使うことで識別されます
 
 JSON
-: a single JSON object surrounded by '`{`' and '`}`', followed by a new line.
+: '`{`' と '`}`' で囲まれ、その後に改行が続く単一の JSON オブジェクト
 
 ORG
-: a group of Org mode keywords in the format '`#+KEY: VALUE`'. Any line that does not start with `#+` ends the front matter section.
-  Keyword values can be either strings (`#+KEY: VALUE`) or a whitespace separated list of strings (`#+KEY[]: VALUE_1 VALUE_2`).
+: '`#+KEY: VALUE`' 形式の Org モード キーワードのグループです。 `#+` で始まらない行はフロントマターのセクションを終了します。
+  キーワードの値は、文字列 (`#+KEY: VALUE`) または空白で区切られた文字列のリスト (`#+KEY[]: VALUE_1 VALUE_2`) のいずれかです。
 
-### Example
+### 例 {#example}
 
 {{< code-toggle >}}
 title = "spf13-vim 3.0 release and new website"
@@ -61,117 +60,117 @@ categories = [
 slug = "spf13-vim-3-0-release-and-new-website"
 {{< /code-toggle >}}
 
-## Front Matter Variables
+## フロントマターの変数 {#front-matter-variables}
 
-### Predefined
+### 事前定義済み {#predefined}
 
-There are a few predefined variables that Hugo is aware of. See [Page Variables][pagevars] for how to call many of these predefined variables in your templates.
+Hugo が認識している定義済み変数がいくつかあります。これらの定義済み変数の多くをテンプレートで呼び出す方法については、[「ページ変数」][pagevars] を参照してください。
 
 aliases
-: an array of one or more aliases (e.g., old published paths of renamed content) that will be created in the output directory structure . See [Aliases][aliases] for details.
+: 出力ディレクトリ構造に作成される 1 つ以上のエイリアス (たとえば、名前が変更されたコンテンツの古い公開パスなど) の配列です。 詳細については、[「エイリアス」][aliases] を参照してください。
 
 audio
-: an array of paths to audio files related to the page; used by the `opengraph` [internal template](/templates/internal) to populate `og:audio`.
+: ページに関連するオーディオ ファイルへのパスの配列です。 `opengraph` [内部テンプレート](/templates/internal) が `og:audio` に入力するために使用します。
 
 cascade
-: a map of Front Matter keys whose values are passed down to the page's descendants unless overwritten by self or a closer ancestor's cascade. See [Front Matter Cascade](#front-matter-cascade) for details.
+: 自分自身またはより近い祖先のカスケードによってオーバーライドされない限り、値がページの子孫に渡されるフロントマターのキーのマップです。 詳細については、[「フロントマターのカスケード」](#front-matter-cascade) を参照してください。
 
 date
-: the datetime assigned to this page. This is usually fetched from the `date` field in front matter, but this behavior is configurable.
+: このページに割り当てられた日付です。これは通常、フロントマターの `date` フィールドから取得されますが、この動作は設定可能です。
 
 description
-: the description for the content.
+: コンテンツの説明文を指定します。
 
 draft
-: if `true`, the content will not be rendered unless the `--buildDrafts` flag is passed to the `hugo` command.
+: `true` の場合、`--buildDrafts` フラグが `hugo` コマンドに渡されない限り、コンテンツはレンダリングされません。
 
 expiryDate
-: the datetime at which the content should no longer be published by Hugo; expired content will not be rendered unless the `--buildExpired` flag is passed to the `hugo` command.
+: Hugo がこの日を過ぎると、コンテンツを公開しない日時です。つまり、 `hugo` コマンドに `--buildExpired` フラグが渡されない限り、期限切れのコンテンツはレンダリングされません。
 
 headless
-: if `true`, sets a leaf bundle to be [headless][headless-bundle].
+: `true` の場合、リーフバンドルは [ヘッドレス][headless-bundle] に設定されます。
 
 images
-: an array of paths to images related to the page; used by [internal templates](/templates/internal) such as `_internal/twitter_cards.html`.
+: ページに関連する画像へのパスの配列です。 `_internal/twitter_cards.html` などの [内部テンプレート](/templates/internal) で使用されます。
 
 isCJKLanguage
-: if `true`, Hugo will explicitly treat the content as a CJK language; both `.Summary` and `.WordCount` work properly in CJK languages.
+: `true` の場合、Hugo は明示的にコンテンツを日中韓 (CJK) の言語として扱います。 `.Summary` と `.WordCount` の両方が日中韓の言語で正しく機能します。
 
 keywords
-: the meta keywords for the content.
+: コンテンツのメタキーワードを指定します。
 
 layout
-: the layout Hugo should select from the [lookup order][lookup] when rendering the content. If a `type` is not specified in the front matter, Hugo will look for the layout of the same name in the layout directory that corresponds with a content's section. See [Content Types][content type].
+: コンテンツをレンダリングする際に Hugo が [検索順序][lookup] から選択すべきレイアウトを指定します。フロントマターで `type` が指定されていない場合、Hugo はコンテンツのセクションに対応するレイアウト ディレクトリで同名のレイアウトを探します。詳細は、[「コンテンツタイプ」][content type] を参照してください。
 
 lastmod
-: the datetime at which the content was last modified.
+: コンテンツが最後に更新された日時です。
 
 linkTitle
-: used for creating links to content; if set, Hugo defaults to using the `linktitle` before the `title`. Hugo can also [order lists of content by `linktitle`][bylinktitle].
+: コンテンツへのリンクを作成するために使用されます。 設定されている場合、Hugo はデフォルトで `title` の前に `linktitle` を使用します。 Hugo は [コンテンツのリストを `linktitle` で並べ替える][bylinktitle] もできます。
 
 markup
-: **experimental**; specify `"rst"` for reStructuredText (requires`rst2html`) or `"md"` (default) for Markdown.
+: **実験的な機能** reStructuredText には `"rst"` を (`rst2html` が必要)、 Markdown には `"md"` (デフォルト) を指定します。
 
 outputs
-: allows you to specify output formats specific to the content. See [output formats][outputs].
+: コンテンツに固有の出力形式を指定できます。 詳細は、[「出力形式」][outputs] を参照してください。
 
 publishDate
-: if in the future, content will not be rendered unless the `--buildFuture` flag is passed to `hugo`.
+: 将来的に、 `--buildFuture` フラグが `hugo` に渡されない限り、コンテンツはレンダリングされません。
 
 resources
-: used for configuring page bundle resources. See [Page Resources][page-resources].
+: ページバンドルのリソースを設定するために使用されます。 詳細は、[「ページリソース」][page-resources] を参照してください。
 
 series
-: an array of series this page belongs to, as a subset of the `series` [taxonomy](/content-management/taxonomies/); used by the `opengraph` [internal template](/templates/internal) to populate `og:see_also`.
+: このページが属するシリーズの配列です。`series` [タクソノミー](/content-management/taxonomies/) のサブセットで、 `opengraph` [内部テンプレート](/templates/internal) が `og:see_also` に入力するために使用されます。
 
 slug
-: appears as the tail of the output URL. A value specified in front matter will override the segment of the URL based on the filename.
+: 出力 URL の末尾に表示されます。 フロントマターで指定された値は、ファイル名に基づいて URL のセグメントをオーバーライドします。
 
 summary
-: text used when providing a summary of the article in the `.Summary` page variable; details available in the [content-summaries](/content-management/summaries/) section.
+: ページ変数 `.Summary` で記事の要約を提供するときに使われるテキストです。 詳細は、[コンテンツサマリー](/content-management/summaries/) セクションで確認できます。
 
 title
-: the title for the content.
+: コンテンツのタイトルを指定します。
 
 type
-: the type of the content; this value will be automatically derived from the directory (i.e., the [section][]) if not specified in front matter.
+: コンテンツのタイプです。 この値は、フロントマターで指定されていない場合、ディレクトリ (すなわち、[セクション][section]) から自動的に導き出されます。
 
 url
-: the full path to the content from the web root. It makes no assumptions about the path of the content file. See [URL Management](/content-management/urls/#set-url-in-front-matter).
+: Web ルートからのコンテンツへのフルパスです。 コンテンツファイルのパスについては想定していません。 詳細は、[URL 管理](/content-management/urls/#set-url-in-front-matter) を参照してください。
 
 videos
-: an array of paths to videos related to the page; used by the `opengraph` [internal template](/templates/internal) to populate `og:video`.
+: ページに関連する動画へのパスの配列です。 `opengraph` [内部テンプレート](/templates/internal) によって `og:video` に入力するために使用されます。
 
 weight
-: used for [ordering your content in lists][ordering]. Lower weight gets higher precedence. So content with lower weight will come first. If set, weights should be non-zero, as 0 is interpreted as an *unset* weight.
+: [リスト内のコンテンツの順序付け][ordering] に使用されます。 重みが小さいほど優先度が高くなります。 そのため、ウェイトの低いコンテンツが最初に表示されます。 設定されている場合、0 は *未設定* の重みとして解釈されるため、重みは非ゼロである必要があります。
 
 \<taxonomies\>
-: field name of the *plural* form of the index. See `tags` and `categories` in the above front matter examples. *Note that the plural form of user-defined taxonomies cannot be the same as any of the predefined front matter variables.*
+: インデックスの *複数* 形式のフィールド名です。 上記のフロントマターの例の `tags` と `categories` を参照してください。 *ユーザー定義のタクソノミーの複数形は、定義済みのフロントマター変数のいずれとも同じにはできないことに注意してください。*
 
 {{% note "Hugo's Default URL Destinations" %}}
-If neither `slug` nor `url` is present and [permalinks are not configured otherwise in your site `config` file](/content-management/urls/#permalinks), Hugo will use the filename of your content to create the output URL. See [Content Organization](/content-management/organization) for an explanation of paths in Hugo and [URL Management](/content-management/urls/) for ways to customize Hugo's default behaviors.
+`slug` と `url` のどちらも存在せず、[サイトの `config` ファイルでパーマリンクが設定されていない場合](/content-management/urls/#permalinks)、Hugo はコンテンツのファイル名を使って出力 URL を作成します。 Hugo のパスについての説明は、[コンテンツ構成](/content-management/organization) を、Hugo のデフォルトの挙動をカスタマイズする方法は、 [「URL 管理」](/content-management/urls/) を参照してください。
 {{% /note %}}
 
-### User-Defined
+### ユーザー定義 {#user-defined}
 
-You can add fields to your front matter arbitrarily to meet your needs. These user-defined key-values are placed into a single `.Params` variable for use in your templates.
+フロントマターには、ニーズに合わせて任意のフィールドを追加することができます。これらのユーザー定義のキー値は、テンプレートで使用するために、単一の `.Params` 変数に格納されます。
 
-The following fields can be accessed via `.Params.include_toc` and `.Params.show_comments`, respectively. The [Variables][] section provides more information on using Hugo's page- and site-level variables in your templates.
+以下のフィールドはそれぞれ `.Params.include_toc` と `.Params.show_comments` によってアクセスすることができます。 [変数][variables] セクションでは、Hugo のページレベルおよびサイトレベルの変数をテンプレートで使用するための詳細な情報を提供しています。
 
 {{< code-toggle copy="false" >}}
 include_toc: true
 show_comments: false
 {{</ code-toggle >}}
 
-## Front Matter Cascade
+## フロントマターのカスケード {#front-matter-cascade}
 
-Any node or section can pass down to descendants a set of Front Matter values as long as defined underneath the reserved `cascade` Front Matter key.
+どのノードやセクションも、予約されているフロントマターの `cascade` キーの下で定義されている限り、フロントマターの値のセットを子孫に伝えることができます。
 
-### Target Specific Pages
+### 特定のページをターゲットにする {#target-specific-pages}
 
 {{< new-in "0.76.0" >}}
 
-Since Hugo 0.76 the `cascade` block can be a slice with a optional `_target` keyword, allowing for multiple `cascade` values targeting different page sets.
+Hugo 0.76 以降、 `cascade` ブロックはオプションの `_target` キーワードを持つスライスにすることができ、異なるページセットを対象とした複数の `cascade` 値を使用できるようになりました。
 
 {{< code-toggle copy="false" >}}
 title ="Blog"
@@ -187,25 +186,25 @@ background = "goldenbridge.jpg"
 kind="section"
 {{</ code-toggle >}}
 
-Keywords available for `_target`:
+`_target` で使用できるキーワード:
 
 path
-: A [Glob](https://github.com/gobwas/glob) pattern matching the content path below /content. Expects Unix-styled slashes. Note that this is the virtual path, so it starts at the mount root. The matching supports double-asterisks so you can match for patterns like `/blog/*/**` to match anything from the third level and down.
+: /content の下のコンテンツ パスに一致する [Glob](https://github.com/gobwas/glob) パターンで、 Unix スタイルのスラッシュが必要です。 これは仮想パスであるため、マウントルートから始まることに注意してください。 マッチングは二重アスタリスクをサポートしているので、`/blog/*/**` のようなパターンにマッチして、第 3 レベル以下のすべてのものと一致させることができます。
 
 kind
-: A Glob pattern matching the Page's Kind(s), e.g. "{home,section}".
+: ページの種類 (複数可) にマッチする Glob パターンで、たとえば、"{home,section}"。
 
 lang
-: A Glob pattern matching the Page's language, e.g. "{en,sv}".
+: ページの言語に一致する Glob パターンで、たとえば、"{en,sv}"。
 
 environment
-: A Glob pattern matching the build environment, e.g. "{production,development}"
+: ビルド環境に一致する Glob パターンで、たとえば、"{production,development}"。
 
-Any of the above can be omitted.
+上記はすべて省略可能です。
 
-### Example
+### 例 {#example}
 
-In `content/blog/_index.md`
+`content/blog/_index.md` ファイルには、
 
 {{< code-toggle copy="false" >}}
 title: Blog
@@ -213,43 +212,45 @@ cascade:
   banner: images/typewriter.jpg
 {{</ code-toggle >}}
 
-With the above example the Blog section page and its descendants will return `images/typewriter.jpg` when `.Params.banner` is invoked unless:
+上記の例では、以下の場合を除き、ブログのセクションページとその子孫は、`.Params.banner` が呼び出されたときに `images/typewriter.jpg` を返します。
 
-- Said descendant has its own `banner` value set
-- Or a closer ancestor node has its own `cascade.banner` value set.
+- その子孫は独自の `banner` 値が設定されている。
+- あるいは、より近い祖先ノードに独自の `cascade.banner` 値が設定されている場合。
 
-## Order Content Through Front Matter
+## フロントマターからコンテンツを注文する {#order-content-through-front-matter}
 
-You can assign content-specific `weight` in the front matter of your content. These values are especially useful for [ordering][ordering] in list views. You can use `weight` for ordering of content and the convention of [`<TAXONOMY>_weight`][taxweight] for ordering content within a taxonomy. See [Ordering and Grouping Hugo Lists][lists] to see how `weight` can be used to organize your content in list views.
+コンテンツのフロントマターで、コンテンツ固有の `weight` を割り当てることができます。これらの値は、特にリストビューでの [順序付け][ordering] に便利です。
+コンテンツの順序付けには `weight` を、タクソノミーの中でのコンテンツの順序付けには [`<TAXONOMY>_weight`][taxweight] という規則を使用することができます。
+リストビューでコンテンツを整理するために `weight` をどのように使用できるかは、 [「Hugo リストの順序付けとグループ化」][lists] を参照してください。
 
-## Override Global Markdown Configuration
+## Markdown のグローバル設定をオーバーライドする {#override-global-markdown-configuration}
 
-It's possible to set some options for Markdown rendering in a content's front matter as an override to the [Rendering options set in your project configuration][config].
+[プロジェクト設定で設定されたレンダリングオプション][config] のオーバーライドとして、コンテンツのフロントマターで Markdown レンダリングに関するいくつかのオプションを設定できます。
 
-## Front Matter Format Specs
+## フロントマターのフォーマット仕様 {#front-matter-format-specs}
 
-- [TOML Spec][toml]
-- [YAML Spec][yaml]
-- [JSON Spec][json]
+- [TOML 仕様][toml]
+- [YAML 仕様][yaml]
+- [JSON 仕様][json]
 
 [variables]: /variables/
 [aliases]: /content-management/urls/#aliases
 [archetype]: /content-management/archetypes/
 [bylinktitle]: /templates/lists/#by-link-title
-[config]: /getting-started/configuration/ "Hugo documentation for site configuration"
+[config]: /getting-started/configuration/ "サイト設定に関する Hugo ドキュメント"
 [content type]: /content-management/types/
 [contentorg]: /content-management/organization/
 [headless-bundle]: /content-management/page-bundles/#headless-bundle
-[json]: https://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf "Specification for JSON, JavaScript Object Notation"
-[lists]: /templates/lists/#order-content "See how to order content in list pages; for example, templates that look to specific _index.md for content and front matter."
-[lookup]: /templates/lookup-order/ "Hugo traverses your templates in a specific order when rendering content to allow for DRYer templating."
-[ordering]: /templates/lists/ "Hugo provides multiple ways to sort and order your content in list templates"
-[outputs]: /templates/output-formats/ "With the release of v22, you can output your content to any text format using Hugo's familiar templating"
+[json]: https://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf "JSON (JavaScript Object Notation) の仕様"
+[lists]: /templates/lists/#order-content "リストページでのコンテンツを並べ替える方法を参照してください。たとえば、コンテンツとフロントマターのために特定の _index.md を参照するテンプレートがあります。"
+[lookup]: /templates/lookup-order/ "Hugo は、コンテンツをレンダリングする際に、テンプレートを特定の順序でトラバースし、より DRY なテンプレート作成を可能にします。"
+[ordering]: /templates/lists/ "Hugo では、リストテンプレートでコンテンツをソートしたり、順序付けする方法が複数あります。"
+[outputs]: /templates/output-formats/ "v22 のリリースにより、Hugo の使い慣れたテンプレートを使って、コンテンツを任意のテキスト形式で出力することができるようになりました。"
 [page-resources]: /content-management/page-resources/
 [pagevars]: /variables/page/
 [section]: /content-management/sections/
 [taxweight]: /content-management/taxonomies/
-[toml]: https://github.com/toml-lang/toml "Specification for TOML, Tom's Obvious Minimal Language"
+[toml]: https://github.com/toml-lang/toml "TOML (Tom's Obvious Minimal Language) の仕様"
 [urls]: /content-management/urls/
 [variables]: /variables/
-[yaml]: https://yaml.org/spec/ "Specification for YAML, YAML Ain't Markup Language"
+[yaml]: https://yaml.org/spec/ "YAML (YAML Ain't Markup Language) の仕様"

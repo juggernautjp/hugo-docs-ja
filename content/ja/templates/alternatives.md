@@ -5,23 +5,23 @@ aliases:
 categories:
 - templates
 date: "2017-02-01"
-description: DEPRECATED - Support for Ace & Amber templating has been removed in version
+description: 【非推奨】 - Ace & Amber テンプレートへのサポートは、バージョンで削除されました。
   0.62
-draft: true
+draft: false
 keywords:
 - amber
 - ace
 - templating languages
-linktitle: Alternative Templating
+linktitle: 代替テンプレート
 menu:
   docs:
     parent: templates
     weight: 170
 publishdate: "2017-02-01"
 sections_weight: 170
-title: DEPRECATED - Alternative Templating Languages
+title: 【非推奨】 - 代替テンプレート言語
 toc: true
 weight: 170
 ---
 
-Support for Amber and Ace templates has been removed since Hugo 0.62 per [issue #6609](https://github.com/gohugoio/hugo/issues/6609).
+Amber と Ace のテンプレートのサポートは、 Hugo 0.62 から [issue #6609](https://github.com/gohugoio/hugo/issues/6609) により削除されました。

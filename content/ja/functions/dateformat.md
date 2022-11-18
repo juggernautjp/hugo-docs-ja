@@ -4,7 +4,7 @@ categories:
 date: "2017-02-01"
 deprecated: false
 description: Converts a date/time to a localized string.
-draft: true
+draft: false
 hugoversion: null
 keywords:
 - dates

@@ -3,7 +3,7 @@ categories:
 - templates
 date: "2017-03-11"
 description: Render Hooks allow custom templates to override markdown rendering functionality.
-draft: true
+draft: false
 keywords:
 - markdown
 linkTitle: Render Hooks

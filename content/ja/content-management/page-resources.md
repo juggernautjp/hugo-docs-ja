@@ -2,28 +2,26 @@
 categories:
 - content management
 date: "2018-01-24"
-description: Page resources -- images, other pages, documents, etc. -- have page-relative
-  URLs and their own metadata.
-draft: true
+description: ページリソース (画像、他のページ、ドキュメントなど) は、ページ相対 URL と独自のメタデータを持ちます。
+draft: false
 keywords:
 - bundle
 - content
 - resources
-linktitle: Page Resources
+linktitle: ページリソース
 menu:
   docs:
     parent: content-management
     weight: 31
-title: Page Resources
+title: ページリソース
 toc: true
 weight: 4003
 ---
-Page resources are only accessible from [page bundles]({{< relref
-"/content-management/page-bundles" >}}), those directories with `index.md` or
-`_index.md` files at their root. Page resources are only available to the
-page with which they are bundled.
+ページリソースは [ページバンドル]({{< relref "/content-management/page-bundles" >}}) からしかアクセスできません。
+`index.md` または `_index.md` ファイルをルートに持つディレクトリからしかアクセスできません。ページリソースは、それがバンドルされているページでのみ利用可能です。
 
-In this example, `first-post` is a page bundle with access to 10 page resources including audio, data, documents, images, and video. Although `second-post` is also a page bundle, it has no page resources and is unable to directly access the page resources associated with `first-post`.
+この例では、`first-post` は音声、データ、ドキュメント、画像、動画を含む 10 のページリソースにアクセスするページバンドルです。
+`second-post` もページバンドルですが、ページリソースを持たず、`first-post` に関連するページリソースに直接アクセスすることはできません。
 
 ```text
 content
@@ -45,28 +43,27 @@ content
         └── index.md (root of page bundle)
 ```
 
-## Properties
+## プロパティ {#properties}
 
 ResourceType
-: The main type of the resource's [Media Type](/templates/output-formats/#media-types). For example, a file of MIME type `image/jpeg` has the ResourceType `image`. A `Page` will have `ResourceType` with value `page`.
+: リソースの [メディアタイプ](/templates/output-formats/#media-types) のメインタイプです。 たとえば、MIME タイプ `image/jpeg` のファイルは `ResourceType` が `image` となります。`Page` は `ResourceType` に `page` という値を持ちます。
 
-{{< new-in "0.80.0" >}} Note that we in Hugo `v0.80.0` fixed a bug where non-image resources (e.g. video) would return the MIME sub type, e.g. `json`.
+{{< new-in "0.80.0" >}} Hugo `v0.80.0` では、画像以外のリソース (動画など) が MIME サブタイプ (たとえば、`json`) を返すバグを修正したことに注意してください。
 
 Name
-: Default value is the filename (relative to the owning page). Can be set in front matter.
+: デフォルト値は、ファイル名 (所有ページからの相対パス) です。フロントマターで設定できます。
 
 Title
-: Default value is the same as `.Name`. Can be set in front matter.
+: デフォルト値は `.Name` と同じです。 フロントマターで設定できます。
 
 Permalink
-: The absolute URL to the resource. Resources of type `page` will have no value.
+: リソースへの絶対 URL です。 `page` 型のリソースは値を持ちません。
 
 RelPermalink
-: The relative URL to the resource. Resources of type `page` will have no value.
+: リソースへの相対 URL です。 `page` 型のリソースは値を持ちません。
 
 Content
-: The content of the resource itself. For most resources, this returns a string
-with the contents of the file. Use this to create inline resources.
+: リソース自体のコンテンツです。 ほとんどのリソースでは、これはファイルの内容を含む文字列を返します。 これを使用してインライン リソースを作成します。
 
 ```go-html-template
 {{ with .Resources.GetMatch "script.js" }}
@@ -83,39 +80,39 @@ with the contents of the file. Use this to create inline resources.
 ```
 
 MediaType
-: The MIME type of the resource, such as `image/jpeg`.
+: `image/jpeg` のようなリソースの MIME タイプを指定します。
 
 MediaType.MainType
-: The main type of the resource's MIME type. For example, a file of MIME type `application/pdf` has for MainType `application`.
+: リソースの MIME タイプのメインタイプです。たとえば、MIME タイプが `application/pdf` のファイルは、MainType が `application` です。
 
 MediaType.SubType
-: The subtype of the resource's MIME type. For example, a file of MIME type `application/pdf` has for SubType `pdf`. Note that this is not the same as the file extension - PowerPoint files have a subtype of `vnd.mspowerpoint`.
+: リソースの MIME タイプのサブタイプです。たとえば、MIME タイプが `application/pdf` のファイルは、SubType が `pdf` です。 これはファイル拡張子と同じではないことに注意してください。たとえば、PowerPoint ファイルのサブタイプは `vnd.mspowerpoint` です。
 
 MediaType.Suffixes
-: A slice of possible suffixes for the resource's MIME type.
+: リソースの MIME タイプに指定できるサフィックスのスライスです。
 
-## Methods
+## メソッド {#methods}
 
 ByType
-: Returns the page resources of the given type.
+: 指定されたタイプのページリソースを返します。
 
 ```go-html-template
 {{ .Resources.ByType "image" }}
 ```
 Match
-: Returns all the page resources (as a slice) whose `Name` matches the given Glob pattern ([examples](https://github.com/gobwas/glob/blob/master/readme.md)). The matching is case-insensitive.
+: 指定された Glob パターン ([例](https://github.com/gobwas/glob/blob/master/readme.md)) に一致する `Name` を持つすべてのページリソースを (スライスとして) 返します。 マッチングは大文字と小文字を区別しません。
 
 ```go-html-template
 {{ .Resources.Match "images/*" }}
 ```
 
 GetMatch
-: Same as `Match` but will return the first match.
+: `Match` と同じですが、最初にマッチしたものを返します。
 
-### Pattern Matching
+### パターンマッチング {#pattern-matching}
 
 ```go
-// Using Match/GetMatch to find this images/sunset.jpg ?
+// Match/GetMatch を使って、この images/sunset.jpg を探しますか？
 .Resources.Match "images/sun*" ✅
 .Resources.Match "**/sunset.jpg" ✅
 .Resources.Match "images/*.jpg" ✅
@@ -126,28 +123,28 @@ GetMatch
 
 ```
 
-## Page Resources Metadata
+## ページリソースのメタデータ {#page-resources-metadata}
 
-The page resources' metadata is managed from the corresponding page's front matter with an array/table parameter named `resources`. You can batch assign values using [wildcards](https://tldp.org/LDP/GNU-Linux-Tools-Summary/html/x11655.htm).
+ページリソースのメタデータは、対応するページのフロントマターから `resources` という名前の配列/テーブル パラメータで管理されます。 [ワイルドカード](https://tldp.org/LDP/GNU-Linux-Tools-Summary/html/x11655.htm) を使って、値をバッチで割り当てることができます。
 
 {{% note %}}
-Resources of type `page` get `Title` etc. from their own front matter.
+`page` タイプのリソースは、フロントマターから `Title` などを取得します。
 {{% /note %}}
 
 name
-: Sets the value returned in `Name`.
+: `Name` で返される値を設定します。
 
 {{% warning %}}
-The methods `Match`, `Get` and `GetMatch` use `Name` to match the resources.
+メソッド `Match`、`Get` および `GetMatch` は、リソースのマッチングに `Name` を使用します。
 {{%/ warning %}}
 
 title
-: Sets the value returned in `Title`
+: `Title` で返される値を設定します。
 
 params
-: A map of custom key/values.
+: カスタム キー/値のマップ。
 
-### Resources metadata example
+### リソース メタデータの例 {#resources-metadata-example}
 
 {{< code-toggle copy="false">}}
 title: Application
@@ -174,26 +171,26 @@ resources :
     icon : "word"
 {{</ code-toggle >}}
 
-From the example above:
+上記の例から
 
-- `sunset.jpg` will receive a new `Name` and can now be found with `.GetMatch "header"`.
-- `documents/photo_specs.pdf` will get the `photo` icon.
-- `documents/checklist.pdf`, `documents/guide.pdf` and `documents/payment.docx` will get `Title` as set by `title`.
-- Every `PDF` in the bundle except `documents/photo_specs.pdf` will get the `pdf` icon.
-- All `PDF` files will get a new `Name`. The `name` parameter contains a special placeholder [`:counter`](#the-counter-placeholder-in-name-and-title), so the `Name` will be `pdf-file-1`, `pdf-file-2`, `pdf-file-3`.
-- Every docx in the bundle will receive the `word` icon.
+- `sunset.jpg` は新しい `Name` を受け取り、`.GetMatch "header"` で見つけることができるようになりました。
+- `documents/photo_specs.pdf` は `photo` アイコンを取得します。
+- `documents/checklist.pdf`、`documents/guide.pdf`、`documents/payment.docx` は、 `title` で設定された `Title` を取得します。
+- `documents/photo_specs.pdf` 以外のバンドル内のすべての `PDF` は、 `pdf` アイコンが表示されます。
+- すべての `PDF` ファイルに、新しい `Name` が付けられます。 `name` パラメータは特別なプレースホルダ [`:counter`](#the-counter-placeholder-in-name-and-title) を含んでいるので、 `Name` は `pdf-file-1`、`pdf-file-2`、`pdf-file-3` のようになります。
+- バンドル内のすべての docx は、`word` アイコンが表示されます。
 
 {{% warning %}}
-The __order matters__ --- Only the **first set** values of the `title`, `name` and `params`-**keys** will be used. Consecutive parameters will be set only for the ones not already set. In the above example, `.Params.icon` is first set to `"photo"` in `src = "documents/photo_specs.pdf"`. So that would not get overridden to `"pdf"` by the later set `src = "**.pdf"` rule.
+__順序が重要です__ --- `title`、`name`、`params`-**keys** の **最初の設定** 値のみが使用されます。連続したパラメータは、まだ設定されていないパラメータに対してのみ設定されます。上記の例では、`src = "documents/photo_specs.pdf"` の `.Params.icon` に、まず `"photo"` が設定されます。そのため、後で設定された `src = "**.pdf"` というルールによって、`"pdf"` にオーバーライドされることはありません。
 {{%/ warning %}}
 
-### The `:counter` placeholder in `name` and `title`
+### `name` と `title` の `:counter` プレースホルダー {#the-counter-placeholder-in-name-and-title}
 
-The `:counter` is a special placeholder recognized in `name` and `title` parameters `resources`.
+`:counter` は `name` と `title` パラメータの `resources` で認識される特別なプレースホルダーです。
 
-The counter starts at 1 the first time they are used in either `name` or `title`.
+カウンターは、`name` または `title` で最初に使用されたときに 1 から始まります。
 
-For example, if a bundle has the resources `photo_specs.pdf`, `other_specs.pdf`, `guide.pdf` and `checklist.pdf`, and the front matter has specified the `resources` as:
+たとえば、バンドルに `photo_specs.pdf`、`other_specs.pdf`、`guide.pdf`、`checklist.pdf` というリソースがあり、フロントマターに `resources` を指定した場合、以下のようになります。
 
 {{< code-toggle copy="false">}}
 [[resources]]
@@ -204,9 +201,9 @@ For example, if a bundle has the resources `photo_specs.pdf`, `other_specs.pdf`,
   name = "pdf-file-:counter"
 {{</ code-toggle >}}
 
-the `Name` and `Title` will be assigned to the resource files as follows:
+`Name` と `Title` は、以下のようにリソースファイルに割り当てられます。
 
-| Resource file     | `Name`            | `Title`               |
+| リソースファイル   | `Name`            | `Title`               |
 |-------------------|-------------------|-----------------------|
 | checklist.pdf     | `"pdf-file-1.pdf` | `"checklist.pdf"`     |
 | guide.pdf         | `"pdf-file-2.pdf` | `"guide.pdf"`         |

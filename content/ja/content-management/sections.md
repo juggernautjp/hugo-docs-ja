@@ -4,70 +4,63 @@ aliases:
 categories:
 - content management
 date: "2017-02-01"
-description: Hugo generates a **section tree** that matches your content.
-draft: true
+description: Hugo は、コンテンツにマッチした **セクションツリー** を生成します。
+draft: false
 keywords:
 - lists
 - sections
 - content types
 - organization
 lastmod: "2017-02-01"
-linktitle: Sections
+linktitle: セクション
 menu:
   docs:
     parent: content-management
     weight: 50
 publishdate: "2017-02-01"
-title: Content Sections
+title: コンテンツセクション
 toc: true
 weight: 50
 ---
 
-A **Section** is a collection of pages that gets defined based on the
-organization structure under the `content/` directory.
+**セクション** は、`content/` ディレクトリの下の組織構造に基づいて定義されるページのコレクションです。
 
-By default, all the **first-level** directories under `content/` form their own
-sections (**root sections**) provided they constitute [Branch Bundles][branch bundles].
-Directories which are just [Leaf Bundles][leaf bundles] do *not* form
-their own sections, despite being first-level directories.
+デフォルトでは、[ブランチバンドル][branch bundles] を構成する場合、`content/` の下のすべての **第 1 レベル** ディレクトリは独自のセクション (**ルート セクション**) を形成します。
+[リーフバンドル][leaf bundles] だけのディレクトリは、第 1 レベルのディレクトリであるにもかかわらず、独自のセクションを形成することは *ありません*。
 
-If a user needs to define a section `foo` at a deeper level, they need to create
-a directory named `foo` with an `_index.md` file (see [Branch Bundles][branch bundles]
-for more information).
+ユーザーがより深いレベルでセクション `foo` を定義する必要がある場合には、 `_index.md` ファイルを含む `foo` という名前のディレクトリを作成する必要があります (より詳細な情報は、[ブランチバンドル][branch bundles] を参照してください)。
 
 
 {{% note %}}
-A **section** cannot be defined or overridden by a front matter parameter -- it
-is strictly derived from the content organization structure.
+**セクション** は、フロントマター パラメータで定義またはオーバーライドすることはできません。 それはコンテンツ組織構造から厳密に導出されます。
 {{% /note %}}
 
-## Nested Sections
+## ネストされたセクション {#nested-sections}
 
-The sections can be nested as deeply as you need.
+セクションは、必要なだけ深くネストできます。
 
 ```bash
 content
-└── blog        <-- Section, because first-level dir under content/
+└── blog        <-- content/ の下の第 1 レベルのディレクトリのため、セクション
     ├── funny-cats
     │   ├── mypost.md
-    │   └── kittens         <-- Section, because contains _index.md
+    │   └── kittens         <-- _index.md を含むため、セクション
     │       └── _index.md
-    └── tech                <-- Section, because contains _index.md
+    └── tech                <-- _index.md を含むため、セクション
         └── _index.md
 ```
 
-**The important part to understand is, that to make the section tree fully navigational, at least the lower-most section needs a content file. (e.g. `_index.md`).**
+**理解すべき重要な点は、セクションツリーを完全にナビゲートするためには、少なくとも最下段のセクションはコンテンツファイル (たとえば、 `_index.md`) が必要であるということです。**
 
 {{% note %}}
-When we talk about a **section** in correlation with template selection, it is
-currently always the *root section* only (`/blog/funny-cats/mypost/ => blog`).
+テンプレート選択との関連で **セクション** について話すとき、現在のところ、それは常に *ルートセクション* のみです (`/blog/funny-cats/mypost/ => blog`)。
 
-If you need a specific template for a sub-section, you need to adjust either the `type` or `layout` in front matter.
+サブセクションに特定のテンプレートが必要な場合は、フロントマターで `type` か `layout` のどちらかを調整する必要があります。
 {{% /note %}}
 
-## Example: Breadcrumb Navigation
+## 例: パンくずリスト {#example-breadcrumb-navigation}
 
-With the available [section variables and methods](#section-page-variables-and-methods) you can build powerful navigation. One common example would be a partial to show Breadcrumb navigation:
+利用可能な [セクション変数とメソッド](#section-page-variables-and-methods) を使用すると、強力なナビゲーションを構築できます。一般的な例の 1 つは、パンくずリストを表示するパーシャル (部分テンプレート) です。
 
 {{< code file="layouts/partials/breadcrumb.html" download="breadcrumb.html" >}}
 <ol  class="nav navbar-nav">
@@ -85,19 +78,19 @@ With the available [section variables and methods](#section-page-variables-and-m
 {{ end }}
 {{< /code >}}
 
-## Section Page Variables and Methods
+## セクション ページの変数とメソッド {#section-page-variables-and-methods}
 
-Also see [Page Variables](/variables/page/).
+[ページ変数](/variables/page/) も参照してください。
 
 {{< readfile file="/content/en/readfiles/sectionvars.md" markdown="true" >}}
 
-## Content Section Lists
+## コンテンツセクションのリスト {#content-section-lists}
 
-Hugo will automatically create a page for each *root section* that lists all the content in that section. See the documentation on [section templates][] for details on customizing the way these pages are rendered.
+Hugo は、各 *ルートセクション* に、そのセクションのすべてのコンテンツをリストするページを自動的に作成します。これらのページのレンダリングする方法のカスタマイズの詳細については、[「セクション テンプレート」][section templates] のドキュメントを参照してください。
 
-## Content *Section* vs Content *Type*
+## コンテンツ *セクション* とコンテンツ *タイプ* の違い {#content-Section-vs-content-type}
 
-By default, everything created within a section will use the [content `type`][content type] that matches the *root section* name. For example, Hugo will assume that `posts/post-1.md` has a `posts` content `type`. If you are using an [archetype][] for your `posts` section, Hugo will generate front matter according to what it finds in `archetypes/posts.md`.
+デフォルトでは、セクション内で作成されたものはすべて、*ルートセクション* 名と一致する [コンテンツ `タイプ`][content type] を使用します。 たとえば、Hugo は `posts/post-1.md` が `posts` というコンテンツ `type` を持っていると仮定します。 `posts` セクションに [アーキタイプ][archetype] を使用している場合、Hugo は `archetypes/posts.md` で見つけたものに従ってフロントマターを生成します。
 
 [archetype]: /content-management/archetypes/
 [content type]: /content-management/types/

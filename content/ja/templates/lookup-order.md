@@ -5,13 +5,12 @@ categories:
 - templates
 - fundamentals
 date: "2017-02-01"
-description: Hugo searches for the layout to use for a given page in a well defined
-  order, starting from the most specific.
-draft: true
+description: Hugo は、指定されたページに使用するレイアウトを、最も具体的なものから定義された順序で検索します。
+draft: false
 keywords:
 - templates
 lastmod: "2017-07-05"
-linktitle: Template Lookup Order
+linktitle: テンプレートの検索順序
 menu:
   docs:
     parent: templates
@@ -19,38 +18,38 @@ menu:
   quicklinks: null
 publishdate: "2017-02-01"
 sections_weight: 15
-title: Hugo's Lookup Order
+title: Hugo の検索順序
 toc: true
 weight: 15
 ---
 
-## Hugo Layouts Lookup Rules
+## Hugo レイアウトの検索順序ルール {#hugo-layouts-lookup-rules}
 
-Hugo takes the parameters listed below into consideration when choosing a layout for a given page. They are listed in a priority order. This should feel natural, but look at the table below for concrete examples of the different parameter variations.
+Hugo は、特定のページのレイアウトを選択する際に、以下に示すパラメータを考慮します。これらは優先順位の高い順に並んでいます。これは自然に感じられるはずですが、さまざまなパラメータのバリエーションの具体例については、下の表を見てください。
 
 
-Kind
-: The page `Kind` (the home page is one). See the example tables below per kind. This also determines if it is a **single page** (i.e. a regular content page. We then look for a template in `_default/single.html` for HTML) or a **list page** (section listings, home page, taxonomy lists, taxonomy terms. We then look for a template in `_default/list.html` for HTML).
+Kind (種類)
+: ページ `Kind` (ホームページは 1 つ)。種類ごとに以下の表の例を参照してください。これはまた、それが **シングルページ** (つまり、通常のコンテンツページ。その後、HTML 用の `_default/single.html` にあるテンプレートを探します)、または **リストページ** (セクションリスト、ホームページ、タクソノミーリスト、タクソノミー用語。その後、HTML 用の `_default/list.html` にあるテンプレートを探します)。
 
-Layout
-: Can be set in page front matter.
+Layout (レイアウト)
+: フロントマターのページに設定できます。
 
-Output Format
-: See [Custom Output Formats](/templates/output-formats). An output format has both a `name` (e.g. `rss`, `amp`, `html`) and a `suffix` (e.g. `xml`, `html`). We prefer matches with both (e.g. `index.amp.html`, but look for less specific templates.
+Output Format (出力形式)
+: [カスタム出力形式](/templates/output-formats) を参照してください。 出力形式には、`name` (たとえば、 `rss`、`amp`、`html`) と `suffix` (たとえば、 `xml`、`html`) の両方があります。 両方の一致を優先します (たとえば、 `index.amp.html`) ですが、あまり具体的でないテンプレートを探します。
 
-Note that if the output format's Media Type has more than one suffix defined, only the first is considered.
+出力形式のメディアタイプに複数のサフィックスが定義されている場合、最初のサフィックスのみが考慮されることに注意してください。
 
-Language
-: We will consider a language code in the template name. If the site language is `fr`, `index.fr.amp.html` will win over `index.amp.html`, but `index.amp.html` will be chosen before `index.fr.html`.
+Language (言語)
+: テンプレート名の中に言語コードがあることを考慮します。サイトの言語が `fr` であれば、`index.fr.amp.html` が `index.amp.html` に優先しますが、 `index.amp.html` は `index.fr.html` よりも先に選ばれることになります。
 
-Type
-: Is value of `type` if set in front matter, else it is the name of the root section (e.g. "blog"). It will always have a value, so if not set, the value is "page".
+Type (タイプ)
+: フロントマターで設定されている場合は `type` の値、そうでない場合はルートセクションの名前です (たとえば、 "blog")。 常に値を持つので、設定されていない場合、値は "page" になります。
 
-Section
-: Is relevant for `section`, `taxonomy` and `term` types.
+Section (セクション)
+: `section`、`taxonomy`、`term` タイプに関連します。
 
 {{% note %}}
-**Tip:** The examples below look long and complex. That is the flexibility talking. Most Hugo sites contain just a handful of templates:
+**ヒント:** 以下の例は長くて複雑に見えますが、これは柔軟性のためです。ほとんどの Hugo サイトには、ほんの一握りのテンプレートしかありません。
 
 ```bash
 ├── _default
@@ -62,26 +61,26 @@ Section
 {{% /note %}}
 
 
-## Hugo Layouts Lookup Rules With Theme
+## Hugo レイアウトのテーマ別検索ルール {#hugo-layouts-lookup-rules-with-theme}
 
-In Hugo, layouts can live in either the project's or the themes' layout folders, and the most specific layout will be chosen. Hugo will interleave the lookups listed below, finding the most specific one either in the project or themes.
+Hugo では、レイアウトはプロジェクトまたはテーマのレイアウトフォルダーのいずれかに置くことができ、最も具体的なレイアウトが選択されます。 Hugo は、以下の検索順序を織り交ぜて、プロジェクトまたはテーマの中から最も具体的なものを探します。
 
-## Examples: Layout Lookup for Regular Pages
+## 例: 通常ページのレイアウト検索 {#examples-layout-lookup-for-regular-pages}
 
-{{< datatable-filtered "output" "layouts" "Kind == page" "Example" "OutputFormat" "Suffix" "Template Lookup Order" >}}
+{{< datatable-filtered-ja "output" "layouts" "Kind == page" "Example" "OutputFormat" "Suffix" "Template Lookup Order" >}}
 
-## Examples: Layout Lookup for Home Page
+## 例: ホームページのレイアウト検索 {#examples-layout-lookup-for-home-page}
 
-{{< datatable-filtered "output" "layouts" "Kind == home" "Example" "OutputFormat" "Suffix" "Template Lookup Order" >}}
+{{< datatable-filtered-ja "output" "layouts" "Kind == home" "Example" "OutputFormat" "Suffix" "Template Lookup Order" >}}
 
-## Examples: Layout Lookup for Section Pages
+## 例: セクションページのレイアウト検索 {#examples-layout-lookup-for-section-pages}
 
-{{< datatable-filtered "output" "layouts" "Kind == section" "Example" "OutputFormat" "Suffix" "Template Lookup Order" >}}
+{{< datatable-filtered-ja "output" "layouts" "Kind == section" "Example" "OutputFormat" "Suffix" "Template Lookup Order" >}}
 
-## Examples: Layout Lookup for Taxonomy Pages
+## 例: タクソノミー ページのレイアウト検索 {#examples-layout-lookup-for-taxonomy-pages}
 
-{{< datatable-filtered "output" "layouts" "Kind == taxonomy" "Example" "OutputFormat" "Suffix" "Template Lookup Order" >}}
+{{< datatable-filtered-ja "output" "layouts" "Kind == taxonomy" "Example" "OutputFormat" "Suffix" "Template Lookup Order" >}}
 
-## Examples: Layout Lookup for Term Pages
+## 例: 用語ページのレイアウト検索 {#examples-layout-lookup-for-term-pages}
 
-{{< datatable-filtered "output" "layouts" "Kind == term" "Example" "OutputFormat" "Suffix" "Template Lookup Order" >}}
+{{< datatable-filtered-ja "output" "layouts" "Kind == term" "Example" "OutputFormat" "Suffix" "Template Lookup Order" >}}

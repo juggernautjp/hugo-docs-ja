@@ -5,7 +5,7 @@ categories:
 date: "2017-02-01"
 deprecated: false
 description: Slices an array to only the first _N_ elements.
-draft: true
+draft: false
 hugoversion: null
 keywords:
 - iteration

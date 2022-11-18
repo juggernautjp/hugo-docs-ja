@@ -4,7 +4,7 @@ categories:
 date: "2017-02-01"
 description: Hugo ships with its own RSS 2.0 template that requires almost no configuration,
   or you can create your own RSS templates.
-draft: true
+draft: false
 keywords:
 - rss
 - xml

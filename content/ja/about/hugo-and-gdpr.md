@@ -97,7 +97,7 @@ useSessionStorage
 : これを有効にすると、Cookie の使用が無効になり、セッション ストレージを使用して GA クライアント ID が保存されます。
 
 {{% warning %}}
-Google Analytics v4 (gtag.js) を使用する場合、`useSessionStorage` はサポートされません。
+Google アナリティクス v4 (gtag.js) を使用する場合、`useSessionStorage` はサポートされません。
 {{% /warning %}}
 
 ### Instagram

@@ -6,8 +6,8 @@ aliases:
 categories:
 - hugo modules
 date: "2019-07-24"
-description: How to use Hugo Modules to build and manage your site.
-draft: true
+description: Hugo モジュールを使ってサイトを構築・管理する方法です。
+draft: false
 keywords:
 - install
 - themes
@@ -16,37 +16,37 @@ keywords:
 - directories
 - usage
 - modules
-linktitle: Use Hugo Modules
+linktitle: Hugo モジュールを使用する
 menu:
   docs:
     parent: modules
     weight: 20
 sections_weight: 20
-title: Use Hugo Modules
+title: Hugo モジュールを使用する
 toc: true
 weight: 20
 ---
 
-## Prerequisite
+## 前提条件 {#prerequisite}
 
-{{< gomodules-info >}}
+{{< gomodules-info-ja >}}
 
-## Initialize a New Module
+## 新しいモジュールを初期化する {#initialize-a-new-module}
 
-Use `hugo mod init` to initialize a new Hugo Module. If it fails to guess the module path, you must provide it as an argument, e.g.:
+新しい Hugo モジュールを初期化するには、`hugo mod init` を使用します。モジュールのパスの推測に失敗した場合は、たとえば以下のように引数として指定する必要があります。
 
 ```bash
 hugo mod init github.com/gohugoio/myShortcodes
 ```
 
-Also see the [CLI Doc](/commands/hugo_mod_init/).
+[CLI Doc](/commands/hugo_mod_init/) も参照してください。
 
-## Use a Module for a Theme
+## テーマにモジュールを使用する {#use-a-module-for-a-theme}
 
-The easiest way to use a Module for a theme is to import it in the config.
+テーマにモジュールを使用する最も簡単な方法は、設定でインポートすることです。
 
-1. Initialize the hugo module system: `hugo mod init github.com/<your_user>/<your_project>`
-2. Import the theme:
+1. 右のコマンドを実行して、Hugo モジュール システムを初期化します。 `hugo mod init github.com/<your_user>/<your_project>`
+2. 以下の設定により、テーマをインポートします。
 
 {{< code-toggle file="config" >}}
 [module]
@@ -54,21 +54,21 @@ The easiest way to use a Module for a theme is to import it in the config.
     path = "github.com/spf13/hyde"
 {{< /code-toggle >}}
 
-## Update Modules
+## モジュールを更新する {#update-modules}
 
-Modules will be downloaded and added when you add them as imports to your configuration, see [Module Imports](/hugo-modules/configuration/#module-config-imports).
+モジュールをインポートとして設定に追加すると、モジュールがダウンロードされて追加されます。[「モジュールのインポート」](/hugo-modules/configuration/#module-config-imports) を参照してください。
 
-To update or manage versions, you can use `hugo mod get`.
+バージョンの更新や管理を行うには、`hugo mod get` を使用します。
 
-Some examples:
+いくつかの例を挙げます。
 
-### Update All Modules
+### すべてのモジュールを更新する {#update-all-modules}
 
 ```bash
 hugo mod get -u
 ```
 
-### Update All Modules Recursively
+### すべてのモジュールを再帰的に更新する {#update-all-modules-recursively}
 
 {{< new-in "0.65.0" >}}
 
@@ -76,37 +76,37 @@ hugo mod get -u
 hugo mod get -u ./...
 ```
 
-### Update One Module
+### 1 つのモジュールを更新する {#update-one-module}
 
 ```bash
 hugo mod get -u github.com/gohugoio/myShortcodes
 ```
 
-### Get a Specific Version
+### 特定のバージョンを取得する {#get-a-specific-version}
 
 ```bash
 hugo mod get github.com/gohugoio/myShortcodes@v1.0.7
 ```
 
-Also see the [CLI Doc](/commands/hugo_mod_get/).
+[CLI Doc](/commands/hugo_mod_get/) も参照してください。
 
-## Make and test changes in a module
+## モジュールに変更を加えてテストする {#make-and-test-changes-in-a-module}
 
-One way to do local development of a module imported in a project is to add a replace directive to a local directory with the source in `go.mod`:
+プロジェクトにインポートされたモジュールのローカル開発を行う 1 つの方法は、 `go.mod` にあるソースをローカルディレクトリに置き換えるディレクティブを追加することです。
 
 ```bash
 replace github.com/bep/hugotestmods/mypartials => /Users/bep/hugotestmods/mypartials
 ```
 
-If you have the `hugo server` running, the configuration will be reloaded and `/Users/bep/hugotestmods/mypartials` put on the watch list.
+`hugo server` を実行している場合、設定がリロードされ、`/Users/bep/hugotestmods/mypartials` が監視リストに追加されます。
 
-Note that since v.0.77.0 you can use modules config [`replacements`](https://gohugo.io/hugo-modules/configuration/#module-config-top-level) option. {{< new-in "0.77.0" >}}
+v.0.77.0 以降では、モジュール設定の [`replacements`](https://gohugo.io/hugo-modules/configuration/#module-config-top-level) オプションを使用できることに注意してください。 {{< new-in "0.77.0" >}}
 
-## Print Dependency Graph
+## 依存関係グラフの印刷 {#print-dependency-graph}
 
-Use `hugo mod graph` from the relevant module directory and it will print the dependency graph, including vendoring, module replacement or disabled status.
+関連するモジュールディレクトリから `hugo mod graph` を使用すると、ベンダー化、モジュールの置き換え、無効化などの状態を含む依存関係グラフが表示されます。
 
-E.g.:
+たとえば、以下のように出力されます。
 
 ```txt
 hugo mod graph
@@ -118,33 +118,32 @@ github.com/bep/hugotestmods/mypartials@v1.0.7 github.com/bep/hugotestmods/myv2@v
 DISABLED github.com/bep/my-modular-site github.com/spf13/hyde@v0.0.0-20190427180251-e36f5799b396
 github.com/bep/my-modular-site github.com/bep/hugo-fresh@v1.0.1
 github.com/bep/my-modular-site in-themesdir
-
 ```
 
-Also see the [CLI Doc](/commands/hugo_mod_graph/).
+[CLI Doc](/commands/hugo_mod_graph/) も参照してください。
 
-## Vendor Your Modules
+## モジュールをベンダーする {#vendor-your-modules}
 
-`hugo mod vendor` will write all the module dependencies to a `_vendor` folder, which will then be used for all subsequent builds.
+`hugo mod vendor` は、すべてのモジュールの依存関係を `_vendor` フォルダーに書き込み、その後のすべてのビルドに使用します。
 
-Note that:
+**注意事項**:
 
-* You can run `hugo mod vendor` on any level in the module tree.
-* Vendoring will not store modules stored in your `themes` folder.
-* Most commands accept a `--ignoreVendorPaths` flag, which will then not use the vendored modules in `_vendor` for the module paths matching the [Glob](https://github.com/gobwas/glob) pattern given. Note that before Hugo 0.75 this flag was named `--ignoreVendor` and was a "all or nothing". {{< new-in "0.75.0" >}}
+* モジュールツリーのどのレベルでも `hugo mod vendor` を実行できます。
+* ベンダー化は `themes` フォルダーに保存されているモジュールを保存しません。
+* ほとんどのコマンドは `--ignoreVendorPaths` フラグを受け付け、与えられた [Glob](https://github.com/gobwas/glob) パターンにマッチするモジュールパスに対して `_vendor` に含まれるベンダー モジュールを使用しないようにします。Hugo 0.75 以前では、このフラグは `--ignoreVendor` という名前で、「全部かゼロか」であったことに注意してください。 {{< new-in "0.75.0" >}}
 
-Also see the [CLI Doc](/commands/hugo_mod_vendor/).
+[CLI Doc](/commands/hugo_mod_vendor/) も参照してください。
 
 ## Tidy go.mod, go.sum
 
-Run `hugo mod tidy` to remove unused entries in `go.mod` and `go.sum`.
+`hugo mod tidy` を実行して、`go.mod` と `go.sum` の中の未使用のエントリを削除します。
 
-Also see the [CLI Doc](/commands/hugo_mod_clean/).
+[CLI Doc](/commands/hugo_mod_clean/) も参照してください。
 
-## Clean Module Cache
+## モジュールキャッシュを消去する {#clean-module-cache}
 
-Run `hugo mod clean` to delete the entire modules cache.
+`hugo mod clean` を実行して、モジュールキャッシュをすべて削除します。
 
-Note that you can also configure the `modules` cache with a `maxAge`, see [File Caches](/getting-started/configuration/#configure-file-caches).
+`maxAge` を使用して `modules` キャッシュを設定できることに注意してください。詳細は、[「ファイルキャッシュ」](/getting-started/configuration/#configure-file-caches) を参照してください。
 
-Also see the [CLI Doc](/commands/hugo_mod_clean/).
+[CLI Doc](/commands/hugo_mod_clean/) も参照してください。

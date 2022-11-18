@@ -4,8 +4,8 @@ aliases:
 categories:
 - about hugo
 date: "2016-02-01"
-description: Hugo v0.15 and later are released under the Apache 2.0 license.
-draft: true
+description: Hugo v0.15 以降は Apache 2.0 ライセンスで公開されています。
+draft: false
 keywords:
 - License
 - apache
@@ -23,8 +23,8 @@ weight: 60
 ---
 
 {{% note %}}
-Hugo v0.15 以降は、Apache 2.0 ライセンスの下でリリースされています。
-Hugo の以前のバージョンは、[Simple Public License](https://opensource.org/licenses/Simple-2.0) の下でリリースされていました。
+Hugo v0.15 以降は、Apache 2.0 ライセンスでリリースされています。
+Hugo の以前のバージョンは、[Simple Public License](https://opensource.org/licenses/Simple-2.0) でリリースされていました。
 {{% /note %}}
 
 _Version 2.0, January 2004_ <br>

@@ -6,8 +6,8 @@ aliases:
 categories:
 - content management
 date: "2017-02-01"
-description: Hugo comes with really fast syntax highlighting from Chroma.
-draft: true
+description: Hugo には、Chroma による非常に高速なシンタックスハイライトが搭載されています。
+draft: false
 keywords:
 - highlighting
 - chroma
@@ -19,43 +19,43 @@ menu:
     weight: 300
 publishdate: "2017-02-01"
 sections_weight: 20
-title: Syntax Highlighting
+title: シンタックスハイライト
 toc: true
 weight: 20
 ---
 
-Hugo uses [Chroma](https://github.com/alecthomas/chroma) as its code highlighter; it is built in Go and is really, really fast -- and for the most important parts compatible with Pygments we used before.
+Hugo は [Chroma](https://github.com/alecthomas/chroma) をコード ハイライターとして使用します。 これは Go で構築されており、非常に高速です。また、最も重要な部分については、以前使用していた Pygments と互換性があります。
 
-## Configure Syntax Highlighter
+## シンタックスハイライターの設定 {#configure-syntax-highlighter}
 
-See [Configure Highlight](/getting-started/configuration-markup#highlight).
+[「ハイライトの設定」](/getting-started/configuration-markup#highlight) を参照してください。
 
-## Generate Syntax Highlighter CSS
+## シンタックスハイライター CSS を生成する {#generate-syntax-highlighter-css}
 
-If you run with `markup.highlight.noClasses=false` in your site config, you need a style sheet.
+サイト設定で `markup.highlight.noClasses=false` を指定して実行する場合は、スタイルシートが必要です。
 
-You can generate one with Hugo:
+以下のコマンドにより、Hugo でシンタックスハイライター CSS を生成することができます。
 
 ```bash
 hugo gen chromastyles --style=monokai > syntax.css
 ```
 
-Run `hugo gen chromastyles -h` for more options. See https://xyproto.github.io/splash/docs/ for a gallery of available styles.
+その他のオプションは `hugo gen chromastyles -h` を実行してください。利用可能なスタイルのギャラリーは https://xyproto.github.io/splash/docs/ を参照してください。
 
-## Highlight Shortcode
+## ハイライト ショートコード {#highlight-shortcode}
 
-Highlighting is carried out via the built-in [`highlight` shortcode](https://gohugo.io/content-management/shortcodes/#highlight). It takes exactly one required parameter for the programming language to be highlighted and requires a closing shortcode. Note that `highlight` is *not* used for client-side JavaScript highlighting.
+ハイライト表示は、組み込みの [`highlight` ショートコード](https://gohugo.io/content-management/shortcodes/#highlight) を使って行われます。ハイライト表示されるプログラミング言語の必須パラメータを 1 つだけ受け取り、終了ショートコードが必要です。なお、`highlight` はクライアント側の JavaScript のハイライトには *使用されない* ことに注意してください。
 
-Options:
+オプション:
 
-* `linenos`: configure line numbers. Valid values are `true`, `false`, `table`, or `inline`. `false` will turn off line numbers if it's configured to be on in site config. {{< new-in "0.60.0" >}} `table` will give copy-and-paste friendly code blocks.
-* `hl_lines`: lists a set of line numbers or line number ranges to be highlighted.
-* `linenostart=199`: starts the line number count from 199.
-* `anchorlinenos`: Configure anchors on line numbers. Valid values are `true` or `false`;
-* `lineanchors`: Configure a prefix for the anchors on line numbers. Will be suffixed with `-`, so linking to the line number 1 with the option `lineanchors=prefix` adds the anchor `prefix-1` to the page.  
-* `hl_inline`  Highlight inside a `<code>` (inline HTML element) tag. Valid values are `true` or `false`. The `code` tag will get a class with name `code-inline`. {{< new-in "0.101.0" >}}
+* `linenos`: は、行番号を設定します。有効な値は `true`、`false`、`table`、`inline` のいずれかです。 サイト設定で行番号をオンに設定されている場合、`false` は行番号をオフにします。 {{< new-in "0.60.0" >}} `table` は、コピー アンド ペーストに適したコードブロックを提供します。
+* `hl_lines`: は、ハイライトする行番号または行番号の範囲をリストします。
+* `linenostart=199`: は、行番号のカウントを 199 から開始します。
+* `anchorlinenos`: は、行番号にアンカーを設定します。有効な値は `true` または `false` です。
+* `lineanchors`: は、行番号のアンカーに付けるプレフィックスを設定します。サフィックスには `-` が付くので、 `lineanchors=prefix` というオプションで行番号 1 にリンクすると、アンカー `prefix-1` がページに追加されます。  
+* `hl_inline`: は、 `<code>` (インライン HTML 要素) タグの内部をハイライト表示します。有効な値は `true` または `false` です。 `code` タグは、 `code-inline` という名前のクラスを取得します。 {{< new-in "0.101.0" >}}
 
-### Example: Highlight Shortcode
+### ハイライト ショートコードの例 {#example-highlight-shortcode}
 
 ```go-html-template
 {{</* highlight go "linenos=table,hl_lines=8 15-17,linenostart=199" */>}}
@@ -63,7 +63,7 @@ Options:
 {{</* / highlight */>}}
 ```
 
-Gives this:
+上記のコードは、以下を出力します。
 
 {{< highlight go "linenos=table,hl_lines=8 15-17,linenostart=199" >}}
 // GetTitleFunc returns a func that can be used to transform a string to
@@ -88,27 +88,27 @@ func GetTitleFunc(style string) func(s string) string {
 }
 {{< / highlight >}}
 
-## Highlight Hugo/GO Template Code
+## Hugo/GO テンプレートコードのハイライト {#highlight-hugo-go-template-code}
 
-For highlighting Hugo/GO template code on your page, add `/*` after the opening double curly braces and `*/` before closing curly braces.
+Hugo/GO のテンプレートコードをページ上でハイライト表示するには、開始の二重中括弧の後に `/*` を、終了の中括弧の前に `*/` を追加します。
 
 ``` go
 {{</*/* myshortcode */*/>}}
 ```
 
-Gives this:
+上記のコードは、以下を出力します。
 
 ``` go
 {{</* myshortcode */>}}
 ```
 
-## Highlight Template Func
+## ハイライトテンプレート関数 {#highlight-template-func}
 
-See [Highlight](/functions/highlight/).
+[「highlight 関数」](/functions/highlight/) を参照してください。
 
-## Highlighting in Code Fences
+## コードフェンスでのハイライト表示 {#highlighting-in-code-fences}
 
-Highlighting in code fences is enabled by default.{{< new-in "0.60.0" >}}
+コードフェンス内のハイライト表示は、デフォルトで有効になっています。{{< new-in "0.60.0" >}}
 
 ````txt
 ```go {linenos=table,hl_lines=[8,"15-17"],linenostart=199}
@@ -117,7 +117,7 @@ Highlighting in code fences is enabled by default.{{< new-in "0.60.0" >}}
 ````
 
 
-Gives this:
+上記のコードは、以下を出力します。
 
 ```go {linenos=table,hl_lines=[8,"15-17"],linenostart=199}
 // GetTitleFunc returns a func that can be used to transform a string to
@@ -142,13 +142,13 @@ func GetTitleFunc(style string) func(s string) string {
 }
 ```
 
-{{< new-in "0.60.0" >}}Note that only Goldmark supports passing attributes such as `hl_lines`, and it's important that it does not contain any spaces. See [goldmark-highlighting](https://github.com/yuin/goldmark-highlighting) for more information.
+{{< new-in "0.60.0" >}} なお、 `hl_lines` のような属性を渡すことをサポートしているのは Goldmark だけであり、空白を含まないことが重要です。詳しくは、[goldmark-highlighting](https://github.com/yuin/goldmark-highlighting) を参照してください。
 
-The options are the same as in the [highlighting shortcode](/content-management/syntax-highlighting/#highlight-shortcode),including `linenos=false`, but note the slightly different Markdown attribute syntax.
+オプションは `linenos=false` を含む [ハイライト ショートコード](/content-management/syntax-highlighting/#highlight-shortcode) と同じですが、Markdown 属性の構文がわずかに異なることに注意してください。
 
-## List of Chroma Highlighting Languages
+## Chroma ハイライト言語のリスト {#list-of-chroma-highlighting-languages}
 
-The full list of Chroma lexers and their aliases (which is the identifier used in the `highlight` template func or when doing highlighting in code fences):
+以下は、Chroma レキサーとそのエイリアスの完全なリストです (これは、`highlight` テンプレート関数やコードフェンスでハイライト表示を行う際に使用する識別子です)。
 
 {{< chroma-lexers >}}
 

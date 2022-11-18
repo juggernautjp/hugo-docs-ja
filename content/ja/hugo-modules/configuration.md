@@ -2,25 +2,25 @@
 categories:
 - hugo modules
 date: "2019-07-24"
-description: This page describes the configuration options for a module.
-draft: true
+description: このページでは、モジュールの設定オプションについて説明します。
+draft: false
 keywords:
 - themes
 - source
 - organization
 - directories
-linktitle: Configure Modules
+linktitle: モジュールを設定する
 menu:
   docs:
     parent: modules
     weight: 10
 sections_weight: 10
-title: Configure Modules
+title: モジュールを設定する
 toc: true
 weight: 10
 ---
 
-## Module Config: Top level
+## モジュールの設定: トップレベル {#module-config-top-level}
 
 {{< code-toggle file="config">}}
 [module]
@@ -33,37 +33,37 @@ workspace = ""
 {{< /code-toggle >}}
 
 noVendor {{< new-in "0.75.0" >}}
-: A optional Glob pattern matching module paths to skip when vendoring, e.g. "github.com/**"
+: ベンダー化の際にスキップするオプションの glob パターンマッチング モジュール パス (たとえば、"github.com/**") 
 
 vendorClosest {{< new-in "0.81.0" >}}
-: When enabled, we will pick the vendored module closest to the module using it. The default behavior is to pick the first. Note that there can still be only one dependency of a given module path, so once it is in use it cannot be redefined.
+: 有効にすると、それを使用するモジュールに最も近いベンダー化モジュールが選択されます。 デフォルトの動作は、最初のものを選択します。 特定のモジュール パスの依存関係は 1 つしか存在できないため、一度使用すると再定義できないことに注意してください。
 
 proxy
-: Defines the proxy server to use to download remote modules. Default is `direct`, which means "git clone" and similar.
+: リモートモジュールのダウンロードに使用するプロキシサーバーを定義します。デフォルトは `direct` で、"git clone" などの意味になります。
 
 noProxy
-: Comma separated glob list matching paths that should not use the proxy configured above.
+: 上記で設定したプロキシを使用してはならないパスに一致するカンマ区切りの glob リスト。
 
 private
-: Comma separated glob list matching paths that should be treated as private.
+: プライベートとして扱うべきパスと一致するカンマ区切りの glob リスト。
 
 workspace {{< new-in "0.83.0" >}}
-: The workspace file to use. This enables Go workspace mode. Note that this can also be set via OS env, e.g. `export HUGO_MODULE_WORKSPACE=/my/hugo.work` This only works with Go 1.18+.
+: 使用するワークスペース ファイル。 これにより、Go ワークスペース モードが有効になります。 これは OS env 経由 (たとえば、`export HUGO_MODULE_WORKSPACE=/my/hugo.work`) でも設定できることに注意してください。この指定は、 Go 1.18 以降でのみ動作します。
 
 replacements {{< new-in "0.77.0" >}}
-: A comma separated (or a slice) list of module path to directory replacement mapping, e.g. `github.com/bep/my-theme -> ../..,github.com/bep/shortcodes -> /some/path`. This is mostly useful for temporary locally development of a module, and then it makes sense to set it as an OS environment variable, e.g: `env HUGO_MODULE_REPLACEMENTS="github.com/bep/my-theme -> ../.."`. Any relative path is relate to [themesDir](https://gohugo.io/getting-started/configuration/#all-configuration-settings), and absolute paths are allowed.
+: 例えば、`github.com/bep/my-theme -> ../..,github.com/bep/shortcodes -> /some/path` といった、モジュールパスとディレクトリ置換マッピングのカンマ区切り (またはスライス) のリストです。これは一時的にローカルでモジュールを開発するのに便利で、OS の環境変数として設定することができます。 相対パスは [themesDir](https://gohugo.io/getting-started/configuration/#all-configuration-settings) に関連しており、絶対パスが許可されています。
 
-Note that the above terms maps directly to their counterparts in Go Modules. Some of these setting may be natural to set as OS environment variables. To set the proxy server to use, as an example:
+上記の用語は、Go モジュールの対応する用語に直接対応していることに注意してください。これらの設定のいくつかは、OS の環境変数として設定するのが自然でしょう。例として、使用するプロキシサーバーを設定する場合は、以下のようにします。
 
 ```txt
 env HUGO_MODULE_PROXY=https://proxy.example.org hugo
 ```
 
-{{< gomodules-info >}}
+{{< gomodules-info-ja >}}
 
-## Module Config: hugoVersion
+## モジュールの設定: hugoVersion {#module-config-hugoVersion}
 
-If your module requires a particular version of Hugo to work, you can indicate that in the `module` section and the user will be warned if using a too old/new version.
+もし、モジュールが動作するために特定のバージョンの Hugo を必要とする場合、 `module` セクションでそのことを指定することができ、古すぎたり新しすぎたりするバージョンを使っている場合は警告されます。
 
 {{< code-toggle file="config">}}
 [module]
@@ -74,18 +74,18 @@ If your module requires a particular version of Hugo to work, you can indicate t
 
 {{< /code-toggle >}}
 
-Any of the above can be omitted.
+上記のいずれかを省略できます。
 
 min
-: The minimum Hugo version supported, e.g. `0.55.0`
+: サポートする Hugo の最小バージョン (たとえば、`0.55.0`)
 
 max
-: The maximum Hugo version supported, e.g. `0.55.0`
+: サポートする Hugo の最大バージョン (たとえば、`0.55.0`)
 
 extended
-: Whether the extended version of Hugo is required.
+: 拡張版 Hugo の必要性の有無。
 
-## Module Config: imports
+## モジュールの設定: imports {#module-config-imports}
 
 {{< code-toggle file="config">}}
 [module]
@@ -99,36 +99,36 @@ extended
 {{< /code-toggle >}}
 
 path
-: Can be either a valid Go Module module path, e.g. `github.com/gohugoio/myShortcodes`, or the directory name for the module as stored in your themes folder.
+: 有効な Go モジュールのモジュールパス (たとえば、`github.com/gohugoio/myShortcodes`) か、テーマ フォルダーに保存されているモジュールのディレクトリ名のどちらかを使用します。
 
 ignoreConfig
-: If enabled, any module configuration file, e.g. `config.toml`, will not be loaded. Note that this will also stop the loading of any transitive module dependencies.
+: 有効にすると、モジュール設定ファイル (たとえば、`config.toml`) はロードされません。また、依存関係にあるモジュールのロードも停止することに注意してください。
 
 ignoreImports {{< new-in "0.80.0" >}}
-: If enabled, module imports will not be followed.
+: 有効にすると、モジュールのインポートに従わなくなります。
 
 disable
-: Set to `true` to disable the module while keeping any version info in the `go.*` files.
+: `true` に設定すると、`go.*` ファイルにバージョン情報を残したまま、モジュールを無効化できます。
 
 noMounts {{< new-in "0.84.2" >}}
-:  Do not mount any folder in this import.
+: このインポートでは、フォルダーーをマウントしません。
 
 noVendor
-:  Never vendor this import (only allowed in main project).
+: このインポートをベンダーにしません (メインプロジェクトでのみ許可されます)。
 
-{{< gomodules-info >}}
+{{< gomodules-info-ja >}}
 
-## Module Config: mounts
+## モジュールの設定: mounts {#module-config-mounts}
 
 {{% note %}}
-When the `mounts` config was introduced in Hugo 0.56.0, we were careful to preserve the existing `contentDir`, `staticDir`, and similar configuration to make sure all existing sites just continued to work. But you should not have both: if you add a `mounts` section you should remove the old `contentDir`, `staticDir`, etc. settings.
+Hugo 0.56.0 で `mounts` 設定が導入されたとき、既存の `contentDir` や `staticDir` などの設定を保存して、既存のすべてのサイトがそのまま動作するように気をつけました。しかし、両方があってはいけません。`mounts` セクションを追加したら、古い `contentDir`、`staticDir` などの設定を削除してください。
 {{% /note %}}
 
 {{% warning %}}
-When you add a mount, the default mount for the concerned target root is ignored: be sure to explicitly add it.
+マウントを追加すると、当該ターゲット ルートのデフォルト マウントは無視されます。このため、必ず明示的に追加してください。
 {{% /warning %}}
 
-**Default mounts**
+**デフォルト マウント**
 {{< code-toggle file="config">}}
 [module]
 [[module.mounts]]
@@ -155,22 +155,22 @@ When you add a mount, the default mount for the concerned target root is ignored
 {{< /code-toggle >}}
 
 source
-: The source directory of the mount. For the main project, this can be either project-relative or absolute and even a symbolic link. For other modules it must be project-relative.
+: マウントのソースディレクトリです。メインプロジェクトでは、これはプロジェクト相対でも絶対でも、またシンボリックリンクでもかまいません。他のモジュールでは、プロジェクト相対である必要があります。
 
 target
-: Where it should be mounted into Hugo's virtual filesystem. It must start with one of Hugo's component folders: `static`, `content`, `layouts`, `data`, `assets`, `i18n`, or `archetypes`. E.g. `content/blog`.
+: Hugo の仮想ファイルシステムにマウントされる場所です。Hugo のコンポーネントフォルダーである `static`、`content`、`layouts`、`data`、`assets`、`i18n`、`archetypes` のいずれかを先頭に指定する必要があります。たとえば、 `content/blog` を指定します。
 
 lang
-: The language code, e.g. "en". Only relevant for `content` mounts, and `static` mounts when in multihost mode.
+: 言語コードで、たとえば "en" を指定します。マルチホストモードでは、 `content` マウントと `static` マウントにのみ関係します。
 
-includeFiles (string or slice)
-: One or more [glob](https://github.com/gobwas/glob) patterns matching files or directories to include. If `excludeFiles` is not set, the files matching `includeFiles` will be the files mounted.
+includeFiles (string または slice)
+: インクルードするファイルやディレクトリにマッチする1つ以上の [glob](https://github.com/gobwas/glob) パターンを指定します。 `excludeFiles` が設定されていない場合は、 `includeFiles` にマッチするファイルがマウントされます。
 
-The glob patterns are matched to the filenames starting from the `source` root, they should have Unix styled slashes even on Windows, `/` matches the mount root and `**` can be used as a  super-asterisk to match recursively down all directories, e.g `/posts/**.jpg`.
+glob パターンは `source` ルートから始まるファイル名にマッチし、Windows でも Unix スタイルのスラッシュを持つはずです。`/` はマウントルートにマッチし、`**` はスーパー アスタリスクとして、たとえば `/posts/**.jpg` のようにすべてのディレクトリに再帰的にマッチできます。
 
-The search is case-insensitive.
+検索では大文字と小文字が区別されません。
 
 {{< new-in "0.89.0" >}}
 
-excludeFiles (string or slice)
-: One or more glob patterns matching files to exclude.
+excludeFiles (string または slice)
+: 除外するファイルに一致する 1 つ以上の glob パターンです。

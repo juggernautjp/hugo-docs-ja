@@ -9,121 +9,120 @@ aliases:
 categories:
 - content management
 date: "2017-02-01"
-description: Hugo supports permalinks, aliases, link canonicalization, and multiple
-  options for handling relative vs absolute URLs.
-draft: true
+description: Hugo はパーマリンク、エイリアス、リンクの正規化、相対 URL と絶対 URL 処理するための複数のオプションをサポートしています。
+draft: false
 keywords:
 - aliases
 - redirects
 - permalinks
 - urls
-linktitle: URL Management
+linktitle: URL 管理
 menu:
   docs:
     parent: content-management
     weight: 110
 publishdate: "2017-02-01"
-title: URL Management
+title: URL 管理
 toc: true
 weight: 110
 ---
 
-## Permalinks
+## パーマリンク {#permalinks}
 
-The default Hugo target directory for your built website is `public/`. However, you can change this value by specifying a different `publishDir` in your [site configuration][config]. The directories created at build time for a section reflect the position of the content's directory within the `content` folder and namespace matching its layout within the `contentdir` hierarchy.
+構築した Web サイトのデフォルトの Hugo ターゲットディレクトリは `public/` です。ただし、[サイト設定][config] で別の `publishDir` を指定することで、この値を変更できます。セクションのビルド時に作成されるディレクトリは、`content` フォルダー内のコンテンツのディレクトリの位置と、`contentdir` 階層内のレイアウトに合わせた名前空間が反映されます。
 
-The `permalinks` option in your [site configuration][config] allows you to adjust the directory paths (i.e., the URLs) on a per-section basis. This will change where the files are written to and will change the page's internal "canonical" location, such that template references to `.RelPermalink` will honor the adjustments made as a result of the mappings in this option.
+[サイト構成][config] の `permalinks` オプションを使用すると、ディレクトリパス (つまり URL) をセクションごとに調整することができます。これはファイルが書き込まれる場所を変更し、ページ内部の「正規の」場所を変更します。このため、`.RelPermalink` へのテンプレート参照は、このオプションのマッピングの結果として行われた調整を尊重することになります。
 
 {{% note "Default Publish and Content Folders" %}}
-These examples use the default values for `publishDir` and `contentDir`; i.e., `public` and `content`, respectively. You can override the default values in your [site's `config` file](/getting-started/configuration/).
+これらの例では、 `publishDir` と `contentDir` にデフォルト値、つまりそれぞれ `public` と `content` を使用しています。デフォルト値は、[サイトの `config` ファイル](/getting-started/configuration/) でオーバーライドすることができます。
 {{% /note %}}
 
-For example, if one of your [sections][] is called `posts` and you want to adjust the canonical path to be hierarchical based on the year, month, and post title, you could set up the following configurations in YAML and TOML, respectively.
+たとえば、[セクション][section] の1つが `posts` という名前で、年、月、投稿タイトルに基づいて階層化するように正規のパスを調整したい場合、YAML と TOML でそれぞれ以下のように設定することが可能です。
 
-### Permalinks Configuration Example
+### パーマリンクの設定例 {#permalinks-configuration-example}
 
 {{< code-toggle file="config" copy="false" >}}
 permalinks:
   posts: /:year/:month/:title/
 {{< /code-toggle >}}
 
-Only the content under `posts/` will have the new URL structure. For example, the file `content/posts/sample-entry.md` with `date: 2017-02-27T19:20:00-05:00` in its front matter will render to `public/2017/02/sample-entry/index.html` at build time and therefore be reachable at `https://example.com/2017/02/sample-entry/`.
+`posts/` 以下のコンテンツのみが新しい URL 構造を持つことになります。たとえば、`content/posts/sample-entry.md` のフロントマターに `date: 2017-02-27T19:20:00-05:00` があると、ビルド時に `public/2017/02/sample-entry/index.html` にレンダーされるので、 `https://example.com/2017/02/sample-entry/` で到達できるようになります。
 
-To configure the `permalinks` option for pages in the "root" section, use **/** as the key:
+「ルート」セクションのページに対して `permalinks` オプションを設定するには、以下のように、キーとして **/** を使用します。
 
 {{< code-toggle file="config" copy="false" >}}
 permalinks:
   /: /:year/:month/:filename/
 {{< /code-toggle >}}
 
-If the standard date-based permalink configuration does not meet your needs, you can also format URL segments using [Go time formatting directives](https://golang.org/pkg/time/#Time.Format). For example, a URL structure with two digit years and month and day digits without zero padding can be accomplished with:
+標準の日付ベースのパーマリンク構成がニーズを満たさない場合、[Go time フォーマット ディレクティブ](https://golang.org/pkg/time/#Time.Format) を使用して URL セグメントをフォーマットすることも可能です。たとえば、ゼロパディングなしで 2 桁の年と月日の桁を持つ URL 構造は、以下のようにして実現できます。
 
 {{< code-toggle file="config" copy="false" >}}
 permalinks:
   posts: /:06/:1/:2/:title/
 {{< /code-toggle >}}
 
-You can also configure permalinks of taxonomies with the same syntax, by using the plural form of the taxonomy instead of the section. You will probably only want to use the configuration values `:slug` or `:title`.
+また、セクションの代わりにタクソノミーの複数形を使用することで、同じ構文でタクソノミーのパーマリンクを設定することもできます。おそらく、設定値 `:slug` と `:title` のみを使用したいことでしょう。
 
-### Permalink Configuration Values
+### パーマリンクの設定値 {#permalink-configuration-values}
 
-The following is a list of values that can be used in a `permalink` definition in your site `config` file. All references to time are dependent on the content's date.
+以下は、サイトの `config` ファイルにある `permalink` の定義で使用できる値のリストです。時間に関するすべての参照は、コンテンツの日付に依存します。
 
 `:year`
-: the 4-digit year
+: 4 桁の年
 
 `:month`
-: the 2-digit month
+: 2 桁の月
 
 `:monthname`
-: the name of the month
+: 月の名前
 
 `:day`
-: the 2-digit day
+: 2 桁の日
 
 `:weekday`
-: the 1-digit day of the week (Sunday = 0)
+: 1桁の曜日 (日曜日は 0)
 
 `:weekdayname`
-: the name of the day of the week
+: 曜日の名前
 
 `:yearday`
-: the 1- to 3-digit day of the year
+: 1 から 3 桁の日
 
 `:section`
-: the content's section
+: コンテンツのセクション
 
 `:sections`
-: the content's sections hierarchy. {{< new-in "0.83.0" >}} Since Hugo 0.83 you can use a selection of the sections using _slice syntax_: `:sections[1:]` includes all but the first, `:sections[:last]` includes all but the last, `:sections[last]` includes only the last, `:sections[1:2]` includes section 2 and 3. Note that this slice access will not throw any out-of-bounds errors, so you don't have to be exact.
+: コンテンツのセクションの階層を指定します。 {{< new-in "0.83.0" >}} Hugo 0.83 以降では、_スライス構文_ を使用してセクションの選択を行うことができます。`:sections[1:]` は最初のセクション以外を、`:sections[:last]` は最後以外を、`:section[last]` は最後だけを、`:section[1:2]` は第 2、3 セクションを含むことが可能です。このスライスアクセスは out-of-bounds エラーをスローしないので、厳密である必要はないことに注意してください。
 
 `:title`
-: the content's title
+: コンテンツのタイトル
 
 `:slug`
-: the content's slug (or title if no slug is provided in the front matter)
+: コンテンツのスラッグ (フロントマターでスラッグが提供されていない場合はタイトル)
 
 `:slugorfilename`
-: the content's slug (or filename if no slug is provided in the front matter)
+: コンテンツのスラッグ (または、フロント マターにスラッグが提供されていない場合はファイル名)
 
 `:filename`
-: the content's filename (without extension)
+: コンテンツのファイル名 (拡張子なし)
 
-Additionally, a Go time format string prefixed with `:` may be used.
+さらに、`:` を先頭に持つ Go 時間形式文字列を使用することもできる。
 
-## Aliases
+## エイリアス {#aliases}
 
-Aliases can be used to create redirects to your page from other URLs.
+エイリアスを使用して、他の URL からページへのリダイレクトを作成できます。
 
-Aliases comes in two forms:
+エイリアスには以下の 2 つの形式があります。
 
-1. Starting with a `/` meaning they are relative to the `BaseURL`, e.g. `/posts/my-blogpost/`
-2. They are relative to the `Page` they're defined in, e.g. `my-blogpost` or even something like `../blog/my-blogpost` (new in Hugo 0.55).
+1. たとえば、 `/posts/my-blogpost/` のように、`BaseURL` からの相対パスを意味する `/` で始まる文字列
+2. たとえば、 `my-blogpost` や `../blog/my-blogpost` (Hugo 0.55 の新機能) のように、定義されている `Page` からの相対パスとなります。
 
-### Example: Aliases
+### エイリアスの例 {#example-aliases}
 
-Let's assume you create a new piece of content at `content/posts/my-awesome-blog-post.md`. The content is a revision of your previous post at `content/posts/my-original-url.md`. You can create an `aliases` field in the front matter of your new `my-awesome-blog-post.md` where you can add previous paths. The following examples show how to create this field in TOML and YAML front matter, respectively.
+たとえば、`content/posts/my-awesome-blog-post.md` に新しいコンテンツを作成すると仮定します。このコンテンツは `content/posts/my-original-url.md` にある前回の投稿の改訂版です。 新しい `my-awesome-blog-post.md` のフロントマターに `aliases` フィールドを作成し、そこに以前のパスを追加できます。以下の例では、このフィールドを TOML と YAML のフロントマターでそれぞれ作成する方法を示しています。
 
-#### TOML Front Matter
+#### TOML フロントマター
 
 {{< code file="content/posts/my-awesome-post.md" copy="false" >}}
 +++
@@ -134,7 +133,7 @@ aliases = [
 +++
 {{< /code >}}
 
-#### YAML Front Matter
+#### YAML フロントマター
 
 {{< code file="content/posts/my-awesome-post.md" copy="false" >}}
 ---
@@ -144,13 +143,13 @@ aliases:
 ---
 {{< /code >}}
 
-Now when you visit any of the locations specified in aliases---i.e., _assuming the same site domain_---you'll be redirected to the page they are specified on. For example, a visitor to `example.com/posts/my-original-url/` will be immediately redirected to `example.com/posts/my-awesome-post/`.
+これで、エイリアスで指定された場所にアクセスすると --- つまり、 _同じサイトドメインであると仮定して_ ---、指定されたページにリダイレクトされるようになります。たとえば、`example.com/posts/my-original-url/` にアクセスした人は、すぐに `example.com/posts/my-awesome-post/` にリダイレクトされます。
 
-### Example: Aliases in Multilingual
+### 例: 多言語版でのエイリアス {#example-aliases-in-multilingual}
 
-On [multilingual sites][multilingual], each translation of a post can have unique aliases. To use the same alias across multiple languages, prefix it with the language code.
+[多言語サイト][multilingual] では、投稿の各翻訳に固有のエイリアスを設定できます。複数の言語で同じエイリアスを使用するには、言語コードをプレフィックスとして付けます。
 
-In `/posts/my-new-post.es.md`:
+`/posts/my-new-post.es.md` の場合は、以下のように指定します。
 
 ```md
 ---
@@ -159,13 +158,13 @@ aliases:
 ---
 ```
 
-From Hugo 0.55 you can also have page-relative aliases, so `/es/posts/my-original-post/` can be simplified to the more portable `my-original-post/`
+Hugo 0.55 からは、ページ相対のエイリアスも使用できるようになり、 `/es/posts/my-original-post/` は、より移植性の高い `my-original-post/` に簡略化できます。
 
-### How Hugo Aliases Work
+### Hugo エイリアスの仕組み {#how-hugo-aliases-work}
 
-When aliases are specified, Hugo creates a directory to match the alias entry. Inside the directory, Hugo creates an `.html` file specifying the canonical URL for the page and the new redirect target.
+エイリアスが指定されると、Hugo はエイリアスのエントリにマッチするディレクトリを作成します。そのディレクトリの中に、Hugo はページの正規の URL と新しいリダイレクト先を指定した `.html` ファイルを作成します。
 
-For example, a content file at `posts/my-intended-url.md` with the following in the front matter:
+たとえば、`posts/my-intended-url.md` のコンテンツファイルに、以下のようなフロントマターがあるとします。
 
 ```yml
 ---
@@ -174,7 +173,7 @@ aliases: [/posts/my-old-url/]
 ---
 ```
 
-Assuming a `baseURL` of `example.com`, the contents of the auto-generated alias `.html` found at `https://example.com/posts/my-old-url/` will contain the following:
+`baseURL` が `example.com` であると仮定すると、`https://example.com/posts/my-old-url/` にある自動生成されたエイリアス `.html` の内容は、以下のようになります。
 
 ```html
 <!DOCTYPE html>
@@ -189,31 +188,28 @@ Assuming a `baseURL` of `example.com`, the contents of the auto-generated alias 
 </html>
 ```
 
-The `http-equiv="refresh"` line is what performs the redirect, in 0 seconds in this case. If an end user of your website goes to `https://example.com/posts/my-old-url`, they will now be automatically redirected to the newer, correct URL. The addition of `<meta name="robots" content="noindex">` lets search engine bots know that they should not index your alias page (`https://example.com/posts/my-old-url/`).
+`http-equiv="refresh"` 行はリダイレクトを実行するもので、この場合は 0 秒で実行されます。Web サイトのエンドユーザーが `https://example.com/posts/my-old-url` にアクセスした場合、自動的に新しい正しい URL にリダイレクトされます。 `<meta name="robots" content="noindex">` の追加により、検索エンジンのボットに、エイリアスページ (`https://example.com/posts/my-old-url/`) をインデックスしてはいけないことを知らせることができます。
 
-### Customize
+### カスタマイズ {#customize}
 
-You may customize this alias page by creating an `alias.html` template in the
-layouts folder of your site (i.e., `layouts/alias.html`). In this case, the data passed to the template is
+このエイリアスページをカスタマイズするには、サイトの layouts フォルダーに `alias.html` テンプレートを作成します (たとえば、`layouts/alias.html`)。この場合、テンプレートに渡されるデータは、以下です。
 
 `Permalink`
-: the link to the page being aliased
+: エイリアスが設定されているページへのリンク
 
 `Page`
-: the Page data for the page being aliased
+: エイリアスが設定されているページのページデータ
 
-### Important Behaviors of Aliases
+### エイリアスの重要な動作 {#important-behaviors-of-aliases}
 
-1. Hugo makes no assumptions about aliases. They also do not change based
-on your UglyURLs setting. You need to provide absolute paths to your web root
-and the complete filename or directory.
-2. Aliases are rendered *before* any content are rendered and therefore will be overwritten by any content with the same location.
+1. Hugo はエイリアスについて何の仮定もしません。また、UglyURLs の設定に基づいて変更されることもありません。 Web ルートへの絶対パスと完全なファイル名またはディレクトリを指定する必要があります。
+2. エイリアスは、コンテンツがレンダリングされる *前に* レンダリングされるため、同じ場所のコンテンツによってオーバーライトされます。
 
-## Pretty URLs
+## プリティ URL {#pretty-urls}
 
-Hugo's default behavior is to render your content with "pretty" URLs. No non-standard server-side configuration is required for these pretty URLs to work.
+Hugo のデフォルトの動作は、コンテンツを「プリティ URL」でレンダリングすることです。これらの「プリティ URL」を動作させるために、非標準のサーバ側の設定は必要ありません。
 
-The following demonstrates the concept:
+以下は、その概念を示すものです。
 
 ```txt
 content/posts/_index.md
@@ -222,13 +218,13 @@ content/posts/post-1.md
 => example.com/posts/post-1/
 ```
 
-## Ugly URLs
+## アグリィ URL {#ugly-urls}
 
-If you would like to have what are often referred to as "ugly URLs" (e.g., example.com/urls.html), set `uglyurls = true` or `uglyurls: true` in your site's `config.toml` or `config.yaml`, respectively. You can also set the `HUGO_UGLYURLS` environment variable to `true` when running `hugo` or `hugo server`.
+「アグリィ URL」と呼ばれることが多いもの (たとえば、example.com/urls.html) を使用したい場合は、サイトの `config.toml` または `config.yaml` にそれぞれ `uglyurls = true` または `uglyurls: true` を設定してください。また、`hugo` または `hugo server` を実行する際に、環境変数 `HUGO_UGLYURLS` を `true` に設定することもできます。
 
-If you want a specific piece of content to have an exact URL, you can specify this in the [front matter][] under the `url` key. The following are examples of the same content directory and what the eventual URL structure will be when Hugo runs with its default behavior.
+特定のコンテンツに正確な URL を持たせたい場合は、`url` キーの下の [フロントマター][front matter] で指定します。以下は、同じコンテンツ ディレクトリで、Hugo がデフォルトの動作で実行されたときに、最終的にどのような URL 構造になるかの例です。
 
-See [Content Organization][contentorg] for more details on paths.
+パスの詳細については、[「コンテンツ構成」][contentorg] を参照してください。
 
 ```txt
 .
@@ -245,7 +241,7 @@ See [Content Organization][contentorg] for more details on paths.
         └── second.md      // <- https://example.com/quote/second/
 ```
 
-Here's the same organization run with `hugo --uglyURLs`:
+以下は、同じ構成を `hugo --uglyURLs` で実行したものです。
 
 ```txt
 .
@@ -262,39 +258,39 @@ Here's the same organization run with `hugo --uglyURLs`:
         └── second.md      // <- https://example.com/quote/second.html
 ```
 
-## Canonicalization
+## 正規化 {#canonicalization}
 
-By default, all relative URLs encountered in the input are left unmodified, e.g. `/css/foo.css` would stay as `/css/foo.css`. The `canonifyURLs` field in your site `config` has a default value of `false`.
+デフォルトでは、入力で見つかったすべての相対 URL は変更されず、たとえば `/css/foo.css` は `/css/foo.css` として残ります。サイトの `config` にある `canonifyURLs` フィールドは、デフォルトで `false` になっています。
 
-By setting `canonifyURLs` to `true`, all relative URLs would instead be *canonicalized* using `baseURL`.  For example, assuming you have `baseURL = https://example.com/`, the relative URL `/css/foo.css` would be turned into the absolute URL `https://example.com/css/foo.css`.
+`canonifyURLs` を `true` に設定すると、すべての相対 URL は `baseURL` を使用して *正規化* されます。 たとえば、`baseURL = https://example.com/` と仮定すると、相対 URL である `/css/foo.css` は絶対 URL である `https://example.com/css/foo.css` に変換されます。
 
-Benefits of canonicalization include fixing all URLs to be absolute, which may aid with some parsing tasks. Note, however, that all modern browsers handle this on the client without issue.
+正規化の利点は、すべての URL を絶対 URL に固定することが含まれます。これは、一部のパース作業に役立つ場合があります。しかし、最近のブラウザはすべて、クライアント側で問題なくこれを処理することに注意してください。
 
-Benefits of non-canonicalization include being able to have scheme-relative resource inclusion; e.g., so that `http` vs `https` can be decided according to how the page was retrieved.
+非正規化の利点としては、スキームに関係なくリソースを含めることができます。 たとえば、`http` と `https` は、ページをどのように取得したかに応じて決定できます。
 
 {{% note "`canonifyURLs` default change" %}}
-In the May 2014 release of Hugo v0.11, the default value of `canonifyURLs` was switched from `true` to `false`, which we think is the better default and should continue to be the case going forward. Please verify and adjust your website accordingly if you are upgrading from v0.10 or older versions.
+2014年5月にリリースされた Hugo v0.11 では、`canonifyURLs` のデフォルト値が `true` から `false` に変更されましたが、これはより良いデフォルトであり、今後もそうあるべきと考えています。 v0.10 またはそれ以前のバージョンからアップグレードする場合は、適宜確認・調整してください。
 {{% /note %}}
 
-To find out the current value of `canonifyURLs` for your website, you may use the handy `hugo config` command added in v0.13.
+Web サイトの `canonifyURLs` の現在の値を知るには、v0.13 で追加された便利な `hugo config` コマンドを使用できます。
 
 ```txt
 hugo config | grep -i canon
 ```
 
-Or, if you are on Windows and do not have `grep` installed:
+または、Windows で、`grep` がインストールされていない場合は、以下のコマンドを実行します。
 
 ```txt
 hugo config | FINDSTR /I canon
 ```
 
-## Set URL in Front Matter
+## フロントマターに URL を設定する {#set-url-in-front-matter}
 
-In addition to specifying permalink values in your site configuration for different content sections, Hugo provides even more granular control for individual pieces of content.
+さまざまなコンテンツセクションのサイト設定でパーマリンク値を指定することに加えて、Hugo では、個々のコンテンツをさらに細かく制御できます。
 
-Both `slug` and `url` can be defined in individual front matter. For more information on content destinations at build time, see [Content Organization][contentorg].
+`slug` と `url` の両方は、個々のフロントマターで定義できます。ビルド時のコンテンツの行き先についての詳細は、[「コンテンツ構成」][contentorg] を参照してください。
 
-From Hugo 0.55, you can use URLs relative to the current site context (the language), which makes it simpler to maintain. For a Japanese translation, both of the following examples would get the same URL:
+Hugo 0.55 からは、現在のサイトのコンテキスト (言語) に対する相対的な URL を使用できるようになり、メンテナンスがより簡単になりました。日本語の翻訳の場合、以下の例の両方が同じ URL になります。
 
 ```markdown
 ---
@@ -310,13 +306,13 @@ url: "custom/foo"
 ---
 ```
 
-## Relative URLs
+## 相対 URL {#relative-urls}
 
-By default, all relative URLs are left unchanged by Hugo, which can be problematic when you want to make your site browsable from a local file system.
+Hugo のデフォルトでは、相対 URL はすべて変更されないため、ローカル ファイルシステムからサイトを閲覧できるようにしたい場合に問題となることがあります。
 
-Setting `relativeURLs` to `true` in your [site configuration][config] will cause Hugo to rewrite all relative URLs to be relative to the current content.
+[サイト設定][config] で `relativeURLs` を `true` に設定すると、Hugo はすべての相対 URL を現在のコンテンツからの相対 URL に書き換えます。
 
-For example, if your `/posts/first/` page contains a link to `/about/`, Hugo will rewrite the URL to `../../about/`.
+たとえば、`/posts/first/` ページに `/about/` へのリンクがある場合、Hugo は URL を `../../about/` に書き換えます。
 
 [config]: /getting-started/configuration/
 [contentorg]: /content-management/organization/

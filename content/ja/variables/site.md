@@ -7,7 +7,7 @@ date: "2017-02-01"
 description: Many, but not all, site-wide variables are defined in your site's configuration.
   However, Hugo provides a number of built-in variables for convenient access to global
   values in your templates.
-draft: true
+draft: false
 keywords:
 - global
 - site

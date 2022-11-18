@@ -2,24 +2,23 @@
 categories:
 - asset management
 date: "2018-07-14"
-description: Hugo Pipes allows the creation of a resource from an asset file using
-  Go Template.
-draft: true
+description: Hugo パイプでは、Go テンプレートを使用してアセットファイルからリソースを作成できます。
+draft: false
 keywords: []
-linkTitle: Resource from Template
+linkTitle: テンプレートからのリソース
 menu:
   docs:
     parent: pipes
     weight: 80
 publishdate: "2018-07-14"
 sections_weight: 80
-title: Creating a resource from template
+title: テンプレートからリソースを作成する
 weight: 80
 ---
 
-In order to use Hugo Pipes function on an asset file containing Go Template magic the function `resources.ExecuteAsTemplate` must be used.
+Go テンプレートマジックを含むアセットファイルで Hugo パイプの関数を使用するには、 `resources.ExecuteAsTemplate` 関数を使用する必要があります。
 
-The function takes three arguments: the resource target path, the template context, and the resource object.
+この関数は、リソースターゲットのパス、テンプレート コンテキスト、およびリソースオブジェクトの 3 つの引数を取ります。
 
 ```go-html-template
 // assets/sass/template.scss

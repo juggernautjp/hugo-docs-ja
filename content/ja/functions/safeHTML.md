@@ -5,7 +5,7 @@ date: "2017-02-01"
 deprecated: false
 description: Declares a provided string as a "safe" HTML document to avoid escaping
   by Go templates.
-draft: true
+draft: false
 hugoversion: null
 keywords:
 - strings

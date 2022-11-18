@@ -5,70 +5,69 @@ categories:
 - project organization
 - fundamentals
 date: "2017-02-01"
-description: Hugo ships with an internal Disqus template, but this isn't the only
-  commenting system that will work with your new Hugo website.
-draft: true
+description: Hugo には Disqus テンプレートが内蔵されていますが、新しい Hugo の Web サイトで使用できるコメントシステムはこれだけではありません。
+draft: false
 keywords:
 - sections
 - content
 - organization
-linktitle: Comments
+linktitle: コメント
 menu:
   docs:
     parent: content-management
     weight: 140
 publishdate: "2017-02-01"
-title: Comments
+title: コメント
 toc: true
 weight: 140
 ---
 
-Hugo ships with support for [Disqus](https://disqus.com/), a third-party service that provides comment and community capabilities to websites via JavaScript.
+Hugo では、JavaScript を介して Web サイトにコメントやコミュニティの機能を提供するサードパーティ製サービスである [Disqus](https://disqus.com/) をサポートしています。
 
-Your theme may already support Disqus, but if not, it is easy to add to your templates via [Hugo's built-in Disqus partial][disquspartial].
+あなたのテーマはすでに Disqus をサポートしているかもしれませんが、そうでない場合は、[Hugo 内蔵の Disqus パーシャル (部分テンプレート)][disquspartial] を介してテンプレートに簡単に追加できます。
 
-## Add Disqus
+## Disqus を追加する {#add-disqus}
 
-Hugo comes with all the code you need to load Disqus into your templates. Before adding Disqus to your site, you'll need to [set up an account][disqussetup].
+Hugo には Disqus をテンプレートに読み込むために必要なすべてのコードが付属しています。Disqus をあなたのサイトに追加する前に、[Disqus アカウントの設定][disqussetup] が必要です。
 
-### Configure Disqus
+### Disqus を設定する {#configure-disqus}
 
-Disqus comments require you set a single value in your [site's configuration file][configuration] like so:
+Disqus のコメントでは、[サイトの設定ファイル][configuration] に以下のような 1 つの値を設定する必要があります。
 
 {{< code-toggle copy="false" >}}
 disqusShortname = "yourDisqusShortname"
 {{</ code-toggle >}}
 
-For many websites, this is enough configuration. However, you also have the option to set the following in the [front matter][] of a single content file:
+多くの Web サイトでは、これで十分な設定です。しかし、1つのコンテンツファイルの [フロントマター][front matter] に以下を設定するオプションも用意されています。
 
 * `disqus_identifier`
 * `disqus_title`
 * `disqus_url`
 
-### Render Hugo's Built-in Disqus Partial Template
+### Hugo 内蔵の Disqus 部分テンプレートをレンダリングする {#render-hugos-built-in-disqus-partial-template}
 
-Disqus has its own [internal template](https://gohugo.io/templates/internal/#disqus) available, to render it add the following code where you want comments to appear:
+Disqus は独自の [内部テンプレート](https://gohugo.io/templates/internal/#disqus) を用意しており、コメントを表示する場所に以下のコードを追加してレンダリングします。
 
 ```go-html-template
 {{ template "_internal/disqus.html" . }}
 ```
 
-## Alternatives
+## 代替案 {#alternatives}
 
-These are some alternatives to Disqus:
+以下は Disqus の代替となるものです。
 
-* [Cactus Comments](https://cactus.chat/docs/integrations/hugo/) (Open Source, Matrix appservice, Docker install)
-* [Commento](https://commento.io/) (Open Source, available as a service, local install, or docker image)
+* [Cactus Comments](https://cactus.chat/docs/integrations/hugo/) (オープンソース、Matrix アプリサービス、Docker インストール)
+* [Commento](https://commento.io/) (オープンソース、サービス、ローカルインストール、または Docker イメージとして利用可能)
 * [Graph Comment](https://graphcomment.com/)
-* [Hyvor Talk](https://talk.hyvor.com/) (Available as a service)
+* [Hyvor Talk](https://talk.hyvor.com/) (サービスとして利用可能)
 * [IntenseDebate](https://intensedebate.com/)
-* [Isso](https://posativ.org/isso/) (Self-hosted, Python) ([tutorial][issotutorial])
+* [Isso](https://posativ.org/isso/) (セルフホスティング、Python) ([チュートリアル][issotutorial])
 * [Muut](https://muut.com/)
-* [Remark42](https://remark42.com/) (Open source, Golang, Easy to run docker)
+* [Remark42](https://remark42.com/) (オープンソース、Golang、簡単に実行できる docker)
 * [ReplyBox](https://getreplybox.com/)
 * [Staticman](https://staticman.net/)
-* [Talkyard](https://blog-comments.talkyard.io/) (Open source, & serverless hosting)
-* [Utterances](https://utteranc.es/) (Open source, GitHub comments widget built on GitHub issues)
+* [Talkyard](https://blog-comments.talkyard.io/) (オープンソース、サーバーレス ホスティング)
+* [Utterances](https://utteranc.es/) (オープンソース、GitHub のイシューで構築された GitHub コメントウィジェット)
 
 [configuration]: /getting-started/configuration/
 [disquspartial]: /templates/internal/#disqus

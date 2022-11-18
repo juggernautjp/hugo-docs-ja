@@ -1,16 +1,16 @@
 {
   "count": {
-    "draft": 506,
-    "notdraft": 6,
+    "draft": 406,
+    "notdraft": 106,
     "total": 512,
-    "ratio": 0.01171875
+    "ratio": 20.703125
   },
   "paths": {
     "files": [
       {
         "path": "content\\ja\\_index.md",
         "title": "世界最速で Web サイトを構築するフレームワーク",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\about\\_index.md",
@@ -20,12 +20,12 @@
       {
         "path": "content\\ja\\about\\benefits.md",
         "title": "静的サイトジェネレーターのメリット",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\about\\features.md",
         "title": "Hugo の機能",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\about\\hugo-and-gdpr.md",
@@ -35,7 +35,7 @@
       {
         "path": "content\\ja\\about\\license.md",
         "title": "Apache License",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\about\\security-model\\index.md",
@@ -45,12 +45,12 @@
       {
         "path": "content\\ja\\about\\what-is-hugo.md",
         "title": "Hugo とは",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\commands\\hugo.md",
         "title": "hugo",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\commands\\hugo_completion.md",
@@ -249,123 +249,123 @@
       },
       {
         "path": "content\\ja\\content-management\\_index.md",
-        "title": "Content Management",
-        "draft": true
+        "title": "コンテンツ管理",
+        "draft": false
       },
       {
         "path": "content\\ja\\content-management\\archetypes.md",
-        "title": "Archetypes",
-        "draft": true
+        "title": "アーキタイプ",
+        "draft": false
       },
       {
         "path": "content\\ja\\content-management\\build-options.md",
-        "title": "Build Options",
-        "draft": true
+        "title": "ビルドオプション",
+        "draft": false
       },
       {
         "path": "content\\ja\\content-management\\comments.md",
-        "title": "Comments",
-        "draft": true
+        "title": "コメント",
+        "draft": false
       },
       {
         "path": "content\\ja\\content-management\\cross-references.md",
-        "title": "Links and Cross References",
-        "draft": true
+        "title": "リンクとクロスリファレンス",
+        "draft": false
       },
       {
         "path": "content\\ja\\content-management\\diagrams.md",
-        "title": "Diagrams",
-        "draft": true
+        "title": "ダイアグラム",
+        "draft": false
       },
       {
         "path": "content\\ja\\content-management\\formats.md",
-        "title": "Content Formats",
-        "draft": true
+        "title": "コンテンツ形式",
+        "draft": false
       },
       {
         "path": "content\\ja\\content-management\\front-matter.md",
-        "title": "Front Matter",
-        "draft": true
+        "title": "フロントマター",
+        "draft": false
       },
       {
         "path": "content\\ja\\content-management\\image-processing\\index.md",
-        "title": "Image Processing",
-        "draft": true
+        "title": "画像処理",
+        "draft": false
       },
       {
         "path": "content\\ja\\content-management\\menus.md",
-        "title": "Menus",
-        "draft": true
+        "title": "メニュー",
+        "draft": false
       },
       {
         "path": "content\\ja\\content-management\\multilingual.md",
-        "title": "Multilingual Mode",
-        "draft": true
+        "title": "多言語対応モード",
+        "draft": false
       },
       {
         "path": "content\\ja\\content-management\\organization\\index.md",
-        "title": "Content Organization",
-        "draft": true
+        "title": "コンテンツ構成",
+        "draft": false
       },
       {
         "path": "content\\ja\\content-management\\page-bundles.md",
-        "title": "Page Bundles",
-        "draft": true
+        "title": "ページバンドル",
+        "draft": false
       },
       {
         "path": "content\\ja\\content-management\\page-resources.md",
-        "title": "Page Resources",
-        "draft": true
+        "title": "ページリソース",
+        "draft": false
       },
       {
         "path": "content\\ja\\content-management\\related.md",
-        "title": "Related Content",
-        "draft": true
+        "title": "関連コンテンツ",
+        "draft": false
       },
       {
         "path": "content\\ja\\content-management\\sections.md",
-        "title": "Content Sections",
-        "draft": true
+        "title": "コンテンツセクション",
+        "draft": false
       },
       {
         "path": "content\\ja\\content-management\\shortcodes.md",
-        "title": "Shortcodes",
-        "draft": true
+        "title": "ショートコード",
+        "draft": false
       },
       {
         "path": "content\\ja\\content-management\\static-files.md",
-        "title": "Static Files",
-        "draft": true
+        "title": "静的ファイル",
+        "draft": false
       },
       {
         "path": "content\\ja\\content-management\\summaries.md",
-        "title": "Content Summaries",
-        "draft": true
+        "title": "コンテンツサマリー",
+        "draft": false
       },
       {
         "path": "content\\ja\\content-management\\syntax-highlighting.md",
-        "title": "Syntax Highlighting",
-        "draft": true
+        "title": "シンタックスハイライト",
+        "draft": false
       },
       {
         "path": "content\\ja\\content-management\\taxonomies.md",
-        "title": "Taxonomies",
-        "draft": true
+        "title": "タクソノミー",
+        "draft": false
       },
       {
         "path": "content\\ja\\content-management\\toc.md",
-        "title": "Table of Contents",
-        "draft": true
+        "title": "目次",
+        "draft": false
       },
       {
         "path": "content\\ja\\content-management\\types.md",
-        "title": "Content Types",
-        "draft": true
+        "title": "コンテンツタイプ",
+        "draft": false
       },
       {
         "path": "content\\ja\\content-management\\urls.md",
-        "title": "URL Management",
-        "draft": true
+        "title": "URL 管理",
+        "draft": false
       },
       {
         "path": "content\\ja\\contribute\\_index.md",
@@ -400,7 +400,7 @@
       {
         "path": "content\\ja\\functions\\GetPage.md",
         "title": ".GetPage",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\RenderString.md",
@@ -409,8 +409,8 @@
       },
       {
         "path": "content\\ja\\functions\\_index.md",
-        "title": "Functions Quick Reference",
-        "draft": true
+        "title": "関数のクイックリファレンス",
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\abslangurl.md",
@@ -480,7 +480,7 @@
       {
         "path": "content\\ja\\functions\\dateformat.md",
         "title": "time.Format",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\default.md",
@@ -530,7 +530,7 @@
       {
         "path": "content\\ja\\functions\\first.md",
         "title": "first",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\float.md",
@@ -614,8 +614,8 @@
       },
       {
         "path": "content\\ja\\functions\\images\\index.md",
-        "title": "Image Filters",
-        "draft": true
+        "title": "画像フィルター",
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\in.md",
@@ -645,7 +645,7 @@
       {
         "path": "content\\ja\\functions\\isset.md",
         "title": "isset",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\jsonify.md",
@@ -660,7 +660,7 @@
       {
         "path": "content\\ja\\functions\\lang.md",
         "title": "lang",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\last.md",
@@ -695,7 +695,7 @@
       {
         "path": "content\\ja\\functions\\math.md",
         "title": "Math",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\md5.md",
@@ -725,7 +725,7 @@
       {
         "path": "content\\ja\\functions\\param.md",
         "title": ".Param",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\partialCached.md",
@@ -865,7 +865,7 @@
       {
         "path": "content\\ja\\functions\\safeHTML.md",
         "title": "safeHTML",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\safeHTMLAttr.md",
@@ -1055,52 +1055,52 @@
       {
         "path": "content\\ja\\functions\\with.md",
         "title": "with",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\getting-started\\_index.md",
-        "title": "Get Started",
-        "draft": true
+        "title": "Hugo 入門",
+        "draft": false
       },
       {
         "path": "content\\ja\\getting-started\\configuration-markup.md",
-        "title": "Configure Markup",
-        "draft": true
+        "title": "マークアップの設定",
+        "draft": false
       },
       {
         "path": "content\\ja\\getting-started\\configuration.md",
-        "title": "Configure Hugo",
-        "draft": true
+        "title": "Hugo の設定",
+        "draft": false
       },
       {
         "path": "content\\ja\\getting-started\\directory-structure.md",
-        "title": "Directory Structure",
-        "draft": true
+        "title": "ディレクトリ構造",
+        "draft": false
       },
       {
         "path": "content\\ja\\getting-started\\external-learning-resources\\index.md",
-        "title": "External Learning Resources",
-        "draft": true
+        "title": "外部の学習リソース",
+        "draft": false
       },
       {
         "path": "content\\ja\\getting-started\\installing.md",
-        "title": "Install Hugo",
-        "draft": true
+        "title": "Hugo をインストールする",
+        "draft": false
       },
       {
         "path": "content\\ja\\getting-started\\quick-start.md",
-        "title": "Quick Start",
-        "draft": true
+        "title": "クイックスタート",
+        "draft": false
       },
       {
         "path": "content\\ja\\getting-started\\usage.md",
-        "title": "Basic Usage",
-        "draft": true
+        "title": "基本的な使用方法",
+        "draft": false
       },
       {
         "path": "content\\ja\\hosting-and-deployment\\_index.md",
-        "title": "Hosting \u0026 Deployment",
-        "draft": true
+        "title": "ホスティングとデプロイメント",
+        "draft": false
       },
       {
         "path": "content\\ja\\hosting-and-deployment\\deployment-with-rclone.md",
@@ -1169,98 +1169,98 @@
       },
       {
         "path": "content\\ja\\hugo-modules\\_index.md",
-        "title": "Hugo Modules",
-        "draft": true
+        "title": "Hugo モジュール",
+        "draft": false
       },
       {
         "path": "content\\ja\\hugo-modules\\configuration.md",
-        "title": "Configure Modules",
-        "draft": true
+        "title": "モジュールを設定する",
+        "draft": false
       },
       {
         "path": "content\\ja\\hugo-modules\\theme-components.md",
-        "title": "Theme Components",
-        "draft": true
+        "title": "テーマ コンポーネント",
+        "draft": false
       },
       {
         "path": "content\\ja\\hugo-modules\\use-modules.md",
-        "title": "Use Hugo Modules",
-        "draft": true
+        "title": "Hugo モジュールを使用する",
+        "draft": false
       },
       {
         "path": "content\\ja\\hugo-pipes\\_index.md",
-        "title": "Hugo Pipes Overview",
-        "draft": true
+        "title": "Hugo パイプの概要",
+        "draft": false
       },
       {
         "path": "content\\ja\\hugo-pipes\\babel.md",
         "title": "Babel",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\hugo-pipes\\bundling.md",
-        "title": "Asset bundling",
-        "draft": true
+        "title": "アセットバンドル",
+        "draft": false
       },
       {
         "path": "content\\ja\\hugo-pipes\\fingerprint.md",
-        "title": "Fingerprinting and SRI",
-        "draft": true
+        "title": "フィンガープリントと SRI",
+        "draft": false
       },
       {
         "path": "content\\ja\\hugo-pipes\\introduction.md",
-        "title": "Hugo Pipes Introduction",
-        "draft": true
+        "title": "Hugo パイプ入門",
+        "draft": false
       },
       {
         "path": "content\\ja\\hugo-pipes\\js.md",
-        "title": "JavaScript Building",
-        "draft": true
+        "title": "JavaScript のビルド",
+        "draft": false
       },
       {
         "path": "content\\ja\\hugo-pipes\\minification.md",
-        "title": "Asset minification",
-        "draft": true
+        "title": "アセットのミニファイ",
+        "draft": false
       },
       {
         "path": "content\\ja\\hugo-pipes\\postcss.md",
         "title": "PostCSS",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\hugo-pipes\\postprocess.md",
-        "title": "PostProcess",
-        "draft": true
+        "title": "後処理 (PostProcess)",
+        "draft": false
       },
       {
         "path": "content\\ja\\hugo-pipes\\resource-from-string.md",
-        "title": "Creating a resource from a string",
-        "draft": true
+        "title": "文字列からリソースを作成する",
+        "draft": false
       },
       {
         "path": "content\\ja\\hugo-pipes\\resource-from-template.md",
-        "title": "Creating a resource from template",
-        "draft": true
+        "title": "テンプレートからリソースを作成する",
+        "draft": false
       },
       {
         "path": "content\\ja\\hugo-pipes\\scss-sass.md",
         "title": "Sass / SCSS",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\maintenance\\_index.md",
-        "title": "Maintenance",
+        "title": "メンテナンス",
         "draft": true
       },
       {
         "path": "content\\ja\\myshowcase\\bio.md",
         "title": "",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\myshowcase\\index.md",
         "title": "Myshowcase",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\news\\0.10-relnotes\\index.md",
@@ -2119,8 +2119,8 @@
       },
       {
         "path": "content\\ja\\news\\_index.md",
-        "title": "Hugo News",
-        "draft": true
+        "title": "Hugo ニュース",
+        "draft": false
       },
       {
         "path": "content\\ja\\news\\hugo-macos-intel-vs-arm\\index.html",
@@ -2344,133 +2344,133 @@
       },
       {
         "path": "content\\ja\\templates\\404.md",
-        "title": "Custom 404 Page",
-        "draft": true
+        "title": "カスタム 404 ページ",
+        "draft": false
       },
       {
         "path": "content\\ja\\templates\\_index.md",
-        "title": "Templates",
-        "draft": true
+        "title": "テンプレート",
+        "draft": false
       },
       {
         "path": "content\\ja\\templates\\alternatives.md",
-        "title": "DEPRECATED - Alternative Templating Languages",
-        "draft": true
+        "title": "【非推奨】 - 代替テンプレート言語",
+        "draft": false
       },
       {
         "path": "content\\ja\\templates\\base.md",
-        "title": "Base Templates and Blocks",
-        "draft": true
+        "title": "ベーステンプレートとブロック",
+        "draft": false
       },
       {
         "path": "content\\ja\\templates\\data-templates.md",
-        "title": "Data Templates",
-        "draft": true
+        "title": "データテンプレート",
+        "draft": false
       },
       {
         "path": "content\\ja\\templates\\files.md",
-        "title": "Local File Templates",
-        "draft": true
+        "title": "ローカルファイル テンプレート",
+        "draft": false
       },
       {
         "path": "content\\ja\\templates\\homepage.md",
-        "title": "Homepage Template",
-        "draft": true
+        "title": "ホームページ テンプレート",
+        "draft": false
       },
       {
         "path": "content\\ja\\templates\\internal.md",
-        "title": "Internal Templates",
-        "draft": true
+        "title": "内部テンプレート",
+        "draft": false
       },
       {
         "path": "content\\ja\\templates\\introduction.md",
         "title": "Introduction to Hugo Templating",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\templates\\lists.md",
         "title": "Lists of Content in Hugo",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\templates\\lookup-order.md",
-        "title": "Hugo's Lookup Order",
-        "draft": true
+        "title": "Hugo の検索順序",
+        "draft": false
       },
       {
         "path": "content\\ja\\templates\\menu-templates.md",
         "title": "Menu Templates",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\templates\\output-formats.md",
-        "title": "Custom Output Formats",
-        "draft": true
+        "title": "カスタム出力形式",
+        "draft": false
       },
       {
         "path": "content\\ja\\templates\\pagination.md",
         "title": "Pagination",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\templates\\partials.md",
-        "title": "Partial Templates",
-        "draft": true
+        "title": "部分テンプレート",
+        "draft": false
       },
       {
         "path": "content\\ja\\templates\\render-hooks.md",
         "title": "Markdown Render Hooks",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\templates\\robots.md",
         "title": "Robots.txt File",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\templates\\rss.md",
         "title": "RSS Templates",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\templates\\section-templates.md",
-        "title": "Section Page Templates",
-        "draft": true
+        "title": "セクションページ テンプレート",
+        "draft": false
       },
       {
         "path": "content\\ja\\templates\\shortcode-templates.md",
-        "title": "Create Your Own Shortcodes",
-        "draft": true
+        "title": "独自のショートコードを作成する",
+        "draft": false
       },
       {
         "path": "content\\ja\\templates\\single-page-templates.md",
-        "title": "Single Page Templates",
-        "draft": true
+        "title": "シングルページ テンプレート",
+        "draft": false
       },
       {
         "path": "content\\ja\\templates\\sitemap-template.md",
         "title": "Sitemap Templates",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\templates\\taxonomy-templates.md",
         "title": "Taxonomy Templates",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\templates\\template-debugging.md",
         "title": "Template Debugging",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\templates\\views.md",
         "title": "Content View Templates",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\tools\\_index.md",
-        "title": "Developer Tools",
-        "draft": true
+        "title": "デベロッパーツール",
+        "draft": false
       },
       {
         "path": "content\\ja\\tools\\editors.md",
@@ -2504,8 +2504,8 @@
       },
       {
         "path": "content\\ja\\troubleshooting\\_index.md",
-        "title": "Troubleshoot",
-        "draft": true
+        "title": "トラブルシューティング",
+        "draft": false
       },
       {
         "path": "content\\ja\\troubleshooting\\build-performance.md",
@@ -2519,8 +2519,8 @@
       },
       {
         "path": "content\\ja\\variables\\_index.md",
-        "title": "Variables and Params",
-        "draft": true
+        "title": "変数とパラメータ",
+        "draft": false
       },
       {
         "path": "content\\ja\\variables\\files.md",
@@ -2534,13 +2534,13 @@
       },
       {
         "path": "content\\ja\\variables\\menus.md",
-        "title": "Menu Entry Properties",
-        "draft": true
+        "title": "メニューエントリ プロパティ",
+        "draft": false
       },
       {
         "path": "content\\ja\\variables\\page.md",
         "title": "Page Variables",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\variables\\pages.md",
@@ -2555,7 +2555,7 @@
       {
         "path": "content\\ja\\variables\\site.md",
         "title": "Site Variables",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\variables\\sitemap.md",

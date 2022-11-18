@@ -5,46 +5,44 @@ aliases:
 categories:
 - templates
 date: "2017-02-01"
-description: The homepage of a website is often formatted differently than the other
-  pages. For this reason, Hugo makes it easy for you to define your new site's homepage
-  as a unique template.
-draft: true
+description: 多くの場合、Web サイトのホームページは、他のページとは異なる形式になっています。 このため、Hugo では、新しいサイトのホームページを独自のテンプレートとして簡単に定義できます。
+draft: false
 keywords:
 - homepage
 lastmod: "2017-02-01"
-linktitle: Homepage Template
+linktitle: ホームページ テンプレート
 menu:
   docs:
     parent: templates
     weight: 30
 publishdate: "2017-02-01"
 sections_weight: 30
-title: Homepage Template
+title: ホームページ テンプレート
 toc: true
 weight: 30
 ---
 
-Homepage is a `Page` and therefore has all the [page variables][pagevars] and [site variables][sitevars] available for use.
+ホームページは `Page` なので、すべての [ページ変数][pagevars] と [サイト変数][sitevars] を使用できます。
 
 {{% note "The Only Required Template" %}}
-The homepage template is the *only* required template for building a site and therefore useful when bootstrapping a new site and template. It is also the only required template if you are developing a single-page website.
+ホームページ テンプレートは、サイトをビルドするために必要な *唯一の* テンプレートであるため、新しいサイトとテンプレートをブートストラップするときに役立ちます。 また、シングルページの Web サイトを開発している場合にも、このテンプレートが唯一の必須テンプレートとなります。
 {{% /note %}}
 
 {{< youtube ut1xtRZ1QOA >}}
 
-## Homepage Template Lookup Order
+## ホームページ テンプレートの検索順序 {#homepage-template-lookup-order}
 
-See [Template Lookup](/templates/lookup-order/).
+[テンプレートの検索順序](/templates/lookup-order/) を参照してください。
 
-## Add Content and Front Matter to the Homepage
+## ホームページにコンテンツとフロントマターを追加する {#add-content-and-front-matter-to-the-homepage}
 
-The homepage, similar to other [list pages in Hugo][lists], accepts content and front matter from an `_index.md` file. This file should live at the root of your `content` folder (i.e., `content/_index.md`). You can then add body copy and metadata to your homepage the way you would any other content file.
+ホームページは、他の [Hugo のリストページ][lists] と同様に、`_index.md` ファイルからコンテンツとフロントマターを受け取ります。 このファイルは、`content` フォルダーのルート (つまり、`content/_index.md`) にある必要があります。 その後、他のコンテンツファイルと同様に、ボディコピーとメタデータをホームページに追加できます。
 
-See the homepage template below or [Content Organization][contentorg] for more information on the role of `_index.md` in adding content and front matter to list pages.
+リストページにコンテンツやフロントマターを追加する際の `_index.md` の役割については、下記のホームページ テンプレートか、[コンテンツ構成][contentorg] を参照してください。
 
-## Example Homepage Template
+## ホームページ テンプレートの例 {#example-homepage-template}
 
-The following is an example of a homepage template that uses [partial][partials], [base][] templates, and a content file at `content/_index.md` to populate the `{{.Title}}` and `{{.Content}}` [page variables][pagevars].
+以下は、[パーシャル (部分テンプレート)][partials], [ベース][base] テンプレートと `content/_index.md` のコンテンツファイルを使って、 `{{.Title}}` と `{.Content}}` [ページ変数][pagevars] に値を設定したホームページ テンプレートの例です。
 
 {{< code file="layouts/index.html" download="index.html" >}}
 {{ define "main" }}
@@ -56,7 +54,7 @@ The following is an example of a homepage template that uses [partial][partials]
         {{ end }}
       </header>
       <div class="homepage-content">
-        <!-- Note that the content for index.html, as a sort of list page, will pull from content/_index.md -->
+        <!-- index.html のコンテンツは、一種のリストページとして、content/_index.md から取得されることに注意してください -->
         {{.Content}}
       </div>
       <div>

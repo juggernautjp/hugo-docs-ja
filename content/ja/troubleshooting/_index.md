@@ -3,12 +3,12 @@ aliases:
 - /troubleshooting/faqs/
 - /faqs/
 date: "2017-02-01"
-description: Frequently asked questions and known issues pulled from the Hugo Discuss
+description: Hugo Discuss から抜粋した、よくある質問と既知の問題点
   forum.
-draft: true
+draft: false
 hidesectioncontents: false
 lastmod: "2017-02-01"
-linktitle: Troubleshoot
+linktitle: トラブルシューティング
 menu:
   docs:
     parent: troubleshooting
@@ -16,11 +16,11 @@ menu:
 notesforauthors: null
 publishdate: "2017-02-01"
 slug: null
-title: Troubleshoot
+title: トラブルシューティング
 toc: false
 weight: 1
 ---
 
-The Troubleshooting section includes known issues, recent workarounds, and FAQs pulled from the [Hugo Discussion Forum][forum].
+トラブルシューティング セクションには、既知の問題、最近の回避策、[Hugo ディスカッション フォーラム][forum]から引っ張ってきた FAQ が含まれています。
 
 [forum]: https://discourse.gohugo.io

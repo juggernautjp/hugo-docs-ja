@@ -2,26 +2,27 @@
 categories:
 - asset management
 date: "2020-04-09"
-description: Allows delaying of resource transformations to after the build.
-draft: true
+description: ビルド後にリソース変換を遅らせることができます。
+draft: false
 keywords: []
+linkTitle: 後処理
 menu:
   docs:
     parent: pipes
     weight: 39
 sections_weight: 39
-title: PostProcess
+title: 後処理 (PostProcess)
 weight: 39
 ---
 
-Marking a resource with `resources.PostProcess` delays any transformations to after the build, typically because one or more of the steps in the transformation chain depends on the result of the build (e.g. files in `public`).{{< new-in "0.69.0" >}}
+リソースに `resources.PostProcess` というマークを付けると、変換をビルド後に遅らせます。これは、通常、変換チェーンのステップの 1つ以上がビルドの結果 (たとえば、`public` にあるファイルなど) に依存するためです。 {{< new-in "0.69.0" >}}
 
-A prime use case for this is [CSS purging with PostCSS](#css-purging-with-postcss).
+その代表的な使用例が、[「PostCSS による CSS パージ」](#css-purging-with-postcss) です。
 
-There are currently two limitations to this:
+現在、これには以下の 2つの制約があります。
 
-1. This only works in `*.html` templates (i.e. templates that produces HTML files).
-2. You cannot manipulate the values returned from the resource's methods. E.g. the `upper` in this example will not work as expected:
+1. これは `*.html` テンプレート (すなわち、HTML ファイルを生成するテンプレート) でのみ動作します。
+2. リソースのメソッドから返された値を操作することはできません。 たとえば、以下の例の `upper` は期待どおりに動作しません。
 
     ```go-html-template
     {{ $css := resources.Get "css/main.css" }}
@@ -29,13 +30,13 @@ There are currently two limitations to this:
     {{ $css.RelPermalink | upper }}
     ```
 
-## CSS purging with PostCSS
+## PostCSS による CSS パージ {#css-purging-with-postcss}
 
 {{% note %}}
-There are several ways to set up CSS purging with PostCSS in Hugo. If you have a simple project, you should consider going the simpler route and drop the use of `resources.PostProcess` and just extract keywords from the templates. See the [Tailwind documentation](https://tailwindcss.com/docs/controlling-file-size/#app) for some examples.
+Hugo が PostCSS を使用して CSS のパージを設定するには、いくつかの方法があります。シンプルなプロジェクトであれば、よりシンプルな方法で `resources.PostProcess` を使用せず、テンプレートからキーワードを抽出するだけにすることを検討すべきです。 いくつかの例については、[Tailwind のドキュメント](https://tailwindcss.com/docs/controlling-file-size/#app) を参照してください。
 {{% /note %}}
 
-The below configuration will write a `hugo_stats.json` file to the project root as part of the build. If you're only using this for the production build, you should consider placing it below [config/production](/getting-started/configuration/#configuration-directory).
+以下の設定は、ビルドの一部としてプロジェクトルートに `hugo_stats.json` ファイルを書き込みます。 これを本番環境でのビルドにのみ使用するのであれば、[config/production](/getting-started/configuration/#configuration-directory) の下に置くことを検討すべきです。
 
 {{< code-toggle file="config" >}}
 [build]
@@ -60,7 +61,7 @@ module.exports = {
  };
 ```
 
-Note that in the example above, the "CSS purge step" will only be applied to the production build. This means that you need to do something like this in your head template to build and include your CSS:
+上記の例では、「CSS パージステップ」は本番ビルドにのみ適用されることに注意してください。つまり、CSS をビルドしてインクルードするには、head テンプレートで以下のような処理を行う必要があります。
 
 ```go-html-template
 {{ $css := resources.Get "css/main.css" }}

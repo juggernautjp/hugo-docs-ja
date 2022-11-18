@@ -5,7 +5,7 @@ date: "2017-02-01"
 deprecated: false
 description: Rebinds the context (`.`) within its scope and skips the block if the
   variable is absent or empty.
-draft: true
+draft: false
 hugoversion: null
 keywords:
 - conditionals

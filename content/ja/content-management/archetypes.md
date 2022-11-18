@@ -4,48 +4,48 @@ aliases:
 categories:
 - content management
 date: "2017-02-01"
-description: Archetypes are templates used when creating new content.
-draft: true
+description: アーキタイプは、新しいコンテンツを作るときに使用するテンプレートです。
+draft: false
 keywords:
 - archetypes
 - generators
 - metadata
 - front matter
-linktitle: Archetypes
+linktitle: アーキタイプ
 menu:
   docs:
     parent: content-management
     weight: 70
   quicklinks: null
 publishdate: "2017-02-01"
-title: Archetypes
+title: アーキタイプ
 toc: true
 weight: 70
 ---
 
-## What are Archetypes?
+## アーキタイプとは? {#what-are-archetypes}
 
-**Archetypes** are content template files in the [archetypes directory][] of your project that contain preconfigured [front matter][] and possibly also a content disposition for your website's [content types][]. These will be used when you run `hugo new`.
+**アーキタイプ** は、プロジェクトの [archetypes ディレクトリ][archetypes directory] にあるコンテンツ テンプレートファイルで、あらかじめ設定された [フロントマター][front matter] と、場合によっては Web サイトの [コンテンツタイプ][content types] に対応するコンテンツ配置を含んでいます。これらは `hugo new` を実行したときに使用されます。
 
 
-The `hugo new` uses the `content-section` to find the most suitable archetype template in your project. If your project does not contain any archetype files, it will also look in the theme.
+`hugo new` は `content-section` を使用して、プロジェクトに最適なアーキタイプ テンプレートを見つけます。 プロジェクトにアーキタイプ ファイルが含まれていない場合は、テーマの中も検索します。
 
 {{< code file="archetype-example.sh" >}}
 hugo new posts/my-first-post.md
 {{< /code >}}
 
-The above will create a new content file in `content/posts/my-first-post.md` using the first archetype file found of these:
+上記のコマンドにより、以下のテンプレートファイルで最初に見つかったアーキタイプ ファイルを使用して、`content/posts/my-first-post.md` に新しいコンテンツファイルを作成します。
 
 1. `archetypes/posts.md`
 2. `archetypes/default.md`
 3. `themes/my-theme/archetypes/posts.md`
 4. `themes/my-theme/archetypes/default.md`
 
-The last two list items are only applicable if you use a theme and it uses the `my-theme` theme name as an example.
+最後の 2 つのリスト項目は、テーマを使用している場合にのみ適用され、例として `my-theme` というテーマ名が使用されます。
 
-## Create a New Archetype Template
+## 新しいアーキタイプ テンプレートを作成する {#create-a-new-archetype-template}
 
-A fictional example for the section `newsletter` and the archetype file `archetypes/newsletter.md`. Create a new file in `archetypes/newsletter.md` and open it in a text editor.
+セクション `newsletter` とアーキタイプファイル `archetypes/newsletter.md` のための架空の例です。`archetypes/newsletter.md` に新しいファイルを作成し、テキストエディターで開いてください。
 
 {{< code file="archetypes/newsletter.md" >}}
 ---
@@ -56,28 +56,28 @@ draft: true
 
 **Insert Lead paragraph here.**
 
-## New Cool Posts
+## 新しいクールな投稿 {#new-cool-posts}
 
 {{ range first 10 ( where .Site.RegularPages "Type" "cool" ) }}
 * {{ .Title }}
 {{ end }}
 {{< /code >}}
 
-When you create a new newsletter with:
+新しいニュースレターを作成する場合は、以下のコマンドを実行します。
 
 ```bash
 hugo new newsletter/the-latest-cool.stuff.md
 ```
 
-It will create a new newsletter type of content file based on the archetype template.
+アーキタイプのテンプレートに基づき、新しいニュースレター タイプのコンテンツファイルが作成されます。
 
-**Note:** the site will only be built if the `.Site` is in use in the archetype file, and this can be time consuming for big sites.
+**注意:** サイトは、アーキタイプ ファイルで `.Site` が使用されている場合にのみ構築されます。これは、大規模なサイトでは時間がかかる可能性があります。
 
-The above _newsletter type archetype_ illustrates the possibilities: The full Hugo `.Site` and all of Hugo&#39;s template funcs can be used in the archetype file.
+上記の _newsletter タイプの archetype_ は、その可能性を示しています。Hugo の完全な `.Site` と Hugo のすべてのテンプレート関数がアーキタイプ ファイルの中で使用可能です。
 
-## Directory based archetypes
+## ディレクトリベースのアーキタイプ {#directory-based-archetypes}
 
-Since Hugo `0.49` you can use complete directories as archetype templates. Given this archetype directory:
+Hugo `0.49` 以降、完全なディレクトリをアーキタイプ テンプレートとして使用できます。 以下のようなアーキタイプ ディレクトリが与えられた場合は、
 
 ```bash
 archetypes
@@ -93,7 +93,7 @@ archetypes
 hugo new --kind post-bundle posts/my-post
 ```
 
-Will create a new folder in `/content/posts/my-post` with the same set of files as in the `post-bundle` archetypes folder. All content files (`index.md` etc.) can contain template logic, and will receive the correct `.Site` for the content's language.
+上記のコマンドによって、`/content/posts/my-post` ディレクトリに `post-bundle` archetypes フォルダーと同じファイル セットを含む新しいフォルダーを作成します。 すべてのコンテンツファイル (`index.md` など) にはテンプレート ロジックを含めることができ、コンテンツの言語に対応する正しい `.Site` を受け取ります。
 
 [archetypes directory]: /getting-started/directory-structure/
 [content types]: /content-management/types/

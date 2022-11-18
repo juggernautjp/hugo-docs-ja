@@ -2,8 +2,8 @@
 categories:
 - asset management
 date: "2020-07-20"
-description: Hugo Pipes can process JavaScript files with [ESBuild](https://github.com/evanw/esbuild).
-draft: true
+description: Hugo パイプは、 [ESBuild](https://github.com/evanw/esbuild) で JavaScript ファイルを処理できます。
+draft: false
 keywords: []
 menu:
   docs:
@@ -11,47 +11,47 @@ menu:
     weight: 45
 publishdate: "2020-07-20"
 sections_weight: 45
-title: JavaScript Building
+title: JavaScript のビルド
 weight: 45
 ---
 
-Any JavaScript resource file can be transpiled and "tree shaken" using `js.Build` which takes for argument either a string for the filepath or a dict of options listed below.
+任意の JavaScript リソース ファイルは、ファイルパスの文字列または以下にリストされているオプションの dict のいずれかを引数として取る `js.Build` を使用して、トランスパイルおよび[「Tree shaking」](https://developer.mozilla.org/ja/docs/Glossary/Tree_shaking) できます。
 
-### Options
+### オプション {#options}
 
 targetPath [string]
-: If not set, the source path will be used as the base target path.
-Note that the target path's extension may change if the target MIME type is different, e.g. when the source is TypeScript.
+: 設定されていない場合は、ソースパスがベースとなるターゲットパスとして使用されます。
+ターゲットパスの拡張子は、ソースが TypeScript である場合など、ターゲットの MIME タイプが異なる場合に変更される可能性があることに注意してください。
 
 params [map or slice] {{< new-in "0.78.0" >}}
-: Params that can be imported as JSON in your JS files, e.g.:
+: JS ファイルに JSON としてインポートできるパラメータです。たとえば、以下のようになります。
 
 ```go-html-template
 {{ $js := resources.Get "js/main.js" | js.Build (dict "params" (dict "api" "https://example.org/api")) }}
 ```
-And then in your JS file:
+そして、JS ファイルでは、次のように記述します。
 
 ```js
 import * as params from '@params';
 ```
 
-Note that this is meant for small data sets, e.g. config settings. For larger data, please put/mount the files into `/assets` and import them directly.
+これはコンフィグ設定などの小さなデータセットのためのものであることに注意してください。大きなデータの場合は、ファイルを `/assets` に置いたりマウントしたりして、直接インポートしてください。
 
 minify [bool]
-: Let `js.Build` handle the minification.
+: ミニファイ ([minification](https://developer.mozilla.org/ja/docs/Glossary/minification)) の処理は `js.Build` に任せます。
 
 inject [slice] {{< new-in "0.81.0" >}}
-: This option allows you to automatically replace a global variable with an import from another file. The path names must be relative to `assets`.  See https://esbuild.github.io/api/#inject
+: このオプションは、グローバル変数を他のファイルからインポートして自動的に置き換えることができます。パス名は `assets` からの相対パスである必要があります。詳細は、 https://esbuild.github.io/api/#inject を参照してください。
 
 shims {{< new-in "0.81.0" >}}
-: This option allows swapping out a component with another. A common use case is to load dependencies like React from a CDN  (with _shims_) when in production, but running with the full bundled `node_modules` dependency during development:
+: このオプションは、コンポーネントを別のものと交換することができます。一般的な使用例は、本番環境では React などの依存関係を CDN から (_shims_ を使用して) ロードすることですが、開発時には完全にバンドルされた `node_modules` 依存関係で実行します。
 
 ```go-html-template
 {{ $shims := dict "react" "js/shims/react.js"  "react-dom" "js/shims/react-dom.js" }}
 {{ $js = $js | js.Build dict "shims" $shims }}
 ```
 
-The _shim_ files may look like these:
+_shim_ ファイルは、以下のようなものです。
 
 ```js
 // js/shims/react.js
@@ -63,103 +63,104 @@ module.exports = window.React;
 module.exports = window.ReactDOM;
 ```
 
-With the above, these imports should work in both scenarios:
+以上により、これらのインポートは両方のシナリオで動作するはずです。
 
 ```js
 import * as React from 'react'
 import * as ReactDOM from 'react-dom';
 ```
+
 sourceMap [string, bool] {{< new-in "0.75.0" >}}
-: Let `js.Build` output sourceMap. Current only inline is supported. true defaults to inline.
-  One of: '`inline`, `external`
-  Default is "" (disabled)
+: `js.Build` に sourceMap を出力させます。現在は inline のみサポートしています。true のデフォルトは inline です。
+  値は、 `inline`、`external` のいずれかです。
+  デフォルトは "" (無効) です。
 
 target [string]
-: The language target.
-  One of: `es5`, `es2015`, `es2016`, `es2017`, `es2018`, `es2019`, `es2020` or `esnext`.
-  Default is `esnext`.
+: 言語ターゲットです。
+  値は、`es5`、`es2015`、`es2016`、`es2017`、`es2018`、`es2019`、`es2020`、`esnext` のいずれかです。
+  デフォルトは `esnext` です。
 
 externals [slice]
-: External dependencies. Use this to trim dependencies you know will never be executed. See https://esbuild.github.io/api/#external
-
+: 外部依存関係です。 これを使用して、決して実行されないことがわかっている依存関係を削除します。 詳細は、https://esbuild.github.io/api/#external を参照してください
 
 defines [map]
-: Allow to define a set of string replacement to be performed when building. Should be a map where each key is to be replaced by its value.
+: ビルド時に実行する一連の文字列置換を定義できます。 各キーがその値に置き換えられるマップである必要があります。
 
 ```go-html-template
 {{ $defines := dict "process.env.NODE_ENV" `"development"` }}
 ```
 
 format [string] {{< new-in "0.74.3" >}}
-: The output format.
-  One of: `iife`, `cjs`, `esm`.
-  Default is `iife`, a self-executing function, suitable for inclusion as a <script> tag.
+: 出力形式です。
+  値は、`iife`、`cjs`、`esm` のいずれかです。
+  デフォルトは `iife` で、自己実行型の関数であり、<script> タグとして含めるのに適しています。
 
 sourceMap
-: Whether to generate `inline` or `external` sourcemap from esbuild. External sourcemaps will be written to the target with the output filename + ".map". Input sourcemaps can be read from js.Build and node modules and combined into the output sourcemaps.
+: esbuild から `inline` または `external` のソースマップを生成するかどうかを指定します。 外部ソースマップは、出力ファイル名＋".map" でターゲットに書き込まれます。 入力ソースマップは js.Build や node モジュールから読み込み、出力ソースマップに結合できます。
 
-### Import JS code from /assets
+### /assets から JS コードをインポートする {"import-js-code-from-assets}
 
 {{< new-in "0.78.0" >}}
 
-Since Hugo `v0.78.0` `js.Build` has full support for the virtual union file system in [Hugo Modules](/hugo-modules/). You can see some simple examples in this [test project](https://github.com/gohugoio/hugoTestProjectJSModImports), but in short this means that you can do this:
+Hugo `v0.78.0` 以降、`js.Build` は [Hugo モジュール](/hugo-modules/) で仮想ユニオン ファイルシステムを完全にサポートするようになりました。 この [テスト プロジェクト](https://github.com/gohugoio/hugoTestProjectJSModImports) でいくつかの簡単な例を見ることができますが、要するに、これは以下のことができることを意味します。
 
 ```js
 import { hello } from 'my/module';
 ```
 
-And it will resolve to the top-most `index.{js,ts,tsx,jsx}` inside `assets/my/module` in the layered file system.
+そして、階層化されたファイルシステムの `assets/my/module` 内の最上位の `index.{js,ts,tsx,jsx}` に解決されます。
 
 ```js
 import { hello3 } from 'my/module/hello3';
 ```
 
-Will resolve to `hello3.{js,ts,tsx,jsx}` inside `assets/my/module`.
+上記のコードは、`Assets/my/module` 内の `hello3.{js,ts,tsx,jsx}` に解決されるでしょう。
 
-Any imports starting with `.` is resolved relative to the current file:
+`.` で始まるすべてのインポートは、現在のファイルからの相対パスで解決されます。
 
 ```js
 import { hello4 } from './lib';
 ```
 
-For other files (e.g. `JSON`, `CSS`) you need to use the relative path including any extension, e.g:
+その他のファイル (たとえば、`JSON` や `CSS`) については、たとえば以下のように、拡張子を含む相対パスで指定する必要があります。
 
 ```js
 import * as data from 'my/module/data.json';
 ```
 
-Any imports in a file outside `/assets` or that does not resolve to a component inside `/assets` will be resolved by [ESBuild](https://esbuild.github.io/) with the **project directory** as the resolve directory (used as the starting point when looking for `node_modules` etc.). Also see [hugo mod npm pack](/commands/hugo_mod_npm_pack/).  If you have any imported npm dependencies in your project, you need to make sure to run `npm install` before you run `hugo`.
+`/assets` の外にあるファイルでのインポート、または `/assets` 内のコンポーネントに解決されないインポートは、[ESBuild](https://esbuild.github.io/) によって、**プロジェクト ディレクトリ** を用いて解決ディレクトリとして解決されます (`node_modules` などを探すときの開始点として使用されます)。 [hugo mod npm pack](/commands/hugo_mod_npm_pack/) も参照してください。 プロジェクトにインポートされた npm 依存関係がある場合は、`hugo` を実行する前に必ず `npm install` を実行する必要があります。
 
-Also note the new `params` option that can be passed from template to your JS files, e.g.:
+また、たとえば、以下のようにテンプレートから JS ファイルに渡すことができる新しい `params` オプションにも注意してください。
 
 ```go-html-template
 {{ $js := resources.Get "js/main.js" | js.Build (dict "params" (dict "api" "https://example.org/api")) }}
 ```
-And then in your JS file:
+
+そして、JS ファイルでは、以下のコードを記述します。
 
 ```js
 import * as params from '@params';
 ```
 
-Hugo will, by default, generate a `assets/jsconfig.json` file that maps the imports. This is useful for navigation/intellisense help inside code editors, but if you don't need/want it, you can [turn it off](/getting-started/configuration/#configure-build).
+Hugo はデフォルトで、インポートをマップする `assets/jsconfig.json` ファイルを生成します。これはコードエディター内のナビゲーションやインテリセンス ヘルプに役立ちますが、必要ない/したくない場合は、[オフにする](/getting-started/configuration/#configure-build) ことができます。
 
 
-### Include Dependencies In package.json / node_modules
+### package.json / node_modules に依存関係を含める {#include-dependencies-in-packagejson-nodemodules}
 
-Any imports in a file outside `/assets` or that does not resolve to a component inside `/assets` will be resolved by [ESBuild](https://esbuild.github.io/) with the **project directory** as the resolve directory (used as the starting point when looking for `node_modules` etc.). Also see [hugo mod npm pack](/commands/hugo_mod_npm_pack/).  If you have any imported npm dependencies in your project, you need to make sure to run `npm install` before you run `hugo`.
+`/assets` の外にあるファイルでのインポート、または `/assets` 内のコンポーネントに解決されないインポートは、[ESBuild](https://esbuild.github.io/) によって、**プロジェクト ディレクトリ** を用いて解決ディレクトリとして解決されます (`node_modules` などを探すときの開始点として使用されます)。 [hugo mod npm pack](/commands/hugo_mod_npm_pack/) も参照してください。 プロジェクトにインポートされた npm 依存関係がある場合は、`hugo` を実行する前に必ず `npm install` を実行する必要があります。
 
-{{< new-in "0.78.1" >}} From Hugo `0.78.1` the start directory for resolving npm packages (aka. packages that live inside a `node_modules` folder) is always the main project folder.
+{{< new-in "0.78.1" >}} Hugo `0.78.1` 以降、npm パッケージ (別名、`node_modules` フォルダー内に存在するパッケージ) を解決するための開始ディレクトリは、常にメインプロジェクト フォルダーです。
 
-**Note:** If you're developing a theme/component that is supposed to be imported and depends on dependencies inside `package.json`, we recommend reading about [hugo mod npm pack](/commands/hugo_mod_npm_pack/), a tool to consolidate all the npm dependencies in a project.
+**注意:** もし、インポートを前提としたテーマ/コンポーネントを開発しており、 `package.json` 内の依存関係に依存している場合は、プロジェクト内のすべての npm 依存関係を統合するツールである [hugo mod npm pack](/commands/hugo_mod_npm_pack/) を読むことを推奨します。
 
 
-### Examples
+### 例 {#examples}
 
 ```go-html-template
 {{ $built := resources.Get "js/index.js" | js.Build "main.js" }}
 ```
 
-Or with options:
+あるいはオプションで、以下のように指定します。
 
 ```go-html-template
 {{ $externals := slice "react" "react-dom" }}

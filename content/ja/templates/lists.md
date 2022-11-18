@@ -5,9 +5,8 @@ aliases:
 categories:
 - templates
 date: "2017-02-01"
-description: Lists have a specific meaning and usage in Hugo when it comes to rendering
-  your site homepage, section page, taxonomy list, or taxonomy terms list.
-draft: true
+description: サイトのホームページ、セクションページ、タクソノミー リスト、またはタクソノミー用語リストのレンダリングに関して、Hugo ではリストに特定の意味と使用法があります。
+draft: false
 keywords:
 - lists
 - sections
@@ -15,40 +14,40 @@ keywords:
 - taxonomies
 - terms
 lastmod: "2017-02-01"
-linktitle: List Templates
+linktitle: リストテンプレート
 menu:
   docs:
     parent: templates
     weight: 22
 publishdate: "2017-02-01"
 sections_weight: 22
-title: Lists of Content in Hugo
+title: Hugo のコンテンツリスト
 toc: true
 weight: 22
 ---
 
-## What is a List Page Template?
+## リストページ テンプレートとは {#what-is-a-list-page-template}
 
 {{< youtube 8b2YTSMdMps >}}
 
-A list page template is a template used to render multiple pieces of content in a single HTML page. The exception to this rule is the homepage, which is still a list but has its own [dedicated template][homepage].
+リストページ テンプレートは、複数のコンテンツを 1 つの HTML ページで表示するために使用するテンプレートです。ただし、ホームページは例外で、やはりリストではありますが、専用の [テンプレート][homepage] を持ちます。
 
-Hugo uses the term *list* in its truest sense; i.e. a sequential arrangement of material, especially in alphabetical or numerical order. Hugo uses list templates on any output HTML page where content is traditionally listed:
+Hugo では、*リスト* という用語を本当の意味で使っています。つまり、特にアルファベット順または数字順で、資料を順番に並べます。 Hugo では、出力される HTML ページの中で、伝統的にリスト化されたコンテンツに以下のリストテンプレートを使用します。
 
-* [Taxonomy terms pages][taxterms]
-* [Taxonomy list pages][taxlists]
-* [Section list pages][sectiontemps]
+* [タクソノミー用語ページ][taxterms]
+* [タクソノミー リストページ][taxlists]
+* [セクション リストページ][sectiontemps]
 * [RSS][rss]
 
-For template lookup order, see [Template Lookup](/templates/lookup-order/).
+テンプレートの検索順序については、[「テンプレートの検索順序」](/templates/lookup-order/) を参照してください。
 
-The idea of a list page comes from the [hierarchical mental model of the web][mentalmodel] and is best demonstrated visually:
+リストページのアイデアは、[Web の階層的メンタルモデル][mentalmodel] に由来し、以下のように視覚的に示すのが最も効果的です。
 
-[![Image demonstrating a hierarchical website sitemap.](/images/site-hierarchy.svg)](/images/site-hierarchy.svg)
+[![階層的な Web サイトのサイトマップを示す画像](/images/site-hierarchy.svg)](/images/site-hierarchy.svg)
 
-## List Defaults
+## リストのデフォルト {#list-defaults}
 
-### Default Templates
+### デフォルトのテンプレート {#default-templates}
 
 Since section lists and taxonomy lists (N.B., *not* [taxonomy terms lists][taxterms]) are both *lists* with regards to their templates, both have the same terminating default of `_default/list.html` or `themes/<THEME>/layouts/_default/list.html` in their lookup order. In addition, both [section lists][sectiontemps] and [taxonomy lists][taxlists] have their own default list templates in `_default`.
 
@@ -337,7 +336,7 @@ Lower weight gets higher precedence. So content with lower weight will come firs
 
 ### By Parameter
 
-Order based on the specified front matter parameter. Content that does not have the specified front matter field  will use the site's `.Site.Params` default. If the parameter is not found at all in some entries, those entries will appear together at the end of the ordering.
+Order based on the specified front matter parameter. Content that does not have the specified front matter field will use the site's `.Site.Params` default. If the parameter is not found at all in some entries, those entries will appear together at the end of the ordering.
 
 {{< code file="layouts/partials/by-rating.html" >}}
 <!-- Ranges through content according to the "rating" field set in front matter -->
@@ -508,7 +507,7 @@ In the above example, you may want `{{.Title}}` to point the `title` field you h
 
 ### By Page Parameter in Date Format
 
-The following template takes grouping by `date` a step further and uses Go's layout string. See the [`Format` function][] for more examples of how to use Go's layout string to format dates in Hugo.
+The following template takes grouping by `date` a step further and uses Go's layout string. See the [`Format` function][`Format` function] for more examples of how to use Go's layout string to format dates in Hugo.
 
 {{< code file="layouts/partials/by-page-param-as-date.html" >}}
 <!-- Groups content by month according to the "param_key" field in front matter -->
@@ -577,12 +576,9 @@ Here is the ordering for the example that follows:
 
 ## Filtering and Limiting Lists {#filtering-and-limiting-lists}
 
-Sometimes you only want to list a subset of the available content. A
-common is to only display posts from [**main sections**][mainsections]
-on the blog's homepage.
+Sometimes you only want to list a subset of the available content. A common is to only display posts from [**main sections**][mainsections] on the blog's homepage.
 
-See the documentation on [`where` function][wherefunction] and
-[`first` function][firstfunction] for further details.
+See the documentation on [`where` function][wherefunction] and [`first` function][firstfunction] for further details.
 
 [base]: /templates/base/
 [bepsays]: https://bepsays.com/en/2016/12/19/hugo-018/
@@ -595,7 +591,7 @@ See the documentation on [`where` function][wherefunction] and
 [mentalmodel]: https://webstyleguide.com/wsg3/3-information-architecture/3-site-structure.html
 [pagevars]: /variables/page/
 [partials]: /templates/partials/
-[RSS 2.0]: https://cyber.harvard.edu/rss/rss.html "RSS 2.0 Specification"
+[RSS 2.0]: https://cyber.harvard.edu/rss/rss.html "RSS 2.0 仕様"
 [rss]: /templates/rss/
 [sections]: /content-management/sections/
 [sectiontemps]: /templates/section-templates/

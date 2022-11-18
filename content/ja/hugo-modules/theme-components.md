@@ -5,53 +5,53 @@ aliases:
 categories:
 - hugo modules
 date: "2017-02-01"
-description: Hugo provides advanced theming support with Theme Components.
-draft: true
+description: Hugo は、テーマ コンポーネントによって高度なテーマ設定をサポートしています。
+draft: false
 keywords:
 - themes
 - theme
 - source
 - organization
 - directories
-linktitle: Theme Components
+linktitle: テーマ コンポーネント
 menu:
   docs:
     parent: modules
     weight: 50
 sections_weight: 50
-title: Theme Components
+title: テーマ コンポーネント
 toc: true
 weight: 50
 ---
 
 {{% note %}}
-This section contain information that may be outdated and is in the process of being rewritten.
+このセクションには、古い情報が含まれている可能性があり、現在、書き換え中です。
 {{% /note %}}
-Since Hugo `0.42` a project can configure a theme as a composite of as many theme components you need:
+Hugo `0.42` 以降、プロジェクトは必要な数のテーマ コンポーネントの複合体としてテーマを構成することができます。
 
 {{< code-toggle file="config">}}
 theme = ["my-shortcodes", "base-theme", "hyde"]
 {{< /code-toggle >}}
 
-You can even nest this, and have the theme component itself include theme components in its own `config.toml` (theme inheritance).[^1]
+これをネストして、テーマ コンポーネント自身が自身の `config.toml` (テーマの継承) にテーマ コンポーネントを含めることもできます。[^1]
 
-The theme definition example above in `config.toml` creates a theme with 3 theme components with precedence from left to right.
+上記の `config.toml` でのテーマ定義の例では、左から右へ優先順位をつけた 3 つのテーマコンポーネントを持つテーマを作成します。
 
-For any given file, data entry, etc., Hugo will look first in the project and then in `my-shortcode`, `base-theme`, and lastly `hyde`.
+任意のファイルやデータ入力などに対して、Hugo はまずプロジェクトを探し、次に `my-shortcode` 、`base-theme`、そして最後に `hyde` を探します。
 
-Hugo uses two different algorithms to merge the filesystems, depending on the file type:
+Hugo は、ファイルの種類に応じて、以下の 2 つの異なるアルゴリズムを使用してファイル システムをマージします。
 
-* For `i18n` and `data` files, Hugo merges deeply using the translation ID and data key inside the files.
-* For `static`, `layouts` (templates), and `archetypes` files, these are merged on file level. So the left-most file will be chosen.
+* `i18n` および `data` ファイルの場合、Hugo はファイル内の翻訳 ID とデータ キーを使用して深くマージします。
+* `static`、`layouts` (テンプレート)、および `archetypes` ファイルの場合、これらはファイル レベルでマージされます。 したがって、一番左のファイルが選択されます。
 
-The name used in the `theme` definition above must match a folder in `/your-site/themes`, e.g. `/your-site/themes/my-shortcodes`. There are plans to improve on this and get a URL scheme so this can be resolved automatically.
+上記の `theme` 定義で使用する名前は `/your-site/themes` 内のフォルダーと一致しなければなりません。たとえば、 `/your-site/themes/my-shortcodes` です。これを改善し、 URL スキームを取得して、これを自動的に解決できるようにする計画があります。
 
-Also note that a component that is part of a theme can have its own configuration file, e.g. `config.toml`. There are currently some restrictions to what a theme component can configure:
+また、テーマの一部であるコンポーネントは、独自の設定ファイル、たとえば `config.toml` を持つことができることに注意してください。現在、テーマ コンポーネントが設定できる内容には、いくつかの制限があります。
 
-* `params` (global and per language)
-* `menu` (global and per language)
-* `outputformats` and `mediatypes`
+* `params` (global および language ごと)
+* `menu` (global および language ごと)
+* `outputformats` および `mediatypes`
 
-The same rules apply here: The left-most param/menu etc. with the same ID will win. There are some hidden and experimental namespace support in the above, which we will work to improve in the future, but theme authors are encouraged to create their own namespaces to avoid naming conflicts.
+ここでも同じルールが適用されます。つまり、同じ ID を持つ一番左の param/menu などが優先されます。 上記にはいくつかの隠れた実験的な名前空間のサポートがあり、将来的に改善する予定ですが、テーマの作者は名前の衝突を避けるために独自の名前空間を作成することが推奨されます。
 
-[^1]: For themes hosted on the [Hugo Themes Showcase](https://themes.gohugo.io/) components need to be added as git submodules that point to the directory `exampleSite/themes`
+[^1]: [Hugo テーマのショーケース](https://themes.gohugo.io/) でホストされているテーマの場合、コンポーネントを git サブモジュールとして追加し、ディレクトリ `exampleSite/themes` を指すようにする必要があります。

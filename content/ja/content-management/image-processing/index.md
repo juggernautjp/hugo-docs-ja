@@ -2,8 +2,8 @@
 categories:
 - content management
 date: "2018-01-24T13:10:00-05:00"
-description: Resize, crop, rotate, filter, and convert images.
-draft: true
+description: 画像のリサイズ、クロップ (切り抜き)、回転、フィルタリング、および変換を行います。
+draft: false
 keywords:
 - resources
 - images
@@ -11,17 +11,17 @@ menu:
   docs:
     parent: content-management
     weight: 32
-title: Image Processing
+title: 画像処理
 toc: true
 weight: 4004
 ---
-## Image Resources
+## 画像リソース {#image-resources}
 
-To process an image, you must access the image as either a page resource or a global resource.
+画像を処理するには、ページリソースまたはグローバル リソースとして画像にアクセスする必要があります。
 
-### Page Resources
+### ページリソース {#page-resources}
 
-A page resource is a file within a [page bundle]. A page bundle is a directory with an `index.md` or `_index.md` file at its root.
+ページリソースは、[ページバンドル][page bundle] 内のファイルです。ページバンドルは、 `index.md` または `_index.md` ファイルをルートとするディレクトリです。
 
 ```text
 content/
@@ -31,13 +31,13 @@ content/
         └── sunset.jpg    <-- page resource
 ```
 
-### Global Resources
+### グローバル リソース {#global-resources}
 
-A global resource is a file:
+グローバル リソースとは、以下のファイルのことです。
 
-- Within the `assets` directory, or
-- Within any directory [mounted] to the `assets` directory, or
-- Located on a remote server accessible via `http` or `https`
+- `assets` ディレクトリ内、または
+- `assets` ディレクトリに [マウントされた][mounted] 任意のディレクトリ内、または
+- `http` または `https` 経由でアクセス可能なリモート サーバー上にある
 
 ```text
 assets/
@@ -45,30 +45,30 @@ assets/
     └── sunset.jpg    <-- global resource
 ```
 
-To access a local image as a global resource:
+ローカル画像にグローバル リソースとしてアクセスするには、以下のように指定します。
 
 ```go-html-template
 {{ $image := resources.Get "images/sunset.jpg" }}
 ```
 
-To access a remote image as a global resource:
+リモート画像にグローバル リソースとしてアクセスするには、以下のように指定します。
 
 ```go-html-template
 {{ $image := resources.GetRemote "https://gohugo.io/img/hugo-logo.png" }}
 ```
 
-## Image Rendering
+## 画像レンダリング {#image-rendering}
 
-Once you have accessed an image as either a page resource or a global resource, render it in your templates using the `Permalink`, `RelPermalink`, `Width`, and `Height` properties.
+ページリソースまたはグローバル リソースとして画像にアクセスしたら、 `Permalink`、`RelPermalink`、`Width`、`Height` プロパティを使用してテンプレートで画像をレンダリングします。
 
-Example 1: Throws an error if the resource is not found.
+例 1: リソースが見つからない場合、エラーをスローします。
 
 ```go-html-template
 {{ $image := .Resources.GetMatch "sunset.jpg" }}
 <img src="{{ $image.RelPermalink }}" width="{{ $image.Width }}" height="{{ $image.Height }}">
 ```
 
-Example 2: Skips image rendering if the resource is not found.
+例 2: リソースが見つからない場合、画像のレンダリングをスキップします。
 
 ```go-html-template
 {{ $image := .Resources.GetMatch "sunset.jpg" }}
@@ -77,7 +77,7 @@ Example 2: Skips image rendering if the resource is not found.
 {{ end }}
 ```
 
-Example 3: A more concise way to skip image rendering if the resource is not found.
+例3: リソースが見つからない場合、画像のレンダリングをスキップする、より簡潔な方法。
 
 ```go-html-template
 {{ with .Resources.GetMatch "sunset.jpg" }}
@@ -85,19 +85,19 @@ Example 3: A more concise way to skip image rendering if the resource is not fou
 {{ end }}
 ```
 
-## Image Processing Methods
+## 画像処理方法 {#image-processing-methods}
 
-The `image` resource implements the  [`Resize`], [`Fit`], [`Fill`], [`Crop`], [`Filter`], [`Colors`] and [`Exif`] methods.
+`image` リソースは、[`Resize`]、[`Fit`]、[`Fill`]、[`Crop`]、[`Filter`]、[`Colors`]、[`Exif`] メソッドを実装しています。
 
 {{% note %}}
-Metadata (Exif, IPTC, XMP, etc.) is not preserved during image transformation. Use the [`Exif`] method with the _original_ image to extract Exif metadata from JPEG or TIFF images.
+画像変換時にメタデータ (Exif、IPTC、XMP など) は保存されません。JPEG や TIFF 画像から Exif メタデータを抽出するには、_オリジナル_ 画像に [`Exif`] メソッドを使用します。
 {{% /note %}}
 
-### Resize
+### Resize {#resize}
 
-Resize an image to the specified width and/or height.
+指定された幅および/または高さに画像のサイズを変更します。
 
-If you specify both width and height, the resulting image will be disproportionally scaled unless the original image has the same aspect ratio.
+幅と高さの両方を指定すると、元の画像の縦横比が同じでない限り、結果の画像は不均衡にスケーリング (拡大縮小) されます。
 
 ```go-html-template
 {{/* Resize to a width of 600px and preserve aspect ratio */}}
@@ -110,45 +110,45 @@ If you specify both width and height, the resulting image will be disproportiona
 {{ $image := $image.Resize "600x400" }}
 ```
 
-### Fit
+### Fit {#fit}
 
-Downscale an image to fit the given dimensions while maintaining aspect ratio. You must provide both width and height.
+アスペクト比を維持したまま、与えられた寸法に合うように画像を縮小します。幅と高さの両方を指定する必要があります。
 
 ```go-html-template
 {{ $image := $image.Fit "600x400" }}
 ```
 
-### Fill
+### Fill {#fill}
 
-Crop and resize an image to match the given dimensions. You must provide both width and height. Use the [`anchor`] option to change the crop box anchor point.
+指定された寸法に合うように画像を切り抜き、サイズを変更します。幅と高さの両方を指定する必要があります。クロップボックスのアンカーポイントを変更するには、[`anchor`] オプションを使用します。
 
 ```go-html-template
 {{ $image := $image.Fill "600x400" }}
 ```
 
-### Crop
+### Crop {#crop}
 
-Crop an image to match the given dimensions without resizing. You must provide both width and height. Use the [`anchor`] option to change the crop box anchor point.
+サイズを変更せずに、指定された寸法に合わせて画像をクロップ (切り抜き) します。 幅と高さの両方を指定する必要があります。 [`anchor`] オプションを使用して、クロップボックスのアンカーポイントを変更します。
 
 ```go-html-template
 {{ $image := $image.Crop "600x400" }}
 ```
 
-### Filter
+### Filter {#filter}
 
-Apply one or more [filters] to an image.
+画像に 1 つ以上の [フィルター][filters] を適用します。
 
 ```go-html-template
 {{ $image := $image.Filter (images.GaussianBlur 6) (images.Pixelate 8) }}
 ```
 
-Write this in a more functional style using pipes. Hugo applies the filters in the order given.
+パイプを使用して、より機能的なスタイルで上記を記述してみましょう。 Hugo は指定された順序でフィルターを適用します。
 
 ```go-html-template
 {{ $image := $image | images.Filter (images.GaussianBlur 6) (images.Pixelate 8) }}
 ```
 
-Sometimes it can be useful to create the filter chain once and then reuse it.
+フィルターチェーンを一度作成し、再利用すると便利な場合があります。
 
 ```go-html-template
 {{ $filters := slice  (images.GaussianBlur 6) (images.Pixelate 8) }}
@@ -160,20 +160,20 @@ Sometimes it can be useful to create the filter chain once and then reuse it.
 
 {{< new-in "0.104.0" >}}
 
-`.Colors` returns a slice of hex strings with the dominant colors in the image using a simple histogram method.
+`.Colors` は，単純なヒストグラム法を用いて，画像中の主要な色を表す 16 進文字列のスライスを返します．
 
 ```go-html-template
 {{ $colors := $image.Colors }}
 ```
 
-This method is fast, but if you also scale down your images, it would be good for performance to extract the colors from the scaled down image.
+この方法は高速ですが、画像を縮小する場合は、縮小した画像から色を抽出するとパフォーマンスが向上します。
 
 
 ### Exif
 
-Provides an [Exif] object containing image metadata.
+画像のメタデータを含む [Exif] オブジェクトを提供します。
 
-You may access Exif data in JPEG and TIFF images. To prevent errors when processing images without Exif data, wrap the access in a [`with`] statement.
+JPEG や TIFF の画像に含まれる Exif データにアクセスすることができます。Exif データのない画像を処理する際のエラーを防ぐため、 [`with`] ステートメントでアクセスをラップします。
 
 ```go-html-template
 {{ with $image.Exif }}
@@ -186,7 +186,7 @@ You may access Exif data in JPEG and TIFF images. To prevent errors when process
 {{ end }}
 ```
 
-You may also access Exif fields individually, using the [`lang.FormatNumber`] function to format the fields as needed.
+また、Exif フィールドに個別にアクセスし、必要に応じて [`lang.FormatNumber`] 関数を使ってフィールドをフォーマットできます。
 
 ```go-html-template
 {{ with $image.Exif }}
@@ -203,27 +203,27 @@ You may also access Exif fields individually, using the [`lang.FormatNumber`] fu
 {{ end }}
 ```
 
-#### Exif Variables
+#### Exif 変数 {#exif-variables}
 
 .Date
-: Image creation date/time. Format with the [time.Format] function.
+: 画像の作成日時です。[time.Format] 関数でフォーマットします。
 
 .Lat
-: GPS latitude in degrees.
+: GPS の緯度 (度) です。
 
 .Long
-: GPS longitude in degrees.
+: GPS の経度 (度) です。
 
 .Tags
-: A collection of the available Exif tags for this image. You may include or exclude specific tags from this collection in the [site configuration](#exif-data).
+: この画像で使用可能な Exif タグのコレクションです。 [サイト設定](#exif-data) で、このコレクションから特定のタグを含めたり除外したりできます。
 
-## Image Processing Options
+## 画像処理オプション {#image-processing-options}
 
-The [`Resize`], [`Fit`], [`Fill`], and [`Crop`] methods accept a space-separated, case-insensitive list of options. The order of the options within the list is irrelevant.
+[`Resize`]、[`Fit`]、[`Fill`]、[`Crop`] メソッドには、スペースで区切られた、大文字と小文字を区別しないオプションのリストを指定できます。リスト内のオプションの順序は関係ありません。
 
-### Dimensions
+### 寸法 {#dimensions}
 
-With the [`Resize`] method you must specify width, height, or both. The [`Fit`], [`Fill`], and [`Crop`] methods require both width and height. All dimensions are in pixels.
+[`Resize`] メソッドでは、幅、高さ、またはその両方を指定する必要があります。 [`Fit`]、[`Fill`]、[`Crop`] メソッドでは、幅と高さの両方を指定する必要があります。すべての寸法はピクセル単位です。
 
 ```go-html-template
 {{ $image := $image.Resize "600x" }}
@@ -234,17 +234,17 @@ With the [`Resize`] method you must specify width, height, or both. The [`Fit`],
 {{ $image := $image.Crop "600x400" }}
 ```
 
-### Rotation
+### 回転 {#rotation}
 
-Rotates an image counter-clockwise by the given angle. Hugo performs rotation _before_ scaling. For example, if the original image is 600x400 and you wish to rotate the image 90 degrees counter-clockwise while scaling it by 50%:
+指定された角度だけ反時計回りに画像を回転させます。 Hugo は、スケーリング (拡大縮小) _の前に_ 回転を実行します。 たとえば、元の画像が 600x400 で、画像を 50% 拡大しながら反時計回りに 90 度回転させたい場合は、以下のように指定します。
 
 ```go-html-template
 {{ $image = $image.Resize "200x r90" }}
 ```
 
-In the example above, the width represents the desired width _after_ rotation.
+上記の例では、幅は回転 _後_ の幅を表しています。
 
-To rotate an image without scaling, use the dimensions of the original image:
+スケーリング (拡大縮小) せずに画像を回転するには、以下のように元の画像の寸法を使用します。
 
 ```go-html-template
 {{ with .Resources.GetMatch "sunset.jpg" }}
@@ -254,31 +254,31 @@ To rotate an image without scaling, use the dimensions of the original image:
 {{ end }}
 ```
 
-In the example above, on the second line, we have reversed width and height to reflect the desired dimensions _after_ rotation.
+上記の例では、2 行目で、幅と高さを逆にして、回転 _後_ の希望の寸法を反映しています。
 
-### Anchor
+### アンカー {#anchor}
 
-When using the [`Crop`] or [`Fill`] method, the _anchor_ determines the placement of the crop box. You may specify `TopLeft`, `Top`, `TopRight`, `Left`, `Center`,`Right`, `BottomLeft`, `Bottom`, `BottomRight`, or `Smart`.
+[`Crop`] または [`Fill`] メソッドを使用する場合、_アンカー_ がクロップボックスの配置を決定します。 `TopLeft`、`Top`、`TopRight`、`Left`、`Center`、`Right`、`BottomLeft`、`Bottom`、`BottomRight` または `Smart` を指定できます。
 
-The default value is `Smart`, which uses [Smartcrop] image analysis to determine the optimal placement of the crop box. You may override the default value in the [site configuration].
+デフォルト値は `Smart` で、[Smartcrop] 画像解析によりクロップボックスの最適な配置を決定します。 [サイト設定][site configuration] でデフォルト値をオーバーライドすることができます。
 
-For example, if you have a 400x200 image with a bird in the upper left quadrant, you can create a 200x100 thumbnail containing the bird:
+たとえば、400×200 の画像で左上に鳥がいる場合、以下の指定で、鳥を含む 200×100 のサムネイルを作成することができます。
 
 ```go-html-template
 {{ $image.Crop "200x100 TopLeft" }}
 ```
 
-If you apply [rotation](#rotation) when using the [`Crop`] or [`Fill`] method, specify the anchor relative to the rotated image.
+[`Crop`] または [`Fill`] メソッドを使用する際に [回転](#rotation) を適用する場合、回転した画像からの相対的なアンカーを指定します。
 
-### Target Format
+### ターゲット フォーマット {#target-format}
 
-By default, Hugo encodes the image in the source format. You may convert the image to another format by specifying `bmp`, `gif`, `jpeg`, `jpg`, `png`, `tif`, `tiff`, or `webp`.
+デフォルトでは、Hugo は画像をソース形式でエンコードします。 `bmp`、`gif`、`jpeg`、`jpg`、`png`、`tif` または `webp` を指定すると、画像を別の形式に変換できます。
 
 ```go-html-template
 {{ $image.Resize "600x webp" }}
 ```
 
-To convert an image without scaling, use the dimensions of the original image:
+スケーリング (拡大縮小) せずに画像を変換するには、以下のように、元の画像の寸法を使用します。
 
 ```go-html-template
 {{ with .Resources.GetMatch "sunset.jpg" }}
@@ -288,72 +288,72 @@ To convert an image without scaling, use the dimensions of the original image:
 {{ end }}
 ```
 
-### Quality
+### 品質 {#quality}
 
-Applicable to JPEG and WebP images, the `q` value determines the quality of the converted image. Higher values produce better quality images, while lower values produce smaller files. Set this value to a whole number between 1 and 100, inclusive.
+JPEG と WebP 画像に適用され、`q` 値は変換された画像の品質を決定します。 値を大きくすると画像の品質が向上し、値を小さくするとファイルが小さくなります。 この値を 1 から 100 までの整数に設定します。
 
-The default value is 75. You may override the default value in the [site configuration].
+デフォルト値は 75 です。 [サイト設定][site configuration] でデフォルト値をオーバーライドできます。
 
 ```go-html-template
 {{ $image.Resize "600x webp q50" }}
 ```
 
-### Hint
+### ヒント {#hint}
 
 <!-- Specifies a libwebp preset, not a libwebp image hint. -->
 
-Applicable to WebP images, this option corresponds to a set of predefined encoding parameters.
+WebP 画像に適用できるこのオプションは、定義済みのエンコード パラメータのセットに対応します。
 
-Value|Example
+値 | 例
 :--|:--
-`drawing`|Hand or line drawing with high-contrast details
-`icon`|Small colorful image
-`photo`|Outdoor photograph with natural lighting
-`picture`|Indoor photograph such as a portrait
-`text`|Image that is primarily text
+`drawing` | コントラストの高いディテールの手描きまたは線画
+`icon` | 小さなカラフルな画像
+`photo` | 自然光を取り入れた屋外撮影
+`picture` | ポートレートなどの室内写真
+`text` | テキストを主体とした画像
 
-The default value is `photo`. You may override the default value in the [site configuration].
+デフォルト値は `photo` です。 [サイト設定][site configuration] でデフォルト値をオーバーライドできます。
 
 ```go-html-template
 {{ $image.Resize "600x webp picture" }}
 ```
 
-### Background Color
+### 背景色 {#background-color}
 
-When converting an image from a format that supports transparency (e.g., PNG) to a format that does _not_ support transparency (e.g., JPEG), you may specify the background color of the resulting image.
+透明度をサポートする形式 (PNG など) から透明度をサポート _しない_ 形式 (JPEG など) に画像を変換する場合、結果の画像の背景色を指定できます。
 
-Use either a 3-digit or a 6-digit hexadecimal color code (e.g., `#00f` or `#0000ff`).
+3桁または 6桁の 16進数のカラーコード (たとえば、`#00f`、`#0000ff`) を使用します。
 
-The default value is `#ffffff` (white). You may override the default value in the [site configuration].
+デフォルト値は `#ffffff` (白) です。 [サイト設定][site configuration] でデフォルト値をオーバーライドできます。
 
 ```go-html-template
 {{ $image.Resize "600x jpg #b31280" }}
 ```
 
-### Resampling Filter
+### リサンプリング フィルター {#Resampling-filter}
 
-You may specify the resampling filter used when resizing an image. Commonly used resampling filters include:
+画像のサイズ変更時に使用するリサンプリング フィルターを指定できます。 一般的に使用されるリサンプリング フィルターには、以下のものがあります。
 
-Filter|Description
+フィルター | 説明
 :--|:--
-`Box`|Simple and fast averaging filter appropriate for downscaling
-`Lanczos`|High-quality resampling filter for photographic images yielding sharp results
-`CatmullRom`|Sharp cubic filter that is faster than the Lanczos filter while providing similar results
-`MitchellNetravali`|Cubic filter that produces smoother results with less ringing artifacts than CatmullRom
-`Linear`|Bilinear resampling filter, produces smooth output, faster than cubic filters
-`NearestNeighbor`|Fastest resampling filter, no antialiasing
+`Box` | ダウンスケーリングに適したシンプルで高速な平均化フィルター
+`Lanczos` | 写真画像をシャープに再現する高画質リサンプリング フィルター
+`CatmullRom` | 同様の結果を提供しながら、Lanczos フィルターより高速なシャープ キュービック フィルター
+`MitchellNetravali` | CatmullRom よりもリンギング アーティファクトが少なく、よりスムーズな結果を生成するキュービック フィルター
+`Linear` | バイリニア リサンプリング フィルター、キュービック フィルターよりも高速で滑らかな出力を生成します
+`NearestNeighbor` | 最速のリサンプリング フィルターで、アンチエイリアシングなし
 
-The default value is `Box`. You may override the default value in the [site configuration].
+デフォルト値は `Box` です。 [サイト設定][site configuration] でデフォルト値をオーバーライドできます。
 
 ```go-html-template
 {{ $image.Resize "600x400 Lanczos" }}
 ```
 
-See [github.com/disintegration/imaging] for the complete list of resampling filters. If you wish to improve image quality at the expense of performance, you may wish to experiment with the alternative filters.
+リサンプリング フィルターの完全なリストは、[github.com/disintegration/imaging] を参照してください。パフォーマンスを犠牲にしてでも画質を向上させたい場合は、代替フィルターを試してみてください。
 
-## Image Processing Examples
+## 画像処理の例 {#image-processing-examples}
 
-_The photo of the sunset used in the examples below is Copyright [Bjørn Erik Pedersen](https://commons.wikimedia.org/wiki/User:Bep) (Creative Commons Attribution-Share Alike 4.0 International license)_
+_以下の例で使用されている夕日の写真は、著作権 [Bjørn Erik Pedersen](https://commons.wikimedia.org/wiki/User:Bep) (クリエイティブ コモンズ 表示-継承 4.0 国際ライセンス - CC BY-SA 4.0) です_。
 
 {{< imgproc sunset Resize "300x" />}}
 
@@ -367,27 +367,27 @@ _The photo of the sunset used in the examples below is Copyright [Bjørn Erik Pe
 
 {{< imgproc sunset Resize "300x q10" />}}
 
-This is the shortcode used to generate the examples above:
+以下は、上記の例を生成するために使用されるショートコードです。
 
 {{< code file="layouts/shortcodes/imgproc.html" >}}
 {{< readfile file="layouts/shortcodes/imgproc.html" >}}
 {{< /code >}}
 
-Call the shortcode from your Markdown like this:
+以下のように、Markdown からショートコードを呼び出します。
 
 ```go-html-template
 {{</* imgproc sunset Resize "300x" /*/>}}
 ```
 
 {{% note %}}
-Note the self-closing shortcode syntax above. You may call the `imgproc` shortcode with or without **inner content**.
+上記の セルフクロージング ショートコードの構文に注意してください。 `imgproc` ショートコードは、**内部コンテンツ** があってもなくても呼び出すことができます。
 {{% /note %}}
 
-## Imaging Configuration
+## 画像設定 {#imaging-configuration}
 
-### Processing Options
+### 処理オプション {#processing-options}
 
-Define an `imaging` section in your site configuration to set the default [image processing options](#image-processing-options).
+デフォルトの [画像処理オプション](#image-processing-options) を設定するには、サイト設定で `imaging` セクションを定義します。
 
 {{< code-toggle file="config" copy=true >}}
 [imaging]
@@ -399,23 +399,23 @@ bgColor = "#ffffff"
 {{< /code-toggle >}}
 
 anchor
-: See image processing options: [anchor](#anchor).
+: 画像処理オプションの [アンカー](#anchor) を参照してください
 
 bgColor
-: See image processing options: [background color](#background-color).
+: 画像処理オプションの [背景色](#background-color) を参照してください
 
 hint
-: See image processing options: [hint](#hint).
+: 画像処理オプションの [ヒント](#hint) を参照してください
 
 quality
-: See image processing options: [quality](#quality).
+: 画像処理オプションの [品質](#quality) を参照してください
 
 resampleFilter
-: See image processing options: [resampling filter](#resampling-filter).
+: 画像処理オプションの [リサンプリング フィルター](#resampling-filter) を参照してください
 
-### Exif Data
+### Exif データ {#exif-data}
 
-Define an `imaging.exif` section in your site configuration to control the availability of Exif data.
+サイト設定に `imaging.exif` セクションを定義して、Exif データの利用可能性を制御します。
 
 {{< code-toggle file="config" copy=true >}}
 [imaging.exif]
@@ -426,36 +426,37 @@ disableLatLong = false
 {{< /code-toggle >}}
 
 disableDate
-: Hugo extracts the image creation date/time into `.Date`. Set this to `true` to disable. Default is `false`.
+: Hugo は画像の作成日時を `.Date` に抽出します。無効にするには、これを `true` に設定します。デフォルトは `false` です。
 
 disableLatLong
-: Hugo extracts the GPS latitude and longitude into `.Lat` and `.Long`. Set this to `true` to disable. Default is `false`.
+: Hugo は GPS の緯度と経度を `.Lat` と `.Long` に抽出します。 無効にするには、これを `true` に設定します。デフォルトは `false` です。
 
 excludeFields
-: Regular expression matching the Exif tags to exclude from the `.Tags` collection. Default is&nbsp;`""`.
+: `.Tags` コレクションから除外する Exif タグに一致する正規表現です。 デフォルトは &nbsp;`""` です。
 
 includeFields
-: Regular expression matching the Exif tags to include in the `.Tags` collection. Default is&nbsp;`""`. To include all available tags, set this value to&nbsp;`".*"`.
+: `.Tags` コレクションに含める Exif タグに一致する正規表現です。 デフォルトは &nbsp;`""` です。 使用可能なすべてのタグを含めるには、この値を &nbsp;`".*"` に設定します。
 
 {{% note %}}
-To improve performance and decrease cache size, if you set neither `excludeFields` nor `includeFields`, Hugo excludes the following tags: `ColorSpace`, `Contrast`, `Exif`, `Exposure[M|P|B]`, `Flash`, `GPS`, `JPEG`, `Metering`, `Resolution`, `Saturation`, `Sensing`, `Sharp`, and `WhiteBalance`.
+パフォーマンスを向上させ、キャッシュサイズを小さくするために、 `excludeFields` と `includeFields` のどちらも設定しない場合、Hugo は以下のタグを除外します。
+`ColorSpace`、`Contrast`、`Exif`、`Exposure[M|P|B]`、`Flash`、`GPS`、`JPEG`、`Metering`、`Resolution`、`Saturation`、`Sensing`、`Sharp` および `WhiteBalance` 。
 {{% /note %}}
 
-## Smart Cropping of Images
+## 画像のスマートクロップ {#smart-cropping-of-images}
 
-By default, Hugo uses the [Smartcrop] library when cropping images with the `Crop` or`Fill` methods. You can set the anchor point manually, but in most cases the `Smart` option will make a good choice.
+デフォルトでは、Hugo は `Crop` または `Fill` メソッドで画像をクロップ (切り抜き) するときに [Smartcrop] ライブラリを使用します。アンカーポイントを手動で設定することもできますが、ほとんどの場合、 `Smart` オプションが適しています。
 
-Examples using the sunset image from above:
+上図の夕焼け画像を使用した例:
 
 {{< imgproc sunset Fill "200x200 smart" />}}
 
 {{< imgproc sunset Crop "200x200 smart" />}}
 
-## Image Processing Performance Consideration
+## 画像処理性能に関する考慮事項 {#image-processing-performance-consideration}
 
-Hugo caches processed images in the `resources` directory. If you include this directory in source control, Hugo will not have to regenerate the images in a CI/CD workflow (e.g., GitHub Pages, GitLab Pages, Netlify, etc.). This results in faster builds.
+Hugo は処理した画像を `resources` ディレクトリにキャッシュします。このディレクトリをソース管理に含めると、CI/CD ワークフロー (GitHub Pages、GitLab Pages、Netlify など) で Hugo が画像を再生成する必要がなくなります。その結果、ビルドが高速化されます。
 
-If you change image processing methods or options, or if you rename or remove images, the `resources` directory will contain unused images. To remove the unused images, perform garbage collection with:
+画像処理の方法やオプションを変更したり、画像の名前を変更したり削除したりすると、 `resources` ディレクトリに未使用の画像が残ります。未使用の画像を削除するには、以下のようにしてガベージコレクションを実行します。
 
 ```bash
 hugo --gc

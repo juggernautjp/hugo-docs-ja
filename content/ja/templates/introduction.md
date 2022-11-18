@@ -7,74 +7,69 @@ categories:
 - templates
 - fundamentals
 date: "2017-02-01"
-description: Hugo uses Go's `html/template` and `text/template` libraries as the basis
-  for the templating.
-draft: true
+description: Hugo はテンプレート作成の基礎として、Go の `html/template` ライブラリと `text/template` ライブラリを使用します。
+draft: false
 keywords:
 - go
 lastmod: "2022-09-20"
-linktitle: Templating
+linktitle: テンプレート
 menu:
   docs:
     parent: templates
     weight: 10
 publishdate: "2017-02-01"
 sections_weight: 10
-title: Introduction to Hugo Templating
+title: Hugo テンプレート入門
 toc: true
 weight: 10
 ---
 
 {{% note %}}
-The following is only a primer on Go Templates. For an in-depth look into Go Templates, check the official [Go docs](https://golang.org/pkg/text/template/).
+以下は、Go テンプレートについての入門書です。 Go テンプレートについての詳細については、公式の [Go ドキュメント](https://golang.org/pkg/text/template/) を確認してださい。
 {{% /note %}}
 
-Go Templates provide an extremely simple template language that adheres to the belief that only the most basic of logic belongs in the template or view layer.
+Go テンプレートは、最も基本的なロジックのみがテンプレートまたはビュー層に属するという信念に基づき、極めてシンプルなテンプレート言語を提供します。
 
-## Basic Syntax
+## 基本構文 {#basic-syntax}
 
-Go Templates are HTML files with the addition of [variables][variables] and [functions][functions]. Go Template variables and functions are accessible within `{{ }}`.
+Go テンプレートは、[変数][variables] と [関数][functions] が追加された HTML ファイルです。 Go テンプレートの変数と関数は `{{ }}` 内でアクセスできます。
 
-### Access a Predefined Variable
+### 定義済み変数にアクセスする {#access-a-predefined-variable}
 
-A _predefined variable_ could be a variable already existing in the
-current scope (like the `.Title` example in the [Variables]({{< relref
-"#variables" >}}) section below) or a custom variable (like the
-`$address` example in that same section).
-
+_定義済み変数_ とは、現在のスコープに既に存在する変数 (以下の [変数]({{< relref "#variables" >}}) セクションの `.Title` の例のように)、またはカスタム変数 (同じセクションの `$address` の例のように) である可能性があります。
 
 ```go-html-template
 {{ .Title }}
 {{ $address }}
 ```
 
-Parameters for functions are separated using spaces. The general syntax is:
+関数のパラメーターはスペースで区切られます。 一般的な構文は、以下の通りです。
 
 ```go-html-template
 {{ FUNCTION ARG1 ARG2 .. }}
 ```
 
-The following example calls the `add` function with inputs of `1` and `2`:
+以下の例では、`1` と `2` を入力として `add` 関数を呼び出しています。
 
 ```go-html-template
 {{ add 1 2 }}
 ```
 
-#### Methods and Fields are Accessed via dot Notation
+#### メソッドとフィールドはドット記法でアクセスする {#methods-and-fields-are-accessed-via-dot-notation}
 
-Accessing the Page Parameter `bar` defined in a piece of content's [front matter][].
+コンテンツの [フロントマター][front matter] に定義されているページパラメーター `bar` にアクセスします。
 
 ```go-html-template
 {{ .Params.bar }}
 ```
 
-#### Parentheses Can be Used to Group Items Together
+#### 括弧を使用してアイテムをグループ化できる {#parentheses-can-be-used-to-group-items-together}
 
 ```go-html-template
 {{ if or (isset .Params "alt") (isset .Params "caption") }} Caption {{ end }}
 ```
 
-#### A Single Statement Can be Split over Multiple Lines
+#### 1 つのステートメントを複数行に分割できる {#a-single-statement-can-be-split-over-multiple-lines}
 
 ```go-html-template
 {{ if or
@@ -83,28 +78,24 @@ Accessing the Page Parameter `bar` defined in a piece of content's [front matter
 }}
 ```
 
-#### Raw String Literals Can Include Newlines
+#### Raw (生) 文字列リテラルには改行を含めることができる {#raw-string-literals-can-include-newlines}
 
 ```go-html-template
 {{ $msg := `Line one.
 Line two.` }}
 ```
 
-## Variables {#variables}
+## 変数 {#variables}
 
-Each Go Template gets a data object. In Hugo, each template is passed
-a `Page`.  In the below example, `.Title` is one of the elements
-accessible in that [`Page` variable][pagevars].
+各 Go テンプレートはデータオブジェクトを取得します。 Hugo では、各テンプレートに `Page` が渡されます。 以下の例では、`.Title` はその [`Page` 変数][pagevars] でアクセス可能な要素の 1 つです。
 
-With the `Page` being the default scope of a template, the `Title`
-element in current scope (`.` -- "the **dot**") is accessible simply
-by the dot-prefix (`.Title`):
+`Page` がテンプレートのデフォルトスコープであるため、現在のスコープ (`.` -- "**ドット**") にある `Title` 要素には、以下のようなドットプレフィックス (`.Title`) で簡単にアクセスできます。
 
 ```go-html-template
 <title>{{ .Title }}</title>
 ```
 
-Values can also be stored in custom variables and referenced later:
+また、値はカスタム変数に保存し、後で参照することもできます。
 
 {{% note %}}
 The custom variables need to be prefixed with `$`.
@@ -115,9 +106,7 @@ The custom variables need to be prefixed with `$`.
 {{ $address }}
 ```
 
-Variables can be re-defined using the `=` operator. The example below
-prints "Var is Hugo Home" on the home page, and "Var is Hugo Page" on
-all other pages:
+変数は `=` 演算子を用いて再定義できます。以下の例では、ホームページに "Var is Hugo Home" と表示し、他のすべてのページには "Var is Hugo Page" と表示します。
 
 ```go-html-template
 {{ $var := "Hugo Page" }}
@@ -127,84 +116,75 @@ all other pages:
 Var is {{ $var }}
 ```
 
-## Functions
+## 関数 {#functions}
 
-Go Templates only ship with a few basic functions but also provide a mechanism for applications to extend the original set.
+Go テンプレートはいくつかの基本的な関数を備えているだけでなく、アプリケーションが元のセットを拡張するためのメカニズムも提供します。
 
-[Hugo template functions][functions] provide additional functionality specific to building websites. Functions are called by using their name followed by the required parameters separated by spaces. Template functions cannot be added without recompiling Hugo.
+[Hugo テンプレート関数][functions] は、Web サイトを構築するために必要な機能を追加します。関数を呼び出すには、関数の名前に続けて、必要なパラメーターをスペースで区切って指定します。テンプレート関数は、Hugo を再コンパイルしないと追加できません。
 
-### Example 1: Adding Numbers
+### 例 1: 数字の足し算 {#example-1-adding-numbers}
 
 ```go-html-template
 {{ add 1 2 }}
 <!-- prints 3 -->
 ```
 
-### Example 2: Comparing Numbers
+### 例 2：数値の比較 {#example-2-comparing-numbers}
 
 ```go-html-template
 {{ lt 1 2 }}
 <!-- prints true (i.e., since 1 is less than 2) -->
 ```
 
-Note that both examples make use of Go Template's [math][math] functions.
+どちらの例も、Go テンプレートの [math][math] 関数を使用していることに注意してください。
 
 {{% note "Additional Boolean Operators" %}}
-There are more boolean operators than those listed in the Hugo docs in the [Go Template documentation](https://golang.org/pkg/text/template/#hdr-Functions).
+[Go テンプレートのドキュメント](https://golang.org/pkg/text/template/#hdr-Functions) には、Hugo のドキュメントに掲載されている以外にも多くのブール演算子があります。
 {{% /note %}}
 
-## Includes
+## インクルードする (含める) {#includes}
 
-When including another template, you will need to pass it the data that it would
-need to access.
+別のテンプレートを含める場合は、アクセスする必要があるデータを渡す必要があります。
 
 {{% note %}}
-To pass along the current context, please remember to include a trailing **dot**.
+現在のコンテキストを伝えるために、末尾に **ドット** を含めることを忘れないでください。
 {{% /note %}}
 
-The templates location will always be starting at the `layouts/` directory
-within Hugo.
+テンプレートの場所は、常に Hugo 内の `layouts/` ディレクトリから始まります。
 
-### Partial
+### パーシャル (部分テンプレート) {#partial}
 
-The [`partial`][partials] function is used to include _partial_ templates using
-the syntax `{{ partial "<PATH>/<PARTIAL>.<EXTENSION>" . }}`.
+[`partial`][partials] 関数は、構文 `{{ partial "<PATH>/<PARTIAL>.<EXTENSION>" . }}` を使用して _部分_ テンプレートをインクルードするために使用されます。
 
-Example of including a `layouts/partials/header.html` partial:
+以下は、`layouts/partials/header.html` パーシャルをインクルードする例です。
 
 ```go-html-template
 {{ partial "header.html" . }}
 ```
 
-### Template
+### テンプレート {#template}
 
-The `template` function was used to include _partial_ templates
-in much older Hugo versions. Now it's useful only for calling
-[_internal_ templates][internal templates]. The syntax is `{{ template
-"_internal/<TEMPLATE>.<EXTENSION>" . }}`.
+Hugo のかなり古いバージョンでは、 `template` 関数は _部分_ テンプレートをインクルードするために使用されていました。今は、[_部分_ テンプレート][internal templates] を呼び出すのにのみ有効です。この構文は、 `{{ template "_internal/<TEMPLATE>.<EXTENSION>" . }}` です。
 
 {{% note %}}
-The available **internal** templates can be found
-[here](https://github.com/gohugoio/hugo/tree/master/tpl/tplimpl/embedded/templates).
+利用可能な **内部** テンプレートは、 [ここ](https://github.com/gohugoio/hugo/tree/master/tpl/tplimpl/embedded/templates) で確認できます。
 {{% /note %}}
 
-Example of including the internal `opengraph.html` template:
+以下は、内部テンプレート `opengraph.html` をインクルードする例です。
 
 ```go-html-template
 {{ template "_internal/opengraph.html" . }}
 ```
 
-## Logic
+## ロジック {#logic}
 
-Go Templates provide the most basic iteration and conditional logic.
+Go テンプレートは、最も基本的な反復処理と条件分岐のロジックを提供します。
 
-### Iteration
+### 反復処理 {#iteration}
 
-The Go Templates make heavy use of `range` to iterate over a _map_,
-_array_, or _slice_. The following are different examples of how to
-use `range`.
+Go テンプレートは、`range` を多用して _map_、_array_、または _slice_ を反復処理します。 以下は、`range` の使用方法のさまざまな例です。
 
-#### Example 1: Using Context (`.`)
+#### 例 1: コンテキストの使用 (`.`) {#eExample-1-using-context}
 
 ```go-html-template
 {{ range $array }}
@@ -212,7 +192,7 @@ use `range`.
 {{ end }}
 ```
 
-#### Example 2: Declaring a variable name for an array element's value
+#### 例 2: 配列要素の値を変数名で宣言する {example-2-declaring-a-variable-name-for-an-array-elements-value}
 
 ```go-html-template
 {{ range $elem_val := $array }}
@@ -220,10 +200,9 @@ use `range`.
 {{ end }}
 ```
 
-#### Example 3: Declaring variable names for an array element's index _and_ value
+#### 例 3: 配列要素のインデックス _と_ 値を変数名で宣言する {example-3-declaring-variable-names-for-an-array-elements-index-and-value}
 
-For an array or slice, the first declared variable will map to each
-element's index.
+配列またはスライスの場合、最初に宣言された変数が各要素のインデックスにマップされます。
 
 ```go-html-template
 {{ range $elem_index, $elem_val := $array }}
@@ -231,10 +210,9 @@ element's index.
 {{ end }}
 ```
 
-#### Example 4: Declaring variable names for a map element's key _and_ value
+#### 例 4: マップ要素のキー _と_ 値を変数名で宣言する {#example-4-declaring-variable-names-for-a-map-elements-key-and-value}
 
-For a map, the first declared variable will map to each map element's
-key.
+マップの場合、最初に宣言された変数が各マップ要素のキーにマップされます。
 
 ```go-html-template
 {{ range $elem_key, $elem_val := $map }}
@@ -242,9 +220,9 @@ key.
 {{ end }}
 ```
 
-#### Example 5: Conditional on empty _map_, _array_, or _slice_
+#### 例 5: 空の _マップ_、_配列_ または _スライス_ の条件付き {#example-5-conditional-on-empty-map-array-or-slice}
 
-If the _map_, _array_, or _slice_ passed into the range is zero-length then the else statement is evaluated.
+`range` に渡された _map_、_array_、または _slice_ の長さがゼロの場合、else 文が評価されます。
 
 ```go-html-template
 {{ range $array }}
@@ -254,27 +232,25 @@ If the _map_, _array_, or _slice_ passed into the range is zero-length then the 
 {{ end }}
 ```
 
-### Conditionals
+### 条件分岐 {#conditionals}
 
-`if`, `else`, `with`, `or`, `and` and `not` provide the framework for handling conditional logic in Go Templates. Like `range`, `if` and `with` statements are closed with an `{{ end }}`.
+`if`、`else`、`with`、`or`、`and`、`not` は、 Go テンプレートで条件分岐を扱うためのフレームワークを提供します。 `range` と同様に、 `if` と `with` 文は `{{ end }}` で閉じます。
 
-Go Templates treat the following values as **false**:
+Go テンプレートは、以下の値を **false** として扱います。
 
 - `false` (boolean)
 - 0 (integer)
-- any zero-length array, slice, map, or string
+- 長さゼロの配列、スライス、マップ、または文字列
 
-#### Example 1: `with`
+#### 例 1: `with` {#example-1-with}
 
-It is common to write "if something exists, do this" kind of
-statements using `with`.
+`with` を使って「何かあったらこうする」というような文を書くのが一般的です。
 
 {{% note %}}
-`with` rebinds the context `.` within its scope (just like in `range`).
+`with` は、そのスコープ内でコンテキスト `.` を再バインドします (`range` と同様)。
 {{% /note %}}
 
-It skips the block if the variable is absent, or if it evaluates to
-"false" as explained above.
+変数が存在しない場合や、上記で説明したように "false" と評価された場合は、ブロックをスキップします。
 
 ```go-html-template
 {{ with .Params.title }}
@@ -282,11 +258,9 @@ It skips the block if the variable is absent, or if it evaluates to
 {{ end }}
 ```
 
-#### Example 2: `with` .. `else`
+#### 例 2: `with` .. `else` {#example-2-with-else}
 
-Below snippet uses the "description" front-matter parameter's value if
-set, else uses the default `.Summary` [Page variable][pagevars]:
-
+以下のスニペットは、設定されている場合は "description" フロントマター パラメータの値を使用し、設定されていない場合はデフォルトの `.Summary` [ページ変数][pagevars] を使用します。
 
 ```go-html-template
 {{ with .Param "description" }}
@@ -296,14 +270,13 @@ set, else uses the default `.Summary` [Page variable][pagevars]:
 {{ end }}
 ```
 
-See the [`.Param` function][param].
+詳細は、[`.Param` 関数][param] を参照してください。
 
-#### Example 3: `if`
+#### 例 3: `if` {#example-3-if}
 
-An alternative (and a more verbose) way of writing `with` is using
-`if`. Here, the `.` does not get rebound.
+`with` の別の (そしてより冗長な) 書き方は、`if` を使用することです。 ここで、`.` はリバウンドしません。
 
-Below example is "Example 1" rewritten using `if`:
+以下の例は、「例 1」を `if` を使って書き直したものです。
 
 ```go-html-template
 {{ if isset .Params "title" }}
@@ -311,11 +284,9 @@ Below example is "Example 1" rewritten using `if`:
 {{ end }}
 ```
 
-#### Example 4: `if` .. `else`
+#### 例 4: `if` .. `else` {#example-4-if-else}
 
-Below example is "Example 2" rewritten using `if` .. `else`, and using
-[`isset` function][isset] + `.Params` variable (different from the
-[`.Param` **function**][param]) instead:
+以下の例は、「例 2」を `if` ... `else` で書き換え、代わりに [`isset` 関数][isset] + `.Params` 変数 (`.Param` **関数**][param] とは異なる) を使用した例です。
 
 ```go-html-template
 {{ if (isset .Params "description") }}
@@ -325,9 +296,9 @@ Below example is "Example 2" rewritten using `if` .. `else`, and using
 {{ end }}
 ```
 
-#### Example 5: `if` .. `else if` .. `else`
+#### 例 5: `if` .. `else if` .. `else` {#example-5-if-else-if-else}
 
-Unlike `with`, `if` can contain `else if` clauses too.
+`with` とは異なり、 `if` には `else if` 節を含めることもできます。
 
 ```go-html-template
 {{ if (isset .Params "description") }}
@@ -339,42 +310,41 @@ Unlike `with`, `if` can contain `else if` clauses too.
 {{ end }}
 ```
 
-#### Example 6: `and` & `or`
+#### 例 6: `and` および `or` {#example-6-and-or}
 
 ```go-html-template
 {{ if (and (or (isset .Params "title") (isset .Params "caption")) (isset .Params "attr")) }}
 ```
 
-## Pipes
+## パイプ {#pipes}
 
-One of the most powerful components of Go Templates is the ability to stack actions one after another. This is done by using pipes. Borrowed from Unix pipes, the concept is simple: each pipeline's output becomes the input of the following pipe.
+Go テンプレートの最も強力なコンポーネントの 1 つは、アクションを次々に積み重ねることができることです。これはパイプを使うことで実現されます。 Unix のパイプから借りたもので、コンセプトは単純です。つまり、各パイプラインの出力が次のパイプの入力になります。
 
-Because of the very simple syntax of Go Templates, the pipe is essential to being able to chain together function calls. One limitation of the pipes is that they can only work with a single value and that value becomes the last parameter of the next pipeline.
+Go テンプレートの構文は非常に単純であるため、関数呼び出しを連鎖させるにはパイプが不可欠です。 パイプの制限の 1 つは、単一の値しか扱えず、その値が次のパイプラインの最後のパラメータになることです。
 
-A few simple examples should help convey how to use the pipe.
+いくつかの簡単な例で、パイプの使用方法を説明します。
 
-### Example 1: `shuffle`
+### 例 1: `shuffle` {#example-1-shuffle}
 
-The following two examples are functionally the same:
+以下の 2 つの例は、機能的に同じです。
 
 ```go-html-template
 {{ shuffle (seq 1 5) }}
 ```
 
-
 ```go-html-template
 {{ (seq 1 5) | shuffle }}
 ```
 
-### Example 2: `index`
+### 例 2: `index` {#example-2-index}
 
-The following accesses the page parameter called "disqus_url" and escapes the HTML. This example also uses the [`index` function](/functions/index-function/), which is built into Go Templates:
+以下は "disqus_url" というページパラメータにアクセスし、HTML をエスケープしています。この例では、Go テンプレートに組み込まれている [`index` 関数](/functions/index-function/) も使用しています。
 
 ```go-html-template
 {{ index .Params "disqus_url" | html }}
 ```
 
-### Example 3: `or` with `isset`
+### 例 2: `or` with `isset` {#example-3-or-with-isset}
 
 ```go-html-template
 {{ if or (or (isset .Params "title") (isset .Params "caption")) (isset .Params "attr") }}
@@ -382,7 +352,7 @@ Stuff Here
 {{ end }}
 ```
 
-Could be rewritten as
+上記は、以下のように書き換えることができます。
 
 ```go-html-template
 {{ if isset .Params "caption" | or isset .Params "title" | or isset .Params "attr" }}
@@ -390,20 +360,14 @@ Stuff Here
 {{ end }}
 ```
 
-## Context (aka "the dot") {#the-dot}
+## コンテキスト (別名「ドット」) {#the-dot}
 
-The most easily overlooked concept to understand about Go Templates is
-that `{{ . }}` always refers to the **current context**.
+The most easily overlooked concept to understand about Go Templates is that `{{ . }}` always refers to the **current context**.
 
-- In the top level of your template, this will be the data set made
-  available to it.
-- Inside an iteration, however, it will have the value of the
-  current item in the loop; i.e., `{{ . }}` will no longer refer to
-  the data available to the entire page.
+- In the top level of your template, this will be the data set made available to it.
+- Inside an iteration, however, it will have the value of the current item in the loop; i.e., `{{ . }}` will no longer refer to the data available to the entire page.
 
-If you need to access page-level data (e.g., page params set in front
-matter) from within the loop, you will likely want to do one of the
-following:
+If you need to access page-level data (e.g., page params set in front matter) from within the loop, you will likely want to do one of the following:
 
 ### 1. Define a Variable Independent of Context
 

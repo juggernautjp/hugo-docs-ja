@@ -5,27 +5,26 @@ categories:
 - content management
 - fundamentals
 date: "2017-02-01"
-description: Hugo assumes that the same structure that works to organize your source
-  content is used to organize the rendered site.
-draft: true
+description: Hugo は、ソースのコンテンツを整理するのに有効なのと同じ構造を、レンダリングされるサイトの整理にも使用することを前提としています。
+draft: false
 keywords:
 - sections
 - content
 - organization
 - bundle
 - resources
-linktitle: Organization
+linktitle: コンテンツ構成
 menu:
   docs:
     parent: content-management
     weight: 10
 publishdate: "2017-02-01"
-title: Content Organization
+title: コンテンツ構成
 toc: true
 weight: 10
 ---
 
-## Page Bundles
+## ページバンドル {#page-bundles}
 
 Hugo `0.32` announced page-relative images and other resources packaged into `Page Bundles`.
 

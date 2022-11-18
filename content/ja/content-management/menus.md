@@ -4,64 +4,64 @@ aliases:
 categories:
 - content management
 date: "2017-02-01"
-description: Hugo has a simple yet powerful menu system.
-draft: true
+description: Hugo は、シンプルでありながら強力なメニューシステムを備えています。
+draft: false
 keywords:
 - menus
 lastmod: "2017-03-31"
-linktitle: Menus
+linktitle: メニュー
 menu:
   docs:
     parent: content-management
     weight: 120
 publishdate: "2017-02-01"
-title: Menus
+title: メニュー
 toc: true
 weight: 120
 ---
 
 {{% note "Lazy Blogger"%}}
-If all you want is a simple menu for your sections, see the ["Section Menu for Lazy Bloggers" in Menu Templates](/templates/menu-templates/#section-menu-for-lazy-bloggers).
+セクションのシンプルなメニューだけが必要な場合は、[メニュー テンプレートの「怠惰なブロガーのためのセクション メニュー」](/templates/menu-templates/#section-menu-for-lazy-bloggers) を参照してください。
 {{% /note %}}
 
 You can do this:
 
-* Place content in one or many menus
-* Handle nested menus with unlimited depth
-* Create menu entries without being attached to any content
-* Distinguish active element (and active branch)
+* 1 つまたは複数のメニューにコンテンツを配置する
+* ネストされたメニューの深さを無制限で扱える
+* コンテンツに付属しないメニューエントリーを作成する
+* アクティブな要素 (およびアクティブなブランチ) を区別する
 
-## What is a Menu in Hugo?
+## Hugo におけるメニューとは? {#what-is-a-menu-in-hugo}
 
-A **menu** is a named array of menu entries accessible by name via the [`.Site.Menus` site variable][sitevars]. For example, you can access your site's `main` menu via `.Site.Menus.main`.
+**メニュー** は、[`.Site.Menus` サイト変数][sitevars] を介してアクセスできるメニューエントリの名前付き配列です。たとえば、サイトの `メイン` メニューには `.Site.Menus.main` という変数でアクセスできます。
 
 {{% note "Menus on Multilingual Sites" %}}
-If you make use of the [multilingual feature](/content-management/multilingual/), you can define language-independent menus.
+[多言語機能](/content-management/multilingual/) を利用すると、言語に依存しないメニューを定義できます。
 {{% /note %}}
 
-See the [Menu Entry Properties][me-props] for all the variables and functions related to a menu entry.
+メニューエントリに関連するすべての変数と関数については、[「メニューエントリ プロパティ」][me-props] を参照してください。
 
-## Add content to menus
+## メニューにコンテンツを追加する {#add-content-to-menus}
 
-Hugo allows you to add content to a menu via the content's [front matter](/content-management/front-matter/).
+Hugo では、コンテンツの [フロントマター](/content-management/front-matter/) を介して、メニューにコンテンツを追加することができます。
 
-### Simple
+### 単純なエントリ {#simple}
 
-If all you need to do is add an entry to a menu, the simple form works well.
+メニューにエントリを追加するだけであれば、単純なフォームで十分です。
 
-#### A Single Menu
+#### 単一のメニュー {#a-single-menu}
 
 {{< code-toggle >}}
 menu: "main"
 {{< /code-toggle >}}
 
-#### Multiple Menus
+#### 複数のメニュー {#multiple-menus}
 
 {{< code-toggle >}}
 menu: ["main", "footer"]
 {{< /code-toggle >}}
 
-#### Advanced
+#### より高度なメニュー {#advanced}
 
 {{< code-toggle >}}
 menu:
@@ -70,11 +70,11 @@ menu:
     weight: 20
 {{< /code-toggle >}}
 
-## Add Non-content Entries to a Menu
+## メニューにコンテンツ以外のエントリーを追加する {#add-non-content-entries-to-a-menu}
 
-You can also add entries to menus that aren’t attached to a piece of content. This takes place in your Hugo project's [`config` file][config].
+コンテンツに関連付けられていないメニューにエントリを追加することもできます。 これは、Hugo プロジェクトの [`config` ファイル][config] で行われます。
 
-Here’s an example snippet pulled from a configuration file:
+以下は、設定ファイルから取り出したスニペットの例です。
 
 {{< code-toggle file="config" >}}
 [[menu.main]]
@@ -92,28 +92,28 @@ Here’s an example snippet pulled from a configuration file:
 {{< /code-toggle >}}
 
 {{% note %}}
-The URLs must be relative to the context root. If the `baseURL` is `https://example.com/mysite/`, then the URLs in the menu must not include the context root `mysite`. Using an absolute URL will override the baseURL. If the value used for `URL` in the above example is `https://subdomain.example.com/`, the output will be `https://subdomain.example.com`.
+URL はコンテキストルートからの相対パスである必要があります。 `baseURL` が `https://example.com/mysite/` の場合、メニューの URL にはコンテキストルートである `mysite` を含んではいけません。 絶対 URL を使用すると、baseURL がオーバーライドされます。上記の例で `URL` に使用した値が `https://subdomain.example.com/` である場合、出力は `https://subdomain.example.com` となります。
 {{% /note %}}
 
-## Nesting
+## ネスト {#nesting}
 
-All nesting of content is done via the `parent` field.
+コンテンツのネストはすべて `parent` フィールドを介して行われます。
 
-The parent of an entry should be the identifier of another entry. The identifier should be unique (within a menu).
+エントリの親は、別のエントリの識別子である必要があります。 識別子は (メニュー内で) 一意である必要があります。
 
-The following order is used to determine an Identifier:
+識別子の決定には、以下の順序が使用されます。
 
 `.Name > .LinkTitle > .Title`
 
-This means that `.Title` will be used unless `.LinkTitle` is present, etc. In practice, `.Name` and `.Identifier` are only used to structure relationships and therefore never displayed.
+つまり、 `.LinkTitle` が存在しない限り、 `.Title` が使用されるといったことです。 実際には、`.Name` と `.Identifier` は関係を構造化するためにのみ使用されるため、表示されることはありません。
 
-In this example, the top level of the menu is defined in your [site `config` file][config]. All content entries are attached to one of these entries via the `.Parent` field.
+この例では、メニューのトップレベルは [サイトの `config` ファイル][config] で定義されています。 すべてのコンテンツエントリは、`.Parent` フィールドを介して、これらのエントリの 1 つに関連付けられます。
 
-## Params
+## パラメータ {#params}
 
-You can also add user-defined content to menu items via the `params` field.
+また、`params` フィールドを介して、メニュー項目にユーザー定義のコンテンツを追加することもできます。
 
-A common use case is to define a custom param to add a css class to a specific menu item.
+一般的な使用例は、特定のメニュー項目に css クラスを追加するカスタム パラメータを定義することです。
 
 {{< code-toggle file="config" >}}
 [[menu.main]]
@@ -126,9 +126,9 @@ A common use case is to define a custom param to add a css class to a specific m
       class = "highlight-menu-item"
 {{</ code-toggle >}}
 
-## Render Menus
+## メニューをレンダリングする {#render-menus}
 
-See [Menu Templates](/templates/menu-templates/) for information on how to render your site menus within your templates.
+テンプレート内でサイトメニューを表示する方法については、[「メニュー テンプレート」](/templates/menu-templates/) を参照してください。
 
 [config]: /getting-started/configuration/
 [multilingual]: /content-management/multilingual/

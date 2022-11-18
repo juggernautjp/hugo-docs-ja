@@ -6,107 +6,107 @@ aliases:
 categories:
 - content management
 date: "2017-01-10"
-description: Both HTML and Markdown are supported content formats.
-draft: true
+description: HTML と Markdown の両方のコンテンツ形式をサポートしています。
+draft: false
 keywords:
 - markdown
 - asciidoc
 - pandoc
 - content format
-linktitle: Content Formats
+linktitle: コンテンツ形式
 menu:
   docs:
     parent: content-management
     weight: 20
 publishdate: "2017-01-10"
-title: Content Formats
+title: コンテンツ形式
 toc: true
 weight: 20
 ---
 
-You can put any file type into your `/content` directories, but Hugo uses the `markup` front matter value if set or the file extension (see `Markup identifiers` in the table below) to determine if the markup needs to be processed, e.g.:
+`content` ディレクトリには任意のファイルタイプを入れることができますが、Hugo は `markup` というフロントマターの値が設定されている場合、またはファイルの拡張子 (下のテーブルの `Markup identifiers` を参照) を使って、マークアップを処理する必要があるかどうかを判断します。たとえば、
 
-* Markdown converted to HTML
-* [Shortcodes](/content-management/shortcodes/) processed
-* Layout applied
+* HTML に変換された Markdown
+* 処理済み [ショートコード](/content-management/shortcodes/)
+* 適用されたレイアウト
 
-## List of content formats
+## コンテンツ形式の一覧 {#list-of-content-formats}
 
-The current list of content formats in Hugo:
+下表は、Hugo の現在のコンテンツ フォーマットの一覧です。
 
-| Name  | Markup identifiers | Comment |
+| 名前  | Markup 識別子 | コメント |
 | ------------- | ------------- |-------------|
-| Goldmark  | md, markdown, goldmark  |Note that you can set the default handler of `md` and `markdown` to something else, see [Configure Markup](/getting-started/configuration-markup/).{{< new-in "0.60.0" >}} |
-|Emacs Org-Mode|org|See [go-org](https://github.com/niklasfasching/go-org).|
-|AsciiDoc|asciidocext, adoc, ad|Needs [Asciidoctor][ascii] installed.|
-|RST|rst|Needs [RST](https://docutils.sourceforge.io/rst.html) installed.|
-|Pandoc|pandoc, pdc|Needs [Pandoc](https://www.pandoc.org/) installed.|
-|HTML|html, htm|To be treated as a content file, with layout, shortcodes etc., it must have front matter. If not, it will be copied as-is.|
+| Goldmark  | md, markdown, goldmark  | `md` と `markdown` のデフォルト ハンドラーを別のものに設定できることに注意してください。[「マークアップの設定」](/getting-started/configuration-markup/) を参照してください。{{< new-in "0.60.0" >}} |
+| Emacs Org-Mode | org | [go-org](https://github.com/niklasfasching/go-org) を参照してください。 |
+| AsciiDoc | asciidocext, adoc, ad  | [Asciidoctor][ascii] がインストールされている必要があります。 |
+| RST | rst | [RST](https://docutils.sourceforge.io/rst.html) がインストールされている必要があります。 |
+| Pandoc| pandoc, pdc | [Pandoc](https://www.pandoc.org/) がインストールされている必要があります。 |
+| HTML | html, htm | レイアウトやショートコードなど、コンテンツファイルとして扱うには、フロントマターが必要です。そうでない場合は、そのままコピーされます。 |
 
-The `markup identifier` is fetched from either the `markup` variable in front matter or from the file extension. For markup-related configuration, see [Configure Markup](/getting-started/configuration-markup/).
+`markup identifier` は、フロントマターの変数 `markup` か、ファイルの拡張子から取得されます。マークアップ関連の設定については、 [「マークアップの設定」](/getting-started/configuration-markup/) を参照してください。
 
-## External Helpers
+## 外部ヘルパー {#external-helpers}
 
-Some of the formats in the table above need external helpers installed on your PC. For example, for AsciiDoc files,
-Hugo will try to call the `asciidoctor` command. This means that you will have to install the associated
-tool on your machine to be able to use these formats.
+上表のフォーマットの中には、お使いの PC に外部ヘルパーをインストールする必要があるものがあります。
+たとえば、AsciiDoc ファイルの場合、Hugo は `asciidoctor` コマンドを呼び出そうとします。
+つまり、これらの形式を使用するには、関連するツールをマシンにインストールする必要があります。
 
-Hugo passes reasonable default arguments to these external helpers by default:
+Hugo は、デフォルトで以下のような適切なデフォルト引数をこれらの外部ヘルパーに渡します。
 
 - `asciidoctor`: `--no-header-footer -`
 - `rst2html`: `--leave-comments --initial-header-level=2`
 - `pandoc`: `--mathjax`
 
 {{% warning "Performance of External Helpers" %}}
-Because additional formats are external commands, generation performance will rely heavily on the performance of the external tool you are using. As this feature is still in its infancy, feedback is welcome.
+追加のフォーマットは外部コマンドであるため、生成のパフォーマンスは、使用している外部ツールのパフォーマンスに大きく依存します。 この機能はまだ初期段階にあるため、フィードバックを歓迎します。
 {{% /warning %}}
 
-### External Helper AsciiDoc
+### 外部ヘルパー AsciiDoc {#external-helper-asciidoc}
 
-[AsciiDoc](https://github.com/asciidoc/asciidoc) implementation EOLs in Jan 2020 and is no longer supported.
-AsciiDoc development is being continued under [Asciidoctor](https://github.com/asciidoctor). The format AsciiDoc
-remains of course. Please continue with the implementation Asciidoctor.
+[AsciiDoc](https://github.com/asciidoc/asciidoc) の実装は 2020年1月に EOL となり、サポートが終了しています。
+なお、AsciiDoc の開発は [Ascidoctor](https://github.com/asciidoctor) のもとで継続されています。 
+もちろん AsciiDoc のフォーマットは残ります。実装は Asciidoctor で続けてください。
 
-### External Helper Asciidoctor
+### 外部ヘルパー Asciidoctor {#external-helper-asciidoctor}
 
-The Asciidoctor community offers a wide set of tools for the AsciiDoc format that can be installed additionally to Hugo.
-[See the Asciidoctor docs for installation instructions](https://asciidoctor.org/docs/install-toolchain/). Make sure that also all
-optional extensions like `asciidoctor-diagram` or `asciidoctor-html5s` are installed if required.
+Asciidoctor コミュニティは、Hugo に追加してインストールできる、AsciiDoc フォーマットのための幅広いツール群を提供しています。
+[インストール方法は Asciidoctor のドキュメントを参照してください](https://asciidoctor.org/docs/install-toolchain/)。 
+必要であれば、`asciidoctor-diagram` や `asciidoctor-html5s` などのオプションの拡張もすべてインストールされていることを確認してください。
 
 {{% note %}}
-External `asciidoctor` command requires Hugo rendering to _disk_ to a specific destination directory. It is required to run Hugo with the command option `--destination`.
+外部の `asciidoctor` コマンドでは、 Hugo レンダリングが特定の宛先ディレクトリへ _disk_ するように要求します。 コマンド オプション `--destination` を指定して Hugo を実行する必要があります。
 {{% /note %}}
 
-Some [Asciidoctor](https://asciidoctor.org/man/asciidoctor/) parameters can be customized in Hugo:
+一部の [Asciidoctor](https://asciidoctor.org/man/asciidoctor/) パラメータは、Hugo でカスタマイズできます。
 
-Parameter | Comment
+パラメータ | コメント
 --- | ---
-backend | Don't change this unless you know what you are doing.
-doctype | Currently, the only document type supported in Hugo is `article`.
-extensions | Possible extensions are `asciidoctor-html5s`, `asciidoctor-bibtex`, `asciidoctor-diagram`, `asciidoctor-interdoc-reftext`, `asciidoctor-katex`, `asciidoctor-latex`, `asciidoctor-mathematical`, `asciidoctor-question`, `asciidoctor-rouge`.
-attributes | Variables to be referenced in your AsciiDoc file. This is a list of variable name/value maps. See [Asciidoctor's attributes](https://asciidoctor.org/docs/asciidoc-syntax-quick-reference/#attributes-and-substitutions).
-noHeaderOrFooter | Output an embeddable document, which excludes the header, the footer, and everything outside the body of the document. Don't change this unless you know what you are doing.
-safeMode | Safe mode level `unsafe`, `safe`, `server` or `secure`. Don't change this unless you know what you are doing.
-sectionNumbers | Auto-number section titles.
-verbose | Verbosely print processing information and configuration file checks to stderr.
-trace | Include backtrace information on errors.
-failureLevel | The minimum logging level that triggers a non-zero exit code (failure).
+backend | 自分が何をしているのか分からない限り、これを変更しないでください。
+doctype | 現在、Hugo でサポートされているドキュメント タイプは `article` だけです。
+extensions | 使用できる拡張子は、 `asciidoctor-html5s`、`asciidoctor-bibtex`、`asciidoctor-diagram`、`asciidoctor-interdoc-reftext`、`asciidoctor-katex`、`asciidoctor-latex`、`asciidoctor-mathematical`、`asciidoctor-question`、`asciidoctor-rouge` です。
+attributes | AsciiDoc ファイルで参照する変数です。これは変数名/値マップのリストです。 [「Asciidoctor の属性」](https://asciidoctor.org/docs/asciidoc-syntax-quick-reference/#attributes-and-substitutions) を参照してください。
+noHeaderOrFooter | ヘッダー、フッター、本文以外のものを除いた埋め込み可能なドキュメントを出力します。自分が何をしているのか分からない限り、これを変更しないでください。
+safeMode | セーフモードのレベルを `unsafe`、`safe`、`server`、`secure` のいずれかから選択します。自分が何をしているのか分からない限り、これを変更しないでください。
+sectionNumbers | セクションのタイトルに自動で番号を付けます。
+verbose | 処理情報と設定ファイルのチェックを stderr (標準エラー出力) に詳細に出力します。
+trace | エラー時のバックトレース情報を含めます。
+failureLevel | 0以外の終了コード（失敗）をトリガーする最小のロギングレベルです。
 
-Hugo provides additional settings that don't map directly to Asciidoctor's CLI options:
+Hugo は Asciidoctor の CLI オプションに直接マッピングされない、以下の追加設定を提供します。
 
 workingFolderCurrent
-: Sets the working directory to be the same as that of the AsciiDoc file being processed, so that [include](https://asciidoctor.org/docs/asciidoc-syntax-quick-reference/#include-files) will work with relative paths. This setting uses the `asciidoctor` cli parameter `--base-dir` and attribute `outdir=`. For rendering diagrams with [asciidoctor-diagram](https://asciidoctor.org/docs/asciidoctor-diagram/), `workingFolderCurrent` must be set to `true`.
+: 作業ディレクトリを、処理中の AsciiDoc ファイルのディレクトリと同じになるように設定します。これにより、[include](https://asciidoctor.org/docs/asciidoc-syntax-quick-reference/#include-files) が相対パスで動作するようになります。この設定では、 `asciidoctor` の cli パラメータ `--base-dir` と属性 `outdir=` を使用します。 [asciidoctor-diagram](https://asciidoctor.org/docs/asciidoctor-diagram/) で図をレンダリングする場合には、 `workingFolderCurrent` を `true` に設定する必要があります。
 
 preserveTOC
-: By default, Hugo removes the table of contents generated by Asciidoctor and provides it through the built-in variable [`.TableOfContents`](/content-management/toc/) to enable further customization and better integration with the various Hugo themes. This option can be set to `true` to preserve Asciidoctor's TOC in the generated page.
+: デフォルトでは、Hugo は Asciidoctor が生成した目次を削除し、組み込み変数 [`.TableOfContents`](/content-management/toc/) を通して目次を提供し、さらなるカスタマイズとさまざまな Hugo テーマとのより良い統合を可能にします。このオプションを `true` に設定すると、生成されたページで Asciidoctor の TOC (目次) を保持できます。
 
-Below are all the AsciiDoc related settings in Hugo with their default values:
+以下は、Hugo における AsciiDoc 関連のすべての設定とそのデフォルト値になります。
 
 {{< code-toggle config="markup.asciidocExt" />}}
 
-Notice that for security concerns only extensions that do not have path separators (either `\`, `/` or `.`) are allowed. That means that extensions can only be invoked if they are in one's ruby's `$LOAD_PATH` (ie. most likely, the extension has been installed by the user). Any extension declared relative to the website's path will not be accepted.
+セキュリティ上の懸念から、パス区切り文字 (`\`、`/`、または `.`) を持たない拡張子のみが許可されることに注意してください。 つまり、拡張機能は、Ruby の `$LOAD_PATH` にある場合にのみ呼び出すことができます (つまり、拡張機能がユーザーによってインストールされている可能性が最も高いです)。 Web サイトのパスに対して相対的に宣言された拡張子は受け入れられません。
 
-Example of how to set extensions and attributes:
+以下は、拡張子や属性の設定例です。
 
 ```yml
 [markup.asciidocExt]
@@ -117,16 +117,15 @@ Example of how to set extensions and attributes:
         my-attribute-name = "my value"
 ```
 
-In a complex Asciidoctor environment it is sometimes helpful to debug the exact call to your external helper with all
-parameters. Run Hugo with `-v`. You will get an output like
+複雑な Asciidoctor 環境では、外部ヘルパーをすべてのパラメータで正確に呼び出すことがデバッグに役立つことがあります。 `-v` で Hugo を実行すると、以下のような出力が得られます。
 
 ```txt
 INFO 2019/12/22 09:08:48 Rendering book-as-pdf.adoc with C:\Ruby26-x64\bin\asciidoctor.bat using asciidoc args [--no-header-footer -r asciidoctor-html5s -b html5s -r asciidoctor-diagram --base-dir D:\prototypes\hugo_asciidoc_ddd\docs -a outdir=D:\prototypes\hugo_asciidoc_ddd\build -] ...
 ```
 
-## Learn Markdown
+## Markdown を学ぶ {#learn-markdown}
 
-Markdown syntax is simple enough to learn in a single sitting. The following are excellent resources to get you up and running:
+Markdown の構文は一度で習得できるほどシンプルです。以下は、あなたが起動し、実行できる優れたリソースです。
 
 * [Daring Fireball: Markdown, John Gruber (Creator of Markdown)][fireball]
 * [Markdown Cheatsheet, Adam Pritchard][mdcheatsheet]

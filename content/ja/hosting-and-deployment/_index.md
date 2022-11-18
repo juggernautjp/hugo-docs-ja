@@ -3,19 +3,19 @@ aliases: []
 categories:
 - hosting and deployment
 date: "2016-11-01"
-description: Site builds, automated deployments, and popular hosting solutions.
-draft: true
+description: サイトのビルド、自動デプロイメント、および一般的なホスティング ソリューション。
+draft: false
 keywords: []
 lastmod: "2016-11-01"
-linktitle: Hosting & Deployment Overview
+linktitle: ホスティングとデプロイメントの概要
 menu:
   docs:
     parent: hosting-and-deployment
     weight: 1
 publishdate: "2016-11-01"
-title: Hosting & Deployment
+title: ホスティングとデプロイメント
 toc: false
 weight: 1
 ---
 
-Because Hugo renders *static* websites, you can host your new Hugo website virtually anywhere. The following represent only a few of the more popular hosting and automated deployment solutions used by the Hugo community.
+Hugo は *静的な* Web サイトをレンダリングするため、新しい Hugo の Web サイトは事実上どこでもホストすることができます。以下は、Hugo コミュニティで使用されている、より一般的なホスティングと自動デプロイメントのソリューションのほんの一部です。

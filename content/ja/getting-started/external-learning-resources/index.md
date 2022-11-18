@@ -1,32 +1,32 @@
 ---
 date: "2019-10-20"
-description: A list of tutorials and books on Hugo.
-draft: true
+description: Hugo に関するチュートリアルと書籍のリストです。
+draft: false
 keywords:
 - books
 - tutorials
 - learning
 - usage
 lastmod: "2019-10-20"
-linktitle: External Learning Resources
+linktitle: 外部の学習リソース
 menu:
   docs:
     parent: getting-started
     weight: 70
 publishdate: "2019-10-20"
 sections_weight: 70
-title: External Learning Resources
+title: 外部の学習リソース
 toc: false
 weight: 70
 ---
 
-## Books
+## 書籍 {#books}
 
 ### Hugo In Action
 
 [![Hugo In Action](hia.jpg)](https://www.manning.com/books/hugo-in-action)
 
-Hugo in Action is a step-by-step guide to using Hugo to create static websites. Working with a complete example website and source code samples, you’ll learn how to build and host a low-maintenance, high-performance site that will wow your users and stay stable without relying on a third-party server.
+「Hugo in Action」は、Hugo を使って静的な Web サイトを作成するためのステップバイステップのガイドです。サードパーティのサーバに依存することなく、ユーザを驚かせ、安定性を維持する、メンテナンスが少なく、高性能なサイトを構築しホストする方法を学ぶことができます。
 
 [Hugo In Action Home Page](https://www.manning.com/books/hugo-in-action)
 
@@ -34,14 +34,14 @@ Hugo in Action is a step-by-step guide to using Hugo to create static websites. 
 
 [Build Websites with Hugo - Fast Web Development with Markdown (2020)](https://pragprog.com/titles/bhhugo/) by Brian P. Hogan.
 
-## Beginner tutorials
+## 初心者向けチュートリアル {#beginner-tutorials}
 
-### Hugo tutorial by CloudCannon
+### CloudCannon による Hugo チュートリアル {#hugo-tutorial-by-cloudcannon}
 
-[Step-by-step written tutorial](https://cloudcannon.com/community/learn/hugo-101/) to teach you the basics of creating a Hugo site.
+[「ステップバイステップの書き方チュートリアル」](https://cloudcannon.com/community/learn/hugo-101/) で、Hugo サイト作成の基礎が学べます。
 
-## Video tutorials
+## 動画チュートリアル {#video-tutorials}
 
-* Mike Dane explains the various features of Hugo via dedicated tutorials on [YouTube](https://www.youtube.com/watch?list=PLLAZ4kZ9dFpOnyRlyS-liKL5ReHDcj4G3&v=qtIqKaDlqXo).
+* Mike Dane が [YouTube](https://www.youtube.com/watch?list=PLLAZ4kZ9dFpOnyRlyS-liKL5ReHDcj4G3&v=qtIqKaDlqXo) の専用チュートリアルで Hugo のさまざまな機能について説明しています。
 
-* [Introduction to building your first Hugo site](https://cloudcannon.com/community/learn/hugo-beginner-tutorial/) by Mike Neumegen.
+* [「はじめての Hugo サイト構築入門」](https://cloudcannon.com/community/learn/hugo-beginner-tutorial/) by Mike Neumegen.

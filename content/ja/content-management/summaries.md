@@ -5,93 +5,96 @@ aliases:
 categories:
 - content management
 date: "2017-01-10"
-description: Hugo generates summaries of your content.
-draft: true
+description: Hugo はコンテンツの要約 (サマリー) を生成します。
+draft: false
 keywords:
 - summaries
 - abstracts
 - read more
 lastmod: "2017-01-10"
-linktitle: Summaries
+linktitle: サマリー
 menu:
   docs:
     parent: content-management
     weight: 90
 publishdate: "2017-01-10"
-title: Content Summaries
+title: コンテンツサマリー
 toc: true
 weight: 90
 ---
 
-With the use of the `.Summary` [page variable][pagevariables], Hugo generates summaries of content to use as a short version in summary views.
+`.Summary` [ページ変数][pagevariables] を使用すると、Hugo はコンテンツのサマリーを生成し、サマリービューで短縮版として使用することができます。
 
-## Summary Splitting Options
+## サマリー分割のオプション {#summary-splitting-options}
 
-* Automatic Summary Split
-* Manual Summary Split
-* Front Matter Summary
+* 自動サマリー分割
+* 手動サマリー分割
+* フロントマター サマリー
 
-It is natural to accompany the summary with links to the original content, and a common design pattern is to see this link in the form of a "Read More ..." button. See the `.RelPermalink`, `.Permalink`, and `.Truncated` [page variables][pagevariables].
+サマリー (要約) にオリジナルのコンテンツへのリンクを付けるのは自然なことで、このリンクを「続きを読む...」("Read More ...") ボタンの形で表示するのが一般的なデザインパターンとなっています。
+詳細は、`RelPermalink`、`.Permalink`、`.Truncated` [ページ変数][pagevariables] を参照してください。
 
-### Automatic Summary Splitting
+### 自動サマリー分割 {#automatic-summary-splitting}
 
-By default, Hugo automatically takes the first 70 words of your content as its summary and stores it into the `.Summary` page variable for use in your templates. You may customize the summary length by setting `summaryLength` in your [site configuration](/getting-started/configuration/).
+デフォルトでは、Hugo はコンテンツの最初の 70 語を要約として自動的に取得し、テンプレートで使用するために `.Summary` ページ変数に保存します。
+サマリーの長さは、[サイト設定](/getting-started/configuration/) で `summaryLength` を設定することでカスタマイズできます。
 
 {{% note %}}
-You can customize how HTML tags in the summary are loaded using functions such as `plainify` and `safeHTML`.
+`plainify` や `safeHTML` などの関数を使用すると、サマリー内の HTML タグをどのように読み込むかをカスタマイズすることができます。
 {{% /note %}}
 
 {{% note %}}
-The Hugo-defined summaries are set to use word count calculated by splitting the text by one or more consecutive whitespace characters. If you are creating content in a `CJK` language and want to use Hugo's automatic summary splitting, set `hasCJKLanguage` to `true` in your [site configuration](/getting-started/configuration/).
+Hugo で定義されたサマリーは、テキストを 1つ以上の連続した空白文字で分割して計算した語数を使用するように設定されています。
+もし、`CJK` 言語でコンテンツを作成していて、Hugo の自動サマリー分割を使いたい場合は、[サイト設定](/getting-started/configuration/) で `hasCJKLanguage` を `true` に設定します。
 {{% /note %}}
 
-### Manual Summary Splitting
+### 手動サマリー分割 {#manual-summary-splitting}
 
-Alternatively, you may add the <code>&#60;&#33;&#45;&#45;more&#45;&#45;&#62;</code> summary divider where you want to split the article.
+あるいは、記事を分割したい場所に <code>&#60;&#33;&#45;&#45;more&#45;&#62;<code> という要約区切り文字を追加することもできます。
 
-For [Org mode content][org], use `# more` where you want to split the article.
+[Org モードのコンテンツ][org] の場合、記事を分割したいところで `# more` を使います。
 
-Content that comes before the summary divider will be used as that content's summary and stored in the `.Summary` page variable with all HTML formatting intact.
+要約区切り文字の前に来るコンテンツは、そのコンテンツのサマリーとして使用され、すべての HTML フォーマットをそのままに `.Summary` ページ変数に保存されます。
 
 {{% note "Summary Divider"%}}
-The concept of a *summary divider* is not unique to Hugo. It is also called the "more tag" or "excerpt separator" in other literature.
+*要約区切り文字* という概念は、Hugo 独自のものではありません。他の文献では「more tag (より多くのタグ)」や「excerpt separator (抜粋区切り)」とも呼ばれています。
 {{% /note %}}
 
-Pros
-: Freedom, precision, and improved rendering.  All HTML tags and formatting are preserved.
+長所
+: 自由で正確、そしてレンダリングの向上。 すべての HTML タグと書式は保持されます。
 
-Cons
-: Extra work for content authors, since they need to remember to type <code>&#60;&#33;&#45;&#45;more&#45;&#45;&#62;</code> (or `# more` for [org content][org]) in each content file. This can be automated by adding the summary divider below the front matter of an [archetype](/content-management/archetypes/).
+短所
+: コンテンツ作成者は、各コンテンツファイルに <code>&#60;&#33;&#45;&#45;more&#45;&#62;</code> (または、[org コンテンツ][org] には `# more`) を追加することを覚えなければならないので、余計な仕事が増えることになります。これは、[アーキタイプ](/content-management/archetypes/) のフロントマターの下に要約区切り文字を追加することで自動化することができます。
 
 {{% warning "Be Precise with the Summary Divider" %}}
-Be careful to enter <code>&#60;&#33;&#45;&#45;more&#45;&#45;&#62;</code> exactly; i.e., all lowercase and with no whitespace.
+<code>&#60;&#33;&#45;&#45;more&#45;&#62;</code> は正確に、つまりすべて小文字で空白を入れずに入力するように注意してください。
 {{% /warning %}}
 
-### Front Matter Summary
+### フロントマター サマリー {#front-matter-summary}
 
-You might want your summary to be something other than the text that starts the article.  In this case you can provide a separate summary in the `summary` variable of the article front matter.
+要約を、記事の冒頭のテキスト以外のものにしたい場合があります。 この場合、記事のフロントマターの `summary` 変数に別の要約を指定できます。
 
-Pros
-: Complete freedom of text independent of the content of the article.  Markup can be used within the summary.
+長所
+: 記事の内容に依存しない完全なテキストの自由度があります。 サマリー内でマークアップが使用できます。
 
-Cons
-: Extra work for content authors as they need to write an entirely separate piece of text as the summary of the article.
+短所
+: コンテンツ作成者は、記事の要約として完全に別のテキストを書く必要があるため、追加の作業が必要です。
 
-## Summary Selection Order
+## サマリー選択順序 {#summary-selection-order}
 
-Because there are multiple ways in which a summary can be specified it is useful to understand the order of selection Hugo follows when deciding on the text to be returned by `.Summary`.  It is as follows:
+要約を指定する方法は複数あるため、`.Summary` が返すテキストを決定する際に、Hugo が従う選択の順序を理解しておくと便利です。 それは以下のとおりです。
 
-1. If there is a <code>&#60;&#33;&#45;&#45;more&#45;&#45;&#62;</code> summary divider present in the article the text up to the divider will be provided as per the manual summary split method
-2. If there is a `summary` variable in the article front matter the value of the variable will be provided as per the front matter summary method
-3. The text at the start of the article will be provided as per the automatic summary split method
+1. 記事の中に <code>&#60;&#33;&#45;&#45;more&#45;&#62;</code> 要約区切り文字がある場合、区切りまでのテキストは手動サマリー分割方式に準じて提供されます。
+2. 記事のフロントマターの中に `summary` 変数がある場合、その変数の値はフロントマターのサマリーメソッドに従って提供されます。
+3. 記事冒頭のテキストは、自動サマリー分割方式で提供されます
 
 {{% warning "Competing selections" %}}
-Hugo uses the _first_ of the above steps that returns text.  So if, for example, your article has both `summary` variable in its front matter and a <code>&#60;&#33;&#45;&#45;more&#45;&#45;&#62;</code> summary divider Hugo will use the manual summary split method.
+Hugo は、上記のステップのうち、テキストを返す _最初_ のステップを使用します。 ですから、たとえば、記事がフロントマターの `summary` 変数と <code>&#60;&#33;&#45;&#45;more&#45;&#62;</code> 要約区切り文字の両方を持つ場合、Hugo は自動サマリー分割方式を使用することにします。
 {{% /warning %}}
 
-## Example: First 10 Articles with Summaries
+## 例: 要約付きの最初の 10 件の記事 {#example-first-10-articles-with-summaries}
 
-You can show content summaries with the following code. You could use the following snippet, for example, in a [section template][].
+以下のコードで、コンテンツのサマリーを表示できます。たとえば、[セクション テンプレート][section template] sの中で、以下のスニペットを使うことができます。
 
 {{< code file="page-list-with-summaries.html" >}}
 {{ range first 10 .Pages }}
@@ -111,7 +114,7 @@ You can show content summaries with the following code. You could use the follow
 {{ end }}
 {{< /code >}}
 
-Note how the `.Truncated` boolean variable value may be used to hide the "Read More..." link when the content is not truncated; i.e., when the summary contains the entire article.
+ブール変数 `.Truncated` を使って、コンテンツが切り捨てられないとき、つまり、要約が記事全体を含んでいるときに、「続きを読む...」("Read More ...") リンクを隠すことができることに注意してください。
 
 [org]: /content-management/formats/
 [pagevariables]: /variables/page/

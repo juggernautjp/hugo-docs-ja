@@ -4,27 +4,26 @@ aliases:
 categories:
 - variables and params
 date: "2017-02-01"
-description: Page-, file-, taxonomy-, and site-level variables and parameters available
-  in templates.
-draft: true
+description: ページ、ファイル、タクソノミー、サイトレベルの変数とパラメータをテンプレートで利用できます。
+draft: false
 keywords:
 - variables
 - params
 - values
 - globals
 lastmod: "2017-02-01"
-linktitle: Variables Overview
+linktitle: 変数の概要
 menu:
   docs:
     parent: variables
     weight: 1
 publishdate: "2017-02-01"
 sections_weight: 1
-title: Variables and Params
+title: 変数とパラメータ
 toc: false
 weight: 1
 ---
 
-Hugo's templates are context aware and make a large number of values available to you as you're creating views for your website.
+Hugo のテンプレートはコンテキストに対応しており、Web サイトのビューを作成する際に多数の値を利用できます。
 
-[Go templates]: /templates/introduction/ "Understand context in Go templates by learning the language's fundamental templating functions."
+[Go templates]: /templates/introduction/ "言語の基本的なテンプレート関数を学ぶことで、Go テンプレートにおけるコンテキストを理解できます。"

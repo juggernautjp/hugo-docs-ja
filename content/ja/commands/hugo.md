@@ -1,87 +1,86 @@
 ---
-draft: true
+draft: false
 slug: hugo
 title: hugo
 url: /commands/hugo/
 ---
 ## hugo
 
-hugo builds your site
+hugo コマンドは、あなたのサイトをビルド (構築) します。
 
-### Synopsis
+### 概要 {#synopsis}
 
-hugo is the main command, used to build your Hugo site.
+hugo はメインコマンドで、Hugo サイトをビルドするために使用します。
 
-Hugo is a Fast and Flexible Static Site Generator
-built with love by spf13 and friends in Go.
+Hugo は、spf13 と Go の仲間たちが愛情を込めて作った、高速で柔軟な静的サイトジェネレータです。
 
-Complete documentation is available at https://gohugo.io/.
+完全なドキュメントは https://gohugo.io/ で入手できます。
 
-```
+```bash
 hugo [flags]
 ```
 
-### Options
+### オプション {#options}
 
 ```
-  -b, --baseURL string             hostname (and path) to the root, e.g. https://spf13.com/
-  -D, --buildDrafts                include content marked as draft
-  -E, --buildExpired               include expired content
-  -F, --buildFuture                include content with publishdate in the future
-      --cacheDir string            filesystem path to cache directory. Defaults: $TMPDIR/hugo_cache/
-      --cleanDestinationDir        remove files from destination not found in static directories
-      --clock string               set the clock used by Hugo, e.g. --clock 2021-11-06T22:30:00.00+09:00
-      --config string              config file (default is path/config.yaml|json|toml)
-      --configDir string           config dir (default "config")
-  -c, --contentDir string          filesystem path to content directory
-      --debug                      debug output
-  -d, --destination string         filesystem path to write files to
-      --disableKinds strings       disable different kind of pages (home, RSS etc.)
-      --enableGitInfo              add Git revision, date, author, and CODEOWNERS info to the pages
-  -e, --environment string         build environment
-      --forceSyncStatic            copy all files when static is changed.
-      --gc                         enable to run some cleanup tasks (remove unused cache files) after the build
-  -h, --help                       help for hugo
-      --ignoreCache                ignores the cache directory
-      --ignoreVendorPaths string   ignores any _vendor for module paths matching the given Glob pattern
-  -l, --layoutDir string           filesystem path to layout directory
-      --log                        enable Logging
-      --logFile string             log File path (if set, logging enabled automatically)
-      --minify                     minify any supported output format (HTML, XML etc.)
-      --noBuildLock                don't create .hugo_build.lock file
-      --noChmod                    don't sync permission mode of files
-      --noTimes                    don't sync modification time of files
-      --panicOnWarning             panic on first WARNING log
-      --poll string                set this to a poll interval, e.g --poll 700ms, to use a poll based approach to watch for file system changes
-      --printI18nWarnings          print missing translations
-      --printMemoryUsage           print memory usage to screen at intervals
-      --printPathWarnings          print warnings on duplicate target paths etc.
-      --printUnusedTemplates       print warnings on unused templates.
-      --quiet                      build in quiet mode
-      --renderToMemory             render to memory (only useful for benchmark testing)
-  -s, --source string              filesystem path to read files relative from
-      --templateMetrics            display metrics about template executions
-      --templateMetricsHints       calculate some improvement hints when combined with --templateMetrics
-  -t, --theme strings              themes to use (located in /themes/THEMENAME/)
-      --themesDir string           filesystem path to themes directory
-      --trace file                 write trace to file (not useful in general)
-  -v, --verbose                    verbose output
-      --verboseLog                 verbose logging
-  -w, --watch                      watch filesystem for changes and recreate as needed
+  -b, --baseURL string             ルートへのホスト名 (およびパス) で、たとえば、 https://spf13.com/
+  -D, --buildDrafts                下書きとしてマークされたコンテンツを含めます
+  -E, --buildExpired               期限切れのコンテンツを含めます
+  -F, --buildFuture                公開日が将来のコンテンツを含めます
+      --cacheDir string            キャッシュ ディレクトリへのファイルシステム パスで、デフォルトは $TMPDIR/hugo_cache/ です。
+      --cleanDestinationDir        静的ディレクトリに見つからない宛先からファイルを削除します
+      --clock string               Hugo が使用する時計を設定します。たとえば、 --clock 2021-11-06T22:30:00.00+09:00
+      --config string              設定ファイル (デフォルトは path/config.yaml|json|toml)
+      --configDir string           config ディレクトリ (デフォルトは "config")
+  -c, --contentDir string          コンテンツディレクトリへのファイルシステムのパス
+      --debug                      デバッグ出力
+  -d, --destination string         ファイルを書き込むファイルシステムのパス
+      --disableKinds strings       さまざまな種類のページ (ホーム、RSS など) を無効にします
+      --enableGitInfo              ページに Git リビジョン、日付、作成者、CODEOWNERS 情報を追加します
+  -e, --environment string         ビルド環境
+      --forceSyncStatic            static が変更されたときにすべてのファイルをコピーします。
+      --gc                         ビルド後にいくつかのクリーンアップ タスク (未使用のキャッシュ ファイルを削除する) を実行できるようにします。
+  -h, --help                       hugo コマンドのヘルプ
+      --ignoreCache                キャッシュディレクトリを無視します
+      --ignoreVendorPaths string   指定された Glob パターンに一致するモジュールパスの _vendor を無視します
+  -l, --layoutDir string           レイアウト ディレクトリへのファイルシステムのパス
+      --log                        ロギングを有効にします
+      --logFile string             ログファイルのパス (設定されている場合、ログが自動的に有効になります)
+      --minify                     サポートされている出力形式 (HTML、XML など) をミニファイします
+      --noBuildLock                .hugo_build.lock ファイルを作成しません
+      --noChmod                    ファイルのパーミッションモードを同期しません
+      --noTimes                    ファイルの更新時刻を同期しません
+      --panicOnWarning             最初の警告 (WARNING) ログでパニック (panic) します
+      --poll string                (たとえば --poll 700ms により) ポーリング間隔に設定して、ポーリング ベースのアプローチを使用してファイルシステムの変更を監視します。
+      --printI18nWarnings          不足している翻訳を出力します
+      --printMemoryUsage           一定間隔でメモリ使用量を画面に表示します
+      --printPathWarnings          ターゲットパスの重複などに関する警告を表示します
+      --printUnusedTemplates       未使用のテンプレートについて警告を出力します
+      --quiet                      Quiet (通知オフ) モードでビルドします
+      --renderToMemory             メモリにレンダリングします (ベンチマークテストにのみ有効)
+  -s, --source string              ファイルの相対パスを読み取るファイルシステムのパス
+      --templateMetrics            テンプレート実行に関する指標 (メトリクス) を表示します
+      --templateMetricsHints       --templateMetrics と組み合わせると、いくつかの改善のヒントが計算されます
+  -t, --theme strings              (/themes/THEMENAME/ にある) 使用するテーマ 
+      --themesDir string           テーマディレクトリへのファイルシステムのパス
+      --trace file                 トレースをファイルに書き込みます (一般的には役に立ちません)
+  -v, --verbose                    詳細出力
+      --verboseLog                 詳細ログ
+  -w, --watch                      ファイルシステムの変更を監視し、必要に応じて再作成します
 ```
 
-### SEE ALSO
+### 関連項目 {#see-also}
 
-* [hugo completion](/commands/hugo_completion/)	 - Generate the autocompletion script for the specified shell
-* [hugo config](/commands/hugo_config/)	 - Print the site configuration
-* [hugo convert](/commands/hugo_convert/)	 - Convert your content to different formats
-* [hugo deploy](/commands/hugo_deploy/)	 - Deploy your site to a Cloud provider.
-* [hugo env](/commands/hugo_env/)	 - Print Hugo version and environment info
-* [hugo gen](/commands/hugo_gen/)	 - A collection of several useful generators.
-* [hugo import](/commands/hugo_import/)	 - Import your site from others.
-* [hugo list](/commands/hugo_list/)	 - Listing out various types of content
-* [hugo mod](/commands/hugo_mod/)	 - Various Hugo Modules helpers.
-* [hugo new](/commands/hugo_new/)	 - Create new content for your site
-* [hugo server](/commands/hugo_server/)	 - A high performance webserver
-* [hugo version](/commands/hugo_version/)	 - Print the version number of Hugo
+* [hugo completion](/commands/hugo_completion/)	 - 指定されたシェルのオートコンプリート スクリプトを生成します
+* [hugo config](/commands/hugo_config/)	 - サイト設定を出力します
+* [hugo convert](/commands/hugo_convert/)	 - コンテンツをさまざまな形式に変換します
+* [hugo deploy](/commands/hugo_deploy/)	 - サイトをクラウド プロバイダーにデプロイします
+* [hugo env](/commands/hugo_env/)	 - Hugo のバージョンと環境情報を表示します
+* [hugo gen](/commands/hugo_gen/)	 - いくつかの便利なジェネレーターを集めたものです
+* [hugo import](/commands/hugo_import/)	 - 他のサイトからサイトをインポートします
+* [hugo list](/commands/hugo_list/)	 - さまざまな種類のコンテンツを一覧表示します
+* [hugo mod](/commands/hugo_mod/)	 - Hugo モジュールの各種ヘルパーです
+* [hugo new](/commands/hugo_new/)	 - サイトの新しいコンテンツを作成します
+* [hugo server](/commands/hugo_server/)	 - 高性能な Web サーバーを起動します
+* [hugo version](/commands/hugo_version/)	 - Hugo のバージョン番号を表示します
 

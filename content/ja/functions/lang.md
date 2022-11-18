@@ -5,7 +5,7 @@ categories:
 - functions
 date: "2021-07-28"
 description: TODO..
-draft: true
+draft: false
 keywords:
 - numbers
 menu:

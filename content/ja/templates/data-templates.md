@@ -6,9 +6,8 @@ aliases:
 categories:
 - templates
 date: "2017-02-01"
-description: In addition to Hugo's built-in variables, you can specify your own custom
-  data in templates or shortcodes that pull from both local and dynamic sources.
-draft: true
+description: Hugo の組み込み変数に加えて、ローカルとダイナミック両方のソースから取得する、テンプレートやショートコードで独自のカスタムデータを指定できます。
+draft: false
 keywords:
 - data
 - dynamic
@@ -25,57 +24,58 @@ menu:
     weight: 80
 publishdate: "2017-02-01"
 sections_weight: 80
-title: Data Templates
+title: データテンプレート
 toc: true
 weight: 80
 ---
 
 <!-- begin data files -->
 
-Hugo supports loading data from YAML, JSON, XML, and TOML files located in the `data` directory in the root of your Hugo project.
+Hugo は、Hugo プロジェクトのルートにある `data` ディレクトリにある YAML、JSON、XML、TOML ファイルからデータを読み込むことをサポートしています。
 
 {{< youtube FyPgSuwIMWQ >}}
 
-## The Data Folder
+## データフォルダー {#the-data-folder}
 
-The `data` folder is where you can store additional data for Hugo to use when generating your site. Data files aren't used to generate standalone pages; rather, they're meant to be supplemental to content files. This feature can extend the content in case your front matter fields grow out of control. Or perhaps you want to show a larger dataset in a template (see example below). In both cases, it's a good idea to outsource the data in their own files.
+`data` フォルダーは、Hugo がサイトを生成するときに使用する追加データを保存できる場所です。 データファイルは、スタンドアロン ページの生成には使用されるのではなく、むしろ、コンテンツファイルを補足するためのものです。 この機能は、フロントマター フィールドが制御不能になった場合にコンテンツを拡張できます。 あるいは、テンプレートでより大きなデータセットを表示したい場合があります (以下の例を参照してください)。 どちらの場合も、独自のファイルでデータをアウトソースすることをお勧めします。
 
-These files must be YAML, JSON, XML, or TOML files (using the `.yml`, `.yaml`, `.json`, `.xml`, or `.toml` extension). The data will be accessible as a `map` in the `.Site.Data` variable. 
+これらのファイルは、YAML、JSON、XML、または TOML ファイル (拡張子は `.yml`、`.yaml`、`.json`、`.xml`、`.toml`) である必要があります。データは `.Site.Data` 変数内の `map` としてアクセスできます。 
 
-If you wish to access the data using the `.Site.Data.filename` notation, the filename must begin with an underscore or a Unicode letter, followed by zero or more underscores, Unicode letters, or Unicode digits. eg:
+`.Site.Data.filename` 表記を使用してデータにアクセスする場合、ファイル名はアンダースコアまたは Unicode 文字で始まり、その後に 0 個以上のアンダースコア、Unicode 文字、または Unicode 数字が続く必要があります。 たとえば、以下のようになります。
 
-- `123.json` - Invalid
-- `x123.json` - Valid
-- `_123.json` - Valid
+- `123.json` - 無効
+- `x123.json` - 有効
+- `_123.json` - 有効
 
-If you wish to access the data using the [`index`](/functions/index-function/) function, the filename is irrelevant. For example:
-Data file|Template code
+[`index`](/functions/index-function/) 関数を使用してデータにアクセスする場合、ファイル名は関係ありません。  たとえば、以下のようになります。
+
+データファイル | テンプレート コード
 :--|:--
 `123.json`|`{{ index .Site.Data "123" }}`
 `x123.json`|`{{ index .Site.Data "x123" }}`
 `_123.json`|`{{ index .Site.Data "_123" }}`
 `x-123.json`|`{{ index .Site.Data "x-123" }}`
 
-## Data Files in Themes
+## テーマ内のデータファイル {#data-files-in-themes}
 
-Data Files can also be used in [Hugo themes][themes] but note that theme data files are merged with the project directory taking precedence (i.e., given two files with the same name and relative path, the data in the file in the root project `data` directory will override the data from the file in the `themes/<THEME>/data` directory *for keys that are duplicated*).
+データファイルは [Hugo テーマ][themes] でも使用できますが、テーマのデータファイルはプロジェクトディレクトリを優先してマージされることに注意してください (つまり、同じ名前と相対パスを持つ 2 つのファイルがあると、 *重複するキーについて*、ルートプロジェクトの `data` ディレクトリのファイルのデータが `themes/<THEME>/data` ディレクトリのファイルのデータをオーバーライドします)。
 
-Therefore, theme authors should take care to not include data files that could be easily overwritten by a user who decides to [customize a theme][customize]. For theme-specific data items that shouldn't be overridden, it can be wise to prefix the folder structure with a namespace; e.g. `mytheme/data/<THEME>/somekey/...`. To check if any such duplicate exists, run hugo with the `-v` flag.
+したがって、テーマの作者は、ユーザーが [テーマをカスタマイズする][customize] と決めたときに、簡単にオーバーライドされてしまうようなデータファイルを含まないように注意する必要があります。オーバーライドされて困るテーマ固有のデータ項目については、フォルダー構造のプレフィックスに名前空間を付けるのが賢明です。たとえば `mytheme/data/<THEME>/somekey/...` といった具合です。このような重複があるかどうかを調べるには、`-v` フラグを付けて hugo を実行します。
 
-The keys in the map created with data templates from data files will be a dot-chained set of `path`, `filename`, and `key` in file (if applicable).
+データファイルからデータテンプレートを使って作成したマップ内のキーは、ファイル中の `path`、`filename`、`key` のドット連結したセットになります (該当する場合)。
 
-This is best explained with an example:
+これは、例を挙げて説明するのが一番わかりやすいです。
 
-## Example: Jaco Pastorius' Solo Discography
+## 例: Jaco Pastorius のソロ ディスコグラフィー {#example-jaco-pastorius-solo-discography}
 
-[Jaco Pastorius](https://en.wikipedia.org/wiki/Jaco_Pastorius_discography) was a great bass player, but his solo discography is short enough to use as an example. [John Patitucci](https://en.wikipedia.org/wiki/John_Patitucci) is another bass giant.
+[Jaco Pastorius](https://en.wikipedia.org/wiki/Jaco_Pastorius_discography) は素晴らしいベーシストでしたが、彼のソロディスコグラフィーは例として挙げるには短いものです。 [John Patitucci](https://en.wikipedia.org/wiki/John_Patitucci) もベースの巨人です。
 
-The example below is a bit contrived, but it illustrates the flexibility of data Files. This example uses TOML as its file format with the two following data files:
+以下の例は少し不自然ですが、データファイルの柔軟性を示しています。 この例では、ファイル形式として TOML を使用し、以下の 2 つのデータファイルを使用します。
 
 * `data/jazz/bass/jacopastorius.toml`
 * `data/jazz/bass/johnpatitucci.toml`
 
-`jacopastorius.toml` contains the content below. `johnpatitucci.toml` contains a similar list:
+`jacopastorius.toml` には以下の内容が含まれています。 `johnpatitucci.toml` にも同様のリストが含まれています。
 
 {{< code-toggle file="jacopastorius" >}}
 discography = [
@@ -97,9 +97,9 @@ discography = [
 ]
 {{< /code-toggle >}}
 
-The list of bass players can be accessed via `.Site.Data.jazz.bass`, a single bass player by adding the filename without the suffix, e.g. `.Site.Data.jazz.bass.jacopastorius`.
+ベーシストのリストは `.Site.Data.jazz.bass` でアクセスでき、単一のベーシストはファイル名をサフィックスなしで (たとえば、`.Site.Data.jazz.bass.jacopastorius`) 追加します。
 
-You can now render the list of recordings for all the bass players in a template:
+以下のテンプレート内で、すべてのベーシストの録音リストをレンダリングできるようになりました。
 
 ```go-html-template
 {{ range $.Site.Data.jazz.bass }}
@@ -107,7 +107,7 @@ You can now render the list of recordings for all the bass players in a template
 {{ end }}
 ```
 
-And then in the `partials/artist.html`:
+そして、`partials/artist.html` の中に、以下のコードがあるとします。
 
 ```go-html-template
 <ul>
@@ -117,11 +117,11 @@ And then in the `partials/artist.html`:
 </ul>
 ```
 
-Discover a new favorite bass player? Just add another `.toml` file in the same directory.
+新しいお気に入りのベーシストを発見しましたか? 同じディレクトリに別の `.toml` ファイルを追加するだけです。
 
-## Example: Accessing Named Values in a Data File
+## 例: データファイルの名前付き値にアクセスする {#example-accessing-named-values-in-a-data-file}
 
-Assume you have the following data structure in your `User0123.[yml|toml|xml|json]` data file located directly in `data/`:
+`data/` に直接置かれている `User0123.[yml|toml|xml|json]` データファイルに、以下のデータ構造があると仮定します。
 
 {{< code-toggle file="User0123" >}}
 Name: User0123
@@ -132,63 +132,63 @@ Achievements:
   - "Reads documentation"
 {{</ code-toggle >}}
 
-You can use the following code to render the `Short Description` in your layout:
+以下のコードを使用して、レイアウトに `Short Description` をレンダリングできます。
 
 ```go-html-template
 <div>Short Description of {{.Site.Data.User0123.Name}}: <p>{{ index .Site.Data.User0123 "Short Description" | markdownify }}</p></div>
 ```
 
-Note the use of the [`markdownify` template function][markdownify]. This will send the description through the Markdown rendering engine.
+[`markdownify` テンプレート関数][markdownify] を使用していることに注意してください。これは Markdown レンダリングエンジンを通して説明を送信します。
 
 
-## Get Remote Data
+## リモートデータを取得する {#get-remote-data}
 
-Use `getJSON` or `getCSV` to get remote data:
+リモートデータを取得するには、以下のように `getJSON` または `getCSV` を使用します。
 
 ```go-html-template
 {{ $dataJ := getJSON "url" }}
 {{ $dataC := getCSV "separator" "url" }}
 ```
 
-If you use a prefix or postfix for the URL, the functions accept [variadic arguments][variadic]:
+URL にプレフィックスまたはポストフィックスを使用した場合、関数は [可変長引数][variadic] を受け付けます。
 
 ```go-html-template
 {{ $dataJ := getJSON "url prefix" "arg1" "arg2" "arg n" }}
 {{ $dataC := getCSV  "separator" "url prefix" "arg1" "arg2" "arg n" }}
 ```
 
-The separator for `getCSV` must be put in the first position and can only be one character long.
+`getCSV` のセパレーターは最初の位置に配置する必要があり、1 文字の長さにする必要があります。
 
-All passed arguments will be joined to the final URL:
+渡されたすべての引数は、以下のように、最終的な URL に結合されます。
 
 ```go-html-template
 {{ $urlPre := "https://api.github.com" }}
 {{ $gistJ := getJSON $urlPre "/users/GITHUB_USERNAME/gists" }}
 ```
 
-This will resolve internally to the following:
+上記は、内部的には以下のように解決されます。
 
 ```go-html-template
 {{ $gistJ := getJSON "https://api.github.com/users/GITHUB_USERNAME/gists" }}
 ```
 
-### Add HTTP headers
+### HTTP ヘッダーを追加する {#add-http-headers}
 
-{{< new-in "0.84.0" >}} Both `getJSON` and `getCSV` takes an optional map as the last argument, e.g.:
+{{< new-in "0.84.0" >}} `getJSON` と `getCSV` のどちらも、最後の引数としてオプションのマップを受け取ります。たとえば、以下のようになります。
 
 ```go-html-template
 {{ $data := getJSON "https://example.org/api" (dict "Authorization" "Bearer abcd")  }}
 ```
 
-If you need multiple values for the same header key, use a slice:
+同じヘッダーキーに複数の値が必要な場合は、以下のようにスライスを使用します。
 
 ```go-html-template
 {{ $data := getJSON "https://example.org/api" (dict "X-List" (slice "a" "b" "c"))  }}
 ```
 
-### Example for CSV files
+### CSV ファイルの例 {#example-for-csv-files}
 
-For `getCSV`, the one-character-long separator must be placed in the first position followed by the URL. The following is an example of creating an HTML table in a [partial template][partials] from a published CSV:
+`getCSV` の場合、最初の位置に 1 文字長のセパレーターを配置し、その後に URL を配置する必要があります。 以下は、公開された CSV から [部分テンプレート][partials] で HTML テーブルを作成する例です。
 
 {{< code file="layouts/partials/get-csv.html" >}}
   <table>
@@ -213,57 +213,57 @@ For `getCSV`, the one-character-long separator must be placed in the first posit
   </table>
 {{< /code >}}
 
-The expression `{{index $r number}}` must be used to output the nth-column from the current row.
+現在の行から n 番目の列を出力するには、式 `{{index $r number}}` を使用する必要があります。
 
-### Cache URLs
+### キャッシュ URL {#cache-urls}
 
-Each downloaded URL will be cached in the default folder `$TMPDIR/hugo_cache/`. The variable `$TMPDIR` will be resolved to your system-dependent temporary directory.
+ダウンロードされた各 URL は、デフォルトフォルダー `$TMPDIR/hugo_cache/` にキャッシュされます。 変数 `$TMPDIR` は、システム依存の一時ディレクトリに解決されます。
 
-With the command-line flag `--cacheDir`, you can specify any folder on your system as a caching directory.
+コマンドラインフラグ `--cacheDir` を使用すると、システム上の任意のフォルダをキャッシュ ディレクトリとして指定することができます。
 
-You can also set `cacheDir` in the [main configuration file][config].
+また、[メイン設定ファイル][config] で `cacheDir` を設定することができます。
 
-If you don't like caching at all, you can fully disable caching with the command-line flag `--ignoreCache`.
+キャッシュがまったく気に入らない場合は、コマンドラインフラグ `--ignoreCache` を使用してキャッシュを完全に無効にできます。
 
-### Authentication When Using REST URLs
+### REST URL 使用時の認証 {#authentication-when-using-rest-urls}
 
-Currently, you can only use those authentication methods that can be put into an URL. [OAuth][] and other authentication methods are not implemented.
+現状では、URL に入れることができる認証方法のみ使用可能です。 [OAuth][] などの認証方式は実装されていません。
 
-## Load Local files
+## ローカルファイルをロードする {#load-local-files}
 
-To load local files with `getJSON` and `getCSV`, the source files must reside within Hugo's working directory. The file extension does not matter, but the content does.
+`getJSON` と `getCSV` でローカルファイルをロードするには、ソースファイルが Hugo の作業ディレクトリ内に存在する必要があります。ファイルの拡張子は関係ありませんが、コンテンツは重要です。
 
-It applies the same output logic as above in [Get Remote Data](#get-remote-data).
+上記の [「リモートデータを取得する」](#get-remote-data) と同じ出力ロジックを適用します。
 
 {{% note %}}
-The local CSV files to be loaded using `getCSV` must be located **outside** the `data` directory.
+`getCSV` を使用してロードされるローカル CSV ファイルは、`data` ディレクトリの **外** に配置する必要があります。
 {{% /note %}}
 
-## LiveReload with Data Files
+## データファイルを使用した LiveReload {#livereload-with-data-files}
 
-There is no chance to trigger a [LiveReload][] when the content of a URL changes. However, when a *local* file changes (i.e., `data/*` and `themes/<THEME>/data/*`), a LiveReload will be triggered. Symlinks are not supported. Note too that because downloading of data takes a while, Hugo stops processing your Markdown files until the data download has completed.
+URL のコンテンツが変更されたときに [LiveReload][] をトリガーする機会はありません。しかし、*ローカル* ファイル (すなわち、`data/*` と `themes/<THEME>/data/*`) が変更されると、LiveReload がトリガーされることになります。シンボリックリンクはサポートされていません。また、データのダウンロードには時間がかかるため、Hugo はデータのダウンロードが完了するまで Markdown ファイルの処理を停止することにも注意してください。
 
 {{% warning "URL Data and LiveReload" %}}
-If you change any local file and the LiveReload is triggered, Hugo will read the data-driven (URL) content from the cache. If you have disabled the cache (i.e., by running the server with `hugo server --ignoreCache`), Hugo will re-download the content every time LiveReload triggers. This can create *huge* traffic. You may reach API limits quickly.
+ローカルファイルを変更して LiveReload がトリガーされると、Hugo はキャッシュからデータ駆動型 (URL) のコンテンツを読み取ります。キャッシュを無効にしている場合 (たとえば `hugo server --ignoreCache` でサーバを起動した場合)、Hugo は LiveReload がトリガーされるたびにコンテンツを再ダウンロードします。これにより、*非常に大きな* トラフィックを発生させる可能性があり、API の制限にすぐに達してしまうかもしれません。
 {{% /warning %}}
 
-## Examples of Data-driven Content
+## データ駆動型コンテンツの例 {#examples-of-datadriven-content}
 
-- Photo gallery JSON powered: [https://github.com/pcdummy/hugo-lightslider-example](https://github.com/pcdummy/hugo-lightslider-example)
-- GitHub Starred Repositories [in a post](https://github.com/SchumacherFM/blog-cs/blob/master/content%2Fposts%2Fgithub-starred.md) using data-driven content in a [custom short code](https://github.com/SchumacherFM/blog-cs/blob/master/layouts%2Fshortcodes%2FghStarred.html).
+- フォトギャラリー JSON 搭載: [https://github.com/pcdummy/hugo-lightslider-example](https://github.com/pcdummy/hugo-lightslider-example)
+- [カスタムショートコード](https://github.com/SchumacherFM/blog-cs/blob/master/layouts%2Fshortcodes%2FghStarred.html) でデータ駆動型コンテンツを使用した、 [投稿における](https://github.com/SchumacherFM/blog-cs/blob/master/content%2Fposts%2Fgithub-starred.md) スター付きの GitHub リポジトリ
 
-## Specs for Data Formats
+## データフォーマットの仕様 {#specs-for-data-formats}
 
-* [TOML Spec][toml]
-* [YAML Spec][yaml]
-* [JSON Spec][json]
-* [CSV Spec][csv]
-* [XML Spec][xml]
+* [TOML 仕様][toml]
+* [YAML 仕様][yaml]
+* [JSON 仕様][json]
+* [CSV 仕様][csv]
+* [XML 仕様][xml]
 
 [config]: /getting-started/configuration/
 [csv]: https://tools.ietf.org/html/rfc4180
 [customize]: /themes/customizing/
-[json]: https://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf "Specification for JSON, JavaScript Object Notation"
+[json]: https://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf "JSON (JavaScript Object Notation) の仕様"
 [LiveReload]: /getting-started/usage/#livereload
 [lookup]: /templates/lookup-order/
 [markdownify]: /functions/markdownify/

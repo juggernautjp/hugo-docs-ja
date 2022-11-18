@@ -2,7 +2,7 @@
 categories:
 - asset management
 date: "2018-07-14"
-draft: true
+draft: false
 keywords: []
 menu:
   docs:
@@ -10,6 +10,6 @@ menu:
     weight: 10
 publishdate: "2018-07-14"
 sections_weight: 10
-title: Hugo Pipes Overview
+title: Hugo パイプの概要
 weight: 10
 ---

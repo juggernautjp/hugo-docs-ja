@@ -6,7 +6,7 @@ categories:
 date: "2017-02-01"
 description: Menus are a powerful but simple feature for content management but can
   be easily manipulated in your templates to meet your design needs.
-draft: true
+draft: false
 keywords:
 - lists
 - sections
@@ -74,7 +74,7 @@ The following is an example:
 Use the [`absLangURL`](/functions/abslangurl) or [`relLangURL`](/functions/rellangurl) functions if your theme makes use of the [multilingual feature](/content-management/multilingual/). In contrast to `absURL` and `relURL`, these two functions add the correct language prefix to the url.
 {{% /note %}}
 
-## Section Menu for Lazy Bloggers
+## 怠惰なブロガーのためのセクションメニュー {#section-menu-for-lazy-bloggers}
 
 To enable this menu, configure `sectionPagesMenu` in your site `config`:
 

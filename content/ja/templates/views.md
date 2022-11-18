@@ -3,9 +3,8 @@ aliases: []
 categories:
 - templates
 date: "2017-02-01"
-description: Hugo can render alternative views of your content, which is especially
-  useful in list and summary views.
-draft: true
+description: Hugo can render alternative views of your content, which is especially useful in list and summary views.
+draft: false
 keywords:
 - views
 lastmod: "2017-02-01"

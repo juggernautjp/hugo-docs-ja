@@ -2,8 +2,8 @@
 categories:
 - asset management
 date: "2018-07-14"
-description: Hugo Pipes can process CSS files with PostCSS.
-draft: true
+description: Hugo パイプは、PostCSS を使用して CSS ファイルを処理できます。
+draft: false
 keywords: []
 menu:
   docs:
@@ -15,9 +15,9 @@ title: PostCSS
 weight: 40
 ---
 
-Any asset file can be processed using `resources.PostCSS` which takes for argument the resource object and a slice of options listed below.
+任意のアセットファイルは、`resources.PostCSS` を使用して処理できます。これは、リソースオブジェクトと以下にリストされているオプションのスライスを引数に取ります。
 
-The resource will be processed using the project's or theme's own `postcss.config.js` or any file set with the `config` option.
+リソースはプロジェクトやテーマ独自の `postcss.config.js` や `config` オプションで設定された任意のファイルを使用して処理されます。
 
 ```go-html-template
 {{ $css := resources.Get "css/main.css" }}
@@ -25,41 +25,41 @@ The resource will be processed using the project's or theme's own `postcss.confi
 ```
 
 {{% note %}}
-Hugo Pipe's PostCSS requires the `postcss-cli` JavaScript package to be installed in the environment (`npm install -g postcss postcss-cli`) along with any PostCSS plugin(s) used (e.g., `npm install -g autoprefixer`).
+Hugo パイプの PostCSS は、`postcss-cli` JavaScript パッケージが環境にインストールされていること (`npm install -g postcss postcss-cli`) と、使用する PostCSS プラグインがインストールされている (たとえば、 `npm install -g autoprefixer`) 必要があります。
 
-If you are using the Hugo Snap package, PostCSS and plugin(s) need to be installed locally within your Hugo site directory, e.g., `npm install postcss-cli` without the `-g` flag.
+Hugo Snap パッケージを使用している場合、PostCSS とプラグインは Hugo サイトのディレクトリ内にローカルにインストールする必要があります。 たとえば、`npm install postcss-cli` を `-g` フラグなしで実行します。
 {{% /note %}}
 
-### Options
+### オプション {#options}
 
 config [string]
-: Set a custom directory to look for a config file
+: 設定ファイルを探すためのカスタムディレクトリを設定します
 
 noMap [bool]
-: Default is `false`. Disable the default inline sourcemaps
+: デフォルトは `false` です。デフォルトのインライン ソースマップを無効にします
 
 inlineImports [bool] {{< new-in "0.66.0" >}}
-: Default is `false`. Enable inlining of @import statements. It does so recursively, but will only import a file once.
-URL imports (e.g. `@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');`) and imports with media queries will be ignored.
-Note that this import routine does not care about the CSS spec, so you can have @import anywhere in the file.
-Hugo will look for imports relative to the module mount and will respect theme overrides.
+: デフォルトは `false` です。 @import 文のインライン化を有効にします。これは再帰的に実行されますが、ファイルのインポートは一度だけです。
+URL インポート (たとえば、`@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');`) とメディアクエリを含むインポートは無視されます。
+このインポート ルーチンは CSS 仕様を考慮しないことに注意してください。そのため、ファイル内のどこにでも @import を含めることができます。
+Hugo はモジュールのマウントから相対的にインポートを探し、テーマのオーバーライドを尊重します。
 
 skipInlineImportsNotFound [bool] {{< new-in "0.99.0" >}}
-: Default is `false`. Before Hugo 0.99.0 when `inlineImports` was enabled and we failed to resolve an import, we logged it as a warning. We now fail the build. If you have regular CSS imports in your CSS that you want to preserve, you can either use imports with URL or media queries (Hugo does not try to resolve those) or set `skipInlineImportsNotFound` to true.
+: デフォルトは `false` です。 Hugo 0.99.0 以前では、`inlineImports` が有効で、インポートの解決に失敗すると、警告としてログに記録していました。現在はビルドに失敗するようになりました。 CSS に通常の CSS インポートがあり、それを保持したい場合は、URL やメディアクエリでインポートを使用するか (Hugo はそれらを解決しようとしません)、`skipInlineImportsNotFound` を true に設定します。
 
-_If no configuration file is used:_
+_設定ファイルを使用しない場合_ は、以下のように指定します。
 
 use [string]
-: Space-delimited list of PostCSS plugins to use
+: 使用する PostCSS プラグインをスペースで区切ったリスト
 
 parser [string]
-: Custom PostCSS parser
+: カスタム PostCSS パーサー
 
 stringifier [string]
-: Custom PostCSS stringifier
+: カスタム PostCSS 文字列化子 (stringifier)
 
 syntax [string]
-: Custom postcss syntax
+: カスタム PostCSS 構文
 
 ```go-html-template
 {{ $options := dict "config" "/path/to/custom-config-directory" "noMap" true }}
@@ -69,11 +69,11 @@ syntax [string]
 {{ $style := resources.Get "css/main.css" | resources.PostCSS $options }}
 ```
 
-## Check Hugo Environment from postcss.config.js
+## postcss.config.js から Hugo の環境を確認する {#check-hugo-environment-from-postcssconfigjs}
 
 {{< new-in "0.66.0" >}}
 
-The current Hugo environment name (set by `--environment` or in config or OS environment) is available in the Node context, which allows constructs like this:
+現在の Hugo 環境名 (`--environment` や config や OS 環境で設定されたもの) は Node コンテキストで利用可能であり、以下のような構成をとることができます。
 
 ```js
 module.exports = {

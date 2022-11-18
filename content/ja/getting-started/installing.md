@@ -11,9 +11,8 @@ categories:
 - getting started
 - fundamentals
 date: "2016-11-01"
-description: Install Hugo on macOS, Windows, Linux, OpenBSD, FreeBSD, and on any machine
-  where the Go compiler tool chain can run.
-draft: true
+description: Hugo を macOS、Windows、Linux、OpenBSD、FreeBSD、および Go コンパイラ ツールチェーンが実行可能な任意のマシンにインストールします。
+draft: false
 keywords:
 - install
 - pc
@@ -22,59 +21,59 @@ keywords:
 - macos
 - binary
 - tarball
-linktitle: Install Hugo
+linktitle: Hugo をインストールする
 menu:
   docs:
     parent: getting-started
     weight: 30
 publishdate: "2016-11-01"
 sections_weight: 30
-title: Install Hugo
+title: Hugo をインストールする
 toc: true
 weight: 30
 ---
 
 {{% note %}}
-There is lots of talk about "Hugo being written in Go", but you don't need to install Go to enjoy Hugo. Just grab a precompiled binary!
+「Hugo は Go で書かれている」という話はよく聞きますが、Hugo を楽しむのに Go をインストールする必要はありません。プリコンパイルされたバイナリを入手するだけです。
 {{% /note %}}
 
-Hugo is written in [Go](https://go.dev/) with support for multiple platforms. The latest release can be found at [Hugo Releases][releases].
+Hugo は [Go](https://go.dev/) で書かれており、複数のプラットフォームをサポートしています。最新のリリースは [Hugo Releases][releases] で見ることができます。
 
-Hugo currently provides pre-built binaries for the following:
+現在、Hugo では以下のようなビルド済みバイナリを提供しています。
 
-* macOS (Darwin) for x64, i386, and ARM architectures
+* x64、i386、ARM アーキテクチャ用 macOS (Darwin)
 * Windows
 * Linux
 * OpenBSD
 * FreeBSD
 
-Hugo may also be compiled from source wherever the Go toolchain can run; e.g., on other operating systems such as DragonFly BSD, OpenBSD, Plan&nbsp;9, Solaris, and others. See <https://go.dev/doc/install/source> for the full set of supported combinations of target operating systems and compilation architectures.
+Hugo は、Go ツールチェインが動作するところならどこでも、例えば DragonFly BSD, OpenBSD, Plan&nbsp;9, Solaris などの他のオペレーティング システム上でもソースからコンパイルすることができます。サポートされているターゲット OS とコンパイル アーキテクチャの組み合わせの完全なセットについては、<https://go.dev/doc/install/source> を参照してください。
 
-## Quick Install
+## クイックインストール {#quick-install}
 
-### Binary (Cross-platform)
+### バイナリ (クロスプラットフォーム) {#binary-cross-platform}
 
-Download the appropriate version for your platform from [Hugo Releases][releases]. Once downloaded, the binary can be run from anywhere. You don't need to install it into a global location. This works well for shared hosts and other systems where you don't have a privileged account.
+[Hugo Releases][releases] から、お使いのプラットフォームに適したバージョンをダウンロードしてください。一度ダウンロードすれば、バイナリはどこからでも実行できます。グローバルな場所にインストールする必要はありません。これは、共有ホストや特権アカウントを持たない他のシステムでうまく機能します。
 
-Ideally, you should install it somewhere in your `PATH` for easy use. `/usr/local/bin` is the most probable location.
+使いやすいように、`PATH` のどこかにインストールするのが理想的です。`/usr/local/bin` が最も可能性の高い場所です。
 
 ### Docker
 
-We currently do not offer official Hugo images for Docker, but we do recommend these up to date distributions: https://hub.docker.com/r/klakegg/hugo/
+現在、Docker 用の公式 Hugo イメージは提供していませんが、右記の最新版ディストリビューションを推奨します: https://hub.docker.com/r/klakegg/hugo/
 
 ### Homebrew (macOS)
 
-If you are on macOS and using [Homebrew][brew], you can install Hugo with the following one-liner:
+macOS で [Homebrew][brew] を使っている場合、以下のワンライナーで Hugo をインストールできます。
 
 {{< code file="install-with-homebrew.sh" >}}
 brew install hugo
 {{< /code >}}
 
-For more detailed explanations, read the installation guides that follow for installing on macOS and Windows.
+より詳細な説明は、macOS と Windows へのインストールに関する以下のインストールガイドを参照してください。
 
 ### MacPorts (macOS)
 
-If you are on macOS and using [MacPorts][macports], you can install Hugo with the following one-liner:
+macOS で [MacPorts][macports] を使用している場合は、以下のワンライナーで Hugo をインストールできます。
 
 {{< code file="install-with-macports.sh" >}}
 port install hugo
@@ -82,23 +81,23 @@ port install hugo
 
 ### Homebrew (Linux)
 
-If you are using [Homebrew][linuxbrew] on Linux, you can install Hugo with the following one-liner:
+Linux で [Homebrew][linuxbrew] を使用している場合は、次のワンライナーで Hugo をインストールできます。
 
 {{< code file="install-with-linuxbrew.sh" >}}
 brew install hugo
 {{< /code >}}
 
-Installation guides for Homebrew on Linux are available on their [website][linuxbrew].
+Linux 用の Homebrew のインストール ガイドは、[website][linuxbrew] で入手できます。
 
 ### Chocolatey (Windows)
 
-If you are on a Windows machine and use [Chocolatey][] for package management, you can install Hugo with the following one-liner:
+Windows マシンで、パッケージ管理に [Chocolatey][] を使用している場合、以下のワンライナーで Hugo をインストールできます。
 
 {{< code file="install-with-chocolatey.ps1" >}}
 choco install hugo -confirm
 {{< /code >}}
 
-Or if you need the “extended” Sass/SCSS version:
+あるいは、Sass/SCSS の「拡張版」が必要な場合は、以下のコマンドを実行します。
 
 {{< code file="install-extended-with-chocolatey.ps1" >}}
 choco install hugo-extended -confirm
@@ -106,29 +105,29 @@ choco install hugo-extended -confirm
 
 ### Scoop (Windows)
 
-If you are on a Windows machine and use [Scoop][] for package management, you can install Hugo with the following one-liner:
+Windows マシンを使用していて、パッケージ管理に [Scoop][] を使用している場合は、以下のワンライナーで Hugo をインストールできます。
 
 ```bash
 scoop install hugo
 ```
 
-Or install the extended version with:
+または、拡張版を次のようにインストールします。
 
 ```bash
 scoop install hugo-extended
 ```
 
-### Source
+### ソース {#source}
 
-#### Prerequisite Tools
+#### 前提条件となるツール {#prerequisite-tools}
 
 * [Git][installgit]
 * [GCC][] (For Windows users only)
-* [Go (at least Go 1.11)](https://go.dev/dl/)
+* [Go (少なくとも Go 1.11)](https://go.dev/dl/)
 
-#### Fetch from GitHub
+#### GitHub からフェッチする {#fetch-from-github}
 
-Since Hugo 0.48, Hugo uses the Go Modules support built into Go 1.11 to build. The easiest way to get started is to clone Hugo in a directory outside the GOPATH, as in the following example:
+Hugo 0.48 以降、Hugo は Go 1.11 に組み込まれた Go モジュールのサポートを使用してビルドします。最も簡単な方法は、以下の例のように GOPATH の外のディレクトリに Hugo をクローンすることです。
 
 {{< code file="from-gh.sh" >}}
 mkdir $HOME/src
@@ -138,72 +137,72 @@ cd hugo
 go install --tags extended
 {{< /code >}}
 
-Remove `--tags extended` if you do not want/need Sass/SCSS support.
+Sass/SCSS サポートが不要な場合は、`--tags extended` を削除してください。
 
 {{% note %}}
 
-##### For installation on Windows
+##### Windowsにインストールする場合 {#for-installation-on-windows}
 
-* Substitute the `$HOME` environment variable above with `%USERPROFILE%`.
-* If you install `--tags extended` version, you may encounter this error `"gcc": executable file not found in %PATH%`
-  * Please make sure you have installed `gcc` command and add it to `%PATH%`.
-  * "MinGW" is recommended, it has been tested and built successfully
+* 上記の環境変数 `$HOME` を `%USERPROFILE%` に置き換えてください。
+* `--tags extended` バージョンをインストールすると、`"gcc": executable file not found in %PATH%` というエラーが発生する場合があります
+  * `gcc` コマンドがインストールされていることを確認し、それを `%PATH%` に追加してください。
+  * テスト済みで、正常にビルドされているため、"MinGW "を推奨します。
 
 {{% /note %}}
 
 ## macOS
 
-### Assumptions
+### 前提条件 {#assumptions}
 
-1. You know how to open the macOS terminal.
-2. You're running a modern 64-bit Mac.
-3. You will use `~/Sites` as the starting point for your site. (`~/Sites` is used for example purposes. If you are familiar enough with the command-line and file system, you should have no issues following along with the instructions.)
+1. macOS ターミナルを開く方法を知っています。
+2. 最新の 64 ビット Mac を使用しています。
+3. サイトの開始点として `~/Sites` を使用します。 (`~/Sites` は例として使用されています。コマンドラインとファイル システムに十分に精通している場合は、手順に従って問題なく実行できるはずです。)
 
-### Pick Your Method
+### 方法を選択する {#pick-your-method}
 
-There are three ways to install Hugo on your Mac
+Mac　に Hugo をインストールするには、以下の 3 つの方法があります。
 
-1. A package manager, like [Homebrew][brew] (`brew`) or [MacPorts][macports] (`port`)
-2. Distribution (i.e., tarball)
-3. Building from Source
+1. [Homebrew][brew] (`brew`) や [MacPorts][macports] (`port`) などのパッケージ マネージャー
+2. 配布物 (つまり、tarball)
+3. ソースからのビルド
 
-There is no "best" way to install Hugo on your Mac. You should use the method that works best for your use case.
+Mac に Hugo をインストールする「最良の」方法というのはありません。あなたの用途に最も適した方法を使うべきです。
 
-#### Pros and Cons
+#### 長所と短所 {#pros-and-cons}
 
-There are pros and cons to each of the aforementioned methods:
+前述した方法にはそれぞれ長所と短所があります。
 
-1. **Package Manager.** Using a package manager is the simplest method and will require the least amount of work to maintain. The drawbacks aren't severe. The default package will be for the most recent release, so it will not have bug fixes until the next release (i.e., unless you install it with the `--HEAD` option in Homebrew). Releases may lag a few days behind because it has to be coordinated with another team. Nevertheless, this is the recommended installation method if you want to work from a stable, widely used source. Package managers work well and they are easy to update.
+1. **パッケージ マネージャー** パッケージマネージャを使用するのは最も簡単な方法で、メンテナンスの手間も最小限で済みます。欠点は深刻ではありません。デフォルトのパッケージは最新のリリース用なので、次のリリースまでバグフィックスはありません (つまり、Homebrew で `--HEAD` オプションを付けてインストールしない限り)。他のチームと調整する必要があるため、リリースは数日遅れるかもしれません。それでも、安定した、広く使われているソースから作業をしたいのであれば、このインストール方法をお勧めします。パッケージマネージャはうまく機能しますし、更新も簡単です。
 
-2. **Tarball.** Downloading and installing from the tarball is also easy, although it requires a few more command-line skills than does Homebrew. Updates are easy as well: you just repeat the process with the new binary. This gives you the flexibility to have multiple versions on your computer. If you don't want to use `brew`, then the tarball/binary is a good choice.
+2. **Tarball** tarball からのダウンロードとインストールも簡単ですが、Homebrew よりも少しコマンドラインのスキルが必要です。アップデートも簡単で、新しいバイナリでこのプロセスを繰り返すだけです。このため、コンピュータに複数のバージョンを置く柔軟性があります。もし `brew` を使いたくなければ、tarball/バイナリ が良い選択でしょう。
 
-3. **Building from Source.** Building from source is the most work. The advantage of building from source is that you don't have to wait for a release to add features or bug fixes. The disadvantage is that you need to spend more time managing the setup, which is manageable but requires more time than the preceding two options.
+3. **ソースからのビルド** ソースからビルドするのが一番手間がかかります。ソースからビルドすることのメリットは、機能やバグフィックスを追加するためにリリースを待つ必要がないことです。デメリットは、セットアップの管理に時間を割く必要があることで、管理は可能ですが、先の2つの選択肢より多くの時間を必要とします。
 
 {{% note %}}
-Since building from source is appealing to more seasoned command-line users, this guide will focus more on installing Hugo via Homebrew and Tarball.
+ソースからのビルドは熟練したコマンドライン ユーザーにとって魅力的なので、このガイドでは Homebrew と Tarball を使った Hugo をインストールすることに重点を置きます。
 {{% /note %}}
 
-### Install Hugo with Brew
+### Brew で Hugo をインストールする {#install-hugo-with-brew}
 
 {{< youtube WvhCGlLcrF8 >}}
 
-#### Step 1: Install `brew` if you haven't already
+#### ステップ 1: `brew` をまだインストールしていない場合はインストールします {#step-1-install-brew-if-you-havent-already}
 
-Go to the `brew` website, <https://brew.sh>, and follow the directions there. The most important step is the installation from the command line:
+`brew` のウェブサイト <https://brew.sh> にアクセスし、そこに書かれている指示に従ってください。最も重要なステップは、コマンドラインからのインストールです。
 
 {{< code file="install-brew.sh" >}}
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 {{< /code >}}
 
-#### Step 2: Run the `brew` Command to Install `hugo`
+#### ステップ2: `brew` コマンドを実行して、`hugo` をインストールします。{#step-2-run-the-brew-command-to-install-hugo}
 
-Installing Hugo using `brew` is as easy as the following:
+`brew` を使用して Hugo をインストールするのは、以下のように簡単です。
 
 {{< code file="install-brew.sh" >}}
 brew install hugo
 {{< /code >}}
 
-If Homebrew is working properly, you should see something similar to the following:
+Homebrew が正常に動作していれば、以下のような画面が表示されるはずです。
 
 ```txt
 ==> Downloading https://homebrew.bintray.com/bottles/hugo-0.21.sierra.bottle.tar.gz
@@ -213,72 +212,72 @@ If Homebrew is working properly, you should see something similar to the followi
 ```
 
 {{% note "Installing the Latest Hugo with Brew" %}}
-Replace `brew install hugo` with `brew install hugo --HEAD` if you want the absolute latest in-development version.
+開発中の最新版が必要な場合は、`brew install hugo` を `brew install hugo --HEAD` に置き換えてください。
 {{% /note %}}
 
-`brew` should have updated your path to include Hugo. You can confirm by opening a new terminal window and running a few commands:
+`brew` が Hugo を含むようにパスを更新してくれているはずです。新しいターミナルウィンドウを開いて、いくつかのコマンドを実行することで確認できます。
 
-```txt
-$ # show the location of the hugo executable
+```bash
+# hugo の実行ファイルの場所を表示します
 which hugo
 /usr/local/bin/hugo
 
-# show the installed version
+# インストールされたバージョンを表示します
 ls -l $( which hugo )
 lrwxr-xr-x  1 mdhender admin  30 Mar 28 22:19 /usr/local/bin/hugo -> ../Cellar/hugo/0.13_1/bin/hugo
 
-# verify that hugo runs correctly
+# hugo が正しく動作することを確認します
 hugo version
 Hugo Static Site Generator v0.13 BuildDate: 2015-03-09T21:34:47-05:00
 ```
 
-### Install Hugo from Tarball
+### Tarball から Hugo をインストールする {#install-hugo-from-tarball}s
 
-#### Step 1: Decide on the location
+#### ステップ1: 設置場所を決める {#step-1-decide-on-the-location}
 
-When installing from the tarball, you have to decide if you're going to install the binary in `/usr/local/bin` or in your home directory. There are three camps on this:
+tarball からインストールする場合、バイナリを `/usr/local/bin` にインストールするか、ホームディレクトリにインストールするかを決める必要があります。これには、以下の 3つの場所があります。
 
-1. Install it in `/usr/local/bin` so that all the users on your system have access to it. This is a good idea because it's a fairly standard place for executables. The downside is that you may need elevated privileges to put software into that location. Also, if there are multiple users on your system, they will all run the same version. Sometimes this can be an issue if you want to try out a new release.
+1. これを `/usr/local/bin` にインストールして、システム上のすべてのユーザがアクセスできるようにします。これは、実行ファイルの場所としてはかなり標準的なので、良い考えだと思います。欠点は、その場所にソフトウェアを置くために、昇格した特権が必要になるかもしれないことです。また、システム上に複数のユーザーがいる場合、その全員が同じバージョンを実行することになります。新しいリリースを試したい場合、これが問題になることがあります。
 
-2. Install it in `~/bin` so that only you can execute it. This is a good idea because it's easy to do, easy to maintain, and doesn't require elevated privileges. The downside is that only you can run Hugo. If there are other users on your site, they have to maintain their own copies. That can lead to people running different versions. Of course, this does make it easier for you to experiment with different releases.
+2. 自分だけが実行できるように `~/bin` にインストールします。これは、簡単にできて、メンテナンスが簡単で、昇格した特権を必要としないので、良い考えです。欠点は、Hugo を実行できるのが自分だけだということです。あなたのサイトに他のユーザがいれば、そのユーザが自分のコピーを維持しなければなりません。そのため、人々が異なるバージョンを実行することになりかねません。もちろん、これによって、さまざまなリリースを試すことが容易になります。
 
-3. Install it in your `Sites` directory. This is not a bad idea if you have only one site that you're building. It keeps every thing in a single place. If you want to try out new releases, you can make a copy of the entire site and update the Hugo executable.
+3. それを `Sites` ディレクトリにインストールします。ビルドしているサイトが 1 つだけなら、これは悪い考えではないでしょう。すべてのものを 1カ所にまとめておくことができます。新しいリリースを試したい場合は、サイト全体のコピーを作成し、Hugo の実行可能ファイルを更新できます。
 
-All three locations will work for you. In the interest of brevity, this guide focuses on option #2.
+この 3 つの場所は、すべてあなたのために働くでしょう。このガイドでは、簡潔にするために、2番目のオプションに焦点を当てます。
 
-#### Step 2: Download the Tarball
+#### ステップ 2: Tarball をダウンロードする {#step-2-download-the-tarball}
 
-1. Open <https://github.com/gohugoio/hugo/releases> in your browser.
+1. ブラウザで <https://github.com/gohugoio/hugo/releases> を開きます。
 
-2. Find the current release by scrolling down and looking for the green tag that reads "Latest Release."
+2. 下にスクロールして、"Latest Release" と書かれた緑色のタグを探し、現在のリリースを見つけます。
 
-3. Download the current tarball for the Mac. The name will be something like `hugo_X.Y_osx-64bit.tgz`, where `X.YY` is the release number.
+3. Mac 用の現在の tarball をダウンロードします。名前は `hugo_X.Y_osx-64bit.tgz` のようなものになり、`X.YY` はリリース番号になります。
 
-4. By default, the tarball will be saved to your `~/Downloads` directory. If you choose to use a different location, you'll need to change that in the following steps.
+4. デフォルトでは、tarball は `~/Downloads` ディレクトリに保存されます。もし、別の場所を使いたい場合は、次の手順で変更する必要があります。
 
-#### Step 3: Confirm your download
+#### ステップ 3: ダウンロードを確認する {#step-3-confirm-your-download}
 
-Verify that the tarball wasn't corrupted during the download:
+ダウンロード中に tarball が破損していないことを確認します。
 
-```txt
+```bash
 tar tvf ~/Downloads/hugo_X.Y_osx-64bit.tgz
 -rwxrwxrwx  0 0      0           0 Feb 22 04:02 hugo_X.Y_osx-64bit/hugo_X.Y_osx-64bit.tgz
 -rwxrwxrwx  0 0      0           0 Feb 22 03:24 hugo_X.Y_osx-64bit/README.md
 -rwxrwxrwx  0 0      0           0 Jan 30 18:48 hugo_X.Y_osx-64bit/LICENSE.md
 ```
 
-The `.md` files are documentation for Hugo. The other file is the executable.
+`.md` ファイルは Hugo のドキュメントです。 もう 1 つのファイルは実行可能ファイルです。
 
-#### Step 4: Install Into Your `bin` Directory
+#### ステップ 4: `bin` ディレクトリにインストールする {#step-4-install-into-your-bin-directory}s
 
-```txt
-# create the directory if needed
+```bash
+# 必要に応じて、ディレクトリを作成します
 mkdir -p ~/bin
 
-# make it the working directory
+# 作業ディレクトリにします
 cd ~/bin
 
-# extract the tarball
+# tarball を解凍します
 tar -xvzf ~/Downloads/hugo_X.Y_osx-64bit.tgz
 Archive:  hugo_X.Y_osx-64bit.tgz
   x ./
@@ -286,76 +285,78 @@ Archive:  hugo_X.Y_osx-64bit.tgz
   x ./LICENSE.md
   x ./README.md
 
-# verify that it runs
+# 動作することを確認します
 ./hugo version
 Hugo Static Site Generator v0.13 BuildDate: 2015-02-22T04:02:30-06:00
 ```
 
-You may need to add your bin directory to your `PATH` environment variable. The `which` command will check for us. If it can find `hugo`, it will print the full path to it. Otherwise, it will not print anything.
+環境変数 `PATH` に bin ディレクトリを追加する必要があるかもしれません。`which` コマンドがチェックしてくれます。 `hugo` が見つかれば、そのフルパスを表示します。そうでなければ、何も表示されません。
 
-```txt
-# check if hugo is in the path
+```bash
+# hugo がパスに含まれているかどうかを確認します
 which hugo
 /Users/USERNAME/bin/hugo
 ```
 
-If `hugo` is not in your `PATH`:
+`hugo` が `PATH` にない場合:
 
-1. Determine your default shell (zsh or bash).
+1. デフォルトのシェル (zsh または bash) を決定します。
 
    ```bash
    echo $SHELL
    ```
 
-2. Edit your profile.
+2. プロファイルを編集します。
 
-   If your default shell is zsh:
+   デフォルトのシェルが zsh の場合。
 
     ```zsh
     nano ~/.zprofile
     ```
 
-    If your default shell is bash:
+    デフォルトのシェルが bash の場合。
 
     ```bash
     nano ~/.bash_profile
     ```
 
-3. Insert a line to add `$HOME/bin` to your existing `PATH`.
+3. 既存の `PATH` に `$HOME/bin` を追加する行を挿入します。
 
     ```txt
     export PATH=$PATH:$HOME/bin
     ```
 
-4. Save the file by pressing Control-X, then Y.
+4. Control-X を押してから Y を押して、ファイルを保存します。
 
-5. Close the terminal and open a new terminal to pick up the changes to your profile. Verify the change by running the `which hugo` command again.
+5. ターミナルを閉じて、新しいターミナルを開き、プロファイルの変更を取得します。もう一度 `which hugo` コマンドを実行して、変更を確認します。
 
-You've successfully installed Hugo.
 
-### Build from Source on Mac
+Hugo が正常にインストールされました。
 
-If you want to compile Hugo yourself, you'll need to install Go (aka Golang). You can [install Go directly from the Go website](https://go.dev/dl/) or via Homebrew using the following command:
+### Mac でソースからビルドする {#build-from-source-on-mac}
+
+Hugo を自分でコンパイルしたい場合は、Go (別名 Golang) をインストールする必要があります。 [Go Web サイトから Go を直接インストール](https://go.dev/dl/) するか、または Homebrew 経由で以下のコマンドを使用できます。
 
 ```txt
 brew install go
 ```
 
-#### Step 1: Get the Source
+#### ステップ1: ソースを入手する {#step-1-get-the-source}
 
-If you want to compile a specific version of Hugo, go to <https://github.com/gohugoio/hugo/releases> and download the source code for the version of your choice. If you want to compile Hugo with all the latest changes (which might include bugs), clone the Hugo repository:
+特定のバージョンの Hugo をコンパイルしたい場合は、<https://github.com/gohugoio/hugo/releases> にアクセスし、希望のバージョンのソースコードをダウンロードしてください。 
+Hugo を最新の変更点 (バグを含むかもしれません) をすべて含んでコンパイルしたい場合、以下のコマンドを実行して Hugo リポジトリをクローンしてください。
 
 ```txt
 git clone https://github.com/gohugoio/hugo
 ```
 
 {{% warning "Sometimes \"Latest\" = \"Bugs\""%}}
-Cloning the Hugo repository directly means taking the good with the bad. By using the bleeding-edge version of Hugo, you make your development susceptible to the latest features, as well as the latest bugs. Your feedback is appreciated. If you find a bug in the latest release, [please create an issue on GitHub](https://github.com/gohugoio/hugo/issues/new).
+Hugo リポジトリを直接クローンすることは、良い面と悪い面を一緒に取ることを意味します。Hugo の最新バージョンを使用することで、最新の機能やバグに影響されやすくなります。あなたのフィードバックはありがたいものです。もし最新リリースにバグを見つけたら、[GitHub に issue を作成してください](https://github.com/gohugoio/hugo/issues/new)。
 {{% /warning %}}
 
-#### Step 2: Compiling
+#### ステップ2: コンパイルする {#step-2-compiling}
 
-Make the directory containing the source your working directory and then fetch Hugo's dependencies:
+ソースのあるディレクトリを作業ディレクトリにし、Hugo の依存関係を取得します。
 
 ```txt
 mkdir -p src/github.com/gohugoio
@@ -364,79 +365,79 @@ ln -sf $(pwd) src/github.com/gohugoio/hugo
 go get
 ```
 
-This will fetch the absolute latest version of the dependencies. If Hugo fails to build, it may be the result of a dependency's author introducing a breaking change.
+これにより、依存関係の絶対最新バージョンが取得されます。 Hugo のビルドに失敗した場合、依存関係の作成者が重大な変更を導入した結果である可能性があります。
 
-Once you have properly configured your directory, you can compile Hugo using the following command:
+ディレクトリを適切に構成したら、以下のコマンドで Hugo をコンパイルします。
 
 ```txt
 go build -o hugo main.go
 ```
 
-Then place the `hugo` executable somewhere in your `$PATH`. You're now ready to start using Hugo.
+次に、`hugo` 実行可能ファイルを `$PATH` のどこかに配置します。 これで、Hugo を使用する準備が整いました。
 
 ## Windows
 
-The following aims to be a complete guide to installing Hugo on your Windows PC.
+以下は、Windows PC に Hugo をインストールするための完全なガイドとなることを目的としています。
 
 {{< youtube G7umPCU-8xc >}}
 
-### Assumptions for Windows
+### Windows の前提条件 {#assumptions-for-windows}
 
-1. You will use `C:\Hugo\Sites` as the starting point for your new project.
-2. You will use `C:\Hugo\bin` to store executable files.
+1. 新しいプロジェクトの出発点として `C:\Hugo\Sites` を使用します。
+2. `C:\Hugo\bin` に実行ファイルを保存します。
 
-### Set up Your Directories
+### ディレクトリを設定する {#set-up-your-directories}
 
-You'll need a place to store the Hugo executable, your [content][], and the generated Hugo website:
+Hugo 実行可能ファイル、[コンテンツ][content]、および生成された Hugo Web サイトを保存する場所が必要です。
 
-1. Open Windows Explorer.
-2. Create a new folder: `C:\Hugo`, assuming you want Hugo on your C drive, although this can go anywhere
-3. Create a subfolder in the Hugo folder: `C:\Hugo\bin`
-4. Create another subfolder in Hugo: `C:\Hugo\Sites`
+1. Windows エクスプローラーを起動します。
+2. C ドライブに Hugo が必要だと仮定して、新しいフォルダーー `C:\Hugo` を作成しますが、これはどこにでも移動できます。
+3. Hugo フォルダーにサブフォルダーを作成します: `C:\Hugo\bin`
+4. Hugo に別のサブフォルダーーを作成します: `C:\Hugo\Sites`
 
-### Technical Users
+### テクニカル ユーザー {#technical-users}
 
-1. Download the latest zipped Hugo executable from [Hugo Releases][releases].
-2. Extract all contents to your `..\Hugo\bin` folder.
-3. Open Windows command-line (cmd, "DOS") to add the `hugo.exe` executable to your PATH
-    * do `set PATH=%PATH%;C:\Hugo\bin` to have hugo in PATH for the currently opened cmd box
-    * do `setx PATH "%PATH%;C:\Hugo\bin"` to have hugo in PATH for every newly opened cmd box
-      * note: "setx", not "set", plus syntax 'key "val"', not 'key=val'
+1. [Hugo Releases][releases] から最新の zip 圧縮された Hugo 実行ファイルをダウンロードします。
+2. すべてのコンテンツを `..\Hugobin` フォルダーに解凍します。
+3. Windows のコマンドライン (cmd、"DOS") を開き、`hugo.exe` の実行ファイルを PATH に追加します。
+    * `set PATH=%PATH%;C:\Hugo\bin` を実行して、現在開いているコマンド ボックスの PATH に Hugo を含めます。
+    * `setx PATH "%PATH%;C:\Hugo\bin"` を実行して、新しく開いたすべてのコマンド ボックスの PATH に Hugo を設定します。
+      * 注意: "set" ではなく "setx"、さらに構文は 'key=val' ではなく 'key "val"' です。 
 
-> You may also use "Git CMD" from the [Git for Windows package](https://gitforwindows.org/) for the native Windows commands [set](https://ss64.com/nt/set.html) and [setx](https://ss64.com/nt/setx.html), but not "Git Bash", PowerShell, or any other "CLI" with different commands
+> [Git for Windows パッケージ](https://gitforwindows.org/) の "Git CMD" は、Windows ネイティブコマンドの [set](https://ss64.com/nt/set.html) と [setx](https://ss64.com/nt/setx.html) にも使えますが、"Git Bash" や PowerShell、その他の異なるコマンドを持つ "CLI" には使用できません。
 
-### Less-technical Users
+### 技術力の低いユーザー {#less-technical-users}
 
-1. Go to the [Hugo Releases][releases] page.
-2. The latest release is announced on top. Scroll to the bottom of the release announcement to see the downloads. They're all ZIP files.
-3. Find the Windows files near the bottom (they're in alphabetical order, so Windows is last) – download either the 32-bit or 64-bit file depending on whether you have 32-bit or 64-bit Windows. (If you don't know, [see here](https://esupport.trendmicro.com/en-us/home/pages/technical-support/1038680.aspx).)
-4. Move the ZIP file into your `C:\Hugo\bin` folder.
-5. Double-click on the ZIP file and extract its contents. Be sure to extract the contents into the same `C:\Hugo\bin` folder – Windows will do this by default unless you tell it to extract somewhere else.
-6. You should now have three new files: The hugo executable (`hugo.exe`), `LICENSE`, and `README.md`.
+1. [Hugo Releases][releases] のページに移動します。
+2. 一番上に最新のリリースが発表されています。 リリース アナウンスの一番下までスクロールして、ダウンロードを表示します。 それらはすべて ZIP ファイルです。
+3. 一番下の Windows のファイル (アルファベット順なので Windows が最後) を探し、32 ビットか 64 ビットかに応じて、32 ビットか 64 ビットのどちらかのファイルをダウンロードしてください。(わからない場合は、[こちらをご覧ください](https://esupport.trendmicro.com/en-us/home/pages/technical-support/1038680.aspx)。)
+4. ZIP ファイルを `C:\Hugo\bin` フォルダーーに移動します。
+5. ZIP ファイルをダブルクリックして、その内容を解凍します。 内容を必ず同じ `C:\Hugo\bin` フォルダーーに解凍してください。別の場所に解凍するように指示しない限り、Windows はデフォルトでこれを行います。
+6. これで、hugo 実行可能ファイル (`hugo.exe`)、`LICENSE`、および `README.md` の 3 つの新しいファイルができたはずです。
 
-Now you need to add Hugo to your Windows PATH settings:
+ここで、Windows の PATH 設定に Hugo を追加する必要があります。
 
-#### For Windows 10 Users
+#### Windows 10 ユーザー向け {#for-windows-10-users}
 
-* Right click on the **Start** button.
-* Click on **System**.
-* Click on **Advanced System Settings** on the right.
-* Click on the **Environment Variables...** button on the bottom.
-* In the User variables section, select the row labeled "Path" and click the **Edit...** button.
-* Click the **Browse...** button and select the directory to which `hugo.exe` was extracted, which is `C:\Hugo\bin` if you went by the instructions above. *The path entry should be the folder where Hugo lives and not the binary itself.*
-* Click OK at every window to exit.
+* **スタート** ボタンを右クリックします。
+* **システム** をクリックします。
+* 右側の **システムの詳細設定** をクリックします。
+* 下部にある **環境変数...** ボタンをクリックします。
+* [ユーザー環境変数] セクションで、[パス] というラベルの付いた行を選択し、[編集...] ボタンをクリックします。
+* **参照...** ボタンをクリックし、`hugo.exe` を解凍したディレクトリを選択します。上記の手順で行った場合は `C:\Hugo\bin` です。 *パス エントリは、バイナリ自体ではなく、Hugo が存在するフォルダーーである必要があります。*
+* すべてのウィンドウで [OK] をクリックして終了します。
 
-#### For Windows 7 and 8.x users
+#### Windows 10 ユーザー向け {#for-windows-7-and-8x-users}
 
-Windows 7 and 8.1 do not include the easy path editor included in Windows 10, so non-technical users on those platforms are advised to install a free third-party path editor like [Windows Environment Variables Editor].
+Windows 7 および 8.1 には、Windows 10 に含まれる簡単なパスエディターが含まれていないため、これらのプラットフォームの技術者でないユーザーは、[Windows 環境変数エディター][Windows Environment Variables Editor] などの無料のサードパーティ製パスエディタをインストールすることをお勧めします。
 
-### Verify the Executable
+### 実行可能ファイルを確認する {#verify-the-executable}
 
-Run a few commands to verify that the executable is ready to run, and then build a sample site to get started.
+いくつかのコマンドを実行して、実行可能ファイルを実行する準備ができていることを確認してから、サンプル サイトをビルドして開始します。
 
-#### 1. Open a Command Prompt
+#### 1. コマンドプロンプトを開く {#1-open-a-command-prompt}
 
-At the prompt, type `hugo help` and press the <kbd>Enter</kbd> key. You should see output that starts with:
+プロンプトで `hugo help` と入力し、<kbd>Enter</kbd> キーを押します。以下の行で始まる出力が表示されるはずです。
 
 ```txt
 hugo is the main command, used to build your Hugo site.
@@ -447,24 +448,24 @@ built with love by spf13 and friends in Go.
 Complete documentation is available at https://gohugo.io/.
 ```
 
-If you do, then the installation is complete. If you don't, double-check the path that you placed the `hugo.exe` file in and that you typed that path correctly when you added it to your `PATH` variable. If you're still not getting the output, search the [Hugo discussion forum][forum] to see if others have already figured out our problem. If not, add a note---in the "Support" category---and be sure to include your command and the output.
+上記の出力が表示されれば、インストールは完了です。そうでない場合は、`hugo.exe` ファイルを置いたパスと、そのパスを `PATH` 変数に追加したときに正しくタイプしたかどうかを再度確認してください。それでも出力が得られない場合は、[Hugo ディスカッション フォーラム][forum] を検索して、他の人がすでに私たちの問題を解決していないかどうかを確認してください。もし見つからない場合は、"Support" カテゴリにメモを書き、コマンドとその出力を必ず書いてください。
 
-At the prompt, change your directory to the `Sites` directory.
+プロンプトで、ディレクトリを `Sites` ディレクトリに変更します。
 
 ```txt
 C:\Program Files> cd C:\Hugo\Sites
 C:\Hugo\Sites>
 ```
 
-#### 2. Run the Command
+#### 2. コマンドを実行する {2-run-the-command}
 
-Run the command to generate a new site. I'm using `example.com` as the name of the site.
+新しいサイトを生成するためのコマンドを実行します。サイト名は `example.com` を使用します。
 
 ```txt
 C:\Hugo\Sites> hugo new site example.com
 ```
 
-You should now have a directory at `C:\Hugo\Sites\example.com`. Change into that directory and list the contents. You should get output similar to the following:
+これで、`C:\Hugo\Sites\example.com` にディレクトリができたはずです。 そのディレクトリに移動し、内容を一覧表示します。 以下のような出力が得られるはずです。
 
 ```txt
 C:\Hugo\Sites> cd example.com
@@ -483,71 +484,71 @@ Directory of C:\hugo\sites\example.com
                7 Dir(s)   6,273,331,200 bytes free
 ```
 
-### Troubleshoot Windows Installation
+### Windowsインストールのトラブルシューティング {#troubleshoot-windows-installation}
 
-[@dhersam][] has created a nice video on common issues:
+よくある問題について、[@dhersam][] が以下の素敵なビデオを作成しました。
 
 {{< youtube c8fJIRNChmU >}}
 
 ## Linux
 
-### Snap Package
+### Snap パッケージ {#snap-package}
 
-In any of the [Linux distributions that support snaps][snaps], you may install the "extended" Sass/SCSS version with this command:
+[Snap をサポートする Linux ディストリビューション][snaps] のいずれかで、次のコマンドを使用して Sass/SCSS 「拡張版」をインストールできます。
 
 ```txt
 snap install hugo --channel=extended
 ```
 
-To install the non-extended version without Sass/SCSS support:
+Sass/SCSS をサポートしない非拡張版をインストールするには、以下のコマンドを実行します。
 
 ```txt
 snap install hugo
 ```
 
-To switch between the two, use either `snap refresh hugo --channel=extended` or `snap refresh hugo --channel=stable`.
+この2つを切り替えるには、`snap refresh hugo --channel=extended` または `snap refresh hugo --channel=stable` のどちらかを使用します。
 
 {{% note %}}
-Hugo installed via Snap can write only inside the user’s `$HOME` directory---and gvfs-mounted directories owned by the user---because of Snaps’ confinement and security model. More information is also available [in this related GitHub issue](https://github.com/gohugoio/hugo/issues/3143).
+Snap 経由でインストールされた Hugo は、Snap の制限とセキュリティモデルにより、ユーザの `$HOME` ディレクトリ --- およびユーザが所有する gvfsマ ウントされたディレクトリ --- 内にのみ書き込みが可能です。より詳細な情報は、[これに関連する GitHub issue](https://github.com/gohugoio/hugo/issues/3143) にもあります。
 {{% /note %}}
 
-### Debian and Ubuntu
+### Debian と Ubuntu {#debian-and-ubuntu}
 
-[@anthonyfok](https://github.com/anthonyfok) and friends in the [Debian Go Packaging Team](https://go-team.pages.debian.net/) maintains an official hugo [Debian package](https://packages.debian.org/hugo) which is shared with [Ubuntu](https://packages.ubuntu.com/hugo) and is installable via `apt-get`:
+[@anthonyfok](https://github.com/anthonyfok) と [Debian Go Packaging Team](https://go-team.pages.debian.net/) の仲間たちは、公式の Hugo [Debian パッケージ](https://packages.debian.org/hugo) を管理しており、これは [Ubuntu](https://packages.ubuntu.com/hugo) と共有して `apt-get` でインストール可能です。
 
 ```txt
 sudo apt-get install hugo
 ```
 
-What this installs depends on your Debian/Ubuntu version. On Ubuntu bionic (18.04), this installs the non-extended version without Sass/SCSS support. On Ubuntu disco (19.04), this installs the extended version with Sass/SCSS support.
+上記のコマンドで何がインストールされるかは、Debian/Ubuntu のバージョンに依存します。 Ubuntu bionic (18.04) では、Sass/SCSS をサポートしない非拡張版がインストールされます。 Ubuntu disco (19.04)では、Sass/SCSS をサポートする拡張版がインストールされます。
 
-This option is not recommended because the Hugo in Linux package managers for Debian and Ubuntu is usually a few versions behind as described [here](https://github.com/gcushen/hugo-academic/issues/703)
+[こちら](https://github.com/gcushen/hugo-academic/issues/703) で説明されているように、Debian および Ubuntu 用の Linux パッケージ マネージャーの Hugo は通常、数バージョン遅れているため、このオプションはお勧めしません。
 
 ### Arch Linux
 
-You can also install Hugo from the Arch Linux [community](https://www.archlinux.org/packages/community/x86_64/hugo/) repository. Applies also to derivatives such as Manjaro.
+Arch Linux [コミュニティ](https://www.archlinux.org/packages/community/x86_64/hugo/) リポジトリから Hugo をインストールすることもできます。Manjaro のような派生版にも適用されます。
 
 ```txt
 sudo pacman -S hugo
 ```
 
-### Fedora, Red Hat and CentOS
+### Fedora、Red Hat、CentOS
 
-Fedora maintains an [official package for Hugo](https://packages.fedoraproject.org/pkgs/hugo/hugo) which may be installed with:
+Fedora では、[Hugo の公式パッケージ](https://packages.fedoraproject.org/pkgs/hugo/hugo) を保守しており、以下のコマンドでインストールできます。
 
 ```txt
 sudo dnf install hugo
 ```
 
-For the latest version, the Hugo package maintained by [@daftaupe](https://github.com/daftaupe) at Fedora Copr is recommended:
+最新版については、Fedora Copr の [@daftaupe](https://github.com/daftaupe) が管理している Hugo パッケージが推奨されます。
 
 * <https://copr.fedorainfracloud.org/coprs/daftaupe/hugo/>
 
-See the [related discussion in the Hugo forums][redhatforum].
+[Hugo フォーラムでの関連する議論][redhatforum] を参照してください。
 
 ### openSUSE Tumbleweed
 
-openSUSE maintains an [official package](https://software.opensuse.org/package/hugo) for the Tumbleweed rolling release distribution, it may be installed with:
+openSUSE では、Tumbleweed ローリングリリース ディストリビューション用の [公式パッケージ](https://software.opensuse.org/package/hugo) を管理しており、以下のコマンドでインストールできます。
 
 ````txt
 sudo zypper install hugo
@@ -555,7 +556,7 @@ sudo zypper install hugo
 
 ### Solus
 
-Solus includes Hugo in its package repository, it may be installed with:
+Solus は Hugo をパッケージリポジトリに含んでいるので、以下のコマンドでインストールできます。
 
 ```txt
 sudo eopkg install hugo
@@ -563,20 +564,20 @@ sudo eopkg install hugo
 
 ## OpenBSD
 
-OpenBSD provides a package for Hugo via `pkg_add`:
+OpenBSD は、Hugo のパッケージを `pkg_add` で提供しています。
 
 ```txt
 doas pkg_add hugo
 ```
 
 
-## Upgrade Hugo
+## Hugo をアップグレードする {#upgrade-hugo}
 
-Upgrading Hugo is as easy as downloading and replacing the executable you’ve placed in your `PATH` or run `brew upgrade hugo` if using Homebrew.
+Hugo のアップグレードは、`PATH` に置いた実行可能ファイルをダウンロードして置き換えるか、Homebrew を使っている場合は `brew upgrade hugo` を実行するだけで簡単にできます。
 
-## Next Steps
+## 次のステップ {#next-steps}
 
-Now that you've installed Hugo, read the [Quick Start guide][quickstart] and explore the rest of the documentation. If you have questions, ask the Hugo community directly by visiting the [Hugo Discussion Forum][forum].
+これで Hugo のインストールが終了したので、[クイックスタート ガイド][quickstart] を読み、 残りのドキュメントを調べてください。質問がある場合は、[Hugo ディスカッション フォーラム][forum] にアクセスして、 Hugo コミュニティに直接質問してください。
 
 [brew]: https://brew.sh/
 [macports]: https://www.macports.org/

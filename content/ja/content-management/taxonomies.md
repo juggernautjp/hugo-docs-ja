@@ -8,8 +8,8 @@ aliases:
 categories:
 - content management
 date: "2017-02-01"
-description: Hugo includes support for user-defined taxonomies.
-draft: true
+description: Hugo は、ユーザー定義のタクソノミーをサポートしています。
+draft: false
 keywords:
 - taxonomies
 - metadata
@@ -21,80 +21,80 @@ menu:
     parent: content-management
     weight: 80
 publishdate: "2017-02-01"
-title: Taxonomies
+title: タクソノミー
 toc: true
 weight: 80
 ---
 
-## What is a Taxonomy?
+## タクソノミーとは? {#what-is-a-taxonomy}
 
-Hugo includes support for user-defined groupings of content called **taxonomies**. Taxonomies are classifications of logical relationships between content.
+Hugo では、**タクソノミー** と呼ばれるユーザー定義のコンテンツのグループ分けをサポートしています。タクソノミーとは、コンテンツ間の論理的な関係を分類したものです。
 
-### Definitions
+### 定義 {#definitions}
 
-Taxonomy
-: a categorization that can be used to classify content
+タクソノミー
+: コンテンツを分類するために使用される分類法
 
-Term
-: a key within the taxonomy
+用語
+: タクソノミー内のキー
 
-Value
-: a piece of content assigned to a term
+値
+: 用語に割り当てられたコンテンツの一部
 
 
-## Example Taxonomy: Movie Website
+## タクソノミーの例: 映画の Web サイト {#example-taxonomy-movie-website}
 
-Let's assume you are making a website about movies. You may want to include the following taxonomies:
+映画に関する Web サイトを作成しているとします。 以下のタクソノミーを含めることができます。
 
-* Actors
-* Directors
-* Studios
-* Genre
-* Year
-* Awards
+* Actors (俳優)
+* Directors (監督)
+* Studios (スタジオ)
+* Genre (ジャンル)
+* Year (年)
+* Awards (賞)
 
-Then, in each of the movies, you would specify terms for each of these taxonomies (i.e., in the [front matter][] of each of your movie content files). From these terms, Hugo would automatically create pages for each Actor, Director, Studio, Genre, Year, and Award, with each listing all of the Movies that matched that specific Actor, Director, Studio, Genre, Year, and Award.
+次に、それぞれの映画で、これらのタクソノミーの用語を指定します (つまり、それぞれの映画コンテンツファイルの [フロントマター][front matter] に記述します)。これらの用語から、Hugo は自動的に各俳優、監督、スタジオ、ジャンル、年、賞のページを作成し、それぞれが特定の俳優、監督、スタジオ、ジャンル、年、賞に一致するすべての映画のリストを作成します。
 
-### Movie Taxonomy Organization
+### 映画タクソノミーの構成 {#movie-taxonomy-organization}
 
-To continue with the example of a movie site, the following demonstrates content relationships from the perspective of the taxonomy:
-
-```txt
-Actor                    <- Taxonomy
-    Bruce Willis         <- Term
-        The Sixth Sense  <- Value
-        Unbreakable      <- Value
-        Moonrise Kingdom <- Value
-    Samuel L. Jackson    <- Term
-        Unbreakable      <- Value
-        The Avengers     <- Value
-        xXx              <- Value
-```
-
-From the perspective of the content, the relationships would appear differently, although the data and labels used are the same:
+映画サイトの例で続けると、以下はタクソノミーの観点からのコンテンツの関係を示しています。
 
 ```txt
-Unbreakable                 <- Value
-    Actors                  <- Taxonomy
-        Bruce Willis        <- Term
-        Samuel L. Jackson   <- Term
-    Director                <- Taxonomy
-        M. Night Shyamalan  <- Term
+俳優                             <- タクソノミー
+    ブルース・ウィリス            <- 用語
+        シックスセンス            <- 値
+        アンブレイカブル          <- 値
+        ムーンライズ・キングダム   <- 値
+    サミュエル・L・ジャクソン      <- 用語
+        アンブレイカブル          <- 値
+        アベンジャーズ            <- 値
+        トリプル X                <- 値
+```
+
+コンテンツから見れば、使用するデータやラベルは同じでも、関係性が違って見えるはずです。
+
+```txt
+アンブレイカブル                   <- 値
+    俳優                          <- タクソノミー
+        ブルース・ウィリス         <- 用語
+        サミュエル・L・ジャクソン   <- 用語
+    監督                          <- タクソノミー
+        M・ナイト・シャマラン      <- 用語
     ...
-Moonrise Kingdom            <- Value
-    Actors                  <- Taxonomy
-        Bruce Willis        <- Term
-        Bill Murray         <- Term
-    Director                <- Taxonomy
-        Wes Anderson        <- Term
+ムーンライズ・キングダム            <- 値
+    俳優                          <- タクソノミー
+        ブルース・ウィリス         <- 用語
+        ビル・マーレイ             <- 用語
+    監督                          <- タクソノミー
+        ウェス・アンダーソン        <- 用語
     ...
 ```
 
-## Hugo Taxonomy Defaults {#default-taxonomies}
+## Hugo タクソノミーのデフォルト {#default-taxonomies}
 
-Hugo natively supports taxonomies.
+Hugo はタクソノミーをネイティブにサポートしています。
 
-Without adding a single line to your [site config][config] file, Hugo will automatically create taxonomies for `tags` and `categories`. That would be the same as manually [configuring your taxonomies](#configure-taxonomies) as below:
+[サイト設定][config] ファイルに一行も追加しなくても、Hugo は自動的に `tags` と `categories` にタクソノミーを作成します。これは、以下のように手動で [タクソノミーを設定する](#configure-taxonomies) のと同じことになります。
 
 {{< code-toggle copy="false" >}}
 [taxonomies]
@@ -102,31 +102,31 @@ Without adding a single line to your [site config][config] file, Hugo will autom
   category = "categories"
 {{</ code-toggle >}}
 
-If you do not want Hugo to create any taxonomies, set `disableKinds` in your [site config][config] to the following:
+Hugo にタクソノミーを作成させたくない場合は、[サイト設定][config] で `disableKinds` を以下のように設定します。
 
 {{< code-toggle copy="false" >}}
 disableKinds = ["taxonomy","term"]
 {{</ code-toggle >}}
 
-{{< new-in "0.73.0" >}} We have fixed the previously confusing page kinds used for taxonomies (see the listing below) to be in line with the terms used when we talk about taxonomies. We have been careful to avoid site breakage, and you should get an ERROR in the console if you need to adjust your `disableKinds` section.
+{{< new-in "0.73.0" >}} 以前はタクソノミーに使用されるページの種類 (以下のリストを参照) が混乱していましたが、タクソノミーについて話すときに使用される用語と一致するように修正されました。サイトが壊れないように注意し、`disableKinds` セクションを調整する必要がある場合は、コンソールに ERROR が表示されるはずです。
 
 {{% page-kinds %}}
 
-### Default Destinations
+### デフォルトの宛先 {#default-destinations}
 
-When taxonomies are used---and [taxonomy templates][] are provided---Hugo will automatically create both a page listing all the taxonomy's terms and individual pages with lists of content associated with each term. For example, a `categories` taxonomy declared in your configuration and used in your content front matter will create the following pages:
+タクソノミーが使用され、[タクソノミー テンプレート][taxonomy templates] が提供されると、Hugo は自動的にタクソノミーのすべての用語をリストしたページと、各用語に関連するコンテンツのリストを含む個々のページの両方を作成することになります。たとえば、`categories` タクソノミーを設定で宣言し、コンテンツのフロントマターで使用すると、以下のページが作成されます。
 
-* A single page at `example.com/categories/` that lists all the [terms within the taxonomy][]
-* [Individual taxonomy list pages][taxonomy templates] (e.g., `/categories/development/`) for each of the terms that shows a listing of all pages marked as part of that taxonomy within any content file's [front matter][]
+* `example.com/categories/` に、すべての [タクソノミー内の用語][terms within the taxonomy] をリストする 1 つのページを作成します。
+* [個々のタクソノミーのリストページ][taxonomy templates] (たとえば、`/categories/development/`) は、それぞれの用語に対して、任意のコンテンツファイルの [フロントマター][front matter] の中でそのタクソノミーの一部としてマークされたすべてのページのリストを表示します。
 
-## Configure Taxonomies
+## タクソノミーを設定する {#configure-taxonomies}
 
-Custom taxonomies other than the [defaults]({{< relref "taxonomies.md#default-taxonomies" >}}) must be defined in your [site config][config] before they can be used throughout the site. You need to provide both the plural and singular labels for each taxonomy. For example, `singular key = "plural value"` for TOML and `singular key: "plural value"` for YAML.
+[デフォルト]({{< relref "taxonomies.md#default-taxonomies" >}}) 以外のカスタム タクソノミーをサイト全体で使用する前に、[サイト設定][config] で定義する必要があります。各タクソノミーの複数形と単数形のラベルを指定する必要があります。 たとえば、TOML では `singular key = "plural value"`、YAML では `singular key: "plural value"` となります。
 
-### Example: Adding a custom taxonomy named "series"
+### 例 "シリーズ" という名前のカスタム タクソノミーを追加する {#example-adding-a-custom-taxonomy-named-series}
 
 {{% note %}}
-While adding custom taxonomies, you need to put in the default taxonomies too, _if you want to keep them_.
+カスタムタクソノミーを追加する際に、 _カスタムタクソノミーを残しておきたい場合は_、デフォルト タクソノミーにそれらを入れる必要があります。
 {{% /note %}}
 
 {{< code-toggle copy="false" >}}
@@ -136,40 +136,40 @@ While adding custom taxonomies, you need to put in the default taxonomies too, _
   series = "series"
 {{</ code-toggle >}}
 
-### Example: Removing default taxonomies
+### 例: デフォルトのタクソノミーを削除する {#example-removing-default-taxonomies}
 
-If you want to have just the default `tags` taxonomy, and remove the `categories` taxonomy for your site, you can do so by modifying the `taxonomies` value in your [site config][config].
+デフォルトの `tags` タクソノミーのみを使用し、 サイトの `categories` タクソノミーを削除したい場合は、 [サイト設定][config] の `taxonomies` 値を変更することで実行できます。
 
 {{< code-toggle copy="false" >}}
 [taxonomies]
   tag = "tags"
 {{</ code-toggle >}}
 
-If you want to disable all taxonomies altogether, see the use of `disableKinds` in [Hugo Taxonomy Defaults]({{< relref "taxonomies.md#default-taxonomies" >}}).
+すべてのタクソノミーを完全に無効にしたい場合は、[Hugo タクソノミーのデフォルト]({{< relref "taxonomies.md#default-taxonomies" >}}) の `disableKinds` の使い方を参照してください。
 
 {{% note %}}
-You can add content and front matter to your taxonomy list and taxonomy terms pages. See [Content Organization](/content-management/organization/) for more information on how to add an `_index.md` for this purpose.
+タクソノミーのリストとタクソノミーの用語のページには、コンテンツとフロントマターを追加できます。この目的のために `_index.md` を追加する方法については、[「コンテンツ構成」](/content-management/organization/) を参照してください。
 
-Much like regular pages, taxonomy list [permalinks](/content-management/urls/) are configurable, but taxonomy term page permalinks are not.
+通常のページと同様に、タクソノミーのリストの [パーマリンク](/content-management/urls/) は設定可能ですが、タクソノミー用語ページのパーマリンクは設定できません。
 {{% /note %}}
 
 {{% warning %}}
-The configuration option `preserveTaxonomyNames` was removed in Hugo 0.55.
+設定オプション `preserveTaxonomyNames` は、 Hugo 0.55 で削除されました。
 
-You can now use `.Page.Title` on the relevant taxonomy node to get the original value.
+これで、関連するタクソノミー ノードで `.Page.Title` を使用すれば、元の値を取得できるようになりました。
 {{% /warning %}}
 
-## Add Taxonomies to Content
+## コンテンツにタクソノミーを追加する {#add-taxonomies-to-content}
 
-Once a taxonomy is defined at the site level, any piece of content can be assigned to it, regardless of [content type][] or [content section][].
+サイトレベルでタクソノミーを定義すると、[コンテンツタイプ][content type] や [コンテンツセクション][content section] に関係なく、どんなコンテンツもタクソノミーに割り当てることができるようになります。
 
-Assigning content to a taxonomy is done in the [front matter][]. Simply create a variable with the *plural* name of the taxonomy and assign all terms you want to apply to the instance of the content type.
+タクソノミーへのコンテンツの割り当ては、[フロントマター][front matter] で行われます。タクソノミーの *複数形* の名前を持つ変数を作成し、コンテンツタイプのインスタンスに適用したいすべての用語を割り当てるだけです。
 
 {{% note %}}
-If you would like the ability to quickly generate content files with preconfigured taxonomies or terms, read the docs on [Hugo archetypes](/content-management/archetypes/).
+あらかじめ設定されたタクソノミーや用語を含むコンテンツファイルをすばやく生成する機能が必要な場合は、[「Hugo アーキタイプ」](/content-management/archetypes/) のドキュメントを参照してください。
 {{% /note %}}
 
-### Example: Front Matter with Taxonomies
+### 例: タクソノミーを使ったフロントマター {#example-front-matter-with-taxonomies}
 
 {{< code-toggle copy="false">}}
 title = "Hugo: A fast and flexible static site generator"
@@ -180,13 +180,13 @@ slug = "hugo"
 project_url = "https://github.com/gohugoio/hugo"
 {{</ code-toggle >}}
 
-## Order Taxonomies
+## タクソノミーの順序付け {#order-taxonomies}
 
-A content file can assign weight for each of its associate taxonomies. Taxonomic weight can be used for sorting or ordering content in [taxonomy list templates][] and is declared in a content file's [front matter][]. The convention for declaring taxonomic weight is `taxonomyname_weight`.
+コンテンツファイルは、関連するタクソノミーのそれぞれに対して重みを割り当てることができます。 タクソノミーの重みは、[タクソノミーリスト テンプレート][taxonomy list templates] のコンテンツのソートや順序付けに使用でき、コンテンツファイルの [フロントマター][front matter] で宣言されます。 タクソノミーの重みを宣言するための規則は、`taxonomyname_weight` です。
 
-The following TOML and YAML examples show a piece of content that has a weight of 22, which can be used for ordering purposes when rendering the pages assigned to the "a", "b" and "c" values of the `tags` taxonomy. It has also been assigned the weight of 44 when rendering the "d" category page.
+以下の TOML と YAML の例では、コンテンツが 22 の重みを持ち、 `tags` タクソノミーの "a"、"b"、"c" の値に割り当てられたページをレンダリングする際に、順序付けの目的で使用されます。また、"d" カテゴリページをレンダリングする際には、44 の重みが割り当てられています。
 
-### Example: Taxonomic `weight`
+### 例: タクソノミーの `weight` (重み) {#example-taxonomic-weight}
 
 {{< code-toggle copy="false" >}}
 title = "foo"
@@ -196,15 +196,15 @@ categories = ["d"]
 categories_weight = 44
 {{</ code-toggle >}}
 
-By using taxonomic weight, the same piece of content can appear in different positions in different taxonomies.
+タクソノミーの重みを使用することで、同じコンテンツが異なるタクソノミーの中で異なる位置に表示されることがあります。
 
 {{% note "Limits to Ordering Taxonomies" %}}
-Currently taxonomies only support the [default `weight => date` ordering of list content](/templates/lists/#default-weight--date--linktitle--filepath). For more information, see the documentation on [taxonomy templates](/templates/taxonomy-templates/).
+現在、タクソノミーは、 [リストコンテンツのデフォルトの `weight => date` の順序](/templates/lists/#default-weight--date--linktitle--filepath) のみをサポートしています。より詳しい情報については、[「タクソノミー テンプレート」](/templates/taxonomy-templates/) のドキュメントを参照してください。
 {{% /note %}}
 
-## Add custom metadata to a Taxonomy or Term
+## タクソノミーまたは用語にカスタム メタデータを追加する {#add-custom-metadata-to-a-taxonomy-or-term}
 
-If you need to add custom metadata to your taxonomy terms, you will need to create a page for that term at `/content/<TAXONOMY>/<TERM>/_index.md` and add your metadata in it's front matter. Continuing with our 'Actors' example, let's say you want to add a Wikipedia page link to each actor. Your terms pages would be something like this:
+タクソノミーの用語にカスタム メタデータを追加する必要がある場合、その用語のページを `/content/<TAXONOMY>/<TERM>/_index.md` に作成し、そのフロントマターにメタデータを追加する必要があります。「俳優」の例を続けて、各俳優にウィキペディアのページへのリンクを追加したいとします。用語ページは以下のようになります。
 
 {{< code file="/content/actors/bruce-willis/_index.md" >}}
 ---
@@ -221,5 +221,5 @@ wikipedia: "https://en.wikipedia.org/wiki/Bruce_Willis"
 [front matter]: /content-management/front-matter/
 [taxonomy list templates]: /templates/taxonomy-templates/#taxonomy-list-templates
 [taxonomy templates]: /templates/taxonomy-templates/
-[terms within the taxonomy]: /templates/taxonomy-templates/#taxonomy-terms-templates "See how to order terms associated with a taxonomy"
+[terms within the taxonomy]: /templates/taxonomy-templates/#taxonomy-terms-templates "タクソノミーに関連する用語の順序を確認する"
 [config]: /getting-started/configuration/

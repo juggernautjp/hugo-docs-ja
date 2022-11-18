@@ -2,25 +2,24 @@
 categories:
 - developer tools
 date: "2016-12-05"
-description: In addition to Hugo's powerful CLI, there is a large number of community-developed
-  tool chains for Hugo developers.
-draft: true
+description: Hugo の強力な CLI に加え、Hugo 開発者向けにコミュニティが開発したツールチェーンが多数存在します。
+draft: false
 keywords: []
 lastmod: "2017-02-26"
-linktitle: Developer Tools Overview
+linktitle: デベロッパーツールの概要
 menu:
   docs:
     parent: tools
     weight: 1
 publishdate: "2016-12-05"
 sections_weight: 1
-title: Developer Tools
+title: デベロッパーツール
 weight: 1
 ---
 
-One of Hugo's greatest strengths is its passionate---and always evolving---developer community. With the exception of the `highlight` shortcode mentioned in [Syntax Highlighting][syntax], the tools and other projects featured in this section are offerings from both commercial services and open-source projects, many of which are developed by Hugo developers just like you.
+Hugo の最大の強みは、その情熱的で常に進化し続ける開発者コミュニティです。[シンタックスハイライト][syntax] で紹介した `highlight` ショートコードを除き、このセクションで紹介するツールやその他のプロジェクトは、商用サービスとオープンソースプロジェクトの両方から提供されており、その多くはあなたのような Hugo 開発者によって開発されたものです。
 
-[See the popularity of Hugo compared with other static site generators.][staticgen]
+[「他の静的サイトジェネレータと比較した Hugo の人気度」][staticgen] を参照してください。
 
 [staticgen]: https://staticgen.com
 [syntax]: /tools/syntax-highlighting/

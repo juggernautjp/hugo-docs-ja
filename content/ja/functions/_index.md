@@ -3,20 +3,19 @@ aliases:
 - /layout/functions/
 - /templates/functions
 date: "2017-02-01"
-description: Comprehensive list of Hugo templating functions, including basic and
-  advanced usage examples.
-draft: true
+description: Hugo のテンプレート機能を網羅し、基本的な使用方法から応用例までを紹介。
+draft: false
 keywords: []
 lastmod: "2017-02-01"
-linktitle: Functions Quick Reference
+linktitle: 関数のクイックリファレンス
 menu:
   docs:
     parent: functions
 publishdate: "2017-02-01"
-title: Functions Quick Reference
+title: 関数のクイックリファレンス
 weight: 1
 ---
 
-Go templates are lightweight but extensible. Go itself supplies built-in functions, including comparison operators and other basic tools. These are listed in the [Go template documentation][gofuncs]. Hugo has added additional functions to the basic template logic.
+Go のテンプレートは軽量ですが、拡張性があります。Go 自身が、比較演算子やその他の基本的なツールを含む組み込み関数を提供しています。これらは [Go テンプレート ドキュメント][gofuncs] にリストされています。Hugo は基本的なテンプレートロジックに追加の関数を追加しました。
 
 [gofuncs]: https://golang.org/pkg/text/template/#hdr-Functions

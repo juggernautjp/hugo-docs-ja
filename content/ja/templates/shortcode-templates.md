@@ -3,21 +3,20 @@ aliases: []
 categories:
 - templates
 date: "2017-02-01"
-description: You can extend Hugo's built-in shortcodes by creating your own using
-  the same templating syntax as that for single and list pages.
-draft: true
+description: You can extend Hugo's built-in shortcodes by creating your own using the same templating syntax as that for single and list pages.
+draft: false
 keywords:
 - shortcodes
 - templates
 lastmod: "2017-02-01"
-linktitle: Shortcode Templates
+linktitle: ショートコード テンプレート
 menu:
   docs:
     parent: templates
     weight: 100
 publishdate: "2017-02-01"
 sections_weight: 100
-title: Create Your Own Shortcodes
+title: 独自のショートコードを作成する
 toc: true
 weight: 100
 ---

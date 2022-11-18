@@ -4,22 +4,21 @@ aliases:
 categories:
 - templates
 date: "2017-02-01"
-description: Templates used for section pages are **lists** and therefore have all
-  the variables and methods available to list pages.
-draft: true
+description: Templates used for section pages are **lists** and therefore have all the variables and methods available to list pages.
+draft: false
 keywords:
 - lists
 - sections
 - templates
 lastmod: "2017-02-01"
-linktitle: Section Templates
+linktitle: セクション テンプレート
 menu:
   docs:
     parent: templates
     weight: 40
 publishdate: "2017-02-01"
 sections_weight: 40
-title: Section Page Templates
+title: セクションページ テンプレート
 toc: true
 weight: 40
 ---
@@ -28,9 +27,9 @@ weight: 40
 
 To effectively leverage section page templates, you should first understand Hugo's [content organization](/content-management/organization/) and, specifically, the purpose of `_index.md` for adding content and front matter to section and other list pages.
 
-## Section Template Lookup Order
+## セクション テンプレートの検索順序 {#section-template-lookup-order}
 
-See [Template Lookup](/templates/lookup-order/).
+[「テンプレートの検索順序」](/templates/lookup-order/) を参照してください。
 
 ## Page Kinds
 

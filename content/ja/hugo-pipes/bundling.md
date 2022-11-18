@@ -2,8 +2,8 @@
 categories:
 - asset management
 date: "2018-07-14"
-description: Hugo Pipes can bundle any number of assets together.
-draft: true
+description: Hugo パイプは、任意の数のアセットをまとめてバンドルできます。
+draft: false
 keywords: []
 lastmod: "2018-07-14"
 menu:
@@ -12,11 +12,11 @@ menu:
     weight: 60
 publishdate: "2018-07-14"
 sections_weight: 60
-title: Asset bundling
+title: アセットバンドル
 weight: 60
 ---
 
-Asset files of the same MIME type can be bundled into one resource using `resources.Concat` which takes two arguments, a target path and a slice of resource objects.
+同じ MIME タイプのアセットファイルは、ターゲットパスとリソース オブジェクトのスライスの 2つの引数を取る `resources.Concat` を使用して 1 つのリソースにバンドルできます。
 
 ```go-html-template
 {{ $plugins := resources.Get "js/plugins.js" }}

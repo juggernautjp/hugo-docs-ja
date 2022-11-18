@@ -4,82 +4,81 @@ aliases:
 categories:
 - asset management
 date: "2018-07-14"
-description: Hugo Pipes is Hugo's asset processing set of functions.
-draft: true
+description: Hugo パイプは、Hugo のアセット処理関数のセットです。
+draft: false
 keywords: []
-linkTitle: Hugo Pipes
+linkTitle: Hugo パイプ
 menu:
   docs:
     parent: pipes
     weight: 20
 publishdate: "2018-07-14"
 sections_weight: 1
-title: Hugo Pipes Introduction
+title: Hugo パイプ入門
 toc: true
 weight: 1
 ---
 
-## Find Resources in /assets
+## /assets 内のリソースを検索する {#find-resources-in-assets}
 
-This is about the global Resources mounted inside `/assets`. For the `.Page` scoped Resources, see [Page Resources](/content-management/page-resources/).
+これは `/assets` 内にマウントされたグローバル リソースに関するものです。 `.Page` にスコープされたリソースについては、[「ページリソース」](/content-management/page-resources/) を参照してください。
 
-Note that you can mount any directory into Hugo's virtual `assets` folder using the [Mount Configuration](/hugo-modules/configuration/#module-config-mounts).
+[マウント設定](/hugo-modules/configuration/#module-config-mounts) を使用して、Hugo の `assets` 仮想フォルダーに任意のディレクトリをマウントできることに注意してください。
 
-| Function  | Description |
+| 関数  | 説明 |
 | ------------- | ------------- |
-| `resources.Get`  | Get locates the filename given in Hugo's assets filesystem and creates a `Resource` object that can be used for further transformations. See [Get Resource with resources.Get and resources.GetRemote](#get-resource-with-resourcesget-and-resourcesgetremote).  |
-| `resources.GetRemote`  | Same as `Get`, but it accepts remote URLs. See [Get Resource with resources.Get and resources.GetRemote](#get-resource-with-resourcesget-and-resourcesgetremote).|
-| `resources.GetMatch`  | `GetMatch` finds the first Resource matching the given pattern, or nil if none found. See Match for a more complete explanation about the rules used. |
-| `resources.Match`  | `Match` gets all resources matching the given base path prefix, e.g "*.png" will match all png files. The "*" does not match path delimiters (/), so if you organize your resources in sub-folders, you need to be explicit about it, e.g.: "images/*.png". To match any PNG image anywhere in the bundle you can do "\*\*.png", and to match all PNG images below the images folder, use "images/\*\*.jpg". The matching is case insensitive. Match matches by using the files name with path relative to the file system root with Unix style slashes (/) and no leading slash, e.g. "images/logo.png". See https://github.com/gobwas/glob for the full rules set.|
+| `resources.Get`  | Get は、与えられたファイル名を Hugo のアセット ファイルシステムから探し出し、さらなる変換に使用できる `Resource` オブジェクトを生成します。詳細は、[「resources.Get と resources.GetRemote でリソースを取得する」](#get-resource-with-resourcesget-and-resourcesgetremote) を参照してください。  |
+| `resources.GetRemote`  | `Get` と同じですが、リモートの URL を受け付けます。 [「resources.Get と resources.GetRemote でリソースを取得する」](#get-resource-with-resourcesget-and-resourcesgetremote) を参照してください。 |
+| `resources.GetMatch`  | ``GetMatch` は、指定されたパターンにマッチする最初の Resource を見つけます。 見つからない場合は nil を返します。 使用されるルールについてのより完全な説明は、`Match` を参照してください。 |
+| `resources.Match`  | `Match` は、指定されたベースパスのプレフィックスにマッチするすべてのリソースを取得します。たとえば、 "\*.png" は、すべての png ファイルにマッチします。 "\*" はパスの区切り文字 (`/`) にはマッチしないので、リソースをサブフォルダにまとめる場合は、たとえば、"images/\*.png" のようにそれを明示する必要があります。 バンドル内の任意の PNG 画像にマッチさせるには "\*\*.png" を指定し、images フォルダー以下のすべての PNG 画像にマッチさせるには "images/\*\*.jpg" を使用します。 マッチングは大文字と小文字を区別しません。`Match` は、ファイルシステムのルートからの相対パスで、Unix スタイルのスラッシュ (`/`) と先行するスラッシュを含まないファイル名を使用して、マッチングします (たとえば、 "images/logo.png")。 完全なルールセットについては、https://github.com/gobwas/glob を参照してください。 |
 
-See the [GoDoc Page](https://pkg.go.dev/github.com/gohugoio/hugo@v0.93.1/tpl/resources) for the `resources` package for an up to date overview of all template functions in this namespace.
+この名前空間のすべてのテンプレート関数の最新の概要については、 `resources` パッケージの [GoDoc ページ](https://pkg.go.dev/github.com/gohugoio/hugo@v0.93.1/tpl/resources) を参照してください。
 
-## Get Resource with resources.Get and resources.GetRemote
+## resources.Get と resources.GetRemote でリソースを取得する {#get-resource-with-resourcesget-and-resourcesgetremote}
 
-In order to process an asset with Hugo Pipes, it must be retrieved as a `Resource` using `resources.Get` or `resources.GetRemote`.
+Hugo パイプでアセットを処理するには、 `resources.Get` または `resources.GetRemote` を使用して `Resource` として取得する必要があります。
 
-With `resources.Get`, the first argument is a local path relative to the `assets` directory/directories:
+`resources.Get` は、以下のように、第一引数は `assets` ディレクトリ/複数のディレクトリ からの相対的なローカルパスです。
 
 ```go-html-template
 {{ $local := resources.Get "sass/main.scss" }}
 ```
 
-With `resources.GetRemote`, the first argument is a remote URL:
+`resources.GetRemote` は、以下のように、第一引数にリモートの URL を指定します。
 
 ```go-html-template
 {{ $remote := resources.GetRemote "https://www.example.com/styles.scss" }}
 ```
 
-`resources.Get` and `resources.GetRemote` return `nil` if the resource is not found.
+リソースが見つからない場合、 `resources.Get` と `resources.GetRemote` は `nil` を返します。
 
-## Copy a Resource
+## リソースをコピーする {#copy-a-resource}
 
 {{< new-in "0.100.0" >}}
 
-`resources.Copy` allows you to copy almost any Hugo `Resource` (the one exception is the `Page`), possibly most useful for renaming things:
+`resources.Copy` を使用すると、ほぼすべての Hugo `Resource` (1 つの例外は `Page`) をコピーできます。おそらく、名前を変更するときに最も役に立つでしょう。
 
 ```go-html-template
 {{ $resized := $image.Resize "400x400" |  resources.Copy "images/mynewname.jpg" }}
 <img src="{{ $resized.RelPermalink }}">
 ```
 
-### Caching
+### キャッシュ化 {#caching}
 
-By default, Hugo calculates a cache key based on the `URL` and the `options` (e.g. headers) given.
+デフォルトでは、Hugo は指定された `URL` と `options` (ヘッダーなど) に基づいてキャッシュキーを計算します。
 
-{{< new-in "0.97.0" >}} You can override this by setting a `key` in the options map. This can be used to get more fine grained control over how often a remote resource is fetched, e.g.:
-
+{{< new-in "0.97.0" >}} オプションマップに `key` を設定することで、これをオーバーライドできます。これは、リモートリソースをフェッチする頻度をより細かく制御するために使用できます。
 
 ```go-html-template
 {{ $cacheKey := print $url (now.Format "2006-01-02") }}
 {{ $resource := resource.GetRemote $url (dict "key" $cacheKey) }}
 ```
 
-### Error Handling
+### エラー処理 {#error-handling}
 
 {{< new-in "0.91.0" >}}
 
-The return value from `resources.GetRemote` includes an `.Err` method that will return an error if the call failed. If you want to just log any error as a `WARNING` you can use a construct similar to the one below.
+`resources.GetRemote` からの戻り値には、呼び出しが失敗した場合にエラーを返す `.Err` メソッドが含まれています。 エラーを `WARNING` としてログに記録したい場合は、以下のような構文を使用できます。
 
 ```go-html-template
 {{ with resources.GetRemote "https://gohugo.io/images/gohugoio-card-1.png" }}
@@ -91,23 +90,23 @@ The return value from `resources.GetRemote` includes an `.Err` method that will 
 {{ end }}
 ```
 
-Note that if you do not handle `.Err` yourself, Hugo will fail the build the first time you start using the `Resource` object.
+`.Err` を自分で処理しなかった場合、Hugo は `Resource` オブジェクトを最初に使い始めたときにビルドに失敗することに注意してください。
 
-### Remote Options
+### リモートオプション {#remote-options}
 
-When fetching a remote `Resource`, `resources.GetRemote` takes an optional options map as the last argument, e.g.:
+リモート `Resource` をフェッチするとき、`resources.GetRemote` はオプションのオプションマップを最後の引数として受け取ります。たとえば、次の通りです。
 
 ```go-html-template
 {{ $resource := resources.GetRemote "https://example.org/api" (dict "headers" (dict "Authorization" "Bearer abcd"))  }}
 ```
 
-If you need multiple values for the same header key, use a slice:
+同じヘッダーキーに複数の値が必要な場合は、以下のようにスライスを使用します。
 
 ```go-html-template
 {{ $resource := resources.GetRemote "https://example.org/api"  (dict "headers" (dict "X-List" (slice "a" "b" "c")))  }}
 ```
 
-You can also change the request method and set the request body:
+また、リクエストメソッドを変更したり、リクエストボディを設定することもできます。
 
 ```go-html-template
 {{ $postResponse := resources.GetRemote "https://example.org/api"  (dict 
@@ -119,47 +118,47 @@ You can also change the request method and set the request body:
 )}}
 ```
 
-### Caching of Remote Resources
+### リモートリソースのキャッシュ化 {#caching-of-remote-resources}
 
-Remote resources fetched with `resources.GetRemote` will be cached on disk. See [Configure File Caches](/getting-started/configuration/#configure-file-caches) for details.
+`resources.GetRemote` でフェッチしたリモートリソースは、ディスク上にキャッシュされます。詳細については、[「ファイルキャッシュの設定」](/getting-started/configuration/#configure-file-caches) を参照してください。
 
-## Asset directory
+## アセットディレクトリ {#asset-directory}
 
-Asset files must be stored in the asset directory. This is `/assets` by default, but can be configured via the configuration file's `assetDir` key.
+アセットファイルはアセットディレクトリに保存する必要があります。これはデフォルトでは `/assets` ですが、設定ファイルの `assetDir` キーで設定できます。
 
-### Asset Publishing
+### アセット公開 {#asset-publishing}
 
-Hugo publishes assets to the `publishDir` (typically `public`) when you invoke `.Permalink`, `.RelPermalink`, or `.Publish`. You can use `.Content` to inline the asset.
+Hugo は、 `.Permalink`、`.RelPermalink`、または `.Publish` を実行すると、 `publishDir` (通常は `public`) にアセットを公開できます。 `.Content` を使用すると、アセットをインライン化できます。
 
-## Go Pipes
+## Go パイプ {#go-pipes}
 
-For improved readability, the Hugo Pipes examples of this documentation will be written using [Go Pipes](/templates/introduction/#pipes):
+読みやすくするために、このドキュメントの Hugoパイプの例は [Go パイプ](/templates/introduction/#pipes) を使用して記述されます。
 
 ```go-html-template
 {{ $style := resources.Get "sass/main.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
 <link rel="stylesheet" href="{{ $style.Permalink }}">
 ```
 
-## Method aliases
+## メソッドのエイリアス {#method-aliases}
 
-Each Hugo Pipes `resources` transformation method uses a __camelCased__ alias (`toCSS` for `resources.ToCSS`).
-Non-transformation methods deprived of such aliases are `resources.Get`, `resources.FromString`, `resources.ExecuteAsTemplate` and `resources.Concat`.
+Hugoパイプの `resources` 変換メソッドには、それぞれ __キャメルケース__ のエイリアス (`resources.ToCSS` は `toCSS`) を使用します。
+このエイリアスを持たない非変換メソッドは、 `resources.Get`、`resources.FromString`、`resources.ExecuteAsTemplate` および `resources.Concat` です。
 
-The example above can therefore also be written as follows:
+したがって、上記の例は以下のように書くこともできます。
 
 ```go-html-template
 {{ $style := resources.Get "sass/main.scss" | toCSS | minify | fingerprint }}
 <link rel="stylesheet" href="{{ $style.Permalink }}">
 ```
 
-## Caching
+## キャッシュ化 {#caching}
 
-Hugo Pipes invocations are cached based on the entire *pipe chain*.
+Hugo パイプの呼び出しは、*パイプチェーン* 全体に基づいてキャッシュされます。
 
-An example of a pipe chain is:
+パイプチェーンの例は、以下のとおりです。
 
 ```go-html-template
 {{ $mainJs := resources.Get "js/main.js" | js.Build "main.js" | minify | fingerprint }}
 ```
 
-The pipe chain is only invoked the first time it is encountered in a site build, and results are otherwise loaded from cache. As such, Hugo Pipes can be used in templates which are executed thousands or millions of times without negatively impacting the build performance.
+パイプチェーンが呼び出されるのはサイト構築で最初に遭遇したときだけで、それ以外はキャッシュから結果が読み込まれます。そのため、Hugo パイプは何千回、何百万回と実行されるテンプレートでも、ビルドのパフォーマンスに悪影響を与えることなく使用できます。

@@ -5,24 +5,24 @@ aliases:
 categories:
 - content management
 date: "2017-09-05"
-description: List related content in "See Also" sections.
-draft: true
+description: 関連するコンテンツを「See Also」セクションにリストします。
+draft: false
 keywords:
 - content
 menu:
   docs:
     parent: content-management
     weight: 40
-title: Related Content
+title: 関連コンテンツ
 toc: true
 weight: 30
 ---
 
-Hugo uses a set of factors to identify a page's related content based on Front Matter parameters. This can be tuned to the desired set of indices and parameters or left to Hugo's default [Related Content configuration](#configure-related-content).
+Hugo は、フロントマターのパラメータに基づいて、ページの関連コンテンツを特定するために一連の要素を使用します。これは、希望するインデックスとパラメータのセットに調整することも、Hugoのデフォルトの [関連コンテンツ設定](#configure-related-content) のままにしておくことも可能です。
 
-## List Related Content
+## 関連コンテンツをリストする {#list-related-content}
 
-To list up to 5 related pages (which share the same _date_ or _keyword_ parameters) is as simple as including something similar to this partial in your single page template:
+最大 5 つの関連ページ (同じ _date_ または _keyword_ パラメータを共有する) をリストするには、シングルページのテンプレートに以下のパーシャル (部分テンプレート) と同様のものを含めるだけです。
 
 {{< code file="layouts/partials/related.html" >}}
 {{ $related := .Site.RegularPages.Related . | first 5 }}
@@ -36,13 +36,13 @@ To list up to 5 related pages (which share the same _date_ or _keyword_ paramete
 {{ end }}
 {{< /code >}}
 
-### Methods
+### メソッド {#methods}
 
-Here is the list of "Related" methods available on a page collection such `.RegularPages`.
+以下は、 `.RegularPages` のようなページコレクションで利用できる "Related" メソッドのリストです。
 
 #### .Related PAGE
 
-Returns a collection of pages related the given one.
+指定されたページに関連するページのコレクションを返します。
 
 ```go-html-template
 {{ $related := site.RegularPages.Related . }}
@@ -50,7 +50,7 @@ Returns a collection of pages related the given one.
 
 #### .RelatedIndices PAGE INDICE1 [INDICE2 ...]
 
-Returns a collection of pages related to a given one restricted to a list of indices.
+インデックスのリストに制限された特定のページに関連するページのコレクションを返します。
 
 ```go-html-template
 {{ $related := site.RegularPages.RelatedIndices . "tags" "date" }}
@@ -58,25 +58,25 @@ Returns a collection of pages related to a given one restricted to a list of ind
 
 #### .RelatedTo KEYVALS [KEYVALS2 ...]
 
-Returns a collection of pages related together by a set of indices and their match.
+一連のインデックスとそれらの一致によって関連付けられたページのコレクションを返します。
 
-In order to build those set and pass them as argument, one must use the `keyVals` function where the first argument would be the `indice` and the consecutive ones its potential `matches`.
+これらのセットを作成して引数として渡すには、 `keyVals` 関数を使用する必要があります。この関数では、最初の引数が `indice` で、それ以降の引数は潜在的な `matches` となるものです。
 
 ```go-html-template
 {{ $related := site.RegularPages.RelatedTo ( keyVals "tags" "hugo" "rocks")  ( keyVals "date" .Date ) }}
 ```
 
 {{% note %}}
-Read [this blog article](https://regisphilibert.com/blog/2018/04/hugo-optmized-relashionships-with-related-content/) for a great explanation of more advanced usage of this feature.
+この機能のより高度な使用方法については、[このブログの記事](https://regisphilibert.com/blog/2018/04/hugo-optmized-relashionships-with-related-content/) を読んでください。
 {{% /note %}}
 
-## Configure Related Content
+## 関連コンテンツを設定する {#configure-related-content}
 
-Hugo provides a sensible default configuration of Related Content, but you can fine-tune this in your configuration, on the global or language level if needed.
+Hugo では、関連コンテンツのデフォルトの設定を適切に行うことができますが、必要に応じて、グローバルレベルまたは言語レベルで、これを細かく設定することができます。
 
-### Default configuration
+### デフォルト設定 {#default-configuration}
 
-Without any `related` configuration set on the project, Hugo's Related Content methods will use the following.
+プロジェクトに `related` 設定がない場合、Hugo の Related Content (関連コンテンツ) メソッドは以下のものを使用します。
 
 {{< code-toggle file="config" >}}
 related:
@@ -90,54 +90,54 @@ related:
     weight: 10
 {{< /code-toggle >}}
 
-Note that if you have configured `tags` as a taxonomy, `tags` will also be added to the default configuration above with the weight of `80`.
+なお、タクソノミーとして `tags` を設定している場合は、上記のデフォルトの設定に `tags` も `80` という重みで追加されることになります。
 
-Custom configuration should be set using the same syntax.
+カスタム設定も同じ構文で設定する必要があります。
 
 {{% note %}}
-If you add a `related` config section, you need to add a complete configuration. It is not possible to just set, say, `includeNewer` and use the rest  from the Hugo defaults.
+`related` 設定セクションを追加する場合、完全な設定を追加する必要があります。たとえば `includeNewer` のみ設定し、残りは Hugo のデフォルトを使用する、ということはできません。
 {{% /note %}}
 
-### Top Level Config Options
+### トップレベルの設定オプション {#top-level-config-options}
 
 threshold
-:  A value between 0-100. Lower value will give more, but maybe not so relevant, matches.
+: 0 から 100 の値です。 値が低いほど、より多くの一致が得られますが、あまり関連性がない可能性があります。
 
 includeNewer
-:  Set to true to include **pages newer than the current page** in the related content listing. This will mean that the output for older posts may change as new related content gets added.
+: true に設定すると、**現在のページより新しいページ** も関連コンテンツのリストに含まれます。これは、新しい関連コンテンツが追加されたときに、古い投稿の出力が変更される可能性があることを意味します。
 
 toLower
-: Set to true to lower case keywords in both the indexes and the queries. This may give more accurate results at a slight performance penalty. Note that this can also be set per index.
+: true に設定すると、インデックスとクエリの両方でキーワードを小文字にします。これにより、パフォーマンスがわずかに低下しますが、より正確な結果が得られる場合があります。 これは、インデックスごとに設定することもできます。
 
-### Config Options per Index
+### インデックスごとの設定オプション {#config-options-per-index}
 
 name
-:  The index name. This value maps directly to a page param. Hugo supports string values (`author` in the example) and lists (`tags`, `keywords` etc.) and time and date objects.
+: インデックス名です。この値は、ページパラメータに直接マッピングされます。Hugo は文字列 (例では `author`) とリスト (`tags`、`keywords` など)、そして時刻と日付のオブジェクトをサポートしています。
 
 weight
-: An integer weight that indicates _how important_ this parameter is relative to the other parameters.  It can be 0, which has the effect of turning this index off, or even negative. Test with different values to see what fits your content best.
+: このパラメータが他のパラメータに対してどの程度重要であるかを示す、整数の重みです。 0 を指定するとこの指数をオフにすることができ、 負の値を指定することもできます。さまざまな値を試して、自分のコンテンツに最適なものを確認してください。
 
 pattern
-: This is currently only relevant for dates. When listing related content, we may want to list content that is also close in time. Setting "2006" (default value for date indexes) as the pattern for a date index will add weight to pages published in the same year. For busier blogs, "200601" (year and month) may be a better default.
+: これは現在、日付にのみ関連しています。 関連コンテンツをリストする場合、時間的にも近いコンテンツをリストしたい場合があります。 日付インデックスのパターンとして "2006" (日付インデックスのデフォルト値) を設定すると、同じ年に発行されたページに重みが追加されます。 より忙しいブログの場合は、"200601" (年と月) がデフォルトとして適している場合があります。
 
 toLower
-: See above.
+: 上記を参照してください。
 
-## Performance Considerations
+## パフォーマンスに関する考慮事項 {#performance-considerations}
 
-**Fast is Hugo's middle name** and we would not have released this feature had it not been blistering fast.
+**Hugo のミドルネームは "Fast"** ですから、この機能が非常に高速でなければリリースしなかったでしょう。
 
-This feature has been in the back log and requested by many for a long time. The development got this recent kick start from this Twitter thread:
+この機能は、長い間、バックログにあり、多くの人から要望されていました。最近、以下の Twitter のスレッドから開発がスタートしました。
 
 {{< tweet user="scott_lowe" id="898398437527363585" >}}
 
-Scott S. Lowe removed the "Related Content" section built using the `intersect` template function on tags, and the build time dropped from 30 seconds to less than 2 seconds on his 1700 content page sized blog.
+Scott S. Lowe は、タグの `intersect` テンプレート機能を使って構築した「関連コンテンツ」セクションを削除し、1700 コンテンツページサイズのブログのビルド時間を 30秒から 2秒未満に短縮しました。
 
-He should now be able to add an improved version of that "Related Content" section without giving up the fast live-reloads. But it's worth noting that:
+これで、高速なライブリロードをあきらめることなく、「関連コンテンツ」セクションの改良版を追加できるはずです。 ただし、以下の点に注意してください。
 
-* If you don't use any of the `Related` methods, you will not use the Relate Content feature, and performance will be the same as before.
-* Calling `.RegularPages.Related` etc. will create one inverted index, also sometimes named posting list, that will be reused for any lookups in that same page collection. Doing that in addition to, as an example, calling `.Pages.Related` will work as expected, but will create one additional inverted index. This should still be very fast, but worth having in mind, especially for bigger sites.
+* `Related` メソッドを使用しない場合は、Relate Content (関連コンテンツ) 機能を使用せず、パフォーマンスは以前と同じになります。
+* `.RegularPages.Related` などを呼び出すと、同じページコレクション内の検索に再利用される 1 つの逆インデックス (投稿リストと呼ばれることもあります) が作成されます。 例として、`.Pages.Related` の呼び出しに加えてこれを行うと、期待どおりに機能しますが、追加の逆インデックスが 1 つ作成されます。 これでも非常に高速ですが、特に大規模なサイトの場合は注意が必要です。
 
 {{% note %}}
-We currently do not index **Page content**. We thought we would release something that will make most people happy before we start solving [Sherlock's last case](https://github.com/joearms/sherlock).
+現在、**ページコンテンツ** のインデックスは作成していません。[シャーロックの最後の事件](https://github.com/joearms/sherlock) を解決する前に、多くの人に喜んでもらえるようなものを公開しようと考えたのです。
 {{% /note %}}

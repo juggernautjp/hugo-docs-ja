@@ -7,37 +7,36 @@ aliases:
 categories:
 - getting started
 date: "2017-02-01"
-description: Hugo's CLI is fully featured but simple to use, even for those who have
-  very limited experience working from the command line.
-draft: true
+description: Hugo の CLI は十分な機能を備えていますが、コマンドラインでの操作経験がほとんどない人でも簡単に使用できます。
+draft: false
 keywords:
 - usage
 - livereload
 - command line
 - flags
-linktitle: Basic Usage
+linktitle: 基本的な使用方法
 menu:
   docs:
     parent: getting-started
     weight: 40
 publishdate: "2017-02-01"
 sections_weight: 40
-title: Basic Usage
+title: 基本的な使用方法
 toc: true
 weight: 40
 ---
 
-The following is a description of the most common commands you will use while developing your Hugo project. See the [Command Line Reference][commands] for a comprehensive view of Hugo's CLI.
+以下は、Hugo プロジェクトの開発中に使用する最も一般的なコマンドの説明です。Hugo の CLI を包括的に見るには、[「コマンドライン リファレンス」][commands] を参照してください。
 
-## Test Installation
+## インストールをテストする {#test-installation}
 
-Once you have [installed Hugo][install], make sure it is in your `PATH`. You can test that Hugo has been installed correctly via the `help` command:
+[Hugo をインストール][install] したら、それがあなたの `PATH` にあることを確認してください。Hugo が正しくインストールされたかどうかは、以下のように `help` コマンドで確認することができます。
 
 ```txt
 hugo help
 ```
 
-The output you see in your console should be similar to the following:
+コンソールに表示される出力は、以下のようなものになるはずです。
 
 ```txt
 hugo is the main command, used to build your Hugo site.
@@ -113,13 +112,13 @@ Flags:
 Use "hugo [command] --help" for more information about a command.
 ```
 
-## The `hugo` Command
+## `hugo` コマンド {#the-hugo-command}
 
-The most common usage is probably to run `hugo` with your current directory being the input directory.
+最も一般的な使用方法は、カレントディレクトリを入力ディレクトリとして `hugo` を実行することです。
 
-This generates your website to the `public/` directory by default, although you can customize the output directory in your [site configuration][config] by changing the `publishDir` field.
+これにより、デフォルトで `public/` ディレクトリに Web サイトを生成しますが、[サイト設定][config] の `publishDir` フィールドを変更することで出力ディレクトリをカスタマイズできます。
 
-The command `hugo` renders your site into `public/` dir and is ready to be deployed to your web server:
+`hugo` コマンドは、サイトを `public/` ディレクトリにレンダリングし、Web サーバーにデプロイする準備ができました。
 
 ```txt
 hugo
@@ -132,15 +131,15 @@ hugo
 in 90 ms
 ```
 
-## Draft, Future, and Expired Content
+## 下書き、公開予定、期限切れのコンテンツ {#draft-future-and-expired-content}
 
-Hugo allows you to set `draft`, `publishdate`, and even `expirydate` in your content's [front matter][]. By default, Hugo will not publish:
+Hugo では、コンテンツの [フロントマター][front matter] に `draft` や `publishdate`、さらには `expirydate` を設定できます。デフォルトでは、Hugo は以下のコンテンツを公開しません。
 
-1. Content with a future `publishdate` value
-2. Content with `draft: true` status
-3. Content with a past `expirydate` value
+1. 未来の `publishdate` 値を持つコンテンツ (公開予定)
+2. `draft: true` ステータスを持つコンテンツ (下書き)
+3. 過去の `expirydate` 値を持つコンテンツ (期限切れ)
 
-All three of these can be overridden during both local development *and* deployment by adding the following flags to `hugo` and `hugo server`, respectively, or by changing the boolean values assigned to the fields of the same name (without `--`) in your [configuration][config]:
+これらの 3 つは、ローカルでの開発とデプロイの両方で、それぞれ `hugo` と `hugo server` に以下のフラグを追加するか、あるいは [設定][config] で同じ名前のフィールド (`--` を含まない) に割り当てられたブール値の変更によってオーバーライドすることができます。
 
 1. `--buildFuture`
 2. `--buildDrafts`
@@ -148,9 +147,9 @@ All three of these can be overridden during both local development *and* deploym
 
 ## LiveReload
 
-Hugo comes with [LiveReload](https://github.com/livereload/livereload-js) built in. There are no additional packages to install. A common way to use Hugo while developing a site is to have Hugo run a server with the `hugo server` command and watch for changes:
+Hugo には [LiveReload](https://github.com/livereload/livereload-js) が組み込まれています。追加でインストールが必要なパッケージはありません。 サイト開発中に Hugo を使う一般的な方法は、`hugo server` コマンドで Hugo のサーバーを実行し、変更を監視することです。
 
-```txt
+```bash
 hugo server
 0 draft content
 0 future content
@@ -165,7 +164,7 @@ Web Server is available at http://localhost:1313/
 Press Ctrl+C to stop
 ```
 
-This will run a fully functioning web server while simultaneously watching your file system for additions, deletions, or changes within the following areas of your [project organization][dirs]:
+これは、完全に機能する Web サーバーを実行すると同時に、[プロジェクト組織][dirs] の以下の領域で追加、削除、または変更がないか、ファイルシステムを監視するものです。
 
 * `/static/*`
 * `/content/*`
@@ -175,49 +174,49 @@ This will run a fully functioning web server while simultaneously watching your 
 * `/themes/<CURRENT-THEME>/*`
 * `config`
 
-Whenever you make changes, Hugo will simultaneously rebuild the site and continue to serve content. As soon as the build is finished, LiveReload tells the browser to silently reload the page.
+変更を加えるたびに、Hugo は同時にサイトを再構築し、コンテンツの提供を継続します。ビルドが終了するとすぐに、LiveReload はブラウザに静かにページをリロードするように指示します。
 
-Most Hugo builds are so fast that you may not notice the change unless looking directly at the site in your browser. This means that keeping the site open on a second monitor (or another half of your current monitor) allows you to see the most up-to-date version of your website without the need to leave your text editor.
+ほとんどの Hugo のビルドは非常に高速なので、ブラウザで直接サイトを見ない限り、変更に気づかないかもしれません。つまり、2番目のモニター (または現在のモニターの別の半分) にサイトを開いておけば、テキストエディターから離れることなく、最新版の Web サイトを表示することができます。
 
 {{% note "Closing `</body>` Tag"%}}
-Hugo injects the LiveReload `<script>` before the closing `</body>` in your templates and will therefore not work if this tag is not present..
+Hugo は LiveReload の `<script>` をテンプレートの終了 `</body>` の前に挿入するため、このタグが存在しない場合は動作しないことに注意してください。
 {{% /note %}}
 
-### Redirect automatically to the page you just saved
+### 保存したページに自動的にリダイレクトする {#redirect-automatically-to-the-page-you-just-saved}
 
-When you are working with more than one document and want to see the markup as real-time as possible it's not ideal to keep jumping between them.
-Fortunately Hugo has an easy, embedded and simple solution for this. It's the flag `--navigateToChanged`.
+複数のドキュメントで作業していて、できるだけリアルタイムにマークアップを表示したい場合、ドキュメント間をジャンプし続けるのは理想的ではありません。
+幸いなことに、Hugo には、これに対する簡単で組み込み型のシンプルなソリューションがあります。それは `--navigateToChanged` というフラグです。
 
-### Disable LiveReload
+### LiveReload を無効にする {#disable-livereload}
 
-LiveReload works by injecting JavaScript into the pages Hugo generates. The script creates a connection from the browser's web socket client to the Hugo web socket server.
+LiveReload は、Hugo が生成するページに JavaScript を挿入することによって機能します。 このスクリプトは、ブラウザーの Web ソケット クライアントから Hugo Web ソケット サーバーへの接続を作成します。
 
-The following methods make it easy to disable LiveReload:
+以下の方法で、LiveReload を簡単に無効にすることができます。
 
 ```txt
 hugo server --watch=false
 ```
 
-Or...
+または
 
 ```txt
 hugo server --disableLiveReload
 ```
 
-The latter flag can be omitted by adding the following:
+後者のフラグは、以下を追加することで省略できます。
 
 {{< code-toggle file="config" >}}
 disableLiveReload = true
 {{< /code-toggle >}}
 
-## Deploy Your Website
+## Web サイトをデプロイする {#deploy-your-website}
 
-After running `hugo server` for local web development, you need to do a final `hugo` run *without the `server` part of the command* to rebuild your site. You may then deploy your site by copying the `public/` directory to your production web server.
+ローカルでの Web 開発のために `hugo server` を実行した後、サイトを再構築するために *コマンドの `server` の部分なしで*、最後に `hugo` を実行する必要があります。その後、 `public/` ディレクトリを本番用の Web サーバにコピーすることで、サイトをデプロイできます。
 
-Since Hugo generates a static website, your site can be hosted *anywhere* using any web server. See [Hosting and Deployment][hosting] for methods for hosting and automating deployments contributed by the Hugo community.
+Hugo は静的な Web サイトを生成するので、任意の Web サーバーを使って、サイトを *どこでも* ホスティングできます。 Hugo コミュニティが提供するホスティングや自動デプロイの方法については、[「ホスティングとデプロイ」][hosting] を参照してください。
 
 {{% warning "Generated Files are **NOT** Removed on Site Build" %}}
-Running `hugo` *does not* remove generated files before building. This means that you should delete your `public/` directory (or the publish directory you specified via flag or configuration file) before running the `hugo` command. If you do not remove these files, you run the risk of the wrong files (e.g., drafts or future posts) being left in the generated site.
+`hugo` を実行しても、ビルド前に生成されたファイルは削除されません。 これは、`hugo` コマンドを実行する前に、`public/` ディレクトリ (またはフラグや設定ファイルで指定した publish ディレクトリ) を削除する必要があることを意味します。 これらのファイルを削除しないと、生成されたサイトに間違ったファイル (下書きや将来の投稿など) が残るリスクがあります。
 {{% /warning %}}
 
 

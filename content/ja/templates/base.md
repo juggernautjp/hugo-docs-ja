@@ -6,9 +6,8 @@ categories:
 - templates
 - fundamentals
 date: "2017-02-01"
-description: The base and block constructs allow you to define the outer shell of
-  your master templates (i.e., the chrome of the page).
-draft: true
+description: ベースおよびブロック構造を使用すると、マスターテンプレートの外側のシェル (つまり、ページのクロム) を定義できます。
+draft: false
 keywords:
 - blocks
 - base
@@ -19,24 +18,24 @@ menu:
     weight: 20
 publishdate: "2017-02-01"
 sections_weight: 20
-title: Base Templates and Blocks
+title: ベーステンプレートとブロック
 toc: true
 weight: 20
 ---
 
-The `block` keyword allows you to define the outer shell of your pages' one or more master template(s) and then fill in or override portions as necessary.
+`block` キーワードを使用すると、ページの 1 つまたは複数のマスターテンプレートの外側のシェルを定義し、必要に応じて部分を埋めたり上書きしたりできます。
 
 {{< youtube QVOMCYitLEc >}}
 
-## Base Template Lookup Order
+## ベーステンプレートの検索順序 {#base-template-lookup-order}
 
-{{< new-in "0.63.0" >}} Since Hugo v0.63, the base template lookup order closely follows that of the template it applies to (e.g. `_default/list.html`).
+{{< new-in "0.63.0" >}} Hugo v0.63 以降、ベーステンプレートの検索順序は、それが適用されるテンプレート (たとえば、 `_default/list.html`) の順序に厳密に従います
 
-See [Template Lookup Order](/templates/lookup-order/) for details and examples.
+詳細と例については、[テンプレート検索順序](/templates/lookup-order/) を参照してください。
 
-## Define the Base Template
+## ベーステンプレートを定義する {#define-the-base-template}
 
-The following defines a simple base template at `_default/baseof.html`. As a default template, it is the shell from which all your pages will be rendered unless you specify another `*baseof.html` closer to the beginning of the lookup order.
+以下では、 `_default/baseof.html` でシンプルなベーステンプレート定義しています。デフォルトのテンプレートとして、検索順序の先頭により近い別の `*baseof.html` を指定しない限り、このテンプレートがすべてのページのレンダリング元となるシェルとなります。
 
 {{< code file="layouts/_default/baseof.html" download="baseof.html" >}}
 <!DOCTYPE html>
@@ -44,25 +43,25 @@ The following defines a simple base template at `_default/baseof.html`. As a def
   <head>
     <meta charset="utf-8">
     <title>{{ block "title" . }}
-      <!-- Blocks may include default content. -->
+      <!-- ブロックは、デフォルトのコンテンツを含む場合があります。 -->
       {{ .Site.Title }}
     {{ end }}</title>
   </head>
   <body>
-    <!-- Code that all your templates share, like a header -->
+    <!-- ヘッダーなど、すべてのテンプレートが共有するコード -->
     {{ block "main" . }}
-      <!-- The part of the page that begins to differ between templates -->
+      <!-- テンプレート間で差異が生じ始めるページの部分 -->
     {{ end }}
     {{ block "footer" . }}
-    <!-- More shared code, perhaps a footer but that can be overridden if need be in  -->
+    <!-- より多くの共有コード、おそらくフッターですが、必要に応じてオーバーライドできます  -->
     {{ end }}
   </body>
 </html>
 {{< /code >}}
 
-## Override the Base Template
+## ベーステンプレートをオーバーライドする {#override-the-base-template}
 
-From the above base template, you can define a [default list template][hugolists]. The default list template will inherit all of the code defined above and can then implement its own `"main"` block from:
+上記のベーステンプレートから、[デフォルトのリストテンプレート][hugolists] を定義できます。デフォルトのリストテンプレートは上で定義されたすべてのコードを継承し、以下から独自の `"main"` ブロックを実装できます。
 
 {{< code file="layouts/_default/list.html" download="list.html" >}}
 {{ define "main" }}
@@ -76,10 +75,10 @@ From the above base template, you can define a [default list template][hugolists
 {{ end }}
 {{< /code >}}
 
-This replaces the contents of our (basically empty) "main" block with something useful for the list template. In this case, we didn't define a `"title"` block, so the contents from our base template remain unchanged in lists.
+これは、(基本的に空の) "main" ブロックの内容を、リストテンプレートに役立つものに置き換えます。この場合、`"title"` ブロックを定義していないので、ベーステンプレートの内容はリスト内で変更されないままです。
 
 {{% warning %}}
-Code that you put outside the block definitions *can* break your layout. This even includes HTML comments. For example:
+ブロック定義の外に置くコードは、レイアウトを壊す可能性があります。 これには HTML コメントも含まれます。 たとえば、以下のコードです。
 
 ```go-html-template
 <!-- Seemingly harmless HTML comment..that will break your layout at build -->
@@ -87,10 +86,10 @@ Code that you put outside the block definitions *can* break your layout. This ev
 ...your code here
 {{ end }}
 ```
-[See this thread from the Hugo discussion forums.](https://discourse.gohugo.io/t/baseof-html-block-templates-and-list-types-results-in-empty-pages/5612/6)
+[Hugo ディスカッション フォーラムのこのスレッド](https://discourse.gohugo.io/t/baseof-html-block-templates-and-list-types-results-in-empty-pages/5612/6) を参照してください。
 {{% /warning %}}
 
-The following shows how you can override both the `"main"` and `"title"` block areas from the base template with code unique to your [default single page template][singletemplate]:
+以下は、[デフォルトのシングルページ テンプレート][singletemplate] に固有のコードを使用して、ベーステンプレートの `"main"` と `"title"` ブロックエリアの両方をオーバーライドする方法を示しています。
 
 {{< code file="layouts/_default/single.html" download="single.html" >}}
 {{ define "title" }}
