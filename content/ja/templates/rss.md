@@ -2,53 +2,52 @@
 categories:
 - templates
 date: "2017-02-01"
-description: Hugo ships with its own RSS 2.0 template that requires almost no configuration,
-  or you can create your own RSS templates.
+description: Hugo には、ほとんど設定が不要な独自の RSS 2.0 テンプレートが同梱されています。また、独自の RSS テンプレートを作成することもできます。
 draft: false
 keywords:
 - rss
 - xml
 - templates
 lastmod: "2017-02-01"
-linktitle: RSS Templates
+linktitle: RSS テンプレート
 menu:
   docs:
     parent: templates
     weight: 150
 publishdate: "2017-02-01"
 sections_weight: 150
-title: RSS Templates
+title: RSS テンプレート
 toc: true
 weight: 150
 ---
 
-## RSS Template Lookup Order
+## RSS テンプレートの検索順序 {#rss-template-lookup-order}
 
-See [Template Lookup Order](/templates/lookup-order/) for the complete reference.
+完全なリファレンスについては、[テンプレートの検索順序](/templates/lookup-order/) を参照してください。
 
 {{% note "Hugo Ships with an RSS Template" %}}
-Hugo ships with its own [RSS 2.0 template](#the-embedded-rssxml). The embedded template will be sufficient for most use cases.
+Hugo には、独自の [RSS 2.0 テンプレート](#the-embedded-rssxml) が付属しています。ほとんどの場合、この埋め込みテンプレートで十分です。
 {{% /note %}}
 
-RSS pages are of the type `Page` and have all the [page variables](/variables/page/) available to use in the templates.
+RSS ページは `Page` というタイプで、テンプレートで使用できるすべての [ページ変数](/variables/page/) を持っています。
 
-### Section RSS
+### セクション RSS {#section-rss}
 
-A [section’s][section] RSS will be rendered at `/<SECTION>/index.xml` (e.g., [https://spf13.com/project/index.xml](https://spf13.com/project/index.xml)).
+[セクションの][section] RSS は `/<SECTION>/index.xml` にレンダリングされます (たとえば、 [https://spf13.com/project/index.xml](https://spf13.com/project/index.xml))。
 
-Hugo provides the ability for you to define any RSS type you wish and can have different RSS files for each section and taxonomy.
+Hugo は、必要な RSS タイプを定義する機能を提供し、セクションとタクソノミーごとに異なる RSS ファイルを持つことができます。
 
-## Lookup Order for RSS Templates
+## RSS テンプレートのための検索順序 {#lookup-order-for-rss-templates}
 
-The table below shows the RSS template lookup order for the different page kinds. The first listing shows the lookup order when running with a theme (`demoTheme`).
+以下の表は、異なる種類のページに対する RSS テンプレートの検索順序を示しています。 最初のリストは、テーマ (`demoTheme`) で実行した場合の検索順序を表しています。
 
-{{< datatable-filtered "output" "layouts" "OutputFormat == RSS" "Example" "OutputFormat" "Suffix" "Template Lookup Order" >}}
+{{< datatable-filtered-ja "output" "layouts" "OutputFormat == RSS" "Example" "OutputFormat" "Suffix" "Template Lookup Order" >}}
 
-## Configure RSS
+## RSS を設定する {#configure-rss}
 
-By default, Hugo will create an unlimited number of RSS entries. You can limit the number of articles included in the built-in RSS templates by assigning a numeric value to `rssLimit:` field in your project's [`config` file][config].
+デフォルトでは、Hugo は無制限の数の RSS エントリを作成します。 プロジェクトの [`config` ファイル][config] の `rssLimit:` フィールドに数値を割り当てることで、組み込みの RSS テンプレートに含まれる記事の数を制限できます。
 
-The following values will also be included in the RSS output if specified:
+また、以下の値が指定されている場合は、RSS 出力に含まれます。
 
 {{< code-toggle file="config" >}}
 languageCode = "en-us"
@@ -58,15 +57,15 @@ copyright = "This work is licensed under a Creative Commons Attribution-ShareAli
     name = "My Name Here"
 {{< /code-toggle >}}
 
-## The Embedded rss.xml
+## 埋め込み型 rss.xml {#the-embedded-rssxml}
 
-This is the default RSS template that ships with Hugo:
+以下は、Hugo に同梱されているデフォルトの RSS テンプレートです。
 
 <https://github.com/gohugoio/hugo/blob/master/tpl/tplimpl/embedded/templates/_default/rss.xml>
 
-## Reference your RSS Feed in `<head>`
+## `<head>` で RSS フィードを参照する {#reference-your-rss-feed-in-head}
 
-In your `header.html` template, you can specify your RSS feed in your `<head></head>` tag using Hugo's [Output Formats][Output Formats] like this:
+`header.html` テンプレートでは、以下のように Hugo の [出力形式][Output Formats] を使用して `<head></head>` タグで RSS フィードを指定できます。
 
 ```go-html-template
 {{ range .AlternativeOutputFormats -}}
@@ -74,7 +73,7 @@ In your `header.html` template, you can specify your RSS feed in your `<head></h
 {{ end -}}
 ```
 
-If you only want the RSS link, you can query the formats:
+RSS のリンクだけが必要な場合は、フォーマットをクエリできます。
 
 ```go-html-template
 {{ with .OutputFormats.Get "rss" -}}
@@ -82,16 +81,16 @@ If you only want the RSS link, you can query the formats:
 {{ end -}}
 ```
 
-Either of the two snippets above will generate the below `link` tag on the site homepage for RSS output:
+上記の 2 つのスニペットのどちらかを使用すると、サイトのホームページに以下のような RSS 出力用の `link` タグが生成されます。
 
 ```html
 <link rel="alternate" type="application/rss+xml" href="https://example.com/index.xml" title="Site Title">
 ```
 
-_We are assuming `BaseURL` to be `https://example.com/` and `$.Site.Title` to be `"Site Title"` in this example._
+_上記の例では、`BaseURL` を `https://example.com/`、`$.Site.Title`を `"Site Title"` と仮定しています。_
 
 [config]: /getting-started/configuration/
 [embedded]: #the-embedded-rss-xml
-[RSS 2.0]: https://cyber.harvard.edu/rss/rss.html "RSS 2.0 Specification"
+[RSS 2.0]: https://cyber.harvard.edu/rss/rss.html "RSS 2.0 仕様書"
 [section]: /content-management/sections/
 [Output Formats]: /templates/output-formats/#link-to-output-formats

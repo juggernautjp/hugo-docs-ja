@@ -6,7 +6,7 @@ aliases:
 categories:
 - templates
 date: "2017-03-22"
-description: Hugo can output content in multiple formats, including calendar events, e-book formats, Google AMP, and JSON search indexes, or any custom text format.
+description: Hugo は、カレンダーイベント、電子書籍フォーマット、Google AMP、JSON 検索インデックスなど、複数のフォーマット、または任意のカスタムテキスト形式でコンテンツを出力できます。
 draft: false
 keywords:
 - amp
@@ -25,24 +25,24 @@ toc: true
 weight: 18
 ---
 
-This page describes how to properly configure your site with the media types and output formats, as well as where to create your templates for your custom outputs.
+このページでは、メディアタイプと出力形式を使用してサイトを適切に設定する方法と、カスタム出力用のテンプレートを作成する場所について説明します。
 
 ## メディアタイプ {#media-types}
 
-A [media type][media type] (also known as _MIME type_ and _content type_) is a two-part identifier for file formats and format contents transmitted on the internet.
+[メディアタイプ][media type] (_MIME タイプ_ および _コンテンツタイプ_ とも呼ばれる) は、インターネット上で送信されるファイル形式とフォーマットコンテンツの 2 つの部分の識別子のことです。
 
-This is the full set of built-in media types in Hugo:
+以下は、Hugo の組み込みメディアタイプの完全なセットです。
 
 {{< datatable "media" "types" "type" "suffixes" >}}
 
-**Note:**
+**注意:**
 
-- It is possible to add custom media types or change the defaults; e.g., if you want to change the suffix for `text/html` to `asp`.
-- `Suffixes` are the values that will be used for URLs and filenames for that media type in Hugo.
-- The `Type` is the identifier that must be used when defining new/custom `Output Formats` (see below).
-- The full set of media types will be registered in Hugo's built-in development server to make sure they are recognized by the browser.
+- カスタムのメディアタイプを追加したり、デフォルトを変更したりできます。たとえば、`text/html` のサフィックスを `asp` に変更したい場合などです。
+- `Suffixes` は、Hugo でそのメディアタイプの URL とファイル名に使用される値です。
+- `Type` は、新しい/カスタムの `Output Formats` を定義するときに使用する必要がある識別子です (以下を参照)。
+- メディアタイプの完全なセットは、Hugo の組み込み開発サーバーに登録され、ブラウザーで確実に認識されます。
 
-To add or modify a media type, define it in a `mediaTypes` section in your [site configuration][config], either for all sites or for a given language.
+メディアタイプを追加または変更するには、[サイト設定][config] の `mediaTypes` セクションで、すべてのサイトまたは特定の言語に対して定義します。
 
 {{< code-toggle file="config" >}}
 [mediaTypes]
@@ -52,9 +52,9 @@ To add or modify a media type, define it in a `mediaTypes` section in your [site
   suffixes = ["asp"]
 {{</ code-toggle >}}
 
-The above example adds one new media type, `text/enriched`, and changes the suffix for the built-in `text/html` media type.
+上記の例では、新しいメディアタイプ `text/enriched` をひとつ追加し、組み込みのメディアタイプ `text/html` のサフィックスを変更しています。
 
-**Note:** these media types are configured for **your output formats**. If you want to redefine one of Hugo's default output formats (e.g. `HTML`), you also need to redefine the media type. So, if you want to change the suffix of the `HTML` output format from `html` (default) to `htm`:
+**注意:** これらのメディアタイプは **出力形式** 用に設定されています。Hugo のデフォルトの出力形式 (たとえば `HTML`) の一つを再定義したい場合、メディアタイプも再定義する必要があります。つまり、`HTML` 出力形式のサフィックスを `html` (デフォルト) から `htm` に変更したい場合は、メディアタイプを再定義する必要があります。
 
 ```toml
 [mediaTypes]
@@ -67,21 +67,21 @@ suffixes = ["htm"]
 mediaType = "text/html"
 ```
 
-**Note** that for the above to work, you also need to add an `outputs` definition in your site config.
+**注意** 上記を機能させるには、サイト設定に `outputs` 定義も追加する必要があります。
 
-## Output Format Definitions
+## 出力形式の定義 {#output-format-definitions}
 
-Given a media type and some additional configuration, you get an **Output Format**.
+メディアタイプといくつかの追加設定により、**出力形式** が得られます。
 
-This is the full set of Hugo's built-in output formats:
+以下は、Hugo の組み込み出力形式の完全なセットです。
 
 {{< datatable "output" "formats" "name" "mediaType" "path" "baseName" "rel" "protocol" "isPlainText" "isHTML" "noUgly" "permalinkable" >}}
 
-- A page can be output in as many output formats as you want, and you can have an infinite amount of output formats defined **as long as they resolve to a unique path on the file system**. In the above table, the best example of this is `AMP` vs. `HTML`. `AMP` has the value `amp` for `Path` so it doesn't overwrite the `HTML` version; e.g. we can now have both `/index.html` and `/amp/index.html`.
-- The `MediaType` must match the `Type` of an already defined media type.
-- You can define new output formats or redefine built-in output formats; e.g., if you want to put `AMP` pages in a different path.
+- 1 つのページを好きなだけ多くの出力形式で出力することができ、 **それらがファイルシステム上の一意なパスに解決される限り**、無限に出力形式を定義できます。上の表では、`AMP` と `HTML` の比較というのが最も良い例です。`AMP` は `Path` の値が `amp` であるため、`HTML` バージョンを上書きしません。たとえば、 `/index.html` と `/amp/index.html` の両方を定義することができます。
+- `MediaType` は、既に定義されているメディアタイプの `Type` と一致する必要があります。
+- 新しい出力形式を定義したり、組み込みの出力形式を再定義したりできます。 たとえば、`AMP` ページを別のパスに配置したい場合です。
 
-To add or modify an output format, define it in an `outputFormats` section in your site's [configuration file](/getting-started/configuration/), either for all sites or for a given language.
+出力形式を追加または変更するには、サイトの [設定ファイル](/getting-started/configuration/) の `outputFormats` セクションで、すべてのサイトまたは特定の言語に対して定義します。
 
 {{< code-toggle file="config" >}}
 [outputFormats.MyEnrichedFormat]
@@ -91,76 +91,72 @@ isPlainText = true
 protocol = "bep://"
 {{</ code-toggle >}}
 
-The above example is fictional, but if used for the homepage on a site with `baseURL` `https://example.org`, it will produce a plain text homepage with the URL `bep://example.org/myindex.enr`.
+上記の例は架空のものですが、`baseURL` が `https://example.org` を持つサイトのホームページに使用すると、URL が `bep://example.org/myindex.enr` のプレーンテキストのホームページが生成されます。
 
-### Configure Output Formats
+### 出力形式を設定する {#configure-output-formats}
 
-The following is the full list of configuration options for output formats and their default values:
+以下は、出力形式の設定オプションとそのデフォルト値の完全なリストです。
 
 `name`
-: the output format identifier. This is used to define what output format(s) you want for your pages.
+: 出力形式の識別子です。これは、ページに必要な出力形式を定義するために使用されます。
 
 `mediaType`
-: this must match the `Type` of a defined media type.
+: これは、定義されたメディアタイプの `Type` と一致する必要があります。
 
 `path`
-: sub path to save the output files.
+: 出力ファイルを保存するサブパスです。
 
 `baseName`
-: the base filename for the list filenames (homepage, etc.). **Default:** `index`.
+: リストファイル名 (ホームページなど) のベースファイル名です。 **デフォルト:** `index`
 
 `rel`
-: can be used to create `rel` values in `link` tags. **Default:** `alternate`.
+: `link` タグで `rel` 値を作成するために使用できます。 **デフォルト:** `alternate`
 
 `protocol`
-: will replace the "http://" or "https://" in your `baseURL` for this output format.
+: この出力形式に対して、 `baseURL` 内の "http://" または "https://" を置き換えます。
 
 `isPlainText`
-: use Go's plain text templates parser for the templates. **Default:** `false`.
+: テンプレートに、Go のプレーンテキスト テンプレートパーサーを使用します。 **デフォルト:** `false`
 
 `isHTML`
-: used in situations only relevant for `HTML`-type formats; e.g., page aliases. **Default:** `false`.
+: `HTML` タイプの形式にのみ関連する状況、たとえば、ページのエイリアスなど、で使用されます。 **デフォルト:** `false`.
 
 `noUgly`
-: used to turn off ugly URLs If `uglyURLs` is set to `true` in your site. **Default:** `false`.
+: サイトで `uglyURLs` が `true` に設定されている場合、アグリー URL をオフにするために使用されます。 **デフォルト:** `false`.
 
 `ugly`
-: Enable to override the global uglyURLs setting.
+: グローバルな uglyURLs 設定をオーバーライドするために有効にします。
 
 `notAlternative`
-: enable if it doesn't make sense to include this format in an `AlternativeOutputFormats` format listing on `Page` (e.g., with `CSS`). Note that we use the term _alternative_ and not _alternate_ here, as it does not necessarily replace the other format. **Default:** `false`.
+: `Page` の `AlternativeOutputFormats` 形式リストにこの形式を含めることが意味をなさない場合 (たとえば、`CSS` を使用) に有効にします。 必ずしも他の形式を置き換えるとは限らないため、ここでは _alternate_ ではなく _alternative_ という用語を使用することに注意してください。 **デフォルト:** `false`.
 
 `permalinkable`
-: make `.Permalink` and `.RelPermalink` return the rendering Output Format rather than main ([see below](#link-to-output-formats)). This is enabled by default for `HTML` and `AMP`. **Default:** `false`.
+: make `.Permalink` and `.RelPermalink` return the rendering Output Format rather than main ([see below](#link-to-output-formats)). This is enabled by default for `HTML` and `AMP`. **デフォルト:** `false`.
 
 `weight`
-: Setting this to a non-zero value will be used as the first sort criteria.
+: これをゼロ以外の値に設定すると、最初のソート基準として使用されます。
 
-## Output Formats for Pages
+## ページの出力形式 {#output-formats-for-pages}
 
-A `Page` in Hugo can be rendered to multiple _output formats_ on the file
-system.
+Hugo の `Page` は、ファイルシステム上で複数の _出力形式_ にレンダリングできます。
 
-### Default Output Formats
+### デフォルトの出力形式 {#default-output-formats}
 
-Every `Page` has a [`Kind`][page_kinds] attribute, and the default Output
-Formats are set based on that.
+すべての `Page` には [`Kind`][page_kinds] 属性があり、それに基づいてデフォルトの出力形式が設定されます。
 
-| Kind       | Default Output Formats |
+| 種類 (Kind)   | デフォルトの出力形式 |
 | ---------- | ---------------------- |
 | `page`     | HTML                   |
-| `home`     | HTML, RSS              |
-| `section`  | HTML, RSS              |
-| `taxonomy` | HTML, RSS              |
-| `term`     | HTML, RSS              |
+| `home`     | HTML、RSS              |
+| `section`  | HTML、RSS              |
+| `taxonomy` | HTML、RSS              |
+| `term`     | HTML、RSS              |
 
-### Customizing Output Formats
+### 出力形式をカスタマイズする {#customizing-output-formats}
 
-This can be changed by defining an `outputs` list of output formats in either
-the `Page` front matter or in the site configuration (either for all sites or
-per language).
+これは `outputs` という出力形式のリストを `Page` のフロントマターまたはサイト設定 (すべてのサイトか言語ごとのいずれか) で定義することで変更できます。
 
-Example from site config file:
+サイト設定ファイルの例: 
 
 {{< code-toggle file="config" >}}
 [outputs]
@@ -168,19 +164,18 @@ Example from site config file:
   page = ["HTML"]
 {{</ code-toggle >}}
 
-Note that in the above examples, the _output formats_ for `section`,
-`taxonomy` and `term` will stay at their default value `["HTML", "RSS"]`.
+上記の例では、 `section`、`taxonomy`、`term` の _出力形式_ は、デフォルトの値 `["HTML", "RSS"]` のままであることに注意してください。
 
-{{< new-in "0.73.0" >}} We have fixed the before confusing page kinds used for taxonomies (see the listing below) to be in line with the terms used when we talk about taxonomies. We have been careful to avoid site breakage, and you should get an ERROR in the console if you need to adjust your `outputs` section.
+{{< new-in "0.73.0" >}} タクソノミーに使用される以前の紛らわしいページの種類 (以下のリストを参照) を、タクソノミーについて話すときに使用される用語と一致するように修正しました。サイトが壊れないように注意し、`outputs` セクションを調整する必要がある場合は、コンソールに **エラー** が表示されるようにしました。
 
-{{% page-kinds %}}
+{{% page-kinds-ja %}}
 
-* The `outputs` definition is per [`Page` `Kind`][page_kinds] (`page`, `home`, `section`, `taxonomy`, or `term`).
-* The names (e.g. `HTML`, `AMP`) used must match the `Name` of a defined *Output Format*.
-  * These names are case insensitive.
-* These can be overridden per `Page` in the front matter of content files.
+* `outputs` の定義は、 [`Page` `Kind`][page_kinds] (`page`、`home`、`section`、`taxonomy`、または `term`) ごとに行われます。
+* 使用される名前 (たとえば、 `HTML`、`AMP`) は、定義された *出力形式* の `Name` と一致する必要があります。
+  * これらの名前は、大文字と小文字が区別しません。
+* これらは、コンテンツファイルのフロントマターで `Page` ごとにオーバーライドできます。
 
-The following is an example of `YAML` front matter in a content file that defines output formats for the rendered `Page`:
+以下は、レンダリングされた `Page` の出力形式を定義するコンテンツファイルの `YAML` フロントマターの例です。
 
 ```yaml
 ---
@@ -192,9 +187,9 @@ outputs:
 ---
 ```
 
-## List Output formats
+## 出力形式を一覧表示する {#list-output-formats}
 
-Each `Page` has both an `.OutputFormats` (all formats, including the current) and an `.AlternativeOutputFormats` variable, the latter of which is useful for creating a `link rel` list in your site's `<head>`:
+それぞれの `Page` には `.OutputFormats` (現在のものを含むすべての形式) と `.AlternativeOutputFormats` 変数の両方があり、後者はサイトの `<head>` で `link rel` リストを作成するのに役立ちます。
 
 ```go-html-template
 {{ range .AlternativeOutputFormats -}}
@@ -202,11 +197,11 @@ Each `Page` has both an `.OutputFormats` (all formats, including the current) an
 {{ end -}}
 ```
 
-## Link to Output Formats
+## 出力形式にリンクする {#link-to-output-formats}
 
-`.Permalink` and `.RelPermalink` on `Page` will return the first output format defined for that page (usually `HTML` if nothing else is defined). This is regardless of the template file they are being called from.
+`Page` の `.Permalink` と `.RelPermalink` は、そのページに定義された最初の出力形式 (他に何も定義されていない場合は、通常は `HTML`) を返します。 これは、呼び出し元のテンプレートファイルに関係ありません。
 
-__from `single.json.json`:__
+__`single.json.json` から:__
 ```go-html-template
 {{ .RelPermalink }} > /that-page/
 {{ with  .OutputFormats.Get "json" -}}
@@ -214,9 +209,9 @@ __from `single.json.json`:__
 {{- end }}
 ```
 
-In order for them to return the output format of the current template file instead, the given output format should have its `permalinkable` setting set to true.
+現在のテンプレートファイルの出力形式を返すようにするには、指定された出力形式の `permalinkable` 設定を true にする必要があります。
 
-**Same template file as above with json output format's `permalinkable` set to true:**
+**以下は、上記と同じテンプレートファイルで、json 出力形式の `permalinkable` が true に設定されています。**
 
 ```go-html-template
 {{ .RelPermalink }} > /that-page/index.json
@@ -225,37 +220,37 @@ In order for them to return the output format of the current template file inste
 {{- end }}
 ```
 
-From content files, you can use the [`ref` or `relref` shortcodes](/content-management/shortcodes/#ref-and-relref):
+コンテンツファイルからは、[`ref` または `relref` ショートコード](/content-management/shortcodes/#ref-and-relref) を使用できます。
 
 ```go-html-template
 [Neat]({{</* ref "blog/neat.md" "amp" */>}})
 [Who]({{</* relref "about.md#who" "amp" */>}})
 ```
 
-## Templates for Your Output Formats
+## 出力形式を指定するテンプレート {#templates-for-your-output-formats}
 
-A new output format needs a corresponding template in order to render anything useful.
+新しい出力形式には、有用なものをレンダリングするために、対応するテンプレートが必要です。
 
 {{% note %}}
-The key distinction for Hugo versions 0.20 and newer is that Hugo looks at an output format's `Name` and MediaType's `Suffixes` when choosing the template used to render a given `Page`.
+Hugo のバージョン 0.20 以降の主な違いは、指定された `Page` のレンダリングに使用するテンプレートを選択する際に、出力形式の `Name` と MediaType の `Suffixes` を参照することです。
 {{% /note %}}
 
-The following table shows examples of different output formats, the suffix used, and Hugo's respective template [lookup order][]. All the examples in the table can:
+下の表は、さまざまな出力形式の例と、使用されるサフィックス、および Hugo のそれぞれのテンプレートの [検索順序][lookup order] を示しています。表のすべての例は、以下のことができます。
 
-* Use a [base template][base].
-* Include [partial templates][partials]
+* [ベーステンプレート][base] を使用する。
+* [部分テンプレート][partials] をインクルードする。
 
-{{< datatable "output" "layouts" "Example" "OutputFormat" "Suffix" "Template Lookup Order" >}}
+{{< datatable-ja "output" "layouts" "Example" "OutputFormat" "Suffix" "Template Lookup Order" >}}
 
-Hugo will now also detect the media type and output format of partials, if possible, and use that information to decide if the partial should be parsed as a plain text template or not.
+Hugo は、可能であれば、パーシャルのメディアタイプと出力形式も検出し、その情報を使用して、パーシャルをプレーンテキスト テンプレートとして解析するかどうかを決定します。
 
-Hugo will look for the name given, so you can name it whatever you want. But if you want it treated as plain text, you should use the file suffix and, if needed, the name of the Output Format. The pattern is as follows:
+Hugo は与えられた名前を探すので、好きな名前を付けることができます。 ただし、プレーンテキストとして扱いたい場合は、ファイルのサフィックスと、必要であれば出力形式の名前を使用する必要があります。 パターンは、以下のとおりです。
 
 ```go-html-template
 [partial name].[OutputFormat].[suffix]
 ```
 
-The partial below is a plain text template (Output Format is `CSV`, and since this is the only output format with the suffix `csv`, we don't need to include the Output Format's `Name`):
+以下のパーシャルはプレーンテキストのテンプレートです (出力形式は `CSV` で、サフィックス `csv` を持つ唯一の出力形式であるため、出力形式の `Name` を含める必要はありません)。
 
 ```go-html-template
 {{ partial "mytextpartial.csv" . }}

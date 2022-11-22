@@ -5,85 +5,86 @@ aliases:
 categories:
 - templates
 date: "2017-02-01"
-description: Hugo supports pagination for your homepage, section pages, and taxonomies.
+description: Hugo は、ホームページ、セクションページ、タクソノミーのページ付け (ページネーション) をサポートしています。
 draft: false
 keywords:
 - lists
 - sections
 - pagination
-linktitle: Pagination
+linktitle: ページ付け
 menu:
   docs:
     parent: templates
     weight: 140
 publishdate: "2017-02-01"
 sections_weight: 140
-title: Pagination
+title: ページ付け
 toc: true
 weight: 140
 ---
 
-The real power of Hugo pagination shines when combined with the [`where` function][where] and its SQL-like operators: [`first`][], [`last`][], and [`after`][]. You can even [order the content][lists] the way you've become used to with Hugo.
+ 
+Hugo の [ページ付け (ページネーション)](https://developer.mozilla.org/ja/docs/Web/CSS/Layout_cookbook/Pagination) は、[`where`関数][where] や [`first`][]、[`last`][]、[`after`][] といった SQL ライクな演算子と組み合わせたときに、その真価を発揮します。 Hugo で慣れ親しんだ方法で、[コンテンツを順序付けする][lists] こともできます。
 
-## Configure Pagination
+## ページ付けを設定する {#configure-pagination}
 
-Pagination can be configured in your [site configuration][configuration]:
+ページ付けは、[サイト設定][configuration] で設定できます。
 
 `paginate`
-: default = `10`. This setting can be overridden within the template.
+: default = `10` です。この設定は、テンプレート内でオーバーライドできます。
 
 `paginatePath`
-: default = `page`. Allows you to set a different path for your pagination pages.
+: default = `page` です。ページ付けのページに別のパスを設定できます。
 
-Setting `paginate` to a positive value will split the list pages for the homepage, sections and taxonomies into chunks of that size. But note that the generation of the pagination pages for sections, taxonomies and homepage is *lazy* --- the pages will not be created if not referenced by a `.Paginator` (see below).
+`paginate` に正の値を設定すると、ホームページ、セクション、タクソノミーのリストページが、そのサイズのチャンクに分割されます。ただし、セクション、タクソノミー、ホームページのページ付けページの生成は *遅延* であることに注意してください --- ページは、 `.Paginator` によって参照されていない場合は作成されません (下記を参照)。
 
-`paginatePath` is used to adapt the `URL` to the pages in the paginator (the default setting will produce URLs on the form `/page/1/`.
+`paginatePath` は `URL` をページネーターのページに適合させるために使用されます (デフォルトの設定では、 `/page/1/` 形式の URL が生成されます)。
 
-## List Paginator Pages
+## ページネーターのページを一覧表示する {#list-paginator-pages}
 
 {{% warning %}}
-`.Paginator` is provided to help you build a pager menu. This feature is currently only supported on homepage and list pages (i.e., taxonomies and section lists).
+`.Paginator` は、ページャー メニューのビルドを支援するために提供されています。 この機能は現在、ホームページとリストページ (つまり、タクソノミーとセクションリスト) でのみサポートされています。
 {{% /warning %}}
 
-There are two ways to configure and use a `.Paginator`:
+`.Paginator` を設定し、使用するには以下の 2 つの方法があります。
 
-1. The simplest way is just to call `.Paginator.Pages` from a template. It will contain the pages for *that page*.
-2. Select another set of pages with the available template functions and ordering options, and pass the slice to `.Paginate`, e.g.
-  * `{{ range (.Paginate ( first 50 .Pages.ByTitle )).Pages }}` or
-  * `{{ range (.Paginate .RegularPagesRecursive).Pages }}`.
+1. 最も簡単な方法は、テンプレートから `.Paginator.Pages` を呼び出すことです。 *そのページ* のページが含まれます。
+2. 利用可能なテンプレート関数と順序付けオプションで、別のページセットを選択し、そのスライスを `.Paginate` に渡します。たとえば、以下のコードです。
+  * `{{ range (.Paginate ( first 50 .Pages.ByTitle )).Pages }}` または
+  * `{{ range (.Paginate .RegularPagesRecursive).Pages }}`
 
-For a given **Page**, it's one of the options above. The `.Paginator` is static and cannot change once created.
+指定された **Page** に対して、上記のオプションのいずれかを指定します。 `.Paginator` は静的なもので、一度作成すると変更できません。
 
-If you call `.Paginator` or `.Paginate` multiple times on the same page, you should ensure all the calls are identical. Once *either* `.Paginator` or `.Paginate` is called while generating a page, its result is cached, and any subsequent similar call will reuse the cached result. This means that any such calls which do not match the first one will not behave as written.
+同じページで `.Paginator` または `.Paginate` を複数回呼び出す場合は、すべての呼び出しが同一であることを確認する必要があります。ページの生成中に `.Paginator` または `.Paginate` の *いずれか* が呼び出されると、その結果がキャッシュされ、その後の同様の呼び出しでキャッシュされた結果が再利用されます。これは、最初の呼び出しと一致しないそのような呼び出しは、記述どおりに動作しないことを意味します。
 
-(Remember that function arguments are eagerly evaluated, so a call like `$paginator := cond x .Paginator (.Paginate .RegularPagesRecursive)` is an example of what you should *not* do. Use `if`/`else` instead to ensure exactly one evaluation.)
+(関数の引数は積極的に評価されることを覚えておいてください。したがって、`$paginator := cond x .Paginator (.Paginate .RegularPagesRecursive)` のような呼び出しは、*すべきではない* ことの例です。代わりに `if`/`else` を使って、正確に 1 回だけ評価されるようにします。)
 
-The global page size setting (`Paginate`) can be overridden by providing a positive integer as the last argument. The examples below will give five items per page:
+グローバルなページサイズ設定 (`Paginate`) は、最後の引数に正の整数を与えることでオーバーライドできます。以下の例では、1 ページに 5 つのアイテムが表示されます。
 
 * `{{ range (.Paginator 5).Pages }}`
 * `{{ $paginator := .Paginate (where .Pages "Type" "posts") 5 }}`
 
-It is also possible to use the `GroupBy` functions in combination with pagination:
+また、以下のように、`GroupBy` 関数をページ付けと組み合わせて使用することも可能です。
 
 ```go-html-template
 {{ range (.Paginate (.Pages.GroupByDate "2006")).PageGroups  }}
 ```
 
-## Build the navigation
+## ナビゲーションを構築する {#build-the-navigation}
 
-The `.Paginator` contains enough information to build a paginator interface.
+`.Paginator` には、ページネーターのインターフェイスを構築するのに必要な情報が含まれている。
 
-The easiest way to add this to your pages is to include the built-in template (with `Bootstrap`-compatible styles):
+これをページに追加する最も簡単な方法は、以下のように、(`Bootstrap` と互換性のあるスタイルを使用した) 組み込みのテンプレートを含めることです。
 
 ```go-html-template
 {{ template "_internal/pagination.html" . }}
 ```
 
 {{% note "When to Create `.Paginator`" %}}
-If you use any filters or ordering functions to create your `.Paginator` *and* you want the navigation buttons to be shown before the page listing, you must create the `.Paginator` before it's used.
+フィルターまたは順序付け関数を使用して `.Paginator` を作成し、**かつ**、ページリストの前にナビゲーション ボタンを表示したい場合は、使用する前に `.Paginator` を作成する必要があります。
 {{% /note %}}
 
-The following example shows how to create `.Paginator` before its used:
+以下の例では、使用する前に `.Paginator` を作成する方法を示しています。
 
 ```go-html-template
 {{ $paginator := .Paginate (where .Pages "Type" "posts") }}
@@ -93,7 +94,7 @@ The following example shows how to create `.Paginator` before its used:
 {{ end }}
 ```
 
-Without the `where` filter, the above example is even simpler:
+`where` フィルターを使用しない場合、上記の例は以下のように、さらに単純になります。
 
 ```go-html-template
 {{ template "_internal/pagination.html" . }}
@@ -102,57 +103,57 @@ Without the `where` filter, the above example is even simpler:
 {{ end }}
 ```
 
-If you want to build custom navigation, you can do so using the `.Paginator` object, which includes the following properties:
+カスタムナビゲーションを構築したい場合は、以下のプロパティを含む `.Paginator` オブジェクトを使用します。
 
 `PageNumber`
-: The current page's number in the pager sequence
+: ページャー シーケンスにおける現在のページ番号
 
 `URL`
-: The relative URL to the current pager
+: 現在のページャーへの相対 URL
 
 `Pages`
-: The pages in the current pager
+: 現在のページャー内のページ
 
 `NumberOfElements`
-: The number of elements on this page
+: このページの要素数
 
 `HasPrev`
-: Whether there are page(s) before the current
+: 現在のページより前のページがあるかどうか。
 
 `Prev`
-: The pager for the previous page
+: 前のページへのページャー
 
 `HasNext`
-: Whether there are page(s) after the current
+: 現在のページより後ろにページがあるかどうか。
 
 `Next`
-: The pager for the next page
+: 次のページへのページャー
 
 `First`
-: The pager for the first page
+: 最初のページへのページャー
 
 `Last`
-: The pager for the last page
+: 最後のページへのページャー
 
 `Pagers`
-: A list of pagers that can be used to build a pagination menu
+: ページ付けメニューを構築するために使用できるページャーのリスト
 
 `PageSize`
-: Size of each pager
+: 各ページャーのサイズ
 
 `TotalPages`
-: The number of pages in the paginator
+: ページネーターのページ数
 
 `TotalNumberOfElements`
-: The number of elements on all pages in this paginator
+: このページネーターにおける全ページの要素数
 
-## Additional information
+## 追加情報 {#additional-information}
 
-The pages are built on the following form (`BLANK` means no value):
+ページは、以下のような形式で作られています (`BLANK` は値がないことを意味します)。
 
 ```txt
 [SECTION/TAXONOMY/BLANK]/index.html
-[SECTION/TAXONOMY/BLANK]/page/1/index.html => redirect to  [SECTION/TAXONOMY/BLANK]/index.html
+[SECTION/TAXONOMY/BLANK]/page/1/index.html => [SECTION/TAXONOMY/BLANK]/index.html リダイレクトされます
 [SECTION/TAXONOMY/BLANK]/page/2/index.html
 ....
 ```

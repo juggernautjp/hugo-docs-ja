@@ -5,7 +5,7 @@ aliases:
 categories:
 - templates
 date: "2017-02-01"
-description: Hugo provides built-in sitemap templates.
+description: Hugo には組み込みのサイトマップ テンプレートが用意されています。
 draft: false
 keywords:
 - sitemap
@@ -16,25 +16,25 @@ menu:
     parent: templates
     weight: 160
 sections_weight: 160
-title: Sitemap Templates
+title: サイトマップ テンプレート
 toc: true
 weight: 160
 ---
 
-## Overview
+## 概要 {#overview}
 
-Hugo's built-in sitemap templates conform to v0.9 of the [sitemap protocol].
+Hugo の組み込みサイトマップ テンプレートは、[サイトマップ プロトコル][sitemap protocol] の v0.9 に準拠しています。
 
-With a monolingual project, Hugo generates a sitemap.xml file in the root of the [`publishDir`] using the built-in [sitemap.xml] template.
+単一言語プロジェクトでは、Hugo は組み込みの [sitemap.xml] テンプレートを使用して、[`publishDir`] のルートに sitemap.xml ファイルを生成します。
 
-With a multilingual project, Hugo generates:
+多言語プロジェクトで、Hugo は以下を生成します。
 
-- A sitemap.xml file in the root of each site (language) using the built-in [sitemap.xml] template
-- A sitemap.xml file in the root of the [`publishDir`] using the built-in [sitemapindex.xml] template
+- 組み込みの [sitemap.xml] テンプレートを使用した、各サイト (言語) のルートにある sitemap.xml ファイル
+- 組み込みの [sitemapindex.xml] テンプレートを使用した、 [`publishDir`] のルートにある sitemap.xml ファイル
 
-## Configuration
+## 設定 {#configuration}
 
-Set the default values for [change frequency] and [priority], and the name of the generated file, in your site configuration.
+[変更頻度][change frequency] と [優先度][priority] のデフォルト値、および生成されるファイル名は、サイト設定で設定してください。
 
 {{< code-toggle file="config" >}}
 [sitemap]
@@ -44,17 +44,17 @@ Set the default values for [change frequency] and [priority], and the name of th
 {{</ code-toggle >}}
 
 changefreq
-: How frequently a page is likely to change. Valid values are `always`, `hourly`, `daily`, `weekly`, `monthly`, `yearly`, and `never`. Default is `""` (change frequency omitted from rendered sitemap).
+: ページが変更される頻度を指定します。有効な値は `always`、`hourly`、`daily`、`weekly`、`monthly`、`yearly` そして `never` です。 デフォルトは `""`  です (レンダリングされたサイトマップでは変更頻度が省略されます)。
 
 filename
-: The name of the generated file. Default is `sitemap.xml`.
+: 生成されるファイルの名前です。デフォルトは、 `sitemap.xml` です。
 
 priority
-: The priority of a page relative to any other page on the site. Valid values range from 0.0 to 1.0. Default is `-1` (priority omitted from rendered sitemap).
+: サイト上の他のページと比較したページの相対的な優先度です。有効な値は 0.0 から 1.0 までです。 デフォルトは `-1` です (サイトマップのレンダリングでは優先順位が省略されます)。
 
-## Override Default Values
+## デフォルト値をオーバーライドする {#override-default-values}
 
-Override the default values for a given page in front matter.
+指定されたページのデフォルト値をフロントマターでオーバーライドします。
 
 {{< code-toggle file="news.md" fm=true >}}
 title = 'News'
@@ -63,23 +63,23 @@ title = 'News'
   priority = 0.8
 {{</ code-toggle >}}
 
-## Override Built-in Templates
+## 組み込みテンプレートをオーバーライドする {#override-builtin-templates}
 
-To override the built-in sitemap.xml template, create a new file in either of these locations:
+組み込みの sitemap.xml テンプレートをオーバーライドするには、以下のいずれかの場所に新しいファイルを作成します。
 
 - layouts/sitemap.xml
 - layouts/_default/sitemap.xml
 
-When ranging through the page collection, access the _change frequency_ and _priority_ with `.Sitemap.ChangeFreq` and `.Sitemap.Priority` respectively.
+ページコレクションにアクセスする場合、_変更頻度_ と _優先度_ には、それぞれ `.Sitemap.ChangeFreq` と `.Sitemap.Priority` を指定します。
 
-To override the built-in sitemapindex.xml template, create a new file in either of these locations:
+組み込みの sitemapindex.xml テンプレートをオーバーライドするには、以下のいずれかの場所に新しいファイルを作成します。
 
 - layouts/sitemapindex.xml
 - layouts/_default/sitemapindex.xml
 
-## Disable Sitemap Generation
+## サイトマップの生成を無効にする {#disable-sitemap-generation}
 
-You may disable sitemap generation in your site configuration:
+以下のサイト設定で、サイトマップの生成を無効にすることができます。
 
 {{< code-toggle file="config" >}}
 disableKinds = ['sitemap']

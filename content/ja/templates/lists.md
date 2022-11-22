@@ -49,23 +49,23 @@ Hugo では、*リスト* という用語を本当の意味で使っています
 
 ### デフォルトのテンプレート {#default-templates}
 
-Since section lists and taxonomy lists (N.B., *not* [taxonomy terms lists][taxterms]) are both *lists* with regards to their templates, both have the same terminating default of `_default/list.html` or `themes/<THEME>/layouts/_default/list.html` in their lookup order. In addition, both [section lists][sectiontemps] and [taxonomy lists][taxlists] have their own default list templates in `_default`.
+セクションリストとタクソノーミリスト ([タクソノミー用語リスト][taxterms] ではないことに注意してください) はどちらもテンプレートに関しては *リスト* であるため、どちらも `_default/list.html` または `themes/<THEME>/layouts/_default/list.html` という同じ終了デフォルトが検索順序に設定されています。さらに、[セクションリスト][sectiontemps] と [タクソノミーリスト][taxlists] は、どちらも `_default` に独自のデフォルトのリストテンプレートを持っています。
 
-See [Template Lookup Order](/templates/lookup-order/) for the complete reference.
+完全なリファレンスについては、[テンプレートの検索順序](/templates/lookup-order/) を参照してください。
 
-## Add Content and Front Matter to List Pages
+## リストページにコンテンツとフロントマターを追加する {#add-content-and-front-matter-to-list-pages}
 
-Since v0.18, [everything in Hugo is a `Page`][bepsays]. This means list pages and the homepage can have associated content files (i.e. `_index.md`) that contain page metadata (i.e., front matter) and content.
+v0.18 以降、[Hugo にある全てのものは `Page` です][bepsays]。 つまり、リストページとホームページは、ページのメタデータ (つまりフロントマター) とコンテンツを含む関連コンテンツファイル (つまり `_index.md`) を持つことができます。
 
-This new model allows you to include list-specific front matter via `.Params` and also means that list templates (e.g., `layouts/_default/list.html`) have access to all [page variables][pagevars].
+この新しいモデルでは、`.Params` を介してリスト固有のフロントマターを含めることができ、また、リストテンプレート (たとえば、`layouts/_default/list.html`) がすべての [ページ変数][pagevars] にアクセスできることも意味します。
 
 {{% note %}}
-It is important to note that all `_index.md` content files will render according to a *list* template and not according to a [single page template](/templates/single-page-templates/).
+すべての `_index.md` コンテンツファイルは、[シングルページ テンプレート](/templates/single-page-templates/) ではなく、*リスト* テンプレートに従ってレンダリングされることに注意してください。
 {{% /note %}}
 
-### Example Project Directory
+### プロジェクト ディレクトリの例 {#example-project-directory}
 
-The following is an example of a typical Hugo project directory's content:
+以下は、典型的な Hugo のプロジェクト ディレクトリのコンテンツの例です。
 
 ```txt
 .
@@ -81,21 +81,21 @@ The following is an example of a typical Hugo project directory's content:
 ...
 ```
 
-Using the above example, let's assume you have the following in `content/posts/_index.md`:
+上記の例で、`content/posts/_index.md` に以下のように記述しているとします。
 
 {{< code file="content/posts/_index.md" >}}
 ---
-title: My Go Journey
+title: 私の Go の旅
 date: 2017-03-23
 publishdate: 2017-03-24
 ---
 
-I decided to start learning Go in March 2017.
+2017 年 3 月に Go の学習を開始することにしました。
 
-Follow my journey through this new blog.
+この新しいブログを通して、私の旅にお付き合いください。
 {{< /code >}}
 
-You can now access this `_index.md`'s' content in your list template:
+上記により、リストテンプレートでこの `_index.md` のコンテンツにアクセスできます。
 
 {{< code file="layouts/_default/list.html" download="list.html" >}}
 {{ define "main" }}
@@ -104,11 +104,11 @@ You can now access this `_index.md`'s' content in your list template:
         <header>
             <h1>{{.Title}}</h1>
         </header>
-        <!-- "{{.Content}}" pulls from the markdown content of the corresponding _index.md -->
+        <!-- "{{.Content}}" は対応する _index.md の Marakdown コンテンツから取得します -->
         {{.Content}}
     </article>
     <ul>
-    <!-- Ranges through content/posts/*.md -->
+    <!-- content/posts/*.md の範囲指定 -->
     {{ range .Pages }}
         <li>
             <a href="{{.Permalink}}">{{.Date.Format "2006-01-02"}} | {{.Title}}</a>
@@ -119,38 +119,38 @@ You can now access this `_index.md`'s' content in your list template:
 {{ end }}
 {{< /code >}}
 
-This above will output the following HTML:
+上記により、以下のような HTML が出力されます。
 
 {{< code file="example.com/posts/index.html" copy="false" >}}
-<!--top of your baseof code-->
+<!-- baseof コードの先頭 -->
 <main>
     <article>
         <header>
-            <h1>My Go Journey</h1>
+            <h1>私の Go の旅</h1>
         </header>
-        <p>I decided to start learning Go in March 2017.</p>
-        <p>Follow my journey through this new blog.</p>
+        <p>2017 年 3 月に Go の学習を開始することにしました。</p>
+        <p>この新しいブログを通して、私の旅にお付き合いください。</p>
     </article>
     <ul>
-        <li><a href="/posts/post-01/">Post 1</a></li>
-        <li><a href="/posts/post-02/">Post 2</a></li>
+        <li><a href="/posts/post-01/">投稿 1</a></li>
+        <li><a href="/posts/post-02/">投稿 2</a></li>
     </ul>
 </main>
-<!--bottom of your baseof-->
+<!-- baseof コードの最後 -->
 {{< /code >}}
 
-### List Pages Without `_index.md`
+### `index.md` がないページを一覧表示する {#list-pages-without-index.md}
 
-You do *not* have to create an `_index.md` file for every list page (i.e. section, taxonomy, taxonomy terms, etc) or the homepage. If Hugo does not find an `_index.md` within the respective content section when rendering a list template, the page will be created but with no `{{.Content}}` and only the default values for `.Title` etc.
+すべてのリストページ (つまり、セクション、タクソノミー、タクソノミー用語など) またはホームページに対して `_index.md` ファイルを作成する必要は *ありません*。 リストテンプレートをレンダリングするときに Hugo がそれぞれのコンテンツセクション内で `_index.md` を見つけられない場合、ページは作成されますが、`{{.Content}}` はなく、`.Title` などのデフォルト値のみが作成されます。
 
-Using this same `layouts/_default/list.html` template and applying it to the `quotes` section above will render the following output. Note that `quotes` does not have an `_index.md` file to pull from:
+この同じ `layouts/_default/list.html` テンプレートを使用して、上記の `quotes` セクションに適用すると、以下の出力がレンダリングされます。 `quotes` には、プルする `_index.md` ファイルがないことに注意してください。
 
 {{< code file="example.com/quote/index.html" copy="false" >}}
-<!--baseof-->
+<!-- baseof -->
 <main>
     <article>
         <header>
-        <!-- Hugo assumes that .Title is the name of the section since there is no _index.md content file from which to pull a "title:" field -->
+        <!-- Hugo は、.Title がセクションの名前であると仮定します。それは、"title:" フィールドをプルする _index.md コンテンツファイルが存在しないためです -->
             <h1>Quotes</h1>
         </header>
     </article>
@@ -163,14 +163,14 @@ Using this same `layouts/_default/list.html` template and applying it to the `qu
 {{< /code >}}
 
 {{% note %}}
-The default behavior of Hugo is to pluralize list titles; hence the inflection of the `quote` section to "Quotes" when called with the `.Title` [page variable](/variables/page/). You can change this via the `pluralizeListTitles` directive in your [site configuration](/getting-started/configuration/).
+Hugo のデフォルトの動作は、リストのタイトルを複数形にすることです。 したがって、`.Title` [ページ変数](/variables/page/) で呼び出されると、`quote` セクションが "Quotes" に変換されます。 これは、[サイト設定](/getting-started/configuration/) の `pluralizeListTitles` ディレクティブで変更できます。
 {{% /note %}}
 
-## Example List Templates
+## リストテンプレートの例 {#example-list-templates}
 
-### Section Template
+### セクション テンプレート {#section-template}
 
-This list template has been modified slightly from a template originally used in [spf13.com](https://spf13.com/). It makes use of [partial templates][partials] for the chrome of the rendered page rather than using a [base template][base]. The examples that follow also use the [content view templates][views] `li.html` or `summary.html`.
+このリストテンプレートは、もともと [spf13.com](https://spf13.com/) で使われていたテンプレートを少し修正したものです。 [ベーステンプレート][base] を使うのではなく、レンダリングされたページのクロムのために [部分テンプレート][partials] を使っています。以下の例では、[コンテンツビュー テンプレート][views] の `li.html` または `summary.html` を使っています。
 
 {{< code file="layouts/section/posts.html" >}}
 {{ partial "header.html" . }}
@@ -179,7 +179,7 @@ This list template has been modified slightly from a template originally used in
   <div>
    <h1>{{ .Title }}</h1>
         <ul>
-        <!-- Renders the li.html content view for each content/posts/*.md -->
+        <!-- content/posts/*.md ごとに li.html コンテンツビューをレンダリングします -->
             {{ range .Pages }}
                 {{ .Render "li"}}
             {{ end }}
@@ -189,14 +189,14 @@ This list template has been modified slightly from a template originally used in
 {{ partial "footer.html" . }}
 {{< /code >}}
 
-### Taxonomy Template
+### タクソノミー テンプレート {#taxonomy-template}
 
 {{< code file="layouts/_default/taxonomy.html" download="taxonomy.html" >}}
 {{ define "main" }}
 <main>
   <div>
    <h1>{{ .Title }}</h1>
-   <!-- ranges through each of the content files associated with a particular taxonomy term and renders the summary.html content view -->
+   <!-- 特定のタクソノミー用語に関連する各コンテンツファイルを範囲指定し、summary.html コンテンツビューをレンダリングします -->
     {{ range .Pages }}
         {{ .Render "summary"}}
     {{ end }}
@@ -205,11 +205,11 @@ This list template has been modified slightly from a template originally used in
 {{ end }}
 {{< /code >}}
 
-## Order Content
+## コンテンツを並べる {#order-content}
 
-Hugo lists render the content based on metadata you provide in [front matter][]. In addition to sane defaults, Hugo also ships with multiple methods to make quick work of ordering content inside list templates:
+Hugo のリストは、[フロントマター][front matter] で指定したメタデータに基づいてコンテンツをレンダリングします。まともなデフォルトに加えて、Hugo にはリストテンプレート内のコンテンツを素早く並べるための複数のメソッドが同梱されています。
 
-### Default: Weight > Date > LinkTitle > FilePath
+### デフォルト: Weight > Date > LinkTitle > FilePath {#default-weight-date-linktitle-filepath}
 
 {{< code file="layouts/partials/default-order.html" >}}
 <ul>
@@ -222,9 +222,9 @@ Hugo lists render the content based on metadata you provide in [front matter][].
 </ul>
 {{< /code >}}
 
-### By Weight
+### 重み (Weight) 順で並べる {#by-weight}
 
-Lower weight gets higher precedence. So content with lower weight will come first.
+重み (weight) が小さいほど優先度が高くなります。 そのため、重みの低いコンテンツが最初に表示されます。
 
 {{< code file="layouts/partials/by-weight.html" >}}
 <ul>
@@ -237,11 +237,11 @@ Lower weight gets higher precedence. So content with lower weight will come firs
 </ul>
 {{< /code >}}
 
-### By Date
+### 日付 (Date) 順で並べる {#by-date}
 
 {{< code file="layouts/partials/by-date.html" >}}
 <ul>
-    <!-- orders content according to the "date" field in front matter -->
+    <!-- フロントマターの "date" フィールドにしたがってコンテンツを並べます -->
     {{ range .Pages.ByDate }}
         <li>
             <h1><a href="{{ .Permalink }}">{{ .Title }}</a></h1>
@@ -251,11 +251,11 @@ Lower weight gets higher precedence. So content with lower weight will come firs
 </ul>
 {{< /code >}}
 
-### By Publish Date
+### 公開日 (Publish Date) 順で並べる {#by-publish-date}
 
 {{< code file="layouts/partials/by-publish-date.html" >}}
 <ul>
-    <!-- orders content according to the "publishdate" field in front matter -->
+    <!-- フロントマターの "date" (日付) フィールドにしたがってコンテンツを並べます -->
     {{ range .Pages.ByPublishDate }}
         <li>
             <h1><a href="{{ .Permalink }}">{{ .Title }}</a></h1>
@@ -265,7 +265,7 @@ Lower weight gets higher precedence. So content with lower weight will come firs
 </ul>
 {{< /code >}}
 
-### By Expiration Date
+### 有効期限 (Expiration Date) 順で並べる {#by-expiration-date}
 
 {{< code file="layouts/partials/by-expiry-date.html" >}}
 <ul>
@@ -278,11 +278,11 @@ Lower weight gets higher precedence. So content with lower weight will come firs
 </ul>
 {{< /code >}}
 
-### By Last Modified Date
+### 最終更新日 (Last Modified Date) 順で並べる {#by-last-modified-date}
 
 {{< code file="layouts/partials/by-last-mod.html" >}}
 <ul>
-    <!-- orders content according to the "lastmod" field in front matter -->
+    <!-- フロントマターの "lastmod" フィールドに従ってコンテンツを並べます -->
     {{ range .Pages.ByLastmod }}
         <li>
             <h1><a href="{{ .Permalink }}">{{ .Title }}</a></h1>
@@ -292,11 +292,11 @@ Lower weight gets higher precedence. So content with lower weight will come firs
 </ul>
 {{< /code >}}
 
-### By Length
+### 長さ (Length) 順で並べる {#by-length}
 
 {{< code file="layouts/partials/by-length.html" >}}
 <ul>
-    <!-- orders content according to content length in ascending order (i.e., the shortest content will be listed first) -->
+    <!-- コンテンツの長さに従ってコンテンツを昇順に並べます (つまり、最も短いコンテンツが最初にリストされます) -->
     {{ range .Pages.ByLength }}
         <li>
             <h1><a href="{{ .Permalink }}">{{ .Title }}</a></h1>
@@ -306,11 +306,11 @@ Lower weight gets higher precedence. So content with lower weight will come firs
 </ul>
 {{< /code >}}
 
-### By Title
+### タイトル (Title) 順で並べる {#by-title}
 
 {{< code file="layouts/partials/by-title.html" >}}
 <ul>
-    <!-- ranges through content in ascending order according to the "title" field set in front matter -->
+    <!-- フロントマターに設定された "title" フィールドに従って、昇順でコンテンツの範囲を指定します -->
     {{ range .Pages.ByTitle }}
         <li>
             <h1><a href="{{ .Permalink }}">{{ .Title }}</a></h1>
@@ -320,11 +320,11 @@ Lower weight gets higher precedence. So content with lower weight will come firs
 </ul>
 {{< /code >}}
 
-### By Link Title
+### リンクタイトル (Link Title) 順で並べる {#by-link-title}
 
 {{< code file="layouts/partials/by-link-title.html" >}}
 <ul>
-    <!-- ranges through content in ascending order according to the "linktitle" field in front matter. If a "linktitle" field is not set, the range will start with content that only has a "title" field and use that value for .LinkTitle -->
+    <!-- フロントマターの "linktitle" フィールドに従って、コンテンツを昇順に並べます。 "linktitle" フィールドが設定されていない場合、範囲は "title" フィールドのみを持つコンテンツから始まり、その値を .LinkTitle に使用します -->
     {{ range .Pages.ByLinkTitle }}
         <li>
             <h1><a href="{{ .Permalink }}">{{ .LinkTitle }}</a></h1>
@@ -334,18 +334,18 @@ Lower weight gets higher precedence. So content with lower weight will come firs
 </ul>
 {{< /code >}}
 
-### By Parameter
+### パラメータ (Parameter) 順で並べる {#by-parameter}
 
-Order based on the specified front matter parameter. Content that does not have the specified front matter field will use the site's `.Site.Params` default. If the parameter is not found at all in some entries, those entries will appear together at the end of the ordering.
+指定されたフロントマター パラメータに基づいて並べます。 指定されたフロントマター フィールドを持たないコンテンツは、サイトの `.Site.Params` デフォルトを使用します。 一部のエントリでパラメータがまったく見つからない場合、それらのエントリは順序付けの最後に一緒に表示されます。
 
 {{< code file="layouts/partials/by-rating.html" >}}
-<!-- Ranges through content according to the "rating" field set in front matter -->
+<!-- フロントマターに設定された "rating" フィールドにしたがって、コンテンツの範囲を設定します -->
 {{ range (.Pages.ByParam "rating") }}
   <!-- ... -->
 {{ end }}
 {{< /code >}}
 
-If the targeted front matter field is nested beneath another field, you can access the field using dot notation.
+対象となるフロントマター フィールドが他のフィールドの下にネストされている場合、ドット記法を使ってフィールドにアクセスできます。
 
 {{< code file="layouts/partials/by-nested-param.html" >}}
 {{ range (.Pages.ByParam "author.last_name") }}
@@ -353,9 +353,9 @@ If the targeted front matter field is nested beneath another field, you can acce
 {{ end }}
 {{< /code >}}
 
-### Reverse Order
+### 逆順 {#reverse-order}
 
-Reversing order can be applied to any of the above methods. The following uses `ByDate` as an example:
+逆順は、上記のいずれのメソッドにも適用できます。 以下では、例として `ByDate` を使用します。
 
 {{< code file="layouts/partials/by-date-reverse.html" >}}
 <ul>
@@ -368,14 +368,14 @@ Reversing order can be applied to any of the above methods. The following uses `
 </ul>
 {{< /code >}}
 
-## Group Content
+## グループコンテンツ {#group-content}
 
-Hugo provides some functions for grouping pages by Section, Type, Date, etc.
+Hugo には、セクション、タイプ、日付などでページをグループ化する関数があります。
 
-### By Page Field
+### ページフィールド (Page Field) による {#by-page-field}
 
 {{< code file="layouts/partials/by-page-field.html" >}}
-<!-- Groups content according to content section. The ".Key" in this instance will be the section's title. -->
+<!-- コンテンツセクションに従ってコンテンツをグループ化します。このインスタンスの ".Key" は、セクションのタイトルになります。 -->
 {{ range .Pages.GroupBy "Section" }}
 <h3>{{ .Key }}</h3>
 <ul>
@@ -389,16 +389,16 @@ Hugo provides some functions for grouping pages by Section, Type, Date, etc.
 {{ end }}
 {{< /code >}}
 
-In the above example, you may want `{{.Title}}` to point the `title` field you have added to your `_index.md` file instead. You can access this value using the [`.GetPage` function][getpage]:
+上記の例では、代わりに `_index.md` ファイルに追加した `title` フィールドを `{{.Title}}` で指定したい場合があります。 以下のように、[`.GetPage` 関数][getpage] を使用して、この値にアクセスできます。
 
 {{< code file="layouts/partials/by-page-field.html" >}}
-<!-- Groups content according to content section.-->
+<!-- コンテンツ セクションに従ってコンテンツをグループ化します。 -->
 {{ range .Pages.GroupBy "Section" }}
-<!-- Checks for existence of _index.md for a section; if available, pulls from "title" in front matter -->
+<!-- セクションの _index.md があるかどうか確認し、あればフロントマターの "title" から取得します。 -->
 {{ with $.Site.GetPage "section" .Key }}
 <h3>{{.Title}}</h3>
 {{ else }}
-<!-- If no _index.md is available, ".Key" defaults to the section title and filters to title casing -->
+<!-- _index.md がない場合、".Key が デフォルトでセクションのタイトルとなり、タイトルケーシング (タイトルの大文字表記) にフィルタリングされます -->
 <h3>{{ .Key | title }}</h3>
 {{ end }}
 <ul>
@@ -412,10 +412,10 @@ In the above example, you may want `{{.Title}}` to point the `title` field you h
 {{ end }}
 {{< /code >}}
 
-### By Date
+### 日付 (Date) による {#by-date}
 
 {{< code file="layouts/partials/by-page-date.html" >}}
-<!-- Groups content by month according to the "date" field in front matter -->
+<!-- フロントマターの "date" フィールドに従って、月ごとにコンテンツをグループ化します -->
 {{ range .Pages.GroupByDate "2006-01" }}
 <h3>{{ .Key }}</h3>
 <ul>
@@ -429,12 +429,12 @@ In the above example, you may want `{{.Title}}` to point the `title` field you h
 {{ end }}
 {{< /code >}}
 
-{{< new-in "0.97.0" >}} `GroupByDate` accepts the same time layouts as in [time.Format](/functions/dateformat/) and The `.Key` in the result will be localized for the current language.
+{{< new-in "0.97.0" >}} `GroupByDate` は [time.Format](/functions/dateformat/) と同じ時間レイアウトを受け入れ、結果の `.Key` は現在の言語にローカライズされます。
 
-### By Publish Date
+### 公開日 (Publish Date) による {#by-publish-date}
 
 {{< code file="layouts/partials/by-page-publish-date.html" >}}
-<!-- Groups content by month according to the "publishDate" field in front matter -->
+<!-- フロントマターの "publishDate" フィールドに従って、コンテンツを月別にグループ化します -->
 {{ range .Pages.GroupByPublishDate "2006-01" }}
 <h3>{{ .Key }}</h3>
 <ul>
@@ -448,12 +448,12 @@ In the above example, you may want `{{.Title}}` to point the `title` field you h
 {{ end }}
 {{< /code >}}
 
-{{< new-in "0.97.0" >}} `GroupByDate` accepts the same time layouts as in [time.Format](/functions/dateformat/) and The `.Key` in the result will be localized for the current language.
+{{< new-in "0.97.0" >}} `GroupByDate` は [time.Format](/functions/dateformat/) と同じ時間レイアウトを受け入れ、結果の `.Key` は現在の言語にローカライズされます。
 
-### By Lastmod
+### 最終更新日 (Lastmod) による {#by-lastmod}
 
 {{< code file="layouts/partials/by-page-lastmod.html" >}}
-<!-- Groups content by month according to the "lastMod" field in front matter -->
+<!-- フロントマターの "lastMod" フィールドに従って、コンテンツを月別にグループ化します -->
 {{ range .Pages.GroupByLastmod "2006-01" }}
 <h3>{{ .Key }}</h3>
 <ul>
@@ -467,12 +467,12 @@ In the above example, you may want `{{.Title}}` to point the `title` field you h
 {{ end }}
 {{< /code >}}
 
-{{< new-in "0.97.0" >}} `GroupByDate` accepts the same time layouts as in [time.Format](/functions/dateformat/) and The `.Key` in the result will be localized for the current language.
+{{< new-in "0.97.0" >}} `GroupByDate` は [time.Format](/functions/dateformat/) と同じ時間レイアウトを受け入れ、結果の `.Key` は現在の言語にローカライズされます。
 
-### By Expiry Date
+### 有効期限 (Expiry Date) による {#by-expiry-date}
 
 {{< code file="layouts/partials/by-page-expiry-date.html" >}}
-<!-- Groups content by month according to the "expiryDate" field in front matter -->
+<!-- フロントマターの "expiryDate "フィールドに従って、コンテンツを月別にグループ化します -->
 {{ range .Pages.GroupByExpiryDate "2006-01" }}
 <h3>{{ .Key }}</h3>
 <ul>
@@ -486,12 +486,12 @@ In the above example, you may want `{{.Title}}` to point the `title` field you h
 {{ end }}
 {{< /code >}}
 
-{{< new-in "0.97.0" >}} `GroupByDate` accepts the same time layouts as in [time.Format](/functions/dateformat/) and The `.Key` in the result will be localized for the current language.
+{{< new-in "0.97.0" >}} `GroupByDate` は [time.Format](/functions/dateformat/) と同じ時間レイアウトを受け入れ、結果の `.Key` は現在の言語にローカライズされます。
 
-### By Page Parameter
+### ページパラメータによる {#by-page-parameter}
 
 {{< code file="layouts/partials/by-page-param.html" >}}
-<!-- Groups content according to the "param_key" field in front matter -->
+<!-- フロントマターの "param_key" フィールドに従って、コンテンツをグループ化します -->
 {{ range .Pages.GroupByParam "param_key" }}
 <h3>{{ .Key }}</h3>
 <ul>
@@ -505,12 +505,12 @@ In the above example, you may want `{{.Title}}` to point the `title` field you h
 {{ end }}
 {{< /code >}}
 
-### By Page Parameter in Date Format
+### 日付形式のページパラメータによる {#by-page-parameter-in-date-format}
 
-The following template takes grouping by `date` a step further and uses Go's layout string. See the [`Format` function][`Format` function] for more examples of how to use Go's layout string to format dates in Hugo.
+以下のテンプレートでは `date` によるグループ化をさらに一歩進めて、Go のレイアウト文字列を使用しています。Go のレイアウト文字列を使って、 Hugo で日付をフォーマットする方法については、[`Format`関数][`Format` function] を参照してください。
 
 {{< code file="layouts/partials/by-page-param-as-date.html" >}}
-<!-- Groups content by month according to the "param_key" field in front matter -->
+<!-- フロントマターの "param_key" フィールドに従って、コンテンツを月別にグループ化します -->
 {{ range .Pages.GroupByParamDate "param_key" "2006-01" }}
 <h3>{{ .Key }}</h3>
 <ul>
@@ -524,13 +524,13 @@ The following template takes grouping by `date` a step further and uses Go's lay
 {{ end }}
 {{< /code >}}
 
-### Reverse Key Order
+### キー順を逆にする {#reverse-key-order}
 
-Ordering of groups is performed by keys in alphanumeric order (A–Z, 1–100) and in reverse chronological order (i.e., with the newest first) for dates.
+グループの並び順は、キーが英数字順 (A-Z、1-100)、日付は逆の年代順 (つまり、新しいものが最初) になっています。
 
-While these are logical defaults, they are not always the desired order. There are two different syntaxes to change Hugo's default ordering for groups, both of which work the same way.
+これらは論理的なデフォルトですが、常に望ましい順序とは限りません。Hugo のグループのデフォルトの並び順を変更するには、2 つの異なる構文があります。
 
-#### 1. Adding the Reverse Method
+#### 1. リバースメソッドの追加 {#1-adding-the-reverse-method}
 
 ```go-html-template
 {{ range (.Pages.GroupBy "Section").Reverse }}
@@ -540,7 +540,7 @@ While these are logical defaults, they are not always the desired order. There a
 {{ range (.Pages.GroupByDate "2006-01").Reverse }}
 ```
 
-#### 2. Providing the Alternate Direction
+#### 2. 代替方向の提供 {#2-providing-the-alternate-direction}
 
 ```go-html-template
 {{ range .Pages.GroupByDate "2006-01" "asc" }}
@@ -550,15 +550,15 @@ While these are logical defaults, they are not always the desired order. There a
 {{ range .Pages.GroupBy "Section" "desc" }}
 ```
 
-### Order Within Groups
+### グループ内の順序 {#order-within-groups}
 
-Because Grouping returns a `{{.Key}}` and a slice of pages, all the ordering methods listed above are available.
+グループ化は `{{.Key}}` とページのスライスを返すので、上記のすべての順序付け方法が利用可能です。
 
-Here is the ordering for the example that follows:
+ここでは、以下のような順序付けの例を示します。
 
-1. Content is grouped by month according to the `date` field in front matter.
-2. Groups are listed in ascending order (i.e., the oldest groups first)
-3. Pages within each respective group are ordered alphabetically according to the `title`.
+1. コンテンツは、フロントマターの `date` フィールドに従って、月ごとにグループ化されます。
+2. グループは昇順で表示されます (つまり、最も古いグループが最初になります)。
+3. 各グループ内のページは、`title` に従ってアルファベット順に並んでいます。
 
 {{< code file="layouts/partials/by-group-by-page.html" >}}
 {{ range .Pages.GroupByDate "2006-01" "asc" }}
@@ -574,11 +574,11 @@ Here is the ordering for the example that follows:
 {{ end }}
 {{< /code >}}
 
-## Filtering and Limiting Lists {#filtering-and-limiting-lists}
+## リストのフィルタリングと制限 {#filtering-and-limiting-lists}
 
-Sometimes you only want to list a subset of the available content. A common is to only display posts from [**main sections**][mainsections] on the blog's homepage.
+時には、利用可能なコンテンツのサブセットのみをリストしたい場合があります。よくあるのは、[**メインセクション**][mainsections] からの投稿のみをブログのホームページに表示することです。
 
-See the documentation on [`where` function][wherefunction] and [`first` function][firstfunction] for further details.
+詳細については、[`where` 関数][wherefunction] および [`first` 関数][firstfunction] のドキュメントを参照してください。
 
 [base]: /templates/base/
 [bepsays]: https://bepsays.com/en/2016/12/19/hugo-018/
@@ -591,7 +591,7 @@ See the documentation on [`where` function][wherefunction] and [`first` function
 [mentalmodel]: https://webstyleguide.com/wsg3/3-information-architecture/3-site-structure.html
 [pagevars]: /variables/page/
 [partials]: /templates/partials/
-[RSS 2.0]: https://cyber.harvard.edu/rss/rss.html "RSS 2.0 仕様"
+[RSS 2.0]: https://cyber.harvard.edu/rss/rss.html "RSS 2.0 仕様書"
 [rss]: /templates/rss/
 [sections]: /content-management/sections/
 [sectiontemps]: /templates/section-templates/

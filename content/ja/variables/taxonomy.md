@@ -3,10 +3,8 @@ aliases: []
 categories:
 - variables and params
 date: "2017-02-01"
-description: Taxonomy pages are of type `Page` and have all page-, site-, and list-level
-  variables available to them. However, taxonomy terms templates have additional variables
-  available to their templates.
-draft: true
+description: タクソノミー ページは `Page` というタイプで、ページレベル、サイトレベル、リストレベルのすべての変数が利用可能です。ただし、タクソノミー用語テンプレートは、そのテンプレートで利用可能な追加の変数を持っています。
+draft: false
 keywords:
 - taxonomies
 - terms
@@ -18,51 +16,51 @@ menu:
     weight: 30
 publishdate: "2017-02-01"
 sections_weight: 30
-title: Taxonomy Variables
+title: タクソノミー変数
 toc: true
 weight: 30
 ---
 
-## Taxonomy Terms Page Variables
+## タクソノミー用語ページの変数 {#taxonomy-terms-page-variables}
 
-[Taxonomy terms pages][taxonomytemplates] are of the type `Page` and have the following additional variables.
+[タクソノミー用語ページ][taxonomytemplates] は `Page` タイプで、以下の追加変数を持っています。
 
-For example, the following fields would be available in `layouts/_defaults/terms.html`, depending on how you organize your [taxonomy templates][taxonomytemplates]:
+たとえば、[タクソノミー テンプレート][taxonomytemplates] の編成方法に応じて、以下のフィールドが `layouts/_defaults/terms.html` で使用できます。
 
 .Data.Singular
-: The singular name of the taxonomy (e.g., `tags => tag`)
+: タクソノミーの単数形の名前です (たとえば、 `tags => tag`)。
 
 .Data.Plural
-: The plural name of the taxonomy (e.g., `tags => tags`)
+: タクソノミーの複数形の名前です (たとえば、 `tags => tags`)。
 
 .Data.Pages
-: The list of pages in the taxonomy
+: タクソノミーに登録されているページのリストです。
 
 .Data.Terms
-: The taxonomy itself
+: タクソノミーそのものです。
 
 .Data.Terms.Alphabetical
-: The taxonomy terms alphabetized
+: タクソノミー用語のアルファベット表記です
 
 .Data.Terms.ByCount
-: The Terms ordered by popularity
+: 人気順の用語です。
 
-Note that `.Data.Terms.Alphabetical` and `.Data.Terms.ByCount` can also be reversed:
+`.Data.Terms.Alphabetical` と `.Data.Terms.ByCount` は、以下のように逆にもできることに注意してください。
 
 * `.Data.Terms.Alphabetical.Reverse`
 * `.Data.Terms.ByCount.Reverse`
 
-## Use `.Site.Taxonomies` Outside of Taxonomy Templates
+## タクソノミー テンプレートの外で `.Site.Taxonomies` を使用する {#use-sitetaxonomies-outside-of-taxonomy-templates}
 
-The `.Site.Taxonomies` variable holds all the taxonomies defined site-wide. `.Site.Taxonomies` is a map of the taxonomy name to a list of its values (e.g., `"tags" -> ["tag1", "tag2", "tag3"]`). Each value, though, is not a string but rather a *Taxonomy variable*.
+`.Site.Taxonomies` 変数は、サイト全体で定義されたすべてのタクソノミーを保持します。 `.Site.Taxonomies` は、タクソノミー名からその値のリストへのマップです (たとえば、 `"tags" -> ["tag1", "tag2", "tag3"]`)。 ただし、各値は文字列ではなく、*タクソノミー変数* です。
 
-## The `.Taxonomy` Variable
+## `.Taxonomy` 変数 {#the-taxonomy-variable}
 
-The `.Taxonomy` variable, available, for example, as `.Site.Taxonomies.tags`, contains the list of tags (values) and, for each tag, their corresponding content pages.
+`.Taxonomy` 変数は、たとえば `.Site.Taxonomies.tags` のように利用でき、タグ (値) のリストと、それぞれのタグに対応するコンテンツページが含まれます。
 
-### Example Usage of `.Site.Taxonomies`
+### `.Site.Taxonomies` の使用例 {#example-usage-of-sitetaxonomies}
 
-The following [partial template][partials] will list all your site's taxonomies, each of their keys, and all the content assigned to each of the keys. For more examples of how to order and render your taxonomies, see  [Taxonomy Templates][taxonomytemplates].
+以下の [部分テンプレート][partials] は、サイトのすべてのタクソノミー、それぞれのキー、およびそれぞれのキーに割り当てられたすべてのコンテンツを一覧表示します。タクソノミーの順序とレンダリング方法のその他の例については、[「タクソノミー テンプレート」][taxonomytemplates] を参照してください。
 
 {{< code file="all-taxonomies-keys-and-pages.html" download="all-taxonomies-keys-and-pages.html" >}}
 <section>

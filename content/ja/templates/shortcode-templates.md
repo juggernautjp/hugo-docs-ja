@@ -3,7 +3,7 @@ aliases: []
 categories:
 - templates
 date: "2017-02-01"
-description: You can extend Hugo's built-in shortcodes by creating your own using the same templating syntax as that for single and list pages.
+description: シングルページやリストページと同じテンプレート構文を使用して独自のショートコードを作成することで、Hugo の組み込みショートコードを拡張できます。
 draft: false
 keywords:
 - shortcodes
@@ -21,81 +21,80 @@ toc: true
 weight: 100
 ---
 
-Shortcodes are a means to consolidate templating into small, reusable snippets that you can embed directly inside your content. In this sense, you can think of shortcodes as the intermediary between [page and list templates][templates] and [basic content files][].
+ショートコードは、テンプレートを小さく再利用可能なスニペットに統合し、コンテンツ内に直接埋め込むことができる手段です。この意味で、ショートコードは、[ページとリストのテンプレート][templates] と [基本コンテンツファイル][basic content files] の仲介物と考えることができます。
 
 {{% note %}}
-Hugo also ships with built-in shortcodes for common use cases. (See [Content Management: Shortcodes](/content-management/shortcodes/).)
+Hugo には、一般的な使用例に対応した組み込みのショートコードも用意されています。 (詳細は [コンテンツ管理: ショートコード](/content-management/shortcodes/) を参照してください)。 
 {{% /note %}}
 
-## Create Custom Shortcodes
+## カスタム ショートコードを作成する {#create-custom-shortcodes}
 
-Hugo's built-in shortcodes cover many common, but not all, use cases. Luckily, Hugo provides the ability to easily create custom shortcodes to meet your website's needs.
+Hugo の組み込みショートコードは、多くの一般的な使用例をカバーしていますが、すべての使用例ではありません。 幸いなことに、Hugo には、Web サイトのニーズを満たすカスタム ショートコードを簡単に作成する機能があります。
 
 {{< youtube Eu4zSaKOY4A >}}
 
-### File Location
+### ファイルの場所 {#file-location}
 
-To create a shortcode, place an HTML template in the `layouts/shortcodes` directory of your [source organization][]. Consider the file name carefully since the shortcode name will mirror that of the file but without the `.html` extension. For example, `layouts/shortcodes/myshortcode.html` will be called with either `{{</* myshortcode /*/>}}` or `{{%/* myshortcode /*/%}}` depending on the type of parameters you choose.
+ショートコードを作成するには、[ソース構成][source organization] の `layouts/shortcodes` ディレクトリに HTML テンプレートを配置します。 ショートコードの名前は、拡張子 `.html` を除いたファイルの名前と同じになるので、ファイル名には十分注意してください。 たとえば、`layouts/shortcodes/myshortcode.html` は、あなたが選んだパラメータの種類に応じて、`{{</* myshortcode /*/>}}` または `{%/* myshortcode /*/%}}` で呼び出されます。
 
-You can organize your shortcodes in subfolders, e.g. in `layouts/shortcodes/boxes`. These shortcodes would then be accessible with their relative path, e.g:
+ショートコードは、サブフォルダー (たとえば、`layouts/shortcodes/boxes`) に整理することができます。これらのショートコードは、相対パスでアクセスできます。
 
 ```go-html-template
 {{</* boxes/square */>}}
 ```
 
-Note the forward slash.
+フォワードスラッシュ (`/`) に注意してください。
 
-### Shortcode Template Lookup Order
+### ショートコード テンプレートの検索順序 {#shortcode-template-lookup-order}
 
-Shortcode templates have a simple [lookup order][]:
+ショートコード テンプレートには、以下のような、シンプルな [検索順序][lookup order] があります。
 
 1. `/layouts/shortcodes/<SHORTCODE>.html`
 2. `/themes/<THEME>/layouts/shortcodes/<SHORTCODE>.html`
 
-### Positional vs Named Parameters
+### 位置指定パラメータと名前付きパラメータ {#positional-vs-named-parameters}
 
-You can create shortcodes using the following types of parameters:
+以下の種類のパラメータを使用して、ショートコードを作成できます。
 
-* Positional parameters
-* Named parameters
-* Positional *or* named parameters (i.e, "flexible")
+* 位置指定パラメータ
+* 名前付きパラメータ
+* 位置指定パラメータ *または* 名前付きパラメータ (つまり、「柔軟な」)
 
-In shortcodes with positional parameters, the order of the parameters is important. If a shortcode has a single required value (e.g., the `youtube` shortcode below), positional parameters work very well and require less typing from content authors.
+位置指定パラメータを持つショートコードでは、パラメータの順序が重要です。 ショートコードに必要な値が 1 つしかない場合 (たとえば、以下の `youtube` ショートコード)、位置指定パラメータは非常にうまく機能し、コンテンツ作成者の入力作業を軽減することができます。
 
-For more complex layouts with multiple or optional parameters, named parameters work best. While less terse, named parameters require less memorization from a content author and can be added in a shortcode declaration in any order.
+複数のパラメータまたはオプションのパラメータを使用する、より複雑なレイアウトの場合、名前付きパラメータが最適に機能します。 簡潔ではありませんが、名前付きパラメータはコンテンツ作成者が記憶する必要が少なく、任意の順序でショートコード宣言に追加できます。
 
-Allowing both types of parameters (i.e., a "flexible" shortcode) is useful for complex layouts where you want to set default values that can be easily overridden by users.
+両方のタイプのパラメータを許可する (つまり、「柔軟な」ショートコード) と、ユーザーが簡単にオーバーライドできるデフォルト値を設定したい複雑なレイアウトに役立ちます。
 
-### Access Parameters
+### パラメータにアクセスする {#access-parameters}
 
-All shortcode parameters can be accessed via the `.Get` method. Whether you pass a key (i.e., string) or a number to the `.Get` method depends on whether you are accessing a named or positional parameter, respectively.
+すべてのショートコード パラメータは、 `.Get` メソッドでアクセスできます。`.Get` メソッドにキー (つまり文字列) と数値のどちらを渡すかは、それぞれ名前付きパラメータと位置指定パラメータのどちらにアクセスするかによって異なります。
 
-To access a parameter by name, use the `.Get` method followed by the named parameter as a quoted string:
+名前でパラメーターにアクセスするには、以下のように、その後に名前付きパラメータを引用符で囲んだ文字列を付けた `.Get` メソッドを使用します。
 
 ```go-html-template
 {{ .Get "class" }}
 ```
 
-To access a parameter by position, use the `.Get` followed by a numeric position, keeping in mind that positional parameters are zero-indexed:
+位置でパラメータにアクセスするには、`.Get` に続けて数値位置を使用します。位置指定パラメータのインデックスは、以下のようにゼロインデックスになることに注意してください。
 
 ```go-html-template
 {{ .Get 0 }}
 ```
 
-For the second position, you would just use:
+2 番目の位置のためには、以下のように使用します。
 
 ```go-html-template
 {{ .Get 1 }}
 ```
 
-`with` is great when the output depends on a parameter being set:
+`with` は、以下のように、出力が設定されたパラメータに依存する場合に最適です。
 
 ```go-html-template
 {{ with .Get "class" }} class="{{ . }}"{{ end }}
 ```
 
-`.Get` can also be used to check if a parameter has been provided. This is
-most helpful when the condition depends on either of the values, or both:
+`.Get` は、パラメータが提供されているかどうかを確認するためにも使用できます。これは、以下のように、条件がどちらかの値、または両方に依存している場合に最も役に立ちます。
 
 ```go-html-template
 {{ if or (.Get "title") (.Get "alt") }} alt="{{ with .Get "alt" }}{{ . }}{{ else }}{{ .Get "title" }}{{ end }}"{{ end }}
@@ -103,43 +102,43 @@ most helpful when the condition depends on either of the values, or both:
 
 #### `.Inner`
 
-If a closing shortcode is used, the `.Inner` variable will be populated with the content between the opening and closing shortcodes. If a closing shortcode is required, you can check the length of `.Inner` as an indicator of its existence.
+終了ショートコードが使用されている場合、`.Inner` 変数には、開始ショートコードと終了ショートコードの間のコンテンツが入力されます。 終了ショートコードが必要な場合は、その存在の指標として `.Inner` の長さを確認できます。
 
-A shortcode with content declared via the `.Inner` variable can also be declared without the content and without the closing by using the self-closing syntax:
+`.Inner` 変数によって宣言されたコンテンツを持つショートコードは、自己終了構文 (self-closing syntax) を使用することによって、コンテンツなし、終了なしで宣言することもできます。
 
 ```go-html-template
 {{</* innershortcode /*/>}}
 ```
 
 {{% warning %}}
-Any shortcode that refers to `.Inner` must be closed or self-closed.
+`.Inner` を参照するすべてのショートコードは、クローズドまたはセルフクローズドである必要があります。
 
 {{% /warning %}}
 
 #### `.Params`
 
-The `.Params` variable in shortcodes contains the list parameters passed to shortcode for more complicated use cases. You can also access higher-scoped parameters with the following logic:
+ショートコードの `.Params` 変数には、より複雑な使用例のためにショートコードに渡されるリストパラメータが含まれています。 以下のロジックを使用して、よりスコープの広いパラメータにアクセスすることもできます。
 
 `$.Params`
-: these are the parameters passed directly into the shortcode declaration (e.g., a YouTube video ID)
+: これらは、ショートコード宣言に直接渡されるパラメータです (たとえば、YouTube ビデオ ID など)。
 
 `$.Page.Params`
-: refers to the page's params; the "page" in this case refers to the content file in which the shortcode is declared (e.g., a `shortcode_color` field in a content's front matter could be accessed via `$.Page.Params.shortcode_color`).
+: ページのパラメーターを参照します。 この場合の「ページ」は、ショートコードが宣言されているコンテンツファイルを指します (たとえば、コンテンツのフロントマターの `shortcode_color` フィールドは、`$.Page.Params.shortcode_color` でアクセスできます)。
 
 `$.Page.Site.Params`
-: refers to global variables as defined in your [site's configuration file][config].
+: [サイトの設定ファイル][config] で定義されているグローバル変数を参照します。
 
 #### `.IsNamedParams`
 
-The `.IsNamedParams` variable checks whether the shortcode declaration uses named parameters and returns a boolean value.
+`.IsNamedParams` 変数は、ショートコード宣言が名前付きパラメータを使用しているかどうかをチェックし、ブール値を返します。
 
-For example, you could create an `image` shortcode that can take either a `src` named parameter or the first positional parameter, depending on the preference of the content's author. Let's assume the `image` shortcode is called as follows:
+たとえば、コンテンツの作成者の好みに応じて、 `src` という名前のパラメータまたは最初の位置指定パラメータのいずれかを取ることができる `image` ショートコードを作成できます。 ここでは、 `image` ショートコードを以下のように呼び出すと仮定します。
 
 ```go-html-template
 {{</* image src="images/my-image.jpg" */>}}
 ```
 
-You could then include the following as part of your shortcode templating:
+次に、ショートコード テンプレートの一部として以下を含めることができます。
 
 ```go-html-template
 {{ if .IsNamedParams }}
@@ -149,27 +148,27 @@ You could then include the following as part of your shortcode templating:
 {{ end }}
 ```
 
-See the [example Vimeo shortcode][vimeoexample] below for `.IsNamedParams` in action.
+`.IsNamedParams` の動作については、以下の [Vimeo ショートコードの例][vimeoexample] を参照してください。
 
 {{% warning %}}
-While you can create shortcode templates that accept both positional and named parameters, you *cannot* declare shortcodes in content with a mix of parameter types. Therefore, a shortcode declared like `{{</* image src="images/my-image.jpg" "This is my alt text" */>}}` will return an error.
+位置指定パラメータと名前付きパラメータの両方を受け付けるショートコード テンプレートを作成することはできますが、パラメータタイプが混在するコンテンツでショートコードを宣言することは *できません*。したがって、`{{</* image src="images/my-image.jpg" "This is my alt text" */>}}` のように宣言されたショートコードは、エラーを返します。
 {{% /warning %}}
 
-You can also use the variable `.Page` to access all the normal [page variables][pagevars].
+また、`.Page` 変数を使用して、通常のすべての [ページ変数][pagevars] にアクセスすることもできます。
 
-A shortcodes can also be nested. In a nested shortcode, you can access the parent shortcode context with [`.Parent` variable][shortcodesvars]. This can be very useful for inheritance of common shortcode parameters from the root.
+ショートコードはネストすることもできます。 ネストされたショートコードでは、[`.Parent` 変数][shortcodesvars] を使用して親ショートコード コンテキストにアクセスできます。 これは、ルートから共通のショートコード パラメータを継承するために非常に便利です。
 
-### Checking for Existence
+### 存在を確認する {#checking-for-existence}
 
-You can check if a specific shortcode is used on a page by calling `.HasShortcode` in that page template, providing the name of the shortcode. This is sometimes useful when you want to include specific scripts or styles in the header that are only used by that shortcode.
+あるページで特定のショートコードが使用されているかどうかを確認するには、そのページのテンプレートで `.HasShortcode` を呼び出し、ショートコードの名前を指定します。これは、そのショートコードによってのみ使用される特定のスクリプトまたはスタイルをヘッダーに含めたい場合に便利です。
 
-## Custom Shortcode Examples
+## カスタム ショートコードの例 {#custom-shortcode-examples}
 
-The following are examples of the different types of shortcodes you can create via shortcode template files in `/layouts/shortcodes`.
+以下は、`/layouts/shortcodes` にあるショートコード テンプレートファイルで作成できる、さまざまなタイプのショートコードの例です。
 
-### Single-word Example: `year`
+### 単一語の例: `year` {#singleword-example-year}
 
-Let's assume you would like to keep mentions of your copyright year current in your content files without having to continually review your Markdown. Your goal is to be able to call the shortcode as follows:
+Markdown を継続的に確認することなく、コンテンツファイル内の著作権年に関する記述を最新の状態に保ちたいと仮定してみます。あなたの目標は、以下のようにショートコードを呼び出すことができるようにすることです。
 
 ```go-html-template
 {{</* year */>}}
@@ -179,15 +178,15 @@ Let's assume you would like to keep mentions of your copyright year current in y
 {{ now.Format "2006" }}
 {{< /code >}}
 
-### Single Positional Example: `youtube`
+### 単一の位置の例: `youtube` {#single-positional-example-youtube}
 
-Embedded videos are a common addition to Markdown content that can quickly become unsightly. The following is the code used by [Hugo's built-in YouTube shortcode][youtubeshortcode]:
+埋め込み動画は Markdown コンテンツによくされるものですが、すぐに見苦しくなってしまいます。以下は、[Hugo の組み込み YouTube ショートコード][youtubeeshortcode] で使用されるコードです。
 
 ```go-html-template
 {{</* youtube 09jf3ow9jfw */>}}
 ```
 
-Would load the template at `/layouts/shortcodes/youtube.html`:
+上記のコードは、以下のように、 `/layouts/shortcodes/youtube.html` にあるテンプレートをロードします。
 
 {{< code file="/layouts/shortcodes/youtube.html" >}}
 <div class="embed video-player">
@@ -206,15 +205,15 @@ Would load the template at `/layouts/shortcodes/youtube.html`:
 </div>
 {{< /code >}}
 
-### Single Named Example: `image`
+### 単一の名前付きの例: `image` {#single-named-example-image}
 
-Let's say you want to create your own `img` shortcode rather than use Hugo's built-in [`figure` shortcode][figure]. Your goal is to be able to call the shortcode as follows in your content files:
+Hugo の組み込みの [`figure` ショートコード][figure] を使用するのではなく、独自の `img` ショートコードを作成したいとします。 目標は、コンテンツファイルで以下のようにショートコードを呼び出せるようにすることです。
 
 {{< code file="content-image.md" >}}
 {{</* img src="/media/spf13.jpg" title="Steve Francia" */>}}
 {{< /code >}}
 
-You have created the shortcode at `/layouts/shortcodes/img.html`, which loads the following shortcode template:
+`/layouts/shortcodes/img.html` にショートコードを作成し、以下のように、ショートコード テンプレートをロードするようにしましました。
 
 {{< code file="/layouts/shortcodes/img.html" >}}
 <!-- image -->
@@ -237,7 +236,7 @@ You have created the shortcode at `/layouts/shortcodes/img.html`, which loads th
 <!-- image -->
 {{< /code >}}
 
-Would be rendered as:
+上記のコードは、以下のようにレンダリングされます。
 
 {{< code file="img-output.html" copy="false" >}}
 <figure>
@@ -248,14 +247,14 @@ Would be rendered as:
 </figure>
 {{< /code >}}
 
-### Single Flexible Example: `vimeo`
+### 単一の柔軟な例: `vimeo` {#single-flexible-example-vimeo}
 
 ```go-html-template
 {{</* vimeo 49718712 */>}}
 {{</* vimeo id="49718712" class="flex-video" */>}}
 ```
 
-Would load the template found at `/layouts/shortcodes/vimeo.html`:
+上記のコードは、以下のように、`/layouts/shortcodes/vimeo.html` にあるテンプレートをロードします。
 
 {{< code file="/layouts/shortcodes/vimeo.html" >}}
 {{ if .IsNamedParams }}
@@ -269,7 +268,7 @@ Would load the template found at `/layouts/shortcodes/vimeo.html`:
 {{ end }}
 {{< /code >}}
 
-Would be rendered as:
+上記のコードは、以下のようにレンダリングされます。
 
 {{< code file="vimeo-iframes.html" copy="false" >}}
 <div class="vimeo-container">
@@ -280,9 +279,9 @@ Would be rendered as:
 </div>
 {{< /code >}}
 
-### Paired Example: `highlight`
+### ペアの例: `highlight` {#paired-example-highlight}
 
-The following is taken from `highlight`, which is a [built-in shortcode][] that ships with Hugo.
+以下は、Hugo に同梱されている [組み込みのショートコード][built-in shortcode] である `highlight` からの抜粋です。
 
 {{< code file="highlight-example.md" >}}
 {{</* highlight html */>}}
@@ -292,13 +291,13 @@ The following is taken from `highlight`, which is a [built-in shortcode][] that 
 {{</* /highlight */>}}
 {{< /code >}}
 
-The template for the `highlight` shortcode uses the following code, which is already included in Hugo:
+`highlight` ショートコードのためのテンプレートは、Hugo に既に含まれている以下のコードを使用します。
 
 ```go-html-template
 {{ .Get 0 | highlight .Inner }}
 ```
 
-The rendered output of the HTML example code block will be as follows:
+HTML サンプルのコードブロックのレンダリング出力は、以下のようになります。
 
 {{< code file="syntax-highlighted.html" copy="false" >}}
 <div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span style="color: #f92672">&lt;html&gt;</span>
@@ -307,9 +306,9 @@ The rendered output of the HTML example code block will be as follows:
 </pre></div>
 {{< /code >}}
 
-### Nested Shortcode: Image Gallery
+### ネストされたショートコード: 画像ギャラリー {#nested-shortcode-image-gallery}
 
-Hugo's [`.Parent` shortcode variable][parent] provides access to the parent shortcode context when the shortcode in question is called within the context of a *parent* shortcode. This provides an inheritance model for common shortcode parameters.
+Hugo の [`.Parent` ショートコード変数][parent] は、問題のショートコードが *親* ショートコードのコンテキスト内で呼び出されたときに、親ショートコード コンテキストへのアクセスを提供します。 これにより、共通のショートコード パラメータのための継承モデルを提供します。
 
 The following example is contrived but demonstrates the concept. Assume you have a `gallery` shortcode that expects one named `class` parameter:
 
@@ -319,7 +318,7 @@ The following example is contrived but demonstrates the concept. Assume you have
 </div>
 {{< /code >}}
 
-You also have an `img` shortcode with a single named `src` parameter that you want to call inside of `gallery` and other shortcodes, so that the parent defines the context of each `img`:
+以下のような、親が各 `img` のコンテキストを定義するように、 `gallery` およびその他のショートコード内で呼び出したい単一の名前付き `src` パラメータを持つ `img` ショートコードもあります。
 
 {{< code file="layouts/shortcodes/img.html" >}}
 {{- $src := .Get "src" -}}
@@ -330,7 +329,7 @@ You also have an `img` shortcode with a single named `src` parameter that you wa
 {{- end -}}
 {{< /code >}}
 
-You can then call your shortcode in your content as follows:
+次に、以下のようにコンテンツ内でショートコードを呼び出すことができます。
 
 ```go-html-template
 {{</* gallery class="content-gallery" */>}}
@@ -340,7 +339,7 @@ You can then call your shortcode in your content as follows:
 {{</* img src="/images/three.jpg" */>}}
 ```
 
-This will output the following HTML. Note how the first two `img` shortcodes inherit the `class` value of `content-gallery` set with the call to the parent `gallery`, whereas the third `img` only uses `src`:
+これにより、以下のような HTML が出力されます。最初の 2 つの `img` ショートコードは、親の `gallery` を呼び出して設定した `content-gallery` の `class` 値を継承していますが、3番目の `img` は `src` のみを使用していることに注意してください。
 
 ```html
 <div class="content-gallery">
@@ -350,9 +349,9 @@ This will output the following HTML. Note how the first two `img` shortcodes inh
 <img src="/images/three.jpg">
 ```
 
-## Error Handling in Shortcodes
+## ショートコードでのエラー処理 {#error-handling-in-shortcodes}
 
-Use the [errorf](/functions/errorf) template func and [.Position](/variables/shortcodes/) variable to get useful error messages in shortcodes:
+[error](/functions/errorf) テンプレート関数と [.Position](/variables/shortcodes/) 変数を使用して、ショートコードで有用なエラーメッセージを取得できます。
 
 ```bash
 {{ with .Get "name" }}
@@ -361,61 +360,61 @@ Use the [errorf](/functions/errorf) template func and [.Position](/variables/sho
 {{ end }}
 ```
 
-When the above fails, you will see an `ERROR` log similar to the below:
+上記コードが失敗すると、以下のような `ERROR` ログが表示されます。
 
 ```bash
 ERROR 2018/11/07 10:05:55 missing value for param name: "/Users/bep/dev/go/gohugoio/hugo/docs/content/en/variables/shortcodes.md:32:1"
 ```
 
-## More Shortcode Examples
+## その他のショートコードの例 {#more-shortcode-examples}
 
-More shortcode examples can be found in the [shortcodes directory for spf13.com][spfscs] and the [shortcodes directory for the Hugo docs][docsshortcodes].
+その他のショートコードの例は、[spf13.com の shortcodes ディレクトリ][spfscs] と [Hugo ドキュメントの shortcodes ディレクトリ][docsshortcodes] で見つけることができます。
 
-## Inline Shortcodes
+## インライン ショートコード {#inline-shortcodes}
 
 {{< new-in "0.52" >}}
 
-Since Hugo 0.52, you can implement your shortcodes inline -- e.g. where you use them in the content file. This can be useful for scripting that you only need in one place.
+Hugo 0.52 以降、ショートコードをインラインで、たとえば、コンテンツ ファイル内でそれらを使用する場所で、実装できます。これは、1 か所だけで必要なスクリプト作成に役立ちます。
 
-This feature is disabled by default, but can be enabled in your site config:
+この機能はデフォルトで無効になっていますが、以下のようなサイト設定で有効にすることができます:
 
 {{< code-toggle file="config">}}
 enableInlineShortcodes = true
 {{< /code-toggle >}}
 
-It is disabled by default for security reasons. The security model used by Hugo's template handling assumes that template authors are trusted, but that the content files are not, so the templates are injection-safe from malformed input data. But in most situations you have full control over the content, too, and then `enableInlineShortcodes = true` would be considered safe. But it's something to be aware of: It allows ad-hoc [Go Text templates](https://golang.org/pkg/text/template/) to be executed from the content files.
+セキュリティ上の理由から、デフォルトでは無効になっています。Hugo のテンプレート処理で使用されているセキュリティモデルは、テンプレートの作成者は信頼できるが、コンテンツファイルは信頼できないことを想定しているので、テンプレートは不正な入力データからインジェクションセーフ (injection-safe) になっています。しかし、ほとんどの場合、コンテンツも完全に制御できるため、`enableInlineShortcodes = true` は安全とみなされます。ただし、注意しなければならないことがあります。コンテンツファイルからアドホックな [Go Text テンプレート](https://golang.org/pkg/text/template/) を実行することができるようになるのです。
 
-And once enabled, you can do this in your content files:
+そして、一度有効にすると、コンテンツファイルでもこれを実行できるようになります。
 
  ```go-text-template
  {{</* time.inline */>}}{{ now }}{{</* /time.inline */>}}
  ```
 
-The above will print the current date and time.
+上記のコードは、現在の日付と時刻を出力します。
 
- Note that an inline shortcode's inner content is parsed and executed as a Go text template with the same context as a regular shortcode template.
+インライン ショートコードの内部コンテンツは、通常のショートコード テンプレートと同じコンテキストを持つ Go テキスト テンプレートとして解析および実行されることに注意してください。
 
-This means that the current page can be accessed via `.Page.Title` etc. This also means that there are no concept of "nested inline shortcodes".
+これは、`.Page.Title` などを介して現在のページにアクセスできることを意味します。さらに、「ネストされたインライン ショートコード」の概念がないことも意味します。
 
-The same inline shortcode can be reused later in the same content file, with different params if needed, using the self-closing syntax:
+同じインライン ショートコードは、同じコンテンツファイル内で、必要に応じて異なるパラメータを指定して自己終了構文で後から再利用できます。
 
  ```go-text-template
 {{</* time.inline /*/>}}
 ```
 
-[basic content files]: /content-management/formats/ "See how Hugo leverages markdown--and other supported formats--to create content for your website."
+[basic content files]: /content-management/formats/ "Hugo が Markdown (およびその他のサポートされている形式) を利用して Web サイトのコンテンツを作成する方法を参照してください。"
 [built-in shortcode]: /content-management/shortcodes/
-[config]: /getting-started/configuration/ "Learn more about Hugo's built-in configuration variables as well as how to us your site's configuration file to include global key-values that can be used throughout your rendered website."
-[Content Management: Shortcodes]: /content-management/shortcodes/#using-hugo-s-built-in-shortcodes "Check this section if you are not familiar with the definition of what a shortcode is or if you are unfamiliar with how to use Hugo's built-in shortcodes in your content files."
-[source organization]: /getting-started/directory-structure/#directory-structure-explained "Learn how Hugo scaffolds new sites and what it expects to find in each of your directories."
-[docsshortcodes]: https://github.com/gohugoio/hugo/tree/master/docs/layouts/shortcodes "See the shortcode source directory for the documentation site you're currently reading."
+[config]: /getting-started/configuration/ "Hugo に組み込まれている設定変数について、また、サイトの設定ファイルにレンダリングされた Web サイト全体で使用できるグローバルなキー値を含める方法について詳しく説明します。"
+[Content Management: Shortcodes]: /content-management/shortcodes/#using-hugo-s-built-in-shortcodes "ショートコードとは何かという定義がよくわからない場合や、コンテンツファイルに Hugo の組み込みショートコードを使用する方法についてよくわからない場合は、このセクションを確認してください。"
+[source organization]: /getting-started/directory-structure/#directory-structure-explained "Hugo が新しいサイトを足場かけ (スキャフォールディング) する方法と、各ディレクトリで何を見つけることが期待されているかを学びます。"
+[docsshortcodes]: https://github.com/gohugoio/hugo/tree/master/docs/layouts/shortcodes "現在読んでいるドキュメントサイトのショートコードのソースディレクトリを参照してください。"
 [figure]: /content-management/shortcodes/#figure
 [hugosc]: /content-management/shortcodes/#using-hugo-s-built-in-shortcodes
-[lookup order]: /templates/lookup-order/ "See the order in which Hugo traverses your template files to decide where and how to render your content at build time"
-[pagevars]: /variables/page/ "See which variables you can leverage in your templating for page vs list templates."
+[lookup order]: /templates/lookup-order/ "Hugo がテンプレートファイルをトラバースして、ビルド時にコンテンツをどこでどのようにレンダリングするかを決定する順序を確認します。"
+[pagevars]: /variables/page/ "ページテンプレートとリストテンプレートで、どの変数を活用できるかを確認します。"
 [parent]: /variables/shortcodes/
-[shortcodesvars]: /variables/shortcodes/ "Certain variables are specific to shortcodes, although most .Page variables can be accessed within your shortcode template."
-[spfscs]: https://github.com/spf13/spf13.com/tree/master/layouts/shortcodes "See more examples of shortcodes by visiting the shortcode directory of the source for spf13.com, the blog of Hugo's creator, Steve Francia."
-[templates]: /templates/ "The templates section of the Hugo docs."
+[shortcodesvars]: /variables/shortcodes/ "一部の変数はショートコードに固有ですが、ほとんどの .Page 変数はショートコード テンプレート内でアクセスできます。"
+[spfscs]: https://github.com/spf13/spf13.com/tree/master/layouts/shortcodes "Hugo の生みの親である Steve Francia 氏のブログ spf13.com のソースのショートコード ディレクトリで、より多くのショートコードの例を見ることができます。"
+[templates]: /templates/ "Hugo ドキュメントのテンプレート セクションです。"
 [vimeoexample]: #single-flexible-example-vimeo
-[youtubeshortcode]: /content-management/shortcodes/#youtube "See how to use Hugo's built-in YouTube shortcode."
+[youtubeshortcode]: /content-management/shortcodes/#youtube "Hugo の組み込み YouTube ショートコードの使用方法を参照してください。"

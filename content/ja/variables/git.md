@@ -4,58 +4,58 @@ aliases:
 categories:
 - variables and params
 date: "2017-03-12"
-description: Get the last Git revision information for every content file.
-draft: true
+description: すべてのコンテンツファイルについて、最新の Git リビジョン情報を取得します。
+draft: false
 keywords:
 - git
 lastmod: "2017-03-12"
-linktitle: Git Variables
+linktitle: GIt 変数
 menu:
   docs:
     parent: variables
     weight: 70
 publishdate: "2017-03-12"
 sections_weight: 70
-title: Git Info Variables
+title: GIt Info 変数
 toc: false
 weight: 70
 wip: false
 ---
-
+s
 {{% note "`.GitInfo` Performance Considerations"  %}}
-Hugo's Git integrations should be fairly performant but *can* increase your build time. This will depend on the size of your Git history.
+Hugo の Git 統合はかなりパフォーマンスが高いはずですが、ビルド時間が増加する可能性が *あります*。これは、Git 履歴のサイズに依存します。
 {{% /note %}}
 
-## `.GitInfo` Prerequisites
+## `.GitInfo` 前提条件 {#gitinfo-prerequisites}
 
-1. The Hugo site must be in a Git-enabled directory.
-2. The Git executable must be installed and in your system `PATH`.
-3. The `.GitInfo` feature must be enabled in your Hugo project by passing `--enableGitInfo` flag on the command line or by setting `enableGitInfo` to `true` in your [site's configuration file][configuration].
+1. Hugo サイトは、Git が有効なディレクトリにある必要があります。
+2. Git の実行ファイルがインストールされており、システムの `PATH` に入っている必要があります。
+3. コマンドラインで `--enableGitInfo` フラグを渡すか、[サイトの設定ファイル][configuration] で `enableGitInfo` を `true` に設定して、Hugo プロジェクトで `.GitInfo` 機能を有効にする必要があります。
 
-## The `.GitInfo` Object
+## `.GitInfo` オブジェクト {#the-gitinfo-object}
 
-The `GitInfo` object contains the following fields:
+`GitInfo` オブジェクトは、以下のフィールドを含んでいます。
 
 .AbbreviatedHash
-: the abbreviated commit hash (e.g., `866cbcc`)
+: コミットハッシュの省略形です (たとえば、 `866cbcc`)。
 
 .AuthorName
-: the author's name, respecting [`.mailmap`](https://git-scm.com/docs/gitmailmap)
+: 作成者の名前で、[`.mailmap`](https://git-scm.com/docs/gitmailmap) を尊重します。
 
 .AuthorEmail
-: the author's email address, respecting [`.mailmap`](https://git-scm.com/docs/gitmailmap)
+: 作成者のメールアドレスで、[`.mailmap`](https://git-scm.com/docs/gitmailmap) を尊重します。
 
 .AuthorDate
-: the author date
+: 著者の日付です。
 
 .Hash
-: the commit hash (e.g., `866cbccdab588b9908887ffd3b4f2667e94090c3`)
+: コミットハッシュです (たとえば、 `866cbccdab588b9908887ffd3b4f2667e94090c3`)。
 
 .Subject
-: commit message subject (e.g., `tpl: Add custom index function`)
+: コミットメッセージの件名です (たとえば、 `tpl: Add custom index function`)。
 
 ## `.Lastmod`
 
-If the `.GitInfo` feature is enabled, `.Lastmod` (on `Page`) is fetched from Git i.e. `.GitInfo.AuthorDate`. This behavior can be changed by adding your own [front matter configuration for dates](/getting-started/configuration/#configure-front-matter).
+`.GitInfo` 機能が有効な場合、 (`Page` 上の) `.Lastmod` は Git から、つまり `.GitInfo.AuthorDate` を取得します。この動作は、独自の [日付のフロントマター設定](/getting-started/configuration/#configure-front-matter) を追加することで変更できます。
 
 [configuration]: /getting-started/configuration/

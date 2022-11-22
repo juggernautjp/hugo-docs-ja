@@ -6,20 +6,20 @@ aliases:
 categories:
 - content management
 date: "2017-01-10"
-description: HTML と Markdown の両方のコンテンツ形式をサポートしています。
+description: HTML と Markdown の両方のコンテンツフォーマットをサポートしています。
 draft: false
 keywords:
 - markdown
 - asciidoc
 - pandoc
 - content format
-linktitle: コンテンツ形式
+linktitle: コンテンツフォーマット
 menu:
   docs:
     parent: content-management
     weight: 20
 publishdate: "2017-01-10"
-title: コンテンツ形式
+title: コンテンツフォーマット
 toc: true
 weight: 20
 ---
@@ -30,9 +30,9 @@ weight: 20
 * 処理済み [ショートコード](/content-management/shortcodes/)
 * 適用されたレイアウト
 
-## コンテンツ形式の一覧 {#list-of-content-formats}
+## コンテンツフォーマットの一覧 {#list-of-content-formats}
 
-下表は、Hugo の現在のコンテンツ フォーマットの一覧です。
+下表は、Hugo の現在のコンテンツフォーマットの一覧です。
 
 | 名前  | Markup 識別子 | コメント |
 | ------------- | ------------- |-------------|
@@ -47,7 +47,7 @@ weight: 20
 
 ## 外部ヘルパー {#external-helpers}
 
-上表のフォーマットの中には、お使いの PC に外部ヘルパーをインストールする必要があるものがあります。
+上表の形式の中には、お使いの PC に外部ヘルパーをインストールする必要があるものがあります。
 たとえば、AsciiDoc ファイルの場合、Hugo は `asciidoctor` コマンドを呼び出そうとします。
 つまり、これらの形式を使用するには、関連するツールをマシンにインストールする必要があります。
 

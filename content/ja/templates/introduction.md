@@ -12,7 +12,7 @@ draft: false
 keywords:
 - go
 lastmod: "2022-09-20"
-linktitle: テンプレート
+linktitle: テンプレート入門
 menu:
   docs:
     parent: templates
@@ -184,7 +184,7 @@ Go テンプレートは、最も基本的な反復処理と条件分岐のロ�
 
 Go テンプレートは、`range` を多用して _map_、_array_、または _slice_ を反復処理します。 以下は、`range` の使用方法のさまざまな例です。
 
-#### 例 1: コンテキストの使用 (`.`) {#eExample-1-using-context}
+#### 例 1: コンテキストの使用 (`.`) {#example-1-using-context}
 
 ```go-html-template
 {{ range $array }}
@@ -192,7 +192,7 @@ Go テンプレートは、`range` を多用して _map_、_array_、または _
 {{ end }}
 ```
 
-#### 例 2: 配列要素の値を変数名で宣言する {example-2-declaring-a-variable-name-for-an-array-elements-value}
+#### 例 2: 配列要素の値を変数名で宣言する {#example-2-declaring-a-variable-name-for-an-array-elements-value}
 
 ```go-html-template
 {{ range $elem_val := $array }}
@@ -200,7 +200,7 @@ Go テンプレートは、`range` を多用して _map_、_array_、または _
 {{ end }}
 ```
 
-#### 例 3: 配列要素のインデックス _と_ 値を変数名で宣言する {example-3-declaring-variable-names-for-an-array-elements-index-and-value}
+#### 例 3: 配列要素のインデックス _と_ 値を変数名で宣言する {#example-3-declaring-variable-names-for-an-array-elements-index-and-value}
 
 配列またはスライスの場合、最初に宣言された変数が各要素のインデックスにマップされます。
 
@@ -344,7 +344,7 @@ Go テンプレートの構文は非常に単純であるため、関数呼び�
 {{ index .Params "disqus_url" | html }}
 ```
 
-### 例 2: `or` with `isset` {#example-3-or-with-isset}
+### 例 2: `isset` を持つ `or` {#example-3-or-with-isset}
 
 ```go-html-template
 {{ if or (or (isset .Params "title") (isset .Params "caption")) (isset .Params "attr") }}
@@ -362,16 +362,16 @@ Stuff Here
 
 ## コンテキスト (別名「ドット」) {#the-dot}
 
-The most easily overlooked concept to understand about Go Templates is that `{{ . }}` always refers to the **current context**.
+Go テンプレートについて理解する上で最も見落としやすい概念は、 `{{ . }}` が常に **現在のコンテキスト** を参照しているということです。
 
-- In the top level of your template, this will be the data set made available to it.
-- Inside an iteration, however, it will have the value of the current item in the loop; i.e., `{{ . }}` will no longer refer to the data available to the entire page.
+- テンプレートのトップレベルでは、これが利用可能になったデータセットになります。
+- ただし、反復処理の内部では、ループ内の現在のアイテムの値を持つようになります。つまり、`{{ . }}` は、もはやページ全体で利用可能なデータを参照しなくなります。
 
-If you need to access page-level data (e.g., page params set in front matter) from within the loop, you will likely want to do one of the following:
+ループの中からページレベルのデータ (たとえば、フロントマターで設定されたページパラメータ) にアクセスする必要がある場合、おそらく以下のいずれかを実行する必要があります。
 
-### 1. Define a Variable Independent of Context
+### 1. コンテキストに依存しない変数を定義する {#1-define-a-variable-independent-of-context}
 
-The following shows how to define a variable independent of the context.
+以下は、コンテキストに依存しない変数を定義する方法を示しています。
 
 {{< code file="tags-range-with-page-variable.html" >}}
 {{ $title := .Site.Title }}
@@ -386,12 +386,12 @@ The following shows how to define a variable independent of the context.
 {{< /code >}}
 
 {{% note %}}
-Notice how once we have entered the loop (i.e. `range`), the value of `{{ . }}` has changed. We have defined a variable outside the loop (`{{$title}}`) that we've assigned a value so that we have access to the value from within the loop as well.
+ループ (つまり `range`) に入った時点で、 `{{ . }}` の値が変化していることに注意してください。 ループの外側で変数 (`{$title}}`) を定義して値を代入しているので、ループの内側からもその値にアクセスできます。
 {{% /note %}}
 
-### 2. Use `$.` to Access the Global Context
+### 2. `$.` を使用してグローバル コンテキストにアクセスする {#2-use-to-access-the-global-context}
 
-`$` has special significance in your templates. `$` is set to the starting value of `.` ("the dot") by default. This is a [documented feature of Go text/template][dotdoc]. This means you have access to the global context from anywhere. Here is an equivalent example of the preceding code block but now using `$` to grab `.Site.Title` from the global context:
+`$` は、テンプレートで特別な意味を持ちます。 `$` は、デフォルトで `.` (「ドット」) の開始値に設定されます。 これは [Go text/template の文書化された機能][dotdoc] です。 これは、どこからでもグローバル コンテキストにアクセスできることを意味します。 以下は、前述のコードブロックと同等の例ですが、`$` を使用してグローバル コンテキストから `.Site.Title` を取得しています。
 
 {{< code file="range-through-tags-w-global.html" >}}
 <ul>
@@ -405,14 +405,14 @@ Notice how once we have entered the loop (i.e. `range`), the value of `{{ . }}` 
 {{< /code >}}
 
 {{% warning "Don't Redefine the Dot" %}}
-The built-in magic of `$` would cease to work if someone were to mischievously redefine the special character; e.g. `{{ $ := .Site }}`. *Don't do it.* You may, of course, recover from this mischief by using `{{ $ := . }}` in a global context to reset `$` to its default value.
+たとえば、 `{{ $ := .Site }}` のように、誰かがいたずらで特殊文字を再定義してしまうと、 `$` の組み込みマジックは動作しなくなります。*やらないでください。* もちろん、グローバルコンテキストで `{{ $ := . }}` を使って `$` をデフォルト値に戻すことで、このいたずらから回復できます。
 {{% /warning %}}
 
-## Whitespace
+## 空白文字 {#whitespace}
 
-Go 1.6 includes the ability to trim the whitespace from either side of a Go tag by including a hyphen (`-`) and space immediately beside the corresponding `{{` or `}}` delimiter.
+Go 1.6 には、対応する `{{` または `}}` 区切り文字のすぐ横にハイフン (`-`) とスペースを含めることで、Go タグの両側から空白を削除する機能が含まれています。
 
-For instance, the following Go Template will include the newlines and horizontal tab in its HTML output:
+たとえば、以下の Go テンプレートには、HTML 出力に改行と水平タブが含まれます。
 
 ```go-html-template
 <div>
@@ -420,7 +420,7 @@ For instance, the following Go Template will include the newlines and horizontal
 </div>
 ```
 
-Which will output:
+上記のコードは、以下を出力します。
 
 ```html
 <div>
@@ -428,7 +428,7 @@ Which will output:
 </div>
 ```
 
-Leveraging the `-` in the following example will remove the extra white space surrounding the `.Title` variable and remove the newline:
+以下の例で `-` を利用すると、`.Title` 変数を囲む余分な空白が削除され、改行も除されます。
 
 ```go-html-template
 <div>
@@ -436,49 +436,49 @@ Leveraging the `-` in the following example will remove the extra white space su
 </div>
 ```
 
-Which then outputs:
+上記のコードは、以下を出力します。
 
 ```html
 <div>Hello, World!</div>
 ```
 
-Go considers the following characters _whitespace_:
+Go は以下の文字を _空白文字_ とみなしています。
 
-* <kbd>space</kbd>
-* horizontal <kbd>tab</kbd>
-* carriage <kbd>return</kbd>
-* newline
+* <kbd>スペース</kbd>
+* 水平 <kbd>タブ</kbd>
+* キャリッジ <kbd>リターン</kbd>
+* 改行
 
-## Comments
+## コメント {#comments}
 
-In order to keep your templates organized and share information throughout your team, you may want to add comments to your templates. There are two ways to do that with Hugo.
+テンプレートを整理し、チーム全体で情報を共有するために、テンプレートにコメントを追加できます。 Hugo でそれを行うには 2 つの方法があります。
 
-### Go Templates comments
+### Go テンプレートのコメント {#go-templates-comments}
 
-Go Templates support `{{/*` and `*/}}` to open and close a comment block. Nothing within that block will be rendered.
+Go テンプレートは、コメントブロックを開いたり閉じたりするための `{{/*` と `*/}}` をサポートしています。そのブロック内は何もレンダリングされません。
 
-For example:
+たとえば、
 
 ```go-html-template
 Bonsoir, {{/* {{ add 0 + 2 }} */}}Eliott.
 ```
 
-Will render `Bonsoir, Eliott.`, and not care about the syntax error (`add 0 + 2`) in the comment block.
+上記のコードは、`Bonsoir, Eliott.` をレンダリングし、コメントブロックのシンタックスエラー (`add 0 + 2`) は気にしません。
 
-### HTML comments
+### HTML のコメント {#html-comments}
 
-If you need to produce HTML comments from your templates, take a look at the [Internet Explorer conditional comments]({{< relref "introduction.md#ie-conditional-comments" >}}) example. If you need variables to construct such HTML comments, just pipe `printf` to `safeHTML`. For example:
+テンプレートから HTML コメントを生成する必要があるなら、[Internet Explorer の条件付きコメント]({{< relref "introduction.md#ie-conditional-comments" >}}) の例を見てみてください。このような HTML コメントを作成するために変数が必要な場合は、 `printf` を `safeHTML` にパイプするだけです。たとえば、以下のコードです。
 
 ```go-html-template
 {{ printf "<!-- Our website is named: %s -->" .Site.Title | safeHTML }}
 ```
 
-#### HTML comments containing Go Templates
+#### Go テンプレートを含む HTML コメント {#htlml-comments-containing-go-templates}
 
-HTML comments are by default stripped, but their content is still evaluated. That means that although the HTML comment will never render any content to the final HTML pages, code contained within the comment may fail the build process.
+HTML コメントはデフォルトで削除されますが、その内容は引き続き評価されます。つまり、HTML コメントは最終的な HTML ページにコンテンツをレンダリングすることはありませんが、コメント内に含まれるコードはビルドプロセスで失敗する可能性があります。
 
 {{% note %}}
-Do **not** try to comment out Go Template code using HTML comments.
+HTML コメントを使用して Go テンプレートコードをコメントアウトしようと **しないでください**。
 {{% /note %}}
 
 ```go-html-template
@@ -486,19 +486,19 @@ Do **not** try to comment out Go Template code using HTML comments.
 {{ $author }}
 ```
 
-The templating engine will strip the content within the HTML comment, but will first evaluate any Go Template code if present within. So the above example will render `Emma Goldman`, as the `$author` variable got evaluated in the HTML comment. But the build would have failed if that code in the HTML comment had an error.
+テンプレートエンジンは HTML コメント内のコンテンツを削除しますが、Go テンプレートコードが存在する場合は最初に評価します。つまり、上記の例では HTML コメントの中で `$author` 変数が評価されるので、`Emma Goldman` がレンダリングされます。しかし、HTML コメント内のコードにエラーがあれば、ビルドは失敗します。
 
-## Hugo Parameters
+## Hugo パラメータ {#hugo-parameters}
 
-Hugo provides the option of passing values to your template layer through your [site configuration][config] (i.e. for site-wide values) or through the metadata of each specific piece of content (i.e. the [front matter][]). You can define any values of any type and use them however you want in your templates, as long as the values are supported by the [front matter format]({{< ref "front-matter.md#front-matter-formats" >}}).
+Hugo は、[サイト設定][config] (つまり、サイト全体の値) または特定のコンテンツの各部分のメタデータ (つまり、[フロントマター][front matter]) を介してテンプレート レイヤーに値を渡すオプションを提供します。 [フロントマターのフォーマット]({{< ref "front-matter.md#front-matter-formats" >}}) がサポートしている値であれば、どのようなタイプの値でも定義して、テンプレートで好きなように使用できます。
 
-## Use Content (`Page`) Parameters
+## コンテンツ (`Page`) パラメータを使用する {#use-content-page-parameters}
 
-You can provide variables to be used by templates in individual content's [front matter][].
+個々のコンテンツの [フロントマター][front matter] で、テンプレートで使用する変数を指定できます。
 
-An example of this is used in the Hugo docs. Most of the pages benefit from having the table of contents provided, but sometimes the table of contents doesn't make a lot of sense. We've defined a `notoc` variable in our front matter that will prevent a table of contents from rendering when specifically set to `true`.
+この例は、Hugo ドキュメントで使用されています。 ほとんどのページでは、目次を提供することでメリットが得られますが、目次があまり意味をなさない場合もあります。 フロントマターで `notoc` 変数を定義し、特に `true` に設定されている場合、目次がレンダリングされないようにします。
 
-Here is the example front matter (YAML):
+以下は、（YAML）フロントマターの例です。
 
 ```yml
 ---
@@ -509,7 +509,7 @@ notoc: true
 ---
 ```
 
-Here is an example of corresponding code that could be used inside a `toc.html` [partial template][partials]:
+以下は、`toc.html` [部分テンプレート][partials] の内部で使用できる対応するコードの例です。
 
 {{< code file="layouts/partials/toc.html" download="toc.html" >}}
 {{ if not .Params.notoc }}
@@ -525,13 +525,13 @@ Here is an example of corresponding code that could be used inside a `toc.html` 
 {{ end }}
 {{< /code >}}
 
-We want the *default* behavior to be for pages to include a TOC unless otherwise specified. This template checks to make sure that the `notoc:` field in this page's front matter is not `true`.
+特に指定がない限り、ページには目次 (TOC) を含めるという *デフォルト* の動作をさせたいと考えています。このテンプレートは、このページのフロントマターの `notoc:` フィールドが `true` でないことを確認します。
 
-## Use Site Configuration Parameters
+## サイト設定パラメータを使用する {#use-site-configuration-parameters}
 
-You can arbitrarily define as many site-level parameters as you want in your [site's configuration file][config]. These parameters are globally available in your templates.
+[サイト設定ファイル][config] には、必要な数のサイトレベルのパラメータを任意に定義できます。これらのパラメータは、テンプレートでグローバルに使用できます。
 
-For instance, you might declare the following:
+たとえば、以下のように宣言します。
 
 {{< code-toggle file="config" >}}
 params:
@@ -540,7 +540,7 @@ params:
   sidebarrecentlimit: 5
 {{< /code >}}
 
-Within a footer layout, you might then declare a `<footer>` that is only rendered if the `copyrighthtml` parameter is provided. If it *is* provided, you will then need to declare the string is safe to use via the [`safeHTML` function][safehtml] so that the HTML entity is not escaped again. This would let you easily update just your top-level config file each January 1st, instead of hunting through your templates.
+フッターレイアウト内で、`copyrighthtml` パラメータが指定されている場合にのみレンダリングされる `<footer>` を宣言できます。 提供されている場合は、HTML エンティティが再度エスケープされないように、[`safeHTML` 関数][safehtml] を使用して文字列が安全に使用できることを宣言する必要があります。 これにより、テンプレートを探し回る代わりに、毎年 1 月 1 日にトップレベルの設定ファイルだけを簡単に更新できます。
 
 ```go-html-template
 {{ if .Site.Params.copyrighthtml }}
@@ -550,7 +550,7 @@ Within a footer layout, you might then declare a `<footer>` that is only rendere
 {{ end }}
 ```
 
-An alternative way of writing the "`if`" and then referencing the same value is to use [`with`][with] instead. `with` rebinds the context (`.`) within its scope and skips the block if the variable is absent:
+"`if`" を書いてから同じ値を参照する別の方法として、代わりに [`with`][with] を使う方法があります。 以下のコードは、`with` はそのスコープ内のコンテキスト (`.`) を再バインドし、変数がない場合はブロックをスキップします。
 
 {{< code file="layouts/partials/twitter.html" >}}
 {{ with .Site.Params.twitteruser }}
@@ -561,7 +561,7 @@ An alternative way of writing the "`if`" and then referencing the same value is 
 {{ end }}
 {{< /code >}}
 
-Finally, you can pull "magic constants" out of your layouts as well. The following uses the [`first`][first] function, as well as the [`.RelPermalink`][relpermalink] page variable and the [`.Site.Pages`][sitevars] site variable.
+最後に、レイアウトから「魔法の定数」を引き出すこともできます。 以下では、[`first`][first] 関数、[`.RelPermalink`][relpermalink] ページ変数、および [`.Site.Pages`][sitevars] サイト変数を使用しています。
 
 ```go-html-template
 <nav>
@@ -574,9 +574,9 @@ Finally, you can pull "magic constants" out of your layouts as well. The followi
 </nav>
 ```
 
-## Example: Show Future Events
+## 例: 未来のイベントを表示する {#example-show-future-events}
 
-Given the following content structure and [front matter]:
+以下のようなコンテンツ構造と [フロントマター][front matter] が与えられた場合:
 
 ```text
 content/
@@ -594,7 +594,7 @@ start_date = 2021-12-05T09:00:00-08:00
 end_date = 2021-12-05T11:00:00-08:00
 {{< /code-toggle >}}
 
-This [partial template][partials] renders future events:
+以下の [部分テンプレート][partials] は、未来のイベントをレンダリングします。
 
 {{< code file="layouts/partials/future-events.html" >}}
 <h2>Future Events</h2>
@@ -610,7 +610,7 @@ This [partial template][partials] renders future events:
 </ul>
 {{< /code >}}
 
-If you restrict front matter to the TOML format, and omit quotation marks surrounding date fields, you can perform date comparisons without casting.
+フロントマターを TOML 形式に限定し、日付フィールドを囲む引用符を省略すると、キャストなしで日付比較を行うことができます。
 
 {{< code file="layouts/partials/future-events.html" >}}
 <h2>Future Events</h2>

@@ -10,7 +10,7 @@ aliases:
 categories:
 - templates
 date: "2017-02-01"
-description: Taxonomy templating includes taxonomy list pages, taxonomy terms pages, and using taxonomies in your single page templates.
+description: タクソノミー テンプレートには、タクソノミー リストページ、タクソノミー用語ページ、シングルページ テンプレートでのタクソノミーの使用が含まれます。
 draft: false
 keywords:
 - taxonomies
@@ -25,7 +25,7 @@ menu:
     weight: 50
 publishdate: "2017-02-01"
 sections_weight: 50
-title: Taxonomy Templates
+title: タクソノミー テンプレート
 toc: true
 weight: 50
 ---
@@ -33,50 +33,50 @@ weight: 50
 <!-- NOTE! Check on https://github.com/gohugoio/hugo/issues/2826 for shifting of terms' pages to .Data.Pages AND
 https://discourse.gohugo.io/t/how-to-specify-category-slug/4856/15 for original discussion.-->
 
-Hugo includes support for user-defined groupings of content called **taxonomies**. Taxonomies are classifications that demonstrate logical relationships between content. See [Taxonomies under Content Management](/content-management/taxonomies) if you are unfamiliar with how Hugo leverages this powerful feature.
+Hugo では、**タクソノミー** と呼ばれる、ユーザーが定義したコンテンツのグループ化をサポートしています。タクソノミーとは、コンテンツ間の論理的な関係を示す分類のことです。Hugo がこの強力な機能をどのように活用しているか知らない場合は、[コンテンツ管理の下の「タクソノミー」](/content-management/taxonomies) を参照してください。
 
-Hugo provides multiple ways to use taxonomies throughout your project templates:
+Hugo では、プロジェクト テンプレート全体でタクソノミを使用する方法が複数用意されています。
 
-* Order the way content associated with a taxonomy term is displayed in a [taxonomy list template](#taxonomy-list-templates)
-* Order the way the terms for a taxonomy are displayed in a [taxonomy terms template](#taxonomy-terms-templates)
-* List a single content's taxonomy terms within a [single page template][]
+* タクソノミーの用語に関連するコンテンツが [タクソノミー リスト テンプレート](#taxonomy-list-templates) で表示される方法を順序付けます
+* タクソノミーの用語が [タクソノミー用語テンプレート](#taxonomy-terms-templates) で表示される方法を順序付けます
+* [シングルページ テンプレート][single page template] 内で、シングルコンテンツのタクソノミー用語をリストします
 
-## Taxonomy List Templates
+## タクソノミー リスト テンプレート {#taxonomy-list-templates}
 
-Taxonomy list page templates are lists and therefore have all the variables and methods available to [list pages][lists].
+タクソノミーのリストページのテンプレートはリストなので、[リストページ][lists] で使用できるすべての変数とメソッドを備えています。
 
-### Taxonomy List Template Lookup Order
+### タクソノミー リスト テンプレートの検索順序 {#taxonomy-list-template-lookup-order}
 
-See [Template Lookup](/templates/lookup-order/).
+詳細は、[「テンプレートの検索順序」](/templates/lookup-order/) を参照してください。
 
-## Taxonomy Terms Templates
+## タクソノミー用語テンプレート {#taxonomy-terms-templates}
 
-### Taxonomy Terms Templates Lookup Order
+### タクソノミー用語テンプレートの検索順序 {#taxonomy-terms-templates-lookup-order}
 
-See [Template Lookup](/templates/lookup-order/).
+詳細は、[「テンプレートの検索順序」](/templates/lookup-order/) を参照してください。
 
-### Taxonomy Methods
+### タクソノミー メソッド {#taxonomy-methods}
 
-A Taxonomy is a `map[string]WeightedPages`.
+タクソノミーは、 `map[string]WeightedPages` です。
 
 .Get(term)
-: Returns the WeightedPages for a term.
+: 用語の WeightedPages を返します。
 
 .Count(term)
-: The number of pieces of content assigned to this term.
+: この用語に割り当てられているコンテンツの個数です。
 
 .Alphabetical
-: Returns an OrderedTaxonomy (slice) ordered by Term.
+: 用語順に並べられた OrderedTaxonomy (スライス) を返します。
 
 .ByCount
-: Returns an OrderedTaxonomy (slice) ordered by number of entries.
+: エントリ数順に並べられた OrderedTaxonomy (スライス) を返します。
 
 .Reverse
-: Returns an OrderedTaxonomy (slice) in reverse order. Must be used with an OrderedTaxonomy.
+: OrderedTaxonomy (スライス) を逆順で返します。 OrderedTaxonomy と共に使用する必要があります。
 
 ### OrderedTaxonomy
 
-Since Maps are unordered, an OrderedTaxonomy is a special structure that has a defined order.
+マップは順序付けされないので、OrderedTaxonomy は定義された順序を持つ特別な構造です。
 
 ```go
 []struct {
@@ -85,37 +85,37 @@ Since Maps are unordered, an OrderedTaxonomy is a special structure that has a d
 }
 ```
 
-Each element of the slice has:
+スライスの各要素には、以下のものがあります。
 
 .Term
-: The Term used.
+: 使用される用語です。
 
 .WeightedPages
-: A slice of Weighted Pages.
+: 重み付きページのスライスです。
 
 .Count
-: The number of pieces of content assigned to this term.
+: この用語に割り当てられているコンテンツの個数です。
 
 .Pages
-: All Pages assigned to this term. All [list methods][renderlists] are available to this.
+: この用語に割り当てられているすべてのページです。すべての [リストメソッド][renderlists] がこれに使用できます。
 
 ## WeightedPages
 
-WeightedPages is simply a slice of WeightedPage.
+WeightedPages は、 WeightedPage の単なるスライスです。
 
 ```go
 type WeightedPages []WeightedPage
 ```
 
 .Count(term)
-: The number of pieces of content assigned to this term.
+: この用語に割り当てられているコンテンツの個数です。
 
 .Pages
-: Returns a slice of pages, which then can be ordered using any of the [list methods][renderlists].
+: [リストメソッド][renderlists] のいずれかを使用して並べ替えることができる、ページのスライスを返します。
 
-## Displaying custom metadata in Taxonomy Terms Templates
+## タクソノミー用語テンプレートでカスタム メタデータを表示する {#displaying-custom-metadata-in-taxonomy-terms-templates}
 
-If you need to display custom metadata for each taxonomy term, you will need to create a page for that term at `/content/<TAXONOMY>/<TERM>/_index.md` and add your metadata in its front matter, [as explained in the taxonomies documentation](/content-management/taxonomies/#add-custom-metadata-to-a-taxonomy-or-term). Based on the Actors taxonomy example shown there, within your taxonomy terms template, you may access your custom fields by iterating through the variable `.Pages` as such:
+各タクソノミー用語のカスタム メタデータを表示する必要がある場合、[「タクソノミー」のドキュメントで説明されているように](/content-management/taxonomies/#add-custom-metadata-to-a-taxonomy-or-term)、その用語のページを `/content/<TAXONOMY>/<TERM>/_index.md` に作成し、そのフロントマターにメタデータを追加する必要があります。 Actors タクソノミーの例に基づき、タクソノミー用語テンプレートの中で、変数 `.Pages` を反復処理することにより、カスタムフィールドにアクセスできます。
 
 ```go-html-template
 <ul>
@@ -130,11 +130,11 @@ If you need to display custom metadata for each taxonomy term, you will need to 
 
 <!-- Begin /taxonomies/ordering/ -->
 
-## Order Taxonomies
+## タクソノミーを順序付けする {#order-taxonomies}
 
-Taxonomies can be ordered by either alphabetical key or by the number of content pieces assigned to that key.
+タクソノミーは、アルファベット順のキーまたはそのキーに割り当てられたコンテンツの数によって並べることができます。
 
-### Order Alphabetically Example
+### アルファベット順の例 {#order-alphabetically-example}
 
 ```go-html-template
 <ul>
@@ -146,23 +146,23 @@ Taxonomies can be ordered by either alphabetical key or by the number of content
 
 <!-- [See Also Taxonomy Lists](/templates/list/) -->
 
-## Order Content within Taxonomies
+## タクソノミー内のコンテンツを順序付けする {#order-content-within-taxonomies}
 
-Hugo uses both `date` and `weight` to order content within taxonomies.
+Hugo では、`date` と `weight` の両方を使用して、タクソノミー内のコンテンツを並べます。
 
-Each piece of content in Hugo can optionally be assigned a date. It can also be assigned a weight for each taxonomy it is assigned to.
+Hugo の各コンテンツには、オプションで日付を割り当てることができます。 また、割り当てられているタクソノミーごとに重みを割り当てることもできます。
 
-When iterating over content within taxonomies, the default sort is the same as that used for section and list pages: first by weight, then by date. This means that if the weights for two pieces of content are the same, then the more recent content will be displayed first.
+タクソノミー内のコンテンツを反復処理する場合、デフォルトの並べ替えは、セクションページとリストページで使用されるものと同じで、最初に重み順、次に日付順です。 これは、2 つのコンテンツの重みが同じであれば、より新しいコンテンツが最初に表示されることを意味します。
 
-The default weight for any piece of content is 0. Zero means "does not have a weight", not "has a weight of numerical value zero".
+コンテンツのデフォルトの重みは 0 です。ゼロは「重みがない」という意味であり、「数値ゼロの重みを持つ」という意味ではありません。
 
-Weights of zero are thus treated specially: if two pages have unequal weights, and one of them is zero, then the zero-weighted page will always appear after the other one, regardless of the other's weight. Zero weights should thus be used with care: for example, if both positive and negative weights are used to extend a sequence in both directions, a zero-weighted page will appear not in the middle of the list, but at the end.
+したがって、ゼロの重みは特別に扱われます。2 つのページの重みが等しくなく、そのうちの 1 つがゼロである場合、重みがゼロのページは、他のページの重みに関係なく、常に他のページの後に表示されます。 したがって、ゼロの重みは注意して使用する必要があります。たとえば、正と負の両方の重みを使用して順序を両方向に拡張すると、ゼロの重みのページがリストの中央ではなく最後に表示されます。
 
-### Assign Weight
+### 重みを割り当てる {#assign-weight}
 
-Content can be assigned weight for each taxonomy that it's assigned to.
+コンテンツは、割り当てられたタクソノミーごとに重み付けをすることができます。
 
-```txt
+```ini
 +++
 tags = [ "a", "b", "c" ]
 tags_weight = 22
@@ -173,46 +173,42 @@ categories_weight = 44
 Front Matter with weighted tags and categories
 ```
 
-The convention is `taxonomyname_weight`.
+慣例では、 `taxonomyname_weight` とします。
 
-In the above example, this piece of content has a weight of 22 which applies to the sorting when rendering the pages assigned to the "a", "b" and "c" values of the 'tag' taxonomy.
+上記の例では、このコンテンツは 22 の重みを持ち、'tag' タクソノミーの "a"、"b"、"c" の値に割り当てられたページをレンダリングする際の並べ替えに適用されます。
 
-It has also been assigned the weight of 44 when rendering the 'd' category.
+また、'd' カテゴリをレンダリングするときに 44 の重みが割り当てられています。
 
-With this the same piece of content can appear in different positions in different taxonomies.
+これにより、同じコンテンツが異なるタクソノミーの異なる位置に表示される可能性があります。
 
-Currently taxonomies only support the default ordering of content which is weight -> date.
+現在、タクソノミーは、コンテンツのデフォルトの順序付け (重み -> 日付) のみをサポートしています。
 
 <!-- Begin /taxonomies/templates/ -->
 
-There are two different templates that the use of taxonomies will require you to provide.
+タクソノミーを使用する際に必要となるテンプレートは、 2 種類あります。
 
-Both templates are covered in detail in the templates section.
+どちらのテンプレートも、テンプレート セクションで詳しく説明されています。　
 
-A [list template](/templates/list/) is any template that will be used to render multiple pieces of content in a single html page. This template will be used to generate all the automatically created taxonomy pages.
+[リストテンプレート](/templates/list/) は、1 つの html ページで複数のコンテンツをレンダリングするために使用される、任意のテンプレートです。このテンプレートは、自動的に作成されるすべてのタクソノミーページを生成するために使用されます。
 
-A [taxonomy terms template](/templates/terms/) is a template used to
-generate the list of terms for a given template.
+[タクソノミー用語テンプレート](/templates/terms/) は、指定されたテンプレートの用語のリストを生成するために使用されるテンプレートです。
 
 <!-- Begin /taxonomies/displaying/ -->
 
-There are four common ways you can display the data in your
-taxonomies in addition to the automatic taxonomy pages created by hugo
-using the [list templates](/templates/list/):
+[リストテンプレート](/templates/list/) を使用して Hugo によって作成される自動タクソノミーページに加えて、タクソノミーでデータを表示する一般的な方法が以下の 4 つあります。
 
-1. For a given piece of content, you can list the terms attached
-2. For a given piece of content, you can list other content with the same
-   term
-3. You can list all terms for a taxonomy
-4. You can list all taxonomies (with their terms)
+1. 指定されたコンテンツについて、添付された用語を一覧表示できます
+2. 指定されたコンテンツについて、同じ用語を含む他のコンテンツを一覧表示できます。
+3. タクソノミーのすべての用語を一覧表示できます
+4. すべてのタクソノミーを (用語付きで) 一覧表示できます
 
-## Display a Single Piece of Content's Taxonomies
+## コンテンツのタクソノミーを 1 つだけ表示する {#display-a-single-piece-of-contents-taxonomies}
 
-Within your content templates, you may wish to display the taxonomies that piece of content is assigned to.
+コンテンツ テンプレート内に、コンテンツの一部が割り当てられているタクソノミーを表示したい場合があります。
 
-Because we are leveraging the front matter system to define taxonomies for content, the taxonomies assigned to each content piece are located in the usual place (i.e., `.Params.<TAXONOMYPLURAL>`).
+フロントマター システムを利用してコンテンツのタクソノミーを定義しているため、各コンテンツに割り当てられたタクソノミーは通常の場所 (つまり、`.Params.<TAXONOMYPLURAL>`) に配置されます。
 
-### Example: List Tags in a Single Page Template
+### 例: シングルページ テンプレートでタグを一覧表示する {#example-list-tags-in-a-single-page-template}
 
 ```go-html-template
 <ul>
@@ -222,11 +218,11 @@ Because we are leveraging the front matter system to define taxonomies for conte
 </ul>
 ```
 
-If you want to list taxonomies inline, you will have to take care of optional plural endings in the title (if multiple taxonomies), as well as commas. Let's say we have a taxonomy "directors" such as `directors: [ "Joel Coen", "Ethan Coen" ]` in the TOML-format front matter.
+タクソノミーをインラインで一覧表示する場合、カンマだけでなく、(複数のタクソノミーの場合) オプションでタイトルに複数形の語尾を付けるなどの配慮が必要になります。たとえば、TOML 形式のフロントマターに `directors: [ "Joel Coen", "Ethan Coen" ]` のような "directors" というタクソノミーがあるとします。
 
-To list such taxonomies, use the following:
+このようなタクソノミーを一覧表示するには、以下のような方法を使用します。
 
-### Example: Comma-delimit Tags in a Single Page Template
+### 例: シングルページ テンプレートでカンマ区切りのタグを使用する {#example-commadelimit-tags-in-a-single-page-template}
 
 ```go-html-template
 {{ $taxo := "directors" }} <!-- Use the plural form here -->
@@ -241,13 +237,13 @@ To list such taxonomies, use the following:
 {{ end }}
 ```
 
-Alternatively, you may use the [delimit template function][delimit] as a shortcut if the taxonomies should just be listed with a separator. See {{< gh 2143 >}} on GitHub for discussion.
+別の方法として、タクソノミーを区切り記号でリストする必要がある場合は、[delimit テンプレート関数][delimit] をショートカットとして使用することもできます。 議論については、GitHub の {{< gh 2143 >}} を参照してください。
 
-## List Content with the Same Taxonomy Term
+## タクソノミー用語が同じコンテンツを一覧表示する {#list-content-with-the-same-taxonomy-term}
 
-If you are using a taxonomy for something like a series of posts, you can list individual pages associated with the same taxonomy. This is also a quick and dirty method for showing related content:
+一連の投稿のようなものにタクソノミーを使用している場合、同じタクソノミーに関連する個々のページを一覧表示できます。これは、関連するコンテンツを表示するための手っ取り早い方法でもあります。
 
-### Example: Showing Content in Same Series
+### 例: 同じシリーズのコンテンツを表示する {#example-showing-content-in-same-series}
 
 ```go-html-template
 <ul>
@@ -257,11 +253,11 @@ If you are using a taxonomy for something like a series of posts, you can list i
 </ul>
 ```
 
-## List All content in a Given taxonomy
+## 指定されたタクソノミーの全コンテンツを一覧表示する {#list-all-content-in-a-given-taxonomy}
 
-This would be very useful in a sidebar as “featured content”. You could even have different sections of “featured content” by assigning different terms to the content.
+これは、サイドバーで「注目のコンテンツ」として非常に便利です。コンテンツに異なる用語を割り当てることで、「注目のコンテンツ」の異なるセクションを作成することもできます。
 
-### Example: Grouping "Featured" Content
+### 例: 注目のコンテンツをグループ化する {#example-grouping-featured-content}
 
 ```go-html-template
 <section id="menu">
@@ -278,15 +274,15 @@ This would be very useful in a sidebar as “featured content”. You could even
 </section>
 ```
 
-## Render a Site's Taxonomies
+## サイトのタクソノミーをレンダリングする {#render-a-sites-taxonomies}
 
-If you wish to display the list of all keys for your site's taxonomy, you can retrieve them from the [`.Site` variable][sitevars] available on every page.
+サイトのタクソノミーのすべてのキーのリストを表示したい場合は、すべてのページで利用可能な [`.Site` 変数][sitevars] からそれらを取得できます。
 
-This may take the form of a tag cloud, a menu, or simply a list.
+これは、タグクラウド、メニュー、または単にリストといった形で表示されます。
 
-The following example displays all terms in a site's tags taxonomy:
+以下の例では、サイトのタグ タクソノミーに含まれるすべての用語を表示します。
 
-### Example: List All Site Tags {#example-list-all-site-tags}
+### 例: すべてのサイトタグを一覧表示する {#example-list-all-site-tags}
 
 ```go-html-template
 <ul>
@@ -296,9 +292,9 @@ The following example displays all terms in a site's tags taxonomy:
 </ul>
 ```
 
-### Example: List All Taxonomies, Terms, and Assigned Content
+### 例: すべてのタクソノミー、用語、および割り当てられたコンテンツを一覧表示する {#example-list-all-taxonomies-terms-and-assigned-content}
 
-This example will list all taxonomies and their terms, as well as all the content assigned to each of the terms.
+この例では、すべてのタクソノミーとその用語、および各用語に割り当てられたすべてのコンテンツが一覧表示されます。
 
 {{< code file="layouts/partials/all-taxonomies.html" download="all-taxonomies.html" download="all-taxonomies.html" >}}
 <section>
@@ -325,9 +321,9 @@ This example will list all taxonomies and their terms, as well as all the conten
 </section>
 {{< /code >}}
 
-## `.Site.GetPage` for Taxonomies
+## タクソノミーのための `.Site.GetPage` {#sitegetpage-for-taxonomies}
 
-Because taxonomies are lists, the [`.GetPage` function][getpage] can be used to get all the pages associated with a particular taxonomy term using a terse syntax. The following ranges over the full list of tags on your site and links to each of the individual taxonomy pages for each term without having to use the more fragile URL construction of the ["List All Site Tags" example above]({{< relref "#example-list-all-site-tags" >}}):
+タクソノミーはリストなので、[`.GetPage`関数][getpage] を使って、特定のタクソノミー用語に関連するすべてのページを簡潔な構文で取得できます。以下の例は、あなたのサイトのタグの全リストを網羅し、上記の [「すべてのサイトタグを一覧表示する」の例]({{< relref "#example-list-all-site-tags" >}}) のような脆弱な URL 構造を使用せずに、各用語の個々のタクソノミー ページにリンクしています。
 
 {{< code file="links-to-all-tags.html" >}}
 {{ $taxo := "tags" }}

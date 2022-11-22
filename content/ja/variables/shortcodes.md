@@ -3,49 +3,48 @@ aliases: []
 categories:
 - variables and params
 date: "2017-03-12"
-description: Shortcodes can access page variables and also have their own specific
-  built-in variables.
-draft: true
+description: ショートコードはページ変数にアクセスでき、独自の組み込み変数も持っています。
+draft: false
 keywords:
 - shortcodes
-linktitle: Shortcode Variables
+linktitle: ショートコード変数
 menu:
   docs:
     parent: variables
     weight: 20
 publishdate: "2017-03-12"
 sections_weight: 20
-title: Shortcode Variables
+title: ショートコード変数
 toc: false
 weight: 20
 ---
 
-[Shortcodes][shortcodes] have access to parameters delimited in the shortcode declaration via [`.Get`][getfunction], page- and site-level variables, and also the following shortcode-specific fields:
+[ショートコード][shortcodes] は、[`.Get`][getfunction]、ページレベルおよびサイトレベルの変数、および以下のショートコード固有のフィールドを介して、ショートコード宣言で区切られたパラメータにアクセスできます。
 
 .Name
-: Shortcode name.
+: ショートコード名です。
 
 .Ordinal
-: Zero-based ordinal in relation to its parent. If the parent is the page itself, this ordinal will represent the position of this shortcode in the page content.
+: 親との関係におけるゼロベース (ゼロから始まる) の序数です。親がページ自体である場合、この序数はページコンテンツにおけるこのショートコードの位置を表します。
 
 .Page
-: The owning ´Page`.
+: 所有する `Page` です。
 
 .Parent
-: provides access to the parent shortcode context in nested shortcodes. This can be very useful for inheritance of common shortcode parameters from the root.
+: ネストされたショートコードの親ショートコード コンテキストへのアクセスを提供します。 これは、ルートから共通のショートコード パラメータを継承するために非常に便利です。
 
 .Position
-: Contains [filename and position](https://godoc.org/github.com/gohugoio/hugo/common/text#Position) for the shortcode in a page. Note that this can be relatively expensive to calculate, and is meant for error reporting. See [Error Handling in Shortcodes](/templates/shortcode-templates/#error-handling-in-shortcodes).
+: ページ内のショートコードの [ファイル名と位置](https://godoc.org/github.com/gohugoio/hugo/common/text#Position) が含まれます。 これは計算に比較的コストがかかる可能性があり、エラー報告用であることに注意してください。 [「ショートコードでのエラー処理」](/templates/shortcode-templates/#error-handling-in-shortcodes) を参照してください。
 
 .IsNamedParams
-: boolean that returns `true` when the shortcode in question uses [named rather than positional parameters][shortcodes]
+: 問題のショートコードが [位置指定パラメータではなく名前付きパラメータ][shortcodes] を使用する場合に `true` を返すブール値です。
 
 .Inner
-: represents the content between the opening and closing shortcode tags when a [closing shortcode][markdownshortcode] is used
+: [終了ショートコード][markdownshortcode] が使用されている場合、開始ショートコード タグと終了ショートコード タグの間のコンテンツを表します。
 
 [getfunction]: /functions/get/
 [markdownshortcode]: /content-management/shortcodes/#shortcodes-with-markdown
 [shortcodes]: /templates/shortcode-templates/
 
 .InnerDeindent {{< new-in "0.100.0" >}}
-: Gets the `.Inner` with any indentation removed. This is what's used in the built-in `{{</* highlight */>}}` shortcode.
+: インデントが削除された `.Inner` を取得します。これは、組み込みの `{{</* highlight */>}}` ショートコードで使用されているものです。

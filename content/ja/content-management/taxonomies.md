@@ -110,13 +110,13 @@ disableKinds = ["taxonomy","term"]
 
 {{< new-in "0.73.0" >}} 以前はタクソノミーに使用されるページの種類 (以下のリストを参照) が混乱していましたが、タクソノミーについて話すときに使用される用語と一致するように修正されました。サイトが壊れないように注意し、`disableKinds` セクションを調整する必要がある場合は、コンソールに ERROR が表示されるはずです。
 
-{{% page-kinds %}}
+{{% page-kinds-ja %}}
 
 ### デフォルトの宛先 {#default-destinations}
 
 タクソノミーが使用され、[タクソノミー テンプレート][taxonomy templates] が提供されると、Hugo は自動的にタクソノミーのすべての用語をリストしたページと、各用語に関連するコンテンツのリストを含む個々のページの両方を作成することになります。たとえば、`categories` タクソノミーを設定で宣言し、コンテンツのフロントマターで使用すると、以下のページが作成されます。
 
-* `example.com/categories/` に、すべての [タクソノミー内の用語][terms within the taxonomy] をリストする 1 つのページを作成します。
+* `example.com/categories/` に、すべての [タクソノミー内の用語][terms within the taxonomy] を一覧表示する 1 つのページを作成します。
 * [個々のタクソノミーのリストページ][taxonomy templates] (たとえば、`/categories/development/`) は、それぞれの用語に対して、任意のコンテンツファイルの [フロントマター][front matter] の中でそのタクソノミーの一部としてマークされたすべてのページのリストを表示します。
 
 ## タクソノミーを設定する {#configure-taxonomies}

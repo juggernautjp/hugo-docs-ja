@@ -6,7 +6,7 @@ aliases:
 categories:
 - templates
 date: "2017-02-01"
-description: パーシャル (部分テンプレート) は、リストやページのテンプレートに含まれる、文脈を考慮した小さなコンポーネントで、テンプレートを DRY に保つために経済的に使用できます。
+description: 部分テンプレート (パーシャル) は、リストやページのテンプレートに含まれる、文脈を考慮した小さなコンポーネントで、テンプレートを DRY に保つために経済的に使用できます。
 draft: false
 keywords:
 - lists
@@ -29,16 +29,16 @@ weight: 90
 
 ## 部分テンプレートの検索順序 {#partial-template-lookup-order}
 
-Partial templates---like [single page templates][singletemps] and [list page templates][listtemps]---have a specific [lookup order][]. However, partials are simpler in that Hugo will only check in two places:
+[シングルページ テンプレート][singletemps] および [リストページ テンプレート][listtemps] のような **部分テンプレート**には、特定の [検索順序][lookup order] があります。 ただし、部分テンプレートは、Hugo が 2 つの場所でのみチェックするという点で単純です。
 
 1. `layouts/partials/*<PARTIALNAME>.html`
 2. `themes/<THEME>/layouts/partials/*<PARTIALNAME>.html`
 
-This allows a theme's end user to copy a partial's contents into a file of the same name for [further customization][customize].
+これにより、テーマのエンドユーザーは、[さらなるカスタマイズ][customize] のために、部分テンプレートのコンテンツを同じ名前のファイルにコピーできます。
 
-## Use Partials in your Templates
+## テンプレートに部分テンプレートを使用する {#use-partials-in-your-templates}
 
-All partials for your Hugo project are located in a single `layouts/partials` directory. For better organization, you can create multiple subdirectories within `partials` as well:
+Hugo プロジェクトのすべての部分テンプレートは、単一の `layouts/partials` ディレクトリに格納されます。 より良い構成のために、以下のように、`partials` 内に複数のサブディレクトリを作成することもできます。
 
 ```txt
 layouts/
@@ -56,38 +56,38 @@ layouts/
         └── site-nav.html
 ```
 
-All partials are called within your templates using the following pattern:
+すべての部分テンプレートは、テンプレート内で以下のパターンを使用して呼び出されます。
 
 ```go-html-template
 {{ partial "<PATH>/<PARTIAL>.html" . }}
 ```
 
 {{% note %}}
-One of the most common mistakes with new Hugo users is failing to pass a context to the partial call. In the pattern above, note how "the dot" (`.`) is required as the second argument to give the partial context. You can read more about "the dot" in the [Hugo templating introduction](/templates/introduction/).
+新しい Hugo ユーザーによくある間違いの 1 つは、部分呼び出しにコンテキストを渡さないことです。 上記のパターンでは、部分的なコンテキストを指定するために、 2 番目の引数として「ドット」 (`.`) が必要であることに注意してください。 「ドット」の詳細については、[「Hugo テンプレート入門」](/templates/introduction/) を参照してください。
 {{% /note %}}
 
 {{% note %}}
-`<PARTIAL>` including `baseof` is reserved. ([#5373](https://github.com/gohugoio/hugo/issues/5373))
+`baseof` を含む `<PARTIAL>` は予約されています。([#5373](https://github.com/gohugoio/hugo/issues/5373))
 {{% /note %}}
 
-As shown in the above example directory structure, you can nest your directories within `partials` for better source organization. You only need to call the nested partial's path relative to the `partials` directory:
+上記のディレクトリ構造の例で示したように、 ディレクトリを `partials` 内にネストさせることで、より良いソース構成を実現できます。ネストされた部分テンプレートのパスは、以下のように、 `partials` ディレクトリからの相対パスとして呼び出すだけです。
 
 ```go-html-template
 {{ partial "header/site-header.html" . }}
 {{ partial "footer/scripts.html" . }}
 ```
 
-### Variable Scoping
+### 変数のスコープ {#variable-scoping}
 
-The second argument in a partial call is the variable being passed down. The above examples are passing the `.`, which tells the template receiving the partial to apply the current [context][context].
+部分呼び出しの 2 番目の引数は、渡される変数です。 上記の例では `.` を渡していますが、これは部分テンプレートを受け取るテンプレートに現在の [コンテキスト][context] を適用するように指示します。
 
-This means the partial will *only* be able to access those variables. The partial is isolated and *has no access to the outer scope*. From within the partial, `$.Var` is equivalent to `.Var`.
+これは、部分テンプレートがこれらの変数に *唯一* アクセスできることを意味します。部分テンプレートは分離され、*外部スコープにはアクセスできません*。 部分テンプレート内では、`$.Var` は `.Var` と同等です。
 
-## Returning a value from a Partial
+## 部分テンプレートから値を返す {#returning-a-value-from-a-partial}
 
-In addition to outputting markup, partials can be used to return a value of any type. In order to return a value, a partial must include a lone `return` statement *at the end of the partial*.
+マークアップの出力に加えて、部分テンプレートを使用して任意の型の値を返すことができます。 値を返すために、部分テンプレートは *部分テンプレートの末尾に*、単一の `return` 文を含める必要があります。
 
-### Example GetFeatured
+### GetFeatured の例 {#example-getfeatured}
 
 ```go-html-template
 {{/* layouts/partials/GetFeatured.html */}}
@@ -101,7 +101,7 @@ In addition to outputting markup, partials can be used to return a value of any 
 {{ end }}
 ```
 
-### Example GetImage
+### GetImage の例 {#example-getimage}
 
 ```go-html-template
 {{/* layouts/partials/GetImage.html */}}
@@ -126,11 +126,11 @@ In addition to outputting markup, partials can be used to return a value of any 
 Only one `return` statement is allowed per partial file.
 {{% /note %}}
 
-## Inline Partials
+## インライン部分テンプレート {#inline-partials}
 
 {{< new-in "0.74.0" >}}
 
-You can also define partials inline in the template. But remember that template namespace is global, so you need to make sure that the names are unique to avoid conflicts.
+テンプレートで部分テンプレートをインラインで定義することもできます。 ただし、テンプレートの名前空間はグローバルであるため、競合を避けるために名前が一意であることを確認する必要があります。
 
 ```go-html-template
 Value: {{ partial "my-inline-partial.html" . }}
@@ -141,33 +141,33 @@ Value: {{ partial "my-inline-partial.html" . }}
 {{ end }}
 ```
 
-## Cached Partials
+## キャッシュされた部分テンプレート {#cached-partials}
 
-The [`partialCached` template function][partialcached] can offer significant performance gains for complex templates that don't need to be re-rendered on every invocation. The simplest usage is as follows:
+[`partialCached` テンプレート関数][partialcached] は、呼び出しごとに再レンダリングする必要のない複雑なテンプレートのパフォーマンスを大幅に向上させることができます。 最も単純な使用方法は、以下のとおりです。
 
 ```go-html-template
 {{ partialCached "footer.html" . }}
 ```
 
-You can also pass additional parameters to `partialCached` to create *variants* of the cached partial.
+また、 `partialCached` に追加のパラメータを渡すことで、キャッシュされたパーシャルの *バリアント* を作成することができます。
 
-For example, you can tell Hugo to only render the partial `footer.html` once per section:
+たとえば、以下のコードで、セクションごとに 1 回だけ部分的な `footer.html` をレンダリングするように Hugo に指示できます。
 
 ```go-html-template
 {{ partialCached "footer.html" . .Section }}
 ```
 
-If you need to pass additional parameters to create unique variants, you can pass as many variant parameters as you need:
+一意のバリアントを作成するために追加のパラメータを渡す必要がある場合は、以下のように、必要な数のバリアント パラメータを渡すことができます。
 
 ```go-html-template
 {{ partialCached "footer.html" . .Params.country .Params.province }}
 ```
 
-Note that the variant parameters are not made available to the underlying partial template. They are only use to create a unique cache key.
+バリアント パラメータは基本的な部分テンプレートでは利用できないことに注意してください。これらは、一意のキャッシュキーを作成するためにのみ使用されます。
 
-### Example `header.html`
+### `header.html` の例 {#example-headerhtml}
 
-The following `header.html` partial template is used for [spf13.com](https://spf13.com/):
+以下の `header.html` 部分テンプレートは、 [spf13.com](https://spf13.com/) のために使用されています。
 
 {{< code file="layouts/partials/header.html" download="header.html" >}}
 <!DOCTYPE html>
@@ -187,12 +187,12 @@ The following `header.html` partial template is used for [spf13.com](https://spf
 {{< /code >}}
 
 {{% note %}}
-The `header.html` example partial was built before the introduction of block templates to Hugo. Read more on [base templates and blocks](/templates/base/) for defining the outer chrome or shell of your master templates (i.e., your site's head, header, and footer). You can even combine blocks and partials for added flexibility.
+`header.html` のサンプルの部分テンプレートは、ブロックテンプレートが Hugo に導入される前に作成されました。 マスターテンプレートの外側のクロムまたはシェル (つまり、サイトのヘッド、ヘッダー、およびフッター) を定義するために、[ベーステンプレートとブロック](/templates/base/) の詳細を参照してください。 柔軟性を高めるために、ブロックと部分テンプレートを組み合わせることもできます。
 {{% /note %}}
 
-### Example `footer.html`
+### `footer.html` の例 {#example-footerhtml}
 
-The following `footer.html` partial template is used for [spf13.com](https://spf13.com/):
+以下の `footer.html` 部分テンプレートは、 [spf13.com](https://spf13.com/) のために使用されています。
 
 {{< code file="layouts/partials/footer.html" download="footer.html" >}}
 <footer>
@@ -206,10 +206,10 @@ The following `footer.html` partial template is used for [spf13.com](https://spf
 </footer>
 {{< /code >}}
 
-[context]: /templates/introduction/ "The most easily overlooked concept to understand about Go templating is how the dot always refers to the current context."
-[customize]: /themes/customizing/ "Hugo provides easy means to customize themes as long as users are familiar with Hugo's template lookup order."
-[listtemps]: /templates/lists/ "To effectively leverage Hugo's system, see how Hugo handles list pages, where content for sections, taxonomies, and the homepage are listed and ordered."
-[lookup order]: /templates/lookup-order/ "To keep your templating dry, read the documentation on Hugo's lookup order."
-[partialcached]: /functions/partialcached/ "Use the partial cached function to improve build times in cases where Hugo can cache partials that don't need to be rendered with every page."
-[singletemps]: /templates/single-page-templates/ "The most common form of template in Hugo is the single content template. Read the docs on how to create templates for individual pages."
+[context]: /templates/introduction/ "Go テンプレートについて理解する上で最も見落としやすいコンセプトは、ドットが常に現在のコンテキストを参照する方法です。"
+[customize]: /themes/customizing/ "Hugo は、ユーザーが Hugo のテンプレート検索順序に慣れている限り、テーマをカスタマイズする簡単な手段を提供します。"
+[listtemps]: /templates/lists/ "Hugo のシステムを効果的に活用するには、セクション、タクソノミー、ホームページのコンテンツをリスト化し、順序付けるリストページの処理方法を確認してください。"
+[lookup order]: /templates/lookup-order/ "テンプレートをドライに保つには、Hugo の検索順序に関するドキュメントを読んでください。"
+[partialcached]: /functions/partialcached/ "Hugo がすべてのページでレンダリングする必要のない部分テンプレートをキャッシュできる場合は、部分テンプレート キャッシュ関数を使用してビルド時間を改善します。"
+[singletemps]: /templates/single-page-templates/ "Hugo のテンプレートの最も一般的な形式は、シングルコンテンツ テンプレートです。 個々のページのためのテンプレートを作成する方法については、ドキュメントを参照してください。"
 [themes]: /themes/

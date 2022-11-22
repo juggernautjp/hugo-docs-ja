@@ -2,34 +2,34 @@
 categories:
 - templates
 date: "2017-03-11"
-description: Render Hooks allow custom templates to override markdown rendering functionality.
+description: レンダーフックを使用すると、カスタムテンプレートで Markdown レンダリング機能をオーバーライドできます。
 draft: false
 keywords:
 - markdown
-linkTitle: Render Hooks
+linkTitle: レンダーフック
 menu:
   docs:
     parent: templates
-    title: Markdown Render Hooks
+    title: Markdown レンダーフック
     weight: 20
-title: Markdown Render Hooks
+title: Markdown レンダーフック
 toc: true
 ---
 
-{{< new-in "0.62.0" >}} Note that this is only supported with the [Goldmark](/getting-started/configuration-markup#goldmark) renderer.
+{{< new-in "0.62.0" >}} これは、 [Goldmark](/getting-started/configuration-markup#goldmark) レンダラーでのみサポートされていることに注意してください。
 
-You can override certain parts of the default Markdown rendering to HTML by creating templates with base names `render-{kind}` in `layouts/_default/_markup`.
+`layouts/_default/_markup` にベース名 `render-{kind}` を持つテンプレートを作成することで、HTML へのデフォルトの Markdown レンダリングの特定の部分をオーバーライドできます。
 
-You can also create type/section specific hooks in `layouts/[type/section]/_markup`, e.g.: `layouts/blog/_markup`.{{< new-in "0.71.0" >}}
+また、たとえば `layouts/blog/_markup` のように、`layouts/[type/section]/_markup` にタイプ/セクション固有のフックを作成することもできます。 {{< new-in "0.71.0" >}}
 
-The hook kinds currently supported are:
+現在サポートされているフックの種類は、以下のとおりです。
 
 * `image`
 * `link`
 * `heading` {{< new-in "0.71.0" >}}
 * `codeblock`{{< new-in "0.93.0" >}}
 
-You can define [Output-Format-](/templates/output-formats) and [language-](/content-management/multilingual/)specific templates if needed. Your `layouts` folder may look like this:
+必要に応じて、[出力形式](/templates/output-formats) および [言語](/content-management/multilingual/) 固有のテンプレートを定義できます。 `layouts` フォルダーは、以下のようになります。
 
 ```goat { class="black f7" }
 layouts
@@ -42,71 +42,71 @@ layouts
         └── render-codeblock-bash.html
 ```
 
-Some use cases for the above:
+上記のいくつかの使用例には、以下があります。
 
-* Resolve link references using `.GetPage`. This would make links portable as you could translate `./my-post.md` (and similar constructs that would work on GitHub) into `/blog/2019/01/01/my-post/` etc.
-* Add `target=_blank` to external links.
-* Resolve and [process](/content-management/image-processing/) images.
-* Add [header links](https://remysharp.com/2014/08/08/automatic-permalinks-for-blog-posts).
+* リンクの参照は `.GetPage` を使って解決します。これにより、`./my-post.md` (および GitHub で動作する同様の構造) を `/blog/2019/01/01/my-post/` などに変換できるため、リンクが移植可能になります。
+* 外部リンクに `target=_blank` を追加します。
+* 画像を解決して [処理](/content-management/image-processing/) します。
+* [ヘッダーリンク](https://remysharp.com/2014/08/08/automatic-permalinks-for-blog-posts) を追加します。
 
-## Render Hooks for Headings, Links and Images
+## 見出し、リンク、画像のレンダーフック {#render-hooks-for-headings-lLinks-and-images}
 
-The `render-link` and `render-image` templates will receive this context:
+`render-link` および `render-image` テンプレートは、以下のコンテキストを受け取ります。
 
 Page
-: The [Page](/variables/page/) being rendered.
+: レンダリングされる [Page](/variables/page/) です。
 
 Destination
-: The URL.
+: URL です。
 
 Title
-: The title attribute.
+: タイトル属性です。
 
 Text
-: The rendered (HTML) link text.
+: レンダリングされた (HTML) リンクテキストです。
 
 PlainText
-: The plain variant of the above.
+: 上記のプレーンテキストのバリアントです。
 
-The `render-heading` template will receive this context:
+`render-heading` テンプレートは、以下のコンテキストを受け取ります。
 
 Page
-: The [Page](/variables/page/) being rendered.
+: レンダリングされる [Page](/variables/page/) です。
 
 Level
-: The header level (1--6)
+: ヘッダーレベル (1 から 6)
 
 Anchor
-: An auto-generated html id unique to the header within the page
+: ページ内のヘッダーに固有の自動生成された html ID です。
 
 Text
-: The rendered (HTML) text.
+: レンダリングされた (HTML) テキストです。
 
 PlainText
-: The plain variant of the above.
+: 上記のプレーンテキストのバリアントです。
 
 Attributes (map) {{< new-in "0.82.0" >}}
-: A map of attributes (e.g. `id`, `class`)
+: 属性のマップ (たとえば、 `id`、`class`) です。
 
-### Link with title Markdown example
+### タイトル付きリンク Markdown の例 {#link-with-title-markdown-example}
 
 ```md
 [Text](https://www.gohugo.io "Title")
 ```
 
-Here is a code example for how the render-link.html template could look:
+以下は、render-link.html テンプレートがどのように見えるかのコード例です。
 
 {{< code file="layouts/_default/_markup/render-link.html" >}}
 <a href="{{ .Destination | safeURL }}"{{ with .Title}} title="{{ . }}"{{ end }}{{ if strings.HasPrefix .Destination "http" }} target="_blank" rel="noopener"{{ end }}>{{ .Text | safeHTML }}</a>
 {{< /code >}}
 
-### Image Markdown example
+### 画像 Markdown の例 {#image-markdown-example}
 
 ```md
 ![Text](https://gohugo.io/images/hugo-logo-wide.svg "Title")
 ```
 
-Here is a code example for how the render-image.html template could look:
+以下は、render-image.html テンプレートがどのように見えるかのコード例です。
 
 {{< code file="layouts/_default/_markup/render-image.html" >}}
 <p class="md__image">
@@ -114,31 +114,31 @@ Here is a code example for how the render-image.html template could look:
 </p>
 {{< /code >}}
 
-### Heading link example
+### 見出しリンクの例 {#heading-link-example}
 
-Given this template file
+以下のテンプレートファイル、
 
 {{< code file="layouts/_default/_markup/render-heading.html" >}}
 <h{{ .Level }} id="{{ .Anchor | safeURL }}">{{ .Text | safeHTML }} <a href="#{{ .Anchor | safeURL }}">¶</a></h{{ .Level }}>
 {{< /code >}}
 
-And this markdown
+と、以下の Markdown ファイルに対して、
 
 ```md
 ### Section A
 ```
 
-The rendered html will be
+レンダリングされた html は以下のようになります
 
 ```html
 <h3 id="section-a">Section A <a href="#section-a">¶</a></h3>
 ```
 
-## Render Hooks for Code Blocks
+## コードブロックのためのレンダーフック {#render-hooks-for-code-blocks}
 
 {{< new-in "0.93.0" >}}
 
-You can add a hook template for either all code blocks or for a specific type/language (`bash` in the example below):
+すべてのコードブロックまたは特定のタイプ/言語 (以下の例では `bash`) のフックテンプレートを追加できます。
 
 ```goat { class="black f7" }
 layouts
@@ -148,27 +148,27 @@ layouts
         └── render-codeblock-bash.html
 ```
 
-The default behavior for these code blocks is to do [Code Highlighting](/content-management/syntax-highlighting/#highlighting-in-code-fences), but since you can pass attributes to these code blocks, they can be used for almost anything. One example would be the built-in [GoAT Diagrams](/content-management/diagrams/#goat-diagrams-ascii) or this [Mermaid Diagram Code Block Hook](/content-management/diagrams/#mermaid-diagrams) example.
+これらのコードブロックのデフォルトの動作は、[コードのハイライト表示](/content-management/syntax-highlighting/#highlighting-in-code-fences) ですが、これらのコードブロックに属性を渡すことができるので、ほとんどのことに使用できます。一例として、組み込みの [GoAT ダイアグラム](/content-management/diagrams/#goat-diagrams-ascii) や、この [Mermaid ダイアグラム コードブロック フック](/content-management/diagrams/#mermaid-diagrams) の例などがあります。
 
-The context (the ".") you receive in a code block template contains:
+コードブロック テンプレートで受け取るコンテキスト (".") には、以下のものが含まれます。
 
 Type (string)
-: The type of code block. This will be the programming language, e.g. `bash`, when doing code highlighting.
+: コードブロックの種類を指定します。これは、コードのハイライト表示を行う際のプログラミング言語、たとえば `bash` になります。
 
 Attributes (map)
-: Attributes passed in from Markdown (e.g. `{ attrName1=attrValue1 attrName2="attr Value 2" }`).
+: Markdown から渡された属性です (たとえば、`{ attrName1=attrValue1 attrName2="attr Value 2" }`)。
 
 Options (map)
-: Chroma highlighting processing options. This will only be filled if `Type` is a known [Chroma Lexer](/content-management/syntax-highlighting/#list-of-chroma-highlighting-languages).
+: Chroma ハイライト処理オプションです。これは `Type` が既知の [Chroma Lexer](/content-management/syntax-highlighting/#list-of-chroma-highlighting-languages) である場合にのみ入力されます。
 
 Inner (string)
-: The text between the code fences.
+: コード フェンス間のテキストです。
 
 Ordinal (integer)
-: Zero-based ordinal for all code blocks in the current document.
+: 現在のドキュメントに含まれるすべてのコードブロックのゼロベースの (ゼロから始まる) 序数です。
 
 Page
-: The owning `Page`.
+: 所有する `Page` です。
 
 Position
-: Useful in error logging as it prints the filename and position (linenumber, column), e.g. `{{ errorf "error in code block: %s" .Position }}`.
+: ファイル名と位置 (行番号、列) を出力するため、エラーログに役立ちます。たとえば、 `{{ errorf "error in code block: %s" .Position }}` です。

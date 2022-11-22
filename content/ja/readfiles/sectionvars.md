@@ -1,26 +1,24 @@
----
-draft: true
----
+
 .CurrentSection
-: The page's current section. The value can be the page itself if it is a section or the homepage.
+: ページの現在のセクションです。 セクションまたはホームページの場合、この値はページそのものになります。
 
 .FirstSection
-: The page's first section below root, e.g. `/docs`, `/blog` etc.
+: ルート以下のページの最初のセクションで、たとえば `/docs`、`/blog` などです。
 
 .InSection $anotherPage
-: Whether the given page is in the current section.
+: 指定されたページが現在のセクションにあるかどうか。
 
 .IsAncestor $anotherPage
-: Whether the current page is an ancestor of the given page.
+: 現在のページが指定されたページの祖先であるかどうか。
 
 .IsDescendant $anotherPage
-: Whether the current page is a descendant of the given page.
+: 現在のページが指定されたページの子孫であるかどうか。
 
 .Parent
-: A section's parent section or a page's section.
+: セクションの親セクション、またはページのセクションです。
 
 .Section
-: The [section](/content-management/sections/) this content belongs to. **Note:** For nested sections, this is the first path element in the directory, for example, `/blog/funny/mypost/ => blog`.
+: このコンテンツが属する [セクション](/content-management/sections/) です。**注意:** ネストされたセクションの場合、これはディレクトリ内の最初のパス要素、たとえば、`/blog/funny/mypost/ => blog` のようになります。
 
 .Sections
-: The [sections](/content-management/sections/) below this content.
+: このコンテンツの下にある [セクション](/content-management/sections/) です。

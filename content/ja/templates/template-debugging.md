@@ -3,8 +3,8 @@ aliases: []
 categories:
 - templates
 date: "2017-02-01"
-description: You can use Go templates' `printf` function to debug your Hugo  templates.
-  These snippets provide a quick and easy visualization of the variables available to you in different contexts.
+description: Go テンプレートの `printf` 関数を使用すると、Hugo テンプレートをデバッグできます。
+  これらのスニペットは、さまざまなコンテキストで利用可能な変数をすばやく簡単に視覚化できます。
 draft: false
 keywords:
 - debugging
@@ -15,37 +15,36 @@ menu:
     weight: 180
 publishdate: "2017-02-01"
 sections_weight: 180
-title: Template Debugging
+title: テンプレートのデバッグ
 toc: false
 weight: 180
 ---
 
-Here are some snippets you can add to your template to answer some common questions.
+ここでは、よくある質問に答えるために、テンプレートに追加できるスニペットをいくつか紹介します。
 
-These snippets use the `printf` function available in all Go templates.  This function is an alias to the Go function, [fmt.Printf](https://golang.org/pkg/fmt/).
+これらのスニペットは、すべての Go テンプレートで利用可能な `printf` 関数を使用します。 この関数は Go 関数 [fmt.Printf](https://golang.org/pkg/fmt/) のエイリアスです。 
 
-## What Variables are Available in this Context?
+## このコンテキストで使用できる変数は? {#what-variables-are-available-in-this-context}
 
-You can use the template syntax, `$.`, to get the top-level template context from anywhere in your template. This will print out all the values under, `.Site`.
+テンプレート構文 `$.` を使用すると、テンプレート内の任意の場所からトップレベルのテンプレート コンテキストを取得できます。これは、`.Site` の下にあるすべての値を出力します。
 
 ```go-html-template
 {{ printf "%#v" $.Site }}
 ```
 
-This will print out the value of `.Permalink`:
+以下のコードにより、`.Permalink` の値が出力されます。
 
 ```go-html-template
 {{ printf "%#v" .Permalink }}
 ```
 
-This will print out a list of all the variables scoped to the current context
-(`.`, aka ["the dot"][tempintro]).
+以下のコードは、現在のコンテキスト (`.`、別名 [「ドット」][tempintro]) にスコープされたすべての変数のリストを出力します。
 
 ```go-html-template
 {{ printf "%#v" . }}
 ```
 
-When developing a [homepage][], what does one of the pages you're looping through look like?
+[ホームページ][homepage] を開発する際、ループしているページの 1 つはどのようなものでしょうか。
 
 ```go-html-template
 {{ range .Pages }}
@@ -54,21 +53,21 @@ When developing a [homepage][], what does one of the pages you're looping throug
 {{ end }}
 ```
 
-## Why Am I Showing No Defined Variables?
+## 定義済みの変数が表示されないのはなぜですか? {#why-am-i-showing-no-defined-variables}
 
-Check that you are passing variables in the `partial` function:
+以下のコードにより、`partial` 関数で変数を渡していることを確認します。
 
 ```go-html-template
 {{ partial "header.html" }}
 ```
 
-This example will render the header partial, but the header partial will not have access to any contextual variables. You need to pass variables explicitly. For example, note the addition of ["the dot"][tempintro].
+この例ではヘッダー部分テンプレートをレンダリングしますが、ヘッダー部分テンプレートはコンテキスト変数にアクセスできません。 変数を明示的に渡す必要があります。 たとえば、[「ドット」][tempintro] が追加されていることに注意してください。
 
 ```go-html-template
 {{ partial "header.html" . }}
 ```
 
-The dot (`.`) is considered fundamental to understanding Hugo templating. For more information, see [Introduction to Hugo Templating][tempintro].
+ドット (`.`) は、Hugo テンプレートを理解するための基本とみなされています。 詳細については、[Hugo テンプレート入門][tempintro] を参照してください。
 
 [homepage]: /templates/homepage/
 [tempintro]: /templates/introduction/

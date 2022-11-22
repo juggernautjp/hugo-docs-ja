@@ -203,11 +203,11 @@ aliases: [/posts/my-old-url/]
 ### エイリアスの重要な動作 {#important-behaviors-of-aliases}
 
 1. Hugo はエイリアスについて何の仮定もしません。また、UglyURLs の設定に基づいて変更されることもありません。 Web ルートへの絶対パスと完全なファイル名またはディレクトリを指定する必要があります。
-2. エイリアスは、コンテンツがレンダリングされる *前に* レンダリングされるため、同じ場所のコンテンツによってオーバーライトされます。
+2. エイリアスは、コンテンツがレンダリングされる *前に* レンダリングされるため、同じ場所のコンテンツによって上書きされます。
 
-## プリティ URL {#pretty-urls}
+## プリティー URL {#pretty-urls}
 
-Hugo のデフォルトの動作は、コンテンツを「プリティ URL」でレンダリングすることです。これらの「プリティ URL」を動作させるために、非標準のサーバ側の設定は必要ありません。
+Hugo のデフォルトの動作は、コンテンツを「プリティー URL」でレンダリングすることです。これらの「プリティー URL」を動作させるために、非標準のサーバ側の設定は必要ありません。
 
 以下は、その概念を示すものです。
 
@@ -218,9 +218,9 @@ content/posts/post-1.md
 => example.com/posts/post-1/
 ```
 
-## アグリィ URL {#ugly-urls}
+## アグリー URL {#ugly-urls}
 
-「アグリィ URL」と呼ばれることが多いもの (たとえば、example.com/urls.html) を使用したい場合は、サイトの `config.toml` または `config.yaml` にそれぞれ `uglyurls = true` または `uglyurls: true` を設定してください。また、`hugo` または `hugo server` を実行する際に、環境変数 `HUGO_UGLYURLS` を `true` に設定することもできます。
+「アグリー URL」と呼ばれることが多いもの (たとえば、example.com/urls.html) を使用したい場合は、サイトの `config.toml` または `config.yaml` にそれぞれ `uglyurls = true` または `uglyurls: true` を設定してください。また、`hugo` または `hugo server` を実行する際に、環境変数 `HUGO_UGLYURLS` を `true` に設定することもできます。
 
 特定のコンテンツに正確な URL を持たせたい場合は、`url` キーの下の [フロントマター][front matter] で指定します。以下は、同じコンテンツ ディレクトリで、Hugo がデフォルトの動作で実行されたときに、最終的にどのような URL 構造になるかの例です。
 

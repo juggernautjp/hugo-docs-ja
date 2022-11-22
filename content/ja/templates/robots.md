@@ -4,8 +4,7 @@ aliases:
 categories:
 - templates
 date: "2017-02-01"
-description: Hugo can generate a customized robots.txt in the same way as any other
-  template.
+description: Hugo は、他のテンプレートと同じ方法で、カスタマイズされた robots.txt を生成できます。
 draft: false
 keywords:
 - robots
@@ -18,33 +17,33 @@ menu:
     weight: 165
 publishdate: "2017-02-01"
 sections_weight: 165
-title: Robots.txt File
+title: Robots.txt ファイル
 toc: false
 weight: 165
 ---
 
-To generate a robots.txt file from a template, change the [site configuration][config]:
+テンプレートから robots.txt ファイルを生成するには、以下のように [サイト設定][config] を変更します。
 
 {{< code-toggle file="config">}}
 enableRobotsTXT = true
 {{< /code-toggle >}}
 
-By default, Hugo generates robots.txt using an [internal template][internal].
+デフォルトでは、Hugo は [内部テンプレート][internal] を使用して robots.txt を生成します。
 
 ```text
 User-agent: *
 ```
 
-Search engines that honor the Robots Exclusion Protocol will interpret this as permission to crawl everything on the site.
+ロボット排除プロトコル (Robots Exclusion Protocol) を尊重する検索エンジンは、これをサイト内のすべてをクロールする許可を得たと解釈します。
 
-## Robots.txt Template Lookup Order
+## Robots.txt テンプレートの検索順序 {#robotstxt-template-lookup-order}
 
-You may overwrite the internal template with a custom template. Hugo selects the template using this lookup order:
+内部テンプレートは、カスタムテンプレートで上書きできます。Hugoは、このルックアップ順序を使用してテンプレートを選択します。
 
 1. `/layouts/robots.txt`
 2. `/themes/<THEME>/layouts/robots.txt`
 
-## Robots.txt Template Example
+## Robots.txt テンプレートの例 {#robotstxt-template-example}
 
 {{< code file="layouts/robots.txt" download="robots.txt" >}}
 User-agent: *
@@ -53,15 +52,15 @@ Disallow: {{ .RelPermalink }}
 {{ end }}
 {{< /code >}}
 
-This template creates a robots.txt file with a `Disallow` directive for each page on the site. Search engines that honor the Robots Exclusion Protocol will not crawl any page on the site.
+このテンプレートは、サイトの各ページに `Disallow` ディレクティブを含む robots.txt ファイルを作成します。 ロボット排除プロトコル (Robots Exclusion Protocol) を尊重する検索エンジンは、サイト上のどのページもクロールしないようにします。
 
 {{% note %}}
-To create a robots.txt file without using a template:
+テンプレートを使用せずに robots.txt ファイルを作成するには、以下を実行します。
 
-1. Set `enableRobotsTXT` to `false` in the [site configuration][config].
-2. Create a robots.txt file in the `static` directory.
+1. [サイト設定][config] で `enableRobotsTXT` を `false` に設定します。
+2. `static` ディレクトリに robots.txt ファイルを作成します。
 
-Remember that Hugo copies everything in the [static directory][static] to the root of `publishDir` (typically `public`) when you build your site.
+Hugo は、サイトをビルドするときに、[static ディレクトリ][static] にあるすべてのものを `publishDir` のルート (通常は `public`) にコピーすることを覚えておいてください。
 
 [config]: /getting-started/configuration/
 [static]: /getting-started/directory-structure/

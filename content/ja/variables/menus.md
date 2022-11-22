@@ -4,8 +4,7 @@ aliases:
 categories:
 - variables and params
 date: "2017-03-12"
-description: A menu entry in a menu-template has specific variables and functions
-  to make menu management easier.
+description: メニュー テンプレートのメニューエントリには、メニュー管理を容易にする特定の変数と関数があります。
 draft: false
 keywords:
 - menus
@@ -14,7 +13,7 @@ linktitle: メニューエントリ プロパティ
 menu:
   docs:
     parent: variables
-    title: variables defined by a menu entry
+    title: メニューエントリによって定義された変数
     weight: 50
 publishdate: "2017-03-12"
 sections_weight: 50
@@ -23,109 +22,89 @@ toc: false
 weight: 50
 ---
 
-A **menu entry** has the following properties available that can be used in a
-[menu template][menu-template].
+**メニュー エントリ** には、[メニュー テンプレート][menu-template] で使用できる以下のプロパティがあります。
 
-## Menu Entry Variables
+## メニューエントリ変数 {#menu-entry-variables}
 
 .Menu
-: _string_ <br />
-Name of the **menu** that contains this **menu entry**.
+: _string_  
+この **メニューエントリ** を含む **メニュー** の名前です。
 
 .URL
-: _string_ <br />
-URL that the menu entry points to. The `url` key, if set for the menu entry,
-sets this value. If that key is not set, and if the menu entry is set in a page
-front-matter, this value defaults to the page's `.RelPermalink`.
+: _string_  
+メニューエントリが指し示す URL です。メニューエントリに `url` キーが設定されている場合、この値が設定されます。このキーが設定されていない場合、かつ、メニューエントリがページのフロントマターに設定されている場合、この値のデフォルトはそのページの `.RelPermalink` になります。
 
 .Page
-: _\*Page_ <br />
-Reference to the [page object][page-object] associated with the menu entry. This
-will be non-nil if the menu entry is set via a page's front-matter and not via
-the site config.
+: _\*Page_  
+メニューエントリに関連付けられた [ページオブジェクト][page-object] への参照です。メニューエントリがページのフロントマターを通して設定され、かつ、サイト設定を通して設定されない場合、これは非 NIL になります。
 
 .PageRef {{< new-in "0.86.0" >}}
-: _string_ <br /> Can be set if defined in site config and the menu entry refers to a Page. [site.GetPage](/functions/getpage/) will be used to do the page lookup. If this is set, you don't need to set the `URL`.
+: _string_   
+サイト設定で定義されていて、メニューエントリがページを参照している場合に設定できます。 [site.GetPage](/functions/getpage/) は、ページルックアップを行うために使用されます。 これが設定されている場合、`URL` を設定する必要はありません。
 
 .Name
-: _string_ <br />
-Name of the menu entry. The `name` key, if set for the menu entry, sets
-this value. If that key is not set, and if the menu entry is set in a page
-front-matter, this value defaults to the page's `.LinkTitle`.
+: _string_  
+メニューエントリの名前です。メニューエントリに `name` キーが設定されている場合、この値が設定されます。このキーが設定されていない場合、そしてメニューエントリがページのフロントマターで設定されている場合、この値はデフォルトでページの `.LinkTitle` に設定されます。
 
 .Identifier
-: _string_ <br />
-Value of the `identifier` key if set for the menu entry. This value must be
-unique for each menu entry. **It is necessary to set a unique identifier
-manually if two or more menu entries have the same `.Name`.**
+: _string_  
+メニューエントリに設定されている場合は、`identifier` キーの値です。この値は、メニューエントリごとに一意である必要があります。**同じ `.Name` を持つメニューエントリが複数ある場合は、一意の識別子を手動で設定する必要があります**。
 
 .Pre
-: _template.HTML_ <br />
-Value of the `pre` key if set for the menu entry. This value typically contains
-a string representing HTML.
+: _template.HTML_  
+メニューエントリに設定されている場合の `pre` キーの値です。 通常、この値には HTML を表す文字列が含まれます。
 
 .Post
-: _template.HTML_ <br />
-Value of the `post` key if set for the menu entry. This value typically contains
-a string representing HTML.
+: _template.HTML_  
+メニュー エントリに設定されている場合の `post` キーの値です。 通常、この値には HTML を表す文字列が含まれます。
 
 .Weight
-: _int_ <br />
-Value of the `weight` key if set for the menu entry. By default the entries in
-a menu are sorted ascending by their `weight`. If that key is not set, and if
-the menu entry is set in a page front-matter, this value defaults to the page's
-`.Weight`.
+: _int_  
+メニュー ントリに設定されている場合の `weight` キーの値です。 デフォルトでは、メニューのエントリは `weight` で昇順にソートされます。 このキーが設定されておらず、メニューエントリがページのフロントマターに設定されている場合、この値はデフォルトでページの `.Weight` になります。
 
 .Parent
-: _string_ <br />
-Name (or Identifier if present) of this menu entry's parent **menu entry**. The
-`parent` key, if set for the menu entry, sets this value. If this key is set,
-this menu entry nests under that parent entry, else it nests directly under the
-`.Menu`.
+: _string_  
+このメニューエントリの親の **メニューエントリ** の名前 (存在する場合は識別子) です。メニューエントリに `parent` キーが設定されている場合、この値が設定されます。このキーが設定されている場合、このメニューエントリはその親エントリの下にネストされ、それ以外の場合は、`.Menu` の下に直接ネストされます。
 
 .Children
-: _Menu_ <br />
-This value is auto-populated by Hugo. It is a collection of children menu
-entries, if any, under the current menu entry.
+: _Menu_  
+この値は、Hugo によって自動入力されます。これは、もしあれば、現在のメニューエントリの下にある子エントリのコレクションです。
 
-## Menu Entry Functions
+## メニューエントリ関数 {#menu-entry-functions}
 
-Menus also have the following functions available:
+メニューには、以下の関数も用意されています。
 
 .HasChildren
-: _boolean_ <br />
-Returns `true` if `.Children` is non-nil.
+: _boolean_  
+`.Children` が非 nil の場合、`true` を返します。
 
 .KeyName
-: _string_ <br />
-Returns the `.Identifier` if present, else returns the `.Name`.
+: _string_  
+存在する場合は `.Identifier` を返し、存在しない場合は `.Name` を返します。
 
 .IsEqual
-: _boolean_ <br />
-Returns `true` if the two compared menu entries represent the same menu entry.
+: _boolean_  
+比較された 2 つのメニューエントリが同じメニューエントリを表している場合は、`true` を返します。
 
 .IsSameResource
-: _boolean_ <br />
-Returns `true` if the two compared menu entries have the same `.URL`.
+: _boolean_  
+比較された 2 つのメニューエントリが同じ `.URL` を持つ場合、`true` を返します。
 
 .Title
-: _string_ <br />
-Link title, meant to be used in the `title` attribute of a menu entry's
-`<a>`-tags.  Returns the menu entry's `title` key if set. Else, if the menu
-entry was created through a page's front-matter, it returns the page's
-`.LinkTitle`. Else, it just returns an empty string.
+: _string_  
+メニューエントリの `<a>` タグの `title` 属性で使用するためのリンクタイトルです。 メニューエントリの `title` キーが設定されていれば、それを返します。そうでなく、メニューエントリがページのフロントマターから作成された場合は、そのページの `.LinkTitle` を返します。それ以外の場合は、単に空の文字列を返します。
 
-## Other Menu-related Functions
+## その他のメニュー関連関数 {#other-menurelated-functions}
 
-Additionally, here are some relevant methods available to menus on a page:
+Aさらに、ページのメニューで使用できるいくつかの関連するメソッドを以下に示します。
 
 .IsMenuCurrent
-: _(menu string, menuEntry *MenuEntry ) boolean_ <br />
-See [`.IsMenuCurrent` method](/functions/ismenucurrent/).
+: _(menu string, menuEntry *MenuEntry ) boolean_  
+[`.IsMenuCurrent` メソッド](/functions/ismenucurrent/) を参照してください。
 
 .HasMenuCurrent
-: _(menu string, menuEntry *MenuEntry) boolean_ <br />
-See [`.HasMenuCurrent` method](/functions/hasmenucurrent/).
+: _(menu string, menuEntry *MenuEntry) boolean_  
+[`.HasMenuCurrent` メソッド](/functions/hasmenucurrent/) を参照してください。
 
 [menu-template]: /templates/menu-templates/
 [page-object]: /variables/page/

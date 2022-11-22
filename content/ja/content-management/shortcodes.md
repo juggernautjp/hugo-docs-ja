@@ -25,7 +25,7 @@ weight: 35
 
 ## ショートコードとは {#what-a-shortcode-is}
 
-Hugo は、そのシンプルなコンテンツ形式のために Markdown を気に入っていますが、Markdown が不十分な場合もあります。 多くの場合、コンテンツの作成者は生の HTML (たとえば、動画の `<iframe>` タグ) を Markdown コンテンツに追加することを余儀なくされます。 これは、Markdown の構文の美しいシンプルさと矛盾していると思います。
+Hugo は、そのシンプルなコンテンツフォーマットのために Markdown を気に入っていますが、Markdown が不十分な場合もあります。 多くの場合、コンテンツの作成者は生の HTML (たとえば、動画の `<iframe>` タグ) を Markdown コンテンツに追加することを余儀なくされます。 これは、Markdown の構文の美しいシンプルさと矛盾していると思います。
 
 Hugo は、これらの制限を回避するために **ショートコード** を作成しました。
 
@@ -90,7 +90,7 @@ Hugo `0.55` では、`%` 区切り文字の動作を変更しました。 最も
 
 ## Hugo の組み込みショートコードを使用する {#use-hugos-built-in-shortcodes}
 
-Hugo には非常に一般的な使用方法を示す、定義済みのショートコード一式が同梱されています。これらのショートコードは作者の利便性と Markdown コンテンツをきれいに保つために提供されています。
+Hugo には非常に一般的な使用方法を示す、定義済みのショートコード一式が同梱されています。これらのショートコードは作成者の利便性と Markdown コンテンツをきれいに保つために提供されています。
 
 ### `figure`
 
@@ -301,7 +301,7 @@ https://www.instagram.com/p/BWNjjyYFxVx/
 
 #### `ref` と `relref` 入力の例 {#example-ref-and-relref-output}
 
-標準の Hugo のプリティ URL がオンになっていると仮定します。
+標準の Hugo のプリティー URL がオンになっていると仮定します。
 
 ```html
 <a href="https://example.com/blog/neat">Neat</a>

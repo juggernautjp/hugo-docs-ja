@@ -4,134 +4,133 @@ aliases:
 categories:
 - variables and params
 date: "2017-02-01"
-description: Many, but not all, site-wide variables are defined in your site's configuration.
-  However, Hugo provides a number of built-in variables for convenient access to global
-  values in your templates.
+description: すべてではありませんが、多くのサイト全体の変数がサイト設定で定義されます。
+  ただし、Hugo には、テンプレート内のグローバル値に簡単にアクセスできるように、多数の組み込み変数が用意されています。
 draft: false
 keywords:
 - global
 - site
 lastmod: "2017-02-01"
-linktitle: Site Variables
+linktitle: サイト変数
 menu:
   docs:
     parent: variables
     weight: 10
 publishdate: "2017-02-01"
 sections_weight: 10
-title: Site Variables
+title: サイト変数
 toc: true
 weight: 10
 ---
 
-The following is a list of site-level (aka "global") variables. Many of these variables are defined in your site's [configuration file][config], whereas others are built into Hugo's core for convenient usage in your templates.
+以下はサイトレベル (別名 「グローバル」) 変数のリストです。 これらの変数の多くはサイトの [設定ファイル][config] で定義されますが、他の変数は Hugo のコアに組み込まれており、テンプレートで便利に使用できます。
 
-## Get the Site object from a partial
+## 部分テンプレートからサイトオブジェクトを取得する {#get-the-site-object-from-a-partial}
 
-All the methods below, e.g. `.Site.RegularPages` can also be reached via the global [`site`](/functions/site/) function, e.g. `site.RegularPages`, which can be handy in partials where the `Page` object isn't easily available. {{< new-in "0.53" >}}.
+以下のすべてのメソッド、たとえば `.Site.RegularPages` は、グローバルな [`site`](/functions/site/) 関数からもアクセスできます。たとえば `site.RegularPages` は、 `Page` オブジェクトを簡単に利用できない部分テンプレートで便利です。 {{< new-in "0.53" >}}.
 
-## Site Variables List
+## サイト変数リスト {#site-variables-list}
 
 .Site.AllPages
-: array of all pages, regardless of their translation.
+: 翻訳に関係ない、すべてのページの配列です。
 
 .Site.Author
-: a map of the authors as defined in the site configuration.
+: サイト設定で定義された、作成者のマップです。
 
 .Site.BaseURL
-: the base URL for the site as defined in the site configuration.
+: サイト設定で定義された、サイトのベース URL です。
 
 .Site.BuildDrafts
-: a boolean (default: `false`) to indicate whether to build drafts as defined in the site configuration.
+: サイト設定で定義された、ドラフトをビルドするかどうかを示すブール値 (デフォルトは `false`) です。
 
 .Site.Copyright
-: a string representing the copyright of your website as defined in the site configuration.
+: サイト設定で定義された、 Web サイトの著作権を表す文字列です。
 
 .Site.Data
-: custom data, see [Data Templates](/templates/data-templates/).
+: カスタムデータについては、[「データテンプレート」](/templates/data-templates/) を参照してください。
 
 .Site.DisqusShortname
-: a string representing the shortname of the Disqus shortcode as defined in the site configuration.
+: サイト設定で定義された、 Disqus ショートコードのショートネームを表す文字列です。
 
 .Site.GoogleAnalytics
-: a string representing your tracking code for Google Analytics as defined in the site configuration.
+: サイト設定で定義定義された、 Google アナリティクスのトラッキング コードを表す文字列です。
 
 .Site.Home
-: reference to the homepage's [page object](https://gohugo.io/variables/page/)
+: ホームページの [ページオブジェクト](/variables/page/) への参照です。
 
 .Site.IsMultiLingual
-: whether there are more than one language in this site. See [Multilingual](/content-management/multilingual/) for more information.
+: このサイトに複数の言語があるかどうか。 詳細については、[「多言語対応」](/content-management/multilingual/) を参照してください。
 
 .Site.IsServer
-: a boolean to indicate if the site is being served with Hugo's built-in server. See [`hugo server`](/commands/hugo_server/) for more information.
+: Hugo の組み込みサーバーでサイトを提供するかどうかを示すブール値です。 詳細については、[`hugo server`](/commands/hugo_server/) を参照してください。
 
 .Site.Language.Lang
-: the language code of the current locale (e.g., `en`).
+: 現在のロケールの言語コード (たとえば、 `en`) を指定します。
 
 .Site.Language.LanguageName
-: the full language name (e.g. `English`).
+: 完全な言語名 (たとえば、 `English`) を指定します。
 
 .Site.Language.Weight
-: the weight that defines the order in the `.Site.Languages` list.
+: `.Site.Languages` リストでの順序を定義する重みです。
 
 .Site.Language
-: indicates the language currently being used to render the website. This object's attributes are set in site configurations' language definition.
+: Web サイトのレンダリングに現在使用されている言語を示します。 このオブジェクトの属性は、サイト設定の言語定義で設定されます。
 
 .Site.LanguageCode
-: a string representing the language tag as defined in the site configuration.
+: サイト設定で定義された言語タグを表す文字列です。
 
 .Site.LanguagePrefix
-: this can be used to prefix URLs to point to the correct language. It will even work when only one defined language. See also the functions [absLangURL](/functions/abslangurl/) and [relLangURL](/functions/rellangurl).
+: これは、正しい言語を指すように URL にプレフィックスを付けるために使用できます。 定義された言語が 1 つだけの場合でも機能します。 関数 [absLangURL](/functions/abslangurl/) および [relLangURL](/functions/rellangurl) も参照してください。
 
 .Site.Languages
-: an ordered list (ordered by defined weight) of languages.
+: (定義された重みで並べられた) 言語の順序付きリストです。
 
 .Site.LastChange
-: a string representing the date/time of the most recent change to your site. This string is based on the [`date` variable in the front matter](/content-management/front-matter) of your content pages.
+: サイトが最後に変更された日時を表す文字列です。 この文字列は、コンテンツページの [フロントマターの `date` 変数](/content-management/front-matter) に基づいています。
 
 .Site.Menus
-: all the menus in the site.
+: サイト内のすべてのメニューです。
 
 .Site.Pages
-: array of all content ordered by Date with the newest first. This array contains only the pages in the current language. See [`.Site.Pages`]({{< relref "site.md#site-pages" >}}).
+: 日付順に並べられたすべてのコンテンツの配列で、最新のものを先頭にします。 この配列には、現在の言語のページのみが含まれます。 [`.Site.Pages`]({{< relref "site.md#site-pages" >}}) を参照してください。
 
 .Site.RegularPages
-: a shortcut to the *regular* page collection. `.Site.RegularPages` is equivalent to `where .Site.Pages "Kind" "page"`. See [`.Site.Pages`]({{< relref "site.md#site-pages" >}}).
+: *通常* ページのコレクションへのショートカットです。 `.Site.RegularPages` は、 `where .Site.Pages "Kind" "page"` と同等です。 [`.Site.Pages`]({{< relref "site.md#site-pages" >}}) を参照してください。
 
 .Site.Sections
-: top-level directories of the site.
+: サイトのトップレベルディレクトリです。
 
 .Site.Taxonomies
-: the [taxonomies](/taxonomies/usage/) for the entire site. Also see section [Use `.Site.Taxonomies` Outside of Taxonomy Templates](/variables/taxonomy/#use-sitetaxonomies-outside-of-taxonomy-templates).
+: サイト全体の [タクソノミー](/taxonomies/usage/) です。また、[「タクソノミー テンプレートの外で `.Site.Taxonomies` を使用する」](/variables/taxonomy/#use-sitetaxonomies-outside-of-taxonomy-templates) のセクションも参照して下さい。
 
 .Site.Title
-: a string representing the title of the site.
+: サイトのタイトルを表す文字列です。
 
-## The `.Site.Params` Variable
+## `.Site.Params` 変数 {#the-siteparams-variable}
 
-`.Site.Params` is a container holding the values from the `params` section of your site configuration.
+`.Site.Params` は、サイト設定の `params` セクションからの値を保持するコンテナです。
 
-### Example: `.Site.Params`
+### 例: `.Site.Params` {#example-siteparams}
 
-The following `config.[yaml|toml|json]` defines a site-wide param for `description`:
+以下の `config.[yaml|toml|json]` は、`description` のサイト全体のパラメータを定義します。
 
 {{< code-toggle file="config" >}}
 baseURL = "https://yoursite.example.com/"
 
 [params]
-  description = "Tesla's Awesome Hugo Site"
+  description = "テスラの素晴らしい Hugo サイト"
   author = "Nikola Tesla"
 {{</ code-toggle >}}
 
-You can use `.Site.Params` in a [partial template](/templates/partials/) to call the default site description:
+[部分テンプレート](/templates/partials/) の中で `.Site.Params` を使用すると、デフォルトのサイトの説明文を呼び出すことができます。
 
 {{< code file="layouts/partials/head.html" >}}
 <meta name="description" content="{{if .IsHome}}{{ $.Site.Params.description }}{{else}}{{.Description}}{{end}}" />
 {{< /code >}}
 
-## The `.Site.Pages` Variable {#site-pages}
+## `.Site.Pages` 変数 {#site-pages}
 
-### `.Site.Pages` compared to `.Pages`
+### `.Site.Pages` と `.Pages` の比較 {#sitepages-compared-to-pages}
 
 {{< getcontent path="readfiles/pages-vs-site-pages.md" >}}
 

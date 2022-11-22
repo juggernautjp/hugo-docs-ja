@@ -4,32 +4,29 @@ aliases:
 categories:
 - templates
 date: "2017-02-01"
-description: Menus are a powerful but simple feature for content management but can
-  be easily manipulated in your templates to meet your design needs.
+description: メニューはコンテンツ管理のための強力でシンプルな機能ですが、デザインのニーズを満たすためにテンプレートで簡単に操作できます。
 draft: false
 keywords:
 - lists
 - sections
 - menus
 lastmod: "2017-02-01"
-linktitle: Menu Templates
+linktitle: メニューテンプレート
 menu:
   docs:
     parent: templates
-    title: how to use menus in templates
+    title: テンプレートでメニューを使用する方法
     weight: 130
 publishdate: "2017-02-01"
 sections_weight: 130
-title: Menu Templates
+title: メニューテンプレート
 toc: false
 weight: 130
 ---
 
-Hugo makes no assumptions about how your rendered HTML will be
-structured. Instead, it provides all the functions you will need to
-build your menu however you want.
+Hugo は、レンダリングされた HTML がどのように構造化されるかについて、何も仮定しません。 代わりに、必要に応じてメニューを作成するために必要なすべての機能を提供します。
 
-The following is an example:
+以下はその例です。
 
 {{< code file="layouts/partials/sidebar.html" download="sidebar.html" >}}
 <!-- sidebar start -->
@@ -71,22 +68,22 @@ The following is an example:
 {{< /code >}}
 
 {{% note "`absLangURL` and `relLangURL`" %}}
-Use the [`absLangURL`](/functions/abslangurl) or [`relLangURL`](/functions/rellangurl) functions if your theme makes use of the [multilingual feature](/content-management/multilingual/). In contrast to `absURL` and `relURL`, these two functions add the correct language prefix to the url.
+テーマが [多言語機能](/content-management/multilingual/) を利用している場合は、 [`absLangURL`](/functions/abslangurl) または [`relLangURL`](/functions/rellangurl) 関数を使用します。 `absURL` と `relURL` とは対照的に、この 2 つの関数は正しい言語プレフィックスを URL に追加します。
 {{% /note %}}
 
 ## 怠惰なブロガーのためのセクションメニュー {#section-menu-for-lazy-bloggers}
 
-To enable this menu, configure `sectionPagesMenu` in your site `config`:
+このメニューを有効にするには、以下のように、サイトの `config` で `sectionPagesMenu` を設定します。
 
 ```yml
 sectionPagesMenu = "main"
 ```
 
-The menu name can be anything, but take a note of what it is.
+メニュー名は何でもかまいませんが、それが何であるかをメモしておいてください。
 
-This will create a menu with all the sections as menu items and all the sections' pages as "shadow-members". Ensure that all first level directories that you would like to show up on this menu are [Branch Bundles](https://gohugo.io/content-management/sections/). Leaf Bundles do not form sections.
+これにより、すべてのセクションがメニュー項目であり、すべてのセクションのページを「シャドウメンバー」とするメニューが作成されます。このメニューに表示させたい第一階層のディレクトリは、すべて [ブランチバンドル](https://gohugo.io/content-management/sections/) であることを確認してください。リーフバンドルはセクションを形成しません。
 
-The _shadow_ implies that the pages isn't represented by a menu-item themselves, but this enables you to create a top-level menu like this:
+_シャドウ_ は、ページがメニュー項目自体によって表されていないことを意味しますが、これにより、以下のようなトップレベル メニューを作成できます。
 
 ```go-html-template
 <nav class="sidebar-nav">
@@ -97,11 +94,11 @@ The _shadow_ implies that the pages isn't represented by a menu-item themselves,
 </nav>
 ```
 
-In the above, the menu item is marked as active if on the current section's list page or on a page in that section.
+上記では、現在のセクションのリストページまたはそのセクション内のページにある場合、メニュー項目はアクティブとしてマークされます。
 
-## Site Config menus
+## サイト設定メニュー {#site-config-menus}
 
-The above is all that's needed. But if you want custom menu items, e.g. changing weight, name, or link title attribute, you can define them manually in the site config file:
+必要なものは以上です。 ただし、カスタムメニュー項目が必要な場合、たとえば、重み、名前、またはリンクタイトル属性を変更したい場合は、サイト設定ファイルでこれらを手動で定義できます。
 
 {{< code-toggle file="config" >}}
 [[menu.main]]
@@ -116,19 +113,19 @@ The above is all that's needed. But if you want custom menu items, e.g. changing
 The `identifier` *must* match the section name.
 {{% /note %}}
 
-## Menu Entries from the Page's front matter
+## ページのフロントマターからのメニューエントリ {#menu-entries-from-the-pages-front-matter}
 
-It's also possible to create menu entries from the page (i.e. the `.md`-file).
+また、ページ (すなわち `.md` ファイル) からメニューエントリを作成することも可能です。
 
-Here is a `yaml` example:
+以下は `yaml` の例です。
 
 ```yml
 ---
-title: Menu Templates
-linktitle: Menu Templates
+title: メニューテンプレート
+linktitle: メニューテンプレート
 menu:
   docs:
-    title: "how to use menus in templates"
+    title: "テンプレートでメニューを使用する方法"
     parent: "templates"
     weight: 130
 ---
@@ -136,22 +133,20 @@ menu:
 ```
 
 {{% note %}}
-You can define more than one menu. It also doesn't have to be a complex value,
-`menu` can also be a string, an array of strings, or an array of complex values
-like in the example above.
+メニューは複数定義することができます。また、複雑な値である必要はなく、`menu` は文字列、文字列の配列、または上記の例のような複雑な値の配列にすることもできます。
 {{% /note %}}
 
-### Using .Page in Menus
+### メニューで .Page を使用する {#using-page-in-menus}
 
-If you use the front matter method of defining menu entries, you'll get access to the `.Page` variable.
-This allows to use every variable that's reachable from the [page variable](/variables/page/).
+メニューエントリを定義するフロントマター メソッドを使用すると、`.Page` 変数にアクセスできます。
+これにより、[ページ変数](/variables/page/) から到達可能なすべての変数を使用できます。
 
-This variable is only set when the menu entry is defined in the page's front matter.
-Menu entries from the site config don't know anything about `.Page`.
+この変数は、ページのフロントマターでメニューエントリが定義されている場合にのみ設定されます。
+サイト設定のメニューエントリは、`.Page` について何も知りません。
 
-That's why you have to use the go template's `with` keyword or something similar in your templating language.
+そのため、テンプレート言語で go テンプレートの `with` キーワードまたは類似のものを使用する必要があります。
 
-Here's an example:
+以下はその一例です。
 
 ```go-html-template
 <nav class="sidebar-nav">
@@ -168,11 +163,11 @@ Here's an example:
 </nav>
 ```
 
-## Using .Params in Menus
+## メニューで .Params を使用する {#using-params-in-menus}
 
-User-defined content on menu items are accessible via `.Params`.
+メニュー項目のユーザー定義コンテンツは、`.Params` を介してアクセスできます。
 
-Here's an example:
+以下はその一例です。
 
 ```go-html-template
 <nav class="sidebar-nav">
@@ -185,5 +180,5 @@ Here's an example:
 ```
 
 {{% note %}}
-With Menu-level .Params they can easily exist on one menu item but not another. It's recommended to access them gracefully using the [with function](/functions/with).
+メニューレベルの .Params を使用すると、あるメニューには存在するが、別のメニューには存在しないということが簡単に起こり得ます。 [with 関数](/functions/with) を使用して適切にアクセスすることをお勧めします。
 {{% /note %}}

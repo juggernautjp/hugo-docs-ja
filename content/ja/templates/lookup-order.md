@@ -65,22 +65,22 @@ Section (セクション)
 
 Hugo では、レイアウトはプロジェクトまたはテーマのレイアウトフォルダーのいずれかに置くことができ、最も具体的なレイアウトが選択されます。 Hugo は、以下の検索順序を織り交ぜて、プロジェクトまたはテーマの中から最も具体的なものを探します。
 
-## 例: 通常ページのレイアウト検索 {#examples-layout-lookup-for-regular-pages}
+## 例: 通常ページのレイアウトの検索 {#examples-layout-lookup-for-regular-pages}
 
 {{< datatable-filtered-ja "output" "layouts" "Kind == page" "Example" "OutputFormat" "Suffix" "Template Lookup Order" >}}
 
-## 例: ホームページのレイアウト検索 {#examples-layout-lookup-for-home-page}
+## 例: ホームページのレイアウトの検索 {#examples-layout-lookup-for-home-page}
 
 {{< datatable-filtered-ja "output" "layouts" "Kind == home" "Example" "OutputFormat" "Suffix" "Template Lookup Order" >}}
 
-## 例: セクションページのレイアウト検索 {#examples-layout-lookup-for-section-pages}
+## 例: セクションページのレイアウトの検索 {#examples-layout-lookup-for-section-pages}
 
 {{< datatable-filtered-ja "output" "layouts" "Kind == section" "Example" "OutputFormat" "Suffix" "Template Lookup Order" >}}
 
-## 例: タクソノミー ページのレイアウト検索 {#examples-layout-lookup-for-taxonomy-pages}
+## 例: タクソノミー ページのレイアウトの検索 {#examples-layout-lookup-for-taxonomy-pages}
 
 {{< datatable-filtered-ja "output" "layouts" "Kind == taxonomy" "Example" "OutputFormat" "Suffix" "Template Lookup Order" >}}
 
-## 例: 用語ページのレイアウト検索 {#examples-layout-lookup-for-term-pages}
+## 例: 用語ページのレイアウトの検索 {#examples-layout-lookup-for-term-pages}
 
 {{< datatable-filtered-ja "output" "layouts" "Kind == term" "Example" "OutputFormat" "Suffix" "Template Lookup Order" >}}

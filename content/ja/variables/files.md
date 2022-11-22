@@ -4,9 +4,8 @@ aliases:
 categories:
 - variables and params
 date: "2017-02-01"
-description: You can access filesystem-related data for a content file in the `.File`
-  variable.
-draft: true
+description: "`.File` 変数で、コンテンツファイルのファイルシステム関連データにアクセスできます。"
+draft: false
 keywords:
 - files
 lastmod: "2017-02-01"
@@ -17,42 +16,42 @@ menu:
     weight: 40
 publishdate: "2017-02-01"
 sections_weight: 40
-title: File Variables
+title: ファイル変数
 toc: false
 weight: 40
 ---
 
 {{% note "Rendering Local Files" %}}
-For information on creating shortcodes and templates that tap into Hugo's file-related feature set, see [Local File Templates](/templates/files/).
+Hugo のファイル関連機能セットを利用するショートコードとテンプレートの作成については、[ローカルファイル テンプレート](/templates/files/) を参照してください。 
 {{% /note %}}
 
-The `.File` object contains the following fields:
+`.File` オブジェクトは、以下のフィールドを含みます。
 
 .File.Path
-: the original relative path of the page, relative to the content dir (e.g., `posts/foo.en.md`)
+: ページのオリジナルの相対パスで、コンテンツディレクトリからの相対パスです (たとえば、`posts/foo.en.md`)。
 
 .File.LogicalName
-: the name of the content file that represents a page (e.g., `foo.en.md`)
+: ページを表すコンテンツファイルの名前です (たとえば、`foo.en.md`)。
 
 .File.TranslationBaseName
-: the filename without extension or optional language identifier (e.g., `foo`)
+: 拡張子またはオプションの言語識別子を除いたファイル名です (たとえば、 `foo`)。
 
 .File.ContentBaseName
-: is either a TranslationBaseName or name of containing folder if file is a leaf bundle.
+: TranslationBaseName、または、ファイルがリーフバンドルの場合は、格納フォルダーの名前です。
 
 .File.BaseFileName
-: the filename without extension (e.g., `foo.en`)
+: 拡張子を除いたファイル名です (たとえば、 `foo.en`)。
 
 .File.Ext
-: the file extension of the content file (e.g., `md`).
+: コンテンツ ファイルのファイル拡張子です (たとえば、 `md`)。
 
 .File.Lang
-: the language associated with the given file if Hugo's [Multilingual features][multilingual] are enabled (e.g., `en`)
+: Hugo の [多言語機能][multilingual] が有効な場合、指定されたファイルに関連付けられている言語 (たとえば、 `en`) を指定します。
 
 .File.Dir
-: given the path `content/posts/dir1/dir2/`, the relative directory path of the content file will be returned (e.g., `posts/dir1/dir2/`). Note that the path separator (`\` or `/`) could be dependent on the operating system.
+: パス `content/posts/dir1/dir2/` を指定すると、コンテンツファイルの相対ディレクトリパスが返されます (たとえば、 `posts/dir1/dir2/`)。 パス区切り文字 (`\` または `/`) は、OS に依存する可能性があることに注意してください。
 
 .File.UniqueID
-: the MD5-checksum of the content file's path.
+: コンテンツファイルのパスの MD5 チェックサムです。
 
 [Multilingual]: /content-management/multilingual/

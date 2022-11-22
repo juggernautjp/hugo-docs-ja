@@ -4,7 +4,7 @@ aliases:
 categories:
 - templates
 date: "2017-02-01"
-description: Templates used for section pages are **lists** and therefore have all the variables and methods available to list pages.
+description: セクションページに使用されるテンプレートは **リスト** であるため、リストページで使用できるすべての変数とメソッドを備えています。
 draft: false
 keywords:
 - lists
@@ -23,35 +23,34 @@ toc: true
 weight: 40
 ---
 
-## Add Content and Front Matter to Section Templates
+## セクション テンプレートにコンテンツとフロントマターを追加する {#add-content-and-front-matter-to-section-templates}
 
-To effectively leverage section page templates, you should first understand Hugo's [content organization](/content-management/organization/) and, specifically, the purpose of `_index.md` for adding content and front matter to section and other list pages.
+セクションページ テンプレートを効果的に活用するには、まず Hugo の [コンテンツ構成](/content-management/organization/) を理解し、特に、セクションやその他のリストページにコンテンツやフロントマターを追加するための `_index.md` の目的を理解する必要があります。
 
 ## セクション テンプレートの検索順序 {#section-template-lookup-order}
 
 [「テンプレートの検索順序」](/templates/lookup-order/) を参照してください。
 
-## Page Kinds
+## ページの種類 {#page-kinds}
 
-Every `Page` in Hugo has a `.Kind` attribute.
+Hugo のすべての `Page` には、 `.Kind` 属性があります。
 
-{{% page-kinds %}}
+{{% page-kinds-ja %}}
 
-## `.Site.GetPage` with Sections
+## セクションを含む `.Site.GetPage` {#sitegetpage-with-sections}
 
-`Kind` can easily be combined with the [`where` function][where] in your templates to create kind-specific lists of content. This method is ideal for creating lists, but there are times where you may want to fetch just the index page of a single section via the section's path.
+`Kind` はテンプレートの中で [`where` 関数][where] と組み合わせることで、簡単にコンテンツの種類に応じたリストを作成できます。この方法はリストを作成するのに適していますが、セクションのパスを介して、単一のセクションのインデックスページだけを取得したい場合もあります。
 
-The [`.GetPage` function][getpage] looks up an index page of a given `Kind` and `path`.
+[`.GetPage` 関数][getpage] は、指定された `Kind` と `path` のインデックスページを検索します。
 
-You can call `.Site.GetPage` with two arguments: `kind` (one of the valid values
-of `Kind` from above) and `kind value`.
+`kind` (上記の `Kind` の有効な値の 1 つ) と `kind value` の 2 つの引数を指定して、`.Site.GetPage` を呼び出すことができます。 
 
-Examples:
+例:
 
 - `{{ .Site.GetPage "section" "posts" }}`
 - `{{ .Site.GetPage "page" "search" }}`
 
-## Example: Creating a Default Section Template
+## 例: デフォルトのセクション テンプレートを作成する {#example-creating-a-default-section-template}
 
 {{< code file="layouts/_default/section.html" download="section.html" >}}
 {{ define "main" }}
@@ -71,9 +70,9 @@ Examples:
 {{ end }}
 {{< /code >}}
 
-### Example: Using `.Site.GetPage`
+### 例: `.Site.GetPage` を使用する {#example-using-sitegetpage}
 
-The `.Site.GetPage` example that follows assumes the following project directory structure:
+この後の `.Site.GetPage` の例では、以下のようなプロジェクトのディレクトリ構造を想定しています。
 
 ```txt
 .
@@ -88,25 +87,25 @@ The `.Site.GetPage` example that follows assumes the following project directory
         └── event-2.md
 ```
 
-`.Site.GetPage` will return `nil` if no `_index.md` page is found. Therefore, if `content/blog/_index.md` does not exist, the template will output the section name:
+`.Site.GetPage` は `_index.md` ページが見つからなければ、 `nil` を返します。したがって、`content/blog/_index.md` が存在しない場合、テンプレートはセクション名を出力します。
 
 ```go-html-template
 <h1>{{ with .Site.GetPage "section" "blog" }}{{ .Title }}{{ end }}</h1>
 ```
 
-Since `blog` has a section index page with front matter at `content/blog/_index.md`, the above code will return the following result:
+`blog` は `content/blog/_index.md` にフロントマターのあるセクション インデックスページを持っているので、上記のコードは以下の結果を返します。
 
 ```html
 <h1>My Hugo Blog</h1>
 ```
 
-If we try the same code with the `events` section, however, Hugo will default to the section title because there is no `content/events/_index.md` from which to pull content and front matter:
+しかし、同じコードを `events` セクションで試すと、Hugo はセクションのタイトルをデフォルトにします。コンテンツとフロントマターを取得するための `content/events/_index.md` が存在しないためです。
 
 ```go-html-template
 <h1>{{ with .Site.GetPage "section" "events" }}{{ .Title }}{{ end }}</h1>
 ```
 
-Which then returns the following:
+上記のコードは、以下を返します。
 
 ```html
 <h1>Events</h1>

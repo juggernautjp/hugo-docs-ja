@@ -15,7 +15,7 @@ title: フィンガープリントと SRI
 weight: 70
 ---
 
-フィンガープリントと [SRI](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity) は、リソース オブジェクトと [ハッシュ関数](https://en.wikipedia.org/wiki/Cryptographic_hash_function) の 2 つの引数を取る `resources.Fingerprint` を使って、任意のアセットファイルに適用できます。
+フィンガープリントと [サブリソース完全性 (SRI)](https://developer.mozilla.org/ja/docs/Web/Security/Subresource_Integrity) は、リソースオブジェクトと [ハッシュ関数](https://en.wikipedia.org/wiki/Cryptographic_hash_function) の 2 つの引数を取る `resources.Fingerprint` を使って、任意のアセットファイルに適用できます。
 
 デフォルトのハッシュ関数は `sha256` で、他に利用可能な関数は、 `sha384` (Hugo `0.55` 以降)、 `sha512` および `md5` です。
 

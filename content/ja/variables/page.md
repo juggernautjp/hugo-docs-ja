@@ -3,8 +3,7 @@ aliases: []
 categories:
 - variables and params
 date: "2017-02-01"
-description: Page-level variables are defined in a content file's front matter, derived
-  from the content's file location, or extracted from the content body itself.
+description: ページレベルの変数は、コンテンツファイルのフロントマターで定義されるか、コンテンツのファイルの場所から派生するか、コンテンツの本文自体から抽出されます。
 draft: false
 keywords:
 - pages
@@ -12,196 +11,192 @@ linktitle: null
 menu:
   docs:
     parent: variables
-    title: variables defined by a page
+    title: ページで定義された変数
     weight: 20
 publishdate: "2017-02-01"
 sections_weight: 20
-title: Page Variables
+title: ページ変数
 toc: true
 weight: 20
 ---
 
-The following is a list of page-level variables. Many of these will be defined in the front matter, derived from file location, or extracted from the content itself.
+以下は、ページレベル変数のリストです。 これらの多くは、フロントマターで定義されるか、ファイルの場所から派生するか、コンテンツ自体から抽出されます。
 
 {{% note "`.Scratch`" %}}
-See [`.Scratch`](/functions/scratch/) for page-scoped, writable variables.
+ページスコープの書き込み可能な変数については、[`.Scratch`](/functions/scratch/) を参照してください。
 {{% /note %}}
 
-## Page Variables
+## ページ変数 {#page-variables}
 
 .AlternativeOutputFormats
-: contains all alternative formats for a given page; this variable is especially useful `link rel` list in your site's `<head>`. (See [Output Formats](/templates/output-formats/).)
+: 指定されたページのすべての代替フォーマットが含まれています。 この変数は、サイトの `<head>` 内の `link rel` リストで特に役立ちます。 ([出力フォーマット](/templates/output-formats/) を参照してください)。
 
 .Aliases
-: aliases of this page
+: このページのエイリアスです。
 
 .BundleType
-: the [bundle] type: `leaf`, `branch`, or an empty string if the page is not a bundle.
+: [バンドル][bundle] タイプを指定します。ページがバンドルでない場合は、 `leaf`、 `branch`、または空の文字列を指定します。
 
 .Content
-: the content itself, defined below the front matter.
+: コンテンツ自体で、フロントマターの下に定義されています。
 
 .Data
-: the data specific to this type of page.
+: このタイプのページに固有のデータです。
 
 .Date
-: the date associated with the page; `.Date` pulls from the `date` field in a content's front matter. See also `.ExpiryDate`, `.PublishDate`, and `.Lastmod`.
+: ページに関連付けられた日付です。 `.Date` はコンテンツのフロントマターの `date` フィールドから取得されます。また、 `.ExpiryDate` 、`.PublishDate` 、`.Lastmod` も参照してください。
 
 .Description
-: the description for the page.
+: ページの説明文を指定します。
 
 .Draft
-: a boolean, `true` if the content is marked as a draft in the front matter.
+: ブール値で、フロントマターでコンテンツがドラフトとしてマークされている場合は `true` となります。
 
 .ExpiryDate
-: the date on which the content is scheduled to expire; `.ExpiryDate` pulls from the `expirydate` field in a content's front matter. See also `.PublishDate`, `.Date`, and `.Lastmod`.
+: コンテンツの有効期限が切れる日付です。 `.ExpiryDate` はコンテンツのフロントマターにある `expirydate` フィールドから取得します。また、 `.PublishDate` 、`.Date` 、`.Lastmod` も参照してください。
 
 .File
-: filesystem-related data for this content file. See also [File Variables][].
+: このコンテンツファイルのファイルシステム関連データです。 [ファイル変数][File Variables] も参照してください。
 
 .FuzzyWordCount
-: the approximate number of words in the content.
+: コンテンツのおおよその単語数です。
 
 .IsHome
-: `true` in the context of the [homepage](/templates/homepage/).
+: [ホームページ](/templates/homepage/) のコンテキストで `true` となります。
 
 .IsNode
-: always `false` for regular content pages.
+: 通常のコンテンツページでは常に `false` です。
 
 .IsPage
-: always `true` for regular content pages.
+: 通常のコンテンツページでは常に `true` です。
 
 .IsSection
-: `true` if [`.Kind`](/templates/section-templates/#page-kinds) is `section`.
+: [`.Kind`](/templates/section-templates/#page-kinds) が `section` の場合は、 `true` となります。
 
 .IsTranslated
-: `true` if there are translations to display.
+: 表示する翻訳がある場合は、 `true` となります。
 
 .Keywords
-: the meta keywords for the content.
+: コンテンツのメタキーワードを指定します。
 
 .Kind
-: the page's *kind*. Possible return values are `page`, `home`, `section`, `taxonomy`, or `term`. Note that there are also `RSS`, `sitemap`, `robotsTXT`, and `404` kinds, but these are only available during the rendering of each of these respective page's kind and therefore *not* available in any of the `Pages` collections.
+: ページの *種類* を返します。 可能な戻り値は、`page`、`home`、`section`、`taxonomy`、または `term` です。 `RSS`、`sitemap`、`robotsTXT`、および `404` の種類もありますが、これらはそれぞれの種類のページのレンダリング中にのみ使用可能であり、したがって、どの `Pages` コレクションでも使用 *できません*。
 
 .Language
-: a language object that points to the language's definition in the site `config`. `.Language.Lang` gives you the language code.
+: サイト `config` 内の言語の定義を指す言語オブジェクトです。`.Language.Lang` は、言語コードを提供します。
 
 .Lastmod
-: the date the content was last modified. `.Lastmod` pulls from the `lastmod` field in a content's front matter.
+: コンテンツが最後に更新された日付です。`.Lastmod` はコンテンツのフロントマターにある `lastmod` フィールドから取得します。
 
- - If `lastmod` is not set, and `.GitInfo` feature is disabled, the front matter `date` field will be used.
- - If `lastmod` is not set, and `.GitInfo` feature is enabled, `.GitInfo.AuthorDate` will be used instead.
+ - `lastmod` が設定されておらず、 `.GitInfo` 機能が無効になっている場合は、フロントマターの `date` フィールドが使用されます。
+ - `lastmod` が設定されておらず、 `.GitInfo` 機能が有効になっている場合は、代わりに `.GitInfo.AuthorDate` が使用されます。
 
-See also `.ExpiryDate`, `.Date`, `.PublishDate`, and [`.GitInfo`][gitinfo].
+`.ExpiryDate`、`.Date`、`.PublishDate`、および [`.GitInfo`][gitinfo] も参照してください。
 
 .LinkTitle
-: access when creating links to the content. If set, Hugo will use the `linktitle` from the front matter before `title`.
+: コンテンツへのリンクを作成するときにアクセスします。 設定されている場合、Hugo は `title` の前に、フロントマターの `linktitle` を使用します。
 
 .Next
-: Points up to the next [regular page](/variables/site/#site-pages) (sorted by Hugo's [default sort](/templates/lists#default-weight--date--linktitle--filepath)). Example: `{{with .Next}}{{.Permalink}}{{end}}`. Calling `.Next` from the first page returns `nil`.
+: 次の [通常ページ](/variables/site/#site-pages) を指します。(Hugo の [デフォルトのソート](/templates/lists#default-weight--date--linktitle--filepath) によってソートされます)。 たとえば、 `{with .Next}{{.Permalink}}{{end}}` です。 最初のページから `.Next` を呼び出すと、`nil` が返されます。
 
 .NextInSection
-: Points up to the next [regular page](/variables/site/#site-pages) below the same top level section (e.g. in `/blog`)). Pages are sorted by Hugo's [default sort](/templates/lists#default-weight--date--linktitle--filepath). Example: `{{with .NextInSection}}{{.Permalink}}{{end}}`. Calling `.NextInSection` from the first page returns `nil`.
+: 同じトップレベル セクション (たとえば、 `/blog`) の次の [通常ページ](/variables/site/#site-pages) までを指します。ページは Hugo の [デフォルトのソート](/templates/lists#default-weight--date--linktitle--filepath) によってソートされます。 たとえば、 `{with .NextInSection}}{.Permalink}{{end}}` です。 最初のページから `.NextInSection` を呼び出すと、`nil` が返されます。
 
 .OutputFormats
-: contains all formats, including the current format, for a given page. Can be combined the with [`.Get` function](/functions/get/) to grab a specific format. (See [Output Formats](/templates/output-formats/).)
+: 指定されたページの現在の形式を含む、すべての形式を含みます。 特定の形式を取得するには、[`.Get`関数](/functions/get/) と組み合わせることができます。([「出力形式」](/templates/output-formats/) を参照してください)。
 
 .Pages
-: a collection of associated pages. This value will be `nil` within
-  the context of regular content pages. See [`.Pages`]({{< relref "page.md#pages" >}}).
+: 関連するページのコレクションです。この値は、通常のコンテンツページのコンテキスト内では `nil` になります。 [「`.Pages`」]({{< relref "page.md#pages" >}}) を参照してください。
 
 .Permalink
-: the Permanent link for this page; see [Permalinks](/content-management/urls/)
+: このページへのパーマネント リンクです。 [「パーマリンク」](/content-management/urls/) を参照してください。
 
 .Plain
-: the Page content stripped of HTML tags and presented as a string.
+: ページのコンテンツから HTML タグを取り除き、文字列として表示したものです。
 
 .PlainWords
-: the slice of strings that results from splitting .Plain into words, as defined in Go's [strings.Fields](https://golang.org/pkg/strings/#Fields).
+: Go の [strings.Fields](https://golang.org/pkg/strings/#Fields) で定義されているように、.Plain を単語に分割した結果の文字列のスライスです。
 
 .Prev
-: Points down to the previous [regular page](/variables/site/#site-pages) (sorted by Hugo's [default sort](/templates/lists#default-weight--date--linktitle--filepath)). Example: `{{if .Prev}}{{.Prev.Permalink}}{{end}}`.  Calling `.Prev` from the last page returns `nil`.
+: 前の [通常ページ](/variables/site/#site-pages) を指します。(Hugo の [デフォルトのソート](/templates/lists#default-weight--date--linktitle--filepath) によってソートされます)。 たとえば、 `{{if .Prev}}{{.Prev.Permalink}}{{end}}` です。 最後のページから `.Prev` を呼び出すと `nil` が返されます。
 
 .PrevInSection
-: Points down to the previous [regular page](/variables/site/#site-pages) below the same top level section (e.g. `/blog`). Pages are sorted by Hugo's [default sort](/templates/lists#default-weight--date--linktitle--filepath). Example: `{{if .PrevInSection}}{{.PrevInSection.Permalink}}{{end}}`.  Calling `.PrevInSection` from the last page returns `nil`.
+: 同じトップレベル セクション (たとえば、 `/blog`) の次の [通常ページ](/variables/site/#site-pages) までを指します。ページは Hugo の [デフォルトのソート](/templates/lists#default-weight--date--linktitle--filepath) によってソートされます。 たとえば、  `{{if .PrevInSection}}{{.PrevInSection.Permalink}}{{end}}` です。 最後のページから `.Prev` を呼び出すと `nil` が返されます。
 
 .PublishDate
-: the date on which the content was or will be published; `.Publishdate` pulls from the `publishdate` field in a content's front matter. See also `.ExpiryDate`, `.Date`, and `.Lastmod`.
+: コンテンツが公開された、または公開される予定の日付です。 `.Publishdate` はコンテンツのフロントマターの `publishdate` フィールドから取得されます。また、 `.ExpiryDate` 、`.Date` 、`.Lastmod` も参照してください。
 
 .RawContent
-: raw markdown content without the front matter. Useful with [remarkjs.com](
-https://remarkjs.com)
+: フロントマターのない生の Markdown コンテンツです。 [remarkjs.com](https://remarkjs.com) と一緒に使うと便利です。
 
 .ReadingTime
-: the estimated time, in minutes, it takes to read the content.
+: コンテンツを読むのに必要な推定時間 (分) です。
 
 .Resources
-: resources such as images and CSS that are associated with this page
+: このページに関連する画像や CSS などのリソースです。
 
 .Ref
-: returns the permalink for a given reference (e.g., `.Ref "sample.md"`).  `.Ref` does *not* handle in-page fragments correctly. See [Cross References](/content-management/cross-references/).
+: 指定された参照のパーマリンクを返します (たとえば、 `.Ref "sample.md"`)。 `.Ref` は、ページ内フラグメントを正しく処理 *しません*。 詳細は、[「クロスリファレンス」](/content-management/cross-references/) を参照してください。
 
 .RelPermalink
-: the relative permanent link for this page.
+: このページの相対的なパーマネント リンクです。
 
 .RelRef
-: returns the relative permalink for a given reference (e.g., `RelRef
-"sample.md"`). `.RelRef` does *not* handle in-page fragments correctly. See [Cross References](/content-management/cross-references/).
+: 指定された参照の相対パーマリンクを返します (たとえば、 `RelRef "sample.md"`)。 `.RelRef` は、ページ内フラグメントを正しく処理 *しません*。 詳細は、[「クロスリファレンス」](/content-management/cross-references/) を参照してください。
 
 .Site
-: see [Site Variables](/variables/site/).
+: [「サイト変数」](/variables/site/) を参照してください。
 
 .Sites
-: returns all sites (languages). A typical use case would be to link back to the main language: `<a href="{{ .Sites.First.Home.RelPermalink }}">...</a>`.
+: すべてのサイト (言語) を返します。 典型的な使用例は、`<a href="{{ .Sites.First.Home.RelPermalink }}">...</a>` のように、メイン言語にリンクを戻すことです。
 
 .Sites.First
-: returns the site for the first language. If this is not a multilingual setup, it will return itself.
+: 最初の言語のサイトを返します。 これが多言語設定でない場合は、それ自体が返されます。
 
 .Summary
-: a generated summary of the content for easily showing a snippet in a summary view. The breakpoint can be set manually by inserting <code>&lt;!&#x2d;&#x2d;more&#x2d;&#x2d;&gt;</code> at the appropriate place in the content page, or the summary can be written independent of the page text.  See [Content Summaries](/content-management/summaries/) for more details.
+: サマリービューでスニペットを簡単に表示するために、コンテンツの要約を生成したものです。 ブレークポイントは、コンテンツページの適切な場所に <code>&lt;!&#x2d;&#x2d;more&#x2d;&gt;<code> を挿入して手動で設定するか、ページテキストから独立して要約を記述することができます。 詳細については、[「コンテンツサマリー」](/content-management/summaries/) を参照してください。
 
 .TableOfContents
-: the rendered [table of contents](/content-management/toc/) for the page.
+: ページのレンダリングされた [目次](/content-management/toc/) です。
 
 .Title
-: the title for this page.
+: このページのタイトルです。
 
 .Translations
-: a list of translated versions of the current page. See [Multilingual Mode](/content-management/multilingual/) for more information.
+: 現在のページの翻訳版のリストです。 詳しくは、[「多言語対応モード」](/content-management/multilingual/) を参照してください。
 
 .TranslationKey
-: the key used to map language translations of the current page. See [Multilingual Mode](/content-management/multilingual/) for more information.
+: 現在のページの言語翻訳をマップするために使用されるキーです。 詳しくは、[「多言語対応モード」](/content-management/multilingual/) を参照してください。
 
 .Truncated
-: a boolean, `true` if the `.Summary` is truncated. Useful for showing a "Read more..." link only when necessary.  See [Summaries](/content-management/summaries/) for more information.
+: ブール値で、`.Summary` が切り詰められた場合は `true` となります。 必要なときだけ、 "Read more..." リンクを表示させるのに便利です。 詳しくは、 [「コンテンツサマリー」](/content-management/summaries/) を参照してください。 
 
 .Type
-: the [content type](/content-management/types/) of the content (e.g., `posts`).
+: コンテンツの [コンテンツタイプ](/content-management/types/) (たとえば、 `posts`) を指定します。
 
 .Weight
-: assigned weight (in the front matter) to this content, used in sorting.
+: このコンテンツに (フロントマターで) 重みを割り当て、ソート (並べ替え) に使用します。
 
 .WordCount
-: the number of words in the content.
+: コンテンツに含まれる単語数です。
 
-## Section Variables and Methods
+## セクション変数とセクション メソッド {#section-variables-and-methods}
 
-Also see [Sections](/content-management/sections/).
+[「コンテンツセクション」](/content-management/sections/) も参照してください。
 
-{{< readfile file="/content/en/readfiles/sectionvars.md" markdown="true" >}}
+{{< readfile file="/content/ja/readfiles/sectionvars.md" markdown="true" >}}
 
-## The `.Pages` Variable {#pages}
+## `.Pages` 変数 {#pages}
 
-`.Pages` is an alias to `.Data.Pages`. It is conventional to use the
-aliased form `.Pages`.
+`.Pages` は `.Data.Pages` のエイリアスです。 `.Pages` というエイリアス形式を使用するのが一般的です。
 
-### `.Pages` compared to `.Site.Pages`
+### `.Pages` と `.Site.Pages` の比較 {#pages-compared-to-sitepages}
 
 {{< getcontent path="readfiles/pages-vs-site-pages.md" >}}
 
-## Page-level Params
+## ページレベルのパラメータ {#pagelevel-params}
 
-Any other value defined in the front matter in a content file, including taxonomies, will be made available as part of the `.Params` variable.
+タクソノミーを含む、コンテンツファイルのフロントマターで定義されたその他の値は、`.Params` 変数の一部として使用可能になります。
 
 ```yml
 ---
@@ -211,59 +206,59 @@ categories: [one]
 tags: [two,three,four]
 ```
 
-With the above front matter, the `tags` and `categories` taxonomies are accessible via the following:
+上記のフロントマターで、`tags` と `categories` タクソノミーにアクセスするには、以下のようにします。
 
 * `.Params.tags`
 * `.Params.categories`
 
 {{% note "Casing of Params" %}}
-Page-level `.Params` are *only* accessible in lowercase.
+ページレベルの `.Params` は、小文字で *のみ* アクセス可能です。
 {{% /note %}}
 
-The `.Params` variable is particularly useful for the introduction of user-defined front matter fields in content files. For example, a Hugo website on book reviews could have the following front matter in `/content/review/book01.md`:
+`.Params` 変数は、コンテンツファイルにユーザー定義のフロントマター フィールドを導入する際に特に便利です。たとえば、書評に関する Hugo の Web サイトでは、`/content/review/book01.md` に以下のフロントマターを含めることができます。
 
 ```yml
 ---
 ...
 affiliatelink: "http://www.my-book-link.here"
-recommendedby: "My Mother"
+recommendedby: "私の母"
 ...
 ---
 ```
 
-These fields would then be accessible to the `/themes/yourtheme/layouts/review/single.html` template through `.Params.affiliatelink` and `.Params.recommendedby`, respectively.
+上記のフィールドは、それぞれ `.Params.affiliatelink` と `.Params.recommendedby` を介して、 `/themes/yourtheme/layouts/review/single.html` テンプレートからアクセスできます。
 
-Two common situations where this type of front matter field could be introduced is as a value of a certain attribute like `href=""` or by itself to be displayed as text to the website's visitors.
+このタイプのフロントマター フィールドが導入される 2 つの一般的な状況は、`href=""` のような特定の属性の値として、またはそれ自体で Web サイトの訪問者にテキストとして表示されることです。
 
 {{< code file="/themes/yourtheme/layouts/review/single.html" >}}
-<h3><a href={{ printf "%s" $.Params.affiliatelink }}>Buy this book</a></h3>
-<p>It was recommended by {{ .Params.recommendedby }}.</p>
+<h3><a href={{ printf "%s" $.Params.affiliatelink }}>この本を購入する</a></h3>
+<p>{{ .Params.recommendedby }} に勧められました。</p>
 {{< /code >}}
 
-This template would render as follows, assuming you've set [`uglyURLs`](/content-management/urls/) to `false` in your [site `config`](/getting-started/configuration/):
+[サイト `config`](/getting-started/configuration/) で [`uglyURLs`](/content-management/urls/) を `false` に設定した場合、このテンプレートは以下のようにレンダリングされます。
 
 {{< output file="yourbaseurl/review/book01/index.html" >}}
-<h3><a href="http://www.my-book-link.here">Buy this book</a></h3>
-<p>It was recommended by my Mother.</p>
+<h3><a href="http://www.my-book-link.here">この本を購入する</a></h3>
+<p>私の母に勧められました。</p>
 {{< /output >}}
 
 {{% note %}}
-See [Archetypes](/content-management/archetypes/) for consistency of `Params` across pieces of content.
+コンテンツ間の `Params` の一貫性については、 [「アーキタイプ」](/content-management/archetypes/) を参照してください。
 {{% /note %}}
 
-### The `.Param` Method
+### `.Param` メソッド {#the-param-method}
 
-In Hugo, you can declare params in individual pages and globally for your entire website. A common use case is to have a general value for the site param and a more specific value for some of the pages (i.e., a header image):
+Hugo では、個々のページでパラメータを宣言したり、Web サイト全体でグローバルに宣言したりできます。よくある使用例としては、サイトのパラメータには一般的な値を、一部のページ (たとえば、ヘッダ画像など) にはより具体的な値を指定するというものがあります 。
 
 ```go-html-template
 {{ $.Param "header_image" }}
 ```
 
-The `.Param` method provides a way to resolve a single value according to it's definition in a page parameter (i.e. in the content's front matter) or a site parameter (i.e., in your `config`).
+`.Param` メソッドは、ページパラメータ (つまり、コンテンツのフロントマター) またはサイトパラメータ (つまり、`config` 内) での定義に従って、単一の値を解決する方法を提供します。
 
-### Access Nested Fields in Front Matter
+### フロントマターでネストしたフィールドにアクセスする {#access-nested-fields-in-front-matter}
 
-When front matter contains nested fields like the following:
+フロントマターが以下のようなネストしたフィールドを含む場合。
 
 ```yml
 ---
@@ -273,13 +268,14 @@ author:
   display_name: John Feminella
 ---
 ```
-`.Param` can access these fields by concatenating the field names together with a dot:
+
+`.Param` は、以下のようにフィールド名をドットで連結することにより、これらのフィールドにアクセスできます。
 
 ```go-html-template
 {{ $.Param "author.display_name" }}
 ```
 
-If your front matter contains a top-level key that is ambiguous with a nested key, as in the following case:
+以下の場合のように、フロントマターにネストされたキーとあいまいなトップレベルのキーを含んでいる場合。
 
 ```yml
 ---
@@ -289,7 +285,7 @@ favorites:
 ---
 ```
 
-The top-level key will be preferred. Therefore, the following method, when applied to the previous example, will print `vanilla` and not `chocolate`:
+トップレベルのキーが優先されます。したがって、以下のメソッドを先ほどの例に適用すると、 `chocolate` ではなく `vanilla` と表示されます。
 
 ```txt
 {{ $.Param "favorites.flavor" }}

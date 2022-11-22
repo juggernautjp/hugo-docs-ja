@@ -4,30 +4,30 @@ categories:
 - variables and params
 date: "2017-03-12"
 description: null
-draft: true
+draft: false
 keywords:
 - sitemap
-linktitle: Sitemap Variables
+linktitle: サイトマップ変数
 menu:
   docs:
     parent: variables
     weight: 80
 publishdate: "2017-03-12"
 sections_weight: 80
-title: Sitemap Variables
+title: サイトマップ変数
 toc: false
 weight: 80
 ---
 
-A sitemap is a `Page` and therefore has all the [page variables][pagevars] available to use sitemap templates. They also have the following sitemap-specific variables available to them:
+サイトマップは `Page` であるため、サイトマップ テンプレートを使用するために利用できるすべての [ページ変数][pagevars] を持っています。また、以下のサイトマップ固有の変数も利用できます。
 
 .Sitemap.ChangeFreq
-: the page change frequency
+: ページの変更頻度です。
 
 .Sitemap.Priority
-: the priority of the page
+: ページの優先順位です。
 
 .Sitemap.Filename
-: the sitemap filename
+: サイトマップのファイル名です。
 
 [pagevars]: /variables/page/

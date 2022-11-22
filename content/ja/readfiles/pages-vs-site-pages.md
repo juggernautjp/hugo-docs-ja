@@ -1,37 +1,29 @@
 ---
-draft: true
+draft: false
 ---
-* A _regular_ page is a "post" page or a "content" page.
-  * A _leaf bundle_ is a regular page.
-* A _list_ page can list _regular_ pages and other _list_ pages. Some
-  examples are: homepage, section pages, _taxonomy_ (`/tags/`) and
-  _term_ (`/tags/foo/`) pages.
-  * A _branch bundle_ is a _list_ page.
+* _通常_ ページは、「投稿」ページまたは「コンテンツ」ページです。
+  * _リーフバンドル_ は、通常ページです。
+* _リスト_ ページは、_通常_ ページとその他の _リスト_ ページをリストできます。 例としては、ホームページ、セクションページ、_タクソノミー_ (`/tags/`) および _用語_ (`/tags/foo/`) ページがあります。
+  * _ブランチバンドル_ は、_リスト_ ページです。
 
 `.Site.Pages`
-: Collection of **all** pages of the site: _regular_ pages,
-    sections, taxonomies, etc. -- Superset of everything!
+: サイトの **すべて** のページ、 _通常_ ページ、セクション、分類など、のコレクションで、すべてのスーパーセットです。
 
 `.Site.RegularPages`
-: Collection of only _regular_ pages.
+: _通常_ ページのみのコレクションです。
 
-The above `.Site. ..` page collections can be accessed from any scope in
-the templates.
+上記の `.Site. ..` ページのコレクションには、テンプレート内の任意のスコープからアクセスできます。
 
-Below variables return a collection of pages only from the scope of
-the current _list_ page:
+以下の変数は、現在の _リスト_ ページのスコープからのみ、ページのコレクションを返します。
 
 `.Pages`
-: Collection of _regular_ pages and _only first-level_
-    section pages under the current _list_ page.
+: 現在の _リスト_ ページの下にある、 _通常_ ページと _第 1 レベルのみ_ のセクションページのコレクションです。
 
 `.RegularPages`
-: Collection of only _regular_ pages under the
-    current _list_ page. This **excludes** regular pages in nested sections/_list_ pages (those are subdirectories with an `_index.md` file.
+: 現在の _リスト_ ページの下にある _通常_ ページのみのコレクションです。 これは、ネストされた セクション/_リスト_ ページ内の通常ページを **除外します** (これらは、`_index.md` ファイルを含むサブディレクトリです)。
 
 `.RegularPagesRecursive`
-: {{< new-in "0.68.0" >}} Collection of **all** _regular_ pages under a _list_ page. This **includes** regular pages in nested sections/_list_ pages.
+: {{< new-in "0.68.0" >}} リストページの下にある **すべての** _通常_ ページのコレクションです。これは、ネストされた セクション/_リスト_ ページ内の通常ページを **含みます**。
 
-Note
-: From the scope of _regular_ pages, `.Pages` and
-    `.RegularPages` return an empty slice.
+**注意**
+: _通常_ ページのスコープから、 `.Pages` と `.RegularPages` は空のスライスを返します。
