@@ -3,9 +3,8 @@ aliases: []
 categories:
 - functions
 date: "2018-12-23"
-description: '`transform.Unmarshal` (alias `unmarshal`) parses the input and converts
-  it into a map or an array. Supported formats are JSON, TOML, YAML, XML and CSV.'
-draft: true
+description: '`transform.Unmarshal` (別名 `unmarshal`) は入力をパースして、マップまたは配列に変換します。 サポートされている形式は、 JSON、TOML、YAML、XML、CSV です。'
+draft: false
 hugoversion: "0.53"
 keywords: []
 menu:
@@ -16,7 +15,7 @@ signature:
 title: transform.Unmarshal
 ---
 
-The function accepts either a `Resource` created in [Hugo Pipes](/hugo-pipes/) or via [Page Bundles](/content-management/page-bundles/), or simply a string. The two examples below will produce the same map:
+この関数は、[Hugo パイプ](/hugo-pipes/) または [ページバンドル](/content-management/page-bundles/) を介して作成された `Resource`、または単に文字列を受け入れます。 以下の 2 つの例では、同じマップが生成されます。
 
 ```go-html-template
 {{ $greetings := "hello = \"Hello Hugo\"" | transform.Unmarshal }}`
@@ -26,37 +25,37 @@ The function accepts either a `Resource` created in [Hugo Pipes](/hugo-pipes/) o
 {{ $greetings := "hello = \"Hello Hugo\"" | resources.FromString "data/greetings.toml" | transform.Unmarshal }}
 ```
 
-In both the above examples, you get a map you can work with:
+上記の両方の例で、操作できるマップが得られます。
 
 ```go-html-template
 {{ $greetings.hello }}
 ```
 
-The above prints `Hello Hugo`.
+上記は、 `Hello Hugo` を出力します。
 
-## CSV Options
+## CSV オプション {#csv-options}
 
-Unmarshal with CSV as input has some options you can set:
+CSV を入力とする Unmarshal では、以下のような、いくつかのオプションを設定できます。
 
 delimiter
-: The delimiter used, default is `,`.
+: 使用される区切り文字で、デフォルトは `,` です。
 
 comment
-: The comment character used in the CSV. If set, lines beginning with the comment character without preceding whitespace are ignored.:
+: CSV で使用されるコメント文字です。 設定されている場合、前に空白がないコメント文字で始まる行は無視されます。
 
-Example:
+例:
 
 ```go-html-template
 {{ $csv := "a;b;c" | transform.Unmarshal (dict "delimiter" ";") }}
 ```
 
-## XML data
+## XML データ {#xml-data}
 
-As a convenience, Hugo allows you to access XML data in the same way that you access JSON, TOML, and YAML: you do not need to specify the root node when accessing the data.
+便宜上、Hugo を使用すると、JSON、TOML、および YAML にアクセスするのと同じ方法で XML データにアクセスできます。データにアクセスするときにルートノードを指定する必要はありません。
 
-To get the contents of `<title>` in the document below, you use `{{ .message.title }}`:
+以下のドキュメントの `<title>` のコンテンツを取得するには、`{{ .message.title }}` を使用します。
 
-```
+```xml
 <root>
     <message>
         <title>Hugo rocks!</title>
@@ -65,9 +64,9 @@ To get the contents of `<title>` in the document below, you use `{{ .message.tit
 </root>
 ```
 
-The following example lists the items of an RSS feed:
+次の例は、RSS フィードの項目を一覧表示します。
 
-```
+```go-html-template
 {{ with resources.Get "https://example.com/rss.xml" | transform.Unmarshal }}
     {{ range .channel.item }}
         <strong>{{ .title | plainify | htmlUnescape }}</strong><br />

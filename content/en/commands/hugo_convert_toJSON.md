@@ -1,7 +1,7 @@
 ---
 title: "hugo convert toJSON"
 slug: hugo_convert_toJSON
-url: /commands/hugo_convert_tojson/
+# url: /commands/hugo_convert_tojson/
 ---
 ## hugo convert toJSON
 

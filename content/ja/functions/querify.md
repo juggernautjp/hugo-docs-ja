@@ -4,9 +4,8 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: Takes a set or slice of key-value pairs and returns a query string to
-  be appended to URLs.
-draft: true
+description: キーと値のペアのセットまたはスライスを受け取り、URL に追加するクエリ文字列を返します。
+draft: false
 hugoversion: null
 keywords:
 - urls
@@ -24,19 +23,19 @@ title: querify
 workson: []
 ---
 
-`querify` takes a set or slice of key-value pairs and returns a [query string](https://en.wikipedia.org/wiki/Query_string) that can be appended to a URL.
+`querify` は、キーと値のペアのセットまたはスライスを受け取り、URL に追加できる [クエリ文字列](https://en.wikipedia.org/wiki/Query_string) を返します。
 
-The following examples create a link to a search results page on Google.
+以下の例では、Google の検索結果ページへのリンクを作成しています。
 
 ```go-html-template
-<a href="https://www.google.com?{{ (querify "q" "test" "page" 3) | safeURL }}">Search</a>
+<a href="https://www.google.com?{{ (querify "q" "test" "page" 3) | safeURL }}">検索</a>
 
 {{ $qs := slice "q" "test" "page" 3 }}
-<a href="https://www.google.com?{{ (querify $qs) | safeURL }}">Search</a>
+<a href="https://www.google.com?{{ (querify $qs) | safeURL }}">検索</a>
 ```
 
-Both of these examples render the following HTML:
+上記の例は両方とも、以下の HTML をレンダリングします。
 
 ```html
-<a href="https://www.google.com?page=3&q=test">Search</a>
+<a href="https://www.google.com?page=3&q=test">検索</a>
 ```

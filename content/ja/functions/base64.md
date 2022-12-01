@@ -4,9 +4,8 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: '`base64Encode` and `base64Decode` let you easily decode content with
-  a base64 encoding and vice versa through pipes.'
-draft: true
+description: '`base64Encode` と `base64Decode` を使うと、パイプを通して簡単にコンテンツを base64 エンコーディングでデコードしたり、その逆を実行したりできます。'
+draft: false
 hugoversion: null
 keywords: []
 lastmod: "2017-02-01"
@@ -22,7 +21,7 @@ title: base64
 workson: []
 ---
 
-An example:
+例:
 
 {{< code file="base64-input.html" >}}
 <p>Hello world = {{ "Hello world" | base64Encode }}</p>
@@ -34,21 +33,20 @@ An example:
 <p>SGVsbG8gd29ybGQ = Hello world</p>
 {{< /output >}}
 
-You can also pass other data types as arguments to the template function which tries to convert them. The following will convert *42* from an integer to a string because both `base64Encode` and `base64Decode` always return a string.
+また、他のデータ型を引数として変換しようとするテンプレート関数に渡すこともできます。 `base64Encode` と `base64Decode` の両方が常に文字列を返すので、以下は *42* を整数から文字列に変換します。
 
-```
+```go-html-template
 {{ 42 | base64Encode | base64Decode }}
 => "42" rather than 42
 ```
 
-## `base64` with APIs
+## API を使用する `base64` {#base64-with-apis}
 
-Using base64 to decode and encode becomes really powerful if we have to handle
-responses from APIs.
+API からのレスポンスを処理する場合、base64 を使ったデコードとエンコードが威力を発揮します。
 
-```
+```go-html-template
 {{ $resp := getJSON "https://api.github.com/repos/gohugoio/hugo/readme"  }}
 {{ $resp.content | base64Decode | markdownify }}
 ```
 
-The response of the GitHub API contains the base64-encoded version of the [README.md](https://github.com/gohugoio/hugo/blob/master/README.md) in the Hugo repository. Now we can decode it and parse the Markdown. The final output will look similar to the rendered version on GitHub.
+GitHub API のレスポンスには、Hugo リポジトリの [README.md](https://github.com/gohugoio/hugo/blob/master/README.md) を base64 でエンコードしたバージョンが含まれています。これで、それをデコードして Markdown を解析できます。 最終的な出力は、GitHub 上のレンダリングされたバージョンと同じようなものになります。

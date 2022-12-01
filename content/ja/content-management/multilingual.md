@@ -5,7 +5,7 @@ aliases:
 categories:
 - content management
 date: "2017-01-10"
-description: Hugo は、複数の言語を併記した Web サイトの作成をサポートしています。
+description: Hugo は、複数の言語を並べて表示する Web サイトの作成をサポートしています。
 draft: false
 keywords:
 - multilingual
@@ -547,7 +547,7 @@ other="Sobre mim"
 
 ## 不足している翻訳 {#missing-translations}
 
-文字列に現在の言語の翻訳がない場合、Hugo はデフォルト言語の値を使用します。 デフォルト値が設定されていない場合、空の文字列が表示されます。
+文字列に現在の言語の翻訳がない場合、Hugo はデフォルト言語の値を使用します。 デフォルト値が設定されていない場合、空文字列が表示されます。
 
 Hugo の Web サイトを翻訳しているとき、翻訳の欠落箇所を視覚的に確認できると便利です。設定オプションの [`enableMissingTranslationPlaceholders`][config] は、すべての未翻訳の文字列に `[i18n] identifier` というプレースホルダーを付けてフラグを立てます (ここで `identifier` は未翻訳部分の ID です。
 
@@ -571,7 +571,7 @@ i18n|MISSING_TRANSLATION|en|wordCount
 * 組み込みの `.Permalink` または `.RelPermalink` から来ること
 * [`relLangURL` テンプレート関数][rellangurl] または [`absLangURL` テンプレート関数][abslangurl] で構築されること **または** `{{ .LanguagePrefix }}` をプレフィックスとして持つこと
 
-複数の言語が定義されている場合、`LanguagePrefix` 変数は `/en` (または、どのような値でも `CurrentLanguage`) と等しくなります。 有効にしない場合、空の文字列になります (したがって、単一言語の Hugo Web サイトには無害です)。
+複数の言語が定義されている場合、`LanguagePrefix` 変数は `/en` (または、どのような値でも `CurrentLanguage`) と等しくなります。 有効にしない場合、空文字列になります (したがって、単一言語の Hugo Web サイトには無害です)。
 
 
 ## `hugo new` で多言語コンテンツを生成する {#generate-multilingual-content-with-hugo-new}

@@ -3,8 +3,8 @@ categories:
 - functions
 date: "2018-11-28"
 deprecated: false
-description: Base returns the last element of a path.
-draft: true
+description: Base は、パスの最後の要素を返します。
+draft: false
 hugoversion: "0.40"
 keywords:
 - path
@@ -27,13 +27,13 @@ title: path.Base
 workson: []
 ---
 
-`path.Base` returns the last element of `PATH`.
+`path.Base` は、 `PATH` の最後の要素を返します。
 
-If `PATH` is empty, `.` is returned.
+`PATH` が空の場合、`.` が返されます。
 
-**Note:** On Windows, `PATH` is converted to slash (`/`) separators.
+**注意:** Windows では、`PATH` はスラッシュ (`/`) セパレーターに変換されます。
 
-```
+```go-html-template
 {{ path.Base "a/news.html" }} → "news.html"
 {{ path.Base "news.html" }} → "news.html"
 {{ path.Base "a/b/c" }} → "c"

@@ -1,7 +1,7 @@
 ---
 title: "hugo env"
 slug: hugo_env
-url: /commands/hugo_env/
+# url: /commands/hugo_env/
 ---
 ## hugo env
 

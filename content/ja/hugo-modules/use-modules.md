@@ -130,7 +130,7 @@ github.com/bep/my-modular-site in-themesdir
 
 * モジュールツリーのどのレベルでも `hugo mod vendor` を実行できます。
 * ベンダー化は `themes` フォルダーに保存されているモジュールを保存しません。
-* ほとんどのコマンドは `--ignoreVendorPaths` フラグを受け付け、与えられた [Glob](https://github.com/gobwas/glob) パターンにマッチするモジュールパスに対して `_vendor` に含まれるベンダー モジュールを使用しないようにします。Hugo 0.75 以前では、このフラグは `--ignoreVendor` という名前で、「全部かゼロか」であったことに注意してください。 {{< new-in "0.75.0" >}}
+* ほとんどのコマンドは `--ignoreVendorPaths` フラグを受け付け、指定された [Glob](https://github.com/gobwas/glob) パターンにマッチするモジュールパスに対して `_vendor` に含まれるベンダー モジュールを使用しないようにします。Hugo 0.75 以前では、このフラグは `--ignoreVendor` という名前で、「全部かゼロか」であったことに注意してください。 {{< new-in "0.75.0" >}}
 
 [CLI Doc](/commands/hugo_mod_vendor/) も参照してください。
 

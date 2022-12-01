@@ -4,8 +4,8 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: Tests whether a string begins with prefix.
-draft: true
+description: 文字列がプレフィックスで始まるかどうかをテストします。
+draft: false
 hugoversion: null
 keywords: []
 lastmod: "2017-02-01"

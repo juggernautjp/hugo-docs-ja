@@ -4,8 +4,8 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: Returns the absolute permalink to a page.
-draft: true
+description: ページへの絶対パーマリンクを返します。
+draft: false
 hugoversion: null
 keywords:
 - cross references
@@ -24,10 +24,10 @@ title: ref
 workson: []
 ---
 
-This function takes two parameters:
+この関数は、以下の 2 つのパラメータを受け取ります。
 
-- The context of the page from which to resolve relative paths, typically the current page (`.`)
-- The path to a page, with or without a file extension, with or without an anchor. A path without a leading `/` is first resolved relative to the given context, then to the remainder of the site.
+- 相対パスを解決するページのコンテキストで、通常は現在のページ (`.`) 
+- ファイル拡張子の有無、アンカーの有無にかかわらず、ページへのパス。 先頭に `/` がないパスは、まず指定されたコンテキストからの相対パスを解決し、次にサイトの残りの部分からの相対パスを解決します。
 
 ```go-html-template
 {{ ref . "about" }}
@@ -39,18 +39,18 @@ This function takes two parameters:
 {{ ref . "/blog/my-post.md" }}
 ```
 
-To return the absolute permalink to another language version of a page:
+他言語版ページへの絶対パーマリンクを返す場合は、以下のようになります。
 
 ```go-html-template
 {{ ref . (dict "path" "about.md" "lang" "fr") }}
 ```
 
-To return the absolute permalink to another Output Format of a page:
+ページの別の出力形式への絶対パーマリンクを返す場合は、以下のようになります。
 
 ```go-html-template
 {{ ref . (dict "path" "about.md" "outputFormat" "rss") }}
 ```
 
-Hugo emits an error or warning if the page cannot be uniquely resolved. The error behavior is configurable; see [Ref and RelRef Configuration](/content-management/cross-references/#ref-and-relref-configuration).
+ページを一意に解決できない場合、Hugo はエラーまたは警告を発します。 エラーの動作は設定可能です。 [「Ref と RelRef の設定」](/content-management/cross-references/#ref-and-relref-configuration) を参照してください。
 
-This function is used by Hugo's built-in [`ref`](/content-management/shortcodes/#ref-and-relref) shortcode. For a detailed explanation of how to leverage this shortcode for content management, see [Links and Cross References](/content-management/cross-references/).
+この関数は、Hugo の組み込み [`ref`](/content-management/shortcodes/#ref-and-relref) ショートコードで使用されます。 このショートコードをコンテンツ管理に活用する方法の詳細については、[「リンクとクロスリファレンス」](/content-management/cross-references/) を参照してください。

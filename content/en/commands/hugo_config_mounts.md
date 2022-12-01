@@ -1,7 +1,7 @@
 ---
 title: "hugo config mounts"
 slug: hugo_config_mounts
-url: /commands/hugo_config_mounts/
+# url: /commands/hugo_config_mounts/
 ---
 ## hugo config mounts
 

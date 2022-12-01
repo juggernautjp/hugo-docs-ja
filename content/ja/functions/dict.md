@@ -4,8 +4,8 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: Creates a dictionary from a list of key and value pairs.
-draft: true
+description: キーと値のペアのリストから辞書を作成します。
+draft: false
 hugoversion: null
 keywords:
 - dictionary
@@ -20,19 +20,19 @@ title: dict
 workson: []
 ---
 
-`dict` is especially useful for passing more than one value to a partial template.
+`dict` は、特に部分テンプレートに複数の値を渡す場合に便利です。
 
-Note that the `key` can be either a `string` or a `string slice`. The latter is useful to create a deeply nested structure, e.g.:
+ `key` は `string` または `string slice` のどちらかであることに注意してください。後者は、たとえば以下のような、深くネストした構造を作成するのに役立ちます。
 
 ```go-text-template
 {{ $m := dict (slice "a" "b" "c") "value" }}
 ```
 
-## Example: Using `dict` to pass multiple values to a `partial`
+## 例: `dict` を使用して複数の値を `partial` に渡す {#example-using-dict-to-pass-multiple-values-to-a-partial}
 
-The partial below creates an SVG and expects `fill`, `height` and `width` from the caller:
+以下のパーシャルは SVG を作成し、呼び出し元から `fill`、`height`、`width` を受け取るようにします。
 
-### Partial definition
+### 部分テンプレートの定義 {#partial-definition}
 
 {{< code file="layouts/partials/svgs/external-links.svg" download="external-links.svg" >}}
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -41,9 +41,9 @@ fill="{{ .fill }}" width="{{ .width }}" height="{{ .height }}" viewBox="0 0 32 3
 </svg>
 {{< /code >}}
 
-### Partial call
+### 部分テンプレートの呼び出し {#partial-call}
 
-The `fill`, `height` and `width` values can be stored in one object with `dict` and passed to the partial:
+`fill`、`height`、`width` の値は `dict` を用いて 1 つのオブジェクトに格納し、部分テンプレートに渡すことができます。
 
 {{< code file="layouts/_default/list.html" >}}
 {{ partial "svgs/external-links.svg" (dict "fill" "#01589B" "width" 10 "height" 20 ) }}

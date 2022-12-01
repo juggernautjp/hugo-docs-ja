@@ -3,9 +3,8 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: Prints the default representation of the given argument using the standard
-  `fmt.Print` function and enforces a linebreak.
-draft: true
+description: 標準の `fmt.Print` 関数を使用して、指定された引数のデフォルト表現を出力し、改行を強制します。
+draft: false
 hugoversion: null
 keywords:
 - strings
@@ -22,8 +21,9 @@ title: println
 workson: []
 ---
 
-See [the go doc](https://golang.org/pkg/fmt/) for additional information. `\n` denotes the linebreak but isn't printed in the templates as seen below:
+詳細については、[go ドキュメント](https://golang.org/pkg/fmt/) を参照してください。
+`\n` は改行を示しますが、以下に示すようにテンプレートには表示されません。
 
-```
+```go-html-template
 {{ println "foo" }} → "foo\n"
 ```

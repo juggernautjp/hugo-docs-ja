@@ -6,147 +6,146 @@ authors:
 categories:
 - hosting and deployment
 date: "2017-02-01"
-description: Netlify can host your Hugo site with CDN, continuous deployment, 1-click
-  HTTPS, an admin GUI, and its own CLI.
-draft: true
+description: Netlify は、CDN、継続的デプロイ、ワンクリック HTTPS、管理 GUI、および独自の CLI を使用して、Hugo サイトをホストできます。
+draft: false
 keywords:
 - netlify
 - hosting
 - deployment
-linktitle: Host on Netlify
+linktitle: Netlify でのホスト
 menu:
   docs:
     parent: hosting-and-deployment
     weight: 10
 publishdate: "2017-02-01"
 sections_weight: 10
-title: Host on Netlify
+title: Netlify でのホスト
 toc: true
 weight: 10
 ---
 
-[Netlify][netlify] provides continuous deployment services, global CDN, ultra-fast DNS, atomic deploys, instant cache invalidation, one-click SSL, a browser-based interface, a CLI, and many other features for managing your Hugo website.
+[Netlify][netlify] は、継続的デプロイ サービス、グローバル CDN、超高速 DNS、アトミック デプロイ、インスタント キャッシュ無効化、ワンクリック SSL、ブラウザベースのインターフェイス、CLI、および Hugo の Web サイトを管理するためのその他多くの機能を提供します。
 
-## Assumptions
+## 前提条件 {#assumptions}
 
-* You have an account with GitHub, GitLab, or Bitbucket.
-* You have completed the [Quick Start][] or have a Hugo website you are ready to deploy and share with the world.
-* You do not already have a Netlify account.
+* GitHub、GitLab、Bitbucket のいずれかにアカウントを持っていること。
+* [クイックスタート][Quick Start] を完了していること、または Hugo の Web サイトをデプロイし、世界と共有する準備ができでいること。
+* まだ Netlify アカウントを持っていないこと。
 
-## Create a Netlify account
+## Netlify アカウントを作成する {#create-a-netlify-account}
 
-Go to [app.netlify.com][] and select your preferred signup method. This will likely be a hosted Git provider, although you also have the option to sign up with an email address.
+[app.netlify.com][] にアクセスして、希望のサインアップ方法を選択します。 これは、メールアドレスでサインアップするオプションもありますが、ホストされた Git プロバイダーにするでしょう。
 
-The following examples use GitHub, but other git providers will follow a similar process.
+以下の例では GitHub を使用していますが、他の Git プロバイダーでも同様の手順となります。
 
 ![Screenshot of the homepage for app.netlify.com, containing links to the most popular hosted git solutions.](/images/hosting-and-deployment/hosting-on-netlify/netlify-signup.jpg)
 
-Selecting GitHub will bring up an authorization modal for authentication. Select "Authorize application."
+GitHub を選択すると、認証用の承認モーダルが表示されます。 [アプリケーションを承認する (Authorize application)] を選択します。
 
 ![Screenshot of the authorization popup for Netlify and GitHub.](/images/hosting-and-deployment/hosting-on-netlify/netlify-first-authorize.jpg)
 
-## Create a new site with continuous deployment
+## 継続的デプロイで新しいサイトを作成する {#create-a-new-site-with-continuous-deployment}
 
-You're now already a Netlify member and should be brought to your new dashboard. Select "New site from git."
+あなたはすでに Netlify のメンバーであり、新しいダッシュボードに移動しているはずです。 [git から新規サイト (New site from git)] を選択します。
 
 ![Screenshot of the blank Netlify admin panel with no sites and highlighted 'add new site' button'](/images/hosting-and-deployment/hosting-on-netlify/netlify-add-new-site.jpg)
 
-Netlify will then start walking you through the steps necessary for continuous deployment. First, you'll need to select your git provider again, but this time you are giving Netlify added permissions to your repositories.
+Netlify は、継続的デプロイに必要なステップを説明し始めます。まず、Git プロバイダーを再度選択する必要がありますが、今回は、 Netlify にリポジトリへの権限を追加することになります。
 
 ![Screenshot of step 1 of create a new site for Netlify: selecting the git provider](/images/hosting-and-deployment/hosting-on-netlify/netlify-create-new-site-step-1.jpg)
 
-And then again with the GitHub authorization modal:
+そして再び、 GitHub の認証モーダルを使用します。
 
 ![Screenshot of step 1 of create a new site for Netlify: selecting the git provider](/images/hosting-and-deployment/hosting-on-netlify/netlify-authorize-added-permissions.jpg)
 
-Select the repo you want to use for continuous deployment. If you have a large number of repositories, you can filter through them in real time using repo search:
+継続的デプロイに使用するリポジトリを選択します。 多数のリポジトリがある場合は、リポジトリ検索を使用してリアルタイムでそれらをフィルタリングできます。
 
 ![Screenshot of step 1 of create a new site for Netlify: selecting the git provider](/images/hosting-and-deployment/hosting-on-netlify/netlify-create-new-site-step-2.jpg)
 
-Once selected, you'll be brought to a screen for basic setup. Here you can select the branch you want to publish, your [build command][], and your publish (i.e. deploy) directory. The publish directory should mirror that of what you've set in your [site configuration][config], the default of which is `public`. The following steps assume you are publishing from the `master` branch.
+選択すると、基本設定の画面が表示されます。 ここで、公開するブランチ、[ビルド コマンド][build command]、および公開 (つまり、デプロイ) ディレクトリを選択できます。 公開ディレクトリは、[サイト設定][config] で設定したものと同じである必要があり、デフォルトは `public` です。 以下の手順では、`master` ブランチから公開していることを前提としています。
 
-## Configure Hugo version in Netlify
+## Netlify で Hugo のバージョンを設定する {#configure-hugo-version-in-netlify}
 
-You can [set Hugo version](https://www.netlify.com/blog/2017/04/11/netlify-plus-hugo-0.20-and-beyond/) for your environments in `netlify.toml` file or set `HUGO_VERSION` as a build environment variable in the Netlify console.
+`netlify.toml` ファイルで環境に応じて [Hugo バージョンを設定する](https://www.netlify.com/blog/2017/04/11/netlify-plus-hugo-0.20-and-beyond/) か、Netlify コンソールでビルド環境変数として `HUGO_VERSION` を設定することが可能です。
 
-For production:
+本番環境の場合:
 
 {{< code file="netlify.toml" codeLang="toml" >}}
 [context.production.environment]
   HUGO_VERSION = "0.99.1"
 {{< /code >}}
 
-For testing:
+テスト環境の場合:
 
 {{< code file="netlify.toml" codeLang="toml" >}}
 [context.deploy-preview.environment]
   HUGO_VERSION = "0.99.1"
 {{< /code >}}
 
-The Netlify configuration file can be a little hard to understand and get right for the different environment, and you may get some inspiration and tips from this site's `netlify.toml`:
+Netlify の設定ファイルは、異なる環境に対して正しく理解するのが少し難しいかもしれません。このサイトの `netlify.toml` から、いくつかのインスピレーションやヒントを得ることができるかもしれません。
 
 {{< code file="netlify.toml" nocode="true" >}}
 {{< readfile file="netlify.toml" highlight="toml" >}}
 {{< /code >}}
 
-## Build and Deploy Site
+## サイトのビルドとデプロイ {#build-and-deploy-site}
 
-In the Netlify console, selecting "Deploy site" will immediately take you to a terminal for your build:.
+Netlify コンソールで [Deploy site (サイトをデプロイする)] を選択すると、すぐにビルド用のターミナルに移動します。
 
 ![Animated gif of deploying a site to Netlify, including the terminal read out for the build.](/images/hosting-and-deployment/hosting-on-netlify/netlify-deploying-site.gif)
 
-Once the build is finished---this should only take a few seconds--you should now see a "Hero Card" at the top of your screen letting you know the deployment is successful. The Hero Card is the first element that you see in most pages. It allows you to see a quick summary of the page and gives access to the most common/pertinent actions and information. You'll see that the URL is automatically generated by Netlify. You can update the URL in "Settings."
+ビルドが完了すると (ほんの数秒しかかかりませんが)、画面の上部にデプロイが成功したことを知らせる「ヒーローカード」が表示されるはずです。ヒーローカードは、ほとんどのページで最初に表示される要素です。ヒーローカードは、ページの簡単な要約を表示し、最も一般的で適切なアクションや情報にアクセスできるようになります。 URL は Netlify によって自動的に生成されたものであることがわかると思います。 URL は、[設定 (Settings)] で更新することができます。
 
 ![Screenshot of successful deploy badge at the top of a deployments screen from within the Netlify admin.](/images/hosting-and-deployment/hosting-on-netlify/netlify-deploy-published.jpg)
 
 ![Screenshot of homepage to https://hugo-netlify-example.netlify.com, which is mostly dummy text](/images/hosting-and-deployment/hosting-on-netlify/netlify-live-site.jpg)
 
-[Visit the live site][visit].
+[ライブサイトにアクセス][visit] してください。
 
-Now every time you push changes to your hosted git repository, Netlify will rebuild and redeploy your site.
+これで、ホストされている git リポジトリに変更をプッシュするたびに、Netlify がサイトを再ビルドして再デプロイします。
 
-See [this blog post](https://www.netlify.com/blog/2017/04/11/netlify-plus-hugo-0.20-and-beyond/) for more details about how Netlify handles Hugo versions.
+Netlify が Hugo バージョンを処理する方法の詳細については、[このブログ記事](https://www.netlify.com/blog/2017/04/11/netlify-plus-hugo-0.20-and-beyond/) を参照してください。
 
-## Use Hugo Themes with Netlify
+## Netlify で Hugo テーマを使用する {#use-hugo-themes-with-netlify}
 
-The [`git clone` method for installing themes][installthemes] is not supported by Netlify. If you were to use `git clone`, it would require you to recursively remove the `.git` subdirectory from the theme folder and would therefore prevent compatibility with future versions of the theme.
+[`git clone` によるテーマのインストール方法][installthemes] は、Netlify ではサポートされていません。 `git clone` を使用する場合、`.git` サブディレクトリをテーマ フォルダーから再帰的に削除する必要があるため、その結果、テーマの将来のバージョンとの互換性を保つことができなくなります。
 
-A *better* approach is to install a theme as a proper git submodule. You can [read the GitHub documentation for submodules][ghsm] or those found on [Git's website][gitsm] for more information, but the command is similar to that of `git clone`:
+*より良い* アプローチは、適切な git サブモジュールとしてテーマをインストールすることです。 詳細については、[サブモジュールの GitHub ドキュメントを読む][ghsm] または [Git の Web サイト][gitsm] で見つけることができますが、コマンドは `git clone` のコマンドに似ています。
 
-```txt
+```bash
 cd themes
 git submodule add https://github.com/<THEMECREATOR>/<THEMENAME>
 ```
 
-It is recommended to only use stable versions of a theme (if it’s versioned) and always check the changelog. This can be done by checking out a specific release within the theme's directory.
+テーマの安定版のみを使用し (バージョン管理されている場合)、常に変更履歴を確認することをお勧めします。これは、テーマのディレクトリ内の特定のリリースをチェックアウトすることで行うことができます。
 
-Switch to the theme's directory and list all available versions:
+以下のように、テーマのディレクトリに切り替えて、利用可能なすべてのバージョンを一覧表示します。
 
-```txt
+```bash
 cd themes/<theme>
 git tag
-# exit with q
+# q で終了します
 ```
 
-You can checkout a specific version as follows:
+特定のバージョンをチェックアウトするには、以下のようにします。
 
-```txt
+```bash
 git checkout tags/<version-name>
 ```
 
-You can update a theme to the latest version by executing the following command in the *root* directory of your project:
+プロジェクトの *root* ディレクトリで以下のコマンドを実行することで、テーマを最新版に更新することができます。
 
-```txt
+```bash
 git submodule update --rebase --remote
 ```
 
-## Next Steps
+## 次のステップ {#next-steps}
 
-You now have a live website served over HTTPS, distributed through CDN, and configured for continuous deployment. Dig deeper into the Netlify documentation:
+これで、HTTPS で提供され、CDN で配信され、継続的デプロイ用に設定されたライブ Web サイトができました。以下の Netlify のドキュメントにより、さらに詳細に理解します。
 
-1. [Using a Custom Domain][]
-2. [Setting up HTTPS on Custom Domains][httpscustom]
-3. [Redirects and Rewrite Rules][]
+1. [Using a Custom Domain (カスタムドメインを使用する)][Using a Custom Domain]
+2. [Setting up HTTPS on Custom Domains (カスタムドメインに HTTPS を設定する)][httpscustom]
+3. [Redirects and Rewrite Rules (リダイレクト ルールとリライト ルール)][Redirects and Rewrite Rules]
 
 [app.netlify.com]: https://app.netlify.com
 [build command]: /getting-started/usage/#the-hugo-command

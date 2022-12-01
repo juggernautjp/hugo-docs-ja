@@ -4,8 +4,8 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: Prints a parameter if it is set.
-draft: true
+description: パラメータが設定されている場合は、それを出力します。
+draft: false
 hugoversion: null
 keywords: []
 lastmod: "2017-02-01"
@@ -21,6 +21,6 @@ workson: []
 ---
 
 
-```
+```go-html-template
 {{ echoParam .Params "project_url" }}
 ```

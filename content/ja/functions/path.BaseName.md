@@ -3,9 +3,8 @@ categories:
 - functions
 date: "2022-06-04"
 deprecated: false
-description: BaseName returns the last element of a path, removing the extension if
-  present.
-draft: true
+description: BaseName はパスの最後の要素を返し、拡張子がある場合は拡張子を削除します。
+draft: false
 keywords:
 - path
 - base
@@ -24,9 +23,9 @@ signature:
 title: path.BaseName
 ---
 
-If `PATH` is empty, `.` is returned.
+`PATH` が空の場合、`.` が返されます。
 
-**Note:** On Windows, `PATH` is converted to slash (`/`) separators.
+**注意:** Windows では、`PATH` はスラッシュ (`/`) セパレーターに変換されます。
 
 ```go-html-template
 {{ path.BaseName "a/news.html" }} → "news"

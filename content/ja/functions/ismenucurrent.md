@@ -5,7 +5,7 @@ categories:
 date: "2017-02-01"
 deprecated: false
 description: null
-draft: true
+draft: false
 hugoversion: null
 keywords:
 - menus
@@ -24,8 +24,6 @@ workson:
 - menus
 ---
 
-`.IsMenuCurrent` is a method in `Page` object returning a _boolean_ value. It
-returns `true` if the PAGE is the same object as the `.Page` in MENUENTRY in a
-given MENU.
+`.IsMenuCurrent` は `Page` オブジェクトのメソッドで、_ブール_ 値を返します。もし、**ページ** が指定された **メニュー** の **メニューエントリ** にある `.Page` と同じオブジェクトであれば、`true` を返します。
 
-You can find its example use in [menu templates](/templates/menu-templates/).
+[メニューテンプレート](/templates/menu-templates/) にその使用例があります。

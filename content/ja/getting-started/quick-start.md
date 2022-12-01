@@ -119,7 +119,7 @@ draft: true
 
 {{< asciicast BvJBsF6egk9c163bMsObhuNXj >}}
 
-```txt
+```bash
 ▶ hugo server -D
 
                    | EN
@@ -145,7 +145,7 @@ Press Ctrl+C to stop
 
 **新しいサイト [http://localhost:1313/](http://localhost:1313/) に移動してください。**
 
-新しいコンテンツを自由に編集または追加してください。Hugo サーバーが実行されている間、すぐにブラウザーに変更が表示されます。 (Web ブラウザーを強制的に更新する必要がある場合があります。通常は Ctrl-R などが機能します。)
+新しいコンテンツを自由に編集または追加してください。Hugo サーバーが実行されている間、すぐにブラウザに変更が表示されます。 (Web ブラウザを強制的に更新する必要がある場合があります。通常は Ctrl-R などが機能します。)
 
 ## ステップ 6: テーマをカスタマイズする {#step-6-customize-the-theme}
 
@@ -176,7 +176,7 @@ theme = "ananke"
 
 方法は簡単で、以下のコマンドを実行するだけです。
 
-```txt
+```bash
 hugo -D
 ```
 

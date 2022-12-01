@@ -1,90 +1,100 @@
 ---
-draft: true
+categories:
+- commands
+aliases: []
+date: "2017-02-01"
+description: hugo mod サブコマンドは、Hugo モジュールの各種ヘルパーです。
+lastmod: "2017-02-01"
+menu:
+  docs:
+    parent: commands
+    weight: 80
+publishdate: "2017-02-01"
+sections_weight: 80
+toc: false
+weight: 80
+draft: false
 slug: hugo_mod
 title: hugo mod
-url: /commands/hugo_mod/
 ---
 ## hugo mod
 
-Various Hugo Modules helpers.
+Hugo モジュールの各種ヘルパーです。
 
-### Synopsis
+### 概要 {#synopsis}
 
-Various helpers to help manage the modules in your project's dependency graph.
+プロジェクトの依存関係グラフでモジュールを管理するのに役立つさまざまなヘルパーです。
 
-Most operations here requires a Go version installed on your system (>= Go 1.12) and the relevant VCS client (typically Git).
-This is not needed if you only operate on modules inside /themes or if you have vendored them via "hugo mod vendor".
-
-
-Note that Hugo will always start out by resolving the components defined in the site
-configuration, provided by a _vendor directory (if no --ignoreVendorPaths flag provided),
-Go Modules, or a folder inside the themes directory, in that order.
-
-See https://gohugo.io/hugo-modules/ for more information.
+ここでのほとんどの操作は、システムにインストールされた Go バージョン (Go 1.12 以降) と関連する VCS クライアント (典型的には Git) を必要とします。
+テーマ内のモジュールだけを操作する場合や、"hugo mod vendor" でモジュールをベンダー化している場合は必要ありません。
 
 
+Hugo は常に、_vendor ディレクトリ (-ignoreVendorPaths フラグが指定されていない場合)、Go モジュール、または themes ディレクトリ内のフォルダの順で、サイト設定で定義されたコンポーネントを解決することから始めることに注意してください。
 
-### Options
+詳細については、https://gohugo.io/hugo-modules/ を参照してください。
 
-```
-  -b, --baseURL string         hostname (and path) to the root, e.g. https://spf13.com/
-  -D, --buildDrafts            include content marked as draft
-  -E, --buildExpired           include expired content
-  -F, --buildFuture            include content with publishdate in the future
-      --cacheDir string        filesystem path to cache directory. Defaults: $TMPDIR/hugo_cache/
-      --cleanDestinationDir    remove files from destination not found in static directories
-  -c, --contentDir string      filesystem path to content directory
-  -d, --destination string     filesystem path to write files to
-      --disableKinds strings   disable different kind of pages (home, RSS etc.)
-      --enableGitInfo          add Git revision, date, author, and CODEOWNERS info to the pages
-      --forceSyncStatic        copy all files when static is changed.
-      --gc                     enable to run some cleanup tasks (remove unused cache files) after the build
-  -h, --help                   help for mod
-      --ignoreCache            ignores the cache directory
-  -l, --layoutDir string       filesystem path to layout directory
-      --minify                 minify any supported output format (HTML, XML etc.)
-      --noBuildLock            don't create .hugo_build.lock file
-      --noChmod                don't sync permission mode of files
-      --noTimes                don't sync modification time of files
-      --panicOnWarning         panic on first WARNING log
-      --poll string            set this to a poll interval, e.g --poll 700ms, to use a poll based approach to watch for file system changes
-      --printI18nWarnings      print missing translations
-      --printMemoryUsage       print memory usage to screen at intervals
-      --printPathWarnings      print warnings on duplicate target paths etc.
-      --printUnusedTemplates   print warnings on unused templates.
-      --templateMetrics        display metrics about template executions
-      --templateMetricsHints   calculate some improvement hints when combined with --templateMetrics
-  -t, --theme strings          themes to use (located in /themes/THEMENAME/)
-      --trace file             write trace to file (not useful in general)
+
+### オプション {#options}
+
+```bash
+  -b, --baseURL string         ルートへのホスト名 (およびパス) で、たとえば、 https://spf13.com/
+  -D, --buildDrafts            下書きとしてマークされたコンテンツを含めます
+  -E, --buildExpired           期限切れのコンテンツを含めます
+  -F, --buildFuture            公開日が将来のコンテンツを含めます
+      --cacheDir string        キャッシュ ディレクトリへのファイルシステムのパス。 デフォルトは、 $TMPDIR/hugo_cache/ です
+      --cleanDestinationDir    静的ディレクトリに見つからないファイルを宛先から削除します
+  -c, --contentDir string      コンテンツ ディレクトリへのファイルシステムのパス
+  -d, --destination string     ファイルを書き込むファイルシステムのパス
+      --disableKinds strings   さまざまな種類のページ (ホーム、RSS など) を無効にします
+      --enableGitInfo          ページに Git リビジョン、日付、作成者、CODEOWNERS 情報を追加します
+      --forceSyncStatic        static が変更されたときに、すべてのファイルをコピーします
+      --gc                     ビルド後にいくつかのクリーンアップ タスク (未使用のキャッシュ ファイルを削除する) を実行できるようにします
+  -h, --help                   mod サブコマンドのヘルプ
+      --ignoreCache            キャッシュ ディレクトリを無視します
+  -l, --layoutDir string       レイアウト ディレクトリへのファイルシステムのパス
+      --minify                 サポートされている出力形式 (HTML、XML など) をミニファイします
+      --noBuildLock            .hugo_build.lock ファイルを作成しません
+      --noChmod                ファイルのパーミッション モードを同期しません
+      --noTimes                ファイルの更新時刻を同期しません
+      --panicOnWarning         最初の WARNING ログでパニック panic します
+      --poll string            ファイルシステムの変更を監視するためにポーリング ベースのアプローチを使用するには、これをポーリング間隔に設定します (たとえば、 --poll 700ms)
+      --printI18nWarnings      不足している翻訳を表示します
+      --printMemoryUsage       一定間隔でメモリ使用量を画面に表示します
+      --printPathWarnings      重複するターゲットパスなどに関する警告を表示します
+      --printUnusedTemplates   未使用のテンプレートに関する警告を表示します
+      --templateMetrics        テンプレート実行に関するメトリクスを表示します
+      --templateMetricsHints   --templateMetrics と組み合わせると、いくつかの改善のヒントが計算されます
+  -t, --theme strings          使用するテーマ (/themes/THEMENAME/ にあります)
+      --trace file             トレースをファイルに書き出します (一般には有用ではありません)
 ```
 
-### Options inherited from parent commands
+### 親コマンドから継承されたオプション {#options-inherited-from-parent-commands}
 
+```bash
+      --clock string               Hugo が使用する時計を設定します。たとえば、 --clock 2021-11-06T22:30:00.00+09:00
+      --config string              設定ファイル (デフォルトは、 path/config.yaml|json|toml)
+      --configDir string           設定ディレクトリ (デフォルトは、 "config")
+      --debug                      デバッグ出力
+  -e, --environment string         ビルド環境
+      --ignoreVendorPaths string   指定された Glob パターンに一致するモジュールパスの _vendor を無視します
+      --log                        ロギングを有効にします
+      --logFile string             ログファイルのパス (設定されている場合、ログが自動的に有効になります)
+      --quiet                      クワイエットモード (通知オフ) でビルドします
+  -s, --source string              ファイルの相対パスを読み取るファイルシステムのパス
+      --themesDir string           テーマディレクトリへのファイルシステムのパス
+  -v, --verbose                    詳細出力 (冗長表示)
+      --verboseLog                 詳細ログ出力
 ```
-      --clock string               set the clock used by Hugo, e.g. --clock 2021-11-06T22:30:00.00+09:00
-      --config string              config file (default is path/config.yaml|json|toml)
-      --configDir string           config dir (default "config")
-      --debug                      debug output
-  -e, --environment string         build environment
-      --ignoreVendorPaths string   ignores any _vendor for module paths matching the given Glob pattern
-      --log                        enable Logging
-      --logFile string             log File path (if set, logging enabled automatically)
-      --quiet                      build in quiet mode
-  -s, --source string              filesystem path to read files relative from
-      --themesDir string           filesystem path to themes directory
-  -v, --verbose                    verbose output
-      --verboseLog                 verbose logging
-```
 
-### SEE ALSO
+### 関連項目 {#see-also}
 
-* [hugo](/commands/hugo/)	 - hugo builds your site
-* [hugo mod clean](/commands/hugo_mod_clean/)	 - Delete the Hugo Module cache for the current project.
-* [hugo mod get](/commands/hugo_mod_get/)	 - Resolves dependencies in your current Hugo Project.
-* [hugo mod graph](/commands/hugo_mod_graph/)	 - Print a module dependency graph.
-* [hugo mod init](/commands/hugo_mod_init/)	 - Initialize this project as a Hugo Module.
-* [hugo mod npm](/commands/hugo_mod_npm/)	 - Various npm helpers.
-* [hugo mod tidy](/commands/hugo_mod_tidy/)	 - Remove unused entries in go.mod and go.sum.
-* [hugo mod vendor](/commands/hugo_mod_vendor/)	 - Vendor all module dependencies into the _vendor directory.
-* [hugo mod verify](/commands/hugo_mod_verify/)	 - Verify dependencies.
+* [hugo](/commands/hugo/)	 - あなたのサイトをビルド (構築) します
+* [hugo mod clean](/commands/hugo_mod_clean/)	 - 現在のプロジェクトの Hugo モジュールのキャッシュを削除します
+* [hugo mod get](/commands/hugo_mod_get/)	 - 現在の Hugo プロジェクトにおける依存関係を解決します
+* [hugo mod graph](/commands/hugo_mod_graph/)	 - モジュールの依存関係グラフを表示します
+* [hugo mod init](/commands/hugo_mod_init/)	 - このプロジェクトを Hugo モジュールとして初期化します
+* [hugo mod npm](/commands/hugo_mod_npm/)	 - さまざまな npm ヘルパーです
+* [hugo mod tidy](/commands/hugo_mod_tidy/)	 - go.mod と go.sum の未使用のエントリを削除します
+* [hugo mod vendor](/commands/hugo_mod_vendor/)	 - すべてのモジュールの依存関係を _vendor ディレクトリにベンダー化します
+* [hugo mod verify](/commands/hugo_mod_verify/)	 - 依存関係を確認します
 

@@ -3,8 +3,7 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: Declares a provided string as a "safe" HTML document to avoid escaping
-  by Go templates.
+description: Go テンプレートによるエスケープを避けるため、指定された文字列を「安全な」 HTML ドキュメントとして宣言します。
 draft: false
 hugoversion: null
 keywords:
@@ -21,23 +20,23 @@ title: safeHTML
 workson: []
 ---
 
-It should not be used for HTML from a third-party, or HTML with unclosed tags or comments.
+サードパーティの HTML や、タグやコメントが閉じられていない HTML には使用しないでください。
 
-Given a site-wide [`config.toml`][config] with the following `copyright` value:
+サイト全体の [`config.toml`][config] に以下の `copyright` 値があるとします。
 
 {{< code-toggle file="config" >}}
 copyright = "© 2015 Jane Doe.  <a href=\"https://creativecommons.org/licenses/by/4.0/\">Some rights reserved</a>."
 {{< /code-toggle >}}
 
-`{{ .Site.Copyright | safeHTML }}` in a template would then output:
+テンプレート内の `{{ .Site.Copyright | safeHTML }}` は、以下のように出力されます。
 
 ```html
 © 2015 Jane Doe.  <a href="https://creativecommons.org/licenses/by/4.0/">Some rights reserved</a>.
 ```
 
-However, without the `safeHTML` function, html/template assumes `.Site.Copyright` to be unsafe and therefore escapes all HTML tags and renders the whole string as plain text:
+ただし、`safeHTML` 関数がないと、html/template は `.Site.Copyright` が安全でないと判断し、すべての HTML タグをエスケープし、文字列全体をプレーン テキストとしてレンダリングします。
 
-```
+```html
 <p>© 2015 Jane Doe.  &lt;a href=&#34;https://creativecommons.org/licenses by/4.0/&#34;&gt;Some rights reserved&lt;/a&gt;.</p>
 ```
 

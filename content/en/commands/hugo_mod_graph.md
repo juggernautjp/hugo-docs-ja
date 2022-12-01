@@ -1,7 +1,7 @@
 ---
 title: "hugo mod graph"
 slug: hugo_mod_graph
-url: /commands/hugo_mod_graph/
+# url: /commands/hugo_mod_graph/
 ---
 ## hugo mod graph
 

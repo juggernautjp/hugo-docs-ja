@@ -4,72 +4,72 @@ aliases:
 categories:
 - troubleshooting
 date: "2018-02-10"
-description: Solutions to some common Hugo problems.
-draft: true
+description: Hugo の一般的な問題の解決策です。
+draft: false
 keywords:
 - faqs
 linktitle: FAQ
 menu:
   docs:
     parent: troubleshooting
-title: Frequently Asked Questions
+title: よくある質問
 toc: true
 weight: 2
 ---
 
 {{% note %}}
-**Note:** The answers/solutions presented below are short, and may not be enough to solve your problem. Visit [Hugo Discourse](https://discourse.gohugo.io/) and use the search. It that does not help, start a new topic and ask your questions.
+**注意:** 以下に紹介する回答/解決策は短いものであり、あなたの問題を解決するのに十分でない可能性があります。 [Hugo Discourse](https://discourse.gohugo.io/) にアクセスし、検索を使用してください。 それでも解決しない場合は、新しいトピックを立ち上げて質問してください。
 {{% /note %}}
 
-## I can't see my content!
+## コンテンツが表示されない! {#i-cant-see-my-content}
 
-Is your Markdown file [in draft mode](https://gohugo.io/content-management/front-matter/#front-matter-variables)? When testing, run `hugo server` with the `-D` or `--buildDrafts` [switch](https://gohugo.io/getting-started/usage/#draft-future-and-expired-content).
+Markdown ファイルは、 [ドラフトモード](https://gohugo.io/content-management/front-matter/#front-matter-variables) ですか? テストするときは、`-D` または `--buildDrafts` [スイッチ](https://gohugo.io/getting-started/usage/#draft-future-and-expired-content) を指定して `hugo server` を実行します。
 
-Is your Markdown file part of a [leaf bundle](/content-management/page-bundles/)? If there is an `index.md` file in the same or any parent directory then other Markdown files will not be rendered as individual pages.
+Markdown ファイルは、 [リーフバンドル](/content-management/page-bundles/) の一部ですか? 同じディレクトリまたは任意の親ディレクトリに `index.md` ファイルがある場合、他の Markdown ファイルは個別のページとしてレンダリングされません。
 
-## Can I set configuration variables via OS environment?
+## OS 環境を介して設定変数を設定できますか? {#can-i-set-configuration-variables-via-os-environment}
 
-Yes you can! See [Configure with Environment Variables](/getting-started/configuration/#configure-with-environment-variables).
+はい、できます。 詳細は、[「環境変数で設定する」](/getting-started/configuration/#configure-with-environment-variables) を参照してください。
 
-## How do I schedule posts?
+## 投稿のスケジュールはどのように設定するのですか? {#how-do-i-schedule-posts}
 
-1. Set `publishDate` in the page [Front Matter](/content-management/front-matter/) to a datetime in the future. If you want the creation and publication datetime to be the same, it's also sufficient to only set `date`[^date-hierarchy].
-2. Build and publish at intervals.
+1. ページの [フロントマター](/content-management/front-matter/) ページにある `publishDate` に将来の日時に設定します。作成日時と公開日時を同じにしたい場合は、`date`[^date-hierarchy] のみを設定するだけでも十分です。
+2. 定期的にビルドして公開します。
 
-How to automate the "publish at intervals" part depends on your situation:
+「定期的に公開する」部分を自動化する方法は、状況によって異なります。
 
-* If you deploy from your own PC/server, you can automate with [Cron](https://en.wikipedia.org/wiki/Cron) or similar.
-* If your site is hosted on a service similar to [Netlify](https://www.netlify.com/) you can use a service such as [ifttt](https://ifttt.com/date_and_time) to schedule the updates.
+* 自分の PC/サーバーからデプロイする場合は、[Cron](https://en.wikipedia.org/wiki/Cron) などで自動化できます。
+* [Netlify](https://www.netlify.com/) のようなサービスでサイトをホストしている場合、[ifttt](https://ifttt.com/date_and_time) などのサービスを使用して更新をスケジュールできます。
 
-Also see this Twitter thread:
+以下の Twitter スレッドも参照してください。
 
 {{< tweet user="ChrisShort" id="962380712027590657" >}}
 
-[^date-hierarchy]: See [Configure Dates](https://gohugo.io/getting-started/configuration/#configure-dates) for the order in which the different date variables are complemented by each other when not explicitly set.
+[^date-hierarchy]: 明示的に設定されていない場合、異なる日付変数が互いに補完される順序については、 [「日付を設定する」](https://gohugo.io/getting-started/configuration/#configure-dates) を参照してください。
 
-## Can I use the latest Hugo version on Netlify?
+## Netlify で Hugo の最新版を使うことができますか? {#can-i-use-the-latest-hugo-version-on-netlify}
 
-Yes you can! Read [this](/hosting-and-deployment/hosting-on-netlify/#configure-hugo-version-in-netlify).
+はい、できます。 [これ](/hosting-and-deployment/hosting-on-netlify/#configure-hugo-version-in-netlify) をお読みください。
 
-## I get "... this feature is not available in your current Hugo version"
+## 「... この機能は、現在の Hugo のバージョンでは利用できません」というメッセージが表示されます {#i-get-this-feature-is-not-available-in-your-current-hugo-version}
 
-If you process `SCSS` or `Sass` to `CSS` in your Hugo project with `libsass` as the transpiler or if you convert images to the `webp` format, you need the Hugo `extended` version, or else you may see an error message similar to the below:
+Hugo プロジェクトで `libsass` をトランスパイラとして `SCSS` または `Sass` を `CSS` に処理する場合や、画像を `webp` 形式に変換する場合は、Hugoの `extended` バージョンが必要で、そうでなければ、以下のようなエラーメッセージが表示されることがあります。
 
 ```bash
 error: failed to transform resource: TOCSS: failed to transform "scss/main.scss" (text/x-scss): this feature is not available in your current Hugo version
 ```
 
-We release two set of binaries for technical reasons. The extended version is not what you get by default for some installation methods. On the [release page](https://github.com/gohugoio/hugo/releases), look for archives with `extended` in the name. To build `hugo-extended`, use `go install --tags extended`
+技術的な理由により、2 セットのバイナリをリリースしています。 拡張バージョンは、インストール方法によっては、デフォルトでは得られないものです。 [リリースページ](https://github.com/gohugoio/hugo/releases) で、名前に `extended` が含まれるアーカイブを探します。 `hugo-extended` をビルドするには、 `go install --tags extended` を使用します。
 
-To confirm, run `hugo version` and look for the word `extended`.
+確認するには、`hugo version` を実行して、`extended` という単語を探します。
 
-## Do I need to install Git to create, deploy, and maintain a website with Hugo?
+## Hugo で Web サイトを作成、デプロイ、管理するには、Git をインストールする必要がありますか? {#do-i-need-to-install-git-to-create-deploy-and-maintain-a-website-with-hugo}
 
->Technically, no.
+> 技術的には、いいえです。
 >
->Practically, yes.
+> 実質的には、その通りです。
 
-* The primary installation method documented by most (perhaps all) themes is via Git or the Hugo Modules feature.
-* The Hugo Modules feature requires Go, and Go “gets” with Git.
-* A Git repository is required by CI/CD hosting (Bitbucket, Cloudflare, GitHub Pages, GitLab Pages, Netlify, et. al.).
-* The canonical “last modified” date for content is its Git committer date; using anything else is error-prone.
+* ほとんどの (おそらくすべての) テーマで文書化されている主なインストール方法は、Git または Hugo モジュール機能によるものです。
+* Hugo モジュール機能には Go が必要で、Go は Git で「取得」します。
+* CI/CD ホスティング (Bitbucket、Cloudflare、GitHub Pages、GitLab Pages、Netlify など) には、 Git リポジトリが必要です。
+* コンテンツの正規の「最終更新日」は、Git コミッターの日付です。 他のものを使用すると、エラーが発生しやすくなります。

@@ -4,9 +4,8 @@ categories:
 - functions
 date: "2020-09-07"
 deprecated: false
-description: Returns the number of non-overlapping instances of a substring within
-  a string.
-draft: true
+description: 文字列の中で、重複しない部分文字列の数を返します。
+draft: false
 hugoversion: null
 keywords:
 - count
@@ -26,11 +25,11 @@ workson: []
 
 {{< new-in "0.74.0" >}}
 
-If `SUBSTR` is an empty string, this function returns 1 plus the number of Unicode code points in `STRING`.
+`SUBSTR` が空文字列の場合、この関数は 1 に `STRING` の Unicode コードポイントの数を加えた値を返します。
 
-Example|Result
+例 | 結果
 :--|:--
-`{{ "aaabaab" \| strings.Count "a" }}`|5
-`{{ "aaabaab" \| strings.Count "aa" }}`|2
-`{{ "aaabaab" \| strings.Count "aaa" }}`|1
-`{{ "aaabaab" \| strings.Count "" }}`|8
+`{{ "aaabaab" \| strings.Count "a" }}` | 5
+`{{ "aaabaab" \| strings.Count "aa" }}` | 2
+`{{ "aaabaab" \| strings.Count "aaa" }}` | 1
+`{{ "aaabaab" \| strings.Count "" }}` | 8

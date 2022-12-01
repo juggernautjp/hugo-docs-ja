@@ -1,7 +1,7 @@
 ---
 title: "hugo list expired"
 slug: hugo_list_expired
-url: /commands/hugo_list_expired/
+# url: /commands/hugo_list_expired/
 ---
 ## hugo list expired
 

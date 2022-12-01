@@ -4,7 +4,7 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: Slices an array to only the first _N_ elements.
+description: 配列を最初の _N_ 個の要素だけにスライスします。
 draft: false
 hugoversion: null
 keywords:
@@ -28,13 +28,11 @@ workson:
 - groups
 ---
 
-`first` works in a similar manner to the [`limit` keyword in
-SQL][limitkeyword]. It reduces the array to only the `first N`
-elements. It takes the array and number of elements as input.
+`first` は， [SQL の `limit` キーワード][limitkeyword] と似たような働きをします。 これは、配列を `先頭の N` 個の要素だけにします。 入力として、配列と要素数を受け取ります。
 
-`first` takes two arguments:
-1. `number of elements`
-2. `array` *or* `slice of maps or structs`
+`first` は、以下の 2 つの引数を取ります:
+1. `要素数`
+2. `配列` *または* `マップまたは構造体のスライス`
 
 {{< code file="layout/_default/section.html" >}}
 {{ range first 10 .Pages }}
@@ -42,14 +40,11 @@ elements. It takes the array and number of elements as input.
 {{ end }}
 {{< /code >}}
 
-*Note: Exclusive to `first`, LIMIT can be '0' to return an empty array.*
+*注意: `first` 以外に、LIMIT を '0' にすると空の配列を返します。*
 
-## `first` and `where` Together
+## `first` と `where` を一緒に使用する {#first-and-where-together}
 
-Using `first` and [`where`][wherefunction] together can be very
-powerful. Below snippet gets a list of posts only from [**main
-sections**][mainsections], sorts it by the `title` parameter, and then
-ranges through only the first 5 posts in that list:
+`first` と [`where`][wherefunction] を一緒に使うと、非常に強力です。 以下のスニペットは、[**メインセクション**][mainsections] から投稿のリストを取得し、 `title` パラメータでソートし、そのリストの最初の 5 件だけを範囲指定します。
 
 {{< code file="first-and-where-together.html" >}}
 {{ range first 5 (where site.RegularPages "Type" "in" site.Params.mainSections).ByTitle }}

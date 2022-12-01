@@ -4,9 +4,8 @@ categories:
 - functions
 date: "2019-08-13"
 deprecated: false
-description: Determine whether a given string ends with the provided trailing suffix
-  string.
-draft: true
+description: 指定された文字列が、指定された末尾のサフィックス文字列で終わっているかどうかを判断します。
+draft: false
 hugoversion: null
 keywords:
 - strings
@@ -23,6 +22,8 @@ title: strings.HasSuffix
 workson: []
 ---
 
+```go-html-template
     {{ $pdfPath := "/path/to/some.pdf" }}
     {{ strings.HasSuffix $pdfPath "pdf" }} → true
     {{ strings.HasSuffix $pdfPath "txt" }} → false
+```

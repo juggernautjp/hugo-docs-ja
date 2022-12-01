@@ -4,8 +4,8 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: slices an array to only the last <em>N</em>th elements.
-draft: true
+description: 配列を最後の <em>N</em> 番目の要素だけにスライスします。
+draft: false
 hugoversion: null
 keywords: []
 lastmod: "2017-02-01"
@@ -26,7 +26,7 @@ workson:
 - groups
 ---
 
-```
+```go-html-template
 {{ range last 10 .Pages }}
     {{ .Render "summary" }}
 {{ end }}

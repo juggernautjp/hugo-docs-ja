@@ -4,9 +4,8 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: Extracts parts of a string from a specified character's position and
-  returns the specified number of characters.
-draft: true
+description: 指定された文字の位置から文字列の一部を抽出し、指定された文字数を返します。
+draft: false
 hugoversion: null
 keywords:
 - strings
@@ -22,13 +21,13 @@ title: substr
 workson: []
 ---
 
-It normally takes two parameters: `start` and `length`. It can also take one parameter: `start`, i.e. `length` is omitted, in which case the substring starting from start until the end of the string will be returned.
+通常、`start` と `length` の 2 つのパラメータを取ります。 また、`start` という 1 つのパラメータを取ることもできます。つまり、 `length` が省略された場合は、文字列の先頭から末尾までの部分文字列が返されます。
 
-To extract characters from the end of the string, use a negative start number.
+文字列の末尾から文字を抽出する場合は、負の開始番号を使用します。
 
-If `length` is given and is negative, that number of characters will be omitted from the end of string.
+`length` が与えられ、それが負の場合、その文字数は文字列の末尾から省略されます。
 
-```
+```go-html-template
 {{ substr "abcdef" 0 }} → "abcdef"
 {{ substr "abcdef" 1 }} → "bcdef"
 

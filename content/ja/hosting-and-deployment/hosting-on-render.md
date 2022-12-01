@@ -5,91 +5,90 @@ authors:
 categories:
 - hosting and deployment
 date: "2019-06-06"
-description: Host your Hugo site for free with Render's global CDN, fully-managed
-  SSL and auto deploys from GitHub.
-draft: true
+description: Render のグローバル CDN、フルマネージド型の sSSL、GitHub からの自動デプロイを使用して、Hugo サイトを無料でホストします。
+draft: false
 keywords:
 - hosting
 - deployment
-linktitle: Host on Render
+linktitle: Render でのホスト
 menu:
   docs:
     parent: hosting-and-deployment
     weight: 10
 publishdate: "2019-06-06"
 sections_weight: 10
-title: Host on Render
+title: Render でのホスト
 toc: true
 weight: 10
 ---
 
-## Introduction
+## はじめに {#introduction}
 
-[Render](https://render.com) is a fully-managed cloud platform where you can host static sites, backend APIs, databases, cron jobs, and all your other apps in one place.
+[Render](https://render.com) は、静的サイト、バックエンド API、データベース、cron ジョブ、その他すべてのアプリケーションを一箇所でホストできる、フルマネージド型のクラウド プラットフォームです。
 
-Static sites are **completely free** on Render and include the following:
+静的サイトは、Render 上で **完全無料** で、以下のようなものがあります。
 
-- Continuous, automatic builds & deploys from [GitHub](https://render.com/docs/github) and [GitLab](https://render.com/docs/gitlab).
-- Automatic SSL certificates through [Let's Encrypt](https://letsencrypt.org).
-- Instant cache invalidation with a lightning fast, global CDN.
-- Unlimited collaborators.
-- Unlimited [custom domains](https://render.com/docs/custom-domains).
-- Automatic [Brotli compression](https://en.wikipedia.org/wiki/Brotli) for faster sites.
-- Native HTTP/2 support.
-- [Pull Request Previews](https://render.com/docs/pull-request-previews).
-- Automatic HTTP → HTTPS redirects.
-- Custom URL redirects and rewrites.
+- [GitHub](https://render.com/docs/github) と [GitLab](https://render.com/docs/gitlab) から、継続的な自動ビルドと自動デプロイを行うことができます。
+- [Let's Encrypt](https://letsencrypt.org) による自動 SSL 証明書。
+- 超高速のグローバル CDN によるキャッシュの即時無効化。
+- 協力者 (コラボレーター) は無制限。
+- 無制限の [カスタムドメイン](https://render.com/docs/custom-domains)。
+- より高速なサイト向けの自動 [Brotli 圧縮](https://en.wikipedia.org/wiki/Brotli)。
+- HTTP/2 にネイティブ対応。
+- [プルリクエストのプレビュー](https://render.com/docs/pull-request-previews)。
+- HTTP → HTTPS の自動リダイレクト。
+- カスタム URL のリダイレクトとリライト。
 
-## Assumptions
+## 前提条件 {#assumptions}
 
-- You have an account with GitHub or GitLab.
-- You have completed the [Quick Start][] or have a Hugo website you are ready to deploy and share with the world.
-- You have a Render account. You can sign up at https://render.com/register.
+- GitHub または GitLab にアカウントを持っていること。
+- [クイックスタート][Quick Start] を完了していること、または Hugo の Web サイトをデプロイし、世界と共有する準備ができでいること。
+- Render アカウントを持っていること。 https://render.com/register でサインアップできます。
 
-## Deployment
+## デプロイ {#deployment}
 
-You can set up a Hugo site on Render in two quick steps:
+Render では、以下の 2 つの手順で、簡単に Hugo サイトを立ち上げることができます。
 
-1. Create a new **Static Site** on Render, and give Render permission to access your GitHub/Gitlab repo.
-2. Use the following values during creation:
+1. Render 上に新しい **静的サイト** を作成し、Render に GitHub/Gitlab リポジトリへのアクセス権限を与えます。
+2. 作成時には、以下の値を使用します。
 
-  Field                | Value
+  フィールド            | 値
   -------------------  |  -------------------
- **Build Command**     | `hugo --gc --minify` (or your own build command)
- **Publish Directory** | `public` (or your own output directory)
+ **Build Command**     | `hugo --gc --minify` (または、独自のビルドコマンド)
+ **Publish Directory** | `public` (または、独自の出力ディレクトリ)
 
-That's it! Your site will be live on your Render URL (which looks like `yoursite.onrender.com`) as soon as the build is done.
+これで完了です。ビルドが完了するとすぐに、サイトは Render URL (`yoursite.onrender.com` のようなもの) で公開されます。
 
-## Continuous Deploys
+## 継続的デプロイ {#continuous-deploys}
 
-Now that Render is connected to your repo, it will **automatically build and publish your site** any time you push to your GitHub/Gitlab.
+Render がリポジトリに接続されたので、GitHub/Gitlab にプッシュするたびに **自動的にサイトをビルドして公開** します。
 
-You can choose to disable auto deploys under the **Settings** section for your site and deploy it manually from the Render dashboard.
+サイトの **設定 (Settings)** セクションで自動デプロイを無効にし、Render ダッシュボードから手動でデプロイすることを選択できます。
 
-## CDN and Cache Invalidation
+## CDN とキャッシュの無効化 {#cdn-cache-invalidation}
 
-Render hosts your site on a global, lightning fast CDN which ensures the fastest possible download times for all your users across the globe.
+Render は、ユーザーのサイトをグローバルな超高速 CDN でホスティングし、世界中のすべてのユーザーに可能な限り最速のダウンロード時間を保証します。
 
-Every deploy automatically and instantly invalidates the CDN cache, so your users can always access the latest content on your site.
+デプロイするたびに CDN キャッシュが自動的かつ瞬時に無効になるため、ユーザーは常にサイトの最新のコンテンツにアクセスできます。
 
-## Custom Domains
+## カスタムドメイン {#custom-domains}
 
-Add your own domains to your site easily using Render's [custom domains](https://render.com/docs/custom-domains) guide.
+Render の [カスタムドメイン](https://render.com/docs/custom-domains) ガイドを使用して、簡単に独自ドメインを追加できます。
 
-## Pull Request Previews
+## プルリクエストのプレビュー {#pull-request-previews}
 
-With Pull Request (PR) previews, you can visualize changes introduced in a pull request instead of simply relying on code reviews.
+プルリクエスト (PR) プレビューを使用すると、単にコードレビューに頼るのではなく、プルリクエストで導入された変更を可視化できます。
 
-Once enabled, every PR for your site will automatically generate a new static site based on the code in the PR. It will have its own URL, and it will be deleted automatically when the PR is closed.
+この機能を有効にすると、サイトの PR ごとに、PR 内のコードに基づいた新しい静的サイトが自動的に生成されます。 このサイトは独自の URL を持ち、PR がクローズされると自動的に削除されます。
 
-Read more about [Pull Request Previews](https://render.com/docs/pull-request-previews) on Render.
+詳細については、Render の [「プルリクエストのプレビュー (Pull Request Previews)」](https://render.com/docs/pull-request-previews) を参照してください。
 
-## Hugo Themes
+## Hugo テーマ {#hugo-themes}
 
-Render automatically downloads all Git submodules defined in your Git repo on every build. This way Hugo themes added as submodules work as expected.
+Render はビルドのたびに、Git リポジトリで定義されたすべての Git サブモジュールを自動的にダウンロードします。こうすることで、サブモジュールとして追加された Hugo テーマが期待通りに動作するようになります。
 
-## Support
+## サポート {#support}
 
-Chat with Render developers at https://render.com/chat or email `support@render.com` if you need help.
+ヘルプが必要な場合は、https://render.com/chat で Render 開発者とチャットするか、 `support@render.com` にメールを送ってください。
 
 [Quick Start]: /getting-started/quick-start/

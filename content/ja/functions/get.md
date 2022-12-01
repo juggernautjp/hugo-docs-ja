@@ -4,8 +4,8 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: Accesses positional and ordered parameters in shortcode declaration.
-draft: true
+description: ショートコード宣言の位置指定パラメータと名前付きパラメータにアクセスします。
+draft: false
 hugoversion: null
 keywords:
 - shortcodes
@@ -24,11 +24,11 @@ workson: []
 ---
 
 
-`.Get` is specifically used when creating your own [shortcode template][sc], to access the [positional and named](/templates/shortcode-templates/#positional-vs-named-parameters) parameters passed to it. When used with a numeric INDEX, it queries positional parameters (starting with 0). With a string KEY, it queries named parameters.
+`.Get` は、独自の [ショートコード テンプレート][sc] を作成するときに、渡された [位置指定および名前付き](/templates/shortcode-templates/#positional-vs-named-parameters) パラメータにアクセスするために特に使用されます。 数値 INDEX と一緒に使用すると、位置パラメータ (0 から始まる) にアクセスします。 文字列 KEY と一緒に使用すると、名前付きパラメータにクエリします。
 
-When accessing a named parameter that does not exist, `.Get` returns an empty string instead of interrupting the build. The same goes with positional parameters in hugo version 0.40 and after. This allows you to chain `.Get` with `if`, `with`, `default` or `cond` to check for parameter existence. For example, you may now use:
+存在しない名前付きパラメータにアクセスすると、`.Get` はビルドを中断する代わりに空文字列を返します。Hugo バージョン 0.40 以降では、位置指定パラメータについても同じことが言えます。これにより、 `.Get` を `if`、`with`、`default`、`cond` と連鎖させて、パラメータが存在するかどうかを確認できるようになります。 たとえば、以下のように使用できます。
 
-```
+```go-html-template
 {{ $quality := default "100" (.Get 1) }}
 ```
 

@@ -4,8 +4,8 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: '`after` slices an array to only the items after the <em>N</em>th item.'
-draft: true
+description: '`after` は、配列を <em>N</em> 番目のアイテムの後のアイテムのみにスライスします。'
+draft: false
 hugoversion: null
 keywords:
 - iteration
@@ -24,9 +24,9 @@ title: after
 workson: []
 ---
 
-The following shows `after` being used in conjunction with the [`slice` function][slice]:
+以下は、[`slice` 関数][slice] と組み合わせて使用する `after` を示しています。
 
-```
+```go-html-template
 {{ $data := slice "one" "two" "three" "four" }}
 {{ range after 2 $data }}
     {{ . }}
@@ -34,17 +34,17 @@ The following shows `after` being used in conjunction with the [`slice` function
 → ["three", "four"]
 ```
 
-## Example of `after` with `first`: 2nd&ndash;4th Most Recent Articles
+## `first` と `after` の組み合わせの例: 2 ～ 4 番目の最近の記事 {#example-of-after-with-first-2nd-4th-Most-Recent-articles}
 
-You can use `after` in combination with the [`first` function][] and Hugo's [powerful sorting methods][lists]. Let's assume you have a list page at `example.com/articles`. You have 10 articles, but you want your templating for the [list/section page][] to show only two rows:
+`after` は、[`first` 関数][`first` function] と Hugo の [強力なソートメソッド][lists] と組み合わせて使用できます。 たとえば、`example.com/articles` にリストページがあるとします。 10 個の記事がありますが、 [リスト/セクション ページ][list/section page] のテンプレートでは 2 行しか表示させないようにしたいと思います。
 
-1. The top row is titled "Featured" and shows only the most recently published article (i.e. by `publishdate` in the content files' front matter).
-2. The second row is titled "Recent Articles" and shows only the 2nd- to 4th-most recently published articles.
+1. 一番上の行は「注目」というタイトルで、最近公開された記事のみを表示します（つまり、コンテンツファイルのフロントマターの `publishdate` によるものです）。
+2. 2 行目は「最新の記事」というタイトルで、最近公開された 2 ～ 4 番目の記事のみが表示されます。
 
 {{< code file="layouts/section/articles.html" download="articles.html" >}}
 {{ define "main" }}
 <section class="row featured-article">
-    <h2>Featured Article</h2>
+    <h2>注目の記事</h2>
     {{ range first 1 .Pages.ByPublishDate.Reverse }}
      <header>
         <h3><a href="{{.Permalink}}">{{.Title}}</a></h3>
@@ -53,7 +53,7 @@ You can use `after` in combination with the [`first` function][] and Hugo's [pow
     {{ end }}
 </section>
 <div class="row recent-articles">
-    <h2>Recent Articles</h2>
+    <h2>最新の記事</h2>
     {{ range first 3 (after 1 .Pages.ByPublishDate.Reverse) }}
         <section class="recent-article">
             <header>

@@ -1,7 +1,7 @@
 ---
 title: "hugo mod get"
 slug: hugo_mod_get
-url: /commands/hugo_mod_get/
+# url: /commands/hugo_mod_get/
 ---
 ## hugo mod get
 

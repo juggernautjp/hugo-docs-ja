@@ -4,8 +4,8 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: Returns a slice of strings by splitting STRING by DELIM.
-draft: true
+description: STRING を DELIM で分割して、文字列のスライスを返します。
+draft: false
 hugoversion: null
 keywords:
 - strings
@@ -21,7 +21,7 @@ title: split
 workson: []
 ---
 
-Examples:
+例:
 
 ```go-html-template
 {{ split "tag1,tag2,tag3" "," }} → ["tag1", "tag2", "tag3"]
@@ -30,5 +30,5 @@ Examples:
 
 
 {{% note %}}
-`split` essentially does the opposite of [delimit]({{< ref "functions/delimit" >}}). While `split` creates a slice from a string, `delimit` creates a string from a slice.
+`split` は基本的に、[delimit]({{< ref "functions/delimit" >}}) の逆を行います。 `split` が文字列からスライスを作成するのに対して、 `delimit` はスライスから文字列を作成します。
 {{% /note %}}

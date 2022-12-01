@@ -4,334 +4,334 @@ authors:
 categories:
 - contribute
 date: "2017-02-01"
-description: Hugo relies heavily on contributions from the open source community.
-draft: true
+description: Hugo は、オープンソース コミュニティからの貢献に大きく依存しています。
+draft: false
 keywords:
 - dev
 - open source
-linktitle: Development
+linktitle: 開発
 menu:
   docs:
     parent: contribute
     weight: 10
 publishdate: "2017-02-01"
 sections_weight: 10
-title: Contribute to Hugo Development
+title: Hugo の開発に貢献する
 toc: true
 weight: 10
 ---
 
-## Introduction
+## はじめに {#introduction}
 
-Hugo is an open-source project and lives by the work of its [contributors][]. There are plenty of [open issues][issues], and we need your help to make Hugo even more awesome. You don't need to be a Go guru to contribute to the project's development.
+Hugo はオープンソース プロジェクトであり、その [貢献者][contributors] の仕事によって生きています。 [未解決の問題][issues] がたくさんあり、 Hugo をさらに素晴らしいものにするために、あなたの協力が必要です。 プロジェクトの開発に貢献するために、 Go の達人である必要はありません。
 
-## Assumptions
+## 前提条件 {#assumptions}
 
-This contribution guide takes a step-by-step approach in hopes of helping newcomers. Therefore, we only assume the following:
+この貢献ガイドは、初心者の方のお役に立てればと思い、ステップ バイ ステップで進めています。そのため、以下のことのみを想定しています。
 
-* You are new to Git or open-source projects in general
-* You are a fan of Hugo and enthusiastic about contributing to the project
+* Git またはオープンソース プロジェクト全般が初めての方
+* Hugo のファンで、プロジェクトに貢献することに熱心な方
 
 {{% note "Additional Questions?" %}}
-If you're struggling at any point in this contribution guide, reach out to the Hugo community in [Hugo's Discussion forum](https://discourse.gohugo.io).
+この貢献ガイドのどこかで苦労している場合は、[Hugo のディスカッション フォーラム](https://discourse.gohugo.io) で Hugo コミュニティに連絡してください。
 {{% /note %}}
 
-## Install Go
+## Go をインストールする {#install-go}
 
-The installation of Go should take only a few minutes. You have more than one option to get Go up and running on your machine.
+Go のインストールには数分しかかかりません。 マシンで Go を起動して実行するには、複数のオプションがあります。
 
-If you are having trouble following the installation guides for Go, check out [Go Bootcamp, which contains setups for every platform][gobootcamp] or reach out to the Hugo community in the [Hugo Discussion Forums][forums].
+Go のインストール ガイドに従うのに問題がある場合は、[すべてのプラットフォームのセットアップを含む Go ブートキャンプ][gobootcamp] を確認するか、[Hugo ディスカッション フォーラム][forums] の Hugo コミュニティに連絡してください。
 
-### Install Go From Source
+### ソースから Go をインストールする {#install-go-from-source}
 
-[Download the latest stable version of Go][godl] and follow the official [Go installation guide][goinstall].
+[最新の安定版 Go をダウンロード][godl] し、公式の [Go インストールガイド][goinstall] に従ってください。
 
-Once you're finished installing Go, let's confirm everything is working correctly. Open a terminal---or command line under Windows--and type the following:
+Go のインストールが完了したら、すべてが正しく動作していることを確認しましょう。ターミナル (Windows の場合は、コマンドライン) を開き、以下のように入力します。
 
-```txt
+```bash
 go version
 ```
 
-You should see something similar to the following written to the console. Note that the version here reflects the most recent version of Go as of the last update for this page:
+以下のような内容がコンソールに表示されるはずです。 ここでのバージョンは、このページの最終更新時点での Go の最新版を反映していることに注意してください。
 
-```txt
+```bash
 go version go1.12 darwin/amd64
 ```
 
-Next, make sure that you set up your `GOPATH` [as described in the installation guide][setupgopath].
+次に、`GOPATH` を [インストールガイドの説明に従って][setupgopath] 設定したことを確認します。
 
-You can print the `GOPATH` with `echo $GOPATH`. You should see a non-empty string containing a valid path to your Go workspace; for example:
+`GOPATH` は `echo $GOPATH` で表示することができます。 空ではない文字列が表示され、たとえば以下のような、Go のワークスペースへの有効なパスが含まれているはずです。
 
-```txt
+```bash
 /Users/<yourusername>/Code/go
 ```
 
-### Install Go with Homebrew
+### Homebrew で Go をインストールする {#install-go-with-homebrew}
 
-If you are a macOS user and have [Homebrew](https://brew.sh/) installed on your machine, installing Go is as simple as the following command:
+macOS ユーザーで、マシンに [Homebrew](https://brew.sh/) がインストールされている場合、Go のインストールは以下のコマンドで簡単にできます。
 
 {{< code file="install-go.sh" >}}
 brew install go
 {{< /code >}}
 
-### Install Go via GVM
+### GVM 経由で Go をインストールする {#install-go-via-gvm}
 
-More experienced users can use the [Go Version Manager][gvm] (GVM). GVM allows you to switch between different Go versions *on the same machine*. If you're a beginner, you probably don't need this feature. However, GVM makes it easy to upgrade to a new released Go version with just a few commands.
+より経験豊富なユーザーは、[Go Version Manager][gvm] (GVM) を使用できます。 GVM を使うと、*同じマシン* で異なる Go のバージョンを切り替えることができます。 初心者の場合は、おそらくこの機能は必要ないでしょう。 ただし、GVM を使えば、いくつかのコマンドを実行するだけで、新しくリリースされた Go のバージョンに簡単にアップグレードできます。
 
-GVM comes in especially handy if you follow the development of Hugo over a longer period of time. Future versions of Hugo will usually be compiled with the latest version of Go. Sooner or later, you will have to upgrade if you want to keep up.
+GVM は、Hugo の開発を長期間追跡している場合に特に役立ちます。 Hugo の将来のバージョンは通常、最新版の Go でコンパイルされます。 遅かれ早かれ、最新の状態に保ちたい場合はアップグレードする必要があります。
 
-## Create a GitHub Account
+## GitHub アカウントを作成する {#create-a-github-account}
 
-If you're going to contribute code, you'll need to have an account on GitHub. Go to [www.github.com/join](https://github.com/join) and set up a personal account.
+コードを投稿する場合は、GitHub にアカウントが必要です。 [www.github.com/join](https://github.com/join) にアクセスし、個人アカウントを設定します。
 
-## Install Git on Your System
+## システムに Git をインストールする {#install-git-on-your-system}
 
-You will need to have Git installed on your computer to contribute to Hugo development. Teaching Git is outside the scope of the Hugo docs, but if you're looking for an excellent reference to learn the basics of Git, we recommend the [Git book][gitbook] if you are not sure where to begin. We will include short explanations of the Git commands in this document.
+Hugo の開発に貢献するには、コンピューターに Git がインストールされている必要があります。 Git を教えることは Hugo ドキュメントの範囲外ですが、Git の基本を学ぶための優れた参考文献を探している場合、どこから始めればよいかわからないなら、[Git book][gitbook] をお勧めします。 このドキュメントには、Git コマンドの簡単な説明が含まれています。
 
-Git is a [version control system](https://en.wikipedia.org/wiki/Version_control) to track the changes of source code. Hugo depends on smaller third-party packages that are used to extend the functionality. We use them because we don't want to reinvent the wheel.
+Git は、ソースコードの変更を追跡するための [バージョン管理システム](https://ja.wikipedia.org/wiki/%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E7%AE%A1%E7%90%86%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0) です。 Hugo は、機能を拡張するために使用される小さなサードパーティ パッケージに依存しています。 私たちは車輪の再発明をしたくないので、それらを使っています。
 
-Go ships with a sub-command called `get` that will download these packages for us when we set up our working environment. The source code of the packages is tracked with Git. `get` will interact with the Git servers of the package hosters in order to fetch all dependencies.
+Go には `get` というサブコマンドが同梱されており、作業環境を構築する際にこれらのパッケージをダウンロードしてくれます。パッケージのソースコードは Git で管理されています。 `get` はパッケージのホストの Git サーバーとやりとりして、依存するパッケージをすべて取得します。
 
-Move back to the terminal and check if Git is already installed. Type in `git version` and press enter. You can skip the rest of this section if the command returned a version number. Otherwise [download](https://git-scm.com/downloads) the latest version of Git and follow this [installation guide](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
+ターミナルに戻り、Git がすでにインストールされているかどうかを確認します。 `git version` と入力して Enter キーを押します。コマンドがバージョン番号を返した場合は、このセクションの残りをスキップすることができます。 そうでない場合は、Git の最新版を [dさうんろーど](https://git-scm.com/downloads) して、この [インストール ガイド](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) に従ってください。
 
-Finally, check again with `git version` if Git was installed successfully.
+最後に、Git が正常にインストールされているかどうか、`git version` で再度確認します。
 
-### Git Graphical Front Ends
+### Git グラフィカル フロントエンド {#git-graphical-front-ends}
 
-There are several [GUI clients](https://git-scm.com/downloads/guis) that help you to operate Git. Not all are available for all operating systems and maybe differ in their usage. Because of this we will document how to use the command-line, since the commands are the same everywhere.
+Git を操作するための [GUI クライアント](https://git-scm.com/downloads/guis) がいくつか存在します。 すべてのクライアントがすべての OS で利用できるわけではありませんし、もしかしたら使い方が異なるかもしれません。このため、コマンドはどこでも同じなので、コマンドラインの使用方法を文書化します。
 
-### Install Hub on Your System (Optional)
+### システムに Hub をインストールする (オプション) {#install-hub-on-your-system-optional}
 
-Hub is a great tool for working with GitHub. The main site for it is [hub.github.com](https://hub.github.com/). Feel free to install this little Git wrapper.
+Hub は、GitHub と連携するための優れたツールです。そのメインサイトは、 [hub.github.com](https://hub.github.com/) です。 この小さな Git ラッパーを自由にインストールしてください。
 
-On a Mac, you can install [Hub](https://github.com/github/hub) using [Homebrew](https://brew.sh):
+Mac では、以下のように、[Homebrew](https://brew.sh) を使用して [Hub](https://github.com/github/hub) をインストールできます。
 
-```txt
+```bash
 brew install hub
 ```
 
-Now we'll create an [alias in Bash](https://tldp.org/LDP/abs/html/aliases.html) so that typing `git` actually runs `Hub`:
+以下のコマンドを実行し、[Bash のエイリアス](https://tldp.org/LDP/abs/html/aliases.html) を作成して、`git` と入力すると実際に `Hub` が実行されるようにします。
 
-```txt
+```bash
 echo "alias git='hub'" >> ~/.bash_profile
 ```
 
-Confirm the installation:
+以下のコマンドを実行して、インストールを確認します。
 
-```txt
+```bash
 git version 2.21.0
 hub version 2.10.0
 ```
 
-## Set up your working copy
+## 作業用コピーを設定する {#set-up-your-working-copy}
 
-You set up the working copy of the repository locally on your computer. Your local copy of the files is what you'll edit, compile, and end up pushing back to GitHub. The main steps are cloning the repository and creating your fork as a remote.
+リポジトリの作業用コピーをコンピューター上のローカルに設定します。 ファイルのローカルコピーは、編集してコンパイルし、最終的に GitHub にプッシュすることになります。 主な手順は、リポジトリのクローンを作成し、フォークをリモートとして作成することです。
 
-### Clone the repository
+### リポジトリをクローンする {#clone-the-repository}
 
-We assume that you've set up your `GOPATH` (see the section above if you're unsure about this). You should now copy the Hugo repository down to your computer. You'll hear this called "clone the repo". GitHub's [help pages](https://help.github.com/articles/cloning-a-repository/) give us a short explanation:
+`GOPATH` が設定されていることを前提としています (不明な点がある場合は、上記のセクションを参照してください)。 次に、Hugo リポジトリをコンピューターにコピーする必要があります。 これは「リポジトリのクローン」と呼ばれます。 GitHub の [ヘルプページ](https://help.github.com/articles/cloning-a-repository/) に、簡単な説明があります。
 
-> When you create a repository on GitHub, it exists as a remote repository. You can create a local clone of your repository on your computer and sync between the two locations.
+> GitHub でリポジトリを作成すると、リモートリポジトリとして存在します。 コンピューターにリポジトリのローカル クローンを作成し、2 つの場所の間で同期することができます。
 
-We're going to clone the [master Hugo repository](https://github.com/gohugoio/hugo). That seems counter-intuitive, since you won't have commit rights on it. But it's required for the Go workflow. You'll work on a copy of the master and push your changes to your own repository on GitHub.
+Hugo の [master リポジトリ](https://github.com/gohugoio/hugo) をクローンすることにします。コミット権がないので、直感に反するように思えます。しかし、Go のワークフローでは必要なことなのです。 master のコピーで作業し、その変更を GitHub の自分のリポジトリにプッシュします。
 
-So, let's make a new directory and clone that master repository:
+そこで、以下のコマンドを実行することにより、新しいディレクトリを作って、その master リポジトリをクローンしてみましょう。
 
-```txt
+```bash
 mkdir $HOME/src
 cd $HOME/src
 git clone https://github.com/gohugoio/hugo.git
 ```
 
-> Since Hugo 0.48, Hugo uses the Go Modules support built into Go 1.11 to build.
-> The easiest is to clone Hugo in a directory outside of GOPATH
+> Hugo 0.48 以降、Hugo は Go 1.11 に組み込まれている Go モジュールのサポートを使用してビルドします。
+> 最も簡単な方法は、GOPATH 以外のディレクトリに Hugo をクローンすることです。
 
-And then, install dependencies of Hugo by running the following in the cloned directory:
+そして、クローンしたディレクトリで以下のコマンドを実行し、Hugo の依存関係をインストールします。
 
-```txt
+```bash
 cd $HOME/src/hugo
 go install
 ```
 
-Hugo relies on [mage](https://github.com/magefile/mage) for some convenient build and test targets. If you don't already have it, get it:
+Hugo は、いくつかの便利なビルドとテストのターゲットを [mage](https://github.com/magefile/mage) に依存しています。もしまだ持っていないなら、以下のコマンドを実行して入手してください。
 
-```txt
+```bash
 go install github.com/magefile/mage@latest
 ```
 
-### Fork the repository
+### リポジトリをフォークする {#fork-the-repository}
 
-If you're not familiar with this term, GitHub's [help pages](https://help.github.com/articles/fork-a-repo/) provide again a simple explanation:
+この用語に慣れていない場合は、GitHub の [ヘルプページ](https://help.github.com/articles/fork-a-repo/) に以下のような簡単な説明があります。
 
-> A fork is a copy of a repository. Forking a repository allows you to freely experiment with changes without affecting the original project.
+> フォークとは、リポジトリのコピーのことです。リポジトリをフォークすることで、元のプロジェクトに影響を与えることなく、自由に変更を試すことができます。
 
-#### Fork by hand
+#### 手動でフォークする {#fork-by-hand}
 
-Open the [Hugo repository](https://github.com/gohugoio/hugo) on GitHub and click on the "Fork" button in the top right.
+GitHub の [Hugo リポジトリ](https://github.com/gohugoio/hugo) を開き、右上の [Fork] ボタンをクリックします。
 
 ![Fork button](/images/contribute/development/forking-a-repository.png)
 
-Now open your fork repository on GitHub and copy the remote URL of your fork. You can choose between HTTPS and SSH as protocol that Git should use for the following operations. HTTPS works always [if you're not sure](https://help.github.com/articles/which-remote-url-should-i-use/).
+ここで、GitHub 上でフォーク リポジトリを開き、フォークのリモート URL をコピーします。以下の操作では Git が使用するプロトコルとして、HTTPS と SSH のいずれかを選択することができます。 [よくわからない場合](https://help.github.com/articles/which-remote-url-should-i-use/)、HTTPS は常に動作します (そこで、HTTPS を選択します)。
 
 ![Copy remote url](/images/contribute/development/copy-remote-url.png)
 
-Switch back to the terminal and move into the directory of the cloned master repository from the last step.
+ターミナルに戻り、最後の手順で複製した master リポジトリのディレクトリに移動します。
 
-```txt
+```bash
 cd $HOME/src/hugo
 ```
 
-Now Git needs to know that our fork exists by adding the copied remote url:
+Git は、以下のコマンドにより、コピーしたリモート URL を追加して、フォークが存在することを認識する必要があります。
 
-```txt
+```bash
 git remote add <YOUR-GITHUB-USERNAME> <COPIED REMOTE-URL>
 ```
 
-#### Fork with Hub
+#### Hub を使用してフォークする {#fork-with-hub}
 
-Alternatively, you can use the Git wrapper Hub. Hub makes forking a repository easy:
+あるいは、Git ラッパーである Hub を使うこともできます。 Hub を使うと、以下のように、リポジトリのフォークが簡単にできます。
 
-```txt
+```bash
 git fork
 ```
 
-That command will log in to GitHub using your account, create a fork of the repository that you're currently working in, and add it as a remote to your working copy.
+上記のコマンドは、GitHub に自分のアカウントでログインし、現在作業しているリポジトリのフォークを作成し、それをリモートとして作業コピーに追加します。
 
-#### Trust, but verify
+#### 信頼するが確認する {#trust-but-verify}
 
-Let's check if everything went right by listing all known remotes:
+以下のコマンドを実行し、既知のすべてのリモートをリストして、すべてがうまくいったかどうかを確認しましょう。
 
-```txt
+```bash
 git remote -v
 ```
 
-The output should look similar:
+出力は、以下のようになります。
 
-```txt
+```bash
 digitalcraftsman    git@github.com:digitalcraftsman/hugo.git (fetch)
 digitalcraftsman    git@github.com:digitalcraftsman/hugo.git (push)
 origin  https://github.com/gohugoio/hugo (fetch)
 origin  https://github.com/gohugoio/hugo (push)
 ```
 
-## The Hugo Git Contribution Workflow
+## Hugo の Git 貢献ワークフロー {#the-hugo-git-contribution-workflow}
 
-### Create a new branch
+### 新しいブランチを作成する {#create-a-new-branch}
 
-You should never develop against the "master" branch. The development team will not accept a pull request against that branch. Instead, create a descriptive named branch and work on it.
+決して "master" ブランチに対して開発してはいけません。開発チームはそのブランチに対するプルリクエストを受け付けないでしょう。その代わり、説明的な名前のブランチを作成し、そのブランチで作業してください。
 
-First, you should always pull the latest changes from the master repository:
+まず、以下のコマンドを実行し、常に master リポジトリから最新の変更をプルする必要があります。
 
-```txt
+```bash
 git checkout master
 git pull
 ```
 
-Now we can create a new branch for your additions:
+これで、以下のコマンドにより、追加用の新しいブランチを作成できます。
 
-```txt
+```bash
 git checkout -b <BRANCH-NAME>
 ```
 
-You can check on which branch you are with `git branch`. You should see a list of all local branches. The current branch is indicated with a little asterisk.
+自分がどのブランチにいるのかは、 `git branch` で確認できます。 すべてのローカル ブランチのリストが表示されるはずです。現在のブランチには、小さなアスタリスクで示されます。
 
-### Contribute to Documentation
+### ドキュメントに貢献する {#contribute-to-documentation}
 
-Perhaps you want to start contributing to the Hugo docs. If so, you can ignore most of the following steps and focus on the `/docs` directory within your newly cloned repository. You can change directories into the Hugo docs using `cd docs`.
+おそらく、Hugo のドキュメントに貢献し始めたいと思うでしょう。もしそうなら、以下のステップのほとんどを無視して、新しくクローンしたリポジトリ内の `/docs` ディレクトリに集中できます。 `cd docs` を使用して、ディレクトリを Hugo ドキュメントに変更できます。
 
-You can start Hugo's built-in server via `hugo server`. Browse the documentation by entering [http://localhost:1313](http://localhost:1313) in the address bar of your browser. The server automatically updates the page whenever you change content.
+Hugo の組み込みサーバは、 `hugo server` で起動できます。 ブラウザのアドレスバーに [http://localhost:1313](http://localhost:1313) と入力して、ドキュメントを参照します。 サーバーは、コンテンツを変更するたびにページを自動的に更新します。
 
-We have developed a [separate Hugo documentation contribution guide][docscontrib] for more information on how the Hugo docs are built, organized, and improved by the generosity of people like you.
+あなたのような人々の寛大さによって Hugo ドキュメントがどのように構築、整理、改善されているかについての詳細は、[個別の Hugo ドキュメント貢献ガイド][docscontrib] を作成しました。
 
-### Build Hugo
+### Hugo をビルドする {#build-hugo}
 
-While making changes in the codebase it's a good idea to build the binary to test them:
+コードベースに変更を加えている間は、以下のコマンドにより、バイナリをビルドしてテストすることをお勧めします。
 
-```txt
+```bash
 mage hugo
 ```
 
-This command generates the binary file at the root of the repository.
+上記のコマンドは、リポジトリのルートにバイナリ ファイルを生成します。
 
-If you want to install the binary in `$GOPATH/bin`, run
+バイナリを `$GOPATH/bin` にインストールする場合は、以下を実行します。
 
-```txt
+```bash
 mage install
 ```
 
-### Test
+### テスト {#test}
 
-Sometimes changes on the codebase can cause unintended side effects. Or they don't work as expected. Most functions have their own test cases. You can find them in files ending with `_test.go`.
+コードベースへの変更が意図しない副作用を引き起こすことがあります。あるいは、期待通りに動作しないこともあります。ほとんどの関数は、独自のテストケースを持っています。テストケースは、 `_test.go` で終わるファイルにあります。
 
-Make sure the commands
+以下のようにして、コマンドを確認します。
 
-```txt
+```bash
 mage -v check
 ```
 
-passes.
+テストをパスします。
 
-### Formatting
+### 書式設定 {#formatting}
 
-The Go code style guide maybe is opinionated but it ensures that the codebase looks the same, regardless who wrote the code. Go comes with its own formatting tool. Let's apply the style guide to our additions:
+Go コード スタイルガイドは独断的かもしれませんが、誰がコードを書いたかに関係なく、コードベースが同じように見えることを保証します。 Go には、独自の書式設定ツールが付属しています。 以下のコマンドにより、スタイルガイドを追加で適用してみましょう:
 
-```txt
+```bash
 mage fmt
 ```
 
-Once you made your additions commit your changes. Make sure that you follow our [code contribution guidelines](https://github.com/gohugoio/hugo/blob/master/CONTRIBUTING.md):
+追加を行ったら、変更をコミットします。 [コード貢献ガイドライン](https://github.com/gohugoio/hugo/blob/master/CONTRIBUTING.md) に従っていることを確認してください。
 
-```txt
-# Add all changed files
+```bash
+# 変更されたすべてのファイルを追加します
 git add --all
 git commit --message "YOUR COMMIT MESSAGE"
 ```
 
-The commit message should describe what the commit does (e.g. add feature XYZ), not how it is done.
+コミットメッセージは、コミットがどのように行われるかではなく、コミットが何を行うか (機能 XYZ の追加など) を説明する必要があります。
 
-### Modify commits
+### コミットを修正する {#modify-commits}
 
-You noticed some commit messages don't fulfill the code contribution guidelines or you just forget something to add some files? No problem. Git provides the necessary tools to fix such problems. The next two methods cover all common cases.
+コミットメッセージがコード貢献ガイドラインを満たしていないことに気づいたり、いくつかのファイルを追加することを忘れてしまったりしていませんか? 問題ありません。Git は、そのような問題を修正するために必要なツールを提供します。 以下の 2 つの方法は、よくあるケースをすべてカバーします。
 
-If you are unsure what a command does leave the commit as it is. We can fix your commits later in the pull request.
+あるコマンドが何をするものなのかわからない場合は、そのままコミットしてください。後でプルリクエストの中で、あなたのコミットを修正できます。
 
-#### Modify the last commit
+#### 最後のコミットを修正する {#modify-the-last-commit}
 
-Let's say you want to modify the last commit message. Run the following command and replace the current message:
+たとえば、最後のコミットメッセージを変更したいとします。 以下のコマンドを実行し、現在のメッセージを置き換えます。
 
-```txt
+```bash
 git commit --amend -m"YOUR NEW COMMIT MESSAGE"
 ```
 
-Take a look at the commit log to see the change:
+以下のコマンドにより、コミットログを見て、変更を確認します。
 
-```txt
+```bash
 git log
-# Exit with q
+# q で終了します
 ```
 
-After making the last commit you may have forgotten something. There is no need to create a new commit. Just add the latest changes and merge them into the intended commit:
+最後のコミットを行った後、何かを忘れてしまった可能性があります。 この場合、新しいコミットを作成する必要はありません。以下のコマンドにより、最新の変更点を追加し、目的のコミットにマージするだけです。
 
-```txt
+```bash
 git add --all
 git commit --amend
 ```
 
-#### Modify multiple commits
+#### 複数のコミットを修正する {#modify-multiple-commits}
 
 {{% warning "Be Careful Modifying Multiple Commits"%}}
-Modifications such as those described in this section can have serious unintended consequences. Skip this section if you're not sure!
+このセクションで説明するような変更は、意図しない重大な結果を招くことがあります。よくわからない場合は、このセクションをスキップしてください。
 {{% /warning %}}
 
-This is a bit more advanced. Git allows you to [rebase](https://git-scm.com/docs/git-rebase) commits interactively. In other words: it allows you to rewrite the commit history.
+これはもう少し高度です。 Git では、対話的に [リベース](https://git-scm.com/docs/git-rebase) コミットできます。 つまり、コミット履歴を書き換えることができます。
 
-```txt
+```bash
 git rebase --interactive @~6
 ```
 
-The `6` at the end of the command represents the number of commits that should be modified. An editor should open and present a list of last six commit messages:
+コマンドの最後にある `6` は、変更すべきコミットの数を表します。エディターが開き、直近の 6 つのコミットメッセージのリストが表示されるはずです。
 
-```txt
+```bash
 pick 80d02a1 tpl: Add hasPrefix to the template funcs' "smoke test"
 pick aaee038 tpl: Sort the smoke tests
 pick f0dbf2c tpl: Add the other test case for hasPrefix
@@ -340,11 +340,11 @@ pick 33c8973 Begin workflow
 pick 3502f2e Refactoring and typo fixes
 ```
 
-In the case above we should merge the last two commits in the commit of this tutorial (`Add "How to contribute to Hugo" tutorial`). You can "squash" commits, i.e. merge two or more commits into a single one.
+上の例では、このチュートリアルのコミットのうち、最後の 2 つのコミット  (`Add "How to contribute to Hugo" tutorial`) をマージします。 コミットを "squash" できます、つまり 2 つ以上のコミットを 1 つにマージできます。
 
-All operations are written before the commit message. Replace "pick" with an operation. In this case `squash` or `s` for short:
+すべての操作はコミットメッセージの前に書き込まれます。 "pick" を操作に置き換えてください。この場合、`squash`、または、略して `s` になります。
 
-```txt
+```bash
 pick 80d02a1 tpl: Add hasPrefix to the template funcs' "smoke test"
 pick aaee038 tpl: Sort the smoke tests
 pick f0dbf2c tpl: Add the other test case for hasPrefix
@@ -353,11 +353,11 @@ squash 33c8973 Begin workflow
 squash 3502f2e Refactoring and typo fixes
 ```
 
-We also want to rewrite the commits message of the third last commit. We forgot "docs:" as prefix according to the code contribution guidelines. The operation to rewrite a commit is called `reword` (or `r` as shortcut).
+また、最後から 3 番目のコミットのコミットメッセージを書き換えたいと考えています。 コード貢献ガイドラインによると、プレフィックスとして "docs:" を忘れています。 コミットを書き換える操作は `reword` (または、ショートカットとして `r`) と呼ばれます。
 
-You should end up with a similar setup:
+最終的には、以下と同じような設定になるはずです。
 
-```txt
+```bash
 pick 80d02a1 tpl: Add hasPrefix to the template funcs' "smoke test"
 pick aaee038 tpl: Sort the smoke tests
 pick f0dbf2c tpl: Add the other test case for hasPrefix
@@ -366,60 +366,60 @@ squash 33c8973 Begin workflow
 squash 3502f2e Refactoring and typo fixes
 ```
 
-Close the editor. It should open again with a new tab. A text is instructing you to define a new commit message for the last two commits that should be merged (aka "squashed"). Save the file with <kbd>CTRL</kbd>+<kbd>S</kbd> and close the editor again.
+エディターを閉じます。 新しいタブで再び開く必要があります。 テキストは、マージする必要がある (別名 "squashed") 最後の 2 つのコミットに対して、新しいコミットメッセージを定義するように指示しています。 <kbd>CTRL</kbd>+<kbd>S</kbd> でファイルを保存し、エディターを再度閉じます。
 
-A last time a new tab opens. Enter a new commit message and save again. Your terminal should contain a status message. Hopefully this one:
+最後に新しいタブが開きます。 新しいコミットメッセージを入力し、再度保存してください。ターミナルにはステータス メッセージが表示されるはずです。うまくいけば、以下が表示されます。
 
-```txt
+```bash
 Successfully rebased and updated refs/heads/<BRANCHNAME>.
 ```
 
-Check the commit log if everything looks as expected. Should an error occur you can abort this rebase with `git rebase --abort`.
+コミットログをチェックして、すべてが期待通りになっていることを確認してください。 エラーが発生した場合は、`git rebase --abort` でこのリベースを中断できます。
 
-### Push commits
+### コミットをプッシュする {#push-commits}
 
-To push our commits to the fork on GitHub we need to specify a destination. A destination is defined by the remote and a branch name. Earlier, the defined that the remote URL of our fork is the same as our GitHub handle, in my case `digitalcraftsman`. The branch should have the same as our local one. This makes it easy to identify corresponding branches.
+GitHub 上のフォークにコミットをプッシュするには、プッシュ先を指定する必要があります。プッシュ先は、リモートとブランチ名で定義します。 先ほど、フォークのリモート URL が GitHub のハンドル名 (私の場合は、 `digitalcraftsman`) と同じであることを定義しました。 ブランチは、ローカルのものと同じでなければなりません。 これにより、対応するブランチを簡単に識別できます。
 
-```txt
+```bash
 git push --set-upstream <YOUR-GITHUB-USERNAME> <BRANCHNAME>
 ```
 
-Now Git knows the destination. Next time when you to push commits you just need to enter `git push`.
+これで、Git は宛先を認識しました。 次にコミットをプッシュするときは、 `git push` と入力するだけです。
 
-If you modified your commit history in the last step GitHub will reject your try to push. This is a safety-feature because the commit history isn't the same and new commits can't be appended as usual. You can enforce this push explicitly with `git push --force`.
+最後のステップでコミット履歴を変更した場合、GitHub はプッシュの試行を拒否します。 これは、コミット履歴が同じでないために、新しいコミットを通常通り追加できないことによる安全機能です。 このプッシュを明示的に強制するには、`git push --force` と指定します。
 
-## Open a pull request
+## プルリクエストをオープンする {#open-a-pull-request}
 
-We made a lot of progress. Good work. In this step we finally open a pull request to submit our additions. Open the [Hugo master repository](https://github.com/gohugoio/hugo/) on GitHub in your browser.
+たくさん前進しましたね。よくできました。 このステップでは、いよいよ追加した内容を提出するためにプルリクエストをオープンします。ブラウザで、GitHub の [Hugo master リポジトリ](https://github.com/gohugoio/hugo/) を開きます。
 
-You should find a green button labeled with "New pull request". But GitHub is clever and probably suggests you a pull request like in the beige box below:
+"New pull request" (新しいプルリクエスト) と書かれた緑色のボタンが見つかるはずです。しかし、GitHub は賢いので、おそらく下のベージュ色のボックスのようなプルリクエストを提案してくるでしょう。
 
 ![Open a pull request](/images/contribute/development/open-pull-request.png)
 
-The new page summaries the most important information of your pull request. Scroll down and you find the additions of all your commits. Make sure everything looks as expected and click on "Create pull request".
+新しいページでは、あなたのプルリクエストの最も重要な情報が要約されています。下にスクロールしていくと、すべてのコミットが追加されていることがわかります。すべてが期待通りに表示されていることを確認し、"Create pull request" (プルリクエストを作成する) をクリックします。.
 
-### Accept the contributor license agreement
+### 貢献者ライセンス同意書に同意する {#accept-the-contributor-license-agreement}
 
-Last but not least you should accept the contributor license agreement (CLA). A new comment should be added automatically to your pull request. Click on the yellow badge, accept the agreement and authenticate yourself with your GitHub account. It just takes a few clicks and only needs to be done once.
+最後になりましたが、貢献者ライセンス同意書 (CLA) に同意する必要があります。 新しいコメントがプルリクエストに自動的に追加されます。 黄色のバッジをクリックし、契約に同意して、GitHub アカウントで自分自身を認証します。 数回クリックするだけで、一度だけ実行する必要があります。
 
 ![Accept the CLA](/images/contribute/development/accept-cla.png)
 
-### Automatic builds
+### 自動ビルド {#automatic-builds}
 
-We use a GitHub Actions workflow to build and test. This is a matrix build across combinations of operating system (macOS, Windows, and Ubuntu) and Go versions. The workflow is triggered by the submission of a pull request. If you are a first-time contributor, the workflow requires approval from a project maintainer.
+GitHub Actions ワークフローを使用して、ビルドとテストを行います。これは、OS (macOS、Windows、Ubuntu) と Go のバージョンの組み合わせにまたがるマトリックス ビルドです。ワークフローは、プルリクエストを提出することでトリガーされます。 初めて貢献する場合、ワークフローはプロジェクト メンテナーの承認が必要です。
 
-## Where to start?
+## 何から始めるか? {#where-to-start}
 
-Thank you for reading through this contribution guide. Hopefully, we will see you again soon on GitHub. There are plenty of [open issues][issues] for you to help with.
+この貢献ガイドをお読みいただき、ありがとうございました。 またすぐに GitHub でお会いできることを願っています。 あなたが貢献できる [未解決の問題][issues] がたくさんあります。
 
-Feel free to [open an issue][newissue] if you think you found a bug or you have a new idea to improve Hugo. We are happy to hear from you.
+バグを発見した場合や、Hugo を改善するための新しいアイデアをお持ちの場合は、お気軽に [issue をオープンする][newissue] をご利用ください。ご連絡をお待ちしております。
 
-## Additional References for Learning Git and Go
+## Git と Go を学ぶための追加リファレンス {#additional-references-for-learning-git-and-go}
 
-* [Codecademy's Free "Learn Git" Course][codecademy] (Free)
-* [Code School and GitHub's "Try Git" Tutorial][trygit] (Free)
-* [The Git Book][gitbook] (Free)
-* [Go Bootcamp][gobootcamp]
+* [Codecademy の "Learn Git" 無料コース][codecademy] (無料)
+* [Code School と GitHub の "Try Git" チュートリアル][trygit] (無料)
+* [The Git Book][gitbook] (無料)
+* [Go ブートキャンプ][gobootcamp]
 
 [codecademy]: https://www.codecademy.com/learn/learn-git
 [contributors]: https://github.com/gohugoio/hugo/graphs/contributors

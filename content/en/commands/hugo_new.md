@@ -1,7 +1,7 @@
 ---
 title: "hugo new"
 slug: hugo_new
-url: /commands/hugo_new/
+# url: /commands/hugo_new/
 ---
 ## hugo new
 

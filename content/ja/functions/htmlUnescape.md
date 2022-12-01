@@ -4,8 +4,8 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: Returns the given string with HTML escape codes un-escaped.
-draft: true
+description: 指定された文字列を、HTML エスケープコードをアンエスケープして返します。
+draft: false
 hugoversion: null
 keywords: []
 lastmod: "2017-02-01"
@@ -22,10 +22,10 @@ title: htmlUnescape
 workson: []
 ---
 
-`htmlUnescape` returns the given string with HTML escape codes un-escaped.
+`htmlUnescape` は、指定された文字列の HTML エスケープコードをアンエスケープして返します。
 
-Remember to pass the output of this to `safeHTML` if fully un-escaped characters are desired. Otherwise, the output will be escaped again as normal.
+完全にエスケープされていない文字が必要な場合は、この出力を `safeHTML` に渡すことを覚えておいてください。 それ以外の場合、出力は通常通り再びエスケープされます。
 
-```
+```go-html-template
 {{ htmlUnescape "Hugo &amp; Caddy &gt; WordPress &amp; Apache" }} → "Hugo & Caddy > WordPress & Apache"
 ```

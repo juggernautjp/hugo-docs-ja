@@ -3,9 +3,8 @@ aliases: []
 categories:
 - functions
 date: "2018-11-07"
-description: '`collections.Complement` (alias `complement`) gives the elements of
-  a collection that are not in any of the others.'
-draft: true
+description: '`collections.Complement` (別名 `complement`) は、他のどのコレクションにもないコレクションの要素を提供します。'
+draft: false
 hugoversion: "0.51"
 keywords:
 - collections
@@ -19,7 +18,7 @@ signature:
 title: complement
 ---
 
-Example:
+例:
 
 ```go-html-template
 {{ $pages := site.RegularPages | first 50 }}
@@ -28,4 +27,5 @@ Example:
 {{ $other := $pages | complement $news $blog | first 10 }}
 ```
 
-The above is an imaginary use case for the home page where you want to display different page listings in sections/boxes on different places on the page: 5 from `news`, 5 from the `blog` and then 10 of the pages not shown in the other listings, to _complement_ them.
+上記は、ページのさまざまな場所のセクション/ボックスにさまざまなページリストを表示する、ホームページの架空の使用例で、
+`news` から 5 つ、`blog` から 5 つ、そして表示されていないページのうち 10 ページ 他のリストで、それらを _補完_ するために表示したい場合です。

@@ -3,7 +3,7 @@ aliases:
 - /layout/functions/
 - /templates/functions
 date: "2017-02-01"
-description: Hugo のテンプレート機能を網羅し、基本的な使用方法から応用例までを紹介。
+description: Hugo のテンプレート機能を網羅し、基本的な使用方法から応用例までを紹介します。
 draft: false
 keywords: []
 lastmod: "2017-02-01"

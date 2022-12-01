@@ -2,10 +2,8 @@
 categories:
 - functions
 date: "2017-02-01"
-description: Converts a time.Time value to the number of seconds elapsed since the
-  Unix epoch, excluding leap seconds. The Unix epoch is 00:00:00&nbsp;UTC on 1 January
-  1970.
-draft: true
+description: time.Time 値を Unix エポックからの経過秒数 (うるう秒を除く) に変換します。 Unix エポックは、1970年1月1日の 00:00:00&nbsp; UTC です。
+draft: false
 keywords:
 - dates
 - time
@@ -25,7 +23,7 @@ signature:
 title: .Unix
 ---
 
-The `Milli`, `Micro`, and `Nano` variants return the number of milliseconds, microseconds, and nanoseconds (respectively) elapsed since the Unix epoch.
+`Milli`、`Micro`、および `Nano` バリアントは、 (それぞれ) Unix エポックから経過したミリ秒、マイクロ秒、およびナノ秒の数を返します。
 
 ```go-html-template
 .Date.Unix        --> 1637259694

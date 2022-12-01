@@ -1,8 +1,20 @@
 ---
+categories:
+- commands
+aliases: []
+date: "2017-02-01"
+description: hugo コマンドは、あなたのサイトをビルド (構築) します。
+lastmod: "2017-02-01"
+menu:
+  docs:
+    parent: commands
+    weight: 10
+publishdate: "2017-02-01"
+sections_weight: 10
+toc: false
+weight: 10
 draft: false
-slug: hugo
-title: hugo
-url: /commands/hugo/
+title: "hugo (cli)"
 ---
 ## hugo
 
@@ -22,7 +34,7 @@ hugo [flags]
 
 ### オプション {#options}
 
-```
+```bash
   -b, --baseURL string             ルートへのホスト名 (およびパス) で、たとえば、 https://spf13.com/
   -D, --buildDrafts                下書きとしてマークされたコンテンツを含めます
   -E, --buildExpired               期限切れのコンテンツを含めます
@@ -30,8 +42,8 @@ hugo [flags]
       --cacheDir string            キャッシュ ディレクトリへのファイルシステム パスで、デフォルトは $TMPDIR/hugo_cache/ です。
       --cleanDestinationDir        静的ディレクトリに見つからない宛先からファイルを削除します
       --clock string               Hugo が使用する時計を設定します。たとえば、 --clock 2021-11-06T22:30:00.00+09:00
-      --config string              設定ファイル (デフォルトは path/config.yaml|json|toml)
-      --configDir string           config ディレクトリ (デフォルトは "config")
+      --config string              設定ファイル (デフォルトは、 path/config.yaml|json|toml)
+      --configDir string           設定ディレクトリ (デフォルトは、 "config")
   -c, --contentDir string          コンテンツディレクトリへのファイルシステムのパス
       --debug                      デバッグ出力
   -d, --destination string         ファイルを書き込むファイルシステムのパス
@@ -56,7 +68,7 @@ hugo [flags]
       --printMemoryUsage           一定間隔でメモリ使用量を画面に表示します
       --printPathWarnings          ターゲットパスの重複などに関する警告を表示します
       --printUnusedTemplates       未使用のテンプレートについて警告を出力します
-      --quiet                      Quiet (通知オフ) モードでビルドします
+      --quiet                      クワイエットモード (通知オフ) でビルドします
       --renderToMemory             メモリにレンダリングします (ベンチマークテストにのみ有効)
   -s, --source string              ファイルの相対パスを読み取るファイルシステムのパス
       --templateMetrics            テンプレート実行に関する指標 (メトリクス) を表示します
@@ -64,8 +76,8 @@ hugo [flags]
   -t, --theme strings              (/themes/THEMENAME/ にある) 使用するテーマ 
       --themesDir string           テーマディレクトリへのファイルシステムのパス
       --trace file                 トレースをファイルに書き込みます (一般的には役に立ちません)
-  -v, --verbose                    詳細出力
-      --verboseLog                 詳細ログ
+  -v, --verbose                    詳細出力 (冗長表示)
+      --verboseLog                 詳細ログ出力
   -w, --watch                      ファイルシステムの変更を監視し、必要に応じて再作成します
 ```
 

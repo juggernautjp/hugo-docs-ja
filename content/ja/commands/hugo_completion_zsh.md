@@ -1,69 +1,89 @@
 ---
-draft: true
+categories:
+- commands
+aliases: []
+date: "2017-02-01"
+description: hugo completion zsh サブコマンドは、zsh 用のオートコンプリート スクリプトを生成します。
+lastmod: "2017-02-01"
+menu:
+  docs:
+    parent: commands
+    weight: 14
+publishdate: "2017-02-01"
+sections_weight: 14
+toc: false
+weight: 14
+draft: false
 slug: hugo_completion_zsh
 title: hugo completion zsh
-url: /commands/hugo_completion_zsh/
 ---
 ## hugo completion zsh
 
-Generate the autocompletion script for zsh
+zsh 用のオートコンプリート スクリプトを生成します
 
-### Synopsis
+### 概要 {#synopsis}
 
-Generate the autocompletion script for the zsh shell.
+zsh シェル用のオートコンプリート スクリプトを生成します。
 
-If shell completion is not already enabled in your environment you will need
-to enable it.  You can execute the following once:
+お使いの環境でシェル補完が有効になっていない場合は、有効化する必要があります。
+以下のコマンドを 1 回だけ実行します。
 
-	echo "autoload -U compinit; compinit" >> ~/.zshrc
+```bash
+echo "autoload -U compinit; compinit" >> ~/.zshrc
+```
 
-To load completions in your current shell session:
+現在のシェル セッションに補完を読み込むには、以下のコマンドを実行します。
 
-	source <(hugo completion zsh); compdef _hugo hugo
+```bash
+source <(hugo completion zsh); compdef _hugo hugo
+```
 
-To load completions for every new session, execute once:
+新しいセッションごとに補完をロードするには、以下のコマンドを 1 回だけ実行します。
 
 #### Linux:
 
-	hugo completion zsh > "${fpath[1]}/_hugo"
+```bash
+hugo completion zsh > "${fpath[1]}/_hugo"
+```
 
 #### macOS:
 
-	hugo completion zsh > $(brew --prefix)/share/zsh/site-functions/_hugo
-
-You will need to start a new shell for this setup to take effect.
-
-
+```bash
+hugo completion zsh > $(brew --prefix)/share/zsh/site-functions/_hugo
 ```
+
+この設定を有効にするには、新しいシェルを起動する必要があります。
+
+```bash
 hugo completion zsh [flags]
 ```
 
-### Options
+### オプション {#options}
 
-```
-  -h, --help              help for zsh
-      --no-descriptions   disable completion descriptions
-```
-
-### Options inherited from parent commands
-
-```
-      --clock string               set the clock used by Hugo, e.g. --clock 2021-11-06T22:30:00.00+09:00
-      --config string              config file (default is path/config.yaml|json|toml)
-      --configDir string           config dir (default "config")
-      --debug                      debug output
-  -e, --environment string         build environment
-      --ignoreVendorPaths string   ignores any _vendor for module paths matching the given Glob pattern
-      --log                        enable Logging
-      --logFile string             log File path (if set, logging enabled automatically)
-      --quiet                      build in quiet mode
-  -s, --source string              filesystem path to read files relative from
-      --themesDir string           filesystem path to themes directory
-  -v, --verbose                    verbose output
-      --verboseLog                 verbose logging
+```bash
+  -h, --help              zsh サブコマンドのヘルプ 
+      --no-descriptions   補完の説明を無効にします
 ```
 
-### SEE ALSO
+### 親コマンドから継承されたオプション {#options-inherited-from-parent-commands}
 
-* [hugo completion](/commands/hugo_completion/)	 - Generate the autocompletion script for the specified shell
+```bash
+      --clock string               Hugo が使用する時計を設定します。たとえば、 --clock 2021-11-06T22:30:00.00+09:00
+      --config string              設定ファイル (デフォルトは、 path/config.yaml|json|toml)
+      --configDir string           設定ディレクトリ (デフォルトは、"config")
+      --debug                      デバッグ出力
+  -e, --environment string         ビルド環境
+      --ignoreVendorPaths string   指定された Glob パターンに一致するモジュールパスの _vendor を無視します
+      --log                        ロギングを有効にします
+      --logFile string             ログファイルのパス (設定されている場合、ログが自動的に有効になります)
+      --quiet                      クワイエットモード (通知オフ) でビルドします
+  -s, --source string              ファイルの相対パスを読み取るファイルシステムのパス
+      --themesDir string           テーマディレクトリへのファイルシステムのパス
+  -v, --verbose                    詳細出力 (冗長表示)
+      --verboseLog                 詳細ログ出力
+```
+
+### 関連項目 {#see-also}
+
+* [hugo completion](/commands/hugo_completion/)	 - 指定されたシェル用のオートコンプリート スクリプトを生成します
 

@@ -2,8 +2,8 @@
 categories:
 - functions
 date: "2018-09-14"
-description: '`group` groups a list of pages.'
-draft: true
+description: '`group` は、ページのリストをグループ化します。'
+draft: false
 hugoversion: "0.49"
 keywords:
 - collections
@@ -32,4 +32,4 @@ title: group
 {{ end }}
 {{< /code >}}
 
-The page group you get from `group` is of the same type you get from the built-in [group methods](/templates/lists#group-content) in Hugo. The above example can even be [paginated](/templates/pagination/#list-paginator-pages).
+`group` から得られるページグループは、Hugo の組み込みの [グループメソッド](/templates/lists#group-content) から得られるものと同じタイプです。上記の例は、[ページ付け](/templates/pagination/#list-paginator-pages) することもできます。

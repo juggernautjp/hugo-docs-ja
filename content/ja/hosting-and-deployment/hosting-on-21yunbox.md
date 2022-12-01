@@ -5,67 +5,66 @@ authors:
 categories:
 - hosting and deployment
 date: "2021-01-06"
-description: Host your Hugo site with 21YunBox's blazing fast Chinese CDN, fully-managed
-  SSL and auto deploys from Gitee.
-draft: true
+description: 21YunBox の非常に高速な中国の CDN、フルマネージド SSL、および Gitee からの自動デプロイを使用して、Hugo サイトをホストします。
+draft: false
 keywords:
 - 21yunbox
 - hosting
 - deployment
-linktitle: Host on 21YunBox
+linktitle: 21YunBox でのホスト
 menu:
   docs:
     parent: hosting-and-deployment
     weight: 10
 publishdate: "2021-01-06"
 sections_weight: 10
-title: Host on 21YunBox
+title: 21YunBox  でのホスト
 toc: true
 weight: 10
 ---
 
-[21YunBox](https://www.21yunbox.com) is a fully-managed cloud platform dedicated to make web deployment easy within the Chinese Great Firewall where you can host static sites, backend APIs, databases, cron jobs, and all your other apps in one place. It provides blazing fast Chinese CDN, continuous deployment, one-click HTTPS and [other services like managed databases and backend web services](https://www.21yunbox.com/docs/), providing an avenue to launch web projects in China.
+[21YunBox](https://www.21yunbox.com) は、静的サイト、バックエンド API、データベース、cron ジョブ、その他すべてのアプリケーションを一箇所でホストできる、中国のグレート ファイアウォール内での Web デプロイを容易にするためのフルマネージドのクラウドプラットフォームです。高速な中国の CDN、継続的デプロイ、ワンクリック HTTPS、[マネージド データベースやバックエンド Web サービスなどのその他のサービス](https://www.21yunbox.com/docs/) を提供し、中国での Web プロジェクトを立ち上げるための手段を提供しています。
 
-21YunBox includes the following features:
+21YunBox には、以下の機能があります。
 
-- Continuous, automatic builds & deploys from GitHub and Gitee
-- Automatic SSL certificates through [Let's Encrypt](https://letsencrypt.org)
-- Instant cache invalidation with a blazing fast, Chinese CDN
-- Unlimited [custom domains](https://www.21yunbox.com/docs/#/custom-domains)
-- Automatic [Brotli compression](https://en.wikipedia.org/wiki/Brotli) for faster sites
-- Native HTTP/2 support
-- Automatic HTTP → HTTPS redirects
-- Custom URL redirects and rewrites
+- GitHub と Gitee からの継続的な自動ビルドとデプロイ
+- [Let's Encrypt](https://letsencrypt.org) による自動 SSL 証明書
+- 非常に高速な中国の CDN によるキャッシュの即時無効化
+- 無制限 [カスタムドメイン](https://www.21yunbox.com/docs/#/custom-domains)
+- 自動 [Brotli 圧縮](https://en.wikipedia.org/wiki/Brotli) によるサイトの高速化
+- HTTP/2 のネイティブ サポート
+- HTTP → HTTPS の自動リダイレクト
+- カスタム URL のリダイレクトとリライト
 
-## Prerequisites
+## 前提条件 {#prerequisites}
 
-This guide assumes you already have a Hugo project to deploy. If you need a project, use the [Quick Start](/getting-started/quick-start/) to get started or fork 21YunBox's [Hugo Example](https://gitee.com/eryiyunbox-examples/hello-hugo) before continuing.
+このガイドでは、デプロイする Hugo プロジェクトがすでにあることを前提にしています。 プロジェクトが必要な場合は、[クイックスタート](/getting-started/quick-start/) を使用して開始するか、21YunBox の [Hugo Example](https://gitee.com/eryiyunbox-examples/hello-hugo) をフォークしてから続行してください。
 
-## Setup
+## 設定する {#setup}
 
-You can set up a Hugo site on 21YunBox in two quick steps:
+21YunBox で Hugo サイトをセットアップするには、以下の 2 つの手順を実行します。
 
-1. Create a new web service on 21YunBox, and give 21YunBox permission to access your GitHub or Gitee repo.
-2. Use the following values during creation:
+1. 21YunBox で新しい Web サービスを作成し、21YunBox に GitHub または Gitee リポジトリへのアクセス権限を与えます。
+2. 作成時には以下の値を使用します。
 
-   |    Field              | Value                                            |
+   |    フィールド          | 値                                            |
    | --------------------- | ------------------------------------------------ |
    | **Environment**       | `Static Site`                                    |
-   | **Build Command**     | `hugo --gc --minify` (or your own build command) |
-   | **Publish Directory** | `./public` (or your own output directory)        |
+   | **Build Command**     | `hugo --gc --minify` (または、独自のビルドコマンド) |
+   | **Publish Directory** | `./public` (または、独自のビルドコマンド)        |
 
-That's it! Your site will be live on your 21YunBox URL (which looks like `yoursite.21yunbox.com`) as soon as the build is done.
+これで完了です。ビルドが完了すると同時に、あなたのサイトは 21YunBox の URL (`yoursite.21yunbox.com` のようなもの) で公開されます。
 
-## Continuous deploys
+## 継続的デプロイ {#continuous-deploys}
 
-Now that 21YunBox is connected to your repo, it will automatically build and publish your site any time you push to GitHub.
+21YunBox があなたのリポジトリに接続されたことで、GitHub にプッシュするたびに、自動的にサイトをビルドして公開することができるようになりました。
 
-Every deploy automatically and instantly invalidates the CDN cache, so your users can always access the latest content on your site.
+デプロイするたびに CDN キャッシュが自動的かつ瞬時に無効になるため、ユーザーは常にサイトの最新のコンテンツにアクセスすることができます。
 
-## Custom domains
+## カスタムドメイン {#custom-domains}
 
-Add your own domains to your site easily using 21YunBox's [custom domains](https://www.21yunbox.com/docs/#/custom-domains) guide.
+21YunBox の [カスタムドメイン](https://www.21yunbox.com/docs/#/custom-domains) ガイドを使用して、サイトに簡単に独自ドメインを追加できます。
 
-## Support
+## サポート {#support}
 
-Click [here](https://www.21yunbox.com/docs/#/contact) to contact with 21YunBox' experts if you need help.
+21YunBox の専門家に相談したい場合は、[ここ](https://www.21yunbox.com/docs/#/contact) をクリックしてください。

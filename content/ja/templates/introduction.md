@@ -126,14 +126,14 @@ Go テンプレートはいくつかの基本的な関数を備えているだ�
 
 ```go-html-template
 {{ add 1 2 }}
-<!-- prints 3 -->
+<!-- 3 を出力します -->
 ```
 
 ### 例 2：数値の比較 {#example-2-comparing-numbers}
 
 ```go-html-template
 {{ lt 1 2 }}
-<!-- prints true (i.e., since 1 is less than 2) -->
+<!-- true を出力します (つまり、 1 は 2 未満なので) -->
 ```
 
 どちらの例も、Go テンプレートの [math][math] 関数を使用していることに注意してください。
@@ -574,7 +574,7 @@ params:
 </nav>
 ```
 
-## 例: 未来のイベントを表示する {#example-show-future-events}
+## 例: 将来のイベントを表示する {#example-show-future-events}
 
 以下のようなコンテンツ構造と [フロントマター][front matter] が与えられた場合:
 
@@ -594,7 +594,7 @@ start_date = 2021-12-05T09:00:00-08:00
 end_date = 2021-12-05T11:00:00-08:00
 {{< /code-toggle >}}
 
-以下の [部分テンプレート][partials] は、未来のイベントをレンダリングします。
+以下の [部分テンプレート][partials] は、将来のイベントをレンダリングします。
 
 {{< code file="layouts/partials/future-events.html" >}}
 <h2>Future Events</h2>

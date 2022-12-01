@@ -4,9 +4,8 @@ categories:
 - functions
 date: "2017-09-25"
 deprecated: false
-description: Parse parses a given url, which may be relative or absolute, into a URL
-  structure.
-draft: true
+description: Parse は、与えられた URL (相対または絶対) を解析し、URL 構造にします。
+draft: false
 hugoversion: null
 keywords:
 - urls
@@ -21,14 +20,14 @@ title: urls.Parse
 workson: []
 ---
 
-`urls.Parse` takes a url as input
+`urls.Parse` は、 url を入力として受け取ります。
 
 
 ```go-html-template
 {{ $url := urls.Parse "http://www.gohugo.io" }}
 ```
 
-and returns a [URL](https://godoc.org/net/url#URL) structure. The struct fields are accessed via the `.` notation:
+そして、[URL](https://godoc.org/net/url#URL) 構造体を返します。URL 構造体のフィールドには、 `.` 記法でアクセスします。
 
 ```go-html-template
 {{ $url.Scheme }} → "http"

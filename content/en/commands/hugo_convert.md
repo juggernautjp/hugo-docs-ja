@@ -1,7 +1,7 @@
 ---
 title: "hugo convert"
 slug: hugo_convert
-url: /commands/hugo_convert/
+# url: /commands/hugo_convert/
 ---
 ## hugo convert
 

@@ -4,9 +4,8 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: Given a map, array, or slice, `apply` returns a new slice with a function
-  applied over it.
-draft: true
+description: マップ、配列、またはスライスを指定すると、 `apply` は関数が適用された新しいスライスを返します。
+draft: false
 hugoversion: null
 keywords:
 - advanced
@@ -23,44 +22,44 @@ workson: []
 ---
 
 {{< todo >}}
-POTENTIAL NEW CONTENT: see apply/sequence discussion: https://discourse.gohugo.io/t/apply-printf-on-a-sequence/5722;
+潜在的な新しいコンテンツ: apply/sequence の議論を参照してください: https://discourse.gohugo.io/t/apply-printf-on-a-sequence/5722;
 {{< /todo >}}
 
-`apply` expects at least three parameters, depending on the function being applied.
+`apply` は、適用される関数に応じて、少なくとも以下の 3 つのパラメータを必要とします。
 
-1. The first parameter is the sequence to operate on.
-2. The second parameter is the name of the function as a string, which must be the name of a valid [Hugo function][functions].
-3. After that, the parameters to the applied function are provided, with the string `"."` standing in for each element of the sequence the function is to be applied against.
+1. 最初のパラメーターは、操作するシーケンスです。
+2. 第 2 パラメータは、文字列としての関数名で、有効な [Hugo 関数][functions] の名前でなければなりません。
+3. その後には、適用する関数のパラメータを、関数を適用するシーケンスの各要素を表す文字列 `"."` とともに指定します。
 
-Here is an example of a content file with `names:` as a front matter field:
+以下は、フロントマター フィールドとして `names:` を持つコンテンツファイルの例です。
 
-```
+```ini
 +++
 names: [ "Derek Perkins", "Joe Bergevin", "Tanner Linsley" ]
 +++
 ```
 
-You can then use `apply` as follows:
+そして、以下のように `apply` を使用することができます。
 
-```
+```go-html-template
 {{ apply .Params.names "urlize" "." }}
 ```
 
-Which will result in the following:
+上記のコードの結果は、以下のようになります。
 
 ```
 "derek-perkins", "joe-bergevin", "tanner-linsley"
 ```
 
-This is *roughly* equivalent to using the following with [range][]:
+これは、[range][] で以下を使用するのと*ほぼ*同等です。
 
-```
+```go-html-template
 {{ range .Params.names }}{{ . | urlize }}{{ end }}
 ```
 
-However, it is not possible to provide the output of a range to the [`delimit` function][delimit], so you need to `apply` it.
+ただし、範囲の出力を [`delimit`関数][delimit] に与えることはできないので、それを `apply` する必要があります。
 
-If you have `post-tag-list.html` and `post-tag-link.html` as [partials][], you *could* use the following snippets, respectively:
+`post-tag-list.html` と `post-tag-link.html` が [部分テンプレート][[partials] であれば、それぞれ以下のようなスニペットを使うことが*できます。
 
 {{< code file="layouts/partials/post-tag-list.html" copy="false" >}}
 {{ with .Params.tags }}
@@ -84,11 +83,11 @@ If you have `post-tag-list.html` and `post-tag-link.html` as [partials][], you *
 <a class="post-tag post-tag-{{ . | urlize }}" href="/tags/{{ . | urlize }}">{{ . }}</a>
 {{< /code >}}
 
-This works, but the complexity of `post-tag-list.html` is fairly high. The Hugo template needs to perform special behavior for the case where there’s only one tag, and it has to treat the last tag as special. Additionally, the tag list will be rendered something like `Tags: tag1 , tag2 , tag3` because of the way that the HTML is generated and then interpreted by a browser.
+これは機能しますが、`post-tag-list.html` の複雑さはかなり高いです。 Hugo テンプレートは、タグが 1 つしかない場合に特別な動作を実行する必要があり、最後のタグを特別なものとして扱う必要があります。 さらに、HTML が生成され、ブラウザによって解釈される方法により、タグリストは `Tags: tag1 , tag2 , tag3` のようにレンダリングされます。
 
-This first version of `layouts/partials/post-tag-list.html` separates all of the operations for ease of reading. The combined and DRYer version is shown next:
+この最初のバージョンの `layouts/partials/post-tag-list.html` は、読みやすくするためにすべての操作を分離しています。 以下に、より DRY な統合バージョンを示します。
 
-```
+```go-html-template
 {{ with .Params.tags }}
     <div class="tags-list">
       Tags:
@@ -100,7 +99,7 @@ This first version of `layouts/partials/post-tag-list.html` separates all of the
 {{ end }}
 ```
 
-Now in the completed version, you can sort the tags, convert the tags to links with `layouts/partials/post-tag-link.html`, [chomp][] off stray newlines, and join the tags together in a delimited list for presentation. Here is an even DRYer version of the preceding example:
+完成版では、タグをソートし、`layouts/partials/post-tag-link.html` でタグをリンクに変換し、 [chomp][] で不要な改行を削除し、タグを区切りリストで結合して表示することができるようになりました。先ほどの例をさらに DRY にしたものを、以下に示します。
 
 {{< code file="layouts/partials/post-tag-list.html" download="post-tag-list.html" >}}
     {{ with .Params.tags }}
@@ -112,11 +111,11 @@ Now in the completed version, you can sort the tags, convert the tags to links w
 {{< /code >}}
 
 {{% note %}}
-`apply` does not work when receiving the sequence as an argument through a pipeline.
+パイプラインを介してシーケンスを引数として受け取る場合、`apply` は動作しません。
 {{% /note %}}
 
-[chomp]: /functions/chomp/ "See documentation for the chomp function"
-[delimit]: /functions/delimit/ "See documentation for the delimit function"
-[functions]: /functions/ "See the full list of Hugo functions to see what can be passed as an argument to the apply function."
+[chomp]: /functions/chomp/ "chomp 関数のドキュメントを参照してください"
+[delimit]: /functions/delimit/ "delimit 関数のドキュメントを参照してください"
+[functions]: /functions/ "apply 関数に引数として渡すことができるものを確認するには、Hugo 関数の完全なリストを参照してください。"
 [partials]: /templates/partials/
-[range]: /functions/range/ "Learn the importance of the range function, a fundamental keyword in both Hugo templates and the Go programming language."
+[range]: /functions/range/ "Hugo テンプレートと Go プログラミング言語の両方の基本的なキーワードである range 関数の重要性を学びます。"

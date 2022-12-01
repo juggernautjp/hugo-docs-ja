@@ -1,56 +1,66 @@
 ---
-draft: true
+categories:
+- commands
+aliases: []
+date: "2017-02-01"
+description: hugo mod npm サブコマンドは、プロジェクト用の合成 package.json ファイルを準備し、書き込みます。
+lastmod: "2017-02-01"
+menu:
+  docs:
+    parent: commands
+    weight: 84
+publishdate: "2017-02-01"
+sections_weight: 84
+toc: false
+weight: 84
+draft: false
 slug: hugo_mod_npm_pack
 title: hugo mod npm pack
-url: /commands/hugo_mod_npm_pack/
 ---
 ## hugo mod npm pack
 
-Experimental: Prepares and writes a composite package.json file for your project.
+実験的な機能: プロジェクト用の合成 package.json ファイルを準備し、書き込みます。
 
-### Synopsis
+### 概要 {#synopsis}
 
-Prepares and writes a composite package.json file for your project.
+プロジェクト用の合成 package.json ファイルを準備し、書き込みます。
 
-On first run it creates a "package.hugo.json" in the project root if not already there. This file will be used as a template file
-with the base dependency set. 
+最初の実行時に、プロジェクト ルートに "package.hugo.json" がなければ作成されます。このファイルは、基本的な依存関係が設定されたテンプレートファイルとして使用されます。 
 
-This set will be merged with all "package.hugo.json" files found in the dependency tree, picking the version closest to the project.
+このセットは、依存関係ツリーで見つかったすべての "package.hugo.json" ファイルとマージされ、プロジェクトに最も近いバージョンが選択されます。
 
-This command is marked as 'Experimental'. We think it's a great idea, so it's not likely to be
-removed from Hugo, but we need to test this out in "real life" to get a feel of it,
-so this may/will change in future versions of Hugo.
+このコマンドは「実験的」であるとマークされています。私たちはこのコマンドが素晴らしいアイデアだと考えていますので、Hugo から削除される可能性は低いですが、「実際の生活」でこのコマンドをテストして感触を確かめる必要があるため、Hugo の将来のバージョンでは変更される可能性があります。
 
 
-```
+```bash
 hugo mod npm pack [flags]
 ```
 
-### Options
+### オプション {#options}
 
-```
-  -h, --help   help for pack
-```
-
-### Options inherited from parent commands
-
-```
-      --clock string               set the clock used by Hugo, e.g. --clock 2021-11-06T22:30:00.00+09:00
-      --config string              config file (default is path/config.yaml|json|toml)
-      --configDir string           config dir (default "config")
-      --debug                      debug output
-  -e, --environment string         build environment
-      --ignoreVendorPaths string   ignores any _vendor for module paths matching the given Glob pattern
-      --log                        enable Logging
-      --logFile string             log File path (if set, logging enabled automatically)
-      --quiet                      build in quiet mode
-  -s, --source string              filesystem path to read files relative from
-      --themesDir string           filesystem path to themes directory
-  -v, --verbose                    verbose output
-      --verboseLog                 verbose logging
+```bash
+  -h, --help   pack サブコマンドのヘルプ
 ```
 
-### SEE ALSO
+### 親コマンドから継承されたオプション {#options-inherited-from-parent-commands}
 
-* [hugo mod npm](/commands/hugo_mod_npm/)	 - Various npm helpers.
+```bash
+      --clock string               Hugo が使用する時計を設定します。たとえば、 --clock 2021-11-06T22:30:00.00+09:00
+      --config string              設定ファイル (デフォルトは、 path/config.yaml|json|toml)
+      --configDir string           設定ディレクトリ (デフォルトは、 "config")
+      --debug                      デバッグ出力
+  -e, --environment string         ビルド環境
+      --ignoreVendorPaths string   指定された Glob パターンに一致するモジュールパスの _vendor を無視します
+      --log                        ロギングを有効にします
+      --logFile string             ログファイルのパス (設定されている場合、ログが自動的に有効になります)
+      --quiet                      クワイエットモード (通知オフ) でビルドします
+  -s, --source string              ファイルの相対パスを読み取るファイルシステムのパス
+      --themesDir string           テーマディレクトリへのファイルシステムのパス
+  -v, --verbose                    詳細出力 (冗長表示)
+      --verboseLog                 詳細ログ出力
+```
+
+### 関連項目 {#see-also}
+
+* [hugo mod npm](/commands/hugo_mod_npm/)	 - さまざまな npm ヘルパーです
 

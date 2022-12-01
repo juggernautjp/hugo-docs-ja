@@ -1,86 +1,99 @@
 ---
-draft: true
+categories:
+- commands
+aliases: []
+date: "2017-02-01"
+description: hugo new サブコマンドは、サイトの新しいコンテンツを作成します。
+lastmod: "2017-02-01"
+menu:
+  docs:
+    parent: commands
+    weight: 90
+publishdate: "2017-02-01"
+sections_weight: 90
+toc: false
+weight: 90
+draft: false
 slug: hugo_new
 title: hugo new
-url: /commands/hugo_new/
 ---
 ## hugo new
 
-Create new content for your site
+サイトの新しいコンテンツを作成します
 
-### Synopsis
+### 概要 {#synopsis}
 
-Create a new content file and automatically set the date and title.
-It will guess which kind of file to create based on the path provided.
+新しいコンテンツファイルを作成し、日付とタイトルを自動的に設定します。
+指定されたパスに基づいて、作成するファイルの種類を推測します。
 
-You can also specify the kind with `-k KIND`.
+また、`-k KIND` で種類を指定することもできます。
 
-If archetypes are provided in your theme or site, they will be used.
+テーマまたはサイトでアーキタイプが提供されている場合は、それらが使用されます。
 
-Ensure you run this within the root directory of your site.
+サイトのルートディレクトリで実行していることを確認してください。
 
-```
+```bash
 hugo new [path] [flags]
 ```
 
-### Options
+### オプション {#options}
 
-```
-  -b, --baseURL string         hostname (and path) to the root, e.g. https://spf13.com/
-  -D, --buildDrafts            include content marked as draft
-  -E, --buildExpired           include expired content
-  -F, --buildFuture            include content with publishdate in the future
-      --cacheDir string        filesystem path to cache directory. Defaults: $TMPDIR/hugo_cache/
-      --cleanDestinationDir    remove files from destination not found in static directories
-  -c, --contentDir string      filesystem path to content directory
-  -d, --destination string     filesystem path to write files to
-      --disableKinds strings   disable different kind of pages (home, RSS etc.)
-      --editor string          edit new content with this editor, if provided
-      --enableGitInfo          add Git revision, date, author, and CODEOWNERS info to the pages
-  -f, --force                  overwrite file if it already exists
-      --forceSyncStatic        copy all files when static is changed.
-      --gc                     enable to run some cleanup tasks (remove unused cache files) after the build
-  -h, --help                   help for new
-      --ignoreCache            ignores the cache directory
-  -k, --kind string            content type to create
-  -l, --layoutDir string       filesystem path to layout directory
-      --minify                 minify any supported output format (HTML, XML etc.)
-      --noBuildLock            don't create .hugo_build.lock file
-      --noChmod                don't sync permission mode of files
-      --noTimes                don't sync modification time of files
-      --panicOnWarning         panic on first WARNING log
-      --poll string            set this to a poll interval, e.g --poll 700ms, to use a poll based approach to watch for file system changes
-      --printI18nWarnings      print missing translations
-      --printMemoryUsage       print memory usage to screen at intervals
-      --printPathWarnings      print warnings on duplicate target paths etc.
-      --printUnusedTemplates   print warnings on unused templates.
-      --templateMetrics        display metrics about template executions
-      --templateMetricsHints   calculate some improvement hints when combined with --templateMetrics
-  -t, --theme strings          themes to use (located in /themes/THEMENAME/)
-      --trace file             write trace to file (not useful in general)
-```
-
-### Options inherited from parent commands
-
-```
-      --clock string               set the clock used by Hugo, e.g. --clock 2021-11-06T22:30:00.00+09:00
-      --config string              config file (default is path/config.yaml|json|toml)
-      --configDir string           config dir (default "config")
-      --debug                      debug output
-  -e, --environment string         build environment
-      --ignoreVendorPaths string   ignores any _vendor for module paths matching the given Glob pattern
-      --log                        enable Logging
-      --logFile string             log File path (if set, logging enabled automatically)
-      --quiet                      build in quiet mode
-  -s, --source string              filesystem path to read files relative from
-      --themesDir string           filesystem path to themes directory
-  -v, --verbose                    verbose output
-      --verboseLog                 verbose logging
+```bash
+  -b, --baseURL string         ルートへのホスト名 (およびパス) で、たとえば、 https://spf13.com/
+  -D, --buildDrafts            下書きとしてマークされたコンテンツを含めます
+  -E, --buildExpired           期限切れのコンテンツを含めます
+  -F, --buildFuture            公開日が将来のコンテンツを含めます
+      --cacheDir string        キャッシュ ディレクトリへのファイルシステムのパス。 デフォルトは、 $TMPDIR/hugo_cache/ です
+      --cleanDestinationDir    静的ディレクトリに見つからないファイルを宛先から削除します
+  -c, --contentDir string      コンテンツ ディレクトリへのファイルシステムのパス
+  -d, --destination string     ファイルを書き込むファイルシステムのパス
+      --disableKinds strings   さまざまな種類のページ (ホーム、RSS など) を無効にします
+      --editor string          提供されている場合、このエディターで新しいコンテンツを編集します
+      --enableGitInfo          ページに Git リビジョン、日付、作成者、CODEOWNERS 情報を追加します
+  -f, --force                  ファイルが既に存在する場合は上書きします
+      --forceSyncStatic        static が変更されたときに、すべてのファイルをコピーします
+      --gc                     ビルド後にいくつかのクリーンアップ タスク (未使用のキャッシュ ファイルを削除する) を実行できるようにします
+  -h, --help                   new サブコマンドのヘルプ
+      --ignoreCache            キャッシュ ディレクトリを無視します
+  -k, --kind string            作成するコンテンツタイプ
+  -l, --layoutDir string       レイアウト ディレクトリへのファイルシステムのパス
+      --minify                 サポートされている出力形式 (HTML、XML など) をミニファイします
+      --noBuildLock            .hugo_build.lock ファイルを作成しません
+      --noChmod                ファイルのパーミッション モードを同期しません
+      --noTimes                ファイルの更新時刻を同期しません
+      --panicOnWarning         最初の WARNING ログでパニック panic します
+      --poll string            ファイルシステムの変更を監視するためにポーリング ベースのアプローチを使用するには、これをポーリング間隔に設定します (たとえば、 --poll 700ms)
+      --printI18nWarnings      不足している翻訳を表示します
+      --printMemoryUsage       一定間隔でメモリ使用量を画面に表示します
+      --printPathWarnings      重複するターゲットパスなどに関する警告を表示します
+      --printUnusedTemplates   未使用のテンプレートに関する警告を表示します
+      --templateMetrics        テンプレート実行に関するメトリクスを表示します
+      --templateMetricsHints   --templateMetrics と組み合わせると、いくつかの改善のヒントが計算されます
+  -t, --theme strings          使用するテーマ (/themes/THEMENAME/ にあります)
+      --trace file             トレースをファイルに書き出します (一般には有用ではありません)
 ```
 
-### SEE ALSO
+### 親コマンドから継承されたオプション {#options-inherited-from-parent-commands}
 
-* [hugo](/commands/hugo/)	 - hugo builds your site
-* [hugo new site](/commands/hugo_new_site/)	 - Create a new site (skeleton)
-* [hugo new theme](/commands/hugo_new_theme/)	 - Create a new theme
+```bash
+      --clock string               Hugo が使用する時計を設定します。たとえば、 --clock 2021-11-06T22:30:00.00+09:00
+      --config string              設定ファイル (デフォルトは、 path/config.yaml|json|toml)
+      --configDir string           設定ディレクトリ (デフォルトは、 "config")
+      --debug                      デバッグ出力
+  -e, --environment string         ビルド環境
+      --ignoreVendorPaths string   指定された Glob パターンに一致するモジュールパスの _vendor を無視します
+      --log                        ロギングを有効にします
+      --logFile string             ログファイルのパス (設定されている場合、ログが自動的に有効になります)
+      --quiet                      クワイエットモード (通知オフ) でビルドします
+  -s, --source string              ファイルの相対パスを読み取るファイルシステムのパス
+      --themesDir string           テーマディレクトリへのファイルシステムのパス
+  -v, --verbose                    詳細出力 (冗長表示)
+      --verboseLog                 詳細ログ出力
+```
+
+### 関連項目 {#see-also}
+
+* [hugo](/commands/hugo/)	 - あなたのサイトをビルド (構築) します
+* [hugo new site](/commands/hugo_new_site/)	 - 新しいサイト (スケルトン) を作成します
+* [hugo new theme](/commands/hugo_new_theme/)	 - 新しいテーマを作成します
 

@@ -4,7 +4,7 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: Hugo provides mathematical operators in templates.
+description: Hugo は、テンプレートで数学演算子を提供します。
 draft: false
 hugoversion: null
 keywords:
@@ -22,24 +22,24 @@ toc: null
 workson: []
 ---
 
-| Function     | Description                                                                 | Example                          |
+| 関数         | 説明                                                                         | 例                              |
 |--------------|-----------------------------------------------------------------------------|----------------------------------|
-| `add`        | Adds two numbers.                                                           | `{{add 1 2}}` &rarr; `3`         |
-|              | *If one of the numbers is a float, the result is a float.*                  | `{{add 1.1 2}}` &rarr; `3.1`     |
-| `sub`        | Subtracts two numbers.                                                      | `{{sub 3 2}}` &rarr; `1`         |
-|              | *If one of the numbers is a float, the result is a float.*                  | `{{sub 3 2.5}}` &rarr; `0.5`     |
-| `mul`        | Multiplies two numbers.                                                     | `{{mul 2 3}}` &rarr; `6`         |
-|              | *If one of the numbers is a float, the result is a float.*                  | `{{mul 2 3.1}}` &rarr; `6.2`     |
-| `div`        | Divides two numbers.                                                        | `{{div 6 3}}` &rarr; `2`         |
+| `add`        | 2 つの数値を加算します。                                                      | `{{add 1 2}}` &rarr; `3`         |
+|              | *数値の 1 つが float の場合、結果は float になります。*                        | `{{add 1.1 2}}` &rarr; `3.1`     |
+| `sub`        | 2 つの数値を減算します。                                                      | `{{sub 3 2}}` &rarr; `1`         |
+|              | *数値の 1 つが float の場合、結果は float になります。*                        | `{{sub 3 2.5}}` &rarr; `0.5`     |
+| `mul`        | 2 つの数値を乗算します。                                                     | `{{mul 2 3}}` &rarr; `6`         |
+|              | *数値の 1 つが float の場合、結果は float になります。*                        | `{{mul 2 3.1}}` &rarr; `6.2`     |
+| `div`        | 2 つの数値を除算します。                                                      | `{{div 6 3}}` &rarr; `2`         |
 |              |                                                                             | `{{div 6 4}}` &rarr; `1`         |
-|              | *If one of the numbers is a float, the result is a float.*                  | `{{div 6 4.0}}` &rarr; `1.5`     |
-| `mod`        | Modulus of two integers.                                                    | `{{mod 15 3}}` &rarr; `0`        |
-| `modBool`    | Boolean of modulus of two integers. Evaluates to `true` if result equals 0. | `{{modBool 15 3}}` &rarr; `true` |
-| `math.Ceil`  | Returns the least integer value greater than or equal to the given number.  | `{{math.Ceil 2.1}}` &rarr; `3`   |
-| `math.Floor` | Returns the greatest integer value less than or equal to the given number.  | `{{math.Floor 1.9}}` &rarr; `1`  |
-| `math.Log`   | Returns the natural logarithm of the given number.                          | `{{math.Log 42}}` &rarr; `3.737` |
-| `math.Max`   | Returns the greater of two numbers.                                         | `{{math.Max 1 2}}` &rarr; `2`    |
-| `math.Min`   | Returns the smaller of two numbers.                                         | `{{math.Min 1 2}}` &rarr; `1`    |
-| `math.Pow`   | Returns the first number raised to the power of the second number.          | `{{math.Pow 2 3}}` &rarr; `8`    |
-| `math.Round` | Returns the nearest integer, rounding half away from zero.                  | `{{math.Round 1.5}}` &rarr; `2`  |
-| `math.Sqrt`  | Returns the square root of the given number.                                | `{{math.Sqrt 81}}` &rarr; `9`    |
+|              | *数値の 1 つが float の場合、結果は float になります。*                        | `{{div 6 4.0}}` &rarr; `1.5`     |
+| `mod`        | 2 つの整数の剰余です。                                                         | `{{mod 15 3}}` &rarr; `0`        |
+| `modBool`    | 2 つの整数の剰余を表すブール値です。結果が 0 であれば `true` と評価されます。     | `{{modBool 15 3}}` &rarr; `true` |
+| `math.Ceil`  | 指定された数値以上の最小の整数値を返します。                                    | `{{math.Ceil 2.1}}` &rarr; `3`   |
+| `math.Floor` | 指定された数値以下の最大の整数値を返します。                                    | `{{math.Floor 1.9}}` &rarr; `1`  |
+| `math.Log`   | 指定された数値の自然対数を返します。                                           | `{{math.Log 42}}` &rarr; `3.737` |
+| `math.Max`   | 2 つの数値のうち大きい方を返します。                                           | `{{math.Max 1 2}}` &rarr; `2`    |
+| `math.Min`   | 2 つの数値のうち小さい方を返します。                                           | `{{math.Min 1 2}}` &rarr; `1`    |
+| `math.Pow`   | 最初の数値を 2 番目の数値で累乗して返します。                                   | `{{math.Pow 2 3}}` &rarr; `8`    |
+| `math.Round` | ゼロから 2 分の 1 を四捨五入して、最も近い整数を返します。                       | `{{math.Round 1.5}}` &rarr; `2`  |
+| `math.Sqrt`  | 指定された数値の平方根を返します。                                             | `{{math.Sqrt 81}}` &rarr; `9`    |

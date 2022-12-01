@@ -4,9 +4,8 @@ categories:
 - functions
 date: "2021-02-11"
 deprecated: false
-description: The `site` function provides global access to the same data as the `.Site`
-  page method.
-draft: true
+description: "`site` 関数は、 `.Site` ページメソッドと同じデータへのグローバル アクセスを提供します。"
+draft: false
 hugoversion: null
 keywords: []
 lastmod: "2021-02-11"
@@ -24,4 +23,4 @@ toc: null
 workson: []
 ---
 
-`site` is a global function which returns the same data as the `.Site` page method. See: [Site Variables]({{< relref "/variables/site" >}}).
+`site` はグローバル関数で、 `.Site` ページメソッドと同じデータを返します。 [「サイト変数」]({{< relref "/variables/site" >}}) を参照してください。

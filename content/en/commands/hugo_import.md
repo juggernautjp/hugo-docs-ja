@@ -1,7 +1,7 @@
 ---
 title: "hugo import"
 slug: hugo_import
-url: /commands/hugo_import/
+# url: /commands/hugo_import/
 ---
 ## hugo import
 

@@ -1,7 +1,7 @@
 ---
 title: "hugo completion bash"
 slug: hugo_completion_bash
-url: /commands/hugo_completion_bash/
+# url: /commands/hugo_completion_bash/
 ---
 ## hugo completion bash
 

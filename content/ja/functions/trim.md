@@ -3,9 +3,8 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: Returns a slice of a passed string with all leading and trailing characters
-  from cutset removed.
-draft: true
+description: 文字列のスライスから、カットセットで指定された先頭および末尾の文字を削除して返します。
+draft: false
 hugoversion: null
 keywords:
 - strings
@@ -21,24 +20,24 @@ title: trim
 workson: []
 ---
 
-```
+```go-html-template
 {{ trim "++Batman--" "+-" }} → "Batman"
 ```
 
-`trim` *requires* the second argument, which tells the function specifically what to remove from the first argument. There is no default value for the second argument, so **the following usage will not work**:
+`trim` は、 第 2 引数を必要とします。この引数は、最初の引数から何を取り除くかを具体的に関数に伝えます。第 2 引数にはデフォルト値がないので、**以下のような使い方はうまくいきません**。
 
-```
+```go-html-template
 {{ trim .Inner}}
 ```
 
-Instead, the following example tells `trim` to remove extra new lines from the content contained in the [shortcode `.Inner` variable][shortcodevars]:
+代わりに、以下の例では、[ショートコードの `.Inner` 変数][shortcodevars] に含まれるコンテンツから余分な改行を削除するように `trim` に指示しています。
 
-```
+```go-html-template
 {{ trim .Inner "\n" }}
 ```
 
 {{% note %}}
-Go templates also provide a simple [method for trimming whitespace](/templates/introduction/#whitespace) from either side of a Go tag by including a hyphen (`-`).
+Go テンプレートは、ハイフン (`-`) を含めることにより、Go タグの両側から単純に [空白文字を削除する方法](/templates/introduction/#whitespace) も提供します。
 {{% /note %}}
 
 

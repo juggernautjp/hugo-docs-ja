@@ -30,7 +30,6 @@
   name = "テンプレート"
   weight = 25
   identifier = "templates"
-
   url = "/templates/"
 
 [[docs]]
@@ -50,7 +49,7 @@
   identifier = "pipes"
   url = "/hugo-pipes/"
 [[docs]]
-  name = "CLI"
+  name = "Hugo コマンド"
   weight = 40
   post = "break"
   identifier = "commands"

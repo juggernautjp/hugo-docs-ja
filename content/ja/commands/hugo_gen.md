@@ -1,41 +1,54 @@
 ---
-draft: true
+categories:
+- commands
+aliases: []
+date: "2017-02-01"
+description: hugo gen サブコマンドは、いくつかの便利なジェネレーターのコレクションです。
+lastmod: "2017-02-01"
+menu:
+  docs:
+    parent: commands
+    weight: 50
+publishdate: "2017-02-01"
+sections_weight: 50
+toc: false
+weight: 50
+draft: false
 slug: hugo_gen
 title: hugo gen
-url: /commands/hugo_gen/
 ---
 ## hugo gen
 
-A collection of several useful generators.
+いくつかの便利なジェネレーターのコレクションです。
 
-### Options
+### オプション {#options}
 
-```
-  -h, --help   help for gen
-```
-
-### Options inherited from parent commands
-
-```
-      --clock string               set the clock used by Hugo, e.g. --clock 2021-11-06T22:30:00.00+09:00
-      --config string              config file (default is path/config.yaml|json|toml)
-      --configDir string           config dir (default "config")
-      --debug                      debug output
-  -e, --environment string         build environment
-      --ignoreVendorPaths string   ignores any _vendor for module paths matching the given Glob pattern
-      --log                        enable Logging
-      --logFile string             log File path (if set, logging enabled automatically)
-      --quiet                      build in quiet mode
-  -s, --source string              filesystem path to read files relative from
-      --themesDir string           filesystem path to themes directory
-  -v, --verbose                    verbose output
-      --verboseLog                 verbose logging
+```bash
+  -h, --help   gen サブコマンドのヘルプ
 ```
 
-### SEE ALSO
+### 親コマンドから継承されたオプション {#options-inherited-from-parent-commands}
 
-* [hugo](/commands/hugo/)	 - hugo builds your site
-* [hugo gen chromastyles](/commands/hugo_gen_chromastyles/)	 - Generate CSS stylesheet for the Chroma code highlighter
-* [hugo gen doc](/commands/hugo_gen_doc/)	 - Generate Markdown documentation for the Hugo CLI.
-* [hugo gen man](/commands/hugo_gen_man/)	 - Generate man pages for the Hugo CLI
+```bash
+      --clock string               Hugo が使用する時計を設定します。たとえば、 --clock 2021-11-06T22:30:00.00+09:00
+      --config string              設定ファイル (デフォルトは、 path/config.yaml|json|toml)
+      --configDir string           設定ディレクトリ (デフォルトは、 "config")
+      --debug                      デバッグ出力
+  -e, --environment string         ビルド環境
+      --ignoreVendorPaths string   指定された Glob パターンに一致するモジュールパスの _vendor を無視します
+      --log                        ロギングを有効にします
+      --logFile string             ログファイルのパス (設定されている場合、ログが自動的に有効になります)
+      --quiet                      クワイエットモード (通知オフ) でビルドします
+  -s, --source string              ファイルの相対パスを読み取るファイルシステムのパス
+      --themesDir string           テーマディレクトリへのファイルシステムのパス
+  -v, --verbose                    詳細出力 (冗長表示)
+      --verboseLog                 詳細ログ出力
+```
+
+### 関連項目 {#see-also}
+
+* [hugo](/commands/hugo/)	 - あなたのサイトをビルド (構築) します
+* [hugo gen chromastyles](/commands/hugo_gen_chromastyles/)	 - Chroma コード ハイライター用の CSS スタイルシートを生成します
+* [hugo gen doc](/commands/hugo_gen_doc/)	 - Hugo CLI 用の Markdown ドキュメントを生成します
+* [hugo gen man](/commands/hugo_gen_man/)	 - Hugo CLI の man ページを生成します
 

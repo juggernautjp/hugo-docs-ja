@@ -1,54 +1,67 @@
 ---
-draft: true
+categories:
+- commands
+aliases: []
+date: "2017-02-01"
+description: hugo mod clean サブコマンドは、現在のプロジェクトの Hugo モジュールのキャッシュを削除します。
+lastmod: "2017-02-01"
+menu:
+  docs:
+    parent: commands
+    weight: 81
+publishdate: "2017-02-01"
+sections_weight: 81
+toc: false
+weight: 81
+draft: false
 slug: hugo_mod_clean
 title: hugo mod clean
-url: /commands/hugo_mod_clean/
 ---
 ## hugo mod clean
 
-Delete the Hugo Module cache for the current project.
+現在のプロジェクトの Hugo モジュールのキャッシュを削除します。
 
-### Synopsis
+### 概要 {#synopsis}
 
-Delete the Hugo Module cache for the current project.
+現在のプロジェクトの Hugo モジュールのキャッシュを削除します。
 
-Note that after you run this command, all of your dependencies will be re-downloaded next time you run "hugo".
+このコマンドを実行した後、次回 "hugo" を実行したときに、すべての依存関係が再ダウンロードされることに注意してください。
 
-Also note that if you configure a positive maxAge for the "modules" file cache, it will also be cleaned as part of "hugo --gc".
- 
+また、"modules" ファイルキャッシュに正の maxAge を設定した場合、"hugo --gc" の一部としてクリーンアップされることに注意してください。
 
 
-```
+
+```bash
 hugo mod clean [flags]
 ```
 
-### Options
+### オプション {#options}
 
-```
+```bash
       --all              clean entire module cache
-  -h, --help             help for clean
-      --pattern string   pattern matching module paths to clean (all if not set), e.g. "**hugo*"
+  -h, --help             clean サブコマンドのヘルプ
+      --pattern string   クリーンアップするモジュールパスのパターン マッチング (設定されていない場合は全て) で、たとえば、"**hugo*" です
 ```
 
-### Options inherited from parent commands
+### 親コマンドから継承されたオプション {#options-inherited-from-parent-commands}
 
+```bash
+      --clock string               Hugo が使用する時計を設定します。たとえば、 --clock 2021-11-06T22:30:00.00+09:00
+      --config string              設定ファイル (デフォルトは、 path/config.yaml|json|toml)
+      --configDir string           設定ディレクトリ (デフォルトは、 "config")
+      --debug                      デバッグ出力
+  -e, --environment string         ビルド環境
+      --ignoreVendorPaths string   指定された Glob パターンに一致するモジュールパスの _vendor を無視します
+      --log                        ロギングを有効にします
+      --logFile string             ログファイルのパス (設定されている場合、ログが自動的に有効になります)
+      --quiet                      クワイエットモード (通知オフ) でビルドします
+  -s, --source string              ファイルの相対パスを読み取るファイルシステムのパス
+      --themesDir string           テーマディレクトリへのファイルシステムのパス
+  -v, --verbose                    詳細出力 (冗長表示)
+      --verboseLog                 詳細ログ出力
 ```
-      --clock string               set the clock used by Hugo, e.g. --clock 2021-11-06T22:30:00.00+09:00
-      --config string              config file (default is path/config.yaml|json|toml)
-      --configDir string           config dir (default "config")
-      --debug                      debug output
-  -e, --environment string         build environment
-      --ignoreVendorPaths string   ignores any _vendor for module paths matching the given Glob pattern
-      --log                        enable Logging
-      --logFile string             log File path (if set, logging enabled automatically)
-      --quiet                      build in quiet mode
-  -s, --source string              filesystem path to read files relative from
-      --themesDir string           filesystem path to themes directory
-  -v, --verbose                    verbose output
-      --verboseLog                 verbose logging
-```
 
-### SEE ALSO
+### 関連項目 {#see-also}
 
-* [hugo mod](/commands/hugo_mod/)	 - Various Hugo Modules helpers.
+* [hugo mod](/commands/hugo_mod/)	 - Hugo モジュールの各種ヘルパーです
 

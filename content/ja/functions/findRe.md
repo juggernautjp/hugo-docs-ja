@@ -4,8 +4,8 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: Returns a list of strings that match the regular expression.
-draft: true
+description: 正規表現にマッチする文字列のリストを返します。
+draft: false
 hugoversion: null
 keywords:
 - regex
@@ -21,25 +21,25 @@ title: findRE
 workson: []
 ---
 
-By default all matches will be included. The number of matches can be limited with an optional third parameter.
+デフォルトでは、すべてのマッチが含まれます。マッチの数は、オプションの第 3 パラメータで制限することができます。
 
-The example below returns a list of all second level headers (`<h2>`) in the content:
+以下の例では、コンテンツに含まれるすべての第 2 レベルのヘッダー (`<h2>`) のリストを返します。
 
-```
+```go-html-template
 {{ findRE "<h2.*?>(.|\n)*?</h2>" .Content }}
 ```
 
-You can limit the number of matches in the list with a third parameter. The following example shows how to limit the returned value to just one match (or none, if there are no matched substrings):
+3 番目のパラメータで、リスト内のマッチの数を制限できます。 以下の例は、返される値を 1 つのマッチしたものだけに制限する方法を示しています (マッチする部分文字列がない場合は、どれにもマッチしません)。
 
-```
+```go-html-template
 {{ findRE "<h2.*?>(.|\n)*?</h2>" .Content 1 }}
     <!-- returns ["<h2 id="#foo">Foo</h2>"] -->
 ```
 
 {{% note %}}
-Hugo uses Go's [Regular Expression package](https://golang.org/pkg/regexp/), which is the same general syntax used by Perl, Python, and other languages but with a few minor differences for those coming from a background in PCRE. For a full syntax listing, see the [GitHub wiki for re2](https://github.com/google/re2/wiki/Syntax).
+Hugo は Go の [正規表現パッケージ](https://golang.org/pkg/regexp/) を使用しています。これは、Perl、Python、その他の言語で使用されている一般的な構文と同じですが、[PCRE](https://www.pcre.org/) [(Perl Compatible Regular Expressions)](https://qualysguard.qualys.com/qwebhelp/jp/fo_portal/module_pc/policies/regular_expression_symbols.htm) のバックグラウンドから来たものとは若干の違いがあります。 完全な構文リストは、[GitHub wiki for re2](https://github.com/google/re2/wiki/Syntax) を参照してください。
 
-If you are just learning RegEx, or at least Go's flavor, you can practice pattern matching in the browser at <https://regex101.com/>.
+RegEx、または少なくとも Go のフレーバーを学んでいる場合は、ブラウザの <https://regex101.com/> ページでパターン マッチングを練習できます。
 {{% /note %}}
 
 [partials]: /templates/partials/

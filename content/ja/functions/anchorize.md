@@ -2,9 +2,8 @@
 categories:
 - functions
 date: "2018-10-13"
-description: Takes a string and sanitizes it the same way as the [`defaultMarkdownHandler`](https://gohugo.io/getting-started/configuration-markup#configure-markup)
-  does for markdown headers.
-draft: true
+description: 文字列を受け取り、[`defaultMarkdownHandler`](https://gohugo.io/getting-started/configuration-markup#configure-markup) が Markdown ヘッダーに対して行うのと同じ方法でサニタイズします。
+draft: false
 hugoversion: "0.39"
 keywords:
 - markdown
@@ -20,9 +19,9 @@ title: anchorize
 workson: []
 ---
 
-If [Goldmark](https://gohugo.io/getting-started/configuration-markup#goldmark) is set as `defaultMarkdownHandler`, the sanitizing logic adheres to the setting [`markup.goldmark.parser.autoHeadingIDType`](https://gohugo.io/getting-started/configuration-markup#goldmark).
+[Goldmark](https://gohugo.io/getting-started/configuration-markup#goldmark) が `defaultMarkdownHandler` として設定されている場合、サニタイズ ロジックは [`markup.goldmark.parser.autoHeadingIDType`](https://gohugo.io/getting-started/configuration-markup#goldmark) の設定に準拠します。.
 
-Since the `defaultMarkdownHandler` and this template function use the same sanitizing logic, you can use the latter to determine the ID of a header for linking with anchor tags.
+`defaultMarkdownHandler`とこのテンプレート関数は同じサニタイズ ロジックを使用しているので、後者を使用して、アンカータグでリンクするためのヘッダー ID を決定ができます。
 
 ```go-html-template
 {{ anchorize "This is a header" }} --> "this-is-a-header"

@@ -1,49 +1,62 @@
 ---
-draft: true
+categories:
+- commands
+aliases: []
+date: "2017-02-01"
+description: hugo convert サブコマンドは、コンテンツをさまざまな形式に変換します。
+lastmod: "2017-02-01"
+menu:
+  docs:
+    parent: commands
+    weight: 30
+publishdate: "2017-02-01"
+sections_weight: 30
+toc: false
+weight: 30
+draft: false
 slug: hugo_convert
 title: hugo convert
-url: /commands/hugo_convert/
 ---
 ## hugo convert
 
-Convert your content to different formats
+コンテンツをさまざまな形式に変換します
 
-### Synopsis
+### 概要 {#synopsis}
 
-Convert your content (e.g. front matter) to different formats.
+コンテンツ (フロントマターなど) を異なるフォーマットに変換します。
 
-See convert's subcommands toJSON, toTOML and toYAML for more information.
+詳細については、convert のサブコマンドである、 toJSON、toTOML、および toYAML を参照してください。
 
-### Options
+### オプション {#options}
 
-```
-  -h, --help            help for convert
-  -o, --output string   filesystem path to write files to
-      --unsafe          enable less safe operations, please backup first
-```
-
-### Options inherited from parent commands
-
-```
-      --clock string               set the clock used by Hugo, e.g. --clock 2021-11-06T22:30:00.00+09:00
-      --config string              config file (default is path/config.yaml|json|toml)
-      --configDir string           config dir (default "config")
-      --debug                      debug output
-  -e, --environment string         build environment
-      --ignoreVendorPaths string   ignores any _vendor for module paths matching the given Glob pattern
-      --log                        enable Logging
-      --logFile string             log File path (if set, logging enabled automatically)
-      --quiet                      build in quiet mode
-  -s, --source string              filesystem path to read files relative from
-      --themesDir string           filesystem path to themes directory
-  -v, --verbose                    verbose output
-      --verboseLog                 verbose logging
+```bash
+  -h, --help            convert サブコマンドのヘルプ
+  -o, --output string   ファイルを書き込むファイルシステムのパス
+      --unsafe          より安全でない操作を可能にするため、最初にバックアップをとってください
 ```
 
-### SEE ALSO
+### 親コマンドから継承されたオプション {#options-inherited-from-parent-commands}
 
-* [hugo](/commands/hugo/)	 - hugo builds your site
-* [hugo convert toJSON](/commands/hugo_convert_tojson/)	 - Convert front matter to JSON
-* [hugo convert toTOML](/commands/hugo_convert_totoml/)	 - Convert front matter to TOML
-* [hugo convert toYAML](/commands/hugo_convert_toyaml/)	 - Convert front matter to YAML
+```bash
+      --clock string               Hugo が使用する時計を設定します。たとえば、--clock 2021-11-06T22:30:00.00+09:00
+      --config string              設定ファイル (デフォルトは、 path/config.yaml|json|toml)
+      --configDir string           設定ディレクトリ (デフォルトは、 "config")
+      --debug                      デバッグ出力
+  -e, --environment string         ビルド環境
+      --ignoreVendorPaths string   指定された Glob パターンに一致するモジュールパスの _vendor を無視します
+      --log                        ロギングを有効にします
+      --logFile string             ログファイルのパス (設定されている場合、ログが自動的に有効になります)
+      --quiet                      クワイエットモード (通知オフ) でビルドします
+  -s, --source string              ファイルの相対パスを読み取るファイルシステムのパス
+      --themesDir string           テーマディレクトリへのファイルシステムのパス
+  -v, --verbose                    詳細出力 (冗長表示)
+      --verboseLog                 詳細ログ出力
+```
+
+### 関連項目 {#see-also}
+
+* [hugo](/commands/hugo/)	 - あなたのサイトをビルド (構築) します
+* [hugo convert toJSON](/commands/hugo_convert_tojson/)	 - フロントマターを JSON に変換します
+* [hugo convert toTOML](/commands/hugo_convert_totoml/)	 - フロントマターを TOML に変換します
+* [hugo convert toYAML](/commands/hugo_convert_toyaml/)	 - フロントマターを YAML に変換します
 

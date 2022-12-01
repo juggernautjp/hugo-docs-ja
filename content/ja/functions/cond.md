@@ -2,8 +2,8 @@
 categories:
 - functions
 date: "2017-09-08"
-description: Return one of two arguments, depending on the value of a third argument.
-draft: true
+description: 第 3 引数の値に応じて、2 つの引数のうちどちらかを返す。
+draft: false
 hugoversion: 0.27
 menu:
   docs:
@@ -16,18 +16,18 @@ title: cond
 toc: false
 ---
 
-`cond` returns *VAR1* if *CONTROL* is true, or *VAR2* if it is not.
+`cond` は、*CONTROL* が true の場合は *VAR1* を返し、そうでない場合は *VAR2* を返します。
 
-Example:
+例:
 
-```
+```go-html-template
 {{ cond (eq (len $geese) 1) "goose" "geese" }}
 ```
 
-Would emit "goose" if the `$geese` array has exactly 1 item, or "geese" otherwise.
+上記のコードは、`$geese` 配列に項目が 1 つだけある場合は "goose" を出力し、それ以外の場合は "geese" を出力します。
 
 {{% warning %}}
-Whenever you use a `cond` function, *both* variable expressions are *always* evaluated. This means that a usage like `cond false (div 1 0) 27` will throw an error because `div 1 0` will be evaluated *even though the condition is false*.
+`cond` 関数を使用するときは、*両方の* 変数式が *常に* 評価されます。 つまり、`cond false (div 1 0) 27` のような使い方は、条件が false* であっても `div 1 0` が評価されるため、エラーになります。
 
-In other words, the `cond` function does *not* provide [short-circuit evaluation](https://en.wikipedia.org/wiki/Short-circuit_evaluation) and does *not* work like a normal [ternary operator](https://en.wikipedia.org/wiki/%3F:) that will pass over the first expression if the condition returns `false`.
+言い換えると、`cond` 関数は [短絡評価](https://ja.wikipedia.org/wiki/%E7%9F%AD%E7%B5%A1%E8%A9%95%E4%BE%A1) を提供 *せず*、条件が `false` を返したら最初の式をパスするような通常の [三項演算子] のように機能 *しません*。
 {{% /warning %}}

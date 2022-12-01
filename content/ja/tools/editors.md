@@ -3,53 +3,52 @@ aliases: []
 categories:
 - developer tools
 date: "2017-02-01"
-description: The Hugo community uses a wide range of preferred tools and has developed
-  plug-ins for some of the most popular text editors to help automate parts of your
-  workflow.
-draft: true
+description: Hugo コミュニティでは、さまざまな好みのツールを使用しており、ワークフローの一部を自動化するために、最も人気のあるテキストエディター用のプラグインも開発しています。
+draft: false
 keywords:
 - editor
 - plug-ins
-linktitle: Editor Plug-ins
+linktitle: エディター プラグイン
 menu:
   docs:
     parent: tools
     weight: 50
 publishdate: "2017-02-01"
 sections_weight: 50
-title: Editor Plug-ins for Hugo
+title: Hugo 用エディター プラグイン
 toc: false
 weight: 50
 ---
 
-The Hugo community uses a wide range of preferred tools and has developed plug-ins for some of the most popular text editors to help automate parts of your workflow.
+<!-- Description と全く同じ文章なので、コメントアウトした。by juggernautjp.
+Hugo コミュニティでは、さまざまな好みのツールを使用しており、ワークフローの一部を自動化するために、最も人気のあるテキストエディター用のプラグインも開発しています。 -->
 
 ## Sublime Text
 
-* [Hugofy](https://github.com/akmittal/Hugofy). Hugofy is a plugin for Sublime Text 3 to make life easier to use Hugo static site generator.
-* [Hugo Snippets](https://packagecontrol.io/packages/Hugo%20Snippets). Hugo Snippets is a useful plugin for adding automatic snippets to Sublime Text 3.
+* [Hugofy](https://github.com/akmittal/Hugofy). Hugofy は、Hugo 静的サイトジェネレーターを使いやすくするための Sublime Text 3 用のプラグインです。
+* [Hugo Snippets](https://packagecontrol.io/packages/Hugo%20Snippets). Hugo Snippets は、Sublime Text 3 に自動スニペットを追加するための便利なプラグインです。
 
 ## Visual Studio Code
 
-* [Hugofy](https://marketplace.visualstudio.com/items?itemName=akmittal.hugofy). Hugofy is a plugin for Visual Studio Code to "make life easier" when developing with Hugo. The source code can be found [here](https://github.com/akmittal/hugofy-vscode).
-* [Hugo Helper](https://marketplace.visualstudio.com/items?itemName=rusnasonov.vscode-hugo). Hugo Helper is a plugin for Visual Studio Code that has some useful commands for Hugo. The source code can be found [here](https://github.com/rusnasonov/vscode-hugo).
-* [Hugo Language and Syntax Support](https://marketplace.visualstudio.com/items?itemName=budparr.language-hugo-vscode). Hugo Language and Syntax Support is a Visual Studio Code plugin for Hugo syntax highlighting and snippets. The source code can be found [here](https://github.com/budparr/language-hugo-vscode).
-* [Hugo Themer](https://marketplace.visualstudio.com/items?itemName=eliostruyf.vscode-hugo-themer). Hugo Themer is an extension to help you while developing themes. It allows you to easily navigate through your theme files.
-* [Front Matter](https://marketplace.visualstudio.com/items?itemName=eliostruyf.vscode-front-matter). Once you go for a static site, you need to think about how you are going to manage your articles. Front matter is a tool that helps you maintain the metadata/front matter of your articles like: creation date, modified date, slug, tile, SEO check, and many more...
-* [Syntax Highlighting for Hugo Shortcodes](https://github.com/kael-larkin/hugo-vscode-shortcode-syntax-highlighting). This extension add some syntax highlighting for Shortcodes, making visual identification of individual pieces easier.
+* [Hugofy](https://marketplace.visualstudio.com/items?itemName=akmittal.hugofy). Hugofy は、Hugo を使った開発を「楽にする」ための Visual Studio Code 用のプラグインです。ソースコードは、[こちら](https://github.com/akmittal/hugofy-vscode) 
+* [Hugo Helper](https://marketplace.visualstudio.com/items?itemName=rusnasonov.vscode-hugo). Hugo Helper は、Hugo 用の便利なコマンドをいくつか備えた、 Visual Studio Code 用のプラグインです。 ソースコードは、[こちら](https://github.com/rusnasonov/vscode-hugo) にあります。
+* [Hugo Language and Syntax Support](https://marketplace.visualstudio.com/items?itemName=budparr.language-hugo-vscode). Hugo Language and Syntax Support は、Hugo のシンタックスハイライトとスニペットのための Visual Studio Code 用のプラグインです。ソースコードは、[こちら](https://github.com/budparr/language-hugo-vscode) にあります。
+* [Hugo Themer](https://marketplace.visualstudio.com/items?itemName=eliostruyf.vscode-hugo-themer). Hugo Themer は、テーマの開発を支援する拡張機能です。 テーマファイルを簡単にナビゲートできます。
+* [Front Matter](https://marketplace.visualstudio.com/items?itemName=eliostruyf.vscode-front-matter). 静的サイトに移行したら、記事をどのように管理するかを考える必要があります。 フロントマターは、作成日、更新日、スラッグ、タイル、SEO チェックなど、記事のメタデータ/フロントマター を維持するのに役立つツールです。
+* [Syntax Highlighting for Hugo Shortcodes](https://github.com/kael-larkin/hugo-vscode-shortcode-syntax-highlighting). この拡張機能は、ショートコードのシンタックスハイライトを追加し、個々の部分を視覚的に識別しやすくするものです。
 
 ## Emacs
 
-* [emacs-easy-hugo](https://github.com/masasam/emacs-easy-hugo). Emacs major mode for managing hugo blogs. Note that Hugo also supports [Org-mode][formats].
-* [ox-hugo.el](https://ox-hugo.scripter.co). Native Org-mode exporter that exports to Blackfriday Markdown with Hugo front-matter. `ox-hugo` supports two common Org blogging flows --- exporting multiple Org subtrees in a single file to multiple Hugo posts, and exporting a single Org file to a single Hugo post. It also leverages the Org tag and property inheritance features. See [*Why ox-hugo?*](https://ox-hugo.scripter.co/doc/why-ox-hugo/) for more.
+* [emacs-easy-hugo](https://github.com/masasam/emacs-easy-hugo). Hugo ブログを管理するための Emacs メジャーモードです。 Hugo は、[Org-mode][formats] もサポートしていることに注意してください。
+* [ox-hugo.el](https://ox-hugo.scripter.co). Hugo のフロントマターで Blackfriday Markdown にエクスポートするネイティブな Org-mode エクスポーターです。 `x-hugo` は、2 つの一般的な Org ブログ作成フローをサポートしています --- 1 つのファイルにある複数の Org サブツリーを複数の Hugo 投稿にエクスポートすることと、1 つの Org ファイルを 1 つの Hugo 投稿にエクスポートすることです。また、Org タグとプロパティの継承機能も活用しています。 詳しくは、 [*Why ox-hugo?*](https://ox-hugo.scripter.co/doc/why-ox-hugo/) を参照してください。
 
 ## Vim
 
-* [Vim Hugo Helper](https://github.com/robertbasic/vim-hugo-helper). A small Vim plugin to help me with writing posts with Hugo.
+* [Vim Hugo Helper](https://github.com/robertbasic/vim-hugo-helper). Hugo で記事を書くのに役立つ、小さな Vim プラグイン。
 
 ## Atom
 
-* [Hugofy](https://atom.io/packages/hugofy). A Hugo Static Website Generator package for Atom.
-* [language-hugo](https://atom.io/packages/language-hugo). Adds syntax highlighting to Hugo files.
+* [Hugofy](https://atom.io/packages/hugofy). Atom 用 の Hugo 静的サイトジェネレーターのパッケージです。
+* [language-hugo](https://atom.io/packages/language-hugo). Hugo ファイルにシンタックスハイライトを追加します。
 
 [formats]: /content-management/formats/

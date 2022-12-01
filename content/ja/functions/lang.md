@@ -15,6 +15,6 @@ package: lang
 signature:
 - lang.NumFmt PRECISION NUMBER [OPTIONS [DELIMITER]]
 title: lang
-type: template-func
+type: template-func-ja
 ---
 

@@ -27,7 +27,7 @@ weight: 1
 
 | 関数  | 説明 |
 | ------------- | ------------- |
-| `resources.Get`  | Get は、与えられたファイル名を Hugo のアセット ファイルシステムから探し出し、さらなる変換に使用できる `Resource` オブジェクトを生成します。詳細は、[「resources.Get と resources.GetRemote でリソースを取得する」](#get-resource-with-resourcesget-and-resourcesgetremote) を参照してください。  |
+| `resources.Get`  | Get は、指定されたファイル名を Hugo のアセット ファイルシステムから探し出し、さらなる変換に使用できる `Resource` オブジェクトを生成します。詳細は、[「resources.Get と resources.GetRemote でリソースを取得する」](#get-resource-with-resourcesget-and-resourcesgetremote) を参照してください。  |
 | `resources.GetRemote`  | `Get` と同じですが、リモートの URL を受け付けます。 [「resources.Get と resources.GetRemote でリソースを取得する」](#get-resource-with-resourcesget-and-resourcesgetremote) を参照してください。 |
 | `resources.GetMatch`  | ``GetMatch` は、指定されたパターンにマッチする最初の Resource を見つけます。 見つからない場合は nil を返します。 使用されるルールについてのより完全な説明は、`Match` を参照してください。 |
 | `resources.Match`  | `Match` は、指定されたベースパスのプレフィックスにマッチするすべてのリソースを取得します。たとえば、 "\*.png" は、すべての png ファイルにマッチします。 "\*" はパスの区切り文字 (`/`) にはマッチしないので、リソースをサブフォルダにまとめる場合は、たとえば、"images/\*.png" のようにそれを明示する必要があります。 バンドル内の任意の PNG 画像にマッチさせるには "\*\*.png" を指定し、images フォルダー以下のすべての PNG 画像にマッチさせるには "images/\*\*.jpg" を使用します。 マッチングは大文字と小文字を区別しません。`Match` は、ファイルシステムのルートからの相対パスで、Unix スタイルのスラッシュ (`/`) と先行するスラッシュを含まないファイル名を使用して、マッチングします (たとえば、 "images/logo.png")。 完全なルールセットについては、https://github.com/gobwas/glob を参照してください。 |

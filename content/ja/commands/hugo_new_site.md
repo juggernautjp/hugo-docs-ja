@@ -1,50 +1,63 @@
 ---
-draft: true
+categories:
+- commands
+aliases: []
+date: "2017-02-01"
+description: hugo new site サブコマンドは、新しいサイト (スケルトン) を作成します。
+lastmod: "2017-02-01"
+menu:
+  docs:
+    parent: commands
+    weight: 91
+publishdate: "2017-02-01"
+sections_weight: 91
+toc: false
+weight: 91
+draft: false
 slug: hugo_new_site
 title: hugo new site
-url: /commands/hugo_new_site/
 ---
 ## hugo new site
 
-Create a new site (skeleton)
+新しいサイト (スケルトン) を作成します
 
-### Synopsis
+### 概要 {#synopsis}
 
-Create a new site in the provided directory.
-The new site will have the correct structure, but no content or theme yet.
-Use `hugo new [contentPath]` to create new content.
+指定されたディレクトリに新しいサイトを作成します。
+新しいサイトは正しい構造になりますが、コンテンツやテーマはまだありません。
+新しいコンテンツを作成するには、`hugo new [contentPath]` を使用します。
 
-```
+```bash
 hugo new site [path] [flags]
 ```
 
-### Options
+### オプション {#options}
 
-```
-      --force           init inside non-empty directory
-  -f, --format string   config file format (default "toml")
-  -h, --help            help for site
-```
-
-### Options inherited from parent commands
-
-```
-      --clock string               set the clock used by Hugo, e.g. --clock 2021-11-06T22:30:00.00+09:00
-      --config string              config file (default is path/config.yaml|json|toml)
-      --configDir string           config dir (default "config")
-      --debug                      debug output
-  -e, --environment string         build environment
-      --ignoreVendorPaths string   ignores any _vendor for module paths matching the given Glob pattern
-      --log                        enable Logging
-      --logFile string             log File path (if set, logging enabled automatically)
-      --quiet                      build in quiet mode
-  -s, --source string              filesystem path to read files relative from
-      --themesDir string           filesystem path to themes directory
-  -v, --verbose                    verbose output
-      --verboseLog                 verbose logging
+```bash
+      --force           空でないディレクトリ内で初期化します
+  -f, --format string   設定ファイルの形式 (デフォルトは、 "toml")
+  -h, --help            site サブコマンドのヘルプ
 ```
 
-### SEE ALSO
+### 親コマンドから継承されたオプション {#options-inherited-from-parent-commands}
 
-* [hugo new](/commands/hugo_new/)	 - Create new content for your site
+```bash
+      --clock string               Hugo が使用する時計を設定します。たとえば、 --clock 2021-11-06T22:30:00.00+09:00
+      --config string              設定ファイル (デフォルトは、 path/config.yaml|json|toml)
+      --configDir string           設定ディレクトリ (デフォルトは、 "config")
+      --debug                      デバッグ出力
+  -e, --environment string         ビルド環境
+      --ignoreVendorPaths string   指定された Glob パターンに一致するモジュールパスの _vendor を無視します
+      --log                        ロギングを有効にします
+      --logFile string             ログファイルのパス (設定されている場合、ログが自動的に有効になります)
+      --quiet                      クワイエットモード (通知オフ) でビルドします
+  -s, --source string              ファイルの相対パスを読み取るファイルシステムのパス
+      --themesDir string           テーマディレクトリへのファイルシステムのパス
+  -v, --verbose                    詳細出力 (冗長表示)
+      --verboseLog                 詳細ログ出力
+```
+
+### 関連項目 {#see-also}
+
+* [hugo new](/commands/hugo_new/)	 - サイトの新しいコンテンツを作成します
 

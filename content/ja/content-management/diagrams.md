@@ -2,6 +2,7 @@
 categories:
 - content management
 date: "2022-02-20"
+description: GoAT ダイアグラム、Mermaid ダイアグラムをサポートしています。
 draft: false
 keywords:
 - diagrams

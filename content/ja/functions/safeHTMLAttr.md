@@ -4,8 +4,8 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: Declares the provided string as a safe HTML attribute.
-draft: true
+description: 指定された文字列を安全な HTML 属性として宣言します。
+draft: false
 hugoversion: null
 keywords:
 - strings
@@ -21,7 +21,7 @@ title: safeHTMLAttr
 workson: []
 ---
 
-Example: Given a site-wide `config.toml` that contains this menu entry:
+例: サイト全体の `config.toml` が以下のメニューアイテムを含んでいるとします。
 
 {{< code-toggle file="config" >}}
 [[menu.main]]

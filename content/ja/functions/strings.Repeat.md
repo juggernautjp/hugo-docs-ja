@@ -3,8 +3,8 @@ categories:
 - functions
 date: "2018-05-31"
 deprecated: false
-description: Returns INPUT repeated COUNT times.
-draft: true
+description: INPUT を COUNT 回繰り返したものを返します。
+draft: false
 hugoversion: null
 keywords:
 - strings
@@ -20,7 +20,7 @@ title: strings.Repeat
 workson: []
 ---
 
-```
+```go-html-template
 {{ strings.Repeat 3 "yo" }} → "yoyoyo"
 {{ "yo" | strings.Repeat 3 }} → "yoyoyo"
 ```

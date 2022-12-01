@@ -398,7 +398,7 @@ enableInlineShortcodes = true
 
 同じインライン ショートコードは、同じコンテンツファイル内で、必要に応じて異なるパラメータを指定して自己終了構文で後から再利用できます。
 
- ```go-text-template
+```go-text-template
 {{</* time.inline /*/>}}
 ```
 

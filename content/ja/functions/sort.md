@@ -4,8 +4,8 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: Sorts maps, arrays, and slices and returns a sorted slice.
-draft: true
+description: マップ、配列、スライスをソートし、ソートされたスライスを返します。
+draft: false
 hugoversion: null
 keywords:
 - ordering
@@ -26,14 +26,14 @@ workson:
 - groups
 ---
 
-A sorted array of map values will be returned with the keys eliminated. There are two optional arguments: `sortByField` and `sortAsc`. If left blank, sort will sort by keys (for maps) in ascending order as its default behavior.
+キーが削除されたマップ値のソートされた配列が返されます。 オプションの引数は、`sortByField` と `sortAsc` の 2 つです。 空白のままにすると、ソートはデフォルトの動作として、キー (マップの場合) の昇順でソートされます。
 
-```
+```ini
 ---
 tags: ["tag3", "tag1", "tag2"]
 ---
 
-// Site config
+// サイト設定
 +++
 [params.authors]
   [params.authors.Joe]
@@ -48,23 +48,23 @@ tags: ["tag3", "tag1", "tag2"]
 +++
 ```
 
-```
-// Sort by value, ascending (default for lists)
+```js
+// 値の昇順でソートする (リストのデフォルト) 
 Tags: {{ range sort .Params.tags }}{{ . }} {{ end }}
 
 → Outputs Tags: tag1 tag2 tag3
 
-// Sort by value, descending
+// 値の降順でソートする
 Tags: {{ range sort .Params.tags "value" "desc" }}{{ . }} {{ end }}
 
 → Outputs Tags: tag3 tag2 tag1
 
-// Sort by key, ascending (default for maps)
+// キーの昇順でソートする (マップのデフォルト)
 Authors: {{ range sort .Site.Params.authors }}{{ .firstName }} {{ end }}
 
 → Outputs Authors: Derek Joe Tanner
 
-// Sort by field, descending
+// フィールドの降順でソートする
 Authors: {{ range sort .Site.Params.authors "lastName" "desc" }}{{ .lastName }} {{ end }}
 
 → Outputs Authors: Perkins Linsley Bergevin

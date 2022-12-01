@@ -3,8 +3,8 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: Removes any trailing newline characters.
-draft: true
+description: 末尾の改行文字をすべて削除します。
+draft: false
 hugoversion: null
 keywords:
 - trim
@@ -22,8 +22,8 @@ toc: true
 workson: []
 ---
 
-Useful in a pipeline to remove newlines added by other processing (e.g., [`markdownify`](/functions/markdownify/)).
+パイプラインで、他の処理によって追加された改行を削除するのに役立ちます (たとえば、 [`markdownify`](/functions/markdownify/))。
 
-```
+```go-html-template
 {{chomp "<p>Blockhead</p>\n"}} → "<p>Blockhead</p>"
 ```

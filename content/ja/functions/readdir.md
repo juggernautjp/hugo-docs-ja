@@ -3,9 +3,8 @@ aliases: []
 categories:
 - functions
 deprecated: false
-description: Returns an array of FileInfo structures sorted by filename, one element
-  for each directory entry.
-draft: true
+description: ファイル名でソートされた FileInfo 構造体の配列を、ディレクトリ エントリごとに 1 つの要素で返します。
+draft: false
 hugoversion: null
 keywords:
 - files
@@ -24,9 +23,9 @@ signature:
 title: readDir
 workson: []
 ---
-The `os.ReadDir` function resolves the path relative to the root of your project directory. A leading path separator (`/`) is optional.
+`os.ReadDir` 関数は、プロジェクト ディレクトリのルートからの相対パスを解決します。先頭のパス区切り文字 (`/`) は省略可能です。
 
-With this directory structure:
+以下のディレクトリ構造を考えます。
 
 ```text
 content/
@@ -37,7 +36,7 @@ content/
     └── article-2.md
 ```
 
-This template code:
+以下のテンプレート コードは、
 
 ```go-html-template
 {{ range os.ReadDir "content" }}
@@ -45,7 +44,7 @@ This template code:
 {{ end }}
 ```
 
-Produces:
+以下を生成します。
 
 ```html
 about.md --> false
@@ -53,8 +52,8 @@ contact.md --> false
 news --> true
 ```
 
-Note that `os.ReadDir` is not recursive.
+`os.ReadDir` は、再帰的ではないことに注意してください。
 
-Details of the `FileInfo` structure are available in the [Go documentation](https://pkg.go.dev/io/fs#FileInfo).
+`FileInfo` 構造の詳細については、[Go ドキュメント](https://pkg.go.dev/io/fs#FileInfo) を参照してください。
 
-For more information on using `readDir` and `readFile` in your templates, see [Local File Templates]({{< relref "/templates/files" >}}).
+テンプレートで `readDir` と `readFile` を使用する方法については、[ローカルファイル テンプレート]({{< relref "/templates/files" >}}) を参照してください。

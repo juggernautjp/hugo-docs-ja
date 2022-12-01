@@ -4,8 +4,8 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: Declares the provided string as a safe URL or URL substring.
-draft: true
+description: 指定された文字列を安全な URL または URL 部分文字列として宣言します。
+draft: false
 hugoversion: null
 keywords:
 - strings
@@ -22,11 +22,11 @@ title: safeURL
 workson: []
 ---
 
-`safeURL` declares the provided string as a "safe" URL or URL substring (see [RFC 3986][]). A URL like `javascript:checkThatFormNotEditedBeforeLeavingPage()` from a trusted source should go in the page, but by default dynamic `javascript:` URLs are filtered out since they are a frequently exploited injection vector.
+`safeURL` は指定された文字列を「安全な」 URL または URL の部分文字列として宣言します ([RFC 3986][] を参照してください)。信頼できるソースからの `javascript:checkThatFormNotEditedBeforeLeavingPage()` のような URL はページに入れるべきですが、動的な `javascript:` URL は頻繁に悪用されるインジェクション ベクトルであるため、デフォルトでフィルタリングされて除外されます。
 
-Without `safeURL`, only the URI schemes `http:`, `https:` and `mailto:` are considered safe by Go templates. If any other URI schemes (e.g., `irc:` and `javascript:`) are detected, the whole URL will be replaced with `#ZgotmplZ`. This is to "defang" any potential attack in the URL by rendering it useless.
+`safeURL` がない場合、Go テンプレートでは `http:`、`https:`、`mailto:` という URI スキームのみが安全であるとみなされます。 その他の URI スキーム (たとえば、 `irc:` や `javascript:`) が検出された場合、URL 全体が `#ZgotmplZ` に置き換えられます。 これは、それを置換して無効なコードにレンダリングすることによって、URL の潜在的な攻撃を「無害化」するためです。
 
-The following examples use a [site `config.toml`][configuration] with the following [menu entry][menus]:
+以下の例では、[サイトの `config.toml`][configuration] に以下のような [メニューエントリ][menus] を設定しています。
 
 {{< code file="config.toml" copy="false" >}}
 [[menu.main]]
@@ -34,10 +34,10 @@ The following examples use a [site `config.toml`][configuration] with the follow
     url = "irc://irc.freenode.net/#golang"
 {{< /code >}}
 
-The following is an example of a sidebar partial that may be used in conjunction with the preceding front matter example:
+以下は、前述のフロントマターの例と組み合わせて使用することができる、サイドバーの部分テンプレート (パーシャル) の例です。
 
 {{< code file="layouts/partials/bad-url-sidebar-menu.html" copy="false" >}}
-<!-- This unordered list may be part of a sidebar menu -->
+<!-- この順序付けられていないリストは、サイドバー メニューの一部である可能性があります -->
 <ul>
   {{ range .Site.Menus.main }}
   <li><a href="{{ .URL }}">{{ .Name }}</a></li>
@@ -45,25 +45,25 @@ The following is an example of a sidebar partial that may be used in conjunction
 </ul>
 {{< /code >}}
 
-This partial would produce the following HTML output:
+この部分テンプレートは、以下の HTML を出力します。
 
 {{< output file="bad-url-sidebar-menu-output.html" >}}
-<!-- This unordered list may be part of a sidebar menu -->
+<!-- この順序付けられていないリストは、サイドバー メニューの一部である可能性があります -->
 <ul>
     <li><a href="#ZgotmplZ">IRC: #golang at freenode</a></li>
 </ul>
 {{< /output >}}
 
-The odd output can be remedied by adding ` | safeURL` to our `.URL` page variable:
+上記の奇妙な出力は、以下のように、ページ変数 `.URL` に ` | safeURL` を追加することで改善できます。
 
 {{< code file="layouts/partials/correct-url-sidebar-menu.html" copy="false" >}}
-<!-- This unordered list may be part of a sidebar menu -->
+<!-- この順序付けられていないリストは、サイドバー メニューの一部である可能性があります -->
 <ul>
     <li><a href="{{ .URL | safeURL }}">{{ .Name }}</a></li>
 </ul>
 {{< /code >}}
 
-With the `.URL` page variable piped through `safeURL`, we get the desired output:
+`.URL` ページ変数が `safeURL` を通してパイプされることで、目的の出力が得られます。
 
 {{< output file="correct-url-sidebar-menu-output.html" >}}
 <ul class="sidebar-menu">

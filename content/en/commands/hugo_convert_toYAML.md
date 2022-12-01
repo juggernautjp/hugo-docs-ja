@@ -1,7 +1,7 @@
 ---
 title: "hugo convert toYAML"
 slug: hugo_convert_toYAML
-url: /commands/hugo_convert_toyaml/
+# url: /commands/hugo_convert_toyaml/
 ---
 ## hugo convert toYAML
 

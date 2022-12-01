@@ -4,9 +4,8 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: Returns the time corresponding to adding the given number of years, months,
-  and days to the given time.Time value.
-draft: true
+description: 指定された time.Time 値に、指定された年数、月数、および日数を加算した時間を返します。
+draft: false
 hugoversion: null
 keywords:
 - dates
@@ -36,9 +35,9 @@ workson:
 ```
 
 {{% note %}}
-When adding months or years, Hugo normalizes the final `time.Time` value if the resulting day does not exist. For example, adding one month to 31 January produces 2 March or 3 March, depending on the year.
+月または年を追加するとき、結果の日が存在しない場合、Hugo は最終的な `time.Time` 値を正規化します。 たとえば、1 月 31 日に 1 か月を追加すると、年によって 3 月 2 日または 3 月 3 日になります。
 
-See [this explanation](https://github.com/golang/go/issues/31145#issuecomment-479067967) from the Go team.
+Go チームによる [この説明](https://github.com/golang/go/issues/31145#issuecomment-479067967) を参照してください。
 {{% /note %}}
 
 ```go-html-template

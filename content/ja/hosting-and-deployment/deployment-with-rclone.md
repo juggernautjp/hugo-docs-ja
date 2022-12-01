@@ -6,15 +6,14 @@ authors:
 categories:
 - hosting and deployment
 date: "2021-08-09"
-description: If you have access to your web host with SFTP/FTP/SSH/HTTP(DAV), you
-  can use rclone to incrementally deploy your entire Hugo website.
-draft: true
+description: SFTP/FTP/SSH/HTTP (DAV) を使用して Web ホストにアクセスできる場合は、rclone を使用して Hugo Web サイト全体をインクリメンタルにデプロイできます。
+draft: false
 keywords:
 - rclone
 - sftp
 - deployment
 lastmod: "2021-08-09"
-linktitle: Deployment with Rclone
+linktitle: Rclone を使ったデプロイメント
 menu:
   docs:
     parent: hosting-and-deployment
@@ -22,43 +21,43 @@ menu:
 notesforauthors: null
 publishdate: "2021-08-09"
 sections_weight: 80
-title: Deployment with Rclone
+title: Rclone を使ったデプロイメント
 toc: true
 weight: 80
 ---
 
-## Assumptions
+## 前提条件 {#assumptions}
 
-* A web host running a web server. This could be a shared hosting environment or a VPS.
-* Access to your web host with any of the [protocols supported by rclone](https://rclone.org/#providers), such as SFTP.
-* A functional static website built with Hugo
-* Deploying from an [Rclone](https://rclone.org) compatible operating system
-* You have [installed Rclone](https://rclone.org/install/).
+* Web サーバーを実行している Web ホストがあること。 これは、共有ホスティング環境または VPS である可能性があります。
+* SFTP などの [rclone がサポートするプロトコル](https://rclone.org/#providers) のいずれかを使用して Web ホストにアクセスできること。
+* Hugo で構築された機能的な静的 Web サイトがあること。
+* [Rclone](https://rclone.org) 互換の OS からのデプロイであること。
+* [Rclone がインストールされている](https://rclone.org/install/) こと。
 
-**NB**: You can remove ``--interactive`` in the commands below once you are comfortable with rclone, if you wish. Also, ``--gc`` and ``--minify`` are optional in the ``hugo`` commands below.
+**注意**: rclone に慣れたら、以下のコマンドの `--interactive` を削除してもかまいません。また、以下の `hugo` コマンドでは、 `--gc` と `--minify` は省略可能です。
 
-## Getting Started
+## 入門 {#getting-started}
 
-The spoiler is that you can even deploy your entire website from any compatible OS with no configuration. Using SFTP for example:
+ネタバレになりますが、互換性のある OS であれば、設定なしで Web サイト全体をデプロイできます。 たとえば、SFTP を使う場合は、以下のコマンドを実行します。
 
-```txt
+```bash
 hugo --gc --minify
 rclone sync --interactive --sftp-host sftp.example.com --sftp-user www-data --sftp-ask-password public/ :sftp:www/
 ```
 
-## Configure Rclone for Even Easier Usage
+## さらに使いやすくするために Rclone を設定する {#configure-rclone-for-even-easier-usage}
 
-The easiest way is simply to run ``rclone config``.
+最も簡単な方法は、単に `rclone config` を実行することです。
 
-The [Rclone docs](https://rclone.org/docs/) provide [an example of configuring Rclone to use SFTP](https://rclone.org/sftp/).
+[Rclone ドキュメント](https://rclone.org/docs/) には、[SFTP を使用するように Rclone を設定する例](https://rclone.org/sftp/) が掲載されています。
 
-For the next commands, we will assume you configured a remote you named ``hugo-www``
+次のコマンドでは、 `hugo-www` という名前のリモートユーザーを設定したものとします。
 
-The above 'spoiler' commands could become:
+上記の「ネタバレ」コマンドは、以下のようになります。
 
 ```txt
 hugo --gc --minify
 rclone sync --interactive public/ hugo-www:www/
 ```
 
-After you issue the above commands (and respond to any prompts), check your website and you will see that it is deployed.
+上記のコマンドを発行した後 (そしてプロンプトに応答した後)、Web サイトを確認すると、サイトがデプロイされていることが確認できます。

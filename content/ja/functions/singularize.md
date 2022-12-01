@@ -4,9 +4,8 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: Converts a word according to a set of common English singularization
-  rules.
-draft: true
+description: 英語の一般的な単数化規則に従って単語を変換します。
+draft: false
 hugoversion: null
 keywords:
 - strings
@@ -25,4 +24,4 @@ workson: []
 
 `{{ "cats" | singularize }}` → "cat"
 
-See also the `.Data.Singular` [taxonomy variable](/variables/taxonomy/) for singularizing taxonomy names.
+タクソノミーの名前の単数化については、 `.Data.Singular` [タクソノミー変数](/variables/taxonomy/) も参照してください。

@@ -4,7 +4,7 @@ aliases:
 categories:
 - variables and params
 date: "2019-10-20"
-description: Pages is the core page collection in Hugo and has many useful methods.
+description: Pages は、Hugo の中核となるページ コレクションで、多くの便利なメソッドを備えています。
 draft: false
 keywords:
 - pages

@@ -5,7 +5,7 @@ categories:
 date: "2017-02-01"
 deprecated: false
 description: null
-draft: true
+draft: false
 hugoversion: null
 keywords:
 - menus
@@ -24,10 +24,8 @@ workson:
 - menus
 ---
 
-`.HasMenuCurrent` is a method in `Page` object returning a _boolean_ value. It
-returns `true` if the PAGE is the same object as the `.Page` in one of the
-**children menu entries** under MENUENTRY in a given MENU.
+`.HasMenuCurrent` は `Page` オブジェクトのメソッドで、_ブール_ 値を返します。もし、**ページ** が、指定された **メニュー** の **メニューエントリ** の下にある **子メニューエントリ** の 1 つの `.Page` と同じオブジェクトであれば、 `true` を返します。
 
-{{< new-in "0.86.0" >}} If MENUENTRY's `.Page` is a [section](/content-management/sections/) then, from Hugo `0.86.0`, this method also returns true for any descendant of that section..
+{{< new-in "0.86.0" >}} **メニューエントリ** の `.Page` が [セクション](/content-management/sections/) の場合、Hugo `0.86.0` 以降、このメソッドはそのセクションの子孫に対しても true を返します。
 
-You can find its example use in [menu templates](/templates/menu-templates/).
+[メニューテンプレート](/templates/menu-templates/) にその使用例があります。

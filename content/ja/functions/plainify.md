@@ -4,8 +4,8 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: Strips any HTML and returns the plain text version of the provided string.
-draft: true
+description: HTML を除去し、指定された文字列のプレーンテキスト版を返します。
+draft: false
 hugoversion: null
 keywords:
 - strings
@@ -23,10 +23,10 @@ title: plainify
 workson: []
 ---
 
-```
+```go-html-template
 {{ "<b>BatMan</b>" | plainify }} → "BatMan"
 ```
 
-See also the `.PlainWords`, `.Plain`, and `.RawContent` [page variables][pagevars].
+`.PlainWords`、`.Plain`、`.RawContent` [ページ変数][pagevars] も参照してください。
 
 [pagevars]: /variables/page/

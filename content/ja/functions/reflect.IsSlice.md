@@ -3,8 +3,8 @@ categories:
 - functions
 date: "2018-11-28"
 deprecated: false
-description: Reports if a value is a slice.
-draft: true
+description: 値がスライスであるかどうかを報告します。
+draft: false
 hugoversion: "0.53"
 keywords:
 - reflect
@@ -23,9 +23,9 @@ title: reflect.IsSlice
 workson: []
 ---
 
-`reflect.IsSlice` reports if `VALUE` is a slice.  Returns a boolean.
+`reflect.IsSlice` は、`VALUE` がスライスであるかどうかを報告し、ブール値を返します。
 
-```
+```go-html-template
 {{ reflect.IsSlice (slice 1 2 3) }} → true
 {{ reflect.IsSlice "yo" }} → false
 ```

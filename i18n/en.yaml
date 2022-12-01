@@ -1,0 +1,7 @@
+# i18n/en.yaml
+- id: see_also
+  translation: "See Also"
+- id: read_more
+  translation: "Read More"
+- id: syntax
+  translation: "Syntax"

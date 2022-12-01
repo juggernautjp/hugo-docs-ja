@@ -3,9 +3,8 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: Truncates a text to a max length without cutting words or leaving unclosed
-  HTML tags.
-draft: true
+description: 単語を切り捨てたり、閉じていない HTML タグを残さずに、テキストを最大長まで切り詰めます。
+draft: false
 hugoversion: 19
 keywords:
 - strings
@@ -22,12 +21,12 @@ title: truncate
 workson: []
 ---
 
-Since Go templates are HTML-aware, `truncate` will intelligently handle normal strings vs HTML strings:
+Go テンプレートは HTML に対応しているため、`truncate` は通常の文字列と HTML 文字列をインテリジェントに処理します。
 
-```
+```go-html-template
 {{ "<em>Keep my HTML</em>" | safeHTML | truncate 10 }}` → <em>Keep my …</em>`
 ```
 
 {{% note %}}
-If you have a raw string that contains HTML tags you want to remain treated as HTML, you will need to convert the string to HTML using the [`safeHTML` template function](/functions/safehtml) before sending the value to truncate. Otherwise, the HTML tags will be escaped when passed through the `truncate` function.
+HTML として扱いたい HTML タグを含む生の文字列がある場合、値を truncate に送る前に、[`safeHTML` テンプレート関数](/functions/safehtml) を使用して文字列を HTML に変換する必要があります。そうしないと、 `truncate` 関数に渡されたときに HTML タグがエスケープされてしまいます。
 {{% /note %}}

@@ -5,89 +5,87 @@ authors:
 categories:
 - hosting and deployment
 date: "2017-03-12"
-description: You can use Firebase's free tier to host your static website; this also
-  gives you access to Firebase's NOSQL API.
-draft: true
+description: Firebase の無料利用枠を使用して、静的 Web サイトをホストできます。 これにより、Firebase の NOSQL API にもアクセスできます。
+draft: false
 keywords:
 - hosting
 - firebase
-linktitle: Host on Firebase
+linktitle: Firebase でのホスト
 menu:
   docs:
     parent: hosting-and-deployment
     weight: 20
 publishdate: "2017-03-12"
 sections_weight: 20
-title: Host on Firebase
+title: Firebase でのホスト
 toc: true
 weight: 20
 ---
 
-## Assumptions
+## 前提条件 {#assumptions}
 
-1. You have an account with [Firebase][signup]. (If you don't, you can sign up for free using your Google account.)
-2. You have completed the [Quick Start][] or have a completed Hugo website ready for deployment.
+1. [Firebase][signup] のアカウントを持っていること。 (持っていない場合は、Google アカウントを使用して無料でサインアップできます)。
+2. [クイックスタート][Quick Start] を完了していること、または Hugo の Web サイトをデプロイし、世界と共有する準備ができでいること。
 
-## Initial setup
+## 初期設定 {#initial-setup}
 
-Go to the [Firebase console][console] and create a new project (unless you already have a project). You will need to globally install `firebase-tools` (node.js):
+[Firebase コンソール][console] にアクセスし、新規プロジェクトを作成します (すでにプロジェクトがある場合は除く)。 以下のコマンドにより、`firebase-tools` (node.js) をグローバルにインストールする必要があります。
 
-```txt
+```bash
 npm install -g firebase-tools
 ```
 
-Log in to Firebase (setup on your local machine) using `firebase login`, which opens a browser where you can select your account. Use `firebase logout` in case you are already logged in but to the wrong account.
+Firebase (ローカルマシンに設定します) に `firebase login` でログインすると、ブラウザが起動してアカウントが選択できるようになります。 すでにログインしているが間違ったアカウントにログインしている場合は、`Firebase logout` を使用します。
 
-
-```txt
+```bash
 firebase login
 ```
 
-In the root of your Hugo project, initialize the Firebase project with the `firebase init` command:
+Hugo プロジェクトのルートで、以下のように `firebase init` コマンドを使用して、Firebase プロジェクトを初期化します。
 
-```txt
+```bash
 firebase init
 ```
 
-From here:
+ここから、以下の手順を実行します。
 
-1. Choose Hosting in the feature question
-2. Choose the project you just set up
-3. Accept the default for your database rules file
-4. Accept the default for the publish directory, which is `public`
-5. Choose "No" in the question if you are deploying a single-page app
+1. 機能の質問でホスティングを選択します
+2. 先ほど設定したプロジェクトを選択します
+3. データベース ルール ファイルのデフォルトを受け入れます
+4. 公開ディレクトリのデフォルトである `public` を受け入れます
+5. シングルページ アプリをデプロイする場合は、質問で [いいえ] を選択します
 
-## Deploy
+## デプロイ {#deploy}
 
-To deploy your Hugo site, execute the `firebase deploy` command, and your site will be up in no time:
+Hugo サイトをデプロイするには、以下のように、`firebase deploy` コマンドを実行すれば、すぐにサイトが立ち上がります。
 
-```txt
+```bash
 hugo && firebase deploy
 ```
 
-## CI Setup
+## CI 設定 {#ci-setup}
 
-You can generate a deploy token using
+以下のコマンドを使用して、デプロイトークンを生成できます。
 
-```txt
+```bash
 firebase login:ci
 ```
 
-You can also set up your CI (e.g., with Wercker) and add the token to a private variable like `$FIREBASE_DEPLOY_TOKEN`.
+また、(Wercker などを使って) CI を設定し、トークンを `$FIREBASE_DEPLOY_TOKEN` のようなプライベート変数に追加できます。
 
 {{% note %}}
-This is a private secret and it should not appear in a public repository. Make sure you understand your chosen CI and that it's not visible to others.
+これはプライベートな秘密であり、パブリック リポジトリには表示されません。 選択した CI を理解し、他の人には見えないことを確認してください。
 {{% /note %}}
 
-You can then add a step in your build to do the deployment using the token:
+その後、ビルドにステップを追加して、トークンを使用してデプロイを実行できます。
 
-```txt
+```bash
 firebase deploy --token $FIREBASE_DEPLOY_TOKEN
 ```
 
-## Reference links
+## 参考リンク {#reference-links}
 
-* [Firebase CLI Reference](https://firebase.google.com/docs/cli/#administrative_commands)
+* [Firebase CLI リファレンス](https://firebase.google.com/docs/cli/#administrative_commands)
 
 [console]: https://console.firebase.google.com
 [Quick Start]: /getting-started/quick-start/

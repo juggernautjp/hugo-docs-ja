@@ -4,9 +4,8 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: Returns a slice of a given string with all leading characters contained
-  in the cutset removed.
-draft: true
+description: カットセットに含まれるすべての先頭文字を削除した、指定された文字列のスライスを返します。
+draft: false
 hugoversion: null
 keywords:
 - strings
@@ -23,10 +22,14 @@ title: strings.TrimLeft
 workson: []
 ---
 
-Given the string `"abba"`, leading `"a"`'s can be removed a follows:
+文字列 `"abba"` が与えられたとき、先頭の `"a"` は以下のように削除できます。
 
+```go-html-template
     {{ strings.TrimLeft "a" "abba" }} → "bba"
+```
 
-Numbers can be handled as well:
+以下のように、数値も同様に処理できます。
 
+```go-html-template
     {{ strings.TrimLeft 12 1221341221 }} → "341221"
+```

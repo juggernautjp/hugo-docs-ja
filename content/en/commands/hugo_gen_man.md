@@ -1,7 +1,7 @@
 ---
 title: "hugo gen man"
 slug: hugo_gen_man
-url: /commands/hugo_gen_man/
+# url: /commands/hugo_gen_man/
 ---
 ## hugo gen man
 

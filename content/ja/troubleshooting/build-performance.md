@@ -3,37 +3,33 @@ aliases: []
 categories:
 - troubleshooting
 date: "2017-03-12"
-description: An overview of features used for diagnosing and improving performance
-  issues in site builds.
-draft: true
+description: サイト構築の性能問題を診断し、改善するために使用される機能の概要について説明します。
+draft: false
 keywords:
 - performance
 - build
-linktitle: Build Performance
+linktitle: ビルド性能
 menu:
   docs:
     parent: troubleshooting
 publishdate: "2017-03-12"
 slug: null
-title: Build Performance
+title: ビルド性能
 toc: true
 weight: 3
 ---
 
-## Template Metrics
+## テンプレート メトリクス {#template-metrics}
 
-Hugo is a very fast static site generator, but it is possible to write
-inefficient templates. Hugo's _template metrics_ feature is extremely helpful
-in pinpointing which templates are executed most often and how long those
-executions take **in terms of CPU time**.
+Hugo は非常に高速な静的サイトジェネレーターですが、非効率なテンプレートを書くことも可能です。 Hugo の _テンプレート メトリクス_ 機能は、どのテンプレートが最も頻繁に実行され、それらの実行に **CPU 時間** がどのくらいかかっているかを正確に把握するのに非常に役立ちます。
 
-| Metric Name         | Description                                                    |
+| 指標名              | 説明                                                           |
 | ------------------- | -------------------------------------------------------------- |
-| cumulative duration | The cumulative time spent executing a given template.          |
-| average duration    | The average time spent executing a given template.             |
-| maximum duration    | The maximum time a single execution took for a given template. |
-| count               | The number of times a template was executed.                   |
-| template            | The template name.                                             |
+| cumulative duration | 指定されたテンプレートの実行に費やされた累積時間。          |
+| average duration    | 指定されたテンプレートの平均実行時間。             |
+| maximum duration    | 指定したテンプレートで 1 回の実行にかかった最大時間。 |
+| count               | テンプレートが実行された回数。                   |
+| template            | テンプレート名。                                            |
 
 ```txt
 ▶ hugo --templateMetrics
@@ -75,25 +71,17 @@ Template Metrics:
 ```
 
 {{% note %}}
-**A Note About Parallelism**
+**並列処理に関する注意点**
 
-Hugo builds pages in parallel where multiple pages are generated
-simultaneously. Because of this parallelism, the sum of "cumulative duration"
-values is usually greater than the actual time it takes to build a site.
+Hugo は、複数のページが同時に生成される並列処理でページをビルドします。この並列処理により、「累積期間 (cumulative duration)」値の合計は、通常、サイト構築にかかる実際の時間よりも長くなります。
 {{% /note %}}
 
-## Cached Partials
+## キャッシュされた部分テンプレート (パーシャル) {#cached-partials}
 
-Some `partial` templates such as sidebars or menus are executed many times
-during a site build. Depending on the content within the `partial` template and
-the desired output, the template may benefit from caching to reduce the number
-of executions. The [`partialCached`][partialcached] template function provides
-caching capabilities for `partial` templates.
+サイドバーやメニューのような `partial` テンプレートは、サイト構築時に何度も実行されるものがあります。`partial` テンプレートに含まれるコンテンツや、目的の出力によっては、実行回数を減らすために、テンプレートをキャッシュして実行回数を減らすことができる場合があります。 [`PartialCached`][partialcached] テンプレート関数は、 `partial` テンプレートにキャッシュ機能を提供します。
 
 {{% tip %}}
-Note that you can create cached variants of each `partial` by passing additional
-parameters to `partialCached` beyond the initial context. See the
-`partialCached` documentation for more details.
+初期コンテキスト以外に `partialCached` に追加のパラメータを渡すことで、各 `partial` のキャッシュされたバリアントを作成することができることに注意してください。 詳細については、 `partialCached` のドキュメントを参照してください。
 {{% /tip %}}
 
 [partialCached]:{{< ref "/functions/partialCached.md" >}}

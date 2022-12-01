@@ -3,8 +3,8 @@ categories:
 - functions
 date: "2018-11-28"
 deprecated: false
-description: Join path elements into a single path.
-draft: true
+description: パス要素を 1 つのパスに結合します。
+draft: false
 hugoversion: "0.39"
 keywords:
 - path
@@ -27,12 +27,12 @@ title: path.Join
 workson: []
 ---
 
-`path.Join` joins path elements into a single path, adding a separating slash if necessary.
-All empty strings are ignored.
+`path.Join` は、必要に応じて区切りのスラッシュを追加して、パス要素を 1 つのパスに結合します。
+空文字列はすべて無視されます。
 
-**Note:** All path elements on Windows are converted to slash ('/') separators.
+**注意:** Windows のパス要素はす、べてスラッシュ　('/') セパレーターに変換されます。
 
-```
+```go-html-template
 {{ path.Join "partial" "news.html" }} → "partial/news.html"
 {{ path.Join "partial/" "news.html" }} → "partial/news.html"
 {{ path.Join "foo/baz" "bar" }} → "foo/baz/bar"

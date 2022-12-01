@@ -1,56 +1,67 @@
 ---
-draft: true
+categories:
+- commands
+aliases: []
+date: "2017-02-01"
+description: hugo deploy サブコマンドは、サイトをクラウド プロバイダーにデプロイします。
+lastmod: "2017-02-01"
+menu:
+  docs:
+    parent: commands
+    weight: 40
+publishdate: "2017-02-01"
+sections_weight: 40
+toc: false
+weight: 40
+draft: false
 slug: hugo_deploy
 title: hugo deploy
-url: /commands/hugo_deploy/
 ---
 ## hugo deploy
 
-Deploy your site to a Cloud provider.
+サイトをクラウド プロバイダーにデプロイします
 
-### Synopsis
+### 概要 {#synopsis}
 
-Deploy your site to a Cloud provider.
+サイトをクラウド プロバイダーにデプロイします。
 
-See https://gohugo.io/hosting-and-deployment/hugo-deploy/ for detailed
-documentation.
+詳細なドキュメントについては、/hosting-and-deployment/hugo-deploy/ を参照してください。
 
-
-```
+```bash
 hugo deploy [flags]
 ```
 
-### Options
+### オプション {#options}
 
-```
-      --confirm          ask for confirmation before making changes to the target
-      --dryRun           dry run
-      --force            force upload of all files
-  -h, --help             help for deploy
-      --invalidateCDN    invalidate the CDN cache listed in the deployment target (default true)
-      --maxDeletes int   maximum # of files to delete, or -1 to disable (default 256)
-      --target string    target deployment from deployments section in config file; defaults to the first one
-```
-
-### Options inherited from parent commands
-
-```
-      --clock string               set the clock used by Hugo, e.g. --clock 2021-11-06T22:30:00.00+09:00
-      --config string              config file (default is path/config.yaml|json|toml)
-      --configDir string           config dir (default "config")
-      --debug                      debug output
-  -e, --environment string         build environment
-      --ignoreVendorPaths string   ignores any _vendor for module paths matching the given Glob pattern
-      --log                        enable Logging
-      --logFile string             log File path (if set, logging enabled automatically)
-      --quiet                      build in quiet mode
-  -s, --source string              filesystem path to read files relative from
-      --themesDir string           filesystem path to themes directory
-  -v, --verbose                    verbose output
-      --verboseLog                 verbose logging
+```bash
+      --confirm          ターゲットに変更を加える前に確認を求めます
+      --dryRun           ドライラン (予行演習)
+      --force            全ファイルの強制アップロード
+  -h, --help             deploy サブコマンドのヘルプ
+      --invalidateCDN    デプロイ ターゲットに記載されている CDN キャッシュを無効にします (デフォルトは、 true)
+      --maxDeletes int   削除するファイルの最大数、または無効な場合は -1 (デフォルトは、256)
+      --target string    設定ファイルの「デプロイ」セクションからターゲット デプロイを指定します。デフォルトは、最初のものです
 ```
 
-### SEE ALSO
+### 親コマンドから継承されたオプション {#options-inherited-from-parent-commands}
 
-* [hugo](/commands/hugo/)	 - hugo builds your site
+```bash
+      --clock string               Hugo が使用する時計を設定します。たとえば、 --clock 2021-11-06T22:30:00.00+09:00
+      --config string              設定ファイル (デフォルトは、 path/config.yaml|json|toml)
+      --configDir string           設定ディレクトリ (デフォルトは、 "config")
+      --debug                      デバッグ出力
+  -e, --environment string         ビルド環境
+      --ignoreVendorPaths string   指定された Glob パターンに一致するモジュールパスの _vendor を無視します
+      --log                        ロギングを有効にします
+      --logFile string             ログファイルのパス (設定されている場合、ログが自動的に有効になります)
+      --quiet                      クワイエットモード (通知オフ) でビルドします
+  -s, --source string              ファイルの相対パスを読み取るファイルシステムのパス
+      --themesDir string           テーマディレクトリへのファイルシステムのパス
+  -v, --verbose                    詳細出力 (冗長表示)
+      --verboseLog                 詳細ログ出力
+```
+
+### 関連項目 {#see-also}
+
+* [hugo](/commands/hugo/)	 - あなたのサイトをビルド (構築) します
 

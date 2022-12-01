@@ -3,8 +3,8 @@ categories:
 - functions
 date: "2017-09-30"
 deprecated: false
-description: Log ERROR or WARNING from the templates.
-draft: true
+description: テンプレートから ERROR または WARNING をログに記録します。
+draft: false
 hugoversion: null
 keywords:
 - strings
@@ -19,37 +19,37 @@ relatedfuncs:
 - printf
 signature:
 - errorf FORMAT INPUT
-title: errorf and warnf
+title: errorf と warnf
 workson: []
 ---
 
-`errorf` or `warnf` will evaluate a format string, then output the result to the ERROR or WARNING log (and only once per error message to avoid flooding the log).
+`errorf` または `warnf` はフォーマット文字列を評価し、その結果を ERROR または WARNING ログに出力します (ログがあふれないように、エラーメッセージごとに一度だけ出力されます)。
 
-Any ERROR will also cause the build to fail (the `hugo` command will `exit -1`).
+ERROR が発生すると、ビルドも失敗します (`hugo` コマンドは、 `exit -1` を実行します)。
 
-Both functions return an empty string, so the messages are only printed to the console.
+どちらの関数も空文字列を返すので、メッセージはコンソールにのみ出力されます。
 
-```
+```go-html-template
 {{ errorf "Failed to handle page %q" .Path }}
 ```
 
-```
+```go-html-template
 {{ warnf "You should update the shortcodes in %q" .Path }}
 ```
 
-Note that `errorf`, `erroridf`, and `warnf` support all the formatting verbs of the [fmt](https://golang.org/pkg/fmt/) package.
+なお、 `errorf`、`erroridf`、`warnf` は、 [fmt](https://golang.org/pkg/fmt/) パッケージのすべてのフォーマット動詞をサポートしていることに注意してください。
 
-## Suppress errors
+## エラーを抑制する {#suppress-errors}
 
-Sometimes it may make sense to let the user suppress an ERROR and make the build succeed.
+場合によっては、ユーザーが ERROR を抑制してビルドを成功させることが理にかなっている場合があります。
 
-You can do this by using the `erroridf` function. This functions takes an error ID as the first argument.
+これを行うには、 `erroridf` 関数を使用します。この関数は第 1 引数としてエラー ID を受け取ります。
 
-```
+```go-html-template
 {{ erroridf "my-custom-error" "You should consider fixing this." }}
 ```  
 
-This will produce:
+上記のコードにより、以下のメッセージが生成されます。
 
 ```
 ERROR 2021/06/07 17:47:38 You should consider fixing this.

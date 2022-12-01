@@ -4,8 +4,8 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: Returns the contents of a file.
-draft: true
+description: ファイルのコンテンツを返します。
+draft: false
 hugoversion: null
 keywords:
 - files
@@ -24,26 +24,26 @@ signature:
 title: readFile
 workson: []
 ---
-The `os.ReadFile` function attempts to resolve the path relative to the root of your project directory. If a matching file is not found, it will attempt to resolve the path relative to the [`contentDir`]({{< relref "getting-started/configuration#contentdir">}}). A leading path separator (`/`) is optional.
+`os.ReadFile` 関数は、プロジェクト ディレクトリのルートからの相対パスを解決しようとします。 一致するファイルが見つからない場合は、[`contentDir`]({{< relref "getting-started/configuration#contentdir">}}) からの相対パスで解決しようとします。 先頭のパス区切り文字 (`/`) は省略可能です。
 
-With a file named README.md in the root of your project directory:
+プロジェクト ディレクトリのルートに README.md という名前のファイルがある場合を考えます。
 
-```text
+```md
 This is **bold** text.
 ```
 
-This template code:
+このテンプレート コードは、
 
 ```go-html-template
 {{ os.ReadFile "README.md" }}
 ```
 
-Produces:
+以下を生成します。
 
-```html
+```md
 This is **bold** text.
 ```
 
-Note that `os.ReadFile` returns raw (uninterpreted) content.
+`os.ReadFile` は、生の (未解釈の) コンテンツを返すことに注意してください。
 
-For more information on using `readDir` and `readFile` in your templates, see [Local File Templates]({{< relref "/templates/files" >}}).
+テンプレートで `readDir` と `readFile` を使用する方法の詳細については、 [ローカルファイル テンプレート]({{< relref "/templates/files" >}}) を参照してください。

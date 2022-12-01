@@ -4,9 +4,8 @@ categories:
 - functions
 date: "2018-11-01"
 deprecated: false
-description: Checks whether a template file exists under the given path relative to
-  the `layouts` directory.
-draft: true
+description: テンプレート ファイルが `layouts` ディレクトリからの相対パスで指定された場所に存在するかどうかをチェックします。
+draft: false
 hugoversion: "0.46"
 keywords:
 - templates
@@ -28,9 +27,9 @@ toc: false
 workson: []
 ---
 
-A template file is any file living below the `layouts` directories of either the project or any of its theme components including partials and shortcodes.
+テンプレート ファイルは、プロジェクト、または部分テンプレートやショートコードを含むテーマ コンポーネントのいずれかの、 `layouts` ディレクトリの下にあるファイルです。
 
-The function is particularly handy with dynamic path. The following example ensures the build will not break on a `.Type` missing its dedicated `header` partial.
+この関数は、特に動的パスで便利です。 以下の例では、 `.Type` に専用の `header` 部分テンプレートがない場合に、ビルドが中断しないようにします。
 
 ```go-html-template
 {{ $partialPath := printf "headers/%s.html" .Type }}

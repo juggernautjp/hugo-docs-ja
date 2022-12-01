@@ -1,7 +1,7 @@
 ---
 title: "hugo completion"
 slug: hugo_completion
-url: /commands/hugo_completion/
+# url: /commands/hugo_completion/
 ---
 ## hugo completion
 

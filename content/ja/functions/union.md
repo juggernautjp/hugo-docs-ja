@@ -4,9 +4,8 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: Given two arrays or slices, returns a new array that contains the elements
-  or objects that belong to either or both arrays/slices.
-draft: true
+description: 2 つの配列またはスライスを指定すると、配列/スライスのいずれかまたは両方に属する要素またはオブジェクトを含む新しい配列を返します。
+draft: false
 hugoversion: 0.2
 keywords:
 - collections
@@ -27,32 +26,32 @@ title: union
 workson: []
 ---
 
-Given two arrays (or slices) A and B, this function will return a new array that contains the elements or objects that belong to either A or to B or to both. The elements supported are strings, integers, and floats (only float64).
+2 つの配列 (またはスライス) A と B を指定すると、この関数は、A または B のいずれか、または両方に属する要素またはオブジェクトを含む新しい配列を返します。 サポートされている要素は、文字列、整数、浮動小数点数 (float64 のみ) です。
 
-```
+```go-html-template
 {{ union (slice 1 2 3) (slice 3 4 5) }}
-<!-- returns [1 2 3 4 5] -->
+<!-- [1 2 3 4 5] を返します -->
 
 {{ union (slice 1 2 3) nil }}
-<!-- returns [1 2 3] -->
+<!-- [1 2 3] を返します -->
 
 {{ union nil (slice 1 2 3) }}
-<!-- returns [1 2 3] -->
+<!-- [1 2 3] を返します -->
 
 {{ union nil nil }}
-<!-- returns an error because both arrays/slices have to be of the same type -->
+<!-- 両方の配列/スライスが同じ型でなければならないため、エラーを返します -->
 ```
 
-## OR filter in where query
+## where クエリでの OR フィルター {#or-filter-in-where-query}
 
-This is also very useful to use as `OR` filters when combined with where:
+また、以下のように、where と組み合わせて `OR` フィルターとして使用すると非常に便利です。
 
-```
+```go-html-template
 {{ $pages := where .Site.RegularPages "Type" "not in" (slice "page" "about") }}
 {{ $pages = $pages | union (where .Site.RegularPages "Params.pinned" true) }}
 {{ $pages = $pages | intersect (where .Site.RegularPages "Params.images" "!=" nil) }}
 ```
 
-The above fetches regular pages not of `page` or `about` type unless they are pinned. And finally, we exclude all pages with no `images` set in Page params.
+上記は、固定されていない限り、`page` または `about` タイプでない通常ページをフェッチします。 最後に、Page パラメータに `images` が設定されていないすべてのページを除外します。
 
-See [intersect](/functions/intersect) for `AND`.
+`AND `については、[intersect](/functions/intersect) を参照してください。

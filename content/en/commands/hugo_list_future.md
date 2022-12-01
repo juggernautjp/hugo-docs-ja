@@ -1,7 +1,7 @@
 ---
 title: "hugo list future"
 slug: hugo_list_future
-url: /commands/hugo_list_future/
+# url: /commands/hugo_list_future/
 ---
 ## hugo list future
 

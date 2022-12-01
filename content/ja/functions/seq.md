@@ -4,8 +4,8 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: Creates a sequence of integers.
-draft: true
+description: 整数のシーケンスを作成します。
+draft: false
 hugoversion: null
 keywords: []
 lastmod: "2017-02-01"
@@ -22,7 +22,7 @@ title: seq
 workson: []
 ---
 
-It's named and used in the model of [GNU's seq][].
+これは、[GNU の seq][GNU's seq] モデルで名前が付けられ、使用されています。
 
 ```
 3 → 1, 2, 3
@@ -32,18 +32,18 @@ It's named and used in the model of [GNU's seq][].
 1 -2 → 1, 0, -1, -2
 ```
 
-## Example: `seq` with `range` and `after`
+## 例: `range` と `after` を持つ `seq` {#example-seq-with-range-and-after}
 
-You can use `seq` in combination with `range` and `after`. The following will return 19 elements:
+`seq` は、 `range` や `after` と組み合わせて使用できます。 以下は、19 個の要素を返します。
 
-```
+```go-html-template
 {{ range after 1 (seq 20)}}
 {{ end }}
 ```
 
-However, when ranging with an index, the following may be less confusing in that `$indexStartingAt1` and `$num` will return `1,2,3 ... 20`:
+ただし、インデックスで範囲を指定する場合、以下は `$indexStartingAt1` と `$num` が `1,2,3 ... 20` を返すため、混乱が少ないかもしれません。
 
-```
+```go-html-template
 {{ range $index, $num := (seq 20) }}
 $indexStartingAt1 := (add $index 1)
 {{ end }}

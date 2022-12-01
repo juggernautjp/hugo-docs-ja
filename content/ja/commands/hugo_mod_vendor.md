@@ -1,49 +1,62 @@
 ---
-draft: true
+categories:
+- commands
+aliases: []
+date: "2017-02-01"
+description: hugo mod vendor サブコマンドは、すべてのモジュールの依存関係を _vendor ディレクトリにベンダー化します。
+lastmod: "2017-02-01"
+menu:
+  docs:
+    parent: commands
+    weight: 86
+publishdate: "2017-02-01"
+sections_weight: 86
+toc: false
+weight: 86
+draft: false
 slug: hugo_mod_vendor
 title: hugo mod vendor
-url: /commands/hugo_mod_vendor/
 ---
 ## hugo mod vendor
 
-Vendor all module dependencies into the _vendor directory.
+すべてのモジュールの依存関係を _vendor ディレクトリにベンダー化します。
 
-### Synopsis
+### 概要 {#synopsis}
 
-Vendor all module dependencies into the _vendor directory.
+すべてのモジュールの依存関係を _vendor ディレクトリにベンダー化します。
 
-If a module is vendored, that is where Hugo will look for it's dependencies.
+モジュールがベンダー化されている場合、Hugo はそこから依存関係を探します。
 
 
-```
+```bash
 hugo mod vendor [flags]
 ```
 
-### Options
+### オプション {#options}
 
-```
-  -h, --help   help for vendor
-```
-
-### Options inherited from parent commands
-
-```
-      --clock string               set the clock used by Hugo, e.g. --clock 2021-11-06T22:30:00.00+09:00
-      --config string              config file (default is path/config.yaml|json|toml)
-      --configDir string           config dir (default "config")
-      --debug                      debug output
-  -e, --environment string         build environment
-      --ignoreVendorPaths string   ignores any _vendor for module paths matching the given Glob pattern
-      --log                        enable Logging
-      --logFile string             log File path (if set, logging enabled automatically)
-      --quiet                      build in quiet mode
-  -s, --source string              filesystem path to read files relative from
-      --themesDir string           filesystem path to themes directory
-  -v, --verbose                    verbose output
-      --verboseLog                 verbose logging
+```bash
+  -h, --help   vendor サブコマンドのヘルプ
 ```
 
-### SEE ALSO
+### 親コマンドから継承されたオプション {#options-inherited-from-parent-commands}
 
-* [hugo mod](/commands/hugo_mod/)	 - Various Hugo Modules helpers.
+```bash
+      --clock string               Hugo が使用する時計を設定します。たとえば、 --clock 2021-11-06T22:30:00.00+09:00
+      --config string              設定ファイル (デフォルトは、 path/config.yaml|json|toml)
+      --configDir string           設定ディレクトリ (デフォルトは、 "config")
+      --debug                      デバッグ出力
+  -e, --environment string         ビルド環境
+      --ignoreVendorPaths string   指定された Glob パターンに一致するモジュールパスの _vendor を無視します
+      --log                        ロギングを有効にします
+      --logFile string             ログファイルのパス (設定されている場合、ログが自動的に有効になります)
+      --quiet                      クワイエットモード (通知オフ) でビルドします
+  -s, --source string              ファイルの相対パスを読み取るファイルシステムのパス
+      --themesDir string           テーマディレクトリへのファイルシステムのパス
+  -v, --verbose                    詳細出力 (冗長表示)
+      --verboseLog                 詳細ログ出力
+```
+
+### 関連項目 {#see-also}
+
+* [hugo mod](/commands/hugo_mod/)	 - Hugo モジュールの各種ヘルパーです
 

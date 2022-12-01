@@ -4,9 +4,8 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: Adds the absolute URL with correct language prefix according to site
-  configuration for multilingual.
-draft: true
+description: 多言語対応のサイト構成に従って、正しい言語プレフィックスを持つ絶対 URL を追加します。
+draft: false
 hugoversion: null
 keywords:
 - multilingual
@@ -25,11 +24,11 @@ title: absLangURL
 workson: []
 ---
 
-Both `absLangURL` and [`relLangURL`](/functions/rellangurl/) are similar to their [`absURL`](/functions/absurl/) and [`relURL`](/functions/relurl) relatives but will add the correct language prefix when the site is configured with more than one language.
+`absLangURL` と [`relLangURL`](/functions/rellangurl/) はどちらも [`absURL`](/functions/absurl/) と [`relURL`](/functions/relurl) と同じですが、サイトが複数の言語で構成されている場合に正しい言語プレフィックスを追加するようにします。
 
-So for a site  `baseURL` set to `https://example.com/hugo/` and the current language is `en`:
+よって、たとえば、`baseURL` が `https://example.com/hugo/` で、現在の言語が `en` であるサイトがあるとすると、以下のようになります。
 
-```
+```go-html-template
 {{ "blog/" | absLangURL }} → "https://example.com/hugo/en/blog/"
 {{ "blog/" | relLangURL }} → "/hugo/en/blog/"
 ```

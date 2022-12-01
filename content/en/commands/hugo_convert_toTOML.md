@@ -1,7 +1,7 @@
 ---
 title: "hugo convert toTOML"
 slug: hugo_convert_toTOML
-url: /commands/hugo_convert_totoml/
+# url: /commands/hugo_convert_totoml/
 ---
 ## hugo convert toTOML
 

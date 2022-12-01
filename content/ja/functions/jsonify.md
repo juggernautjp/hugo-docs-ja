@@ -4,8 +4,8 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: Encodes a given object to JSON.
-draft: true
+description: 指定されたオブジェクトを JSON にエンコードします。
+draft: false
 hugoversion: null
 keywords:
 - strings
@@ -25,31 +25,29 @@ title: jsonify
 workson: []
 ---
 
-Jsonify encodes a given object to JSON.
+Jsonify は、指定されたオブジェクトを JSON にエンコードします。
 
-To customize the printing of the JSON, pass a dictionary of options as the first
-argument.  Supported options are "prefix" and "indent".  Each JSON element in
-the output will begin on a new line beginning with *prefix* followed by one or
-more copies of *indent* according to the indentation nesting.
+JSON の出力をカスタマイズするには、第 1 引数にオプションの辞書を渡します。サポートされているオプションは、"prefix" と "indent" です。 
+出力される各 JSON 要素は、*prefix* で始まる新しい行で始まり、インデントのネストに従って *indent* が 1 つ以上続きます。
 
 
-```
+```go-html-template
 {{ dict "title" .Title "content" .Plain | jsonify }}
 {{ dict "title" .Title "content" .Plain | jsonify (dict "indent" "  ") }}
 {{ dict "title" .Title "content" .Plain | jsonify (dict "prefix" " " "indent" "  ") }}
 ```
 
-## Jsonify options
+## Jsonify のオプション {#jsonify-options}
 
 indent ("")
-: Indentation to use.
+: 使用するインデントです。
 
 prefix ("")
-: Indentation prefix.
+: インデント プレフィックスです。
 
 noHTMLEscape (false)
-: Disable escaping of problematic HTML characters inside JSON quoted strings. The default behavior is to escape &, <, and > to \u0026, \u003c, and \u003e to avoid certain safety problems that can arise when embedding JSON in HTML.
+: JSON の引用文字列内の問題のある HTML 文字のエスケープを無効にします。デフォルトの動作は、JSON を HTML に埋め込む際に発生する特定の安全性の問題を回避するために、&、<、> を \u0026、\u003c、および \u003e にエスケープすることです。
 
-See also the `.PlainWords`, `.Plain`, and `.RawContent` [page variables][pagevars].
+また、 `.PlainWords`、`.Plain`、`.RawContent` の [ページ変数][pagevars] も参照してください。
 
 [pagevars]: /variables/page/

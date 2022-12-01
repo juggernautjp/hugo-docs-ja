@@ -4,8 +4,8 @@ categories:
 - functions
 date: "2017-09-28"
 deprecated: false
-description: Creates a `float` from the argument passed into the function.
-draft: true
+description: 関数に渡された引数から `float` を作成します。
+draft: false
 hugoversion: null
 keywords:
 - strings
@@ -23,8 +23,8 @@ title: float
 workson: []
 ---
 
-Useful for turning strings into floating point numbers.
+文字列を浮動小数点数に変換するのに便利です。
 
-```
+```go-html-template
 {{ float "1.23" }} → 1.23
 ```

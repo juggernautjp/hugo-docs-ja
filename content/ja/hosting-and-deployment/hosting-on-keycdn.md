@@ -3,9 +3,8 @@ aliases: []
 categories:
 - hosting and deployment
 date: "2017-09-12"
-description: Accelerate your Hugo site globally with a KeyCDN integration. This tutorial
-  shows you how to set up your static site as a GitLab page behind a KeyCDN pull zone.
-draft: true
+description: KeyCDN の統合により、Hugo サイトをグローバルに高速化できます。このチュートリアルでは、静的サイトを KeyCDN プルゾーンの背後にある GitLab Pages として設定する方法を紹介します。
+draft: false
 keywords:
 - keycdn
 - hosting
@@ -16,31 +15,31 @@ menu:
     parent: hosting-and-deployment
     weight: 40
 slug: ""
-title: Host on KeyCDN
+title: KeyCDN でのホスト
 toc: false
 ---
 
-[KeyCDN](https://www.keycdn.com/) provides a multitude of features to help accelerate and secure your Hugo site globally including Brotli compression, Let's Encrypt support, Origin Shield, and more.
+[KeyCDN](https://www.keycdn.com/) は、Brotli 圧縮、Let's Encrypt サポート、Origin Shiel dなど、Hugo サイトの高速化と安全性をグローバルに支援する多数の機能を提供します。
 
-## Assumptions
+## 前提条件 {#assumptions}
 
-- You already have a Hugo page configured
-- You have a GitLab account
-- You have a KeyCDN account
+- すでに Hugo のページが設定されていること
+- GitLab アカウントを持っていること
+- KeyCDN アカウントを持っていること
 
-## Create a KeyCDN Pull Zone
+## KeyCDN の Pull Zone (プルゾーン) を作成する {#create-a-keycdn-pull-zone}
 
-The first step will be to log in to your KeyCDN account and create a new zone. Name this whatever you like and select the [Pull Zone](https://www.keycdn.com/support/create-a-pull-zone/) option. As for the origin URL, your site will be running on [GitLab Pages](https://docs.gitlab.com/ee/user/project/pages/getting_started_part_one.html) with a URL of `https://youruser.gitlab.io/reponame/`. Use this as the Origin URL.
+最初のステップは、KeyCDN アカウントにログインし、新しいゾーンを作成することです。好きな名前を付けて、[Pull Zone](https://www.keycdn.com/support/create-a-pull-zone/) オプションを選択します。元の URL については、サイトは [GitLab Pages](https://docs.gitlab.com/ee/user/project/pages/getting_started_part_one.html) で動作し、URL は `https://youruser.gitlab.io/reponame/` となります。これを元の URL として使用します。
 
 ![Screenshot of KeyCDN's pull zone creation page](/images/hosting-and-deployment/hosting-on-keycdn/keycdn-pull-zone.png)
 
-While the origin location doesn’t exist yet, you will need to use your new Zone URL address (or [Zone Alias](https://www.keycdn.com/support/create-a-zone-alias/)) in the `.gitlab-ci.yml` file that will be uploaded to your GitLab project.
+元の場所はまだ存在しませんが、GitLab プロジェクトにアップロードされる `.gitlab-ci.yml` ファイルに新しいゾーンの  URL アドレス (または [Zone Alias (ゾーン エイリアス)](https://www.keycdn.com/support/create-a-zone-alias/)) を使用する必要があります。
 
-Ensure that you use your Zone URL or Zone alias as the `BASEURL` variable in the example below. This will be the user-visible website address.
+以下の例では、ゾーン URL またはゾーン エイリアスを `BASEURL` 変数として使用していることを確認してください。 これは、ユーザーに表示される Web サイトのアドレスになります。
 
-## Configure Your .gitlab-ci.yml File
+## .gitlab-ci.yml ファイルを設定する {#configure-your-gitlabciyml-file}
 
-Your `.gitlab-ci.yml` file should look similar to the example below. Be sure to modify any variables that are specific to your setup.
+あなたの `.gitlab-ci.yml` ファイルは、以下の例のようになるはずです。あなたの設定に特有の変数があれば、必ず修正してください。
 
 ```yml
 image: alpine:latest
@@ -70,31 +69,31 @@ pages:
     - public
     only:
     - master
-
 ```
-Using this integration method,  you will have to specify the Zone ID and your [KeyCDN API](https://www.keycdn.com/api) key as secret variables. To do this, navigate to the top-left menu bar in GitLab and select Projects. Then, select your project and click on the Settings page. Finally, select Pipelines from the sub-menu and scroll down to the Secret Variable section.
 
-The Secret Variable for your Zone ID should look similar to:
+この統合方法を使用すると、ゾーン ID (Zone ID) と [KeyCDN API](https://www.keycdn.com/api) キーをシークレット変数 (Secret Variable) として指定する必要があります。 これを行うには、GitLab の左上のメニューバーに移動し、[プロジェクト (Projects)] を選択します。 次に、あなたのプロジェクトを選択し、[設定 (Settings)] ページをクリックします。 最後に、サブメニューから [パイプライン (Pipelines)] を選択し、[シークレット変数 (Secret Variable)] セクションまでスクロールします。
+
+ゾーン ID のシークレット変数は、以下のようになります。
 
 ![Screenshot of setting the Zone ID secret variable](/images/hosting-and-deployment/hosting-on-keycdn/secret-zone-id.png)
 
-While the Secret Variable for your API Key will look similar to:
+一方、API Key のシークレット変数は、以下のような形になります。
 
 ![Screenshot of setting the API Key secret variable](/images/hosting-and-deployment/hosting-on-keycdn/secret-api-key.png)
 
-The Zone ID and API key are used to purge your zone – it’s not strictly needed but otherwise, the CDN might deliver older versions of your assets for quite a while.
+ゾーン ID と API キーは、ゾーンのパージに使用されます。厳密には必要ありませんが、そうしないと、CDN があなたのアセットの古いバージョンをかなり長い間配信する可能性があります。
 
-## Push Your Changes to GitLab
+## 変更を GitLab にプッシュする {#push-your-changes-to-gitlab}
 
-Now it’s time to push the newly created repository to GitLab:
+さて、いよいよ新しく作成したリポジトリを GitLab にプッシュするために、以下のコマンドを実行します。
 
 ```bash
 git remote add origin git@gitlab.com:youruser/ci-example.git
 git push -u origin master
 ```
 
-You can watch the progress and CI job output in your Gitlab project under “Pipelines”.
+Gitlab プロジェクトの「パイプライン (Pipelines)」で、進捗や CI ジョブの出力を確認できます。
 
-After verifying your CI job ran without issues, first check that your GitLab page shows up under `https://youruser.gitlab.io/reponame/` (it might look broken depending on your browser settings as all links point to your KeyCDN zone – don’t worry about that) and then by heading to whatever Zone alias / Zone URL you defined.
+CI ジョブが問題なく実行されたことを確認したら、まず GitLab ページが `https://youruser.gitlab.io/reponame/` で表示されていることを確認します (ブラウザの設定によっては、すべてのリンクが KeyCDN ゾーンを指しているので、壊れたように見える場合がありますが、それは気にしないでください)。 次に、定義したゾーン エイリアス/ゾーン URL に移動します。
 
-To learn more about Hugo hosting options with KeyCDN, check out the complete [Hugo hosting with KeyCDN integration guide](https://www.keycdn.com/support/hugo-hosting/).
+KeyCDN を使用した Hugo ホスティング オプションの詳細については、完全な [「KeyCDN を使用した Hugo ホスティングの統合ガイド」](https://www.keycdn.com/support/hugo-hosting/) を確認しください。

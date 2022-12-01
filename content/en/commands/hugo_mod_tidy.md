@@ -1,7 +1,7 @@
 ---
 title: "hugo mod tidy"
 slug: hugo_mod_tidy
-url: /commands/hugo_mod_tidy/
+# url: /commands/hugo_mod_tidy/
 ---
 ## hugo mod tidy
 

@@ -1,72 +1,88 @@
 ---
-draft: true
+categories:
+- commands
+aliases: []
+date: "2017-02-01"
+description: hugo mod get サブコマンドは、現在の Hugo プロジェクトにおける依存関係を解決します。
+lastmod: "2017-02-01"
+menu:
+  docs:
+    parent: commands
+    weight: 82
+publishdate: "2017-02-01"
+sections_weight: 82
+toc: false
+weight: 82
+draft: false
 slug: hugo_mod_get
 title: hugo mod get
-url: /commands/hugo_mod_get/
 ---
 ## hugo mod get
 
-Resolves dependencies in your current Hugo Project.
+現在の Hugo プロジェクトにおける依存関係を解決します。
 
-### Synopsis
+### 概要 {#synopsis}
 
+現在の Hugo プロジェクトにおける依存関係を解決します。
 
-Resolves dependencies in your current Hugo Project.
+いくつかの例を挙げます。
 
-Some examples:
+以下のコマンドは、指定されたモジュールの可能な限り最新のバージョンをインストールします。
 
-Install the latest version possible for a given module:
-
-    hugo mod get github.com/gohugoio/testshortcodes
-    
-Install a specific version:
-
-    hugo mod get github.com/gohugoio/testshortcodes@v0.3.0
-
-Install the latest versions of all module dependencies:
-
-    hugo mod get -u
-    hugo mod get -u ./... (recursive)
-
-Run "go help get" for more information. All flags available for "go get" is also relevant here.
-
-Note that Hugo will always start out by resolving the components defined in the site
-configuration, provided by a _vendor directory (if no --ignoreVendorPaths flag provided),
-Go Modules, or a folder inside the themes directory, in that order.
-
-See https://gohugo.io/hugo-modules/ for more information.
-
-
-
+```bash
+hugo mod get github.com/gohugoio/testshortcodes
 ```
+
+以下のコマンドは、特定のバージョンをインストールします。
+
+```bash
+hugo mod get github.com/gohugoio/testshortcodes@v0.3.0
+```
+
+以下のコマンドは、すべてのモジュールの依存関係の最新版をインストールします。
+
+```bash
+hugo mod get -u
+hugo mod get -u ./... (recursive)
+```
+
+詳細は、"go help get" を実行してください。 "go get" で利用可能なすべてのフラグは、ここでも関連しています。
+
+Hugo は常に、_vendor ディレクトリ (-ignoreVendorPaths フラグが指定されていない場合)、Go モジュール、または themes ディレクトリ内のフォルダの順で、サイト設定で定義されたコンポーネントを解決することから始めることに注意してください。
+
+詳細については、https://gohugo.io/hugo-modules/ を参照してください。
+
+
+
+```bash
 hugo mod get [flags]
 ```
 
-### Options
+### オプション {#options}
 
-```
-  -h, --help   help for get
-```
-
-### Options inherited from parent commands
-
-```
-      --clock string               set the clock used by Hugo, e.g. --clock 2021-11-06T22:30:00.00+09:00
-      --config string              config file (default is path/config.yaml|json|toml)
-      --configDir string           config dir (default "config")
-      --debug                      debug output
-  -e, --environment string         build environment
-      --ignoreVendorPaths string   ignores any _vendor for module paths matching the given Glob pattern
-      --log                        enable Logging
-      --logFile string             log File path (if set, logging enabled automatically)
-      --quiet                      build in quiet mode
-  -s, --source string              filesystem path to read files relative from
-      --themesDir string           filesystem path to themes directory
-  -v, --verbose                    verbose output
-      --verboseLog                 verbose logging
+```bash
+  -h, --help   get サブコマンドのヘルプ
 ```
 
-### SEE ALSO
+### 親コマンドから継承されたオプション {#options-inherited-from-parent-commands}
 
-* [hugo mod](/commands/hugo_mod/)	 - Various Hugo Modules helpers.
+```bash
+      --clock string               Hugo が使用する時計を設定します。たとえば、  --clock 2021-11-06T22:30:00.00+09:00
+      --config string              設定ファイル (デフォルトは、 path/config.yaml|json|toml)
+      --configDir string           設定ディレクトリ (デフォルトは、 "config")
+      --debug                      デバッグ出力
+  -e, --environment string         ビルド環境
+      --ignoreVendorPaths string   指定された Glob パターンに一致するモジュールパスの _vendor を無視します
+      --log                        ロギングを有効にします
+      --logFile string             ログファイルのパス (設定されている場合、ログが自動的に有効になります)
+      --quiet                      クワイエットモード (通知オフ) でビルドします
+  -s, --source string              ファイルの相対パスを読み取るファイルシステムのパス
+      --themesDir string           テーマディレクトリへのファイルシステムのパス
+  -v, --verbose                    詳細出力 (冗長表示)
+      --verboseLog                 詳細ログ出力
+```
+
+### 関連項目 {#see-also}
+
+* [hugo mod](/commands/hugo_mod/)	 - Hugo モジュールの各種ヘルパーです
 

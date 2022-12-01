@@ -3,9 +3,8 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: Filters an array to only the elements containing a matching value for
-  a given field.
-draft: true
+description: 指定されたフィールドにマッチする値を含む要素のみに配列をフィルタリングします。
+draft: false
 hugoversion: null
 keywords:
 - filtering
@@ -31,11 +30,9 @@ workson:
 - groups
 ---
 
-`where` filters an array to only the elements containing a matching
-value for a given field.
+`where` は、指定したフィールドに一致する値を含む要素のみに配列をフィルタリングします。
 
-It works in a similar manner to the [`where` keyword in
-SQL][wherekeyword].
+[SQL の `where` キーワード][wherekeyword] と同じように機能します。
 
 ```go-html-template
 {{ range where .Pages "Section" "foo" }}
@@ -43,9 +40,9 @@ SQL][wherekeyword].
 {{ end }}
 ```
 
-It can be used by dot-chaining the second argument to refer to a nested element of a value.
+第 2 引数をドットチェインすることで、値のネストした要素を参照することができます。
 
-```
+```yaml
 +++
 series: golang
 +++
@@ -57,7 +54,7 @@ series: golang
 {{ end }}
 ```
 
-It can also be used with the logical operators `!=`, `>=`, `in`, etc. Without an operator, `where` compares a given field with a matching value equivalent to `=`.
+また、論理演算子 `!=`、`>=`、`in` などと一緒に使用することもできます。 演算子がない場合、`where` は指定されたフィールドを `=` に相当する一致する値と比較します。
 
 ```go-html-template
 {{ range where .Pages "Section" "!=" "foo" }}
@@ -65,45 +62,47 @@ It can also be used with the logical operators `!=`, `>=`, `in`, etc. Without an
 {{ end }}
 ```
 
-The following logical operators are available with `where`:
+`where` では、以下の論理演算子を使用できます。
 
 `=`, `==`, `eq`
-: `true` if a given field value equals a matching value
+: 指定されたフィールド値がマッチする値と等しい場合、`true` となります。
 
 `!=`, `<>`, `ne`
-: `true` if a given field value doesn't equal a matching value
+: 指定されたフィールド値がマッチする値と等しくない場合、 `true` となります。
 
 `>=`, `ge`
-: `true` if a given field value is greater than or equal to a matching value
+: 指定されたフィールド値がマッチする値より大きいか等しい場合、 `true` となります。
 
 `>`, `gt`
-: `true` if a given field value is greater than a matching value
+: 指定されたフィールド値がマッチする値よりも大きい場合、 `true` となります。
 
 `<=`, `le`
-: `true` if a given field value is lesser than or equal to a matching value
+: 指定されたフィールド値がマッチする値より小さいか等しい場合、 `true` となります。
 
 `<`, `lt`
-: `true` if a given field value is lesser than a matching value
+: 指定されたフィールド値が、マッチする値よりも小さい場合、 `true` となります。
 
 `in`
-: `true` if a given field value is included in a matching value; a matching value must be an array or a slice
+: 指定されたフィールド値がマッチする値に含まれる場合、 `true` となります。ただし、マッチする値は配列かスライスでなければなりません。
 
 `not in`
-: `true` if a given field value isn't included in a matching value; a matching value must be an array or a slice
+: 指定されたフィールド値がマッチする値に含まれない場合、 `true` となります。ただし、マッチする値は配列かスライスでなければなりません。
 
 `intersect`
-: `true` if a given field value that is a slice/array of strings or integers contains elements in common with the matching value; it follows the same rules as the [`intersect` function][intersect].
+: 文字列または整数のスライス/配列である与えられたフィールド値が、マッチする値と共通する要素を含んでいる場合、 `true` となります。 つまり、[`intersect` 関数][intersect] と同じルールに従います。
 
-## Use `where` with `Booleans`
-When using booleans you should not put quotation marks.
+## `where` を `Booleans` と共に使用する {#use-where-with-booleans}
+
+ブール値をを使用する場合は、引用符を付けないでください。
+
 ```go-html-template
 {{range where .Pages "Draft" true}}
         <p>{{.Title}}</p>
 {{end}}
 ```
-  
 
-## Use `where` with `intersect`
+
+## `where` を `intersect` と共に使用する {#use-where-with-intersect}
 
 ```go-html-template
 {{ range where .Site.Pages "Params.tags" "intersect" .Params.tags }}
@@ -113,7 +112,7 @@ When using booleans you should not put quotation marks.
 {{ end }}
 ```
 
-You can also put the returned value of the `where` clauses into a variable:
+また、以下のように、`where` 句の戻り値を変数に入れることもできます。
 
 {{< code file="where-intersect-variables.html" >}}
 {{ $v1 := where .Site.Pages "Params.a" "v1" }}
@@ -123,13 +122,9 @@ You can also put the returned value of the `where` clauses into a variable:
 {{ end }}
 {{< /code >}}
 
-## Use `where` with `first`
+## `where` を `first` と共に使用する {#use-where-with-first}
 
-Using `first` and `where` together can be very
-powerful. Below snippet gets a list of posts only from [**main
-sections**]({{< relref "where.md#mainsections" >}}), sorts it using the [default
-ordering](/templates/lists/) for lists (i.e., `weight => date`), and
-then ranges through only the first 5 posts in that list:
+`first` と `where` を一緒に使うと、とても強力です。 以下のスニペットは、[**メインセクション**]({{< relref "where.md#mainsections" >}}) からのみ投稿のリストを取得し、リストの [デフォルトの順序付け](/templates/lists/) を使ってソートし (つまり、 `weight => date`)、そのリストの最初の 5 個の投稿だけを対象とします。
 
 {{< code file="first-and-where-together.html" >}}
 {{ range first 5 (where site.RegularPages "Type" "in" site.Params.mainSections) }}
@@ -137,24 +132,24 @@ then ranges through only the first 5 posts in that list:
 {{ end }}
 {{< /code >}}
 
-## Nest `where` Clauses
+## `where` 句をネストする {#nest-where-Clauses}
 
-You can also nest `where` clauses to drill down on lists of content by more than one parameter. The following first grabs all pages in the "blog" section and then ranges through the result of the first `where` clause and finds all pages that are *not* featured:
+`where` 句をネストして、コンテンツのリストを複数のパラメータでドリルダウンすることもできます。 以下の例では、まず "blog" セクションのすべてのページを取得し、次に最初の `where` 句の結果を範囲指定して、注目されて *いない* すべてのページを見つけます。
 
 ```go-html-template
 {{ range where (where .Pages "Section" "blog" ) "Params.featured" "!=" true }}
 ```
 
-## Unset Fields
+## 未設定のフィールド {#unset-fields}
 
-Filtering only works for set fields. To check whether a field is set or exists, you can use the operand `nil`.
+フィルタリングは、設定されたフィールドに対してのみ機能します。 フィールドが設定されているか存在するかを確認するには、オペランド `nil` を使用できます。
 
-This can be useful to filter a small amount of pages from a large pool. Instead of setting a field on all pages, you can set that field on required pages only.
+これは、大きなプールから少量のページをフィルタリングするのに役立ちます。 すべてのページにフィールドを設定する代わりに、必要なページだけにそのフィールドを設定できます。
 
-Only the following operators are available for `nil`
+`nil` に対しては、以下の演算子のみが利用可能です。
 
-* `=`, `==`, `eq`: True if the given field is not set.
-* `!=`, `<>`, `ne`: True if the given field is set.
+* `=`, `==`, `eq`: 指定されたフィールドが設定されていない場合は、 true 。
+* `!=`, `<>`, `ne`: 指定されたフィールドが設定されている場合は、 true 。
 
 ```go-html-template
 {{ range where .Pages "Params.specialpost" "!=" nil }}
@@ -162,22 +157,19 @@ Only the following operators are available for `nil`
 {{ end }}
 ```
 
-## Portable `where` filters -- `site.Params.mainSections` {#mainsections}
+## ポータブルな `where` フィルタ -- `site.Params.mainSections` {#mainsections}
 
-**This is especially important for themes.**
+**これはテーマにとって特に重要です。**
 
-To list the most relevant pages on the front page or similar, you
-should use the `site.Params.mainSections` list instead of comparing
-section names to hard-coded values like `"posts"` or `"post"`.
+フロントページなどで最も関連性の高いページを一覧表示するには、セクション名を `"posts"` や `"post"` といったハードコードされた値と比較するのではなく、 `site.Params.mainSections` リストを使用する必要があります。
 
 ```go-html-template
 {{ $pages := where site.RegularPages "Type" "in" site.Params.mainSections }}
 ```
 
-If the user has not set this config parameter in their site config, it
-will default to the *section with the most pages*.
+ユーザーがサイト設定でこの設定パラメータを設定していない場合、デフォルトで *最もページ数の多いセクション* に設定されます。
 
-The user can override the default:
+ユーザーは、以下のように、デフォルトをオーバーライドできます。
 
 {{< code-toggle file="config" >}}
 [params]

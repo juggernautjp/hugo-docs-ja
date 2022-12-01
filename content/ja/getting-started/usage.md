@@ -135,7 +135,7 @@ in 90 ms
 
 Hugo では、コンテンツの [フロントマター][front matter] に `draft` や `publishdate`、さらには `expirydate` を設定できます。デフォルトでは、Hugo は以下のコンテンツを公開しません。
 
-1. 未来の `publishdate` 値を持つコンテンツ (公開予定)
+1. 将来の `publishdate` 値を持つコンテンツ (公開予定)
 2. `draft: true` ステータスを持つコンテンツ (下書き)
 3. 過去の `expirydate` 値を持つコンテンツ (期限切れ)
 
@@ -189,7 +189,7 @@ Hugo は LiveReload の `<script>` をテンプレートの終了 `</body>` の�
 
 ### LiveReload を無効にする {#disable-livereload}
 
-LiveReload は、Hugo が生成するページに JavaScript を挿入することによって機能します。 このスクリプトは、ブラウザーの Web ソケット クライアントから Hugo Web ソケット サーバーへの接続を作成します。
+LiveReload は、Hugo が生成するページに JavaScript を挿入することによって機能します。 このスクリプトは、ブラウザの Web ソケット クライアントから Hugo Web ソケット サーバーへの接続を作成します。
 
 以下の方法で、LiveReload を簡単に無効にすることができます。
 

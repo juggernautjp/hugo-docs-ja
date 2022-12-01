@@ -1,7 +1,7 @@
 ---
 title: "hugo server"
 slug: hugo_server
-url: /commands/hugo_server/
+# url: /commands/hugo_server/
 ---
 ## hugo server
 

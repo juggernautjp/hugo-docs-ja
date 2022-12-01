@@ -3,8 +3,8 @@ categories:
 - functions
 date: "2018-11-28"
 deprecated: false
-description: Reports if a value is a map.
-draft: true
+description: 値がマップであるかどうかを報告します。
+draft: false
 hugoversion: v0.53
 keywords:
 - reflect
@@ -23,9 +23,9 @@ title: reflect.IsMap
 workson: []
 ---
 
-`reflect.IsMap` reports if `VALUE` is a map.  Returns a boolean.
+`reflect.IsMap` は、`VALUE` がマップであるかどうかを報告し、ブール値を返します。
 
-```
+```go-html-template
 {{ reflect.IsMap (dict "key" "value") }} → true
 {{ reflect.IsMap "yo" }} → false
 ```

@@ -1,49 +1,61 @@
 ---
-draft: true
+categories:
+- commands
+aliases: []
+date: "2017-02-01"
+description: hugo convert toYAML サブコマンドは、フロントマターを YAML に変換します
+lastmod: "2017-02-01"
+menu:
+  docs:
+    parent: commands
+    weight: 33
+publishdate: "2017-02-01"
+sections_weight: 33
+toc: false
+weight: 33
+draft: false
 slug: hugo_convert_toYAML
 title: hugo convert toYAML
-url: /commands/hugo_convert_toyaml/
 ---
 ## hugo convert toYAML
 
-Convert front matter to YAML
+フロントマターを YAML に変換します
 
-### Synopsis
+### 概要 {#synopsis}
 
-toYAML converts all front matter in the content directory
-to use YAML for the front matter.
+YAML は、コンテンツディレクトリ内のすべてのフロントマターを YAML 形式に変換します。
 
-```
+```bash
 hugo convert toYAML [flags]
 ```
 
-### Options
+### オプション {#options}
 
-```
-  -h, --help   help for toYAML
-```
-
-### Options inherited from parent commands
-
-```
-      --clock string               set the clock used by Hugo, e.g. --clock 2021-11-06T22:30:00.00+09:00
-      --config string              config file (default is path/config.yaml|json|toml)
-      --configDir string           config dir (default "config")
-      --debug                      debug output
-  -e, --environment string         build environment
-      --ignoreVendorPaths string   ignores any _vendor for module paths matching the given Glob pattern
-      --log                        enable Logging
-      --logFile string             log File path (if set, logging enabled automatically)
-  -o, --output string              filesystem path to write files to
-      --quiet                      build in quiet mode
-  -s, --source string              filesystem path to read files relative from
-      --themesDir string           filesystem path to themes directory
-      --unsafe                     enable less safe operations, please backup first
-  -v, --verbose                    verbose output
-      --verboseLog                 verbose logging
+```bash
+  -h, --help   toYAML サブコマンドのヘルプ
 ```
 
-### SEE ALSO
+### 親コマンドから継承されたオプション {#options-inherited-from-parent-commands}
 
-* [hugo convert](/commands/hugo_convert/)	 - Convert your content to different formats
+```bash
+      --clock string               Hugo が使用する時計を設定します。たとえば、--clock 2021-11-06T22:30:00.00+09:00
+      --config string              設定ファイル (デフォルトは、 path/config.yaml|json|toml)
+      --configDir string           設定ディレクトリ (デフォルトは、 "config")
+      --debug                      デバッグ出力
+  -e, --environment string         ビルド環境
+      --ignoreVendorPaths string   指定された Glob パターンに一致するモジュールパスの _vendor を無視します
+      --log                        ロギングを有効にします
+      --logFile string             ログファイルのパス (設定されている場合、ログが自動的に有効になります)
+  -o, --output string              ファイルを書き込むファイルシステムのパス
+      --quiet                      クワイエットモード (通知オフ) でビルドします
+  -s, --source string              ファイルの相対パスを読み取るファイルシステムのパス
+      --themesDir string           テーマディレクトリへのファイルシステムのパス
+      --unsafe                     より安全でない操作を可能にするため、最初にバックアップをとってください
+  -v, --verbose                    詳細出力 (冗長表示)
+      --verboseLog                 詳細ログ出力
+```
+
+### 関連項目 {#see-also}
+
+* [hugo convert](/commands/hugo_convert/)	 - コンテンツをさまざまな形式に変換します
 

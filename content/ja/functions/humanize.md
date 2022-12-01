@@ -4,8 +4,8 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: Returns the humanized version of an argument with the first letter capitalized.
-draft: true
+description: 引数の最初の文字を大文字にして、人間化したバージョンを返します。
+draft: false
 hugoversion: null
 keywords:
 - strings
@@ -24,10 +24,10 @@ title: humanize
 workson: []
 ---
 
-If the input is either an int64 value or the string representation of an integer, humanize returns the number with the proper ordinal appended.
+入力が int64 値または整数の文字列表現である場合、humanize は適切な序数を付加した数値を返します。
 
 
-```
+```go-html-template
 {{humanize "my-first-post"}} → "My first post"
 {{humanize "myCamelPost"}} → "My camel post"
 {{humanize "52"}} → "52nd"

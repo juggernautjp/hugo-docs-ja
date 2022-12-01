@@ -1,7 +1,7 @@
 ---
 title: "hugo deploy"
 slug: hugo_deploy
-url: /commands/hugo_deploy/
+# url: /commands/hugo_deploy/
 ---
 ## hugo deploy
 

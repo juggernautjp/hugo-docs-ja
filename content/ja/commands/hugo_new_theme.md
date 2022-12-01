@@ -1,49 +1,61 @@
 ---
-draft: true
+categories:
+- commands
+aliases: []
+date: "2017-02-01"
+description: hugo new theme サブコマンドは、新しいテーマを作成します。
+lastmod: "2017-02-01"
+menu:
+  docs:
+    parent: commands
+    weight: 92
+publishdate: "2017-02-01"
+sections_weight: 92
+toc: false
+weight: 92
+draft: false
 slug: hugo_new_theme
 title: hugo new theme
-url: /commands/hugo_new_theme/
 ---
 ## hugo new theme
 
-Create a new theme
+新しいテーマを作成します
 
-### Synopsis
+### 概要 {#synopsis}
 
-Create a new theme (skeleton) called [name] in ./themes.
-New theme is a skeleton. Please add content to the touched files. Add your
-name to the copyright line in the license and adjust the theme.toml file
-as you see fit.
+./themes に [name] という新しいテーマ (スケルトン) を作成します。
+新しいテーマはスケルトンです。 タッチしたファイルにコンテンツを追加してください。 
+ライセンスの著作権の行にあなたの名前を追加し、必要に応じて theme.toml ファイルを調整します。
 
-```
+```bash
 hugo new theme [name] [flags]
 ```
 
-### Options
+### オプション {#options}
 
-```
-  -h, --help   help for theme
-```
-
-### Options inherited from parent commands
-
-```
-      --clock string               set the clock used by Hugo, e.g. --clock 2021-11-06T22:30:00.00+09:00
-      --config string              config file (default is path/config.yaml|json|toml)
-      --configDir string           config dir (default "config")
-      --debug                      debug output
-  -e, --environment string         build environment
-      --ignoreVendorPaths string   ignores any _vendor for module paths matching the given Glob pattern
-      --log                        enable Logging
-      --logFile string             log File path (if set, logging enabled automatically)
-      --quiet                      build in quiet mode
-  -s, --source string              filesystem path to read files relative from
-      --themesDir string           filesystem path to themes directory
-  -v, --verbose                    verbose output
-      --verboseLog                 verbose logging
+```bash
+  -h, --help   theme サブコマンドのヘルプ
 ```
 
-### SEE ALSO
+### 親コマンドから継承されたオプション {#options-inherited-from-parent-commands}
 
-* [hugo new](/commands/hugo_new/)	 - Create new content for your site
+```bash
+      --clock string               Hugo が使用する時計を設定します。たとえば、--clock 2021-11-06T22:30:00.00+09:00
+      --config string              設定ファイル (デフォルトは、 path/config.yaml|json|toml)
+      --configDir string           設定ディレクトリ (デフォルトは、 "config")
+      --debug                      デバッグ出力
+  -e, --environment string         ビルド環境
+      --ignoreVendorPaths string   指定された Glob パターンに一致するモジュールパスの _vendor を無視します
+      --log                        ロギングを有効にします
+      --logFile string             ログファイルのパス (設定されている場合、ログが自動的に有効になります)
+      --quiet                      クワイエットモード (通知オフ) でビルドします
+  -s, --source string              ファイルの相対パスを読み取るファイルシステムのパス
+      --themesDir string           テーマディレクトリへのファイルシステムのパス
+  -v, --verbose                    詳細出力 (冗長表示)
+      --verboseLog                 詳細ログ出力
+```
+
+### 関連項目 {#see-also}
+
+* [hugo new](/commands/hugo_new/)	 - サイトの新しいコンテンツを作成します
 

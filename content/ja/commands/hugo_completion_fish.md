@@ -1,58 +1,74 @@
 ---
-draft: true
+categories:
+- commands
+aliases: []
+date: "2017-02-01"
+description: hugo completion fish サブコマンドは、fish 用のオートコンプリート スクリプトを生成します。
+lastmod: "2017-02-01"
+menu:
+  docs:
+    parent: commands
+    weight: 12
+publishdate: "2017-02-01"
+sections_weight: 12
+toc: false
+weight: 12
+draft: false
 slug: hugo_completion_fish
 title: hugo completion fish
-url: /commands/hugo_completion_fish/
 ---
 ## hugo completion fish
 
-Generate the autocompletion script for fish
+fish 用のオートコンプリート スクリプトを生成します
 
-### Synopsis
+### 概要 {#synopsis}
 
-Generate the autocompletion script for the fish shell.
+fish シェル用のオートコンプリート スクリプトを生成します。
 
-To load completions in your current shell session:
+現在のシェル セッションに補完を読み込むには、以下のコマンドを実行します。
 
-	hugo completion fish | source
-
-To load completions for every new session, execute once:
-
-	hugo completion fish > ~/.config/fish/completions/hugo.fish
-
-You will need to start a new shell for this setup to take effect.
-
-
+```bash
+hugo completion fish | source
 ```
+
+新しいセッションごとに補完をロードするには、以下のコマンドを 1 回だけ実行します。
+
+```bash
+hugo completion fish > ~/.config/fish/completions/hugo.fish
+```
+
+この設定を有効にするには、新しいシェルを起動する必要があります。
+
+```bash
 hugo completion fish [flags]
 ```
 
-### Options
+### オプション {#options}
 
-```
-  -h, --help              help for fish
-      --no-descriptions   disable completion descriptions
-```
-
-### Options inherited from parent commands
-
-```
-      --clock string               set the clock used by Hugo, e.g. --clock 2021-11-06T22:30:00.00+09:00
-      --config string              config file (default is path/config.yaml|json|toml)
-      --configDir string           config dir (default "config")
-      --debug                      debug output
-  -e, --environment string         build environment
-      --ignoreVendorPaths string   ignores any _vendor for module paths matching the given Glob pattern
-      --log                        enable Logging
-      --logFile string             log File path (if set, logging enabled automatically)
-      --quiet                      build in quiet mode
-  -s, --source string              filesystem path to read files relative from
-      --themesDir string           filesystem path to themes directory
-  -v, --verbose                    verbose output
-      --verboseLog                 verbose logging
+```bash
+  -h, --help              bash サブコマンドのヘルプ 
+      --no-descriptions   補完の説明を無効にします
 ```
 
-### SEE ALSO
+### 親コマンドから継承されたオプション {#options-inherited-from-parent-commands}
 
-* [hugo completion](/commands/hugo_completion/)	 - Generate the autocompletion script for the specified shell
+```bash
+      --clock string               Hugo が使用する時計を設定します。たとえば、--clock 2021-11-06T22:30:00.00+09:00
+      --config string              設定ファイル (デフォルトは、 path/config.yaml|json|toml)
+      --configDir string           設定ディレクトリ (デフォルトは、 "config")
+      --debug                      デバッグ出力
+  -e, --environment string         ビルド環境
+      --ignoreVendorPaths string   指定された Glob パターンに一致するモジュールパスの _vendor を無視します
+      --log                        ロギングを有効にします
+      --logFile string             ログファイルのパス (設定されている場合、ログが自動的に有効になります)
+      --quiet                      クワイエットモード (通知オフ) でビルドします
+  -s, --source string              ファイルの相対パスを読み取るファイルシステムのパス
+      --themesDir string           テーマディレクトリへのファイルシステムのパス
+  -v, --verbose                    詳細出力 (冗長表示)
+      --verboseLog                 詳細ログ出力
+```
+
+### 関連項目 {#see-also}
+
+* [hugo completion](/commands/hugo_completion/)	 - 指定されたシェル用のオートコンプリート スクリプトを生成します
 

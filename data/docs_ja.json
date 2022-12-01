@@ -3967,7 +3967,7 @@
       },
       "lang": {
         "FormatAccounting": {
-          "Description": "FormatAccounting returns the currency representation of number for the given currency and precision\nfor the current language in accounting notation.\n\nThe return value is formatted with at least two decimal places.",
+          "Description": "FormatAccounting は、現在の言語用に、指定された通貨の数値の通貨表現および精度を会計表記法で返します。\n\n戻り値は、少なくとも小数点以下 2 桁でフォーマットされます。",
           "Args": [
             "precision",
             "currency",
@@ -3982,7 +3982,7 @@
           ]
         },
         "FormatCurrency": {
-          "Description": "FormatCurrency returns the currency representation of number for the given currency and precision\nfor the current language.\n\nThe return value is formatted with at least two decimal places.",
+          "Description": "FormatCurrency は、現在の言語用に、指定された通貨および精度の数値の通貨表現を返します。\n\n戻り値は、少なくとも小数点以下 2 桁でフォーマットされます。",
           "Args": [
             "precision",
             "currency",
@@ -3997,7 +3997,7 @@
           ]
         },
         "FormatNumber": {
-          "Description": "FormatNumber formats number with the given precision for the current language.",
+          "Description": "FormatNumber は、現在の言語用に、指定された精度で数値をフォーマットします。",
           "Args": [
             "precision",
             "number"
@@ -4011,7 +4011,7 @@
           ]
         },
         "FormatNumberCustom": {
-          "Description": "FormatNumberCustom formats a number with the given precision using the\nnegative, decimal, and grouping options.  The `options`\nparameter is a string consisting of `\u003cnegative\u003e \u003cdecimal\u003e \u003cgrouping\u003e`.  The\ndefault `options` value is `- . ,`.\n\nNote that numbers are rounded up at 5 or greater.\nSo, with precision set to 0, 1.5 becomes `2`, and 1.4 becomes `1`.\n\nFor a simpler function that adapts to the current language, see FormatNumber.",
+          "Description": "FormatNumberCustom は、負数、小数、およびグループ化オプションを使用して、指定された精度で数値を書式設定します。 `options` パラメータは、`\u003cnegative\u003e \u003cdecimal\u003e \u003cgrouping\u003e` で構成される文字列です。 \nデフォルトの `options` 値は `- . ,` です。\n\n数字は 5 以上で切り上げられることに注意してください。\nしたがって、精度を 0 に設定すると、1.5 は `2` になり、1.4 は `1` になります。\n\n 現在の言語については、FormatNumber を参照してください。",
           "Args": [
             "precision",
             "number",
@@ -4042,7 +4042,7 @@
           ]
         },
         "FormatPercent": {
-          "Description": "FormatPercent formats number with the given precision for the current language.\nNote that the number is assumed to be a percentage.",
+          "Description": "FormatPercent は、現在の言語用に、指定された精度で数値をフォーマットします。数値はパーセンテージであると見なされることに注意してください。",
           "Args": [
             "precision",
             "number"
@@ -4068,7 +4068,7 @@
           "Examples": null
         },
         "Translate": {
-          "Description": "Translate returns a translated string for id.",
+          "Description": "Translate は、id の翻訳された文字列を返します。",
           "Args": [
             "id",
             "args"

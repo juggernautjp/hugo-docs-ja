@@ -6,8 +6,8 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: Acts as a "scratchpad" to store and manipulate data.
-draft: true
+description: データを保存および操作するための「スクラッチパッド」として機能します。
+draft: false
 hugoversion: null
 keywords:
 - iteration
@@ -23,19 +23,19 @@ toc: null
 workson: []
 ---
 
-Scratch is a Hugo feature designed to conveniently manipulate data in a Go Template world. It is either a Page or Shortcode method for which the resulting data will be attached to the given context, or it can live as a unique instance stored in a variable.
+Scratch は、Go テンプレートの世界でデータを便利に操作するために設計された Hugo の機能です。ページやショートコードのメソッドで、結果のデータが指定されたコンテキストに添付されるか、変数に格納された一意のインスタンスとして存在できます。
 
 {{% note %}}
-Note that Scratch was initially created as a workaround for a [Go template scoping limitation](https://github.com/golang/go/issues/10608) that affected Hugo versions prior to 0.48. For a detailed analysis of `.Scratch` and contextual use cases, see [this blog post](https://regisphilibert.com/blog/2017/04/hugo-scratch-explained-variable/).
+Scratch は当初、0.48 より前の Hugo バージョンに影響する [Go テンプレートのスコープ制限](https://github.com/golang/go/issues/10608) の回避策として作成されたことに注意してください。 `.Scratch` の詳細な分析とコンテキストに応じた使用例については、[このブログの記事](https://regisphilibert.com/blog/2017/04/hugo-scratch-explained-variable/) を参照してください。
 {{% /note %}}
 
-### Contexted `.Scratch` vs. local `newScratch`
+### コンテキストを持つ `.Scratch` とローカルの `newScratch` の比較 {#Contexted-scratch-vs-local-newscratch}
 
-Since Hugo 0.43, there are two different ways of using Scratch:
+Hugo 0.43 以降、Scratch を使用する方法には、以下の 2 つあります。
 
-#### The Page's `.Scratch`
+#### ページの `.Scratch` {#the-pages-scratch}
 
-`.Scratch` is available as a Page method or a Shortcode method and attaches the "scratched" data to the given page. Either a Page or a Shortcode context is required to use `.Scratch`.
+`.Scratch` はページメソッドまたはショートコード メソッドとして利用可能で、指定されたページに「スクラッチ」したデータを添付します。 `.Scratch` を使用するには、ページコンテキストまたはショートコード コンテキストが必要です。
 
 ```go-html-template
 {{ .Scratch.Set "greeting" "bonjour" }}
@@ -44,26 +44,26 @@ Since Hugo 0.43, there are two different ways of using Scratch:
 {{ end }}
 ```
 
-#### The local `newScratch`
+#### ローカルの `newScratch` {#the-local-newscratch}
 
-{{< new-in "0.43" >}} A Scratch instance can also be assigned to any variable using the `newScratch` function. In this case, no Page or Shortcode context is required and the scope of the scratch is only local. The methods detailed below are available from the variable the Scratch instance was assigned to.
+{{< new-in "0.43" >}} Scratch インスタンスは、 `newScratch` 関数を使用して任意の変数に代入することもできます。この場合、ページまたはショートコードのコンテキストは必要なく、スクラッチのスコープはローカルにのみなります。 以下のメソッドは、Scratch インスタンスが代入された変数から利用できます。
 
 ```go-html-template
 {{ $data := newScratch }}
 {{ $data.Set "greeting" "hola" }}
 ```
 
-### Methods
+### メソッド {#methods}
 
-A Scratch has the following methods:
+Scratch には、以下のメソッドがあります。
 
 {{% note %}}
-Note that the following examples assume a [local Scratch instance](#the-local-newscratch) has been stored in `$scratch`.
+以下の例では、[ローカルの Scratch インスタンス](#the-local-newscratch) が `$scratch` に保存されていると仮定していることに注意してください。
 {{% /note %}}
 
 #### .Set
 
-Set the value of a given key.
+指定されたキーの値を設定します。
 
 ```go-html-template
 {{ $scratch.Set "greeting" "Hello" }}
@@ -71,7 +71,7 @@ Set the value of a given key.
 
 #### .Get
 
-Get the value of a given key.
+指定されたキーの値を取得します。
 
 ```go-html-template
 {{ $scratch.Set "greeting" "Hello" }}
@@ -81,9 +81,9 @@ Get the value of a given key.
 
 #### .Add
 
-Add a given value to existing value(s) of the given key.
+指定されたキーの既存の値 (複数可) に、指定された値を追加します。
 
-For single values, `Add` accepts values that support Go's `+` operator. If the first `Add` for a key is an array or slice, the following adds will be appended to that list.
+単一の値に対して、 `Add` は Go の `+` 演算子をサポートする値を受け付けます。あるキーに対する最初の `Add` が配列またはスライスである場合、そのリストに以下の Add が追加されます。
 
 ```go-html-template
 {{ $scratch.Add "greetings" "Hello" }}
@@ -108,7 +108,7 @@ For single values, `Add` accepts values that support Go's `+` operator. If the f
 
 #### .SetInMap
 
-Takes a `key`, `mapKey` and `value` and adds a map of `mapKey` and `value` to the given `key`.
+`key`、`mapKey`、`value` を受け取り、指定された `key` に `mapKey` と `value` のマップを追加します。
 
 ```go-html-template
 {{ $scratch.SetInMap "greetings" "english" "Hello" }}
@@ -118,7 +118,8 @@ Takes a `key`, `mapKey` and `value` and adds a map of `mapKey` and `value` to th
 ```
 
 #### .DeleteInMap
-Takes a `key` and `mapKey` and removes the map of `mapKey` from the given `key`.
+
+`key` と `mapKey` を受け取り、指定された `key` から `mapKey` のマップを削除します。
 
 ```go-html-template
 {{ .Scratch.SetInMap "greetings" "english" "Hello" }}
@@ -131,7 +132,7 @@ Takes a `key` and `mapKey` and removes the map of `mapKey` from the given `key`.
 
 #### .GetSortedMapValues
 
-Return an array of values from `key` sorted by `mapKey`.
+`key` から `mapKey` でソートした値の配列を返します。
 
 ```go-html-template
 {{ $scratch.SetInMap "greetings" "english" "Hello" }}
@@ -142,7 +143,7 @@ Return an array of values from `key` sorted by `mapKey`.
 
 #### .Delete
 
-{{< new-in "0.38" >}} Remove the given key.
+{{< new-in "0.38" >}} 指定されたキーを削除します。
 
 ```go-html-template
 {{ $scratch.Set "greeting" "Hello" }}
@@ -152,7 +153,7 @@ Return an array of values from `key` sorted by `mapKey`.
 
 #### .Values
 
-Return the raw backing map. Note that you should only use this method on the locally scoped Scratch instances you obtain via [`newScratch`](#the-local-newscratch), not `.Page.Scratch` etc., as that will lead to concurrency issues.
+生のバッキング マップを返します。 このメソッドは、[`newScratch`](#the-local-newscratch) を介して取得したローカル スコープの Scratch インスタンスでのみ使用する必要があることに注意してください。 同時実行の問題が発生するため、`.Page.Scratch` などでは使用しないでください。
 
 
 [pagevars]: /variables/page/

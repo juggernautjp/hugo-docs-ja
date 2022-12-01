@@ -4,8 +4,8 @@ categories:
 - functions
 date: "2017-07-26"
 deprecated: false
-description: Returns the boolean truth of arg1 <= arg2.
-draft: true
+description: arg1 <= arg2 の結果をブール値で返します。
+draft: false
 hugoversion: null
 keywords:
 - operators
@@ -24,6 +24,6 @@ workson: []
 ---
 
 
-```
+```go-html-template
 {{ if le 5 10 }}true{{ end }}
 ```

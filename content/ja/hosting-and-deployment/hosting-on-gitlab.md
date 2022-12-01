@@ -6,42 +6,41 @@ authors:
 categories:
 - hosting and deployment
 date: "2016-06-23"
-description: GitLab makes it easy to build, deploy, and host your Hugo website via
-  their free GitLab Pages service, which provides native support for Hugo.
-draft: true
+description: GitLab は、Hugo をネイティブにサポートする無料の GitLab Pages サービスを通じて、Hugo の Web サイトのビルド、デプロイ、ホスティングを簡単に行うことができます。 
+draft: false
 keywords:
 - hosting
 - deployment
 - git
 - gitlab
 lastmod: "2017-11-16"
-linktitle: Host on GitLab
+linktitle: GitLab でのホスト
 menu:
   docs:
     parent: hosting-and-deployment
     weight: 40
 publishdate: "2016-06-23"
 sections_weight: 40
-title: Host on GitLab
+title: GitLab でのホスト
 toc: true
 weight: 40
 wip: false
 ---
 
-## Assumptions
+## 前提条件 {#assumptions}
 
-* Working familiarity with Git for version control
-* Completion of the Hugo [Quick Start]
-* A [GitLab account](https://gitlab.com/users/sign_in)
-* A Hugo website on your local machine that you are ready to publish
+* バージョン管理のための Git に精通していること
+* Hugo の [クイックスタート][Quick Start] を完了していること 
+* [GitLab アカウント](https://gitlab.com/users/sign_in) を持っていること
+* 公開する準備が整ったローカル マシン上の Hugo Web サイトを持っていること
 
 ## BaseURL
 
-The `baseURL` in your [site configuration](/getting-started/configuration/) must reflect the full URL of your GitLab pages repository if you are using the default GitLab Pages URL (e.g., `https://<YourUsername>.gitlab.io/<your-hugo-site>/`) and not a custom domain.
+[サイト設定](/getting-started/configuration/) の `baseURL` は、カスタムドメインではなく、デフォルトの GitLab Pages URL (たとえば、 `https://<YourUsername>.gitlab.iio/<your-hugo-site>/`) を使用している場合は、あなたの GitLab Pages リポジトリのフル URL を反映していなければなりません。
 
-## Configure GitLab CI/CD
+## GitLab の CI/CD を設定する {#configure-gitlab-cicd}
 
-Define your [CI/CD](https://docs.gitlab.com/ee/ci/quick_start/) jobs by creating a `.gitlab-ci.yml` file in the root of your project.
+プロジェクトのルートに `.gitlab-ci.yml` ファイルを作成して、[CI/CD](https://docs.gitlab.com/ee/ci/quick_start/) ジョブを定義します。
 
 {{< code file=".gitlab-ci.yml" >}}
 image: registry.gitlab.com/pages/hugo/hugo_extended:latest
@@ -60,35 +59,35 @@ pages:
 {{< /code >}}
 
 {{% note %}}
-See [this list](https://gitlab.com/pages/hugo/container_registry) if you wish to use a particular Hugo version to build your site.
+特定の Hugo バージョンを使用してサイトをビルドする場合は、[このリスト](https://gitlab.com/pages/hugo/container_registry) を参照してください。
 {{% /note %}}
 
-## Push your Hugo website to GitLab
+## Hugo の Web サイトを GitLab にプッシュする {#push-your-hugo-website-to-gitlab}
 
-Next, create a new repository on GitLab. It is *not* necessary to make the repository public. In addition, you might want to add `/public` to your .gitignore file, as there is no need to push compiled assets to GitLab or keep your output website in version control.
+次に、GitLab に新しいリポジトリを作成します。 リポジトリを公開する必要は *ありません*。 さらに、コンパイル済みのアセットを GitLab にプッシュしたり、出力 Web サイトをバージョン管理したりする必要がないため、`/public` を .gitignore ファイルに追加することをお勧めします。
 
 ```bash
-# initialize new git repository
+# 新しい git リポジトリを初期化します
 git init
 
-# add /public directory to our .gitignore file
+# /public ディレクトリを .gitignore ファイルに追加します
 echo "/public" >> .gitignore
 
-# commit and push code to master branch
+# コミットして、コードを master ブランチにプッシュします
 git add .
 git commit -m "Initial commit"
 git remote add origin https://gitlab.com/YourUsername/your-hugo-site.git
 git push -u origin master
 ```
 
-## Wait for your page to build
+## ページがビルドされるのを待ちます {#wait-for-your-page-to-build}
 
-That's it! You can now follow the CI agent building your page at `https://gitlab.com/<YourUsername>/<your-hugo-site>/pipelines`.
+これで完了です。これで、CI エージェントが `https://gitlab.com/<YourUsername>/<your-hugo-site>/pipelines` であなたのページをビルドしている様子を追うことができます。
 
-After the build has passed, your new website is available at `https://<YourUsername>.gitlab.io/<your-hugo-site>/`.
+ビルドが完了すると、新しい Web サイトが `https://<YourUsername>.gitlab.io/<your-hugo-site>/` で利用できるようになります。
 
-## Next steps
+## 次のステップ {#next-steps}
 
-GitLab supports using custom CNAME's and TLS certificates. For more details on GitLab Pages, see the [GitLab Pages setup documentation](https://about.gitlab.com/2016/04/07/gitlab-pages-setup/).
+GitLab は、カスタム CNAME と TLS 証明書の使用をサポートしています。 GitLab Pages の詳細については、 [GitLab Pages 設定ドキュメント](https://about.gitlab.com/2016/04/07/gitlab-pages-setup/) を参照してください。
 
 [Quick Start]: /getting-started/quick-start/

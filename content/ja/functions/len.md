@@ -5,7 +5,7 @@ categories:
 date: "2017-02-01"
 deprecated: false
 description: Returns the length of a variable according to its type.
-draft: true
+draft: false
 hugoversion: null
 keywords: []
 lastmod: "2017-04-18"

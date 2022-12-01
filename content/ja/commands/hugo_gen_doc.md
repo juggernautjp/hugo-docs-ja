@@ -1,53 +1,64 @@
 ---
-draft: true
+categories:
+- commands
+aliases: []
+date: "2017-02-01"
+description: hugo gen doc サブコマンドは、Hugo CLI 用の Markdown ドキュメントを生成します。
+lastmod: "2017-02-01"
+menu:
+  docs:
+    parent: commands
+    weight: 52
+publishdate: "2017-02-01"
+sections_weight: 52
+toc: false
+weight: 52
+draft: false
 slug: hugo_gen_doc
 title: hugo gen doc
-url: /commands/hugo_gen_doc/
 ---
 ## hugo gen doc
 
-Generate Markdown documentation for the Hugo CLI.
+Hugo CLI 用の Markdown ドキュメントを生成します。
 
-### Synopsis
+### 概要 {#synopsis}
 
-Generate Markdown documentation for the Hugo CLI.
+Hugo CLI 用の Markdown ドキュメントを生成します。
 
-This command is, mostly, used to create up-to-date documentation
-of Hugo's command-line interface for https://gohugo.io/.
+このコマンドは、主に、Hugo のコマンドラインインタフェースの最新版のドキュメントである、https://gohugo.io/ を作成するために使用されます。
 
-It creates one Markdown file per command with front matter suitable
-for rendering in Hugo.
+コマンドごとに 1 つの Markdown ファイルを作成し、Hugo のレンダリングに適したフロントマター付けます。
 
-```
+```bash
 hugo gen doc [flags]
 ```
 
-### Options
+### オプション {#options}
 
-```
-      --dir string   the directory to write the doc. (default "/tmp/hugodoc/")
-  -h, --help         help for doc
-```
-
-### Options inherited from parent commands
-
-```
-      --clock string               set the clock used by Hugo, e.g. --clock 2021-11-06T22:30:00.00+09:00
-      --config string              config file (default is path/config.yaml|json|toml)
-      --configDir string           config dir (default "config")
-      --debug                      debug output
-  -e, --environment string         build environment
-      --ignoreVendorPaths string   ignores any _vendor for module paths matching the given Glob pattern
-      --log                        enable Logging
-      --logFile string             log File path (if set, logging enabled automatically)
-      --quiet                      build in quiet mode
-  -s, --source string              filesystem path to read files relative from
-      --themesDir string           filesystem path to themes directory
-  -v, --verbose                    verbose output
-      --verboseLog                 verbose logging
+```bash
+      --dir string   ドキュメントを書き込むディレクトリ (デフォルトは、 "/tmp/hugodoc/")
+  -h, --help         doc サブコマンドのヘルプ
 ```
 
-### SEE ALSO
+### 親コマンドから継承されたオプション {#options-inherited-from-parent-commands}
 
-* [hugo gen](/commands/hugo_gen/)	 - A collection of several useful generators.
+```bash
+      --clock string               Hugo が使用する時計を設定します。たとえば、 --clock 2021-11-06T22:30:00.00+09:00
+      --config string              設定ファイル (デフォルトは、 path/config.yaml|json|toml)
+      --configDir string           設定ディレクトリ (デフォルトは、 "config")
+      --debug                      デバッグ出力
+  -e, --environment string         ビルド環境
+      --ignoreVendorPaths string   指定された Glob パターンに一致するモジュールパスの _vendor を無視します
+      --log                        ロギングを有効にします
+      --logFile string             ログファイルのパス (設定されている場合、ログが自動的に有効になります)
+      --quiet                      クワイエットモード (通知オフ) でビルドします
+  -s, --source string              ファイルの相対パスを読み取るファイルシステムのパス
+      --themesDir string           テーマディレクトリへのファイルシステムのパス
+  -v, --verbose                    詳細出力 (冗長表示)
+      --verboseLog                 詳細ログ出力
+```
+
+### 関連項目 {#see-also}
+
+* [hugo gen](/commands/hugo_gen/)	 - いくつかの便利なジェネレーターのコレクションです
 

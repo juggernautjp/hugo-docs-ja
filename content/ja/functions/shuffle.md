@@ -4,8 +4,8 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: Returns a random permutation of a given array or slice.
-draft: true
+description: 指定された配列またはスライスのランダム置換を返します。
+draft: false
 hugoversion: null
 keywords:
 - ordering
@@ -23,19 +23,19 @@ workson: []
 ---
 
 {{< code file="shuffle-input.html" >}}
-<!-- Shuffled sequence = -->
+<!-- シャッフルされたシークエンス = -->
 <div>{{ shuffle (seq 1 5) }}</div>
-<!-- Shuffled slice =  -->
+<!-- シャッフルされたスライス =  -->
 <div>{{ shuffle (slice "foo" "bar" "buzz") }}</div>
 {{< /code >}}
 
-This example would return the following:
+上記の例は、以下のように返されます。
 
 {{< output file="shuffle-output.html" >}}
-<!-- Shuffled sequence =  -->
+<!-- シャッフルされたシークエンス =  -->
 <div>2 5 3 1 4</div>
-<!-- Shuffled slice =  -->
+<!-- シャッフルされたスライス =  -->
 <div>buzz foo bar</div>
 {{< /output >}}
 
-This example also makes use of the [slice](/functions/slice/) and [seq](/functions/seq/) functions.
+この例では、[slice](/functions/slice/) および [seq](/functions/seq/) 関数も使用しています。

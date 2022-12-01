@@ -4,9 +4,8 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: Takes in a slice or array and returns a slice with subsequent duplicate
-  elements removed.
-draft: true
+description: スライスまたは配列を受け取り、後続の重複要素を削除したスライスを返します。
+draft: false
 hugoversion: null
 keywords:
 - multilingual
@@ -25,8 +24,8 @@ title: uniq
 workson: []
 ---
 
-```
+```go-html-template
 {{ uniq (slice 1 2 3 2) }}
 {{ slice 1 2 3 2 | uniq }}
-<!-- both return [1 2 3] -->
+<!-- 上記は、どちらも [1 2 3] を返します -->
 ```

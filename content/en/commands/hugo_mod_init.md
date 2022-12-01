@@ -1,7 +1,7 @@
 ---
 title: "hugo mod init"
 slug: hugo_mod_init
-url: /commands/hugo_mod_init/
+# url: /commands/hugo_mod_init/
 ---
 ## hugo mod init
 

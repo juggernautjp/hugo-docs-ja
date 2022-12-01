@@ -2,20 +2,20 @@
   name = "About Hugo"
   weight = 1
   identifier = "about"
-  url = "/about/"
+  url = "/en/about/"
 
 [[docs]]
   name = "Getting Started"
   weight = 5
   identifier = "getting-started"
-  url = "/getting-started/"
+  url = "/en/getting-started/"
 
 [[docs]]
   name = "Hugo Modules"
   weight = 15
   identifier = "modules"
   post = "break"
-  url = "/hugo-modules/"
+  url = "/en/hugo-modules/"
 
 # Core Menus
 
@@ -24,37 +24,37 @@
   weight = 20
   identifier = "content-management"
   post = "expanded"
-  url = "/content-management/"
+  url = "/en/content-management/"
 
 [[docs]]
   name = "Templates"
   weight = 25
   identifier = "templates"
 
-  url = "/templates/"
+  url = "/en/templates/"
 
 [[docs]]
   name = "Functions"
   weight = 30
   identifier = "functions"
-  url = "/functions/"
+  url = "/en/functions/"
 
 [[docs]]
   name = "Variables"
   weight = 35
   identifier = "variables"
-  url = "/variables/"
+  url = "/en/variables/"
 [[docs]]
   name = "Hugo Pipes"
   weight = 36
   identifier = "pipes"
-  url = "/hugo-pipes/"
+  url = "/en/hugo-pipes/"
 [[docs]]
   name = "CLI"
   weight = 40
   post = "break"
   identifier = "commands"
-  url = "/commands/"
+  url = "/en/commands/"
 
 
 
@@ -65,26 +65,26 @@
   name = "Troubleshooting"
   weight = 60
   identifier = "troubleshooting"
-  url = "/troubleshooting/"
+  url = "/en/troubleshooting/"
 
 [[docs]]
   name = "Tools"
   weight = 70
   identifier = "tools"
-  url = "/tools/"
+  url = "/en/tools/"
 
 [[docs]]
   name = "Hosting & Deployment"
   weight = 80
   identifier = "hosting-and-deployment"
-  url = "/hosting-and-deployment/"
+  url = "/en/hosting-and-deployment/"
 
 [[docs]]
   name = "Contribute"
   weight = 100
   post = "break"
   identifier = "contribute"
-  url = "/contribute/"
+  url = "/en/contribute/"
 
 #[[docs]]
 #  name = "Tags"
@@ -105,7 +105,7 @@
     name = "Fundamentals"
     weight = 1
     identifier = "fundamentals"
-    url = "/tags/fundamentals/"
+    url = "/en/tags/fundamentals/"
 
 
 
@@ -116,13 +116,13 @@
     name = "News"
     weight = 1
     identifier = "news"
-    url = "/news/"
+    url = "/en/news/"
 
   [[global]]
     name = "Docs"
     weight = 5
     identifier = "docs"
-    url = "/documentation/"
+    url = "/en/documentation/"
 
   [[global]]
     name = "Themes"
@@ -134,7 +134,7 @@
       name = "Showcase"
       weight = 20
       identifier = "showcase"
-      url = "/showcase/"
+      url = "/en/showcase/"
 
   # Anything with a weight > 100 gets an external icon
   [[global]]

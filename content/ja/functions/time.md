@@ -4,8 +4,8 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: Converts a timestamp string into a `time.Time` structure.
-draft: true
+description: タイムスタンプ文字列を `time.Time` 構造体に変換します。
+draft: false
 hugoversion: v0.77.0
 keywords:
 - dates
@@ -25,33 +25,33 @@ workson: []
 ---
 
 
-`time` converts a timestamp string with an optional default location into a [`time.Time`](https://godoc.org/time#Time) structure so you can access its fields:
+`time` は、オプションでデフォルトの場所を指定できるタイムスタンプ文字列を [`time.Time`](https://godoc.org/time#Time) 構造体に変換し、そのフィールドにアクセスできるようにします。
 
-```
+```go-html-template
 {{ time "2016-05-28" }} → "2016-05-28T00:00:00Z"
 {{ (time "2016-05-28").YearDay }} → 149
-{{ mul 1000 (time "2016-05-28T10:30:00.00+10:00").Unix }} → 1464395400000, or Unix time in milliseconds
+{{ mul 1000 (time "2016-05-28T10:30:00.00+10:00").Unix }} → 1464395400000、またはミリ秒単位の Unix 時間
 ```
 
-## Using Locations
+## ロケーションを使用する {#using-locations}
 
-The optional `TIMEZONE` parameter is a string that sets a default time zone (or more specific, the location, which represents the collection of time offsets in a geographical area) that is associated with the specified time value. If the time value has an explicit timezone or offset specified, it will take precedence over the `TIMEZONE` parameter.
+オプションの `TIMEZONE` パラメータは、指定された時間値に関連するデフォルトのタイムゾーン (または、より具体的には、地理的領域内の時間オフセットのコレクションを表す場所) を設定する文字列です。 時間値に明示的なタイムゾーンまたはオフセットが指定されている場合は、 `TIMEZONE` パラメータよりもそちらが優先されます。
 
-The list of valid locations may be system dependent, but should include `UTC`, `Local`, or any location in the [IANA Time Zone database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+有効な場所のリストはシステムに依存しますが、`UTC`、`Local`、または [IANA タイムゾーン データベース](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) にある任意の場所を含める必要があります。
 
-If no `TIMEZONE` is set, the `timeZone` from site configuration will be used.
+`TIMEZONE` が設定されていない場合、サイト設定の `timeZone` が使用されます。
 
-```
+```go-html-template
 {{ time "2020-10-20" }} → 2020-10-20 00:00:00 +0000 UTC
 {{ time "2020-10-20" "America/Los_Angeles" }} → 2020-10-20 00:00:00 -0700 PDT
 {{ time "2020-01-20" "America/Los_Angeles" }} → 2020-01-20 00:00:00 -0800 PST
 ```
 
-## Example: Using `time` to get Month Index
+## 例: `time` を使用して、月のインデックスを取得する {#example-using-time-to-get-month-index}
 
-The following example takes a UNIX timestamp---set as `utimestamp: "1489276800"` in a content's front matter---converts the timestamp (string) to an integer using the [`int` function][int], and then uses [`printf`][] to convert the `Month` property of `time` into an index.
+以下の例では、UNIX タイムスタンプを取得し --- コンテンツのフロントマターで `utimestamp: "1489276800"` として設定します --- タイムスタンプ (文字列) を [`int` 関数][int] を使用して整数に変換し、次に [`printf`][] を使用して `time` の `Month` プロパティをインデックスに変換します。
 
-The following example may be useful when setting up [multilingual sites][multilingual]:
+[多言語サイト][multilingual] を設定する場合、以下のような例が参考になると思います。
 
 {{< code file="unix-to-month-integer.html" >}}
 {{$time := time (int .Params.addDate)}}

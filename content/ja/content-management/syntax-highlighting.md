@@ -146,7 +146,7 @@ func GetTitleFunc(style string) func(s string) string {
 
 オプションは `linenos=false` を含む [ハイライト ショートコード](/content-management/syntax-highlighting/#highlight-shortcode) と同じですが、Markdown 属性の構文がわずかに異なることに注意してください。
 
-## Chroma ハイライト言語のリスト {#list-of-chroma-highlighting-languages}
+## Chroma ハイライト言語の一覧 {#list-of-chroma-highlighting-languages}
 
 以下は、Chroma レキサーとそのエイリアスの完全なリストです (これは、`highlight` テンプレート関数やコードフェンスでハイライト表示を行う際に使用する識別子です)。
 

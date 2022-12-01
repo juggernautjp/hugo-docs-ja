@@ -3,8 +3,8 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: Determines the number of runes in a string excluding any whitespace.
-draft: true
+description: 空白を除いた文字列内のルーンの個数を決定します。
+draft: false
 hugoversion: null
 keywords:
 - counting
@@ -21,9 +21,9 @@ title: countrunes
 workson: []
 ---
 
-In contrast with `countwords` function, which counts every word in a string, the `countrunes` function determines the number of runes in the content and excludes any whitespace. This has specific utility if you are dealing with CJK-like languages.
+文字列中のすべての単語を数える `countwords` 関数とは対照的に、 `countrunes` 関数は、コンテンツ内のルーンの数を決定し、空白を除外します。これは、日中韓 (CJK) のような言語を扱う場合に特に有用です。
 
-```
+```go-html-template
 {{ "Hello, 世界" | countrunes }}
 <!-- outputs a content length of 8 runes. -->
 ```

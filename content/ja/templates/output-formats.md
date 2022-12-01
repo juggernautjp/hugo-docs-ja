@@ -33,14 +33,14 @@ weight: 18
 
 以下は、Hugo の組み込みメディアタイプの完全なセットです。
 
-{{< datatable "media" "types" "type" "suffixes" >}}
+{{< datatable-ja "media" "types" "type" "suffixes" >}}
 
 **注意:**
 
 - カスタムのメディアタイプを追加したり、デフォルトを変更したりできます。たとえば、`text/html` のサフィックスを `asp` に変更したい場合などです。
 - `Suffixes` は、Hugo でそのメディアタイプの URL とファイル名に使用される値です。
 - `Type` は、新しい/カスタムの `Output Formats` を定義するときに使用する必要がある識別子です (以下を参照)。
-- メディアタイプの完全なセットは、Hugo の組み込み開発サーバーに登録され、ブラウザーで確実に認識されます。
+- メディアタイプの完全なセットは、Hugo の組み込み開発サーバーに登録され、ブラウザで確実に認識されます。
 
 メディアタイプを追加または変更するには、[サイト設定][config] の `mediaTypes` セクションで、すべてのサイトまたは特定の言語に対して定義します。
 
@@ -75,7 +75,7 @@ mediaType = "text/html"
 
 以下は、Hugo の組み込み出力形式の完全なセットです。
 
-{{< datatable "output" "formats" "name" "mediaType" "path" "baseName" "rel" "protocol" "isPlainText" "isHTML" "noUgly" "permalinkable" >}}
+{{< datatable-ja "output" "formats" "name" "mediaType" "path" "baseName" "rel" "protocol" "isPlainText" "isHTML" "noUgly" "permalinkable" >}}
 
 - 1 つのページを好きなだけ多くの出力形式で出力することができ、 **それらがファイルシステム上の一意なパスに解決される限り**、無限に出力形式を定義できます。上の表では、`AMP` と `HTML` の比較というのが最も良い例です。`AMP` は `Path` の値が `amp` であるため、`HTML` バージョンを上書きしません。たとえば、 `/index.html` と `/amp/index.html` の両方を定義することができます。
 - `MediaType` は、既に定義されているメディアタイプの `Type` と一致する必要があります。
@@ -244,7 +244,7 @@ Hugo のバージョン 0.20 以降の主な違いは、指定された `Page` �
 
 Hugo は、可能であれば、パーシャルのメディアタイプと出力形式も検出し、その情報を使用して、パーシャルをプレーンテキスト テンプレートとして解析するかどうかを決定します。
 
-Hugo は与えられた名前を探すので、好きな名前を付けることができます。 ただし、プレーンテキストとして扱いたい場合は、ファイルのサフィックスと、必要であれば出力形式の名前を使用する必要があります。 パターンは、以下のとおりです。
+Hugo は指定された名前を探すので、好きな名前を付けることができます。 ただし、プレーンテキストとして扱いたい場合は、ファイルのサフィックスと、必要であれば出力形式の名前を使用する必要があります。 パターンは、以下のとおりです。
 
 ```go-html-template
 [partial name].[OutputFormat].[suffix]

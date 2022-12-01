@@ -4,8 +4,8 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: Replaces all occurrences of the search string with the replacement string.
-draft: true
+description: 検索文字列のすべての出現箇所を置換文字列に置き換えます。
+draft: false
 hugoversion: null
 keywords: []
 lastmod: "2020-09-07"
@@ -21,10 +21,10 @@ title: replace
 workson: []
 ---
 
-Replace returns a copy of `INPUT` with all occurrences of `OLD` replaced with `NEW`.
-The number of replacements can be limited with an optional `LIMIT` parameter.
+Replace は `INPUT` のコピーで、`OLD` に現れるすべての文字を `NEW` に置き換えたものを返します。
+オプションの `LIMIT` パラメータで置換の回数を制限できます。
 
-```
+```go-html-template
 `{{ replace "Batman and Robin" "Robin" "Catwoman" }}`
 → "Batman and Catwoman"
 

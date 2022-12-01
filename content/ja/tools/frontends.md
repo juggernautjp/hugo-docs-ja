@@ -3,32 +3,31 @@ aliases: []
 categories:
 - developer tools
 date: "2017-02-01"
-description: Do you prefer a graphical user interface over a text editor? Give these
-  frontends a try.
-draft: true
+description: テキストエディターよりもグラフィカルなユーザインタフェースが好きですか? これらのフロントエンドを試してみてください。
+draft: false
 keywords:
 - frontend
 - gui
 lastmod: "2017-02-01"
-linktitle: Frontends
+linktitle: フロントエンド
 menu:
   docs:
     parent: tools
     weight: 40
 publishdate: "2017-02-01"
 sections_weight: 40
-title: Frontend Interfaces with Hugo
+title: Hugo とのフロントエンド インターフェイス
 toc: false
 weight: 40
 ---
 
-- [enwrite](https://github.com/zzamboni/enwrite). Enwrite enables evernote-powered, statically generated blogs and websites. Now posting to your blog or updating your website is as easy as writing a new note in Evernote!
-- [Lipi](https://github.com/SohanChy/Lipi). Lipi is a native GUI frontend written in Java to manage your Hugo websites.
-- [Netlify CMS](https://netlifycms.org). Netlify CMS is an open source, serverless solution for managing Git based content in static sites, and it works on any platform that can host static sites. A [Hugo/Netlify CMS starter](https://github.com/netlify-templates/one-click-hugo-cms) is available to get new projects running quickly.
-- [Hokus CMS](https://github.com/julianoappelklein/hokus). Hokus CMS is an open source, multi-platform, easy to use, desktop application for Hugo. Build from simple to complex user interfaces for Hugo websites by choosing from a dozen ready-to-use components — all for free, with no vendor lock-in.
+- [enwrite](https://github.com/zzamboni/enwrite). Enwrite は、Evernote を利用した静的に生成されたブログや Web サイトを実現します。 ブログへの投稿や Web サイトの更新は、Evernote に新しいノートを書くのと同じくらい簡単です。
+- [Lipi](https://github.com/SohanChy/Lipi). Lipi は、Hugo Web サイトを管理するために、 Java で記述されたネイティブ GUI フロントエンドです。
+- [Netlify CMS](https://netlifycms.org). Netlify CMS は、静的サイトの Git ベースのコンテンツを管理するためのオープンソースのサーバーレス ソリューションで、静的サイトをホストできるプラットフォームであれば、どのプラットフォームでも動作します。 [Hugo/Netlify CMS スターター](https://github.com/netlify-templates/one-click-hugo-cms) が用意されており、新しいプロジェクトを迅速に稼働させることができます。
+- [Hokus CMS](https://github.com/julianoappelklein/hokus). Hokus CMS は、オープンソースの、マルチプラットフォームで、使いやすい Hugo 用デスクトップ アプリケーションです。すぐに使用できる多数のコンポーネントから選択して、シンプルなものから複雑なものまで、Hugo の Web サイトのユーザー インターフェイスを構築します。すべて無料で、ベンダー ロックインはありません。
 
-## Commercial Services
+## 商用サービス {#commercial-services}
 
-- [DATOCMS](https://www.datocms.com) DatoCMS is a fully customizable administrative area for your static websites. Use your favorite website generator, let your clients publish new content independently, and the host the site anywhere you like.
-- [Forestry.io](https://forestry.io/). Forestry is a git-backed CMS for Hugo, Gatsby, Jekyll and VuePress websites with support for GitHub, GitLab, Bitbucket and Azure Devops. Forestry provides a nice user interface to edit and model content for non technical editors. It supports S3, Cloudinary and Netlify Large Media integrations for storing media. Every time an update is made via the CMS, Forestry will commit changes back to your repo and vice-versa.
-- [CloudCannon](https://cloudcannon.com/hugo-cms/). The intuitive Git-based CMS for your Hugo website. CloudCannon syncs changes from your Git repository and pushes content changes back, so your development and content teams are always in sync. Edit all of your content on the page with visual editing, build entire pages with reusable custom components and then publish confidently.
+- [DATOCMS](https://www.datocms.com) DatoCMS は、静的な Web サイト用の完全にカスタマイズ可能な管理領域です。お気に入りの Web サイト ジェネレーターを使用して、クライアントが新しいコンテンツを個別に公開できるようにし、好きな場所でサイトをホストします。
+- [Forestry.io](https://forestry.io/). Forestry は、GitHub、GitLab、Bitbucket、Azure Devops をサポートする、Hugo、Gatsby、Jekyll、VuePress の Web サイト用の Git ベースの (git-backed) CMS です。 Forestry は、技術者以外の編集者がコンテンツを編集およびモデル化するための優れたユーザー インターフェイスを提供します。 メディアを保存するために、S3、Cloudinary、Netlify Large Media の統合をサポートしています。 CMS 介して更新が行われるたびに、Forestry は変更をリポジトリにコミットし、その逆も同様です。
+- [CloudCannon](https://cloudcannon.com/hugo-cms/). 直感的に操作できる Git ベースの Hugo Web サイト用の CMS です。 CloudCannon は、Git リポジトリからの変更を同期し、コンテンツの変更をプッシュバックするので、開発チームとコンテンツ チームは常に同期しています。ビジュアル編集でページ上のすべてのコンテンツを編集し、再利用可能なカスタム コンポーネントでページ全体を構築し、自信を持って公開できます。

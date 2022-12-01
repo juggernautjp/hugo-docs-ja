@@ -3,36 +3,35 @@ aliases:
 - /developer-tools/migrations/
 - /developer-tools/migrated/
 date: "2017-02-22"
-description: A list of community-developed projects designed to help you get up and
-  running with Hugo.
-draft: true
+description: Hugo を使い始めるのに役立つように設計された、コミュニティが開発したプロジェクトのリストです。
+draft: false
 keywords:
 - starters
 - assets
 - pipeline
 lastmod: "2018-08-11"
-linktitle: Starter Kits
+linktitle: スターターキット
 menu:
   docs:
     parent: tools
     weight: 30
 publishdate: "2017-02-01"
 sections_weight: 30
-title: Starter Kits
+title: スターターキット
 toc: false
 weight: 30
 ---
 
-Know of a Hugo-related starter kit that isn't mentioned here? [Please add it to the list.][addkit]
+ここに記載されていない Hugo 関連のスターターキットをご存知ですか? [それをリストに追加してください][addkit]。
 
 {{% note "Starter Kits are Not Maintained by the Hugo Team"%}}
-The following starter kits are developed by active members of the Hugo community. If you find yourself having issues with any of the projects, it's best to file an issue directly with the project's maintainer(s).
+以下のスターターキットは、Hugo コミュニティの活発なメンバーによって開発されています。もしこれらのプロジェクトに問題があるようなら、プロジェクトのメンテナーに直接問題を報告するのが一番です。
 {{% /note %}}
 
-* [Wowchemy][]. Wowchemy is the 5,500+ star open source Hugo starter kit and website builder trusted by 750,000+ sites since 2016. Create _any_ kind of site with [50+ templates, widgets, and extensions](https://wowchemy.com/). Translated into 35+ languages and backed by a large, active community of 150+ contributors.
-* [Hugo Wrapper][hugow]. Hugo Wrapper is a POSIX-style shell script which acts as a wrapper to download and run Hugo binary for your platform. It can be executed in variety of [Operating Systems][hugow-test] and [Command Shells][hugow-test].
-* [GOHUGO AMP][]. GoHugo AMP is a starter theme that aims to make it easy to adopt [Google's AMP Project][amp]. The starter kit comes with 40+ shortcodes and partials plus automatic structured data. The project also includes a [separate site with extensive documentation][gohugodocs].
-* [Hyas][]. Hyas is a Hugo starter helping you build modern websites that are secure, fast, and SEO-ready — by default. It is Netlify-ready (functions, redirects, headers) and comes with [documentation](https://gethyas.com/) to easily make it your own.
+* [Wowchemy][]. Wowchemy は、2016年から 75 万以上のサイトに信頼されている、 5,500 以上のスターを獲得したオープンソースの Hugo スターターキットであり、Web サイトビルダーです。 [50 以上のテンプレート、ウィジェット、拡張機能](https://wowchemy.com/) で _任意の_ 種類のサイトを作成します。 35 以上の言語に翻訳され、150 人以上の貢献者からなる、大規模で活発なコミュニティに支えられています。
+* [Hugo Wrapper][hugow]. Hugo Wrapper は、 POSIX スタイルのシェルスクリプトで、あなたのプラットフォーム用の Hugo バイナリをダウンロードして実行するためのラッパーとして動作します。さまざまな [OS][hugow-test] および [コマンドシェル][hugow-test] で実行できます。
+* [GOHUGO AMP][]. GoHugo AMP は、[Google の AMP プロジェクト][amp] を簡単に導入することを目的としたスターター テーマです。スターターキットには、40 以上のショートコードと部分テンプレート (パーシャル) に加え、自動構造化データが付属しています。また、このプロジェクトには、[豊富なドキュメントを掲載した別サイト][gohugodocs] も含まれています。
+* [Hyas][]. Hyas は、デフォルトで、安全かつ高速で、SEO に対応したモダンな Web サイトを構築するための Hugo スターターです。 Netlify  (関数、リダイレクト、ヘッダー) に対応し、 [ドキュメント](https://gethyas.com/) が付属しているので、簡単にあなた自身のサイトにすることができます。
 
 [Wowchemy]: https://github.com/wowchemy/wowchemy-hugo-modules
 [addkit]: https://github.com/gohugoio/hugo/edit/master/docs/content/en/tools/starter-kits.md

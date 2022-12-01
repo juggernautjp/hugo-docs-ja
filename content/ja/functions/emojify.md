@@ -3,8 +3,8 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: Runs a string through the Emoji emoticons processor.
-draft: true
+description: Emoji emoticons プロセッサーを介して文字列を実行します。
+draft: false
 hugoversion: null
 keywords:
 - strings
@@ -21,11 +21,11 @@ title: emojify
 workson: []
 ---
 
-`emoji` runs a passed string through the Emoji emoticons processor.
+`emoji` は渡された文字列を Emoji emoticons プロセッサーで処理します。
 
-See the [Emoji cheat sheet][emojis] for available emoticons.
+使用可能な絵文字 (emoticons) については、[絵文字チートシート][emojis] を参照してください。
 
-The `emojify` function can be called in your templates but not directly in your content files by default. For emojis in content files, set `enableEmoji` to `true` in your site's [configuration][config]. Then you can write emoji shorthand directly into your content files; e.g. <code>I :</code><code>heart</code><code>: Hugo!</code>:
+`emojify` 関数はテンプレートで呼び出すことができますが、デフォルトではコンテンツファイルで直接呼び出すことはできません。 コンテンツファイルの絵文字については、サイトの [設定][config] で `enableEmoji` を `true` に設定します。すると、たとえば <code>I :</code><code>heart</code><code>: Hugo!</code>: のように、絵文字の短縮形をコンテンツファイルに直接書き込むことができます。 
 
 I :heart: Hugo!
 

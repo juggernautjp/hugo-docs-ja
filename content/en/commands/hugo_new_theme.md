@@ -1,7 +1,7 @@
 ---
 title: "hugo new theme"
 slug: hugo_new_theme
-url: /commands/hugo_new_theme/
+# url: /commands/hugo_new_theme/
 ---
 ## hugo new theme
 

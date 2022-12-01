@@ -1,7 +1,7 @@
 ---
 title: "hugo mod verify"
 slug: hugo_mod_verify
-url: /commands/hugo_mod_verify/
+# url: /commands/hugo_mod_verify/
 ---
 ## hugo mod verify
 

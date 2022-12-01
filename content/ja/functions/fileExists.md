@@ -4,8 +4,8 @@ categories:
 - functions
 date: "2017-08-31T22:38:22+02:00"
 deprecated: false
-description: Checks for file or directory existence.
-draft: true
+description: ファイルまたはディレクトリが存在するかどうかをチェックします。
+draft: false
 hugoversion: null
 lastmod: "2021-11-26"
 linktitle: fileExists
@@ -23,9 +23,9 @@ signature:
 title: fileExists
 workson: []
 ---
-The `os.FileExists` function attempts to resolve the path relative to the root of your project directory. If a matching file or directory is not found, it will attempt to resolve the path relative to the [`contentDir`]({{< relref "getting-started/configuration#contentdir">}}). A leading path separator (`/`) is optional.
+`os.FileExists` 関数は、プロジェクト ディレクトリのルートからの相対パスを解決しようとします。一致するファイルまたはディレクトリが見つからない場合は、 [`contentDir`]({{< relref "getting-started/configuration#contentdir">}}) からの相対パスで解決しようとします。 先頭のパス区切り文字 (`/`) は省略可能です。
 
-With this directory structure:
+以下のディレクトリ構造で
 
 ```text
 content/
@@ -36,7 +36,7 @@ content/
     └── article-2.md
 ```
 
-The function returns these values:
+この関数は、以下の値を返します。
 
 ```go-html-template
 {{ os.FileExists "content" }} --> true

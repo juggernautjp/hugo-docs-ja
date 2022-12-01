@@ -3,8 +3,8 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: Renders code with a syntax highlighter.
-draft: true
+description: シンタックス ハイライターを使用してコードをレンダリングします。
+draft: false
 keywords:
 - highlighting
 - code blocks
@@ -22,76 +22,76 @@ signature:
 title: highlight
 toc: true
 ---
-The `highlight` function uses the [Chroma] syntax highlighter, supporting over 200 languages with more than 40 available styles.
+`highlight` 関数は [Chroma] シンタックス ハイライターを使用し、200 を超える言語と 40 を超える利用可能なスタイルをサポートします。
 
-## Parameters
+## パラメータ {#parameters}
 
 INPUT
-: The code to highlight.
+: ハイライト表示するコードです。
 
 LANG
-: The language of the code to highlight. Choose from one of the [supported languages]. Case-insensitive.
+: ハイライト表示するコードの言語です。 [サポートされている言語][supported languages] のいずれかから選択します。 大文字小文字を区別しません。
 
 OPTIONS
-: An optional, comma-separated list of zero or more [options]. Set default values in [site configuration].
+: 0 個以上の [オプション][options]をカンマで区切ったオプションリストです。 [サイト設定][site configuration] にデフォルト値を設定します。
 
-## Options
+## オプション {#options}
 
 lineNos
-: Boolean. Default is `false`.\
-Display a number at the beginning of each line.
+: Boolean. デフォルトは、 `false` です。\
+各行の先頭に数字を表示します。
 
 lineNumbersInTable
-: Boolean. Default is `true`.\
-Render the highlighted code in an HTML table with two cells. The left table cell contains the line numbers. The right table cell contains the code, allowing a user to select and copy the code without line numbers. Irrelevant if `lineNos` is false.
+: Boolean. デフォルトは、 `true` です。\
+ハイライト表示されたコードを 2 つのセルを持つ HTML テーブルにレンダリングします。 左側のテーブルのセルには行番号が含まれています。 右側のテーブルのセルにはコードが表示され、ユーザは行番号のないコードを選択してコピーすることができます。lineNos` が false の場合は関係ありません。
 
 anchorLineNos
-: Boolean. Default is `false`.\
-Render each line number as an HTML anchor element, and set the `id` attribute of the surrounding `<span>` to the line number. Irrelevant if `lineNos` is false.
+: Boolean. デフォルトは、 `false` です。\
+各行番号を HTML アンカー要素としてレンダリングし、周囲の `<span>` の `id` 属性を行番号に設定します。 `lineNos` が false の場合は、関係ありません。
 
 lineAnchors
-: String. Default is `""`.\
-When rendering a line number as an HTML anchor element, prepend this value to the `id` attribute of the surrounding `<span>`. This provides unique `id` attributes when a page contains two or more code blocks. Irrelevant if `lineNos` or `anchorLineNos` is false.
+: String. デフォルトは、 `""` です。\
+行番号を HTML アンカー要素としてレンダリングする場合、この値を周囲の `<span>` の `id` 属性の前に付けます。これにより、ページが 2 つ以上のコードブロックを含んでいる場合に、一意の `id` 属性を提供できます。 `lineNos` または `anchorLineNos` が false の場合は、関係ありません。
 
 lineNoStart
-: Integer. Default is `1`.\
-The number to display at the beginning of the first line. Irrelevant if `lineNos` is false.
+: Integer. デフォルトは、 `1` です。\
+最初の行の先頭に表示する番号です。 `lineNos` が false の場合は関係ありません。
 
 hl_Lines
-: String. Default is `""`.\
-A space-separated list of lines to emphasize within the highlighted code. To emphasize lines 2, 3, 4, and 7, set this value to `2-4 7`. This option is independent of the `lineNoStart` option.
+: String. デフォルトは、 `""` です。\
+ハイライト表示されたコードの中で、強調したい行を空白文字で区切ったリストです。 2、3、4、7 行目を強調したい場合は、この値を `2-4 7` に設定します。 このオプションは、 `lineNoStart` オプションとは無関係です。
 
 hl_inline
-: Boolean. Default is `false`.\
-Render the highlighted code without a wrapping container.
+: Boolean. デフォルトは、 `false` です。\
+ハイライト表示されたコードを、ラッピングコンテナなしでレンダリングします。
 
 style
-: String. Default is `monokai`.\
-The CSS styles to apply to the highlighted code. See the [style gallery] for examples. Case-sensitive.
+: String. デフォルトは、 `monokai` です。\
+ハイライト表示されたコードに適用される CSS スタイルです。 例については、[スタイルギャラリー] を参照してください。 大文字小文字は区別されます。
 
 noClasses
-: Boolean. Default is `true`.\
-Use inline CSS styles instead of an external CSS file. To use an external CSS file, set this value to `false` and [generate the file with the hugo client][hugo client].
+: Boolean. デフォルトは、 `true` です。\
+外部 CSS ファイルの代わりに、インライン CSS スタイルを使用します。 外部 CSS ファイルを使用するには、この値を `false` に設定し、[Hugo クライアントでファイルを生成][hugo client] します。
 
 tabWidth
-: Integer. Default is `4`.\
-Substitute this number of spaces for each tab character in your highlighted code.
+: Integer. デフォルトは、 `4` です。\
+ハイライト表示したコードで、各タブ文字をこの個数の空白文字に置き換えます。
 
 guessSyntax
-: Boolean. Default is `false`.\
-If the `LANG` parameter is blank or an unrecognized language, auto-detect the language if possible, otherwise use a fallback language.
+: Boolean. デフォルトは、 `false` です。\
+`LANG` パラメータが空白または認識できない言語の場合、可能であれば言語を自動検出し、そうでなければフォールバック言語を使用します。
 
 {{% note %}}
-Instead of specifying both `lineNos` and `lineNumbersInTable`, you can use the following shorthand notation:
+`lineNos` と `lineNumbersInTable` の両方を指定する代わりに、以下の省略記法を使用することができます。
 
 `lineNos=inline`
-: equivalent to `lineNos=true` and `lineNumbersInTable=false`
+: `lineNos=true` および `lineNumbersInTable=false` と同等です。
 
 `lineNos=table`
-: equivalent to `lineNos=true` and `lineNumbersInTable=true`
+: `lineNos=true` および `lineNumbersInTable=true` と同等です。
 {{% /note %}}
 
-## Examples
+## 例 {#examples}
 
 ```go-html-template
 {{ $input := `fmt.Println("Hello World!")` }}

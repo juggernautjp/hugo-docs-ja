@@ -3,8 +3,8 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: Counts the number of words in a string.
-draft: true
+description: 文字列内の単語数をカウントします。
+draft: false
 hugoversion: null
 keywords:
 - counting
@@ -22,9 +22,9 @@ title: countwords
 workson: []
 ---
 
-The template function works similar to the [.WordCount page variable][pagevars].
+テンプレート機能は、[.WordCount ページ変数][pagevars] と似たような働きをします。
 
-```
+```go-html-template
 {{ "Hugo is a static site generator." | countwords }}
 <!-- outputs a content length of 6 words.  -->
 ```

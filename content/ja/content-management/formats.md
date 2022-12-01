@@ -24,7 +24,7 @@ toc: true
 weight: 20
 ---
 
-`content` ディレクトリには任意のファイルタイプを入れることができますが、Hugo は `markup` というフロントマターの値が設定されている場合、またはファイルの拡張子 (下のテーブルの `Markup identifiers` を参照) を使って、マークアップを処理する必要があるかどうかを判断します。たとえば、
+`content` ディレクトリには任意のファイルタイプを入れることができますが、Hugo は `markup` というフロントマターの値が設定されている場合、またはファイルの拡張子 (下のテーブルの `マークアップ識別子` を参照) を使って、マークアップを処理する必要があるかどうかを判断します。たとえば、
 
 * HTML に変換された Markdown
 * 処理済み [ショートコード](/content-management/shortcodes/)
@@ -34,7 +34,7 @@ weight: 20
 
 下表は、Hugo の現在のコンテンツフォーマットの一覧です。
 
-| 名前  | Markup 識別子 | コメント |
+| 名前  | マークアップ識別子 | コメント |
 | ------------- | ------------- |-------------|
 | Goldmark  | md, markdown, goldmark  | `md` と `markdown` のデフォルト ハンドラーを別のものに設定できることに注意してください。[「マークアップの設定」](/getting-started/configuration-markup/) を参照してください。{{< new-in "0.60.0" >}} |
 | Emacs Org-Mode | org | [go-org](https://github.com/niklasfasching/go-org) を参照してください。 |
@@ -43,7 +43,7 @@ weight: 20
 | Pandoc| pandoc, pdc | [Pandoc](https://www.pandoc.org/) がインストールされている必要があります。 |
 | HTML | html, htm | レイアウトやショートコードなど、コンテンツファイルとして扱うには、フロントマターが必要です。そうでない場合は、そのままコピーされます。 |
 
-`markup identifier` は、フロントマターの変数 `markup` か、ファイルの拡張子から取得されます。マークアップ関連の設定については、 [「マークアップの設定」](/getting-started/configuration-markup/) を参照してください。
+`マークアップ識別子` は、フロントマターの変数 `markup` か、ファイルの拡張子から取得されます。 マークアップ関連の設定については、 [「マークアップの設定」](/getting-started/configuration-markup/) を参照してください。
 
 ## 外部ヘルパー {#external-helpers}
 

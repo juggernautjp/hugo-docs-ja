@@ -237,7 +237,7 @@ Front Matter with weighted tags and categories
 {{ end }}
 ```
 
-別の方法として、タクソノミーを区切り記号でリストする必要がある場合は、[delimit テンプレート関数][delimit] をショートカットとして使用することもできます。 議論については、GitHub の {{< gh 2143 >}} を参照してください。
+別の方法として、タクソノミーを区切り文字でリストする必要がある場合は、[delimit テンプレート関数][delimit] をショートカットとして使用することもできます。 議論については、GitHub の {{< gh 2143 >}} を参照してください。
 
 ## タクソノミー用語が同じコンテンツを一覧表示する {#list-content-with-the-same-taxonomy-term}
 

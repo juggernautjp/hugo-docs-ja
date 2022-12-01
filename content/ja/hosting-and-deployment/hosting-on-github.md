@@ -7,59 +7,58 @@ authors:
 categories:
 - hosting and deployment
 date: "2014-03-21"
-description: Deploy Hugo as a GitHub Pages project or personal/organizational site
-  and automate the whole process with Github Action Workflow
-draft: true
+description: Hugo を GitHub Pages プロジェクトまたは個人/組織サイトとしてデプロイし、Github Action Workflow でプロセス全体を自動化します。
+draft: false
 keywords:
 - github
 - git
 - deployment
 - hosting
-linktitle: Host on GitHub
+linktitle: GitHub でのホスト
 menu:
   docs:
     parent: hosting-and-deployment
     weight: 30
 publishdate: "2014-03-21"
 sections_weight: 30
-title: Host on GitHub
+title: GitHub でのホスト
 toc: true
 weight: 30
 ---
 
-GitHub provides free and fast static hosting over SSL for personal, organization, or project pages directly from a GitHub repository via its [GitHub Pages service][] and automating development workflows and build with [GitHub Actions].
+GitHub は、GitHub リポジトリから直接、個人、組織、プロジェクトのページを SSL 経由で無料かつ高速に静的ホスティングを提供する [GitHub Pages サービス][GitHub Pages service] と、開発ワークフローとビルドを自動化する [GitHub Actions][] を提供します。
 
-## Assumptions
+## 前提条件 {#assumptions}
 
-1. You have Git 2.8 or greater [installed on your machine][installgit].
-2. You have a GitHub account. [Signing up][ghsignup] for GitHub is free.
-3. You have a ready-to-publish Hugo website or have at least completed the [Quick Start][].
+1. Git 2.8 以上が [マシンにインストールされている][installgit] こと。
+2. GitHub アカウントを持っていること。 GitHub の [サインアップ][ghsignup] は無料です。
+3. Hugo の Web サイトを公開する準備ができているか、少なくとも [クイックスタート][Quick Start] を完了していること。
 
-## Types of GitHub Pages
+## GitHub Pages の種類 {#types-of-github-pages}
 
-There are two types of GitHub Pages:
+GitHub Pages には、以下の 2 種類あります。
 
-- User/Organization Pages (`https://<USERNAME|ORGANIZATION>.github.io/`)
-- Project Pages (`https://<USERNAME|ORGANIZATION>.github.io/<PROJECT>/`)
+- ユーザー/組織 のページ (`https://<USERNAME|ORGANIZATION>.github.io/`)
+- プロジェクト ページ (`https://<USERNAME|ORGANIZATION>.github.io/<PROJECT>/`)
 
-Please refer to the [GitHub Pages documentation][ghorgs] to decide which type of site you would like to create as it will determine which of the below methods to use.
+[GitHub Pages ドキュメント][ghorgs] を参照し、どの種類のサイトを作成するか決定してください。これにより、以下のどの方法を使用するかが決まります。
 
-## Branches for GitHub Actions
+## GitHub Actions 用ブランチ {#branches-for-github^actions}
 
-The GitHub Actions used in these instructions pull source content from the `main` branch and then commit the generated content to the `gh-pages` branch. This applies regardless of what type of GitHub Pages you are using. This is a clean setup as your Hugo files are stored in one branch and your generated files are published into a separate branch.
+この手順で使用する GitHub Actions は、`main` ブランチからソースのコンテンツを取得し、生成されたコンテンツを `gh-pages` ブランチにコミットします。これは、使用している GitHub Pages の種類に関係なく適用できます。 Hugo ファイルは 1 つのブランチに保存され、生成されたファイルは別のブランチに公開されるので、これはすっきりした設定です。
 
-## GitHub User or Organization Pages
+## ユーザーまたは組織の GitHub Pages {#github-user-or-organization-pages}
 
-As mentioned in the [GitHub Pages documentation][ghorgs], you can host a user/organization page in addition to project pages. Here are the key differences in GitHub Pages websites for Users and Organizations:
+[GitHub Pages ドキュメント][ghorgs] に記載されているように、プロジェクト ページに加えて、ユーザー/組織のページもホストできます。 GitHub Pages の ユーザー向け Web サイトと組織向け  Web サイトの主な違いは、以下のとおりです。
 
-1. You must create a repository named `<USERNAME>.github.io` or `<ORGANIZATION>.github.io` to host your pages
-2. By default, content from the `main` branch is used to publish GitHub Pages - rather than the `gh-pages` branch which is the default for project sites. However, the GitHub Actions in these instructions publish to the `gh-pages` branch. Therefore, if you are publishing GitHub pages for a user or organization, you will need to change the publishing branch to `gh-pages`. See the instructions later in this document.
+1. ページをホストするために、`<USERNAME>.github.io` または `<ORGANIZATION>.github.io` という名前のリポジトリを作成する必要があります
+2. デフォルトでは、GitHub Pages を公開する際にはプロジェクト サイトのデフォルトである `gh-pages` ブランチではなく、 `main` ブランチのコンテンツが使われます。しかし、この手順で紹介する GitHub Actions は、 `gh-pages` ブランチに公開されます。したがって、あるユーザーまたは組織のために GitHub Pages を公開するのなら、公開ブランチを `gh-pages` に変更する必要があります。 このドキュメントの後述する手順を参照してください。
 
-## Build Hugo With GitHub Action
+## GitHub Actions で Hugo をビルドする {#build-hugo-With-github-action}
 
-GitHub executes your software development workflows. Every time you push your code on the GitHub repository, GitHub Actions will build the site automatically.
+GitHub は、ソフトウェア開発のワークフローを実行します。 GitHub リポジトリにコードをプッシュするたびに、GitHub Actions が自動的にサイトをビルドします。
 
-Create a file in `.github/workflows/gh-pages.yml` containing the following content (based on [actions-hugo](https://github.com/marketplace/actions/hugo-setup)):
+([actions-hugo](https://github.com/marketplace/actions/hugo-setup) に基づく)、以下のコンテンツを含む `.github/workflows/gh-pages.yml` にファイルを作成します。
 
 ```yml
 name: github pages
@@ -67,7 +66,7 @@ name: github pages
 on:
   push:
     branches:
-      - main  # Set a branch to deploy
+      - main  # デプロイするブランチを設定します
   pull_request:
 
 jobs:
@@ -76,8 +75,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          submodules: true  # Fetch Hugo themes (true OR recursive)
-          fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+          submodules: true  # Hugo テーマをフェッチします (true または recursive)
+          fetch-depth: 0    # .GitInfo と .Lastmod のすべての履歴を取得します
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
@@ -96,23 +95,23 @@ jobs:
           publish_dir: ./public
 ```
 
-For more advanced settings [actions-hugo](https://github.com/marketplace/actions/hugo-setup) and [actions-gh-pages](https://github.com/marketplace/actions/github-pages-action).
+より詳細な設定は、[actions-hugo](https://github.com/marketplace/actions/hugo-setup) および [actions-gh-pages](https://github.com/marketplace/actions/github-pages-action) を参照してください。
 
-## GitHub pages setting
+## GitHub Pages の設定 {#github-pages-setting}
 
-By default, the GitHub action pushes the generated content to the `gh-pages` branch. This means GitHub has to serve your `gh-pages` branch as a GitHub Pages branch. You can change this setting by going to Settings > GitHub Pages, and change the source branch to `gh-pages`.
+デフォルトでは、GitHub Actions は、生成されたコンテンツを `gh-pages` ブランチにプッシュします。つまり、GitHub は `gh-pages` ブランチを GitHub Pages のブランチとして提供しなければなりません。この設定は、Settings > GitHub Pages で、ソースブランチを `gh-pages` に変更することで変更可能です。
 
-## Change baseURL in config.toml
+## config.toml の baseURL を変更する {#change-baseurl-in-configtoml}
 
-Don't forget to rename your `baseURL` in `config.toml` with the value `https://<USERNAME>.github.io` for your user repository or `https://<USERNAME>.github.io/<REPOSITORY_NAME>` for a project repository.
+また、`config.toml` の `baseURL` の名前を、ユーザー リポジトリの場合は `https://<USERNAME>.github.io` という値に、プロジェクト リポジトリの場合は `https://<USERNAME>.github.io/<REPOSITORY_NAME>` という値に変更することを忘れないでください。
 
-Unless this is present in your `config.toml`, your website won't work.
+この設定を `config.toml` に記述しない限り、Web サイトは動作しません。
 
-## Use a Custom Domain
+## カスタムドメインを使用する {#Use a Custom Domain
 
-If you'd like to use a custom domain for your GitHub Pages site, create a file `static/CNAME`. Your custom domain name should be the only contents inside `CNAME`. Since it's inside `static`, the published site will contain the CNAME file at the root of the published site, which is a requirement of GitHub Pages.
+GitHub Pages のサイトにカスタムドメインを使用したい場合は、`static/CNAME` ファイルを作成します。カスタムドメイン名は `CNAME` 内の唯一のコンテンツである必要があります。 `static` 内にあるため、GitHub Pages の要件である、公開されたサイトには公開されたサイトのルートに CNAME ファイルが含まれることになります。
 
-Refer to the [official documentation for custom domains][domains] for further information.
+詳細については、[「カスタムドメインの公式ドキュメント」][domains] を参照してください。
 
 [config]: /getting-started/configuration/
 [domains]: https://help.github.com/articles/using-a-custom-domain-with-github-pages/

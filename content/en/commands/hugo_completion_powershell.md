@@ -1,7 +1,7 @@
 ---
 title: "hugo completion powershell"
 slug: hugo_completion_powershell
-url: /commands/hugo_completion_powershell/
+# url: /commands/hugo_completion_powershell/
 ---
 ## hugo completion powershell
 

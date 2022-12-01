@@ -4,8 +4,8 @@ categories:
 - functions
 date: "2019-01-31"
 deprecated: false
-description: The `hugo` function provides easy access to Hugo-related data.
-draft: true
+description: "`hugo` 関数を使用すると、Hugo 関連のデータに簡単にアクセスできます。"
+draft: false
 hugoversion: null
 keywords: []
 linktitle: hugo
@@ -21,66 +21,66 @@ toc: null
 workson: []
 ---
 
-`hugo` returns an instance that contains the following functions:
+`hugo` は、以下の関数を含むインスタンスを返します。
 
 hugo.Generator
-: `<meta>` tag for the version of Hugo that generated the site. `hugo.Generator` outputs a *complete* HTML tag; e.g. `<meta name="generator" content="Hugo 0.99.1" />`
+: サイトを生成した Hugo のバージョンに対応する `<meta>` タグを出力します。 `hugo.Generator` は *完全な* HTML タグを出力します。 たとえば、 `<meta name="generator" content="Hugo 0.99.1" />` といった具合です。 
 
 hugo.Version
-: the current version of the Hugo binary you are using e.g. `0.99.1`
+: 使用している Hugo バイナリの現在のバージョンで、たとえば、 `0.99.1` です。
 
-hugo.GoVersion
-: returns the version of Go that the Hugo binary was built with. {{< new-in "0.101.0" >}}
+hugo.GoVersion {{< new-in "0.101.0" >}}
+: Hugo バイナリがビルドされたときの Go のバージョンを返します。
 
 hugo.Environment
-: the current running environment as defined through the `--environment` cli tag
+: `--environment` cli タグで定義された、現在実行中の環境です。
 
 hugo.CommitHash
-: the git commit hash of the current Hugo binary e.g. `0e8bed9ccffba0df554728b46c5bbf6d78ae5247`
+: 現在の Hugo バイナリの git コミットハッシュで、たとえば、 `0e8bed9ccffba0df554728b46c5bbf6d78ae5247` です。
 
 hugo.BuildDate
-: the compile date of the current Hugo binary formatted with RFC 3339 e.g. `2002-10-02T10:00:00-05:00`
+: RFC 3339 でフォーマットされた、現在の Hugo バイナリのコンパイル日で、たとえば、 `2002-10-02T10:00:05:00` です。
 
 hugo.IsExtended {{< new-in "0.83.0" >}}
-: whether this is the extended Hugo binary.
+: これが拡張版の Hugo バイナリであるかどうかを返します。
 
 hugo.IsProduction
-: returns true if `hugo.Environment` is set to the production environment
+: `hugo.Environment` が本番環境に設定されている場合、true を返します。
 
 {{% note "Use the Hugo Generator Tag" %}}
-We highly recommend using `hugo.Generator` in your website's `<head>`. `hugo.Generator` is included by default in all themes hosted on [themes.gohugo.io](https://themes.gohugo.io). The generator tag allows the Hugo team to track the usage and popularity of Hugo.
+Web サイトの `<head>` で `hugo.Generator` を使用することを強く推奨します。 `hugo.Generator` は、 [themes.gohugo.io](https://themes.gohugo.io) でホストされているすべてのテーマにデフォルトで含まれています。このジェネレーター タグによって、Hugo チームは Hugo の使用状況や人気を追跡できます。
 {{% /note %}}
 
 hugo.Deps
-: See [hugo.Deps](#hugodeps)
+: [hugo.Deps](#hugodeps) を参照してください。
 
 ## hugo.Deps
 
 {{< new-in "0.92.0" >}}
 
-`hugo.Deps` returns a list of dependencies for a project (either Hugo Modules or local theme components).
+`hugo.Deps` はプロジェクトの依存関係のリスト (Hugo モジュールまたはローカルテーマ コンポーネント) を返します。
 
-Each dependency contains:
+それぞれの依存関係には、以下が含まれます。
 
 Path (string)
-: Returns the path to this module. This will either be the module path, e.g. "github.com/gohugoio/myshortcodes", or the path below your /theme folder, e.g. "mytheme".
+: このモジュールへのパスを返します。これはモジュールのパス、たとえば "github.com/gohugoio/myshortcodes" か、あるいは /theme フォルダの下のパス、たとえば "mytheme" となります。
 
 Version (string)
-:  The module version.
+: モジュールのバージョンです。
 
 Vendor (bool)
-: Whether this dependency is vendored.
+: この依存関係がベンダー化されているかどうか。
 
 Time (time.Time)
-: Time version was created.
+: 作成された時間バージョンです。
 
 Owner
-: In the dependency tree, this is the first module that defines this module as a dependency.
+: 依存関係ツリーでは、このモジュールを依存関係として定義する最初のモジュールです。
 
 Replace (*Dependency)
-: Replaced by this dependency.
+: この依存関係に置き換えられました。
 
-An example table listing the dependencies:
+以下は、依存関係をリストした表の例です。
 
 ```html
  <h2>Dependencies</h2>

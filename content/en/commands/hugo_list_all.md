@@ -1,7 +1,7 @@
 ---
 title: "hugo list all"
 slug: hugo_list_all
-url: /commands/hugo_list_all/
+# url: /commands/hugo_list_all/
 ---
 ## hugo list all
 

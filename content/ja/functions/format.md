@@ -4,9 +4,8 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: Formats built-in Hugo dates---`.Date`, `.PublishDate`, and `.Lastmod`---according
-  to Go's layout string.
-draft: true
+description: 組み込みの Hugo の日付 (`Date`、`.PublishDate`、`.Lastmod`) を、Go のレイアウト文字列に従ってフォーマットします。
+draft: false
 hugoversion: null
 keywords:
 - dates
@@ -29,105 +28,105 @@ workson:
 - times
 ---
 
-`.Format` will format date values defined in your front matter and can be used as a property on the following [page variables][pagevars]:
+`.Format` はフロントマターで定義された日付の値をフォーマットし、以下の [ページ変数][pagevars] のプロパティとして使用できます。
 
 * `.PublishDate`
 * `.Date`
 * `.Lastmod`
 
-Assuming a key-value of `date: 2017-03-03` in a content file's front matter, your can run the date through `.Format` followed by a layout string for your desired output at build time:
+コンテンツファイルのフロントマターに `date: 2017-03-03` というキー値があると仮定すると、ビルド時に `.Format` を通して日付を実行し、レイアウト文字列を指定して希望する出力を行うことができます。
 
-```
+```go-html-template
 {{ .PublishDate.Format "January 2, 2006" }} => March 3, 2017
 ```
 
-For formatting *any* string representations of dates defined in your front matter, see the [`dateFormat` function][dateFormat], which will still leverage the Go layout string explained below but uses a slightly different syntax.
+フロントマターで定義された日付の *任意* の文字列表現をフォーマットするには、[`dateFormat` 関数][dateFormat] を参照してください。 これは、以下で説明する Go レイアウト文字列を引き続き利用しますが、少し異なる構文を使用します。
 
-## Go's Layout String
+## Go のレイアウト文字列 {#gos-layout-string}
 
-Hugo templates [format your dates][time] via layout strings that point to a specific reference time:
+Hugo テンプレートは、特定の参照時間を指すレイアウト文字列を介して [日付をフォーマット][time] します。
 
 ```
 Mon Jan 2 15:04:05 MST 2006
 ```
 
-While this may seem arbitrary, the numerical value of `MST` is `07`, thus making the layout string a sequence of numbers.
+これは恣意的に見えるかもしれませんが、`MST` の数値は `07` なので、レイアウト文字列は一連の数字になります。
 
-Here is a visual explanation [taken directly from the Go docs][gdex]:
+以下は、 [Go ドキュメントから直接引用した][gdex] 視覚的な説明です。
 
 ```
  Jan 2 15:04:05 2006 MST
 => 1 2  3  4  5    6  -7
 ```
 
-### Hugo Date and Time Templating Reference
+### Hugo の日付と時刻のテンプレートのリファレンス {#hugo-date-and-time-templating-reference}
 
-The following examples show the layout string followed by the rendered output.
+以下の例では、レイアウト文字列とそのレンダリングされた出力が表示されています。
 
-The examples were rendered and tested in [CST][] and all point to the same field in a content file's front matter:
+この例は、[CST][] でレンダリングとテストを行い、以下のような、すべてコンテンツファイルのフロントマターの同じフィールドを指しています。
 
 ```
 date: 2017-03-03T14:15:59-06:00
 ```
 
-`.Date` (i.e. called via [page variable][pagevars])
-: **Returns**: `2017-03-03 14:15:59 -0600 CST`
+`.Date` (つまり、[ページ変数][pagevars] を介して呼び出されます)
+: **戻り値**: `2017-03-03 14:15:59 -0600 CST`
 
 `"Monday, January 2, 2006"`
-: **Returns**: `Friday, March 3, 2017`
+: **戻り値**: `Friday, March 3, 2017`
 
 `"Mon Jan 2 2006"`
-: **Returns**: `Fri Mar 3 2017`
+: **戻り値**: `Fri Mar 3 2017`
 
 `"January 2006"`
-: **Returns**: `March 2017`
+: **戻り値**: `March 2017`
 
 `"2006-01-02"`
-: **Returns**: `2017-03-03`
+: **戻り値**: `2017-03-03`
 
 `"Monday"`
-: **Returns**: `Friday`
+: **戻り値**: `Friday`
 
 `"02 Jan 06 15:04 MST"` (RFC822)
-: **Returns**: `03 Mar 17 14:15 CST`
+: **戻り値**: `03 Mar 17 14:15 CST`
 
 `"02 Jan 06 15:04 -0700"` (RFC822Z)
-: **Returns**: `03 Mar 17 14:15 -0600`
+: **戻り値**: `03 Mar 17 14:15 -0600`
 
 `"Mon, 02 Jan 2006 15:04:05 MST"` (RFC1123)
-: **Returns**: `Fri, 03 Mar 2017 14:15:59 CST`
+: **戻り値**: `Fri, 03 Mar 2017 14:15:59 CST`
 
 `"Mon, 02 Jan 2006 15:04:05 -0700"` (RFC1123Z)
-: **Returns**: `Fri, 03 Mar 2017 14:15:59 -0600`
+: **戻り値**: `Fri, 03 Mar 2017 14:15:59 -0600`
 
-More examples can be found in Go's [documentation for the time package][timeconst].
+その他の例は、Go の [time パッケージのドキュメント][timeconst] で見つけることができます。
 
-### Cardinal Numbers and Ordinal Abbreviations
+### 基数と序数の略語 {#cardinal-numbers-and-ordinal-abbreviations}
 
-Spelled-out cardinal numbers (e.g. "one", "two", and "three") are not currently supported.
+スペルアウトされた (略すことなく字をつづった) 基数 (たとえば、"one"、"two"、"three") には、現在対応していません。
 
-Ordinal abbreviations (i.e., with shorted suffixes like "1st", "2nd", and "3rd") are not currently directly supported. By using `{{.Date.Format "Jan 2nd 2006"}}`, Hugo assumes you want to append `nd` as a string to the day of the month. However, you can chain functions together to create something like this:
+序数の略語 (つまり、"1st"、"2nd"、"3rd" といった短縮形のサフィックス) は、現在のところ直接的にはサポートされていません。 `{{.Date.Format "Jan 2nd 2006"}}` を使用すると、Hugo は月の日に文字列として `nd` を追加することを想定しています。 ただし、関数を連結して、以下のようなものを作成できます。
 
-```
+```go-html-template
 {{ .Date.Format "2" }}{{ if in (slice 1 21 31) .Date.Day}}st{{ else if in (slice 2 22) .Date.Day}}nd{{ else if in (slice 3 23) .Date.Day}}rd{{ else }}th{{ end }} of {{ .Date.Format "January 2006" }}
 ```
 
-This will output:
+上記のコードは、以下が出力されます。
 
 ```
 5th of March 2017
 ```
 
 
-### Use `.Local` and `.UTC`
+### `.Local` と `.UTC` を使用する {#use-local-and-utc}
 
-In conjunction with the [`dateFormat` function][dateFormat], you can also convert your dates to `UTC` or to local timezones:
+また、[`dateFormat` 関数][dateFormat] と組み合わせて、日付を `UTC` やローカル タイムゾーンに変換することもできます。
 
 `{{ dateFormat "02 Jan 06 15:04 MST" .Date.UTC }}`
-: **Returns**: `03 Mar 17 20:15 UTC`
+: **戻り値**: `03 Mar 17 20:15 UTC`
 
 `{{ dateFormat "02 Jan 06 15:04 MST" .Date.Local }}`
-: **Returns**: `03 Mar 17 14:15 CST`
+: **戻り値**: `03 Mar 17 14:15 CST`
 
 [CST]: https://en.wikipedia.org/wiki/Central_Time_Zone
 [dateFormat]: /functions/dateformat/

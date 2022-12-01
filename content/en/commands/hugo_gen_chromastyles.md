@@ -1,7 +1,7 @@
 ---
 title: "hugo gen chromastyles"
 slug: hugo_gen_chromastyles
-url: /commands/hugo_gen_chromastyles/
+# url: /commands/hugo_gen_chromastyles/
 ---
 ## hugo gen chromastyles
 

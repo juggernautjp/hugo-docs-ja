@@ -1,0 +1,7 @@
+# i18n/ja.yaml
+- id: see_also
+  translation: "関連項目"
+- id: read_more
+  translation: "続きを読む"
+- id: syntax
+  translation: "構文"

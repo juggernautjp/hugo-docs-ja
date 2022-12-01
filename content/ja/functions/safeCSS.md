@@ -4,8 +4,8 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: Declares the provided string as a known "safe" CSS string.
-draft: true
+description: 指定された文字列を、既知の「安全な」 CSS 文字列として宣言します。
+draft: false
 hugoversion: null
 keywords:
 - style
@@ -25,18 +25,18 @@ title: safeCSS
 workson: []
 ---
 
-In this context, *safe* means CSS content that matches any of the following:
+ここでいう *安全* とは、以下のいずれかに該当する CSS コンテンツを指します。
 
-1. The CSS3 stylesheet production, such as `p { color: purple }`.
-2. The CSS3 rule production, such as `a[href=~"https:"].foo#bar`.
-3. CSS3 declaration productions, such as `color: red; margin: 2px`.
-4. The CSS3 value production, such as `rgba(0, 0, 255, 127)`.
+1. `p { color: Purple }` のような CSS3 スタイルシートの生成。
+2. `a[href=~"https:"].foo#bar` のような CSS3 ルールの生成。
+3. `color: red; margin: 2px` のような CSS3 宣言の生成。
+4. `rgba(0, 0, 255, 127)` のような CSS3 値の生成。
 
-Example: Given `style = "color: red;"` defined in the front matter of your `.md` file:
+例: `.md` ファイルのフロントマターで定義された `style = "color: red;"` が与えられたとします。
 
 * <span class="good">`<p style="{{ .Params.style | safeCSS }}">…</p>` &rarr; `<p style="color: red;">…</p>`</span>
 * <span class="bad">`<p style="{{ .Params.style }}">…</p>` &rarr; `<p style="ZgotmplZ">…</p>`</span>
 
 {{% note "ZgotmplZ" %}}
-"ZgotmplZ" is a special value that indicates that unsafe content reached a CSS or URL context.
+"ZgotmplZ" は、安全でないコンテンツが CSS または URL コンテキストに到達したことを示す特別な値です。
 {{% /note %}}

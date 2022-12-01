@@ -4,9 +4,8 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: Allows for caching of partials that do not need to be re-rendered on
-  every invocation.
-draft: true
+description: 呼び出しごとに再レンダリングする必要のない部分テンプレートのキャッシュを可能にします。
+draft: false
 hugoversion: null
 keywords:
 - performance
@@ -23,29 +22,29 @@ title: partialCached
 workson: []
 ---
 
-The `partialCached` template function can offer significant performance gains for complex templates that don't need to be re-rendered on every invocation.
+`partialCached` テンプレート関数は、呼び出しのたびに再レンダリングする必要のない複雑なテンプレートのパフォーマンスを大幅に向上させることができます。
 
-**Note:** Each Site (or language) has its own `partialCached` cache, so each site will execute a partial once.
+**注意:** 各サイト (または言語) は独自の `partialCached` キャッシュがあるので、各サイトは一度だけパーシャルを実行することになります。
 
-Here is the simplest usage:
+最も簡単な使い方は、以下のとおりです。
 
-```
+```go-html-template
 {{ partialCached "footer.html" . }}
 ```
 
-You can also pass additional parameters to `partialCached` to create *variants* of the cached partial. For example, if you have a complex partial that should be identical when rendered for pages within the same section, you could use a variant based upon section so that the partial is only rendered once per section:
+追加のパラメータを `partialCached` に渡して、キャッシュされたパーシャルの *バリアント* を作成することもできます。 たとえば、同じセクション内のページに対してレンダリングされたときに同一である必要がある複雑なパーシャルがある場合、セクションに基づくバリアントを使用して、パーシャルがセクションごとに 1 回だけレンダリングされるようにすることができます。
 
 {{< code file="partial-cached-example.html" >}}
 {{ partialCached "footer.html" . .Section }}
 {{< /code >}}
 
-If you need to pass additional parameters to create unique variants, you can pass as many variant parameters as you need:
+一意のバリアントを作成するために追加のパラメータを渡す必要がある場合は、必要な数のバリアント パラメータを渡すことができます。
 
-```
+```go-html-template
 {{ partialCached "footer.html" . .Params.country .Params.province }}
 ```
 
-Note that the variant parameters are not made available to the underlying partial template. They are only use to create a unique cache key. Since Hugo `0.61.0` you can use any object as cache key(s), not just strings.
+バリアント パラメータは基本的な部分テンプレートでは利用できないことに注意してください。 これらは、一意なキャッシュキーを作成するためだけに使われます。 Hugo `0.61.0` 以降では、文字列だけでなく、任意のオブジェクトをキャッシュキーとして使用できます。
 
 
-> See also [The Full Partial Series Part 1: Caching!](https://regisphilibert.com/blog/2019/12/hugo-partial-series-part-1-caching-with-partialcached/)
+> ["The Full Partial Series Part 1: Caching!"](https://regisphilibert.com/blog/2019/12/hugo-partial-series-part-1-caching-with-partialcached/) も参照してください。

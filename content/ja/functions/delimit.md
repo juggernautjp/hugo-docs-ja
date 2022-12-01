@@ -4,9 +4,8 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: Loops through any array, slice, or map and returns a string of all the
-  values separated by a delimiter.
-draft: true
+description: 任意の配列、スライス、マップをループし、すべての値を区切り文字で区切った文字列を返します。
+draft: false
 hugoversion: null
 keywords:
 - iteration
@@ -26,17 +25,17 @@ workson:
 - terms
 ---
 
-`delimit` called in your template takes the form of
+テンプレートで呼び出される `delimit` は、以下のような形式をとります。
 
-```
+```go-html-template
 {{ delimit array/slice/map delimiter optionallastdelimiter}}
 ```
 
-`delimit` loops through any array, slice, or map and returns a string of all the values separated by a delimiter, the second argument in the function call. There is an optional third parameter that lets you choose a different delimiter to go between the last two values in the loop.
+`delimit` は任意の配列、スライス、またはマップをループして、すべての値を区切り文字 (関数呼び出しの第 2 引数) で区切った文字列を返します。 オプションの第 3 パラメータで、ループの最後の 2 つの値の間に別の区切り文字を指定できます。
 
-To maintain a consistent output order, maps will be sorted by keys and only a slice of the values will be returned.
+一貫した出力順序を維持するために、マップはキーでソートされ、値のスライスのみが返されます。
 
-The examples of `delimit` that follow all use the same front matter:
+以下の `delimit` の例では、すべて同じフロントマターを使用しています。
 
 {{< code file="delimit-example-front-matter.toml" nocopy="true" >}}
 +++
@@ -53,7 +52,7 @@ tags: [ "tag1", "tag2", "tag3" ]
 <p>Tags: tag1, tag2, tag3</p>
 {{< /output >}}
 
-Here is the same example but with the optional "last" delimiter:
+以下は同じ例ですが、オプションで「最後の」区切り文字を使用しています。
 
 {{< code file="delimit-page-tags-final-and-input.html" >}}
 Tags: {{ delimit .Params.tags ", " ", and " }}

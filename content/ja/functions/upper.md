@@ -4,8 +4,8 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: Converts all characters in a string to uppercase
-draft: true
+description: 文字列内のすべての文字を大文字に変換します。
+draft: false
 hugoversion: null
 keywords: []
 lastmod: "2017-02-01"
@@ -21,7 +21,7 @@ toc: null
 workson: []
 ---
 
-Note that `upper` can be applied in your templates in more than one way:
+`upper` は、以下のように、複数の方法でテンプレートに適用できることに注意してください。
 
 ```go-html-template
 {{ upper "BatMan" }} → "BATMAN"

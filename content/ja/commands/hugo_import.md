@@ -1,45 +1,58 @@
 ---
-draft: true
+categories:
+- commands
+aliases: []
+date: "2017-02-01"
+description: hugo import サブコマンドは、他からサイトをインポートします。
+lastmod: "2017-02-01"
+menu:
+  docs:
+    parent: commands
+    weight: 60
+publishdate: "2017-02-01"
+sections_weight: 60
+toc: false
+weight: 60
+draft: false
 slug: hugo_import
 title: hugo import
-url: /commands/hugo_import/
 ---
 ## hugo import
 
-Import your site from others.
+他からサイトをインポートします。
 
-### Synopsis
+### 概要 {#synopsis}
 
-Import your site from other web site generators like Jekyll.
+Jekyll などの他の Web サイト ジェネレーターからサイトをインポートします。
 
-Import requires a subcommand, e.g. `hugo import jekyll jekyll_root_path target_path`.
+インポートには、`hugo import jekyll jekyll_root_path target_path` のようなサブコマンドが必要です。
 
-### Options
+### オプション {#options}
 
-```
-  -h, --help   help for import
-```
-
-### Options inherited from parent commands
-
-```
-      --clock string               set the clock used by Hugo, e.g. --clock 2021-11-06T22:30:00.00+09:00
-      --config string              config file (default is path/config.yaml|json|toml)
-      --configDir string           config dir (default "config")
-      --debug                      debug output
-  -e, --environment string         build environment
-      --ignoreVendorPaths string   ignores any _vendor for module paths matching the given Glob pattern
-      --log                        enable Logging
-      --logFile string             log File path (if set, logging enabled automatically)
-      --quiet                      build in quiet mode
-  -s, --source string              filesystem path to read files relative from
-      --themesDir string           filesystem path to themes directory
-  -v, --verbose                    verbose output
-      --verboseLog                 verbose logging
+```bash
+  -h, --help   import サブコマンドのヘルプ
 ```
 
-### SEE ALSO
+### 親コマンドから継承されたオプション {#options-inherited-from-parent-commands}
 
-* [hugo](/commands/hugo/)	 - hugo builds your site
+```bash
+      --clock string               Hugo が使用する時計を設定します。たとえば、 --clock 2021-11-06T22:30:00.00+09:00
+      --config string              設定ファイル (デフォルトは、 path/config.yaml|json|toml)
+      --configDir string           設定ディレクトリ (デフォルトは、 "config")
+      --debug                      デバッグ出力
+  -e, --environment string         ビルド環境
+      --ignoreVendorPaths string   指定された Glob パターンに一致するモジュールパスの _vendor を無視します
+      --log                        ロギングを有効にします
+      --logFile string             ログファイルのパス (設定されている場合、ログが自動的に有効になります)
+      --quiet                      クワイエットモード (通知オフ) でビルドします
+  -s, --source string              ファイルの相対パスを読み取るファイルシステムのパス
+      --themesDir string           テーマディレクトリへのファイルシステムのパス
+  -v, --verbose                    詳細出力 (冗長表示)
+      --verboseLog                 詳細ログ出力
+```
+
+### 関連項目 {#see-also}
+
+* [hugo](/commands/hugo/)	 - あなたのサイトをビルド (構築) します
 * [hugo import jekyll](/commands/hugo_import_jekyll/)	 - hugo import from Jekyll
 

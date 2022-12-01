@@ -4,8 +4,8 @@ categories:
 - functions
 date: "2018-08-07"
 deprecated: false
-description: Returns a FileInfo structure describing a file or directory.
-draft: true
+description: ファイルまたはディレクトリを記述する FileInfo 構造体を返します。
+draft: false
 hugoversion: null
 keywords:
 - files
@@ -23,7 +23,7 @@ signature:
 title: os.Stat
 workson: []
 ---
-The `os.Stat` function attempts to resolve the path relative to the root of your project directory. If a matching file or directory is not found, it will attempt to resolve the path relative to the [`contentDir`]({{< relref "getting-started/configuration#contentdir">}}). A leading path separator (`/`) is optional.
+`o.Stat` 関数は、プロジェクト ディレクトリのルートからの相対パスを解決しようとします。 一致するファイルまたはディレクトリが見つからない場合は、[`contentDir`]({{< relref "getting-started/configuration#contentdir">}}) からの相対パスで解決しようとします。 先頭のパス区切り文字 (`/`) は省略可能です。
 
 ```go-html-template
 {{ $f := os.Stat "README.md" }}
@@ -36,4 +36,4 @@ The `os.Stat` function attempts to resolve the path relative to the root of your
 {{ $d.IsDir }}    --> true (bool)
 ```
 
-Details of the `FileInfo` structure are available in the [Go documentation](https://pkg.go.dev/io/fs#FileInfo).
+`FileInfo` 構造の詳細については、[Go ドキュメント](https://pkg.go.dev/io/fs#FileInfo) を参照してください。

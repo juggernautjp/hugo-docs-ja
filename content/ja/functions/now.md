@@ -4,8 +4,8 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: Returns the current local time
-draft: true
+description: 現在のローカルタイムを返します
+draft: false
 hugoversion: null
 keywords:
 - dates
@@ -25,32 +25,32 @@ title: now
 workson: []
 ---
 
-See [`time.Time`](https://godoc.org/time#Time).
+[`time.Time`](https://godoc.org/time#Time) を参照してください。
 
-For example, building your site on June 24, 2017, with the following templating:
+たとえば、以下のテンプレートを使用して、2017 年 6 月 24 日にサイトを構築するとします。
 
-```
+```go-html-template
 <div>
     <small>&copy; {{ now.Format "2006"}}</small>
 </div>
 ```
 
-would produce the following:
+上記のコードは、以下を生成します。
 
-```
+```html
 <div>
     <small>&copy; 2017</small>
 </div>
 ```
 
-The above example uses the [`.Format` function](/functions/format), which page includes a full listing of date formatting using Go's layout string.
+上記の例では、[`.Format`関数](/functions/format) を使用しています。このページには、Go のレイアウト文字列を使用した日付フォーマットの完全なリストが含まれています。
 
 {{% note %}}
-Older Hugo themes may still be using the obsolete Page’s `.Now` (uppercase with leading dot), which causes build error that looks like the following:
+古い Hugo テーマでは、廃止された Page の `.Now` (先頭にドットが付いた大文字) をまだ使用している可能性があり、以下のようなビルドエラーが発生します。
 
     ERROR ... Error while rendering "..." in "...": ...
     executing "..." at <.Now.Format>:
     can't evaluate field Now in type *hugolib.PageOutput
 
-Be sure to use `now` (lowercase with _**no**_ leading dot) in your templating.
+テンプレートには、必ず `now` (小文字で、先頭のドットが _**ない**_) を使用してください。
 {{% /note %}}

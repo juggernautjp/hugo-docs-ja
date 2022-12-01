@@ -3,8 +3,8 @@ aliases: []
 categories:
 - functions
 date: "2019-08-08"
-description: Returns the result of merging two or more maps.
-draft: true
+description: 2 つ以上のマップをマージした結果を返します。
+draft: false
 hugoversion: 0.56.0
 keywords:
 - dictionary
@@ -23,11 +23,11 @@ title: merge
 workson: []
 ---
 
-Returns the result of merging two or more maps from left to right. If a key already exists, `merge` updates its value. If a key is absent, `merge` inserts the value under the new key.
+2 つ以上のマップを左から右へマージした結果を返します。 キーがすでに存在する場合、 `merge` はその値を更新します。 キーが存在しない場合、 `merge` がその値を新しいキーの下に挿入します。
 
-Key handling is case-insensitive.
+キーの処理では、大文字と小文字が区別されません。
 
-The following examples use these map definitions:
+以下の例では、これらのマップ定義を使用しています。
 
 ```go-html-template
 {{ $m1 := dict "x" "foo" }}
@@ -35,7 +35,7 @@ The following examples use these map definitions:
 {{ $m3 := dict "x" "baz" "y" "wobble" "z" (dict "a" "huey") }}
 ```
 
-Example 1
+例 1
 
 ```go-html-template
 {{ $merged := merge $m1 $m2 $m3 }}
@@ -45,7 +45,7 @@ Example 1
 {{ $merged.z.a }} --> huey
 ```
 
-Example 2
+例 2
 
 ```go-html-template
 {{ $merged := merge $m3 $m2 $m1 }}
@@ -55,7 +55,7 @@ Example 2
 {{ $merged.z.a }} --> huey
 ```
 
-Example 3
+例 3
 
 ```go-html-template
 {{ $merged := merge $m2 $m3 $m1 }}
@@ -65,7 +65,7 @@ Example 3
 {{ $merged.z.a }} --> huey
 ```
 
-Example 4
+例 4
 
 ```go-html-template
 {{ $merged := merge $m1 $m3 $m2 }}
@@ -76,5 +76,5 @@ Example 4
 ```
 
 {{% note %}}
-Regardless of depth, merging only applies to maps. For slices, use [append]({{< ref "functions/append" >}}).
+深さに関係なく、マージはマップにのみ適用されます。 スライスの場合は、 [append]({{< ref "functions/append" >}}) を使ってください。
 {{% /note %}}

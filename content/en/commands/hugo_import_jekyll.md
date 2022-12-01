@@ -1,7 +1,7 @@
 ---
 title: "hugo import jekyll"
 slug: hugo_import_jekyll
-url: /commands/hugo_import_jekyll/
+# url: /commands/hugo_import_jekyll/
 ---
 ## hugo import jekyll
 

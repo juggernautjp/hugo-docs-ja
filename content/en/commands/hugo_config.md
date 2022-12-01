@@ -1,7 +1,7 @@
 ---
 title: "hugo config"
 slug: hugo_config
-url: /commands/hugo_config/
+# url: /commands/hugo_config/
 ---
 ## hugo config
 

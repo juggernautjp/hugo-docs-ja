@@ -1,7 +1,7 @@
 ---
 title: "hugo version"
 slug: hugo_version
-url: /commands/hugo_version/
+# url: /commands/hugo_version/
 ---
 ## hugo version
 

@@ -3,8 +3,7 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: Rebinds the context (`.`) within its scope and skips the block if the
-  variable is absent or empty.
+description: スコープ内でコンテキスト (`.`) を再バインドし、変数が存在しないか空の場合はブロックをスキップします。
 draft: false
 hugoversion: null
 keywords:
@@ -21,13 +20,13 @@ title: with
 workson: []
 ---
 
-An alternative way of writing an `if` statement and then referencing the same value is to use `with` instead. `with` rebinds the context (`.`) within its scope and skips the block if the variable is absent, unset or empty.
+`if` 文を書いた後に同じ値を参照する方法として、代わりに `with` を使用する方法があります。 `with` はそのスコープ内でコンテキスト (`.`) を再バインドし、変数が存在しないか、設定されていないか、または空の場合、ブロックをスキップします。
 
-The set of *empty* values is defined by [the Go templates package](https://golang.org/pkg/text/template/). Empty values include `false`, the number zero, and the empty string.
+*空の* 値のセットは、[Go テンプレート パッケージ](https://golang.org/pkg/text/template/) によって定義されます。 空の値には、 `false` 、数字のゼロ、空の文字列が含まれます。
 
-If you want to render a block if an index or key is present in a slice, array, channel or map, regardless of whether the value is empty, you should use [`isset`](/functions/isset) instead.
+インデックスまたはキーがスライス、配列、チャネル、またはマップに存在する場合にブロックをレンダリングする場合は、値が空であるかどうかに関係なく、代わりに [`isset`](/functions/isset) を使用する必要があります。
 
-The following example checks for a [user-defined site variable](/variables/site/) called `twitteruser`. If the key-value is not set, the following will render nothing:
+以下の例では、`twitteruser` という [ユーザー定義のサイト変数](/variables/site/) をチェックします。 キー/値 が設定されていない場合、以下は何もレンダリングしません。
 
 {{< code file="layouts/partials/twitter.html" >}}
 {{with .Site.Params.twitteruser}}<span class="twitter">

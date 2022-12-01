@@ -2,8 +2,8 @@
 categories:
 - functions
 date: "2021-10-08"
-description: Replaces path separators with slashes (`/`) and removes extraneous separators.
-draft: true
+description: パスのセパレーターをスラッシュ (`/`) に置き換え、不要なセパレーターを削除します。
+draft: false
 keywords:
 - path
 - clean
@@ -22,15 +22,15 @@ signature:
 title: path.Clean
 ---
 
-`path.Clean` replaces path separators with slashes (`/`) and removes extraneous separators, including trailing separators.
+`path.Clean` はパスのセパレーターをスラッシュ (`/`) に置き換え、末尾のセパレーターを含む不要なセパレーターを削除します。
 
-```
+```go-html-template
 {{ path.Clean "foo//bar" }} → "foo/bar"
 {{ path.Clean "/foo/bar/" }} → "/foo/bar"
 ```
 
-On a Windows system, if `.File.Path` is `foo\bar.md`, then:
+Windows システムで、`.File.Path` が `foobar.md` の場合、以下のようになります。
 
-```
+```go-html-template
 {{ path.Clean .File.Path }} → "foo/bar.md"
 ```

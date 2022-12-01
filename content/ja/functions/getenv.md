@@ -4,9 +4,8 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: Returns the value of an environment variable, or an empty string if the
-  environment variable is not set.
-draft: true
+description: 環境変数の値を返します。環境変数が設定されていない場合は、空文字列を返します。
+draft: false
 hugoversion: null
 keywords: []
 lastmod: "2021-11-26"
@@ -21,26 +20,26 @@ signature:
 title: getenv
 workson: []
 ---
-Examples:
+例:
 
 ```go-html-template
 {{ os.Getenv "HOME" }} --> /home/victor
 {{ os.Getenv "USER" }} --> victor
 ```
 
-You can pass values when building your site:
+以下のようにすると、サイトをビルドする際に値を渡すことができます。
 
 ```bash
 MY_VAR1=foo MY_VAR2=bar hugo
 
-OR
+# または
 
 export MY_VAR1=foo
 export MY_VAR2=bar
 hugo
 ```
 
-And then retrieve the values within a template:
+次に、テンプレート内の値を取得します。
 
 ```go-html-template
 {{ os.Getenv "MY_VAR1" }} --> foo

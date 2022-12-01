@@ -82,7 +82,7 @@ content
 
 [ページ変数](/variables/page/) も参照してください。
 
-{{< readfile file="/content/en/readfiles/sectionvars.md" markdown="true" >}}
+{{< readfile file="/content/ja/readfiles/sectionvars.md" markdown="true" >}}
 
 ## コンテンツセクションのリスト {#content-section-lists}
 

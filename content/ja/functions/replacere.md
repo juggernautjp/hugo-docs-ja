@@ -4,9 +4,8 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: Replaces all occurrences of a regular expression with the replacement
-  pattern.
-draft: true
+description: 正規表現のすべての出現箇所を置換パターンに置き換えます。
+draft: false
 hugoversion: null
 keywords:
 - regex
@@ -23,18 +22,17 @@ title: replaceRE
 workson: []
 ---
 
-`strings.ReplaceRE` returns a copy of `INPUT`, replacing all matches of the regular
-expression `PATTERN` with the replacement text `REPLACEMENT`.
-The number of replacements can be limited with an optional `LIMIT` parameter.
+`strings.ReplaceRE` は、正規表現 `PATTERN` にマッチするすべての部分を置換テキスト `REPLACEMENT` に置き換えた `INPUT` のコピーを返します。
+オプションの `LIMIT` パラメータで置換の回数を制限できます。
 
-```
+```go-html-template
 {{ replaceRE "^https?://([^/]+).*" "$1" "http://gohugo.io/docs" }}` → "gohugo.io"
 {{ "http://gohugo.io/docs" | replaceRE "^https?://([^/]+).*" "$1" }}` → "gohugo.io"
 {{ replaceRE "a+b" "X" "aabbaabbab" 1 }} → "Xbaabbab"
 ```
 
 {{% note %}}
-Hugo uses Go's [Regular Expression package](https://golang.org/pkg/regexp/), which is the same general syntax used by Perl, Python, and other languages but with a few minor differences for those coming from a background in PCRE. For a full syntax listing, see the [GitHub wiki for re2](https://github.com/google/re2/wiki/Syntax).
+Hugo は Go の [正規表現パッケージ](https://golang.org/pkg/regexp/) を使用しています。これは、Perl、Python、その他の言語で使用されている一般的な構文と同じですが、[PCRE](https://www.pcre.org/) [(Perl Compatible Regular Expressions)](https://qualysguard.qualys.com/qwebhelp/jp/fo_portal/module_pc/policies/regular_expression_symbols.htm) のバックグラウンドから来たものとは若干の違いがあります。 完全な構文リストは、[GitHub wiki for re2](https://github.com/google/re2/wiki/Syntax) を参照してください。
 
-If you are just learning RegEx, or at least Go's flavor, you can practice pattern matching in the browser at <https://regex101.com/>.
+RegEx、または少なくとも Go のフレーバーを学んでいる場合は、ブラウザの <https://regex101.com/> ページでパターン マッチングを練習できます。
 {{% /note %}}

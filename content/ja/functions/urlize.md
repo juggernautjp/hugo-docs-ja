@@ -3,9 +3,8 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: Takes a string, sanitizes it for usage in URLs, and converts spaces to
-  hyphens.
-draft: true
+description: 文字列を受け取り、URL で使用するためにサニタイズし、スペースをハイフンに変換します。
+draft: false
 hugoversion: null
 keywords:
 - urls
@@ -22,7 +21,7 @@ title: urlize
 workson: []
 ---
 
-The following examples pull from a content file with the following front matter:
+以下の例は、以下のフロントマターを持つコンテンツファイルから取り出したものです。
 
 {{< code file="content/blog/greatest-city.md" copy="false">}}
 +++
@@ -32,7 +31,7 @@ tags = ["pizza","beer","hot dogs"]
 +++
 {{< /code >}}
 
-The following might be used as a partial within a [single page template][singletemplate]:
+以下は、[シングルページ テンプレート][singletemplate] 内の部分テンプレートとして使用される可能性があります。
 
 {{< code file="layouts/partials/content-header.html" download="content-header.html" >}}
 <header>
@@ -40,7 +39,7 @@ The following might be used as a partial within a [single page template][singlet
     {{ with .Params.location }}
         <div><a href="/locations/{{ . | urlize}}">{{.}}</a></div>
     {{ end }}
-    <!-- Creates a list of tags for the content and links to each of their pages -->
+    <!-- コンテンツのタグのリストと各ページへのリンクを作成します -->
     {{ with .Params.tags }}
     <ul>
         {{range .}}
@@ -53,7 +52,7 @@ The following might be used as a partial within a [single page template][singlet
 </header>
 {{< /code >}}
 
-The preceding partial would then output to the rendered page as follows, assuming the page is being built with Hugo's default pretty URLs.
+ページが Hugo のデフォルトのプリティ URL でビルドされていると仮定すると、前述の部分テンプレートは以下のようにレンダリングしたページを出力します。
 
 {{< output file="/blog/greatest-city/index.html" >}}
 <header>

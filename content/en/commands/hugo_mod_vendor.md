@@ -1,7 +1,7 @@
 ---
 title: "hugo mod vendor"
 slug: hugo_mod_vendor
-url: /commands/hugo_mod_vendor/
+# url: /commands/hugo_mod_vendor/
 ---
 ## hugo mod vendor
 

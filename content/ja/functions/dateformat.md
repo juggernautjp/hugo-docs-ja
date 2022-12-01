@@ -3,7 +3,7 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: Converts a date/time to a localized string.
+description: 日付/時刻をローカライズされた文字列に変換します。
 draft: false
 hugoversion: null
 keywords:
@@ -26,33 +26,33 @@ title: time.Format
 workson: []
 ---
 
-`time.Format` (alias `dateFormat`) converts either a `time.Time` object (e.g. `.Date`) or a timestamp string `INPUT` into the format specified by the `LAYOUT` string.
+`time.Format` (別名 `dateFormat`) は、 `time.Time` オブジェクト (たとえば、 `.Date`) またはタイムスタンプ文字列 `INPUT` を `LAYOUT` 文字列で指定された形式に変換します。
 
 ```go-html-template
 {{ time.Format "Monday, Jan 2, 2006" "2015-01-21" }} → "Wednesday, Jan 21, 2015"
 ```
 
-Note that since Hugo 0.87.0, `time.Format` will return a localized string for the current language. {{< new-in "0.87.0" >}}
+Hugo 0.87.0 以降では、 `time.Format` は現在の言語用にローカライズされた文字列を返すことに注意してください。 {{< new-in "0.87.0" >}}
 
-The `LAYOUT` string can be either:
+`LAYOUT` 文字列は、以下のいずれかになります。
 
-* [Go’s Layout String](/functions/format/#gos-layout-string) to learn about how the `LAYOUT` string has to be formatted. There are also some useful examples.
-* A custom Hugo layout identifier (see full list below)
+* [Go のレイアウト文字列](/functions/format/#gos-layout-string) で `LAYOUT` 文字列がどのようにフォーマットしなければならないかを学びます。また、いくつかの有用な例もあります。
+* Hugo レイアウトのカスタム識別子 (以下の全リストを参照してください)。
 
-See the [`time` function](/functions/time/) to convert a timestamp string to a Go `time.Time` type value.
+タイムスタンプ文字列を Go の `time.Time` 型の値に変換するには、[`time` 関数](/functions/time/) を参照してください。
 
 
-## Date/time formatting layouts
+## 日付/時刻のフォーマット レイアウト {#datetime-formatting-layouts}
 
 {{< new-in "0.87.0" >}}
 
-Go's date layout strings can be hard to reason about, especially with multiple languages. Since Hugo 0.87.0 you can alternatively use some predefined layout identifiers that will output localized dates or times:
+Go の日付レイアウト文字列は、特に複数の言語を使用する場合、理由を説明するのが難しい場合があります。 Hugo 0.87.0 以降では、ローカライズされた日付または時刻を出力する定義済みのレイアウト識別子を代わりに使用できます。
 
 ```go-html-template
 {{ .Date | time.Format ":date_long" }}
 ```
 
-The full list of custom layouts with examples for English:
+以下は、英語版のカスタム レイアウトの全リストとサンプルです。
 
 * `:date_full` => `Wednesday, June 6, 2018`
 * `:date_long` => `June 6, 2018`

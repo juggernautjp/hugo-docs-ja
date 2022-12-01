@@ -5,8 +5,8 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: Looks up the index(es) or key(s) of the data structure passed into it.
-draft: true
+description: 渡されたデータ構造のインデックスまたはキーを検索します。
+draft: false
 hugoversion: null
 keywords: []
 lastmod: "2017-02-01"
@@ -24,7 +24,7 @@ title: index
 workson: []
 ---
 
-The `index` functions returns the result of indexing its first argument by the following arguments. Each indexed item must be a map or a slice, e.g.:
+`index` 関数は、最初の引数を以下の引数でインデックス付けした結果を返します。 インデックス付きの各アイテムは、マップまたはスライスである必要があります。 たとえば、以下のようです。
 
 ```go-text-template
 {{ $slice := slice "a" "b" "c" }}
@@ -33,7 +33,7 @@ The `index` functions returns the result of indexing its first argument by the f
 {{ index $map "b" }} => 200
 ```
 
-The function takes multiple indices as arguments, and this can be used to get nested values, e.g.:
+この関数は複数のインデックスを引数にとり、これを利用して、たとえば以下のように、ネストした値を得ることができます。
 
 ```go-text-template
 {{ $map := dict "a" 100 "b" 200 "c" (slice 10 20 30) }}
@@ -42,7 +42,7 @@ The function takes multiple indices as arguments, and this can be used to get ne
 {{ index $map "c" "e" }} => 20
 ```
 
-You may write multiple indices as a slice:
+以下のように、複数のインデックスをスライスとして書くことができます。
 
 ```go-text-template
 {{ $map := dict "a" 100 "b" 200 "c" (dict "d" 10 "e" 20) }}
@@ -50,9 +50,9 @@ You may write multiple indices as a slice:
 {{ index $map $slice }} => 20
 ```
 
-## Example: Load Data from a Path Based on Front Matter Params
+## 例: フロントマター パラメータに基づいて、パスからデータをロードする {#example-load-data-from-a-path-based-on-front-matter-params}
 
-Assume you want to add a `location = ""` field to your front matter for every article written in `content/vacations/`. You want to use this field to populate information about the location at the bottom of the article in your `single.html` template. You also have a directory in `data/locations/` that looks like the following:
+`content/vacations/` に書かれたすべての記事のフロントマターに `location = ""` フィールドを追加したいと仮定します。 このフィールドを使って、 `single.html` テンプレートの記事の一番下に場所に関する情報を入力したいと思います。 また、`data/locations/` には、以下のようなディレクトリがあります。
 
 ```
 .
@@ -64,7 +64,7 @@ Assume you want to add a `location = ""` field to your front matter for every ar
         └── provo.toml
 ```
 
-Here is an example:
+以下は、その一例です。
 
 {{< code-toggle file="data/locations/oslo" >}}
 website = "https://www.oslo.kommune.no"
@@ -72,34 +72,34 @@ pop_city = 658390
 pop_metro = 1717900
 {{< /code-toggle >}}
 
-The example we will use will be an article on Oslo, whose front matter should be set to exactly the same name as the corresponding file name in `data/locations/`:
+ここではオスロ (oslo) に関する記事を例にとり、そのフロントマターには `data/locations/` 内の対応するファイル名とまったく同じ名前を設定します。
 
-```
+```ini
 title = "My Norwegian Vacation"
 location = "oslo"
 ```
 
-The content of `oslo.toml` can be accessed from your template using the following node path: `.Site.Data.locations.oslo`. However, the specific file you need is going to change according to the front matter.
+`oslo.toml` のコンテンツには、`.Site.Data.locations.oslo` というノードパスを使用してテンプレートからアクセスできます 。 ただし、フロントマターによって、必要なファイルは変わってきます。
 
-This is where the `index` function is needed. `index` takes 2 parameters in this use case:
+そこで必要となるのが `index` 関数です。この使用例では、`index` は、以下の 2 つのパラメータを受け取ります。
 
-1. The node path
-2. A string corresponding to the desired data; e.g.&mdash;
+1. ノードパス
+2. 希望するデータに対応する文字列 (たとえば、&mdash;)
 
-```
+```go-html-template
 {{ index .Site.Data.locations “oslo” }}
 ```
 
-The variable for `.Params.location` is a string and can therefore replace `oslo` in the example above:
+`.Params.location` の変数は文字列なので、上記の例では `oslo` に置き換えることができます。
 
-```
+```go-html-template
 {{ index .Site.Data.locations .Params.location }}
 => map[website:https://www.oslo.kommune.no pop_city:658390 pop_metro:1717900]
 ```
 
-Now the call will return the specific file according to the location specified in the content's front matter, but you will likely want to write specific properties to the template. You can do this by continuing down the node path via dot notation (`.`):
+この呼び出しは、コンテンツのフロントマターで指定された場所に応じて特定のファイルを返しますが、おそらくテンプレートに特定のプロパティを書き込むことになるでしょう。そのためには、ドット記法（`.`）でノードパスを下に進むことで、これを行うことができます。
 
-```
+```go-html-template
 {{ (index .Site.Data.locations .Params.location).pop_city }}
 => 658390
 ```

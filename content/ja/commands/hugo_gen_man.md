@@ -1,49 +1,60 @@
 ---
-draft: true
+categories:
+- commands
+aliases: []
+date: "2017-02-01"
+description: hugo gen man サブコマンドは、Hugo CLI の man ページを生成します。
+lastmod: "2017-02-01"
+menu:
+  docs:
+    parent: commands
+    weight: 53
+publishdate: "2017-02-01"
+sections_weight: 53
+toc: false
+weight: 53
+draft: false
 slug: hugo_gen_man
 title: hugo gen man
-url: /commands/hugo_gen_man/
 ---
 ## hugo gen man
 
-Generate man pages for the Hugo CLI
+Hugo CLI の man ページを生成します
 
-### Synopsis
+### 概要 {#synopsis}
 
-This command automatically generates up-to-date man pages of Hugo's
-command-line interface.  By default, it creates the man page files
-in the "man" directory under the current directory.
+このコマンドは、Hugo のコマンドライン インターフェイスの最新のマニュアル (man) ページを自動的に生成します。 デフォルトでは、現在のディレクトリの下の "man" ディレクトリに man ページ ファイルが作成されます。
 
-```
+```bash
 hugo gen man [flags]
 ```
 
-### Options
+### オプション {#options}
 
-```
-      --dir string   the directory to write the man pages. (default "man/")
-  -h, --help         help for man
-```
-
-### Options inherited from parent commands
-
-```
-      --clock string               set the clock used by Hugo, e.g. --clock 2021-11-06T22:30:00.00+09:00
-      --config string              config file (default is path/config.yaml|json|toml)
-      --configDir string           config dir (default "config")
-      --debug                      debug output
-  -e, --environment string         build environment
-      --ignoreVendorPaths string   ignores any _vendor for module paths matching the given Glob pattern
-      --log                        enable Logging
-      --logFile string             log File path (if set, logging enabled automatically)
-      --quiet                      build in quiet mode
-  -s, --source string              filesystem path to read files relative from
-      --themesDir string           filesystem path to themes directory
-  -v, --verbose                    verbose output
-      --verboseLog                 verbose logging
+```bash
+      --dir string   man ページを書き込むディレクトリ (デフォルトは、 "man/")
+  -h, --help         man サブコマンドのヘルプ
 ```
 
-### SEE ALSO
+### 親コマンドから継承されたオプション {#options-inherited-from-parent-commands}
 
-* [hugo gen](/commands/hugo_gen/)	 - A collection of several useful generators.
+```bash
+      --clock string               Hugo が使用する時計を設定します。たとえば、 --clock 2021-11-06T22:30:00.00+09:00
+      --config string              設定ファイル (デフォルトは、 path/config.yaml|json|toml)
+      --configDir string           設定ディレクトリ (デフォルトは、 "config")
+      --debug                      デバッグ出力
+  -e, --environment string         ビルド環境
+      --ignoreVendorPaths string   指定された Glob パターンに一致するモジュールパスの _vendor を無視します
+      --log                        ロギングを有効にします
+      --logFile string             ログファイルのパス (設定されている場合、ログが自動的に有効になります)
+      --quiet                      クワイエットモード (通知オフ) でビルドします
+  -s, --source string              ファイルの相対パスを読み取るファイルシステムのパス
+      --themesDir string           テーマディレクトリへのファイルシステムのパス
+  -v, --verbose                    詳細出力 (冗長表示)
+      --verboseLog                 詳細ログ出力
+```
+
+### 関連項目 {#see-also}
+
+* [hugo gen](/commands/hugo_gen/)	 - いくつかの便利なジェネレーターのコレクションです
 

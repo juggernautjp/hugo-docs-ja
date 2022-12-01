@@ -4,9 +4,8 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: Returns a slice of a given string with all trailing characters contained
-  in the cutset removed.
-draft: true
+description: カットセットに含まれる末尾の文字をすべて削除した、文字列のスライスを返します。
+draft: false
 hugoversion: null
 keywords:
 - strings
@@ -23,10 +22,14 @@ title: strings.TrimRight
 workson: []
 ---
 
-Given the string `"abba"`, trailing `"a"`'s can be removed a follows:
+文字列 `"abba"` を指定すると、末尾の `"a"` を以下のように削除できます。
 
+```go-html-template
     {{ strings.TrimRight "a" "abba" }} → "abb"
+```
 
-Numbers can be handled as well:
+以下のように、数値も同様に処理できます。
 
+```go-html-template
     {{ strings.TrimRight 12 1221341221 }} → "122134"
+```

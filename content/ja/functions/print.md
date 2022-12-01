@@ -3,9 +3,8 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: Prints the default representation of the given arguments using the standard
-  `fmt.Print` function.
-draft: true
+description: 標準の `fmt.Print` 関数を使用して、指定された引数のデフォルト表現を出力します。
+draft: false
 hugoversion: null
 keywords:
 - strings
@@ -22,9 +21,9 @@ title: print
 workson: []
 ---
 
-See [the go doc](https://golang.org/pkg/fmt/) for additional information.
+詳細については、[go ドキュメント](https://golang.org/pkg/fmt/) を参照してください。
 
-```
+```go-html-template
 {{ print "foo" }} → "foo"
 {{ print "foo" "bar" }} → "foobar"
 {{ print (slice 1 2 3) }} → [1 2 3]

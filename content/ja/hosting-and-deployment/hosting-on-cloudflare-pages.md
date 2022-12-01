@@ -2,21 +2,20 @@
 categories:
 - hosting and deployment
 date: "2022-04-07"
-description: Cloudflare Pages can host your Hugo site with CDN, continuous deployment,
-  1-click HTTPS, an admin GUI, and its own environment variables.
-draft: true
-linktitle: Host on Cloudflare Pages
+description: Cloudflare Pages は、CDN、継続的デプロイ、ワンクリック HTTPS、管理 GUI、および独自の環境変数を使用して Hugo サイトをホストできます。
+draft: false
+linktitle: Cloudflare Pages でのホスト
 menu:
   docs:
     parent: hosting-and-deployment
     weight: 50
 publishdate: "2022-04-07"
 sections_weight: 50
-title: Host on Cloudflare Pages
+title: Cloudflare Pages でのホスト
 toc: true
 weight: 50
 ---
 
-You can host your Hugo site using [Cloudflare Pages](https://developers.cloudflare.com/pages/). Pages are super fast, always up-to-date, and deployed directly from your Git provider (currently supports only GitHub and GitLab).
+[Cloudflare Pages](https://developers.cloudflare.com/pages/) を使用して、Hugo サイトをホストできます。 ページは超高速で、常に最新の状態で、Git プロバイダーから直接デプロイされます (現在、GitHub と GitLab のみをサポートしています)。
 
-Cloudflare Pages has a handy tutorial on [how to deploy a Hugo site](https://developers.cloudflare.com/pages/framework-guides/deploy-a-hugo-site/).
+Cloudflare Pages には、 [「Hugo サイトのデプロイ方法」](https://developers.cloudflare.com/pages/framework-guides/deploy-a-hugo-site/) という便利なチュートリアルがあります。

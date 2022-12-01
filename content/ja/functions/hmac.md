@@ -4,8 +4,8 @@ categories:
 - functions
 date: "2020-05-29"
 deprecated: false
-description: Returns a cryptographic hash that uses a key to sign a message.
-draft: true
+description: 鍵を使ってメッセージに署名するための暗号化ハッシュを返します。
+draft: false
 hugoversion: null
 keywords:
 - hmac
@@ -25,9 +25,9 @@ title: hmac
 workson: []
 ---
 
-Set the `HASH_TYPE` argument to `md5`, `sha1`, `sha256`, or `sha512`.
+`HASH_TYPE` 引数に `md5`、`sha1`、`sha256`、または `sha512` を設定します。
 
-Set the optional `ENCODING` argument to either `hex` (default) or `binary`.
+オプションの `ENCODING` 引数に、 `hex` (デフォルト) または `binary` を設定します。
 
 ```go-html-template
 {{ hmac "sha256" "Secret key" "Secret message" }}

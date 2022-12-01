@@ -1,7 +1,7 @@
 ---
 title: "hugo mod npm"
 slug: hugo_mod_npm
-url: /commands/hugo_mod_npm/
+# url: /commands/hugo_mod_npm/
 ---
 ## hugo mod npm
 

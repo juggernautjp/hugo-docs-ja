@@ -4,9 +4,8 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: Allows setting a default value that can be returned if a first value
-  is not set.
-draft: true
+description: 最初の値が設定されていない場合に返されるデフォルト値を設定できます。
+draft: false
 hugoversion: null
 keywords:
 - defaults
@@ -15,7 +14,7 @@ menu:
   docs:
     parent: functions
 publishdate: "2017-02-01"
-qref: Returns a default value if a value is not set when checked.
+qref: チェックしたときに値が設定されていない場合は、デフォルト値を返します。
 relatedfuncs: []
 signature:
 - default DEFAULT INPUT
@@ -24,14 +23,14 @@ toc: null
 workson: []
 ---
 
-`default` checks whether a given value is set and returns a default value if it is not. *Set* in this context means different things depending on the data type:
+`default` は、指定された値が設定されているかどうかをチェックし、設定されていない場合はデフォルト値を返します。 このコンテキストでの *Set* は、データ型に応じて異なる意味を持ちます。
 
-* non-zero for numeric types and times
-* non-zero length for strings, arrays, slices, and maps
-* any boolean or struct value
-* non-nil for any other types
+* 数値型と時刻の場合は、非ゼロ
+* 文字列、配列、スライス、マップの長さが 0 でないこと
+* 任意のブール型または構造体型の値
+* その他の型の場合は、非ゼロ
 
-`default` function examples reference the following content page:
+`default` 関数の例は、以下のコンテンツページを参照しています。
 
 {{< code file="content/posts/default-function-example.md" >}}
 ---
@@ -44,50 +43,50 @@ newparam:
 ---
 {{< /code >}}
 
-`default` can be written in more than one way:
+`default` は、以下のように、複数の方法で記述できます。
 
 ```
 {{ index .Params "font" | default "Roboto" }}
 {{ default "Roboto" (index .Params "font") }}
 ```
 
-Both of the above `default` function calls return `Roboto`.
+上記の `default` 関数の呼び出しは両方とも `Roboto` を返します。
 
-A `default` value, however, does not need to be hard coded like the previous example. The `default` value can be a variable or pulled directly from the front matter using dot notation:
+ただし、`default` 値は前の例のようにハードコードする必要はありません。`default` 値は変数にすることもできますし、ドット記法を使ってフロントマターから直接取得することもできます。
 
 {{< code file="variable-as-default-value.html" nocopy="true" >}}
 {{$old := .Params.oldparam }}
 <p>{{ .Params.newparam | default $old }}</p>
 {{< /code >}}
 
-Which would return:
+上記のコードは、以下を返します。
 
-```
+```html
 <p>The default function helps make your templating DRYer.</p>
 ```
 
-And then using dot notation
+そして、ドット表記を使用した場合は、以下のようになり、
 
 {{< code file="dot-notation-default-value.html" >}}
 <title>{{ .Params.seo_title | default .Title }}</title>
 {{< /code >}}
 
-Which would return
+上記のコードは、以下を返します。
 
 {{< output file="dot-notation-default-return-value.html" >}}
 <title>Sane Defaults</title>
 {{< /output >}}
 
-The following have equivalent return values but are far less terse. This demonstrates the utility of `default`:
+以下は同等の戻り値を持っていますが、はるかに簡潔ではありません。 これは `default` の有用性を示しています。
 
-Using `if`:
+`if` を使用した場合:
 
 {{< code file="if-instead-of-default.html" nocopy="true" >}}
 <title>{{if .Params.seo_title}}{{.Params.seo_title}}{{else}}{{.Title}}{{end}}</title>
 => Sane Defaults
 {{< /code >}}
 
-Using `with`:
+`with` を使用した場合:
 
 {{< code file="with-instead-of-default.html" nocopy="true" >}}
 <title>{{with .Params.seo_title}}{{.}}{{else}}{{.Title}}{{end}}</title>

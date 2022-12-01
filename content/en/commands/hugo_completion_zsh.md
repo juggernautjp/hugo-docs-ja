@@ -1,7 +1,7 @@
 ---
 title: "hugo completion zsh"
 slug: hugo_completion_zsh
-url: /commands/hugo_completion_zsh/
+# url: /commands/hugo_completion_zsh/
 ---
 ## hugo completion zsh
 

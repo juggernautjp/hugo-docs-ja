@@ -4,8 +4,8 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: Takes a view to apply when rendering content.
-draft: true
+description: コンテンツのレンダリング時に、適用するビューを取得します。
+draft: false
 hugoversion: null
 keywords:
 - views
@@ -21,13 +21,13 @@ title: .Render
 workson: []
 ---
 
-The view is an alternative layout and should be a file name that points to a template in one of the locations specified in the documentation for [Content Views](/templates/views).
+ビューは代替レイアウトであり、[コンテンツビュー](/templates/views) のドキュメントで指定された場所のいずれかにあるテンプレートを指すファイル名にする必要があります。
 
-This function is only available when applied to a single piece of content within a [list context][].
+この関数は、[リスト コンテキスト][list context] 内の単一のコンテンツに適用された場合にのみ使用できます。
 
-This example could render a piece of content using the content view located at `/layouts/_default/summary.html`:
+以下の例では、`/layouts/_default/summary.html` にあるコンテンツビューを使用して、コンテンツの一部をレンダリングできます。
 
-```
+```go-html-template
 {{ range .Pages }}
     {{ .Render "summary"}}
 {{ end }}

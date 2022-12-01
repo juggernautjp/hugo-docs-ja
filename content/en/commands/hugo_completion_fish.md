@@ -1,7 +1,7 @@
 ---
 title: "hugo completion fish"
 slug: hugo_completion_fish
-url: /commands/hugo_completion_fish/
+# url: /commands/hugo_completion_fish/
 ---
 ## hugo completion fish
 

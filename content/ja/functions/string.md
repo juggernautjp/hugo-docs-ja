@@ -4,8 +4,8 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: Creates a string from the argument passed to the function
-draft: true
+description: 関数に渡された引数から文字列を作成します。
+draft: false
 hugoversion: null
 keywords:
 - strings

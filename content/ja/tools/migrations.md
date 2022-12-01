@@ -3,9 +3,8 @@ aliases:
 - /developer-tools/migrations/
 - /developer-tools/migrated/
 date: "2017-02-01"
-description: A list of community-developed tools for migrating from your existing
-  static site generator or content management system to Hugo.
-draft: true
+description: 既存の静的サイトジェネレーターやコンテンツ管理システムから Hugo に移行するための、コミュニティが開発したツールのリストです。
+draft: false
 keywords:
 - migrations
 - jekyll
@@ -14,81 +13,81 @@ keywords:
 - ghost
 - contentful
 lastmod: "2022-03-26"
-linktitle: Migrations
+linktitle: Hugo への移行
 menu:
   docs:
     parent: tools
     weight: 10
 publishdate: "2017-02-01"
 sections_weight: 10
-title: Migrate to Hugo
+title: Hugo への移行
 toc: true
 weight: 10
 ---
 
-This section highlights some projects around Hugo that are independently developed. These tools try to extend the functionality of our static site generator or help you to get started.
+このセクションでは、独自に開発された Hugo に関するいくつかのプロジェクトを取り上げます。 これらのツールは、静的サイトジェネレーターの機能を拡張したり、開始するのに役立ちます。
 
 {{% note %}}
-Do you know or maintain a similar project around Hugo? Feel free to open a [pull request](https://github.com/gohugoio/hugoDocs/pulls) on GitHub if you think it should be added.
+あなたは、Hugo に関する同様のプロジェクトを知っているか、維持していますか? 機能を追加する必要があると思われる場合は、GitHub で [プルリクエスト](https://github.com/gohugoio/hugoDocs/pulls) をオープンしてください。
 {{% /note %}}
 
-Take a look at this list of migration tools if you currently use other blogging tools like Jekyll or WordPress but intend to switch to Hugo instead. They'll take care to export your content into Hugo-friendly formats.
+現在、Jekyll や WordPress などの他のブログツールを使用していて、代わりに Hugo に切り替える予定がある場合は、この移行ツールのリストをご覧ください。 これらのツールは、あなたのコンテンツを Hugo に適した形式にエクスポートしてくれます。
 
 ## Jekyll
 
-Alternatively, you can use the new [Jekyll import command](/commands/hugo_import_jekyll/).
+または、新しい [Jekyll インポート コマンド](/commands/hugo_import_jekyll/) を使用できます。
 
-- [JekyllToHugo](https://github.com/fredrikloch/JekyllToHugo) - A Small script for converting Jekyll blog posts to a Hugo site.
-- [ConvertToHugo](https://github.com/coderzh/ConvertToHugo) - Convert your blog from Jekyll to Hugo.
+- [JekyllToHugo](https://github.com/fredrikloch/JekyllToHugo) - Jekyll のブログ投稿を Hugo のサイトに変換するための小さなスクリプトです。
+- [ConvertToHugo](https://github.com/coderzh/ConvertToHugo) - あなたのブログを Jekyll から Hugo に変換します。
 
 ## Ghost
 
-- [ghostToHugo](https://github.com/jbarone/ghostToHugo) - Convert Ghost blog posts and export them to Hugo.
+- [ghostToHugo](https://github.com/jbarone/ghostToHugo) - Ghost ブログの記事を変換し、Hugo にエクスポートします。
 
 ## Octopress
 
-- [octohug](https://github.com/codebrane/octohug) - Octopress to Hugo migrator.
+- [octohug](https://github.com/codebrane/octohug) - Octopress から Hugo への移行ツールです。
 
 ## DokuWiki
 
-- [dokuwiki-to-hugo](https://github.com/wgroeneveld/dokuwiki-to-hugo) - Migrates your DokuWiki source pages from [DokuWiki syntax](https://www.dokuwiki.org/wiki:syntax) to Hugo Markdown syntax. Includes extra's like the TODO plugin. Written with extensibility in mind using python 3. Also generates a TOML header for each page. Designed to copypaste the wiki directory into your /content directory.
+- [dokuwiki-to-hugo](https://github.com/wgroeneveld/dokuwiki-to-hugo) - DokuWiki のソースページを [DokuWiki 構文](https://www.dokuwiki.org/wiki:syntax) から Hugo Markdown 構文に移行します。TODO プラグインのような追加機能も含まれています。Python 3 を使用して、拡張性を念頭に置いて書かれています。また、各ページの TOML ヘッダも生成します。 wiki ディレクトリを /content ディレクトリにコピーペーストするように設計されています。
 
 ## WordPress
 
-- [wordpress-to-hugo-exporter](https://github.com/SchumacherFM/wordpress-to-hugo-exporter) - A one-click WordPress plugin that converts all posts, pages, taxonomies, metadata, and settings to Markdown and YAML which can be dropped into Hugo. (Note: If you have trouble using this plugin, you can [export your site for Jekyll](https://wordpress.org/plugins/jekyll-exporter/) and use Hugo's built in Jekyll converter listed above.)
-- [blog2md](https://github.com/palaniraja/blog2md) - Works with [exported xml](https://en.support.wordpress.com/export/) file of your free YOUR-TLD.wordpress.com website. It also saves approved comments to `YOUR-POST-NAME-comments.md` file along with posts.
-- [wordhugopress](https://github.com/nantipov/wordhugopress) - A small utility written in Java, exports the entire WordPress site from the database and resource (e.g. images) files stored locally or remotely. Therefore, migration from the backup files is possible. Supports merging of the multiple WordPress sites into a single Hugo one.
+- [wordpress-to-hugo-exporter](https://github.com/SchumacherFM/wordpress-to-hugo-exporter) - すべての投稿、ページ、タクソノミー、メタデータ、および設定を、Hugo にドロップできる、 Markdown および YAML に変換するワンクリック WordPress プラグインです。 (注意: このプラグインの使用に問題がある場合は、[サイトを Jekyll 用にエクスポート](https://wordpress.org/plugins/jekyll-exporter/) し、上記の Hugo の組み込み Jekyll コンバーターを使用できます。)
+- [blog2md](https://github.com/palaniraja/blog2md) - 無料の YOUR-TLD.wordpress.com の Web サイトから [エクスポートされた xml](https://en.support.wordpress.com/export/) ファイルを使って動作します。 また、承認されたコメントは、投稿と一緒に `YOUR-POST-NAME-comments.md` ファイルに保存されます。
+- [wordhugopress](https://github.com/nantipov/wordhugopress) - Java で書かれた小さなユーティリティで、ローカルまたはリモートで保存されたデータベースとリソース (画像など) ファイルから、WordPress サイト全体をエクスポートします。したがって、バックアップ ファイルからの移行が可能です。複数の WordPress サイトを 1 つの Hugo にマージすることをサポートします。
 
 ## Medium
 
-- [medium2md](https://github.com/gautamdhameja/medium-2-md) - A simple Medium to Hugo exporter able to import stories in one command, including Front Matter.
-- [medium-to-hugo](https://github.com/bgadrian/medium-to-hugo) - CLI tool written in Go to export medium posts into a Hugo compatible Markdown format. Tags and images are included. All images will be downloaded locally and linked appropriately.
+- [medium2md](https://github.com/gautamdhameja/medium-2-md) - フロントマターを含むストーリーを 1 コマンドでインポートできる、シンプルな Medium から Hugo エクスポートツールです。
+- [medium-to-hugo](https://github.com/bgadrian/medium-to-hugo) - 中程度の記事を Hugo 互換の Markdown 形式にエクスポートするための Go で書かれた CLI ツールです。 タグと画像は含まれています。すべての画像はローカルにダウンロードされ、適切にリンクされます。
 
 ## Tumblr
 
-- [tumblr-importr](https://github.com/carlmjohnson/tumblr-importr) - An importer that uses the Tumblr API to create a Hugo static site.
-- [tumblr2hugomarkdown](https://github.com/Wysie/tumblr2hugomarkdown) - Export all your Tumblr content to Hugo Markdown files with preserved original formatting.
-- [Tumblr to Hugo](https://github.com/jipiboily/tumblr-to-hugo) - A migration tool that converts each of your Tumblr posts to a content file with a proper title and path. Furthermore, "Tumblr to Hugo" creates a CSV file with the original URL and the new path on Hugo, to help you setup the redirections.
+- [tumblr-importr](https://github.com/carlmjohnson/tumblr-importr) - Tumblr API を使用して、Hugo の静的サイトを作成するインポートツールです。
+- [tumblr2hugomarkdown](https://github.com/Wysie/tumblr2hugomarkdown) - すべての Tumblr コンテンツを、元のフォーマットを保持したまま Hugo Markdown ファイルにエクスポートします。
+- [Tumblr to Hugo](https://github.com/jipiboily/tumblr-to-hugo) - Tumblr の各投稿を、適切なタイトルとパスを持つコンテンツファイルに変換する移行ツールです。さらに、"Tumblr to Hugo" は、リダイレクトの設定に役立つように、元の URL と Hugo 上の新しいパスが記載された CSV ファイルを作成します。
 
 ## Drupal
 
-- [drupal2hugo](https://github.com/danapsimer/drupal2hugo) - Convert a Drupal site to Hugo.
+- [drupal2hugo](https://github.com/danapsimer/drupal2hugo) - Drupal サイトを Hugo に変換します。
 
 ## Joomla
 
-- [hugojoomla](https://github.com/davetcc/hugojoomla) - This utility written in Java takes a Joomla database and converts all the content into Markdown files. It changes any URLs that are in Joomla's internal format and converts them to a suitable form.
+- [hugojoomla](https://github.com/davetcc/hugojoomla) - Java で書かれたこのユーティリティは、Joomla のデータベースを取り込み、すべてのコンテンツを Markdown ファイルに変換します。それは、 Joomla の内部形式であるすべての URL を変更し、それらを適切な形式に変換します。
 
 ## Blogger
 
-- [blogimport](https://github.com/natefinch/blogimport) - A tool to import from Blogger posts to Hugo.
-- [blogger-to-hugo](https://pypi.org/project/blogger-to-hugo/) - Another tool to import Blogger posts to Hugo. It also downloads embedded images so they will be stored locally.
-- [blog2md](https://github.com/palaniraja/blog2md) - Works with [exported xml](https://support.google.com/blogger/answer/41387?hl=en) file of your YOUR-TLD.blogspot.com website. It also saves comments to `YOUR-POST-NAME-comments.md` file along with posts.
-- [BloggerToHugo](https://github.com/huanlin/blogger-to-hugo) - Yet another tool to import Blogger posts to Hugo. For Windows platform only, and .NET Framework 4.5 is required. See README.md before using this tool.
+- [blogimport](https://github.com/natefinch/blogimport) - Blogger の記事を Hugo にインポートするツールです。
+- [blogger-to-hugo](https://pypi.org/project/blogger-to-hugo/) - Blogger の記事を Hugo にインポートするためのもう一つのツールです。埋め込み画像もダウンロードするので、ローカルに保存されます。
+- [blog2md](https://github.com/palaniraja/blog2md) - YOUR-TLD.blogspot.com の Web サイトの [エクスポートされた xml](https://support.google.com/blogger/answer/41387?hl=en) ファイルに対して動作します。また、投稿と一緒にコメントも `YOUR-POST-NAME-comments.md` ファイルに保存されます。
+- [BloggerToHugo](https://github.com/huanlin/blogger-to-hugo) - Blogger の記事を Hugo にインポートするための、もうひとつのツールです。 Windows プラットフォーム専用で、 .NET Framework 4.5 が必要です。 このツールを使用する前に、README.md を参照してください。
 
 ## Contentful
 
-- [contentful2hugo](https://github.com/ArnoNuyts/contentful2hugo) - A tool to create content-files for Hugo from content on [Contentful](https://www.contentful.com/).
+- [contentful2hugo](https://github.com/ArnoNuyts/contentful2hugo) - [Contentful](https://www.contentful.com/) のコンテンツから Hugo 用のコンテンツファイルを作成するツールです。
 
 ## BlogML
 
-- [BlogML2Hugo](https://github.com/jijiechen/BlogML2Hugo) - A tool that helps you convert BlogML xml file to Hugo Markdown files. Users need to take care of links to attachments and images by themselves. This helps the blogs that export BlogML files (e.g. BlogEngine.NET) transform to hugo sites easily.
+- [BlogML2Hugo](https://github.com/jijiechen/BlogML2Hugo) - BlogML の xml ファイルを Hugo Markdown ファイルに変換するためのツールです。 添付ファイルや画像へのリンクは、ユーザーが自分で処理する必要があります。 BlogML ファイルをエクスポートするブログ (BlogEngine.NET など) が簡単に Hugo サイトに変換できます。

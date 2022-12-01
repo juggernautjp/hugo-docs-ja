@@ -2,8 +2,8 @@
 categories:
 - functions
 date: "2019-12-18"
-description: Renders markup to HTML.
-draft: true
+description: マークアップを HTML にレンダリングします。
+draft: false
 keywords:
 - markdown
 - goldmark
@@ -18,17 +18,17 @@ title: .RenderString
 
 {{< new-in "0.62.0" >}}
 
-`.RenderString` is a method on `Page` that renders some markup to HTML using the content renderer defined for that page (if not set in the options).
+`.RenderString` は `Page` のメソッドで、(オプションで設定されていない場合) そのページで定義されたコンテンツ レンダラーを使って、マークアップを HTML にレンダリングします。
 
-The method takes an optional map argument with these options:
+このメソッドは、以下のオプションを持つオプションのマップ引数を取ります。
 
 display ("inline")
-: `inline` or `block`. If `inline` (default), surrounding `<p></p>` on short snippets will be trimmed.
+: `inline` または `block` です。 `inline` (デフォルト) の場合、短いスニペットの周囲の `<p></p>` がトリミングされます。
 
 markup (defaults to the Page's markup)
-: See identifiers in [List of content formats](/content-management/formats/#list-of-content-formats).
+: [「コンテンツフォーマットの一覧」](/content-management/formats/#list-of-content-formats) の識別子を参照してください。
 
-Some examples:
+以下に、いくつかの例を挙げます。
 
 ```go-html-template
 {{ $optBlock := dict "display" "block" }}
@@ -38,4 +38,4 @@ Some examples:
 {{  "/italic org mode/" | $p.RenderString  $optOrg }}
 ```
 
-{{< new-in "0.93.0" >}} **Note**: [markdownify](/functions/markdownify/) uses this function in order to support [Render Hooks](/getting-started/configuration-markup/#markdown-render-hooks).
+{{< new-in "0.93.0" >}} **注意**: [markdownify](/functions/markdownify/) は、[レンダーフック](/getting-started/configuration-markup/#markdown-render-hooks) をサポートするためにこの関数を使用します。

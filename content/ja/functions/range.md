@@ -4,8 +4,8 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: Iterates over a map, array, or slice.
-draft: true
+description: マップ、配列、スライスを反復処理します。
+draft: false
 hugoversion: null
 keywords:
 - iteration
@@ -22,6 +22,6 @@ title: range
 workson: []
 ---
 
-Just like in the Go programming language, Go and Hugo templates make heavy use of `range` to iterate over a map, array or slice. Other templating languages use a foreach for the equivalent functionality.
+Go プログラミング言語と同様に、Go や Hugo のテンプレートでは `range` を多用してマップや配列、スライスを反復処理します。他のテンプレート言語では、同等の機能を実現するために foreach を使用します。
 
-`range` is fundamental to templating in Hugo. (See the [Introduction to Hugo Templates](/templates/introduction/) for more examples.)
+`range` は、Hugo でのテンプレート作成の基本です。 (その他の例については、[Hugo テンプレート入門](/templates/introduction/) を参照してください。)

@@ -4,8 +4,8 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: Creates an absolute URL based on the configured baseURL.
-draft: true
+description: 設定された baseURL に基づいて、絶対 URL を作成します。
+draft: false
 hugoversion: null
 keywords:
 - urls
@@ -22,16 +22,16 @@ title: absURL
 workson: []
 ---
 
-Both `absURL` and `relURL` consider the configured value of `baseURL` in your site's [`config` file][configuration]. Given a `baseURL` set to `https://example.com/hugo/`:
+`absURL` と `relURL` の両方とも、サイトの [`config` ファイル][configuration] で設定された `baseURL` の値を考慮します。 `baseURL` に `https://example.com/hugo/` が設定されている場合は、以下のようになります。
 
-```
+```go-html-template
 {{ "mystyle.css" | absURL }} → "https://example.com/hugo/mystyle.css"
 {{ "mystyle.css" | relURL }} → "/hugo/mystyle.css"
 {{ "http://gohugo.io/" | relURL }} →  "http://gohugo.io/"
 {{ "http://gohugo.io/" | absURL }} →  "http://gohugo.io/"
 ```
 
-The last two examples may look strange but can be very useful. For example, the following shows how to use `absURL` in [JSON-LD structured data (SEO)][jsonld], where some of your images for a piece of content may or may not be hosted locally:
+最後の 2 つの例は奇妙に見えるかもしれませんが、非常に便利です。 たとえば、以下の例では、[JSON-LD 構造化データ (SEO)][jsonld] で `absURL` を使用する方法を示しています。 ここでは、コンテンツの一部の画像がローカルでホストされている場合とされていない場合があります。
 
 {{< code file="layouts/partials/schemaorg-metadata.html" download="schemaorg-metadata.html" >}}
 <script type="application/ld+json">
@@ -43,10 +43,10 @@ The last two examples may look strange but can be very useful. For example, the 
 </script>
 {{< /code >}}
 
-The above uses the [apply function][] and also exposes how the Go template parser JSON-encodes objects inside `<script>` tags. See [the safeJS template function][safejs] for examples of how to tell Hugo not to escape strings inside such tags.
+上記は [apply 関数][apply function] を使用しており、Go テンプレート パーサーが `<script>` タグ内のオブジェクトを JSON エンコードする方法も公開しています。 このようなタグ内の文字列をエスケープしないように Hugo に指示する方法の例については、[safeJS テンプレート関数][safejs] を参照してください。
 
 {{% note "Ending Slash" %}}
-`absURL` and `relURL` are smart about missing slashes, but they will *not* add a closing slash to a URL if it is not present.
+`absURL` と `relURL` はスラッシュの欠落をスマートに処理しますが、URL に終了スラッシュがない場合は、終了スラッシュを *追加しません*。
 {{% /note %}}
 
 [apply function]: /functions/apply/

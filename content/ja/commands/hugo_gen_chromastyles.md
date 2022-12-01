@@ -1,51 +1,65 @@
 ---
-draft: true
+categories:
+- commands
+aliases: []
+date: "2017-02-01"
+description: hugo gen chromastyles サブコマンドは、 Chroma コード ハイライター用の CSS スタイルシートを生成します。
+lastmod: "2017-02-01"
+menu:
+  docs:
+    parent: commands
+    weight: 51
+publishdate: "2017-02-01"
+sections_weight: 51
+toc: false
+weight: 51
+draft: false
 slug: hugo_gen_chromastyles
 title: hugo gen chromastyles
-url: /commands/hugo_gen_chromastyles/
 ---
 ## hugo gen chromastyles
 
-Generate CSS stylesheet for the Chroma code highlighter
+Chroma コード ハイライター用の CSS スタイルシートを生成します
 
-### Synopsis
+### 概要 {#synopsis}
 
-Generate CSS stylesheet for the Chroma code highlighter for a given style. This stylesheet is needed if markup.highlight.noClasses is disabled in config.
+特定のスタイルの Chroma コード ハイライターの CSS スタイルシートを生成します。 
+設定で markup.highlight.noClasses が無効になっている場合、このスタイルシートが必要です。
 
-See https://xyproto.github.io/splash/docs/all.html for a preview of the available styles
+利用可能なスタイルのプレビューについては、https://xyproto.github.io/splash/docs/all.html を参照してください。
 
-```
+```bash
 hugo gen chromastyles [flags]
 ```
 
-### Options
+### オプション {#options}
 
-```
-  -h, --help                    help for chromastyles
-      --highlightStyle string   style used for highlighting lines (see https://github.com/alecthomas/chroma) (default "bg:#ffffcc")
-      --linesStyle string       style used for line numbers (see https://github.com/alecthomas/chroma)
-      --style string            highlighter style (see https://xyproto.github.io/splash/docs/) (default "friendly")
-```
-
-### Options inherited from parent commands
-
-```
-      --clock string               set the clock used by Hugo, e.g. --clock 2021-11-06T22:30:00.00+09:00
-      --config string              config file (default is path/config.yaml|json|toml)
-      --configDir string           config dir (default "config")
-      --debug                      debug output
-  -e, --environment string         build environment
-      --ignoreVendorPaths string   ignores any _vendor for module paths matching the given Glob pattern
-      --log                        enable Logging
-      --logFile string             log File path (if set, logging enabled automatically)
-      --quiet                      build in quiet mode
-  -s, --source string              filesystem path to read files relative from
-      --themesDir string           filesystem path to themes directory
-  -v, --verbose                    verbose output
-      --verboseLog                 verbose logging
+```bash
+  -h, --help                    chromastyles サブコマンドのヘルプ
+      --highlightStyle string   行のハイライト表示に使われるスタイル (https://github.com/alecthomas/chroma を参照) (デフォルトは、 "bg:#ffffcc")
+      --linesStyle string       行番号に使用されるスタイル (https://github.com/alecthomas/chroma を参照)
+      --style string            ハイライターのスタイル (https://xyproto.github.io/splash/docs/ を参照) (デフォルトは、 "friendly")
 ```
 
-### SEE ALSO
+### 親コマンドから継承されたオプション {#options-inherited-from-parent-commands}
 
-* [hugo gen](/commands/hugo_gen/)	 - A collection of several useful generators.
+```bash
+      --clock string               sHugo が使用する時計を設定します。たとえば、 --clock 2021-11-06T22:30:00.00+09:00
+      --config string              設定ファイル (デフォルトは、 path/config.yaml|json|toml)
+      --configDir string           設定ディレクトリ (デフォルトは、 "config")
+      --debug                      デバッグ出力
+  -e, --environment string         ビルド環境
+      --ignoreVendorPaths string   指定された Glob パターンに一致するモジュールパスの _vendor を無視します
+      --log                        ロギングを有効にします
+      --logFile string             ログファイルのパス (設定されている場合、ログが自動的に有効になります)
+      --quiet                      クワイエットモード (通知オフ) でビルドします
+  -s, --source string              ファイルの相対パスを読み取るファイルシステムのパス
+      --themesDir string           テーマディレクトリへのファイルシステムのパス
+  -v, --verbose                    詳細出力 (冗長表示)
+      --verboseLog                 詳細ログ出力
+```
+
+### 関連項目 {#see-also}
+
+* [hugo gen](/commands/hugo_gen/)	 - いくつかの便利なジェネレーターのコレクションです
 
