@@ -1,9 +1,9 @@
 {
   "count": {
-    "draft": 406,
-    "notdraft": 106,
-    "total": 512,
-    "ratio": 20.703125
+    "draft": 213,
+    "notdraft": 300,
+    "total": 513,
+    "ratio": 58.47953
   },
   "paths": {
     "files": [
@@ -48,204 +48,209 @@
         "draft": false
       },
       {
+        "path": "content\\ja\\commands\\_index.md",
+        "title": "Hugo コマンドについて",
+        "draft": false
+      },
+      {
         "path": "content\\ja\\commands\\hugo.md",
-        "title": "hugo",
+        "title": "hugo (cli)",
         "draft": false
       },
       {
         "path": "content\\ja\\commands\\hugo_completion.md",
         "title": "hugo completion",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\commands\\hugo_completion_bash.md",
         "title": "hugo completion bash",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\commands\\hugo_completion_fish.md",
         "title": "hugo completion fish",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\commands\\hugo_completion_powershell.md",
         "title": "hugo completion powershell",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\commands\\hugo_completion_zsh.md",
         "title": "hugo completion zsh",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\commands\\hugo_config.md",
         "title": "hugo config",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\commands\\hugo_config_mounts.md",
         "title": "hugo config mounts",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\commands\\hugo_convert.md",
         "title": "hugo convert",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\commands\\hugo_convert_toJSON.md",
         "title": "hugo convert toJSON",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\commands\\hugo_convert_toTOML.md",
         "title": "hugo convert toTOML",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\commands\\hugo_convert_toYAML.md",
         "title": "hugo convert toYAML",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\commands\\hugo_deploy.md",
         "title": "hugo deploy",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\commands\\hugo_env.md",
         "title": "hugo env",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\commands\\hugo_gen.md",
         "title": "hugo gen",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\commands\\hugo_gen_chromastyles.md",
         "title": "hugo gen chromastyles",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\commands\\hugo_gen_doc.md",
         "title": "hugo gen doc",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\commands\\hugo_gen_man.md",
         "title": "hugo gen man",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\commands\\hugo_import.md",
         "title": "hugo import",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\commands\\hugo_import_jekyll.md",
         "title": "hugo import jekyll",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\commands\\hugo_list.md",
         "title": "hugo list",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\commands\\hugo_list_all.md",
         "title": "hugo list all",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\commands\\hugo_list_drafts.md",
         "title": "hugo list drafts",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\commands\\hugo_list_expired.md",
         "title": "hugo list expired",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\commands\\hugo_list_future.md",
         "title": "hugo list future",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\commands\\hugo_mod.md",
         "title": "hugo mod",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\commands\\hugo_mod_clean.md",
         "title": "hugo mod clean",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\commands\\hugo_mod_get.md",
         "title": "hugo mod get",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\commands\\hugo_mod_graph.md",
         "title": "hugo mod graph",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\commands\\hugo_mod_init.md",
         "title": "hugo mod init",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\commands\\hugo_mod_npm.md",
         "title": "hugo mod npm",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\commands\\hugo_mod_npm_pack.md",
         "title": "hugo mod npm pack",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\commands\\hugo_mod_tidy.md",
         "title": "hugo mod tidy",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\commands\\hugo_mod_vendor.md",
         "title": "hugo mod vendor",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\commands\\hugo_mod_verify.md",
         "title": "hugo mod verify",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\commands\\hugo_new.md",
         "title": "hugo new",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\commands\\hugo_new_site.md",
         "title": "hugo new site",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\commands\\hugo_new_theme.md",
         "title": "hugo new theme",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\commands\\hugo_server.md",
         "title": "hugo server",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\commands\\hugo_version.md",
         "title": "hugo version",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\content-management\\_index.md",
@@ -279,7 +284,7 @@
       },
       {
         "path": "content\\ja\\content-management\\formats.md",
-        "title": "コンテンツ形式",
+        "title": "コンテンツフォーマット",
         "draft": false
       },
       {
@@ -374,13 +379,13 @@
       },
       {
         "path": "content\\ja\\contribute\\development.md",
-        "title": "Contribute to Hugo Development",
-        "draft": true
+        "title": "Hugo の開発に貢献する",
+        "draft": false
       },
       {
         "path": "content\\ja\\contribute\\documentation.md",
-        "title": "Contribute to the Hugo Docs",
-        "draft": true
+        "title": "Hugo ドキュメントに貢献する",
+        "draft": false
       },
       {
         "path": "content\\ja\\contribute\\i18n.md",
@@ -389,8 +394,8 @@
       },
       {
         "path": "content\\ja\\contribute\\themes.md",
-        "title": "Add Your Hugo Theme to the Showcase",
-        "draft": true
+        "title": "Hugo テーマをショーケースに追加する",
+        "draft": false
       },
       {
         "path": "content\\ja\\documentation.md",
@@ -405,7 +410,7 @@
       {
         "path": "content\\ja\\functions\\RenderString.md",
         "title": ".RenderString",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\_index.md",
@@ -415,67 +420,67 @@
       {
         "path": "content\\ja\\functions\\abslangurl.md",
         "title": "absLangURL",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\absurl.md",
         "title": "absURL",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\adddate.md",
         "title": ".AddDate",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\after.md",
         "title": "after",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\anchorize.md",
         "title": "anchorize",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\append.md",
         "title": "append",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\apply.md",
         "title": "apply",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\base64.md",
         "title": "base64",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\chomp.md",
         "title": "chomp",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\complement.md",
         "title": "complement",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\cond.md",
         "title": "cond",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\countrunes.md",
         "title": "countrunes",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\countwords.md",
         "title": "countwords",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\dateformat.md",
@@ -485,47 +490,47 @@
       {
         "path": "content\\ja\\functions\\default.md",
         "title": "default",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\delimit.md",
         "title": "delimit",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\dict.md",
         "title": "dict",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\echoparam.md",
         "title": "echoParam",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\emojify.md",
         "title": "emojify",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\eq.md",
         "title": "eq",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\errorf.md",
-        "title": "errorf and warnf",
-        "draft": true
+        "title": "errorf と warnf",
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\fileExists.md",
         "title": "fileExists",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\findRe.md",
         "title": "findRE",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\first.md",
@@ -535,82 +540,82 @@
       {
         "path": "content\\ja\\functions\\float.md",
         "title": "float",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\format.md",
         "title": ".Format",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\ge.md",
         "title": "ge",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\get.md",
         "title": ".Get",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\getenv.md",
         "title": "getenv",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\group.md",
         "title": "group",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\gt.md",
         "title": "gt",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\hasPrefix.md",
         "title": "hasprefix",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\hasmenucurrent.md",
         "title": ".HasMenuCurrent",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\highlight.md",
         "title": "highlight",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\hmac.md",
         "title": "hmac",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\htmlEscape.md",
         "title": "htmlEscape",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\htmlUnescape.md",
         "title": "htmlUnescape",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\hugo.md",
         "title": "hugo",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\humanize.md",
         "title": "humanize",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\i18n.md",
         "title": "i18n",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\images\\index.md",
@@ -620,27 +625,27 @@
       {
         "path": "content\\ja\\functions\\in.md",
         "title": "in",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\index-function.md",
         "title": "index",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\int.md",
         "title": "int",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\intersect.md",
         "title": "intersect",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\ismenucurrent.md",
         "title": ".IsMenuCurrent",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\isset.md",
@@ -650,12 +655,12 @@
       {
         "path": "content\\ja\\functions\\jsonify.md",
         "title": "jsonify",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\lang.Merge.md",
         "title": "lang.Merge",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\lang.md",
@@ -665,32 +670,32 @@
       {
         "path": "content\\ja\\functions\\last.md",
         "title": "last",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\le.md",
         "title": "le",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\len.md",
         "title": "len",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\lower.md",
         "title": "lower",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\lt.md",
         "title": "lt",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\markdownify.md",
         "title": "markdownify",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\math.md",
@@ -700,27 +705,27 @@
       {
         "path": "content\\ja\\functions\\md5.md",
         "title": "md5",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\merge.md",
         "title": "merge",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\ne.md",
         "title": "ne",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\now.md",
         "title": "now",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\os.Stat.md",
         "title": "os.Stat",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\param.md",
@@ -730,137 +735,137 @@
       {
         "path": "content\\ja\\functions\\partialCached.md",
         "title": "partialCached",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\path.Base.md",
         "title": "path.Base",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\path.BaseName.md",
         "title": "path.BaseName",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\path.Clean.md",
         "title": "path.Clean",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\path.Dir.md",
         "title": "path.Dir",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\path.Ext.md",
         "title": "path.Ext",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\path.Join.md",
         "title": "path.Join",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\path.Split.md",
         "title": "path.Split",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\plainify.md",
         "title": "plainify",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\pluralize.md",
         "title": "pluralize",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\print.md",
         "title": "print",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\printf.md",
         "title": "printf",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\println.md",
         "title": "println",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\querify.md",
         "title": "querify",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\range.md",
         "title": "range",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\readdir.md",
         "title": "readDir",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\readfile.md",
         "title": "readFile",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\ref.md",
         "title": "ref",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\reflect.IsMap.md",
         "title": "reflect.IsMap",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\reflect.IsSlice.md",
         "title": "reflect.IsSlice",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\relLangURL.md",
         "title": "relLangURL",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\relref.md",
         "title": "relref",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\relurl.md",
         "title": "relURL",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\render.md",
         "title": ".Render",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\replace.md",
         "title": "replace",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\replacere.md",
         "title": "replaceRE",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\safeCSS.md",
         "title": "safeCSS",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\safeHTML.md",
@@ -870,187 +875,187 @@
       {
         "path": "content\\ja\\functions\\safeHTMLAttr.md",
         "title": "safeHTMLAttr",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\safeJS.md",
         "title": "safeJS",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\safeURL.md",
         "title": "safeURL",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\scratch.md",
         "title": ".Scratch",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\seq.md",
         "title": "seq",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\sha.md",
         "title": "sha",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\shuffle.md",
         "title": "shuffle",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\singularize.md",
         "title": "singularize",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\site.md",
         "title": "site",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\slice.md",
         "title": "slice",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\slicestr.md",
         "title": "slicestr",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\sort.md",
         "title": "sort",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\split.md",
         "title": "split",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\string.md",
         "title": "string",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\strings.Count.md",
         "title": "strings.Count",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\strings.HasSuffix.md",
         "title": "strings.HasSuffix",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\strings.Repeat.md",
         "title": "strings.Repeat",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\strings.RuneCount.md",
         "title": "strings.RuneCount",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\strings.TrimLeft.md",
         "title": "strings.TrimLeft",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\strings.TrimPrefix.md",
         "title": "strings.TrimPrefix",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\strings.TrimRight.md",
         "title": "strings.TrimRight",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\strings.TrimSuffix.md",
         "title": "strings.TrimSuffix",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\substr.md",
         "title": "substr",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\symdiff.md",
         "title": "symdiff",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\templates.Exists.md",
         "title": "templates.Exists",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\time.md",
         "title": "time",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\title.md",
         "title": "title",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\transform.Unmarshal.md",
         "title": "transform.Unmarshal",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\trim.md",
         "title": "trim",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\truncate.md",
         "title": "truncate",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\union.md",
         "title": "union",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\uniq.md",
         "title": "uniq",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\unix.md",
         "title": ".Unix",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\upper.md",
         "title": "upper",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\urlize.md",
         "title": "urlize",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\urls.Parse.md",
         "title": "urls.Parse",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\where.md",
         "title": "where",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\functions\\with.md",
@@ -1104,68 +1109,68 @@
       },
       {
         "path": "content\\ja\\hosting-and-deployment\\deployment-with-rclone.md",
-        "title": "Deployment with Rclone",
-        "draft": true
+        "title": "Rclone を使ったデプロイメント",
+        "draft": false
       },
       {
         "path": "content\\ja\\hosting-and-deployment\\deployment-with-rsync.md",
-        "title": "Deployment with Rsync",
-        "draft": true
+        "title": "Rsync を使ったデプロイメント",
+        "draft": false
       },
       {
         "path": "content\\ja\\hosting-and-deployment\\hosting-on-21yunbox.md",
-        "title": "Host on 21YunBox",
-        "draft": true
+        "title": "21YunBox  でのホスト",
+        "draft": false
       },
       {
         "path": "content\\ja\\hosting-and-deployment\\hosting-on-aws-amplify.md",
-        "title": "Host on AWS Amplify",
-        "draft": true
+        "title": "AWS Amplify でのホスト",
+        "draft": false
       },
       {
         "path": "content\\ja\\hosting-and-deployment\\hosting-on-azure-static-web-apps.md",
-        "title": "Hosting on Azure Static Web Apps",
-        "draft": true
+        "title": "Azure Static Web Apps でのホスティング",
+        "draft": false
       },
       {
         "path": "content\\ja\\hosting-and-deployment\\hosting-on-cloudflare-pages.md",
-        "title": "Host on Cloudflare Pages",
-        "draft": true
+        "title": "Cloudflare Pages でのホスト",
+        "draft": false
       },
       {
         "path": "content\\ja\\hosting-and-deployment\\hosting-on-firebase.md",
-        "title": "Host on Firebase",
-        "draft": true
+        "title": "Firebase でのホスト",
+        "draft": false
       },
       {
         "path": "content\\ja\\hosting-and-deployment\\hosting-on-github.md",
-        "title": "Host on GitHub",
-        "draft": true
+        "title": "GitHub でのホスト",
+        "draft": false
       },
       {
         "path": "content\\ja\\hosting-and-deployment\\hosting-on-gitlab.md",
-        "title": "Host on GitLab",
-        "draft": true
+        "title": "GitLab でのホスト",
+        "draft": false
       },
       {
         "path": "content\\ja\\hosting-and-deployment\\hosting-on-keycdn.md",
-        "title": "Host on KeyCDN",
-        "draft": true
+        "title": "KeyCDN でのホスト",
+        "draft": false
       },
       {
         "path": "content\\ja\\hosting-and-deployment\\hosting-on-netlify.md",
-        "title": "Host on Netlify",
-        "draft": true
+        "title": "Netlify でのホスト",
+        "draft": false
       },
       {
         "path": "content\\ja\\hosting-and-deployment\\hosting-on-render.md",
-        "title": "Host on Render",
-        "draft": true
+        "title": "Render でのホスト",
+        "draft": false
       },
       {
         "path": "content\\ja\\hosting-and-deployment\\hugo-deploy.md",
-        "title": "Hugo Deploy",
-        "draft": true
+        "title": "Hugo デプロイ",
+        "draft": false
       },
       {
         "path": "content\\ja\\hugo-modules\\_index.md",
@@ -2145,17 +2150,17 @@
       {
         "path": "content\\ja\\readfiles\\index.md",
         "title": "",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\readfiles\\pages-vs-site-pages.md",
         "title": "",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\readfiles\\sectionvars.md",
         "title": "",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\showcase\\1password-support\\bio.md",
@@ -2384,12 +2389,12 @@
       },
       {
         "path": "content\\ja\\templates\\introduction.md",
-        "title": "Introduction to Hugo Templating",
+        "title": "Hugo テンプレート入門",
         "draft": false
       },
       {
         "path": "content\\ja\\templates\\lists.md",
-        "title": "Lists of Content in Hugo",
+        "title": "Hugo のコンテンツリスト",
         "draft": false
       },
       {
@@ -2399,7 +2404,7 @@
       },
       {
         "path": "content\\ja\\templates\\menu-templates.md",
-        "title": "Menu Templates",
+        "title": "メニューテンプレート",
         "draft": false
       },
       {
@@ -2409,7 +2414,7 @@
       },
       {
         "path": "content\\ja\\templates\\pagination.md",
-        "title": "Pagination",
+        "title": "ページ付け",
         "draft": false
       },
       {
@@ -2419,17 +2424,17 @@
       },
       {
         "path": "content\\ja\\templates\\render-hooks.md",
-        "title": "Markdown Render Hooks",
+        "title": "Markdown レンダーフック",
         "draft": false
       },
       {
         "path": "content\\ja\\templates\\robots.md",
-        "title": "Robots.txt File",
+        "title": "Robots.txt ファイル",
         "draft": false
       },
       {
         "path": "content\\ja\\templates\\rss.md",
-        "title": "RSS Templates",
+        "title": "RSS テンプレート",
         "draft": false
       },
       {
@@ -2449,22 +2454,22 @@
       },
       {
         "path": "content\\ja\\templates\\sitemap-template.md",
-        "title": "Sitemap Templates",
+        "title": "サイトマップ テンプレート",
         "draft": false
       },
       {
         "path": "content\\ja\\templates\\taxonomy-templates.md",
-        "title": "Taxonomy Templates",
+        "title": "タクソノミー テンプレート",
         "draft": false
       },
       {
         "path": "content\\ja\\templates\\template-debugging.md",
-        "title": "Template Debugging",
+        "title": "テンプレートのデバッグ",
         "draft": false
       },
       {
         "path": "content\\ja\\templates\\views.md",
-        "title": "Content View Templates",
+        "title": "コンテンツビュー テンプレート",
         "draft": false
       },
       {
@@ -2474,33 +2479,33 @@
       },
       {
         "path": "content\\ja\\tools\\editors.md",
-        "title": "Editor Plug-ins for Hugo",
-        "draft": true
+        "title": "Hugo 用エディター プラグイン",
+        "draft": false
       },
       {
         "path": "content\\ja\\tools\\frontends.md",
-        "title": "Frontend Interfaces with Hugo",
-        "draft": true
+        "title": "Hugo とのフロントエンド インターフェイス",
+        "draft": false
       },
       {
         "path": "content\\ja\\tools\\migrations.md",
-        "title": "Migrate to Hugo",
-        "draft": true
+        "title": "Hugo への移行",
+        "draft": false
       },
       {
         "path": "content\\ja\\tools\\other.md",
-        "title": "Other Hugo Community Projects",
-        "draft": true
+        "title": "その他の Hugo コミュニティ プロジェクト",
+        "draft": false
       },
       {
         "path": "content\\ja\\tools\\search.md",
-        "title": "Search for your Hugo Website",
-        "draft": true
+        "title": "Hugo の Web サイトを検索する",
+        "draft": false
       },
       {
         "path": "content\\ja\\tools\\starter-kits.md",
-        "title": "Starter Kits",
-        "draft": true
+        "title": "スターターキット",
+        "draft": false
       },
       {
         "path": "content\\ja\\troubleshooting\\_index.md",
@@ -2509,13 +2514,13 @@
       },
       {
         "path": "content\\ja\\troubleshooting\\build-performance.md",
-        "title": "Build Performance",
-        "draft": true
+        "title": "ビルド性能",
+        "draft": false
       },
       {
         "path": "content\\ja\\troubleshooting\\faq.md",
-        "title": "Frequently Asked Questions",
-        "draft": true
+        "title": "よくある質問",
+        "draft": false
       },
       {
         "path": "content\\ja\\variables\\_index.md",
@@ -2524,13 +2529,13 @@
       },
       {
         "path": "content\\ja\\variables\\files.md",
-        "title": "File Variables",
-        "draft": true
+        "title": "ファイル変数",
+        "draft": false
       },
       {
         "path": "content\\ja\\variables\\git.md",
-        "title": "Git Info Variables",
-        "draft": true
+        "title": "GIt Info 変数",
+        "draft": false
       },
       {
         "path": "content\\ja\\variables\\menus.md",
@@ -2539,33 +2544,33 @@
       },
       {
         "path": "content\\ja\\variables\\page.md",
-        "title": "Page Variables",
+        "title": "ページ変数",
         "draft": false
       },
       {
         "path": "content\\ja\\variables\\pages.md",
-        "title": "Pages Methods",
-        "draft": true
+        "title": "ページメソッド",
+        "draft": false
       },
       {
         "path": "content\\ja\\variables\\shortcodes.md",
-        "title": "Shortcode Variables",
-        "draft": true
+        "title": "ショートコード変数",
+        "draft": false
       },
       {
         "path": "content\\ja\\variables\\site.md",
-        "title": "Site Variables",
+        "title": "サイト変数",
         "draft": false
       },
       {
         "path": "content\\ja\\variables\\sitemap.md",
-        "title": "Sitemap Variables",
-        "draft": true
+        "title": "サイトマップ変数",
+        "draft": false
       },
       {
         "path": "content\\ja\\variables\\taxonomy.md",
-        "title": "Taxonomy Variables",
-        "draft": true
+        "title": "タクソノミー変数",
+        "draft": false
       }
     ]
   }

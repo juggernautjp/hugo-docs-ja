@@ -38,7 +38,7 @@ User-agent: *
 
 ## Robots.txt テンプレートの検索順序 {#robotstxt-template-lookup-order}
 
-内部テンプレートは、カスタムテンプレートで上書きできます。Hugoは、このルックアップ順序を使用してテンプレートを選択します。
+内部テンプレートは、カスタムテンプレートで上書きできます。Hugo は、この検索順序を使用してテンプレートを選択します。
 
 1. `/layouts/robots.txt`
 2. `/themes/<THEME>/layouts/robots.txt`
