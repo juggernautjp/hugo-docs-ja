@@ -40,6 +40,9 @@ Issue 機能は使えないようです。
 
 本プロジェクトの問題は、本家、[gohugoio/hugoDocs](https://github.com/gohugoio/hugoDocs) の Issue に投稿しないようにお願いします。
 
+本サイトで公開した日本語訳において、誤字脱字や誤訳などを見つけた場合は、下記 Qiita の記事のコメント欄か、直接、私宛てにメールで連絡してください。
+
+- Qiita、[Hugo ドキュメント (日本語訳) を公開しました](https://qiita.com/juggernautjp/items/07496d0c2fa1f592f548)
 
 
 ## 本プロジェクトの GitHub リポジトリ
