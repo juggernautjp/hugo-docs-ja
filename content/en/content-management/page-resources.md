@@ -1,17 +1,15 @@
 ---
-title : "Page Resources"
-description : "Page resources -- images, other pages, documents, etc. -- have page-relative URLs and their own metadata."
-date: 2018-01-24
-categories: ["content management"]
+title: Page Resources
+linkTitle: Page Resources
+description: Page resources -- images, other pages, documents, etc. -- have page-relative URLs and their own metadata.
+categories: [content management]
 keywords: [bundle,content,resources]
-weight: 4003
-draft: false
-toc: true
-linktitle: "Page Resources"
 menu:
   docs:
-    parent: "content-management"
-    weight: 31
+    parent: content-management
+    weight: 80
+toc: true
+weight: 80
 ---
 Page resources are only accessible from [page bundles]({{< relref
 "/content-management/page-bundles" >}}), those directories with `index.md` or
@@ -44,8 +42,6 @@ content
 
 ResourceType
 : The main type of the resource's [Media Type](/templates/output-formats/#media-types). For example, a file of MIME type `image/jpeg` has the ResourceType `image`. A `Page` will have `ResourceType` with value `page`.
-
-{{< new-in "0.80.0" >}} Note that we in Hugo `v0.80.0` fixed a bug where non-image resources (e.g. video) would return the MIME sub type, e.g. `json`.
 
 Name
 : Default value is the filename (relative to the owning page). Can be set in front matter.

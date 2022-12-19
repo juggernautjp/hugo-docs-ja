@@ -16,30 +16,31 @@ title: Markdown レンダーフック
 toc: true
 ---
 
-{{< new-in "0.62.0" >}} これは、 [Goldmark](/getting-started/configuration-markup#goldmark) レンダラーでのみサポートされていることに注意してください。
+これは、 [Goldmark](/getting-started/configuration-markup#goldmark) レンダラーでのみサポートされていることに注意してください。
 
 `layouts/_default/_markup` にベース名 `render-{kind}` を持つテンプレートを作成することで、HTML へのデフォルトの Markdown レンダリングの特定の部分をオーバーライドできます。
 
-また、たとえば `layouts/blog/_markup` のように、`layouts/[type/section]/_markup` にタイプ/セクション固有のフックを作成することもできます。 {{< new-in "0.71.0" >}}
+また、たとえば `layouts/blog/_markup` のように、`layouts/[type/section]/_markup` にタイプ/セクション固有のフックを作成することもできます。
 
 現在サポートされているフックの種類は、以下のとおりです。
 
 * `image`
 * `link`
-* `heading` {{< new-in "0.71.0" >}}
+* `heading`
 * `codeblock`{{< new-in "0.93.0" >}}
 
 必要に応じて、[出力形式](/templates/output-formats) および [言語](/content-management/multilingual/) 固有のテンプレートを定義できます。 `layouts` フォルダーは、以下のようになります。
 
 ```goat { class="black f7" }
-layouts
-└── _default
-    └── _markup
+layouts/
+└── _default/
+    └── _markup/
+        ├── render-codeblock-bash.html
+        ├── render-codeblock.html
+        ├── render-heading.html
         ├── render-image.html
         ├── render-image.rss.xml
         └── render-link.html
-        └── render-codeblock.html
-        └── render-codeblock-bash.html
 ```
 
 上記のいくつかの使用例には、以下があります。
@@ -85,8 +86,17 @@ Text
 PlainText
 : 上記のプレーンテキストのバリアントです。
 
-Attributes (map) {{< new-in "0.82.0" >}}
-: 属性のマップ (たとえば、 `id`、`class`) です。
+Attributes (map) 
+: 属性のマップ (たとえば、 `id`、`class`) です。現在、リンクの場合、これは常に空であることに注意してください。
+
+また、`render-image` テンプレートは、以下のコンテキストも受け取ることになります。
+
+IsBlock {{< new-in "0.108.0" >}}
+: これがスタンドアロン画像で、設定オプション [markup.goldmark.parser.wrapStandAloneImageWithinParagraph](/getting-started/configuration-markup/#goldmark) が無効になっている場合は true を返します。
+
+Ordinal  {{< new-in "0.108.0" >}}
+: 現在のドキュメントに含まれるすべての画像のゼロから始まる序数。
+
 
 ### タイトル付きリンク Markdown の例 {#link-with-title-markdown-example}
 

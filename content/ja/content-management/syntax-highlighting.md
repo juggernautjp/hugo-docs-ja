@@ -16,12 +16,11 @@ keywords:
 menu:
   docs:
     parent: content-management
-    weight: 300
+    weight: 240
 publishdate: "2017-02-01"
-sections_weight: 20
 title: シンタックスハイライト
 toc: true
-weight: 20
+weight: 240
 ---
 
 Hugo は [Chroma](https://github.com/alecthomas/chroma) をコード ハイライターとして使用します。 これは Go で構築されており、非常に高速です。また、最も重要な部分については、以前使用していた Pygments と互換性があります。
@@ -142,8 +141,6 @@ func GetTitleFunc(style string) func(s string) string {
 }
 ```
 
-{{< new-in "0.60.0" >}} なお、 `hl_lines` のような属性を渡すことをサポートしているのは Goldmark だけであり、空白を含まないことが重要です。詳しくは、[goldmark-highlighting](https://github.com/yuin/goldmark-highlighting) を参照してください。
-
 オプションは `linenos=false` を含む [ハイライト ショートコード](/content-management/syntax-highlighting/#highlight-shortcode) と同じですが、Markdown 属性の構文がわずかに異なることに注意してください。
 
 ## Chroma ハイライト言語の一覧 {#list-of-chroma-highlighting-languages}
@@ -151,11 +148,3 @@ func GetTitleFunc(style string) func(s string) string {
 以下は、Chroma レキサーとそのエイリアスの完全なリストです (これは、`highlight` テンプレート関数やコードフェンスでハイライト表示を行う際に使用する識別子です)。
 
 {{< chroma-lexers >}}
-
-[Prism]: https://prismjs.com
-[prismdownload]: https://prismjs.com/download.html
-[Highlight.js]: https://highlightjs.org/
-[Rainbow]: https://craig.is/making/rainbows
-[Syntax Highlighter]: https://alexgorbatchev.com/SyntaxHighlighter/
-[Google Prettify]: https://github.com/google/code-prettify
-[Yandex]: https://yandex.ru/

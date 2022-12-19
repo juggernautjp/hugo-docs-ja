@@ -26,9 +26,7 @@ Hugo Snap パッケージを使用している場合、Babel とプラグイン�
 
 ### 設定 {#config}
 
-{{< new-in "v0.75.0" >}}
-
-Hugo `v0.75` では、JS の設定と依存関係を解決する方法を改善しました。その一つは、Babel や同様のツールを実行する際に、メインプロジェクトの `node_modules` を `NODE_PATH` に追加するようになったことです。この領域では Babel との間で既知の [問題](https://github.com/babel/babel/issues/5618) があるので、(プロジェクト自体ではなく) Hugo モジュールに `babel.config.js` を作成している場合は、プリセット/プラグインをロードするために `require` を使うことをお勧めします。たとえば、以下のように指定します。
+Babel や同様のツールを実行する際に、メインプロジェクトの `node_modules` を `NODE_PATH` に追加しています。この領域では Babel との間で既知の [問題](https://github.com/babel/babel/issues/5618) があるので、(プロジェクト自体ではなく) Hugo モジュールに `babel.config.js` を作成している場合は、プリセット/プラグインをロードするために `require` を使うことをお勧めします。たとえば、以下のように指定します。
 
 
 ```js

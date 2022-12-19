@@ -351,7 +351,7 @@ The following example is contrived but demonstrates the concept. Assume you have
 
 ## ショートコードでのエラー処理 {#error-handling-in-shortcodes}
 
-[error](/functions/errorf) テンプレート関数と [.Position](/variables/shortcodes/) 変数を使用して、ショートコードで有用なエラーメッセージを取得できます。
+[errorf](/functions/errorf) テンプレート関数と [.Position](/variables/shortcodes/) 変数を使用して、ショートコードで有用なエラーメッセージを取得できます。
 
 ```bash
 {{ with .Get "name" }}
@@ -372,9 +372,7 @@ ERROR 2018/11/07 10:05:55 missing value for param name: "/Users/bep/dev/go/gohug
 
 ## インライン ショートコード {#inline-shortcodes}
 
-{{< new-in "0.52" >}}
-
-Hugo 0.52 以降、ショートコードをインラインで、たとえば、コンテンツ ファイル内でそれらを使用する場所で、実装できます。これは、1 か所だけで必要なスクリプト作成に役立ちます。
+ショートコードをインラインで、たとえば、コンテンツファイル内でそれらを使用する場所で、実装できます。これは、1 か所だけで必要なスクリプト作成に役立ちます。
 
 この機能はデフォルトで無効になっていますが、以下のようなサイト設定で有効にすることができます:
 

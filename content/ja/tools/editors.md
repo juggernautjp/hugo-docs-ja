@@ -35,7 +35,7 @@ Hugo コミュニティでは、さまざまな好みのツールを使用して
 * [Hugo Language and Syntax Support](https://marketplace.visualstudio.com/items?itemName=budparr.language-hugo-vscode). Hugo Language and Syntax Support は、Hugo のシンタックスハイライトとスニペットのための Visual Studio Code 用のプラグインです。ソースコードは、[こちら](https://github.com/budparr/language-hugo-vscode) にあります。
 * [Hugo Themer](https://marketplace.visualstudio.com/items?itemName=eliostruyf.vscode-hugo-themer). Hugo Themer は、テーマの開発を支援する拡張機能です。 テーマファイルを簡単にナビゲートできます。
 * [Front Matter](https://marketplace.visualstudio.com/items?itemName=eliostruyf.vscode-front-matter). 静的サイトに移行したら、記事をどのように管理するかを考える必要があります。 フロントマターは、作成日、更新日、スラッグ、タイル、SEO チェックなど、記事のメタデータ/フロントマター を維持するのに役立つツールです。
-* [Syntax Highlighting for Hugo Shortcodes](https://github.com/kael-larkin/hugo-vscode-shortcode-syntax-highlighting). この拡張機能は、ショートコードのシンタックスハイライトを追加し、個々の部分を視覚的に識別しやすくするものです。
+* [Syntax Highlighting for Hugo Shortcodes](https://marketplace.visualstudio.com/items?itemName=kaellarkin.hugo-shortcode-syntax). この拡張機能は、ショートコードのシンタックスハイライトを追加し、個々の部分を視覚的に識別しやすくするものです。
 
 ## Emacs
 

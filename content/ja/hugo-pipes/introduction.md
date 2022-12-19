@@ -13,10 +13,10 @@ menu:
     parent: pipes
     weight: 20
 publishdate: "2018-07-14"
-sections_weight: 1
+sections_weight: 01
 title: Hugo パイプ入門
 toc: true
-weight: 1
+weight: 01
 ---
 
 ## /assets 内のリソースを検索する {#find-resources-in-assets}
@@ -75,8 +75,6 @@ Hugo パイプでアセットを処理するには、 `resources.Get` または 
 ```
 
 ### エラー処理 {#error-handling}
-
-{{< new-in "0.91.0" >}}
 
 `resources.GetRemote` からの戻り値には、呼び出しが失敗した場合にエラーを返す `.Err` メソッドが含まれています。 エラーを `WARNING` としてログに記録したい場合は、以下のような構文を使用できます。
 

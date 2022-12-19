@@ -13,10 +13,10 @@ menu:
   docs:
     parent: functions
 publishdate: "2017-02-01"
-relatedfuncs: []
+relatedfuncs: [replaceRE]
 signature:
-- strings.Replace INPUT OLD NEW [LIMIT]
-- replace INPUT OLD NEW [LIMIT]
+- "replace INPUT OLD NEW [LIMIT]"
+- "strings.Replace INPUT OLD NEW [LIMIT]"
 title: replace
 workson: []
 ---

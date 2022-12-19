@@ -8,31 +8,50 @@ description: 正規表現のすべての出現箇所を置換パターンに置�
 draft: false
 hugoversion: null
 keywords:
+- replace
 - regex
 lastmod: "2020-09-07"
 menu:
   docs:
     parent: functions
 publishdate: "2017-02-01"
-relatedfuncs: []
+relatedfuncs: [replace,findRE]
 signature:
-- strings.ReplaceRE PATTERN REPLACEMENT INPUT [LIMIT]
-- replaceRE PATTERN REPLACEMENT INPUT [LIMIT]
+- "replaceRE PATTERN REPLACEMENT INPUT [LIMIT]"
+- "strings.ReplaceRE PATTERN REPLACEMENT INPUT [LIMIT]"
 title: replaceRE
 workson: []
 ---
+デフォルトでは、 `replaceRE` 関数はすべてのマッチを置換します。オプションの LIMIT パラメータを指定することで、マッチの数を制限することができます。
 
-`strings.ReplaceRE` は、正規表現 `PATTERN` にマッチするすべての部分を置換テキスト `REPLACEMENT` に置き換えた `INPUT` のコピーを返します。
-オプションの `LIMIT` パラメータで置換の回数を制限できます。
+正規表現を指定するときは、構文を簡単にするために、解釈された文字列リテラル (二重引用符) ではなく、生の [文字列リテラル][string literal] (バッククォート) を使用します。解釈された文字列リテラルを使用する場合は、バックスラッシュをエスケープする必要があります。
+
+正規表現の構文は、Perl や Python などで使われている一般的な構文と同じです。より正確には、`\C` を除いた [RE2] で認められている構文です。
+
+以下の例では、2 つ以上連続するハイフンを 1 つのハイフンに置き換えています。
 
 ```go-html-template
-{{ replaceRE "^https?://([^/]+).*" "$1" "http://gohugo.io/docs" }}` → "gohugo.io"
-{{ "http://gohugo.io/docs" | replaceRE "^https?://([^/]+).*" "$1" }}` → "gohugo.io"
-{{ replaceRE "a+b" "X" "aabbaabbab" 1 }} → "Xbaabbab"
+{{ $s := "a-b--c---d" }}
+{{ replaceRE `(-{2,})` "-" $s }} → a-b-c-d
+```
+
+置換の数を 1 つに制限するには、以下のように書きます。
+
+```go-html-template
+{{ $s := "a-b--c---d" }}
+{{ replaceRE `(-{2,})` "-" $s 1 }} → a-b-c---d
+```
+
+置換文字列内で `$1`、`$2` などを使用して、以下のように、正規表現内でキャプチャされたグループを挿入できます。
+
+```go-html-template
+{{ $s := "http://gohugo.io/docs" }}
+{{ replaceRE "^https?://([^/]+).*" "$1" $s }} → gohugo.io
 ```
 
 {{% note %}}
-Hugo は Go の [正規表現パッケージ](https://golang.org/pkg/regexp/) を使用しています。これは、Perl、Python、その他の言語で使用されている一般的な構文と同じですが、[PCRE](https://www.pcre.org/) [(Perl Compatible Regular Expressions)](https://qualysguard.qualys.com/qwebhelp/jp/fo_portal/module_pc/policies/regular_expression_symbols.htm) のバックグラウンドから来たものとは若干の違いがあります。 完全な構文リストは、[GitHub wiki for re2](https://github.com/google/re2/wiki/Syntax) を参照してください。
-
-RegEx、または少なくとも Go のフレーバーを学んでいる場合は、ブラウザの <https://regex101.com/> ページでパターン マッチングを練習できます。
+[regex101.com](https://regex101.com/) を使えば、正規表現を書いてテストすることができます。始める前に、必ず Go フレーバーを選択してください。
 {{% /note %}}
+
+[RE2]: https://github.com/google/re2/wiki/Syntax
+[string literal]: https://go.dev/ref/spec#String_literals

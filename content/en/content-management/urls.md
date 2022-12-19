@@ -1,18 +1,16 @@
 ---
 title: URL Management
-linktitle: URL Management
+linkTitle: URL Management
 description: Hugo supports permalinks, aliases, link canonicalization, and multiple options for handling relative vs absolute URLs.
-date: 2017-02-01
-publishdate: 2017-02-01
-keywords: [aliases,redirects,permalinks,urls]
 categories: [content management]
+keywords: [aliases,redirects,permalinks,urls]
 menu:
   docs:
-    parent: "content-management"
-    weight: 110
-weight: 110	#rem
-aliases: [/extras/permalinks/,/extras/aliases/,/extras/urls/,/doc/redirects/,/doc/alias/,/doc/aliases/]
+    parent: content-management
+    weight: 180
 toc: true
+weight: 180
+aliases: [/extras/permalinks/,/extras/aliases/,/extras/urls/,/doc/redirects/,/doc/alias/,/doc/aliases/]
 ---
 
 ## Permalinks
@@ -43,7 +41,7 @@ permalinks:
   /: /:year/:month/:filename/
 {{< /code-toggle >}}
 
-If the standard date-based permalink configuration does not meet your needs, you can also format URL segments using [Go time formatting directives](https://golang.org/pkg/time/#Time.Format). For example, a URL structure with two digit years and month and day digits without zero padding can be accomplished with:
+If the standard date-based permalink configuration does not meet your needs, you can also format URL segments using [Go time formatting directives](https://pkg.go.dev/time#Time.Format). For example, a URL structure with two digit years and month and day digits without zero padding can be accomplished with:
 
 {{< code-toggle file="config" copy="false" >}}
 permalinks:
@@ -81,7 +79,7 @@ The following is a list of values that can be used in a `permalink` definition i
 : the content's section
 
 `:sections`
-: the content's sections hierarchy. {{< new-in "0.83.0" >}} Since Hugo 0.83 you can use a selection of the sections using _slice syntax_: `:sections[1:]` includes all but the first, `:sections[:last]` includes all but the last, `:sections[last]` includes only the last, `:sections[1:2]` includes section 2 and 3. Note that this slice access will not throw any out-of-bounds errors, so you don't have to be exact.
+: the content's sections hierarchy. You can use a selection of the sections using _slice syntax_: `:sections[1:]` includes all but the first, `:sections[:last]` includes all but the last, `:sections[last]` includes only the last, `:sections[1:2]` includes section 2 and 3. Note that this slice access will not throw any out-of-bounds errors, so you don't have to be exact.
 
 `:title`
 : the content's title

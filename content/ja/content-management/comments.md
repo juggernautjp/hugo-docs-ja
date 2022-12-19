@@ -15,11 +15,11 @@ linktitle: コメント
 menu:
   docs:
     parent: content-management
-    weight: 140
+    weight: 220
 publishdate: "2017-02-01"
 title: コメント
 toc: true
-weight: 140
+weight: 220
 ---
 
 Hugo では、JavaScript を介して Web サイトにコメントやコミュニティの機能を提供するサードパーティ製サービスである [Disqus](https://disqus.com/) をサポートしています。

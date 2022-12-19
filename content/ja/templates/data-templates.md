@@ -174,7 +174,7 @@ URL にプレフィックスまたはポストフィックスを使用した場�
 
 ### HTTP ヘッダーを追加する {#add-http-headers}
 
-{{< new-in "0.84.0" >}} `getJSON` と `getCSV` のどちらも、最後の引数としてオプションのマップを受け取ります。たとえば、以下のようになります。
+`getJSON` と `getCSV` のどちらも、最後の引数としてオプションのマップを受け取ります。たとえば、以下のようになります。
 
 ```go-html-template
 {{ $data := getJSON "https://example.org/api" (dict "Authorization" "Bearer abcd")  }}

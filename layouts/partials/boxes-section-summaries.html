@@ -18,10 +18,14 @@
     </h1>
 
     <div class="lh-copy links">
-      {{ if .context.Params.description  }}
+      {{ if (and (eq .Language.Lang "en") (eq .context.Section "commands")) }}
+        {{ replaceRE `(?s).*?##\s.*?\n\n(.*?)\n.*` "$1" .context.RawContent  }}
+      {{ else }}
+        {{ if .context.Params.description  }}
           {{ .context.Params.description | markdownify }}
         {{ else }}
           {{ .context.Summary  }}
+        {{ end }}
       {{ end }}
 
         <a href="{{ .context.RelPermalink }}" class="f6 mt2 db link primary-color dim">

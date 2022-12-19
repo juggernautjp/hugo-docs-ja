@@ -15,24 +15,44 @@ lastmod: "2017-03-31"
 menu:
   docs:
     parent: content-management
-    weight: 100
+    weight: 170
 publishdate: "2017-02-01"
 title: リンクとクロスリファレンス
 toc: true
-weight: 100
+weight: 170
 ---
 
 ショートコードの `ref` と `relref` は、それぞれドキュメントへの絶対パーマリンクと相対パーマリンクを表示します。
 
 ## `ref` と `relref` を使用する {#use-ref-and-relref}
 
-```go-html-template
-{{</* ref "document" */>}}
-{{</* ref "document#anchor" */>}}
-{{</* ref "document.md" */>}}
-{{</* ref "document.md#anchor" */>}}
-{{</* ref "#anchor" */>}}
-{{</* ref "/blog/my-post" */>}}
+`ref` および `relref` ショートコードには、コンテンツ ドキュメントへのパス、ファイル拡張子の有無、アンカーの有無、という一つのパラメータが必要です。
+先頭に `/` がないパスは、最初に現在のページをからの相対パスを解決し、次にサイト内の残りのページからの相対パスを解決します。
+
+```
+.
+└── content
+    ├── about
+    |   ├── _index.md
+    |   └── credits.md
+    ├── pages
+    |   ├── document1.md
+    |   └── document2.md    // has anchor #anchor
+    ├── products
+    |   └── index.md
+    └── blog
+        └── my-post.md
+```
+
+各ページは、以下のように参照できます。
+
+```text
+{{</* ref "document2" */>}}             // <- pages/document1.md からの相対パス
+{{</* ref "document2#anchor" */>}}      
+{{</* ref "document2.md" */>}}          
+{{</* ref "document2.md#anchor" */>}}   
+{{</* ref "#anchor" */>}}               // <- pages/document2.md から
+{{</* ref "/blog/my-post" */>}}         // <- どこからでも、絶対パス
 {{</* ref "/blog/my-post.md" */>}}
 {{</* relref "document" */>}}
 {{</* relref "document.md" */>}}
@@ -40,15 +60,22 @@ weight: 100
 {{</* relref "/blog/my-post.md" */>}}
 ```
 
+index.md は、そのパスまたは末尾の `/` を含まないフォルダーによって参照できます。 \_index.md は、以下のように、それを含むフォルダーからのみ参照できます。
+
+```text
+{{</* ref "/about" */>}}             // <- /about/_index.md の参照
+{{</* ref "/about/_index" */>}}      //    REF_NOT_FOUND エラーが発生します
+{{</* ref "/about/credits.md" */>}}  // <- /about/credits.md の参照
+
+{{</* ref "/products" */>}}          // <- /products/index.md の参照
+{{</* ref "/products/index" */>}}    // <- /products/index.md の参照
+```
+
 Markdown で `ref` または `relref` を使用してハイパーリンクを生成する方法は、以下の通りです。
 
 ```md
 [About]({{</* ref "/page/about" */>}} "About Us")
 ```
-
-`ref` と `relref` ショートコードは、1 つのパラメータを必要とします。それは、コンテンツ ドキュメントへのパスで、ファイル拡張子やアンカーを含むか含まないかです。
-
-**先頭に `/` がないパスは、まず現在のページからの相対パスが解決され、次にサイトの残りの部分からの相対パスが解決されます。
 
 Hugo は、ドキュメントを一意に解決できない場合にエラーや警告を発します。エラーの動作は設定可能です。下記を参照してください。
 

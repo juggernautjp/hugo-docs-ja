@@ -15,12 +15,12 @@ linktitle: null
 menu:
   docs:
     parent: content-management
-    weight: 35
+    weight: 100
 publishdate: "2017-02-01"
 testparam: Hugo Rocks!
 title: ショートコード
 toc: true
-weight: 35
+weight: 100
 ---
 
 ## ショートコードとは {#what-a-shortcode-is}
@@ -56,8 +56,6 @@ Hugo は、これらの制限を回避するために **ショートコード** 
 上記の例では、2 つの異なる区切り文字を使用しています。違いは、最初の `%` 文字と 2 番目の `<>` 文字です。
 
 ### Raw (生) 文字列パラメータを使用するショートコード {#shortcodes-with-raw-string-parameters}
-
-{{< new-in "0.64.1" >}}
 
 Raw (生) 文字列リテラルを使用することで、以下のように、ショートコードに複数の行をパラメータとして渡すことができます。
 

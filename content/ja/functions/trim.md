@@ -15,7 +15,8 @@ menu:
 publishdate: "2017-02-01"
 relatedfuncs: []
 signature:
-- trim INPUT CUTSET
+- "trim INPUT CUTSET"
+- "strings.Trim INPUT CUTSET"
 title: trim
 workson: []
 ---

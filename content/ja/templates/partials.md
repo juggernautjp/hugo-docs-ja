@@ -128,8 +128,6 @@ Only one `return` statement is allowed per partial file.
 
 ## インライン部分テンプレート {#inline-partials}
 
-{{< new-in "0.74.0" >}}
-
 テンプレートで部分テンプレートをインラインで定義することもできます。 ただし、テンプレートの名前空間はグローバルであるため、競合を避けるために名前が一意であることを確認する必要があります。
 
 ```go-html-template

@@ -1,8 +1,6 @@
 ---
 title: PostCSS
 description: Hugo Pipes can process CSS files with PostCSS.
-date: 2018-07-14
-publishdate: 2018-07-14
 categories: [asset management]
 keywords: []
 menu:
@@ -10,7 +8,6 @@ menu:
     parent: "pipes"
     weight: 40
 weight: 40
-sections_weight: 40
 ---
 
 Any asset file can be processed using `resources.PostCSS` which takes for argument the resource object and a slice of options listed below.
@@ -22,11 +19,11 @@ The resource will be processed using the project's or theme's own `postcss.confi
 {{ $style := $css | resources.PostCSS }}
 ```
 
-{{% note %}}
-Hugo Pipe's PostCSS requires the `postcss-cli` JavaScript package to be installed in the environment (`npm install -g postcss postcss-cli`) along with any PostCSS plugin(s) used (e.g., `npm install -g autoprefixer`).
+You must install the required Node.js packages to use the PostCSS feature. For example, to use the `autoprefixer` package, run these commands from the root of your project:
 
-If you are using the Hugo Snap package, PostCSS and plugin(s) need to be installed locally within your Hugo site directory, e.g., `npm install postcss-cli` without the `-g` flag.
-{{% /note %}}
+```text
+npm install postcss postcss-cli autoprefixer
+```
 
 ### Options
 
@@ -36,7 +33,7 @@ config [string]
 noMap [bool]
 : Default is `false`. Disable the default inline sourcemaps
 
-inlineImports [bool] {{< new-in "0.66.0" >}}
+inlineImports [bool]
 : Default is `false`. Enable inlining of @import statements. It does so recursively, but will only import a file once.
 URL imports (e.g. `@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');`) and imports with media queries will be ignored.
 Note that this import routine does not care about the CSS spec, so you can have @import anywhere in the file.
@@ -68,8 +65,6 @@ syntax [string]
 ```
 
 ## Check Hugo Environment from postcss.config.js
-
-{{< new-in "0.66.0" >}}
 
 The current Hugo environment name (set by `--environment` or in config or OS environment) is available in the Node context, which allows constructs like this:
 

@@ -16,7 +16,8 @@ menu:
 publishdate: "2017-02-01"
 relatedfuncs: []
 signature:
-- substr STRING START [LENGTH]
+- "substr STRING START [LENGTH]"
+- "strings.Substr STRING START [LENGTH]"
 title: substr
 workson: []
 ---

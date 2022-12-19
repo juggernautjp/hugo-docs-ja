@@ -2,13 +2,10 @@
 aliases:
 - /quickstart/
 - /overview/quickstart/
-authors:
-- Shekhar Gulati
-- Ryan Watters
 categories:
 - getting started
 date: "2013-07-01"
-description: 美しい「Ananke」テーマを使って Hugo サイトを作成します。
+description: Hugo サイトを数分で作成する方法を紹介します。
 draft: false
 keywords:
 - quick start
@@ -25,160 +22,206 @@ toc: true
 weight: 10
 ---
 
+このチュートリアルでは、以下のことを行います。
+
+1. サイトを作成する
+2. コンテンツを追加する
+3. サイトを設定する
+4. サイトを公開する
+
+## 前提条件 {#prerequisites}
+
+このチュートリアルを開始する前に、以下のことを行う必要があります。
+
+1. [Hugo のインストール][Install Hugo] (拡張版)
+2. [Git のインストール][Install Git]
+
+また、コマンドラインからの操作に慣れている必要があります。
+
+## サイトを作成する {#create-a-site}
+
+### コマンド {#commands}
+
 {{% note %}}
-このクイックスタートでは、例として `macOS` を使用します。他のオペレーティングシステムに Hugo をインストールする方法については、[「インストール」](/getting-started/installing) を参照してください。
+Windows ユーザーの場合は、これらのコマンドを [PowerShell] で実行する必要があります。 別のアプリケーションである Windows Powershell やコマンド プロンプトは使用できません。 可能であれば、Linux シェルを使用することもできます。
 
-このチュートリアルを実行するには、[Git のインストール](https://git-scm.com/downloads) が必要です。
-
-Hugo を学習するその他の方法 (本やビデオ チュートリアルなど) については、[「外部学習リソース」](/getting-started/external-learning-resources/) ページを参照してください。
+[PowerShell]: https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows
 {{% /note %}}
 
-## ステップ 1: Hugo をインストールする {#Step-1-install-hugo}
-
-**Hugo の拡張版** をインストールします (現在使用しているテーマに必要です)。
-
-{{% note %}}
-MacOS 用のパッケージマネージャである `Homebrew` と `MacPorts` は、それぞれ [brew.sh](https://brew.sh/) と [macports.org](https://www.macports.org/) からインストールすることができます。Windows などを使っている場合は、[「インストール」](/getting-started/installing) を参照してください。
-{{% /note %}}
+これらのコマンドを実行して、[Ananke] テーマの Hugo サイトを作成します。 次のセクションでは、各コマンドについて説明します。
 
 ```bash
-brew install hugo
-# または
-port install hugo
+hugo new site quickstart
+cd quickstart
+git init
+git submodule add https://github.com/theNewDynamic/gohugo-theme-ananke themes/ananke
+echo "theme = 'ananke'" >> config.toml
+hugo server
 ```
 
-新しいインストールを確認するには、以下を実行します。
+端末に表示された URL で自分のサイトを表示します。 `Ctrl + C` を押して、Hugo の開発サーバーを停止します。
 
-```bash
-hugo version
-# 出力例: hugo v0.104.2+extended darwin/amd64 BuildDate=unknown
-```
+### コマンドの説明 {#explanation-of-commands}
 
-`extended` であることが明記されているはずです。そうでない場合は、アンインストールし、別のインストール方法を試してください。
-
-{{< asciicast ItACREbFgvJ0HjnSNeTknxWy9 >}}
-
-## ステップ 2: 新しいサイトを作成する {#step-2-create-a-new-site}
+プロジェクトの [ディレクトリ構造][directory structure] を `quickstart` ディレクトリに作成します。
 
 ```bash
 hugo new site quickstart
 ```
 
-上記のコマンド実行により、`quickstart` という名前のフォルダーに新しい Hugo サイトが作成されます。
-
-{{< asciicast 3mf1JGaN0AX0Z7j5kLGl3hSh8 >}}
-
-## ステップ 3: テーマを追加する {#step-3-add-a-theme}
-
-選択可能なテーマの一覧は、[themes.gohugo.io](https://themes.gohugo.io/) を参照してください。このクイックスタートでは、美しい [Ananke テーマ](https://themes.gohugo.io/gohugo-theme-ananke/) を使用します。
-
-まず、GitHub からテーマをダウンロードして、サイトの `themes` ディレクトリに追加します。
+現在のディレクトリをプロジェクトのルートに変更します。
 
 ```bash
 cd quickstart
-git init
-git submodule add https://github.com/theNewDynamic/gohugo-theme-ananke.git themes/ananke
 ```
 
-次に、テーマをサイト構成に追加します。
+現在のディレクトリに、空の Git リポジトリを初期化します。
 
 ```bash
-echo theme = \"ananke\" >> config.toml
+git init
 ```
 
-{{< asciicast 7naKerRYUGVPj8kiDmdh5k5h9 >}}
+[Ananke] テーマを `themes` ディレクトリにクローンし、[Git サブモジュール][Git submodule] としてプロジェクトに追加します。
 
-## ステップ 4: コンテンツを追加する {#step-4-add-some-content}
+```bash
+git submodule add https://github.com/theNewDynamic/gohugo-theme-ananke themes/ananke
+```
 
-手動でコンテンツファイルを作成し (たとえば `content/<CATEGORY>/<FILE>.<FORMAT>` として)、その中にメタデータを提供することができますが、`new` コマンドを使っていくつかのことを代わりに行うことができます (タイトルや日付を追加するような)。
+以下のコマンドにより、サイト設定ファイルに現在のテーマを示す行を追加します。
 
-```txt
+```bash
+echo "theme = 'ananke'" >> config.toml
+```
+
+Hugo の開発サーバーを起動し、サイトを表示します。
+
+```bash
+hugo server
+```
+
+`Ctrl + C` を押して、Hugo の開発サーバを停止します。
+
+## コンテンツを追加する {#add-content}
+
+サイトに新しいページを追加します。
+
+```bash
 hugo new posts/my-first-post.md
 ```
 
-{{< asciicast eUojYCfRTZvkEiqc52fUsJRBR >}}
+Hugo は `content/posts` ディレクトリにファイルを作成しました。 このファイルをエディターで開きます。
 
-必要に応じて、新しく作成されたコンテンツファイルを編集します。次のような内容で始まります。
-
-```md
+```yaml
 ---
 title: "My First Post"
-date: 2019-03-26T08:47:11+01:00
+date: 2022-11-20T09:03:20-08:00
 draft: true
 ---
+```
 
+[フロントマター][front matter] の `draft` 値が `true` であることに注目してください。デフォルトでは、Hugo はサイトをビルドする際に下書きのコンテンツを公開しません。詳細については、[下書き、公開予定、および期限切れのコンテンツ][draft, future, and expired content] を参照してください。
+
+投稿の本文にいくつかの [markdown] を追加しますが、`draft` の値は変更しないでください。
+
+[markdown]: https://commonmark.org/help/
+
+```yaml
+---
+title: "My First Post"
+date: 2022-11-20T09:03:20-08:00
+draft: true
+---
+## Introduction
+
+This is **bold** text, and this is *emphasized* text.
+
+Visit the [Hugo](https://gohugo.io) website!
+```
+
+ファイルを保存し、Hugo の開発サーバを起動してサイトを表示します。以下のコマンドのいずれかを実行することで、下書きのコンテンツを取り込むことができます。
+
+```bash
+hugo server --buildDrafts
+hugo server -D
+```
+
+端末に表示された URL でサイトを表示します。開発用サーバーを起動したまま、コンテンツの追加や変更を続けてください。
+
+{{% note %}}
+Hugo のレンダリング エンジンは、Markdown の CommonMark [仕様][specification] に準拠しています。 CommonMark 組織は、リファレンス実装を利用した便利な [ライブ テストツール][live testing tool] を提供しています。
+
+[live testing tool]: https://spec.commonmark.org/dingus/
+[specification]: https://spec.commonmark.org/
+{{% /note %}}
+
+## サイトを設定する {#configure-the-site}
+
+プロジェクトのルートにある [サイト設定][site configuration] ファイル (`config.toml`) をエディターで開いてください。
+
+```ini
+baseURL = 'http://example.org/'
+languageCode = 'en-us'
+title = 'My New Hugo Site'
+theme = 'ananke'
+```
+
+以下のように変更します。
+
+1. 本番用サイトの `baseURL` を設定します。この値は、上図のように、プロトコルで始まり、スラッシュで終わる必要があります。
+
+2. `languageCode` に、言語と地域を設定します。
+
+3. 本番用サイトの `title` を設定します。
+
+Hugo の開発サーバーを起動して変更を確認します。下書きのコンテンツを含めることを忘れないでください。
+
+```bash
+hugo server -D
 ```
 
 {{% note %}}
-ドラフトはデプロイされません。投稿を終えたら、投稿のヘッダを更新して `draft: false` と記述してください。詳細は [こちら](/getting-started/usage/#draft-future and-expired-content) を参照してください。
+ほとんどのテーマの作者は、設定のガイドラインとオプションを提供しています。詳細については、テーマのリポジトリまたはドキュメントサイトを参照してください。
+
+Ananke テーマの作者である [The New Dynamic] は、設定や使用方法についての [ドキュメント][documentation] を提供しています。また、[デモサイト][demonstration site] も提供されています。
+
+[demonstration site]: https://gohugo-ananke-theme-demo.netlify.app/
+[documentation]: https://github.com/theNewDynamic/gohugo-theme-ananke#readme
+[The New Dynamic]: https://www.thenewdynamic.com/
 {{% /note %}}
 
-## ステップ 5: Hugo サーバーを起動する {#step-5-start-the-hugo-server}
+## サイトを公開する {#publish-the-site}
 
-次に、[drafts](/getting-started/usage/#draft-future-and-expired-content) を有効にして Hugo サーバーを起動します。
+このステップでは、サイトを _公開_ しますが、_デプロイ_ はしません。
 
-{{< asciicast BvJBsF6egk9c163bMsObhuNXj >}}
+サイトを _公開する_ と、Hugo は静的なサイト全体をプロジェクトのルートにある `public` ディレクトリに作成します。これには、HTML ファイル、画像、CSS ファイル、JavaScript ファイルなどのアセットが含まれます。
 
-```bash
-▶ hugo server -D
-
-                   | EN
-+------------------+----+
-  Pages            | 10
-  Paginator pages  |  0
-  Non-page files   |  0
-  Static files     |  3
-  Processed images |  0
-  Aliases          |  1
-  Sitemaps         |  1
-  Cleaned          |  0
-
-Total in 11 ms
-Watching for changes in /Users/bep/quickstart/{content,data,layouts,static,themes}
-Watching for config changes in /Users/bep/quickstart/config.toml
-Environment: "development"
-Serving pages from memory
-Running in Fast Render Mode. For full rebuilds on change: hugo server --disableFastRender
-Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
-Press Ctrl+C to stop
-```
-
-**新しいサイト [http://localhost:1313/](http://localhost:1313/) に移動してください。**
-
-新しいコンテンツを自由に編集または追加してください。Hugo サーバーが実行されている間、すぐにブラウザに変更が表示されます。 (Web ブラウザを強制的に更新する必要がある場合があります。通常は Ctrl-R などが機能します。)
-
-## ステップ 6: テーマをカスタマイズする {#step-6-customize-the-theme}
-
-新しいサイトはすでに素晴らしい出来栄えですが、一般公開する前に少し手を加えたいところです。
-
-### サイト構成 {#site-configuration}
-
-テキストエディタで `config.toml` を開いてください。
-
-```toml
-baseURL = "https://example.org/"
-languageCode = "en-us"
-title = "My New Hugo Site"
-theme = "ananke"
-```
-
-上記の `title` を個人的なものに置き換えてください。また、すでにドメインが準備されている場合は、`baseURL` を設定します。なお、この値はローカルの開発サーバーを動かす場合には必要ありません。
-
-{{% note %}}
-**ヒント:** Hugo サーバーの実行中にサイト構成またはサイト内のその他のファイルに変更を加えると、ブラウザに変更がすぐに反映されますが、[キャッシュのクリア](https://kb.iu.edu/d/ahic) が必要な場合があります。
-{{% /note %}}
-
-テーマ固有の設定オプションについては、[「テーマサイト」](https://github.com/theNewDynamic/gohugo-theme-ananke) を参照してください。
-
-**テーマのカスタマイズについては、[「テーマのカスタマイズ」](/themes/customizing/) を参照してください。**
-
-### ステップ 7: 静的ページを作成する {#step-7-build-static-pages}
-
-方法は簡単で、以下のコマンドを実行するだけです。
+サイトを公開するとき、通常、[下書き、公開予定、または期限切れのコンテンツ][draft, future, or expired content] を _含めないように_ したいものです。そうするコマンドは、以下のように簡単です。
 
 ```bash
-hugo -D
+hugo
 ```
 
-デフォルトでは `./public/` ディレクトリに出力されます (`-d`/`--destination` フラグで変更するか、設定ファイルで `publishdir` を設定してください)。
+サイトの _デプロイ_ 方法については、[ホスティングとデプロイ][hosting and deployment] のセクションを参照してください。
 
+## 助けを求める {#ask-for-help}
+
+Hugo の [フォーラム][forum] は、質問に答え、知識を共有し、例を提供するユーザーと開発者の活発なコミュニティです。20,000 を超えるトピックを素早く検索すれば、あなたの質問に答えられることが多いでしょう。最初の質問をする前に、必ず [ヘルプのリクエスト][requesting help] について読んでおいてください。
+
+## その他のリソース {#other-resources}
+
+書籍やビデオチュートリアルなど、Hugo の学習に役立つその他のリソースについては、[外部の学習リソース](/getting-started/external-learning-resources/) のページを参照してください。
+
+[Ananke]: https://github.com/theNewDynamic/gohugo-theme-ananke
+[directory structure]: /getting-started/directory-structure
+[draft, future, and expired content]: /getting-started/usage/#draft-future-and-expired-content
+[draft, future, or expired content]: /getting-started/usage/#draft-future-and-expired-content
+[external learning resources]:/getting-started/external-learning-resources/
+[forum]: https://discourse.gohugo.io/
+[forum]: https://discourse.gohugo.io/
+[front matter]: /content-management/front-matter
+[Git submodule]: https://git-scm.com/book/en/v2/Git-Tools-Submodules
+[hosting and deployment]: /hosting-and-deployment/
+[Install Git]: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
+[Install Hugo]: /installation/
+[requesting help]: https://discourse.gohugo.io/t/requesting-help/9132
+[site configuration]: /getting-started/configuration/

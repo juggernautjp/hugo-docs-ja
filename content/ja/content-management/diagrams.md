@@ -10,15 +10,12 @@ keywords:
 menu:
   docs:
     parent: content-management
-    weight: 22
+    weight: 50
 title: ダイアグラム
 toc: true
-weight: 22
+weight: 50
 ---
-
-
 {{< new-in "0.93.0" >}}
-
 
 ## GoAT ダイアグラム (アスキー) {#goat-diagrams-ascii}
 

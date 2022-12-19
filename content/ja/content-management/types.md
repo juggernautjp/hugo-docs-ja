@@ -15,10 +15,10 @@ keywords:
 menu:
   docs:
     parent: content-management
-    weight: 60
+    weight: 130
 title: コンテンツタイプ
 toc: true
-weight: 60
+weight: 130
 ---
 
 **コンテンツタイプ** とは、コンテンツを整理するための方法です。Hugo はコンテンツタイプを、フロントマターにある `type` か、設定されていない場合はファイルパスの最初のディレクトリから解決します。たとえば、 `type` が設定されていない場合、 `content/blog/my-first-event.md` は `blog` というタイプになります。

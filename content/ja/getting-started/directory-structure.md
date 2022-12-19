@@ -30,15 +30,17 @@ weight: 50
 コマンドラインから `hugo new site` ジェネレーターを実行すると、以下の要素からなるディレクトリ構造が作成されます。
 
 ```txt
-.
-├── archetypes
-├── config.toml
-├── content
-├── data
-├── layouts
-├── public
-├── static
-└── themes
+example/
+├── archetypes/
+│   └── default.md
+├── assets/
+├── content/
+├── data/
+├── layouts/
+├── public/
+├── static/
+├── themes/
+└── config.toml
 ```
 
 ## ディレクトリ構造の説明 {#directory-structure-explained}

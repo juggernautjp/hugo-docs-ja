@@ -32,10 +32,10 @@ replacements = ""
 workspace = ""
 {{< /code-toggle >}}
 
-noVendor {{< new-in "0.75.0" >}}
+noVendor
 : ベンダー化の際にスキップするオプションの glob パターンマッチング モジュール パス (たとえば、"github.com/**") 
 
-vendorClosest {{< new-in "0.81.0" >}}
+vendorClosest
 : 有効にすると、それを使用するモジュールに最も近いベンダー化モジュールが選択されます。 デフォルトの動作は、最初のものを選択します。 特定のモジュール パスの依存関係は 1 つしか存在できないため、一度使用すると再定義できないことに注意してください。
 
 proxy
@@ -47,15 +47,15 @@ noProxy
 private
 : プライベートとして扱うべきパスと一致するカンマ区切りの glob リスト。
 
-workspace {{< new-in "0.83.0" >}}
+workspace
 : 使用するワークスペース ファイル。 これにより、Go ワークスペース モードが有効になります。 これは OS env 経由 (たとえば、`export HUGO_MODULE_WORKSPACE=/my/hugo.work`) でも設定できることに注意してください。この指定は、 Go 1.18 以降でのみ動作します。
 
-replacements {{< new-in "0.77.0" >}}
+replacements
 : 例えば、`github.com/bep/my-theme -> ../..,github.com/bep/shortcodes -> /some/path` といった、モジュールパスとディレクトリ置換マッピングのカンマ区切り (またはスライス) のリストです。これは一時的にローカルでモジュールを開発するのに便利で、OS の環境変数として設定することができます。 相対パスは [themesDir](https://gohugo.io/getting-started/configuration/#all-configuration-settings) に関連しており、絶対パスが許可されています。
 
 上記の用語は、Go モジュールの対応する用語に直接対応していることに注意してください。これらの設定のいくつかは、OS の環境変数として設定するのが自然でしょう。例として、使用するプロキシサーバーを設定する場合は、以下のようにします。
 
-```txt
+```bash
 env HUGO_MODULE_PROXY=https://proxy.example.org hugo
 ```
 
@@ -104,13 +104,13 @@ path
 ignoreConfig
 : 有効にすると、モジュール設定ファイル (たとえば、`config.toml`) はロードされません。また、依存関係にあるモジュールのロードも停止することに注意してください。
 
-ignoreImports {{< new-in "0.80.0" >}}
+ignoreImports
 : 有効にすると、モジュールのインポートに従わなくなります。
 
 disable
 : `true` に設定すると、`go.*` ファイルにバージョン情報を残したまま、モジュールを無効化できます。
 
-noMounts {{< new-in "0.84.2" >}}
+noMounts
 : このインポートでは、フォルダーーをマウントしません。
 
 noVendor
@@ -169,8 +169,6 @@ includeFiles (string または slice)
 glob パターンは `source` ルートから始まるファイル名にマッチし、Windows でも Unix スタイルのスラッシュを持つはずです。`/` はマウントルートにマッチし、`**` はスーパー アスタリスクとして、たとえば `/posts/**.jpg` のようにすべてのディレクトリに再帰的にマッチできます。
 
 検索では大文字と小文字が区別されません。
-
-{{< new-in "0.89.0" >}}
 
 excludeFiles (string または slice)
 : 除外するファイルに一致する 1 つ以上の glob パターンです。

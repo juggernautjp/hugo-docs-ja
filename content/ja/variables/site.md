@@ -56,7 +56,7 @@ weight: 10
 : サイト設定で定義定義された、 Google アナリティクスのトラッキング コードを表す文字列です。
 
 .Site.Home
-: ホームページの [ページオブジェクト](/variables/page/) への参照です。
+: ホームページの [ページオブジェクト](https://gohugo.io/variables/page/) への参照です。
 
 .Site.IsMultiLingual
 : このサイトに複数の言語があるかどうか。 詳細については、[「多言語対応」](/content-management/multilingual/) を参照してください。

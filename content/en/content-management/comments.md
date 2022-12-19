@@ -1,19 +1,16 @@
 ---
 title: Comments
-linktitle: Comments
+linkTitle: Comments
 description: Hugo ships with an internal Disqus template, but this isn't the only commenting system that will work with your new Hugo website.
-date: 2017-02-01
-publishdate: 2017-02-01
 keywords: [sections,content,organization]
 categories: [project organization, fundamentals]
 menu:
   docs:
-    parent: "content-management"
-    weight: 140
-weight: 140	#rem
-draft: false
-aliases: [/extras/comments/]
+    parent: content-management
+    weight: 220
 toc: true
+weight: 220
+aliases: [/extras/comments/]
 ---
 
 Hugo ships with support for [Disqus](https://disqus.com/), a third-party service that provides comment and community capabilities to websites via JavaScript.
@@ -55,7 +52,7 @@ These are some alternatives to Disqus:
 * [Graph Comment](https://graphcomment.com/)
 * [Hyvor Talk](https://talk.hyvor.com/) (Available as a service)
 * [IntenseDebate](https://intensedebate.com/)
-* [Isso](https://posativ.org/isso/) (Self-hosted, Python) ([tutorial][issotutorial])
+* [Isso](https://isso-comments.de/) (Self-hosted, Python) ([tutorial][issotutorial])
 * [Muut](https://muut.com/)
 * [Remark42](https://remark42.com/) (Open source, Golang, Easy to run docker)
 * [ReplyBox](https://getreplybox.com/)

@@ -12,10 +12,10 @@ keywords:
 menu:
   docs:
     parent: content-management
-    weight: 40
+    weight: 110
 title: 関連コンテンツ
 toc: true
-weight: 30
+weight: 110
 ---
 
 Hugo は、フロントマターのパラメータに基づいて、ページの関連コンテンツを特定するために一連の要素を使用します。これは、希望するインデックスとパラメータのセットに調整することも、Hugoのデフォルトの [関連コンテンツ設定](#configure-related-content) のままにしておくことも可能です。

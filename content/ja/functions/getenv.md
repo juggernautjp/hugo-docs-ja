@@ -15,8 +15,8 @@ menu:
 publishdate: "2017-02-01"
 relatedfuncs: []
 signature:
-- os.Getenv VARIABLE
-- getenv VARIABLE
+- "os.Getenv VARIABLE"
+- "getenv VARIABLE"
 title: getenv
 workson: []
 ---
@@ -45,3 +45,6 @@ hugo
 {{ os.Getenv "MY_VAR1" }} --> foo
 {{ os.Getenv "MY_VAR2" }} --> bar
 ```
+
+Hugo v0.91.0 以降では、環境変数へのアクセスを明示的に許可する必要があります。 詳細については、[Hugo のセキュリティ ポリシー](/about/security-model/#security-policy) を確認してください。 デフォルトでは、`os.Getenv` 関数を使用する場合、`HUGO_` で始まる環境変数が許可されます。
+

@@ -21,7 +21,8 @@ relatedfuncs:
 - Unix
 - time
 signature:
-- time.Format LAYOUT INPUT
+- "time.Format LAYOUT INPUT"
+- "dateFormat LAYOUT INPUT"
 title: time.Format
 workson: []
 ---
@@ -32,7 +33,7 @@ workson: []
 {{ time.Format "Monday, Jan 2, 2006" "2015-01-21" }} → "Wednesday, Jan 21, 2015"
 ```
 
-Hugo 0.87.0 以降では、 `time.Format` は現在の言語用にローカライズされた文字列を返すことに注意してください。 {{< new-in "0.87.0" >}}
+`time.Format` は、現在の言語用にローカライズされた文字列を返します。
 
 `LAYOUT` 文字列は、以下のいずれかになります。
 
@@ -43,8 +44,6 @@ Hugo 0.87.0 以降では、 `time.Format` は現在の言語用にローカラ�
 
 
 ## 日付/時刻のフォーマット レイアウト {#datetime-formatting-layouts}
-
-{{< new-in "0.87.0" >}}
 
 Go の日付レイアウト文字列は、特に複数の言語を使用する場合、理由を説明するのが難しい場合があります。 Hugo 0.87.0 以降では、ローカライズされた日付または時刻を出力する定義済みのレイアウト識別子を代わりに使用できます。
 

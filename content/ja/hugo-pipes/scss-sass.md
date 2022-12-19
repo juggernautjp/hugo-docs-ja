@@ -10,9 +10,9 @@ menu:
     parent: pipes
     weight: 30
 publishdate: "2018-07-14"
-sections_weight: 2
+sections_weight: 02
 title: Sass / SCSS
-weight: 2
+weight: 02
 ---
 
 どのような Sass や SCSS ファイルでも、リソースオブジェクトと以下に示すオプションのマップの 2 つの引数を取る `resources.ToCSS` を使って CSS ファイルに変換できます。
@@ -24,7 +24,7 @@ weight: 2
 
 ### オプション {#options}
 
-transpiler [string] {{< new-in "0.80.0" >}}
+transpiler [string]
 : 使用する `transpiler` を指定します。有効な値は `libsass` (デフォルト) と `dartsass` です。 Embedded Dart Sass プロジェクトは、まだベータ版であることに注意してください。 安定版がリリースされたら、インストール方法を改善する予定ですが、Hugo を Dart Sass と一緒に使いたい場合は、[Embedded Dart Sass](https://github.com/sass/dart-sass-embedded/releases) (0.81.0 以降の Hugo にはベータ 6 以降が必要です) からリリースバイナリをダウンロードして、PC の `$PATH` (Windows では `%PATH%`) にそれが存在することを確認する必要があります。
 
 targetPath [string]
@@ -38,6 +38,9 @@ precision [int]
 
 enableSourceMap [bool]
 : 有効にすると、ソースマップが生成されます。
+
+sourceMapIncludeSources [bool]
+: 有効にすると、生成されたソースマップにソースが埋め込まれます。 (Dart Sass のみ)。 {{< new-in "0.108.0" >}}
 
 includePaths [string slice]
 : SCSS/Sass のインクルードパスを追加します。パスは、プロジェクト ディレクトリからの相対パスである必要があります。

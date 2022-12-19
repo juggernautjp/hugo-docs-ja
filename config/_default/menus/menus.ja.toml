@@ -1,18 +1,24 @@
 [[docs]]
   name = "Hugo について"
-  weight = 1
+  weight = 10
   identifier = "about"
   url = "/about/"
 
 [[docs]]
+  name = "インストール"
+  weight = 20
+  identifier = "installation"
+  url = "/installation/"
+
+[[docs]]
   name = "Hugo 入門"
-  weight = 5
+  weight = 30
   identifier = "getting-started"
   url = "/getting-started/"
 
 [[docs]]
   name = "Hugo モジュール"
-  weight = 15
+  weight = 40
   identifier = "modules"
   post = "break"
   url = "/hugo-modules/"
@@ -21,36 +27,36 @@
 
 [[docs]]
   name = "コンテンツ管理"
-  weight = 20
+  weight = 50
   identifier = "content-management"
   post = "expanded"
   url = "/content-management/"
 
 [[docs]]
   name = "テンプレート"
-  weight = 25
+  weight = 60
   identifier = "templates"
   url = "/templates/"
 
 [[docs]]
   name = "関数"
-  weight = 30
+  weight = 70
   identifier = "functions"
   url = "/functions/"
 
 [[docs]]
   name = "変数"
-  weight = 35
+  weight = 80
   identifier = "variables"
   url = "/variables/"
 [[docs]]
   name = "Hugo パイプ"
-  weight = 36
+  weight = 90
   identifier = "pipes"
   url = "/hugo-pipes/"
 [[docs]]
   name = "Hugo コマンド"
-  weight = 40
+  weight = 100
   post = "break"
   identifier = "commands"
   url = "/commands/"
@@ -61,25 +67,25 @@
 
 [[docs]]
   name = "トラブルシューティング"
-  weight = 60
+  weight = 110
   identifier = "troubleshooting"
   url = "/troubleshooting/"
 
 [[docs]]
   name = "ツール"
-  weight = 70
+  weight = 120
   identifier = "tools"
   url = "/tools/"
 
 [[docs]]
   name = "ホスティングとデプロイ"
-  weight = 80
+  weight = 130
   identifier = "hosting-and-deployment"
   url = "/hosting-and-deployment/"
 
 [[docs]]
   name = "貢献"
-  weight = 100
+  weight = 140
   post = "break"
   identifier = "contribute"
   url = "/contribute/"
@@ -88,7 +94,7 @@
 
 [[docs]]
   name = "日本語版について"
-  weight = 110
+  weight = 150
   identifier = "hugo-ja"
   url = "/hugo-ja/"
 
@@ -123,7 +129,7 @@
     name = "ニュース"
     weight = 1
     identifier = "news"
-    url = "/news/"
+    url = "/en/news/"
 
   [[global]]
     name = "ドキュメント"
@@ -135,13 +141,15 @@
     name = "テーマ"
     weight = 10
     identifier = "themes"
+    post = "external"
+    icon = true
     url = "https://themes.gohugo.io/"
 
     [[global]]
       name = "ショーケース"
       weight = 20
       identifier = "showcase"
-      url = "/showcase/"
+      url = "/en/showcase/"
 
   # Anything with a weight > 100 gets an external icon
   [[global]]

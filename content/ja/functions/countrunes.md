@@ -16,7 +16,8 @@ menu:
 publishdate: "2017-02-01"
 relatedfuncs: []
 signature:
-- countrunes INPUT
+- "countrunes INPUT"
+- "strings.CountRunes INPUT"
 title: countrunes
 workson: []
 ---

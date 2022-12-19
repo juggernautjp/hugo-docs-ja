@@ -12,10 +12,10 @@ keywords:
 menu:
   docs:
     parent: content-management
-    weight: 130
+    weight: 200
 title: 静的ファイル
 toc: true
-weight: 130
+weight: 200
 ---
 
 デフォルトでは、サイトプロジェクト内の `static/` ディレクトリがすべての **静的ファイル** (たとえば、スタイルシート、JavaScript、画像) に使用されます。

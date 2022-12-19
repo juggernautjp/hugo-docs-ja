@@ -15,7 +15,8 @@ menu:
 publishdate: "2017-02-01"
 relatedfuncs: []
 signature:
-- upper INPUT
+- "upper INPUT"
+- "strings.ToUpper INPUT"
 title: upper
 toc: null
 workson: []

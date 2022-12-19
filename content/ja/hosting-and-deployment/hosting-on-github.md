@@ -7,7 +7,7 @@ authors:
 categories:
 - hosting and deployment
 date: "2014-03-21"
-description: Hugo を GitHub Pages プロジェクトまたは個人/組織サイトとしてデプロイし、Github Action Workflow でプロセス全体を自動化します。
+description: Hugo を GitHub Pages プロジェクトまたは個人/組織サイトとしてデプロイし、Github Actions のワークフローでプロセス全体を自動化します。
 draft: false
 keywords:
 - github
@@ -58,7 +58,7 @@ GitHub Pages には、以下の 2 種類あります。
 
 GitHub は、ソフトウェア開発のワークフローを実行します。 GitHub リポジトリにコードをプッシュするたびに、GitHub Actions が自動的にサイトをビルドします。
 
-([actions-hugo](https://github.com/marketplace/actions/hugo-setup) に基づく)、以下のコンテンツを含む `.github/workflows/gh-pages.yml` にファイルを作成します。
+([actions-hugo](https://github.com/marketplace/actions/hugo-setup) に基づき)、以下のコンテンツを含む `.github/workflows/gh-pages.yml` にファイルを作成します。
 
 ```yml
 name: github pages

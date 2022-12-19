@@ -21,7 +21,7 @@ weight: 2
 **注意:** 以下に紹介する回答/解決策は短いものであり、あなたの問題を解決するのに十分でない可能性があります。 [Hugo Discourse](https://discourse.gohugo.io/) にアクセスし、検索を使用してください。 それでも解決しない場合は、新しいトピックを立ち上げて質問してください。
 {{% /note %}}
 
-## コンテンツが表示されない! {#i-cant-see-my-content}
+## コンテンツが表示されません {#i-cant-see-my-content}
 
 Markdown ファイルは、 [ドラフトモード](https://gohugo.io/content-management/front-matter/#front-matter-variables) ですか? テストするときは、`-D` または `--buildDrafts` [スイッチ](https://gohugo.io/getting-started/usage/#draft-future-and-expired-content) を指定して `hugo server` を実行します。
 
@@ -39,7 +39,9 @@ Markdown ファイルは、 [リーフバンドル](/content-management/page-bun
 「定期的に公開する」部分を自動化する方法は、状況によって異なります。
 
 * 自分の PC/サーバーからデプロイする場合は、[Cron](https://en.wikipedia.org/wiki/Cron) などで自動化できます。
-* [Netlify](https://www.netlify.com/) のようなサービスでサイトをホストしている場合、[ifttt](https://ifttt.com/date_and_time) などのサービスを使用して更新をスケジュールできます。
+* あなたのサイトが [Netlify](https://www.netlify.com/) のようなサービスでホストされている場合、以下のことが可能です。
+  * [ifttt](https://ifttt.com/date_and_time) などのサービスを利用して、更新のスケジュールを設定します。
+  * [cron-job.org](https://cron-job.org/) のように、一定間隔でサイトをデプロイする cron サービスで実行できるデプロイフックを設定します (Netlify と Cloudflare Pages は、どちらもデプロイフックをサポートしています)。
 
 以下の Twitter スレッドも参照してください。
 
@@ -62,14 +64,3 @@ error: failed to transform resource: TOCSS: failed to transform "scss/main.scss"
 技術的な理由により、2 セットのバイナリをリリースしています。 拡張バージョンは、インストール方法によっては、デフォルトでは得られないものです。 [リリースページ](https://github.com/gohugoio/hugo/releases) で、名前に `extended` が含まれるアーカイブを探します。 `hugo-extended` をビルドするには、 `go install --tags extended` を使用します。
 
 確認するには、`hugo version` を実行して、`extended` という単語を探します。
-
-## Hugo で Web サイトを作成、デプロイ、管理するには、Git をインストールする必要がありますか? {#do-i-need-to-install-git-to-create-deploy-and-maintain-a-website-with-hugo}
-
-> 技術的には、いいえです。
->
-> 実質的には、その通りです。
-
-* ほとんどの (おそらくすべての) テーマで文書化されている主なインストール方法は、Git または Hugo モジュール機能によるものです。
-* Hugo モジュール機能には Go が必要で、Go は Git で「取得」します。
-* CI/CD ホスティング (Bitbucket、Cloudflare、GitHub Pages、GitLab Pages、Netlify など) には、 Git リポジトリが必要です。
-* コンテンツの正規の「最終更新日」は、Git コミッターの日付です。 他のものを使用すると、エラーが発生しやすくなります。

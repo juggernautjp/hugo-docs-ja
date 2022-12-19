@@ -12,11 +12,9 @@ menu:
   docs:
     parent: functions
 signature:
-- .RenderString MARKUP
+- ".RenderString MARKUP"
 title: .RenderString
 ---
-
-{{< new-in "0.62.0" >}}
 
 `.RenderString` は `Page` のメソッドで、(オプションで設定されていない場合) そのページで定義されたコンテンツ レンダラーを使って、マークアップを HTML にレンダリングします。
 

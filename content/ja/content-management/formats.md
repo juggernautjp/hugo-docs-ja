@@ -17,11 +17,11 @@ linktitle: コンテンツフォーマット
 menu:
   docs:
     parent: content-management
-    weight: 20
+    weight: 40
 publishdate: "2017-01-10"
 title: コンテンツフォーマット
 toc: true
-weight: 20
+weight: 40
 ---
 
 `content` ディレクトリには任意のファイルタイプを入れることができますが、Hugo は `markup` というフロントマターの値が設定されている場合、またはファイルの拡張子 (下のテーブルの `マークアップ識別子` を参照) を使って、マークアップを処理する必要があるかどうかを判断します。たとえば、

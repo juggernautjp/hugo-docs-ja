@@ -4,7 +4,7 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: 設定された baseURL に基づいて、絶対 URL を作成します。
+description: 絶対 URL を返します。
 draft: false
 hugoversion: null
 keywords:
@@ -22,34 +22,53 @@ title: absURL
 workson: []
 ---
 
-`absURL` と `relURL` の両方とも、サイトの [`config` ファイル][configuration] で設定された `baseURL` の値を考慮します。 `baseURL` に `https://example.com/hugo/` が設定されている場合は、以下のようになります。
+多言語設定では、代わりに [`absLangURL`] 関数を使用してください。 この関数によって返される URL は、以下によって異なります。
+
+- 入力がスラッシュで始まるかどうか
+- サイト設定の `baseURL` の値
+
+### 入力がスラッシュで始まらない場合 {#input-does-not-begin-with-a-slash}
+
+入力がスラッシュで始まらない場合は、`baseURL` に関係なく、結果の URL は正しくなります。
+
+`baseURL = https://example.org/` の場合
 
 ```go-html-template
-{{ "mystyle.css" | absURL }} → "https://example.com/hugo/mystyle.css"
-{{ "mystyle.css" | relURL }} → "/hugo/mystyle.css"
-{{ "http://gohugo.io/" | relURL }} →  "http://gohugo.io/"
-{{ "http://gohugo.io/" | absURL }} →  "http://gohugo.io/"
+{{ absURL "" }}           →   https://example.org/
+{{ absURL "articles" }}   →   https://example.org/articles
+{{ absURL "style.css" }}  →   https://example.org/style.css
 ```
 
-最後の 2 つの例は奇妙に見えるかもしれませんが、非常に便利です。 たとえば、以下の例では、[JSON-LD 構造化データ (SEO)][jsonld] で `absURL` を使用する方法を示しています。 ここでは、コンテンツの一部の画像がローカルでホストされている場合とされていない場合があります。
+`baseURL = https://example.org/docs/` の場合
 
-{{< code file="layouts/partials/schemaorg-metadata.html" download="schemaorg-metadata.html" >}}
-<script type="application/ld+json">
-{
-    "@context" : "http://schema.org",
-    "@type" : "BlogPosting",
-    "image" : {{ apply .Params.images "absURL" "." }}
-}
-</script>
-{{< /code >}}
+```go-html-template
+{{ absURL "" }}           →   https://example.org/docs/
+{{ absURL "articles" }}   →   https://example.org/docs/articles
+{{ absURL "style.css" }}  →   https://example.org/docs/style.css
+```
 
-上記は [apply 関数][apply function] を使用しており、Go テンプレート パーサーが `<script>` タグ内のオブジェクトを JSON エンコードする方法も公開しています。 このようなタグ内の文字列をエスケープしないように Hugo に指示する方法の例については、[safeJS テンプレート関数][safejs] を参照してください。
+### 入力がスラッシュで始まる場合 {#input-begins-with-a-slash}
 
-{{% note "Ending Slash" %}}
-`absURL` と `relURL` はスラッシュの欠落をスマートに処理しますが、URL に終了スラッシュがない場合は、終了スラッシュを *追加しません*。
+入力がスラッシュで始まる場合、 `baseURL` にサブディレクトリが含まれると、結果の URL が正しくなくなります。 先頭にスラッシュがある場合、この関数は `baseURL` の protocol+host セクションからの相対的な URL を返します。
+
+`baseURL = https://example.org/` の場合
+
+```go-html-template
+{{ absURL "/" }}          →   https://example.org/
+{{ absURL "/articles" }}  →   https://example.org/articles
+{{ absURL "/style.css" }} →   https://example.org/style.css
+```
+
+`baseURL = https://example.org/docs/` の場合
+
+```go-html-template
+{{ absURL "/" }}          →   https://example.org/
+{{ absURL "/articles" }}  →   https://example.org/articles
+{{ absURL "/style.css" }} →   https://example.org/style.css
+```
+
+{{% note %}}
+最後の 3 つの例は、ほとんどの場合において望ましいものではありません。ベストプラクティスとして、この関数を使うときは、絶対に先頭のスラッシュを含めないでください。
 {{% /note %}}
 
-[apply function]: /functions/apply/
-[configuration]: /getting-started/configuration/
-[jsonld]: https://developers.google.com/search/docs/guides/intro-structured-data
-[safejs]: /functions/safejs
+[`absLangURL`]: /functions/abslangurl/

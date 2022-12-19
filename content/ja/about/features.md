@@ -26,7 +26,7 @@ weight: 20
 ## 構成 {#organization}
 
 * Web サイトのセクションを含む、わかりやすい [プロジェクトの構成][organization for your projects]
-* カスタマイズ可能な [URL][]
+* カスタマイズ可能な [URLs][]
 * カテゴリーやタグなど、設定可能な [タクソノミー (分類法)][taxonomies] に対応
 * 強力なテンプレート [関数][functions] で、思い通りの [コンテンツの並べ替え][Sort content]
 * [目次][table of contents] の自動生成
@@ -63,11 +63,11 @@ weight: 20
 [Extremely fast]: https://github.com/bep/hugo-benchmark
 [front matter]: /content-management/front-matter/
 [functions]: /functions/
-[Go]: https://golang.org/pkg/html/template/
+[Go]: https://pkg.go.dev/html/template
 [Google Analytics]: https://google-analytics.com/
 [homepage]: /templates/homepage/
 [hostanywhere]: /hosting-and-deployment/
-[install]: /getting-started/installing/
+[install]: /installation/
 [LiveReload]: /getting-started/usage/
 [organization for your projects]: /getting-started/directory-structure/
 [pagevars]: /variables/page/
@@ -81,4 +81,4 @@ weight: 20
 [Syntax highlighting]: /content-management/syntax-highlighting/
 [table of contents]: /content-management/toc/
 [taxonomies]: /content-management/taxonomies/
-[URL]: /content-management/urls/
+[URLs]: /content-management/urls/

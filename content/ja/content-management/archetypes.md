@@ -15,12 +15,12 @@ linktitle: アーキタイプ
 menu:
   docs:
     parent: content-management
-    weight: 70
+    weight: 140
   quicklinks: null
 publishdate: "2017-02-01"
 title: アーキタイプ
 toc: true
-weight: 70
+weight: 140
 ---
 
 ## アーキタイプとは? {#what-are-archetypes}

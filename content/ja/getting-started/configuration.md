@@ -33,7 +33,7 @@ Hugo は  (サイトルートにある場合) `config.toml`、`config.yaml`、�
 
 例:
 
-```txt
+```bash
 hugo --config debugconfig.toml
 hugo --config a.toml,b.toml,c.toml
 ```
@@ -107,8 +107,6 @@ foo = "bar"
 
 ## テーマから設定をマージする {#merge-configuration-from-themes}
 
-{{< new-in "0.84.0" >}} Hugo 0.84.0 では、以下で説明するように設定のマージ方法が改良され、完全に設定可能になりました。大きな変更・改良点は、デフォルトでテーマから `params` マップをディープマージするようになったことです。
-
 `_merge` の設定値は、以下のいずれかを指定できます。
 
 none
@@ -171,8 +169,6 @@ publishdate (公開日) が将来のコンテンツを含めます。
 [「ファイルキャッシュを設定する」](#configure-file-caches) を参照してください。
 
 ### cascade
-
-{{< new-in "0.86.0" >}}
 
 コンテンツツリー内のページに、デフォルトの設定値 (フロントマター) を渡します。サイト設定でのオプションは、ページのフロントマターと同じです。[フロントマター カスケード](/content-management/front-matter#front-matter-cascade) をご覧ください。
 
@@ -456,8 +452,6 @@ Hugo がテーマを読み込むディレクトリ。
 
 ### timeZone
 
-{{< new-in "0.87.0" >}}
-
 [`time` 関数](/functions/time/) で、そのような情報なしでフロントマターの日付を解析するために使用される、たとえば `Europe/Oslo` のようなタイムゾーン (または場所)。有効な値のリストはシステムに依存しますが、 `UTC`、`Local`、そして [IANA タイムゾーンデータベース](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) にある任意の場所を含める必要があります。
 
 ### title
@@ -484,21 +478,20 @@ Hugo がテーマを読み込むディレクトリ。
 
 {{% note %}}
 \*nix マシン上でサイトを開発しているならば、ここでは、コマンドラインから設定オプションを見つけるための便利なショートカットを紹介します。
-```txt
+
+```bash
 cd ~/sites/yourhugosite
 hugo config | grep emoji
 ```
 
 以下のような出力を示します。
 
-```txt
+```yaml
 enableemoji: true
 ```
 {{% /note %}}
 
 ## ビルドを設定する {#configure-build}
-
-{{< new-in "0.66.0" >}}
 
 `build` 設定セクションには、ビルドに関連するグローバルな設定オプションが含まれています。
 
@@ -513,17 +506,15 @@ noJSConfigInAssets = false
 useResourceCacheWhen
 : PostCSS と ToCSS で、`/resources/_gen` にあるキャッシュされたリソースをいつ使用するかを指定します。有効な値は `never`、`always` および `fallback` です。最後の値は、PostCSS/拡張版が利用できない場合に、キャッシュを試行することを意味します。
 
-writeStats {{< new-in "0.69.0" >}}
+writeStats
 : 有効にすると、`hugo_stats.json` という名前のファイルがプロジェクト ルートに書き込まれ、ビルドに関する集計データが含まれます。たとえば、[CSS プルーニング](/hugo-pipes/postprocess/#css-purging-with-postcss) に使用する、公開された HTML エンティティのリストなどです。本番ビルドにしか使わないのであれば、[config/production](/getting-started/configuration/#configuration-directory) の下に置くことを検討する必要があります。また、部分的なサーバービルドの性質上、サーバーの実行中に HTML エンティティを追加・変更すると新しいものが追加されますが、古い値はサーバーを再起動するか、通常の `hugo` ビルドを実行するまで削除されないことにも注意してください。
 
 **注意** これの主な使用例は、未使用の CSS の削除です。 これは速度を重視して構築されており、誤検知が発生する可能性があります (たとえば、HTML 要素ではない HTML 要素の検出など)。
 
-noJSConfigInAssets {{< new-in "0.78.0" >}}
+noJSConfigInAssets
 : [js.Build](https://gohugo.io/hugo-pipes/js) を実行すると、インポートのマッピングを含む `jsconfig.json` を `/assets` フォルダーに書き込まないようにします。このファイルは、[VS Code](https://code.visualstudio.com/) のようなコードエディターでのインテリセンスやナビゲーションを支援するためのものです。なお、`js.Build` を使用しない場合は、このファイルは書き込まれません。
 
 ## サーバーを設定する {#configure-server}
-
-{{< new-in "0.67.0" >}}
 
 これは `hugo server` を実行するときにのみ関係し、開発中に HTTP ヘッダーを設定することができるので、コンテンツ セキュリティ ポリシーなどをテストすることができます。設定形式は、[Netlify の](https://docs.netlify.com/routing/headers/#syntax-for-the-netlify-configuration-file) と少し強力な [Glob マッチング](https://github.com/gobwas/glob) にマッチしています。
 
@@ -556,9 +547,6 @@ Referrer-Policy = "strict-origin-when-cross-origin"
 Content-Security-Policy = "script-src localhost:1313"
 {{< /code-toggle >}}
 
-
-{{< new-in "0.72.0" >}}
-
 また、サーバーの簡単なリダイレクトルールを指定することもできます。この構文もまた、Netlify のものと同様です。
 
 `status` コード 200 は [URL リライト](https://docs.netlify.com/routing/redirects/rewrites-proxies/) をトリガーすることに注意してください。これは、SPA の状況で必要なものです。たとえば、次のようにします。
@@ -571,7 +559,7 @@ status = 200
 force = false
 {{< /code-toggle >}}
 
-{{< new-in "0.76.0" >}} `force=true` を設定すると、パスに既存のコンテンツがある場合でもリダイレクトを行います。Hugo 0.76 以前は `force` がデフォルトの動作でしたが、これはNetlify が行う方法と一致していることに注意してください。
+`force=true` を設定すると、パスに既存のコンテンツがある場合でもリダイレクトを行います。Hugo 0.76 以前は `force` がデフォルトの動作でしたが、これはNetlify が行う方法と一致していることに注意してください。
 
 ## 404 サーバーエラーページ {#404-server-error-page}
 
@@ -640,16 +628,18 @@ $ env HUGO_TITLE="Some Title" hugo
 {{% note "Setting Environment Variables" %}}
 OS の環境変数を設定する際には、名前の前に `HUGO_` を付け、設定キーを大文字で設定する必要があります。
 
-設定パラメータを設定するには、名前の前に `HUGO_PARAMS_` を付けます。
+設定パラメータを設定するには、名前のプレフィックスに `HUGO_PARAMS_` を付けます。
 {{% /note %}}
 
-{{< new-in "0.79.0" >}} Hugo 0.79.0 以降では、Hugo は `HUGO` の後の最初の文字で使用する区切り文字を決定しています。これにより、任意の [有効な (allowed)](https://stackoverflow.com/questions/2821043/allowed-characters-in-linux-environment-variable-names#:~:text=So%20names%20may%20contain%20any,not%20begin%20with%20a%20digit.) 区切り文字を使用して、 `HUGOxPARAMSxAPI_KEY=abcdefgh` という形式の環境変数を定義することができるようになりました。
+スネークケース [^1] の変数名を使っている場合、上記は動作しません。Hugo は `HUGO` の後の最初の文字で、使用する区切り文字を決定します。これにより、任意の [有効な (allowed)](https://stackoverflow.com/questions/2821043/allowed-characters-in-linux-environment-variable-names#:~:text=So%20names%20may%20contain%20any,not%20begin%20with%20a%20digit.) 区切り文字を使用して、`HUGOxPARAMSxAPI_KEY=abcdefgh` という形式の環境変数を定義することができるようになっています。
 
 {{< todo >}}
 Test and document setting params via JSON env var.
 {{< /todo >}}
 
 ## レンダリング時にコンテンツとデータ ファイルを無視する {#ignore-content-and-data-files-when-rendering}
+
+**注意:** これは動作しますが、より新しく強力な [includeFiles および excludeFiles](https://gohugo.io/hugo-modules/configuration/#module-config-mounts) マウント オプションを使用することをお勧めします。
 
 サイトのレンダリング時に `content` と `data` ディレクトリから特定のファイルを除外するには、 `ignoreFiles` に一つ以上の正規表現を設定して、ファイルの絶対パスに対してマッチングさせます。
 
@@ -787,6 +777,12 @@ dir
 - [TOML 仕様][toml]
 - [YAML 仕様][yaml]
 - [JSON 仕様][json]
+
+
+## 訳注
+
+[^1]: 「スネークケース」とは、プログラミングなどで英語の複合語やフレーズ（句）、文を一語に繋げて表記する際に、単語間のスペース（空白文字）をアンダースコア（_）に置き換える方式。小文字のみの平板な様子を蛇（snake）になぞらえたもので、 “array_change_key_case” のような表記がこれに当たる。([IT用語辞典](https://e-words.jp/w/%E3%82%B9%E3%83%8D%E3%83%BC%E3%82%AF%E3%82%B1%E3%83%BC%E3%82%B9.html) より引用)
+
 
 [`.Site.Params`]: /variables/site/
 [directory structure]: /getting-started/directory-structure

@@ -13,30 +13,31 @@ menu:
     weight: 20
 ---
 
-{{< new-in "0.62.0" >}} Note that this is only supported with the [Goldmark](/getting-started/configuration-markup#goldmark) renderer.
+Note that this is only supported with the [Goldmark](/getting-started/configuration-markup#goldmark) renderer.
 
 You can override certain parts of the default Markdown rendering to HTML by creating templates with base names `render-{kind}` in `layouts/_default/_markup`.
 
-You can also create type/section specific hooks in `layouts/[type/section]/_markup`, e.g.: `layouts/blog/_markup`.{{< new-in "0.71.0" >}}
+You can also create type/section specific hooks in `layouts/[type/section]/_markup`, e.g.: `layouts/blog/_markup`.
 
 The hook kinds currently supported are:
 
 * `image`
 * `link`
-* `heading` {{< new-in "0.71.0" >}}
+* `heading`
 * `codeblock`{{< new-in "0.93.0" >}}
 
 You can define [Output-Format-](/templates/output-formats) and [language-](/content-management/multilingual/)specific templates if needed. Your `layouts` folder may look like this:
 
-```goat { class="black f7" }
-layouts
-└── _default
-    └── _markup
+```text
+layouts/
+└── _default/
+    └── _markup/
+        ├── render-codeblock-bash.html
+        ├── render-codeblock.html
+        ├── render-heading.html
         ├── render-image.html
         ├── render-image.rss.xml
         └── render-link.html
-        └── render-codeblock.html
-        └── render-codeblock-bash.html
 ```
 
 Some use cases for the above:
@@ -82,8 +83,17 @@ Text
 PlainText
 : The plain variant of the above.
 
-Attributes (map) {{< new-in "0.82.0" >}}
-: A map of attributes (e.g. `id`, `class`)
+Attributes (map)
+: A map of attributes (e.g. `id`, `class`). Note that this will currently always be empty for links.
+
+The `render-image` templates will also receive:
+
+IsBlock {{< new-in "0.108.0" >}}
+: Returns true if this is a standalone image and the config option [markup.goldmark.parser.wrapStandAloneImageWithinParagraph](/getting-started/configuration-markup/#goldmark) is disabled.
+
+Ordinal  {{< new-in "0.108.0" >}}
+: Zero-based ordinal for all the images in the current document.
+
 
 ### Link with title Markdown example
 

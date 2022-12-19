@@ -99,13 +99,13 @@ Hugo のドキュメントによると、`functions`のアーキタイプは以�
 
 ### 標準的な構文 {#standard-syntax}
 
-Hugo ドキュメントの多くのページで、典型的なトリプルバックティックの Markdown 構文 (```` ``` ````) が使用されています。 以下のコードブロックのショートコードを実装するために余分な時間をかけたくない場合は、標準の [GitHub-flavored Markdown][gfm] を使用してください。 Hugo ドキュメントでは、特定の言語セットを持つバージョンの [highlight.js](https://highlightjs.org/) を使用しています。
-
-言語のオプションは、`xml`/`html`、`go`/`golang`、`md`/`markdown`/`mkd`、`handlebars`、`apache`、`toml`、`yaml`、`json`、`css`、`asciidoc`、`ruby`、`powershell`/`ps`、`scss`、`sh`/`zsh`/`bash`/`git`、 `http`/`https`、そして `javascript`/`js` です。
+Hugo ドキュメントの多くのページで、典型的なトリプルバックティックの Markdown 構文 (```` ``` ````) が使用されています。 以下のコードブロックのショートコードを実装するために余分な時間をかけたくない場合は、標準の [GitHub-flavored Markdown][gfm] を使用してください。 
 
 ````txt
-```html
-<h1>Hello world!</h1>
+```go-html-template
+{{ range site.RegularPages }}
+  <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
+{{ end }}
 ```
 ````
 

@@ -15,8 +15,8 @@ menu:
 publishdate: "2017-02-01"
 relatedfuncs: []
 signature:
-- truncate SIZE INPUT
-- truncate SIZE ELLIPSIS INPUT
+- "truncate SIZE [ELLIPSIS] INPUT"
+- "strings.Truncate SIZE [ELLIPSIS] INPUT"
 title: truncate
 workson: []
 ---

@@ -18,7 +18,7 @@ publishdate: "2017-09-30"
 relatedfuncs:
 - printf
 signature:
-- errorf FORMAT INPUT
+- "errorf FORMAT INPUT"
 title: errorf と warnf
 workson: []
 ---
@@ -37,7 +37,7 @@ ERROR が発生すると、ビルドも失敗します (`hugo` コマンドは�
 {{ warnf "You should update the shortcodes in %q" .Path }}
 ```
 
-なお、 `errorf`、`erroridf`、`warnf` は、 [fmt](https://golang.org/pkg/fmt/) パッケージのすべてのフォーマット動詞をサポートしていることに注意してください。
+なお、 `errorf`、`erroridf`、`warnf` は、 [fmt](https://pkg.go.dev/fmt) パッケージのすべてのフォーマット動詞をサポートしていることに注意してください。
 
 ## エラーを抑制する {#suppress-errors}
 

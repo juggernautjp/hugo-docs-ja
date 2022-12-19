@@ -16,6 +16,6 @@ toc: true
 weight: 50
 ---
 
-[Cloudflare Pages](https://developers.cloudflare.com/pages/) を使用して、Hugo サイトをホストできます。 ページは超高速で、常に最新の状態で、Git プロバイダーから直接デプロイされます (現在、GitHub と GitLab のみをサポートしています)。
+[Cloudflare Pages](https://developers.cloudflare.com/pages/) は超高速で、常に最新の状態で、Git プロバイダーから直接デプロイされます (現在、GitHub と GitLab のみをサポートしています)。
 
 Cloudflare Pages には、 [「Hugo サイトのデプロイ方法」](https://developers.cloudflare.com/pages/framework-guides/deploy-a-hugo-site/) という便利なチュートリアルがあります。

@@ -10,10 +10,10 @@ keywords:
 menu:
   docs:
     parent: content-management
-    weight: 32
+    weight: 90
 title: 画像処理
 toc: true
-weight: 4004
+weight: 90
 ---
 ## 画像リソース {#image-resources}
 

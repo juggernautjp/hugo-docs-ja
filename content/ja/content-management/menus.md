@@ -13,11 +13,11 @@ linktitle: メニュー
 menu:
   docs:
     parent: content-management
-    weight: 120
+    weight: 190
 publishdate: "2017-02-01"
 title: メニュー
 toc: true
-weight: 120
+weight: 190
 ---
 
 {{% note "Lazy Blogger"%}}

@@ -1,21 +1,17 @@
 ---
 title: Shortcodes
-linktitle:
+linkTitle: Shortcodes
 description: Shortcodes are simple snippets inside your content files calling built-in or custom templates.
-date: 2017-02-01
-publishdate: 2017-02-01
-lastmod: 2019-11-07
-menu:
-  docs:
-    parent: "content-management"
-    weight: 35
-weight: 35	#rem
 categories: [content management]
 keywords: [markdown,content,shortcodes]
-draft: false
+menu:
+  docs:
+    parent: content-management
+    weight: 100
+toc: true
+weight: 100
 aliases: [/extras/shortcodes/]
 testparam: "Hugo Rocks!"
-toc: true
 ---
 
 ## What a Shortcode is
@@ -51,8 +47,6 @@ Here are two examples of paired shortcodes:
 The examples above use two different delimiters, the difference being the `%` character in the first and the `<>` characters in the second.
 
 ### Shortcodes with raw string parameters
-
-{{< new-in "0.64.1" >}}
 
 You can pass multiple lines as parameters to a shortcode by using raw string literals:
 

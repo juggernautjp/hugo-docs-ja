@@ -17,11 +17,11 @@ linktitle: コンテンツ構成
 menu:
   docs:
     parent: content-management
-    weight: 10
+    weight: 20
 publishdate: "2017-02-01"
 title: コンテンツ構成
 toc: true
-weight: 10
+weight: 20
 ---
 
 ## ページバンドル {#page-bundles}

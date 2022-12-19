@@ -15,11 +15,11 @@ linktitle: 多言語対応
 menu:
   docs:
     parent: content-management
-    weight: 150
+    weight: 230
 publishdate: "2017-01-10"
 title: 多言語対応モード
 toc: true
-weight: 150
+weight: 230
 ---
 
 利用可能な言語は、サイト設定の `languages` セクションで定義する必要があります。
@@ -227,10 +227,6 @@ slug: "a-propos"
 {{< /code-toggle >}}
 
 レンダリング時に、Hugo は `/about/` と `/fr/a-propos/` の翻訳リンクを維持したまま、両方をビルドします。
-
-{{% note %}}
-`url` を使用する場合は、`/fr/companie/a-propos/` のように忘れずに言語部分も含めてください。
-{{%/ note %}}
 
 ### ページバンドル {#page-bundles}
 
@@ -576,7 +572,19 @@ i18n|MISSING_TRANSLATION|en|wordCount
 
 ## `hugo new` で多言語コンテンツを生成する {#generate-multilingual-content-with-hugo-new}
 
-現在、`hugo new` は多言語コンテンツの生成に対応する準備ができていません。しかし、これについては GitHub issue に [提案トピック](https://github.com/gohugoio/hugo/issues/7732) があり、どのように動作させるべきか議論されています。
+翻訳を含むコンテンツを同じディレクトリに整理する場合は、以下のコマンドを実行します。
+
+```text
+hugo new post/test.en.md
+hugo new post/test.de.md
+```
+
+翻訳を含むコンテンツを異なるディレクトリに整理する場合は、以下のコマンドを実行します。
+
+```text
+hugo new content/en/post/test.md
+hugo new content/de/post/test.md
+```
 
 [abslangurl]: /functions/abslangurl
 [config]: /getting-started/configuration/

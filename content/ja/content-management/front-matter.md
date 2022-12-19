@@ -18,11 +18,11 @@ linktitle: null
 menu:
   docs:
     parent: content-management
-    weight: 30
+    weight: 60
 publishdate: "2017-01-09"
 title: フロントマター
 toc: true
-weight: 30
+weight: 60
 ---
 
 **フロントマター** は、[コンテンツタイプ][content type] のインスタンスに付けられたメタデータを保持できます --- つまり、コンテンツファイルの中に埋め込むことができます --- そして、Hugo の強みを示す多くの機能のうちの 1 つです。
@@ -168,9 +168,7 @@ show_comments: false
 
 ### 特定のページをターゲットにする {#target-specific-pages}
 
-{{< new-in "0.76.0" >}}
-
-Hugo 0.76 以降、 `cascade` ブロックはオプションの `_target` キーワードを持つスライスにすることができ、異なるページセットを対象とした複数の `cascade` 値を使用できるようになりました。
+`cascade` ブロックは、オプションの `_target` キーワードを持つスライスで、異なるページセットを対象とした複数の `cascade` 値を使用できます。
 
 {{< code-toggle copy="false" >}}
 title ="Blog"

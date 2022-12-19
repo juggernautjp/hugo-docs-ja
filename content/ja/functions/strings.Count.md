@@ -18,12 +18,10 @@ menu:
 publishdate: "2020-09-07"
 relatedfuncs: []
 signature:
-- strings.Count SUBSTR STRING
+- "strings.Count SUBSTR STRING"
 title: strings.Count
 workson: []
 ---
-
-{{< new-in "0.74.0" >}}
 
 `SUBSTR` が空文字列の場合、この関数は 1 に `STRING` の Unicode コードポイントの数を加えた値を返します。
 

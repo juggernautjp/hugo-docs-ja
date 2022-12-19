@@ -18,11 +18,15 @@ menu:
 publishdate: "2017-02-01"
 relatedfuncs: []
 signature:
-- lower INPUT
+- "lower INPUT"
+- "strings.ToLower INPUT"
 title: lower
 workson: []
 ---
 
+`lower` は複数の方法でテンプレートに適用できることに注意してください。
+
 ```go-html-template
-{{lower "BatMan"}} → "batman"
+{{ lower "BatMan" }} → "batman"
+{{ "BatMan" | lower }} → "batman"
 ```

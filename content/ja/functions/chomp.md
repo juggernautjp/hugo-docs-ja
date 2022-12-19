@@ -17,6 +17,7 @@ relatedfuncs:
 - truncate
 signature:
 - chomp INPUT
+- "strings.Chomp INPUT"
 title: chomp
 toc: true
 workson: []

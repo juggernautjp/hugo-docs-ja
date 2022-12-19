@@ -14,9 +14,10 @@ menu:
   docs:
     identifier: page-bundles
     parent: content-management
-    weight: 11
+    weight: 30
 title: ページバンドル
 toc: true
+weight: 30
 ---
 
 ページバンドルは、[ページリソース](/content-management/page-resources/) をグループ化するための方法です。

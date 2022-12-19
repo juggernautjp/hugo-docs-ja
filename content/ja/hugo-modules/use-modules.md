@@ -70,8 +70,6 @@ hugo mod get -u
 
 ### すべてのモジュールを再帰的に更新する {#update-all-modules-recursively}
 
-{{< new-in "0.65.0" >}}
-
 ```bash
 hugo mod get -u ./...
 ```
@@ -100,7 +98,7 @@ replace github.com/bep/hugotestmods/mypartials => /Users/bep/hugotestmods/mypart
 
 `hugo server` を実行している場合、設定がリロードされ、`/Users/bep/hugotestmods/mypartials` が監視リストに追加されます。
 
-v.0.77.0 以降では、モジュール設定の [`replacements`](https://gohugo.io/hugo-modules/configuration/#module-config-top-level) オプションを使用できることに注意してください。 {{< new-in "0.77.0" >}}
+また、`go.mod` ファイルを修正する代わりに、モジュール設定の [`replacements`](https://gohugo.io/hugo-modules/configuration/#module-config-top-level) オプションを使用することもできます。
 
 ## 依存関係グラフの印刷 {#print-dependency-graph}
 
@@ -108,7 +106,7 @@ v.0.77.0 以降では、モジュール設定の [`replacements`](https://gohugo
 
 たとえば、以下のように出力されます。
 
-```txt
+```bash
 hugo mod graph
 
 github.com/bep/my-modular-site github.com/bep/hugotestmods/mymounts@v1.2.0
@@ -130,7 +128,7 @@ github.com/bep/my-modular-site in-themesdir
 
 * モジュールツリーのどのレベルでも `hugo mod vendor` を実行できます。
 * ベンダー化は `themes` フォルダーに保存されているモジュールを保存しません。
-* ほとんどのコマンドは `--ignoreVendorPaths` フラグを受け付け、指定された [Glob](https://github.com/gobwas/glob) パターンにマッチするモジュールパスに対して `_vendor` に含まれるベンダー モジュールを使用しないようにします。Hugo 0.75 以前では、このフラグは `--ignoreVendor` という名前で、「全部かゼロか」であったことに注意してください。 {{< new-in "0.75.0" >}}
+* ほとんどのコマンドは `--ignoreVendorPaths` フラグを受け付け、指定された [Glob](https://github.com/gobwas/glob) パターンにマッチするモジュールパスに対して `_vendor` に含まれるベンダー モジュールを使用しないようにします。
 
 [CLI Doc](/commands/hugo_mod_vendor/) も参照してください。
 

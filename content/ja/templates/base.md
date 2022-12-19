@@ -29,7 +29,7 @@ weight: 20
 
 ## ベーステンプレートの検索順序 {#base-template-lookup-order}
 
-{{< new-in "0.63.0" >}} Hugo v0.63 以降、ベーステンプレートの検索順序は、それが適用されるテンプレート (たとえば、 `_default/list.html`) の順序に厳密に従います
+sベーステンプレートの検索順序は、それが適用されるテンプレート (たとえば、 `_default/list.html`) の順序に厳密に従います
 
 詳細と例については、[テンプレート検索順序](/templates/lookup-order/) を参照してください。
 
@@ -93,7 +93,7 @@ weight: 20
 
 {{< code file="layouts/_default/single.html" download="single.html" >}}
 {{ define "title" }}
-  <!-- This will override the default value set in baseof.html; i.e., "{{.Site.Title}}" in the original example-->
+  <!-- これは、baseof.html で設定されたデフォルト値をオーバーライドします。つまり、元の例では "{{.Site.Title}}" となります。 -->
   {{ .Title }} &ndash; {{ .Site.Title }}
 {{ end }}
 {{ define "main" }}

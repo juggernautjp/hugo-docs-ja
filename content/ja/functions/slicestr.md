@@ -16,7 +16,8 @@ menu:
 publishdate: "2017-02-01"
 relatedfuncs: []
 signature:
-- slicestr STRING START [END]
+- "slicestr STRING START [END]"
+- "strings.SliceString STRING START [END]"
 title: slicestr
 workson: []
 ---

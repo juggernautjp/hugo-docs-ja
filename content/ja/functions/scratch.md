@@ -143,7 +143,7 @@ Scratch には、以下のメソッドがあります。
 
 #### .Delete
 
-{{< new-in "0.38" >}} 指定されたキーを削除します。
+指定されたキーを削除します。
 
 ```go-html-template
 {{ $scratch.Set "greeting" "Hello" }}

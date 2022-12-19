@@ -4,7 +4,7 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: 正規表現にマッチする文字列のリストを返します。
+description: 正規表現にマッチする文字列のスライスを返します。
 draft: false
 hugoversion: null
 keywords:
@@ -14,35 +14,36 @@ menu:
   docs:
     parent: functions
 publishdate: "2017-02-01"
-relatedfuncs: []
+relatedfuncs: [replaceRE]
 signature:
-- findRE PATTERN INPUT [LIMIT]
+- "findRE PATTERN INPUT [LIMIT]"
+- "strings.FindRE PATTERN INPUT [LIMIT]"
 title: findRE
 workson: []
 ---
+デフォルトでは、 `findRE` 関数はすべてのマッチを検出します。オプションの LIMIT パラメータを指定することで、マッチの数を制限することができます。
 
-デフォルトでは、すべてのマッチが含まれます。マッチの数は、オプションの第 3 パラメータで制限することができます。
+正規表現を指定するときは、構文を簡単にするために、解釈された文字列リテラル (二重引用符) ではなく、生の [文字列リテラル][string literal] (バッククォート) を使用します。解釈された文字列リテラルを使用する場合は、バックスラッシュをエスケープする必要があります。
 
-以下の例では、コンテンツに含まれるすべての第 2 レベルのヘッダー (`<h2>`) のリストを返します。
+正規表現の構文は、Perl や Python などで使われている一般的な構文と同じです。より正確には、`\C` を除いた [RE2] で認められている構文です。
+
+以下の例では、レンダリングされた `.Content` 内のすべての第 2 レベルの見出し (`h2` 要素) のスライスを返します。
 
 ```go-html-template
-{{ findRE "<h2.*?>(.|\n)*?</h2>" .Content }}
+{{ findRE `(?s)<h2.*?>.*?</h2>` .Content }}
 ```
 
-3 番目のパラメータで、リスト内のマッチの数を制限できます。 以下の例は、返される値を 1 つのマッチしたものだけに制限する方法を示しています (マッチする部分文字列がない場合は、どれにもマッチしません)。
+`s` フラグを指定すると、 `.` は `\n` にもマッチするようになり、改行を含む `h2` 要素を見つけることができるようになります。
+
+マッチの数を 1 つに制限する場合は、以下のように書きます。
 
 ```go-html-template
-{{ findRE "<h2.*?>(.|\n)*?</h2>" .Content 1 }}
-    <!-- returns ["<h2 id="#foo">Foo</h2>"] -->
+{{ findRE `(?s)<h2.*?>.*?</h2>` .Content 1 }}
 ```
 
 {{% note %}}
-Hugo は Go の [正規表現パッケージ](https://golang.org/pkg/regexp/) を使用しています。これは、Perl、Python、その他の言語で使用されている一般的な構文と同じですが、[PCRE](https://www.pcre.org/) [(Perl Compatible Regular Expressions)](https://qualysguard.qualys.com/qwebhelp/jp/fo_portal/module_pc/policies/regular_expression_symbols.htm) のバックグラウンドから来たものとは若干の違いがあります。 完全な構文リストは、[GitHub wiki for re2](https://github.com/google/re2/wiki/Syntax) を参照してください。
-
-RegEx、または少なくとも Go のフレーバーを学んでいる場合は、ブラウザの <https://regex101.com/> ページでパターン マッチングを練習できます。
+[regex101.com](https://regex101.com/) を使えば、正規表現を書いてテストすることができます。始める前に、必ず Go フレーバーを選択してください。
 {{% /note %}}
 
-[partials]: /templates/partials/
-[`plainify`]: /functions/plainify/
-[toc]: /content-management/toc/
-[`urlize`]: /functions/urlize
+[RE2]: https://github.com/google/re2/wiki/Syntax
+[string literal]: https://go.dev/ref/spec#String_literals

@@ -1,19 +1,16 @@
 ---
 title: Content Formats
-linktitle: Content Formats
+linkTitle: Content Formats
 description: Both HTML and Markdown are supported content formats.
-date: 2017-01-10
-publishdate: 2017-01-10
 categories: [content management]
 keywords: [markdown,asciidoc,pandoc,content format]
 menu:
   docs:
-    parent: "content-management"
-    weight: 20
-weight: 20	#rem
-draft: false
-aliases: [/content/markdown-extras/,/content/supported-formats/,/doc/supported-formats/]
+    parent: content-management
+    weight: 40
 toc: true
+weight: 40
+aliases: [/content/markdown-extras/,/content/supported-formats/,/doc/supported-formats/]
 ---
 
 You can put any file type into your `/content` directories, but Hugo uses the `markup` front matter value if set or the file extension (see `Markup identifiers` in the table below) to determine if the markup needs to be processed, e.g.:
@@ -28,7 +25,7 @@ The current list of content formats in Hugo:
 
 | Name  | Markup identifiers | Comment |
 | ------------- | ------------- |-------------|
-| Goldmark  | md, markdown, goldmark  |Note that you can set the default handler of `md` and `markdown` to something else, see [Configure Markup](/getting-started/configuration-markup/).{{< new-in "0.60.0" >}} |
+| Goldmark  | md, markdown, goldmark  |Note that you can set the default handler of `md` and `markdown` to something else, see [Configure Markup](/getting-started/configuration-markup/).|
 |Emacs Org-Mode|org|See [go-org](https://github.com/niklasfasching/go-org).|
 |AsciiDoc|asciidocext, adoc, ad|Needs [Asciidoctor][ascii] installed.|
 |RST|rst|Needs [RST](https://docutils.sourceforge.io/rst.html) installed.|

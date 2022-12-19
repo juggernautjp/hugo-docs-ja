@@ -117,9 +117,6 @@ The following is the full list of configuration options for output formats and t
 `noUgly`
 : used to turn off ugly URLs If `uglyURLs` is set to `true` in your site. **Default:** `false`.
 
-`ugly`
-: Enable to override the global uglyURLs setting.
-
 `notAlternative`
 : enable if it doesn't make sense to include this format in an `AlternativeOutputFormats` format listing on `Page` (e.g., with `CSS`). Note that we use the term _alternative_ and not _alternate_ here, as it does not necessarily replace the other format. **Default:** `false`.
 
@@ -163,8 +160,6 @@ Example from site config file:
 
 Note that in the above examples, the _output formats_ for `section`,
 `taxonomy` and `term` will stay at their default value `["HTML", "RSS"]`.
-
-{{< new-in "0.73.0" >}} We have fixed the before confusing page kinds used for taxonomies (see the listing below) to be in line with the terms used when we talk about taxonomies. We have been careful to avoid site breakage, and you should get an ERROR in the console if you need to adjust your `outputs` section.
 
 {{% page-kinds %}}
 

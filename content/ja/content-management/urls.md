@@ -20,11 +20,11 @@ linktitle: URL 管理
 menu:
   docs:
     parent: content-management
-    weight: 110
+    weight: 180
 publishdate: "2017-02-01"
 title: URL 管理
 toc: true
-weight: 110
+weight: 180
 ---
 
 ## パーマリンク {#permalinks}

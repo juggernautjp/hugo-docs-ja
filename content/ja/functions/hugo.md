@@ -15,7 +15,7 @@ menu:
 publishdate: "2019-01-31"
 relatedfuncs: []
 signature:
-- hugo
+- "hugo"
 title: hugo
 toc: null
 workson: []

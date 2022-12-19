@@ -19,11 +19,11 @@ linktitle: null
 menu:
   docs:
     parent: content-management
-    weight: 80
+    weight: 150
 publishdate: "2017-02-01"
 title: タクソノミー
 toc: true
-weight: 80
+weight: 150
 ---
 
 ## タクソノミーとは? {#what-is-a-taxonomy}
@@ -107,8 +107,6 @@ Hugo にタクソノミーを作成させたくない場合は、[サイト設�
 {{< code-toggle copy="false" >}}
 disableKinds = ["taxonomy","term"]
 {{</ code-toggle >}}
-
-{{< new-in "0.73.0" >}} 以前はタクソノミーに使用されるページの種類 (以下のリストを参照) が混乱していましたが、タクソノミーについて話すときに使用される用語と一致するように修正されました。サイトが壊れないように注意し、`disableKinds` セクションを調整する必要がある場合は、コンソールに ERROR が表示されるはずです。
 
 {{% page-kinds-ja %}}
 

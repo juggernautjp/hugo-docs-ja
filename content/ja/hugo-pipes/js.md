@@ -23,7 +23,7 @@ targetPath [string]
 : 設定されていない場合は、ソースパスがベースとなるターゲットパスとして使用されます。
 ターゲットパスの拡張子は、ソースが TypeScript である場合など、ターゲットの MIME タイプが異なる場合に変更される可能性があることに注意してください。
 
-params [map or slice] {{< new-in "0.78.0" >}}
+params [map or slice]
 : JS ファイルに JSON としてインポートできるパラメータです。たとえば、以下のようになります。
 
 ```go-html-template
@@ -40,10 +40,10 @@ import * as params from '@params';
 minify [bool]
 : ミニファイ ([minification](https://developer.mozilla.org/ja/docs/Glossary/minification)) の処理は `js.Build` に任せます。
 
-inject [slice] {{< new-in "0.81.0" >}}
+inject [slice]
 : このオプションは、グローバル変数を他のファイルからインポートして自動的に置き換えることができます。パス名は `assets` からの相対パスである必要があります。詳細は、 https://esbuild.github.io/api/#inject を参照してください。
 
-shims {{< new-in "0.81.0" >}}
+shims
 : このオプションは、コンポーネントを別のものと交換することができます。一般的な使用例は、本番環境では React などの依存関係を CDN から (_shims_ を使用して) ロードすることですが、開発時には完全にバンドルされた `node_modules` 依存関係で実行します。
 
 ```go-html-template
@@ -70,11 +70,6 @@ import * as React from 'react'
 import * as ReactDOM from 'react-dom';
 ```
 
-sourceMap [string, bool] {{< new-in "0.75.0" >}}
-: `js.Build` に sourceMap を出力させます。現在は inline のみサポートしています。true のデフォルトは inline です。
-  値は、 `inline`、`external` のいずれかです。
-  デフォルトは "" (無効) です。
-
 target [string]
 : 言語ターゲットです。
   値は、`es5`、`es2015`、`es2016`、`es2017`、`es2018`、`es2019`、`es2020`、`esnext` のいずれかです。
@@ -83,6 +78,7 @@ target [string]
 externals [slice]
 : 外部依存関係です。 これを使用して、決して実行されないことがわかっている依存関係を削除します。 詳細は、https://esbuild.github.io/api/#external を参照してください
 
+
 defines [map]
 : ビルド時に実行する一連の文字列置換を定義できます。 各キーがその値に置き換えられるマップである必要があります。
 
@@ -90,19 +86,17 @@ defines [map]
 {{ $defines := dict "process.env.NODE_ENV" `"development"` }}
 ```
 
-format [string] {{< new-in "0.74.3" >}}
+format [string]
 : 出力形式です。
   値は、`iife`、`cjs`、`esm` のいずれかです。
   デフォルトは `iife` で、自己実行型の関数であり、<script> タグとして含めるのに適しています。
 
 sourceMap
-: esbuild から `inline` または `external` のソースマップを生成するかどうかを指定します。 外部ソースマップは、出力ファイル名＋".map" でターゲットに書き込まれます。 入力ソースマップは js.Build や node モジュールから読み込み、出力ソースマップに結合できます。
+: esbuild から `inline` または `external` のソースマップを生成するかどうかを指定します。 外部ソースマップは、出力ファイル名 + ".map" でターゲットに書き込まれます。 入力ソースマップは js.Build や node モジュールから読み込み、出力ソースマップに結合できます。
 
 ### /assets から JS コードをインポートする {"import-js-code-from-assets}
 
-{{< new-in "0.78.0" >}}
-
-Hugo `v0.78.0` 以降、`js.Build` は [Hugo モジュール](/hugo-modules/) で仮想ユニオン ファイルシステムを完全にサポートするようになりました。 この [テスト プロジェクト](https://github.com/gohugoio/hugoTestProjectJSModImports) でいくつかの簡単な例を見ることができますが、要するに、これは以下のことができることを意味します。
+`js.Build` は [Hugo モジュール](/hugo-modules/) で仮想ユニオン ファイルシステムを完全にサポートしています。 この [テスト プロジェクト](https://github.com/gohugoio/hugoTestProjectJSModImports) でいくつかの簡単な例を見ることができますが、要するに、これは以下のことができることを意味します。
 
 ```js
 import { hello } from 'my/module';
@@ -149,7 +143,7 @@ Hugo はデフォルトで、インポートをマップする `assets/jsconfig.
 
 `/assets` の外にあるファイルでのインポート、または `/assets` 内のコンポーネントに解決されないインポートは、[ESBuild](https://esbuild.github.io/) によって、**プロジェクト ディレクトリ** を用いて解決ディレクトリとして解決されます (`node_modules` などを探すときの開始点として使用されます)。 [hugo mod npm pack](/commands/hugo_mod_npm_pack/) も参照してください。 プロジェクトにインポートされた npm 依存関係がある場合は、`hugo` を実行する前に必ず `npm install` を実行する必要があります。
 
-{{< new-in "0.78.1" >}} Hugo `0.78.1` 以降、npm パッケージ (別名、`node_modules` フォルダー内に存在するパッケージ) を解決するための開始ディレクトリは、常にメインプロジェクト フォルダーです。
+npm パッケージ (別名、`node_modules` フォルダー内に存在するパッケージ) を解決するための開始ディレクトリは、常にメインプロジェクト フォルダーです。
 
 **注意:** もし、インポートを前提としたテーマ/コンポーネントを開発しており、 `package.json` 内の依存関係に依存している場合は、プロジェクト内のすべての npm 依存関係を統合するツールである [hugo mod npm pack](/commands/hugo_mod_npm_pack/) を読むことを推奨します。
 

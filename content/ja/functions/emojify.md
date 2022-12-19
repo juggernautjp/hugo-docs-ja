@@ -16,12 +16,12 @@ menu:
 publishdate: "2017-02-01"
 relatedfuncs: []
 signature:
-- emojify INPUT
+- "emojify INPUT"
 title: emojify
 workson: []
 ---
 
-`emoji` は渡された文字列を Emoji emoticons プロセッサーで処理します。
+`emojify` は渡された文字列を Emoji emoticons プロセッサーで処理します。
 
 使用可能な絵文字 (emoticons) については、[絵文字チートシート][emojis] を参照してください。
 

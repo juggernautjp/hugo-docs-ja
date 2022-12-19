@@ -14,11 +14,11 @@ linktitle: null
 menu:
   docs:
     parent: content-management
-    weight: 130
+    weight: 210
 publishdate: "2017-02-01"
 title: 目次
 toc: true
-weight: 130
+weight: 210
 ---
 
 {{% note "TOC Heading Levels are Fixed" %}}

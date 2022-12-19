@@ -24,11 +24,11 @@ weight: 40
 {{ $style := $css | resources.PostCSS }}
 ```
 
-{{% note %}}
-Hugo パイプの PostCSS は、`postcss-cli` JavaScript パッケージが環境にインストールされていること (`npm install -g postcss postcss-cli`) と、使用する PostCSS プラグインがインストールされている (たとえば、 `npm install -g autoprefixer`) 必要があります。
+PostCSS 機能を使用するには、必要な Node.js パッケージをインストールする必要があります。 たとえば、`autoprefixer` パッケージを使用するには、プロジェクトのルートから以下のコマンドを実行します。
 
-Hugo Snap パッケージを使用している場合、PostCSS とプラグインは Hugo サイトのディレクトリ内にローカルにインストールする必要があります。 たとえば、`npm install postcss-cli` を `-g` フラグなしで実行します。
-{{% /note %}}
+```bash
+npm install postcss postcss-cli autoprefixer
+```
 
 ### オプション {#options}
 
@@ -38,7 +38,7 @@ config [string]
 noMap [bool]
 : デフォルトは `false` です。デフォルトのインライン ソースマップを無効にします
 
-inlineImports [bool] {{< new-in "0.66.0" >}}
+inlineImports [bool]
 : デフォルトは `false` です。 @import 文のインライン化を有効にします。これは再帰的に実行されますが、ファイルのインポートは一度だけです。
 URL インポート (たとえば、`@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');`) とメディアクエリを含むインポートは無視されます。
 このインポート ルーチンは CSS 仕様を考慮しないことに注意してください。そのため、ファイル内のどこにでも @import を含めることができます。
@@ -70,8 +70,6 @@ syntax [string]
 ```
 
 ## postcss.config.js から Hugo の環境を確認する {#check-hugo-environment-from-postcssconfigjs}
-
-{{< new-in "0.66.0" >}}
 
 現在の Hugo 環境名 (`--environment` や config や OS 環境で設定されたもの) は Node コンテキストで利用可能であり、以下のような構成をとることができます。
 

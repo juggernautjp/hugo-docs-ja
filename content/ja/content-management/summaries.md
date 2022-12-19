@@ -16,11 +16,11 @@ linktitle: サマリー
 menu:
   docs:
     parent: content-management
-    weight: 90
+    weight: 160
 publishdate: "2017-01-10"
 title: コンテンツサマリー
 toc: true
-weight: 90
+weight: 160
 ---
 
 `.Summary` [ページ変数][pagevariables] を使用すると、Hugo はコンテンツのサマリーを生成し、サマリービューで短縮版として使用することができます。

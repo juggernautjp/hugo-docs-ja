@@ -22,7 +22,7 @@ weight: 180
 
 ここでは、よくある質問に答えるために、テンプレートに追加できるスニペットをいくつか紹介します。
 
-これらのスニペットは、すべての Go テンプレートで利用可能な `printf` 関数を使用します。 この関数は Go 関数 [fmt.Printf](https://golang.org/pkg/fmt/) のエイリアスです。 
+これらのスニペットは、すべての Go テンプレートで利用可能な `printf` 関数を使用します。 この関数は Go 関数 [fmt.Printf](https://pkg.go.dev/fmt) のエイリアスです。 
 
 ## このコンテキストで使用できる変数は? {#what-variables-are-available-in-this-context}
 

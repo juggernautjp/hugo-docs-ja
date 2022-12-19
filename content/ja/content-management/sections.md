@@ -16,11 +16,11 @@ linktitle: セクション
 menu:
   docs:
     parent: content-management
-    weight: 50
+    weight: 120
 publishdate: "2017-02-01"
 title: コンテンツセクション
 toc: true
-weight: 50
+weight: 120
 ---
 
 **セクション** は、`content/` ディレクトリの下の組織構造に基づいて定義されるページのコレクションです。

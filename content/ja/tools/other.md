@@ -29,3 +29,4 @@ Hugo に関する他のすべての小さなことについては、以下のと
 - [Hugo SFTP Upload](https://github.com/thomasmey/HugoSftpUpload) は、Hugo Web サイトのローカル ビルドを SFTP 経由でリモート Web サーバーと同期します。
 - [Emacs Easy Hugo](https://github.com/masasam/emacs-easy-hugo) は、Markdown や org-mode でブログ記事を書き、Hugo でサイトを構築するための Emacs パッケージです。
 - [JAMStack Themes](https://jamstackthemes.dev/ssg/hugo/). JAMStack テーマは、静的サイトジェネレーターおよびサポートされている CMS によってフィルター可能なサイト テーマのコレクションであり、(Hugo 固有のテーマにリンクした) Hugo を使用して CMS に接続されたサイトを構築するのに役立ちます。
+- [plausible-hugo](https://github.com/divinerites/plausible-hugo). Google Analyticsに代わる、シンプルでオープンソース、軽量でプライバシーに配慮した Web 解析ツール、Plausible Analytics を簡単に Hugo に統合できます。

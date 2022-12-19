@@ -16,7 +16,8 @@ menu:
 publishdate: "2017-02-01"
 relatedfuncs: []
 signature:
-- title INPUT
+- "title INPUT"
+- "strings.Title INPUT"
 title: title
 workson: []
 ---

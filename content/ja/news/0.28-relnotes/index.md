@@ -1,19 +1,16 @@
+
 ---
-categories:
-- Releases
-date: "2017-09-25"
-description: Chroma is the new default syntax highlighter in Hugo.
-draft: true
+date: 2017-09-25
+title: "Hugo 0.28: High-speed Syntax Highlighting!"
+description: "Chroma is the new default syntax highlighter in Hugo."
+categories: ["Releases"]
 images:
 - images/blog/hugo-28-poster.png
-title: 'Hugo 0.28: High-speed Syntax Highlighting!'
 ---
 
 	Hugo `0.28` brings **blistering fast and native syntax highlighting** from [Chroma](https://github.com/alecthomas/chroma) ([fb33d828](https://github.com/gohugoio/hugo/commit/fb33d8286d78a78a74deb44355b621852a1c4033) [@bep](https://github.com/bep) [#3888](https://github.com/gohugoio/hugo/issues/3888)). A big thank you to [Alec Thomas](https://github.com/alecthomas) for taking on this massive task of porting the popular python highlighter Pygments to Go.
 
 Hugo has been caching the highlighter output to disk, so for repeated builds it has been fine, but this little snippet, showing a build of the [gohugo.io](https://gohugo.io/) site without cache and with both Pygments and Chroma, should illustrate the improvement:
-
-{{< asciicast Lc5iwTVny2kuUC8lqvNnL6oDU >}}
 
 See the [Updated Documentation](https://gohugo.io/content-management/syntax-highlighting/) for more information about how this works.
 
@@ -62,4 +59,3 @@ Hugo now has:
 * Add `liveReloadPort` flag to server [b1804776](https://github.com/gohugoio/hugo/commit/b180477631555824a06293053e2b6e63c5f07361) [@bep](https://github.com/bep) [#3882](https://github.com/gohugoio/hugo/issues/3882)
 * Add `noHTTPCache` flag to hugo server (default on) [0b34af21](https://github.com/gohugoio/hugo/commit/0b34af216154367af7f53ce93d44e6b3d58c3f34) [@bep](https://github.com/bep) [#3897](https://github.com/gohugoio/hugo/issues/3897)
 * Make `noHTTPCache` default on [80c7ea60](https://github.com/gohugoio/hugo/commit/80c7ea60a0e0f488563a6b7311f3d4c23457aac7) [@bep](https://github.com/bep) [#3897](https://github.com/gohugoio/hugo/issues/3897)
-

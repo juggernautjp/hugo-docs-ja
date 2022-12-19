@@ -15,11 +15,11 @@ linktitle: ビルドオプション
 menu:
   docs:
     parent: content-management
-    weight: 31
+    weight: 70
 publishdate: "2020-03-02"
 title: ビルドオプション
 toc: true
-weight: 31
+weight: 70
 ---
 
 これらは、`_build` という名前の予約されたフロントマター オブジェクトに格納され、以下のようなデフォルトが設定されています。

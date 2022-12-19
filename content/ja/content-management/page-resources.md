@@ -12,10 +12,10 @@ linktitle: ページリソース
 menu:
   docs:
     parent: content-management
-    weight: 31
+    weight: 80
 title: ページリソース
 toc: true
-weight: 4003
+weight: 80
 ---
 ページリソースは [ページバンドル]({{< relref "/content-management/page-bundles" >}}) からしかアクセスできません。
 `index.md` または `_index.md` ファイルをルートに持つディレクトリからしかアクセスできません。ページリソースは、それがバンドルされているページでのみ利用可能です。
@@ -47,8 +47,6 @@ content
 
 ResourceType
 : リソースの [メディアタイプ](/templates/output-formats/#media-types) のメインタイプです。 たとえば、MIME タイプ `image/jpeg` のファイルは `ResourceType` が `image` となります。`Page` は `ResourceType` に `page` という値を持ちます。
-
-{{< new-in "0.80.0" >}} Hugo `v0.80.0` では、画像以外のリソース (動画など) が MIME サブタイプ (たとえば、`json`) を返すバグを修正したことに注意してください。
 
 Name
 : デフォルト値は、ファイル名 (所有ページからの相対パス) です。フロントマターで設定できます。
