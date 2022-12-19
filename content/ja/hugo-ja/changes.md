@@ -35,6 +35,15 @@ toc: true
 
 - 本プロジェクトの GitHub リポジトリの Issues ページを公開し、[「日本語版への貢献」](/hugo-ja/contribute/) の「問題報告について」で告知
 - 英語版 v0.108.0 までの変更を日本語版に反映
-  - メニューに「インストール」セクションを追加
-  - 
+  - 「インストール」セクションのコンテンツを追加し、メニューに追加
+  - 以下のファイルを新規に翻訳し、追加
+    - functions/crypto.FNV32a.md
+    - functions/duration.md
+    - functions/strings.Contains.md
+    - functions/strings.ContainsAny.md
+    - functions/strings.FirstUpper.md
+    - functions/time.ParseDuration.md
+    - functions/urlquery.md
+    - hosting-and-deployment/hosting-on-azure.md
+
 
