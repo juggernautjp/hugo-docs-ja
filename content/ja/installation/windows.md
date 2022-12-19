@@ -10,11 +10,11 @@ menu:
 toc: true
 weight: 40
 ---
-{{% readfile file="/installation/common/01-editions.md" %}}
+{{% readfile file="/content/ja/installation/common/01-editions.md" %}}
 
-{{% readfile file="/installation/common/02-prerequisites.md" %}}
+{{% readfile file="/content/ja/installation/common/02-prerequisites.md" %}}
 
-{{% readfile file="/installation/common/03-prebuilt-binaries.md" %}}
+{{% readfile file="/content/ja/installation/common/03-prebuilt-binaries.md" %}}
 
 ## パッケージ マネージャー {#package-managers}
 
@@ -38,9 +38,9 @@ scoop install hugo-extended
 
 [Scoop]: https://scoop.sh/
 
-{{% readfile file="/installation/common/04-docker.md" %}}
+{{% readfile file="/content/ja/installation/common/04-docker.md" %}}
 
-{{% readfile file="/installation/common/05-build-from-source.md" %}}
+{{% readfile file="/content/ja/installation/common/05-build-from-source.md" %}}
 
 {{% note %}}
 Windows で Hugo の拡張版をソースからビルドする場合、[GCC コンパイラ][GCC compiler] もインストールする必要があります。 これらの [詳細な手順][detailed instructions] を参照してください。

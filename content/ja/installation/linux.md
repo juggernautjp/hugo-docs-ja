@@ -10,11 +10,11 @@ menu:
 toc: true
 weight: 30
 ---
-{{% readfile file="/installation/common/01-editions.md" %}}
+{{% readfile file="/content/ja/installation/common/01-editions.md" %}}
 
-{{% readfile file="/installation/common/02-prerequisites.md" %}}
+{{% readfile file="/content/ja/installation/common/02-prerequisites.md" %}}
 
-{{% readfile file="/installation/common/03-prebuilt-binaries.md" %}}
+{{% readfile file="/content/ja/installation/common/03-prebuilt-binaries.md" %}}
 
 ## パッケージ マネージャー {#package-managers}
 
@@ -29,7 +29,7 @@ sudo snap install hugo
 [most distributions]: https://snapcraft.io/docs/installing-snapd
 [Snap]: https://snapcraft.io/
 
-{{% readfile file="/installation/common/homebrew.md" %}}
+{{% readfile file="/content/ja/installation/common/homebrew.md" %}}
 
 ## リポジトリ パッケージ {#repository-packages}
 
@@ -106,9 +106,9 @@ sudo eopkg install hugo
 
 [Solus]: https://getsol.us/home/
 
-{{% readfile file="/installation/common/04-docker.md" %}}
+{{% readfile file="/content/ja/installation/common/04-docker.md" %}}
 
-{{% readfile file="/installation/common/05-build-from-source.md" %}}
+{{% readfile file="/content/ja/installation/common/05-build-from-source.md" %}}
 
 ## 比較 {#comparison}
 
