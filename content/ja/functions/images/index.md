@@ -120,9 +120,9 @@ Contrast は、画像のコントラストを変更するフィルターを作�
 images.Gamma GAMMA
 {{% /funcsig %}}
 
-Gamma は、画像にガンマ補正を行うフィルターを作成します。
-The gamma parameter must be positive. Gamma = 1 gives the original image.
-Gamma less than 1 darkens the image and gamma greater than 1 lightens it.
+Gamma (ガンマ) は、画像にガンマ補正を行うフィルターを作成します。
+ガンマ パラメータは正でなければなりません。 ガンマ = 1 で元の画像が得られます。
+ガンマが 1 未満の場合はイメージが暗くなり、ガンマが 1 より大きい場合はイメージが明るくなります。
 
 ## GaussianBlur
 
@@ -130,7 +130,7 @@ Gamma less than 1 darkens the image and gamma greater than 1 lightens it.
 images.GaussianBlur SIGMA
 {{% /funcsig %}}
 
-GaussianBlur creates a filter that applies a gaussian blur to an image.
+GaussianBlur (ガウスぼかし) は、画像にガウスぼかしを適用するフィルターを作成します。
 
 ## Grayscale
 
@@ -138,7 +138,7 @@ GaussianBlur creates a filter that applies a gaussian blur to an image.
 images.Grayscale
 {{% /funcsig %}}
 
-Grayscale creates a filter that produces a grayscale version of an image.
+Grayscale (グレースケール) は、画像のグレースケール版を生成するフィルターを作成します。
 
 ## Hue
 
@@ -146,8 +146,8 @@ Grayscale creates a filter that produces a grayscale version of an image.
 images.Hue SHIFT
 {{% /funcsig %}}
 
-Hue creates a filter that rotates the hue of an image.
-The hue angle shift is typically in range -180 to 180.
+Hue (色相) は、画像の色相を回転させるフィルターを作成します。
+色相角の変化は、通常 -180 〜 180 の範囲です。
 
 ## Invert
 
@@ -155,7 +155,7 @@ The hue angle shift is typically in range -180 to 180.
 images.Invert
 {{% /funcsig %}}
 
-Invert creates a filter that negates the colors of an image.
+Invert (反転) は、画像の色を反転させるフィルターを作成します。
 
 ## Pixelate
 
@@ -163,7 +163,7 @@ Invert creates a filter that negates the colors of an image.
 images.Pixelate SIZE
 {{% /funcsig %}}
 
-Pixelate creates a filter that applies a pixelation effect to an image.
+Pixelate (ピクセル化効果) は、画像にピクセル化効果を適用するフィルターを作成します。
 
 ## Saturation
 
@@ -171,7 +171,7 @@ Pixelate creates a filter that applies a pixelation effect to an image.
 images.Saturation PERCENTAGE
 {{% /funcsig %}}
 
-Saturation creates a filter that changes the saturation of an image.
+Saturation (彩度) は、画像の彩度を変更するフィルターを作成します。
 
 ## Sepia
 
@@ -179,7 +179,7 @@ Saturation creates a filter that changes the saturation of an image.
 images.Sepia PERCENTAGE
 {{% /funcsig %}}
 
-Sepia creates a filter that produces a sepia-toned version of an image.
+Sepia (セピア) は、画像をセピア調にするフィルターを作成します。
 
 ## Sigmoid
 
@@ -187,8 +187,8 @@ Sepia creates a filter that produces a sepia-toned version of an image.
 images.Sigmoid MIDPOINT FACTOR
 {{% /funcsig %}}
 
-Sigmoid creates a filter that changes the contrast of an image using a sigmoidal function and returns the adjusted image.
-It's a non-linear contrast change useful for photo adjustments as it preserves highlight and shadow detail.
+Sigmoid (シグモイド) は、シグモイド関数を用いて画像のコントラストを変更し、調整後の画像を返すフィルターを作成します。
+非線形にコントラストを変化させるので、ハイライトやシャドーの詳細を保持することができ、写真の調整に便利です。
 
 ## UnsharpMask
 
@@ -196,13 +196,13 @@ It's a non-linear contrast change useful for photo adjustments as it preserves h
 images.UnsharpMask SIGMA AMOUNT THRESHOLD
 {{% /funcsig %}}
 
-UnsharpMask creates a filter that sharpens an image.
-The sigma parameter is used in a gaussian function and affects the radius of effect.
-Sigma must be positive. Sharpen radius roughly equals 3 * sigma.
-The amount parameter controls how much darker and how much lighter the edge borders become. Typically between 0.5 and 1.5.
-The threshold parameter controls the minimum brightness change that will be sharpened. Typically between 0 and 0.05.
+UnsharpMask は、画像をシャープにするフィルターを作成します。
+Sigma (シグマ) パラメータはガウス関数で使用され、効果の半径に影響します。
+Sigma は正でなければなりません。 シャープの半径は、おおよそ 3 * Sigma に等しくなります。
+amount パラメーターは、エッジの境界線がどれだけ暗くなり、どれだけ明るくなるかを制御します。 通常は 0.5 から 1.5 の間です。
+threshold (しきい値) パラメータは、シャープ化される明るさの最小変化を制御します。 通常は 0 から 0.05 の間です。
 
-## Other Functions
+## その他の関数 {#other-functions}
 
 ### Filter
 
@@ -210,19 +210,19 @@ The threshold parameter controls the minimum brightness change that will be shar
 IMAGE | images.Filter FILTERS...
 {{% /funcsig %}}
 
-Can be used to apply a set of filters to an image:
+上記のコードは、画像に一連のフィルターを適用するために使用できます。
 
 ```go-html-template
 {{ $img := $img | images.Filter (images.GaussianBlur 6) (images.Pixelate 8) }}
 ```
 
-Also see the [Filter Method](/content-management/image-processing/#filter).
+[フィルターメソッド](/content-management/image-processing/#filter) も参照してください。
 
 ### ImageConfig
 
-Parses the image and returns the height, width, and color model.
+画像を解析し、高さ、幅、およびカラーモデルを返します。
 
-The `imageConfig` function takes a single parameter, a file path (_string_) relative to the _project's root directory_, with or without a leading slash.
+`imageConfig` 関数は 1 つのパラメータとして、 _プロジェクトのルートディレクトリ_ からの相対パス (_文字列_) を受け取ります (最初のスラッシュはあってもなくても構いません)。
 
 {{% funcsig %}}
 images.ImageConfig PATH

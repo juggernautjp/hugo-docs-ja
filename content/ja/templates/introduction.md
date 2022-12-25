@@ -98,7 +98,7 @@ Line two.` }}
 また、値はカスタム変数に保存し、後で参照することもできます。
 
 {{% note %}}
-The custom variables need to be prefixed with `$`.
+カスタム変数のプレフィックスに `$` を付ける必要があります。
 {{% /note %}}
 
 ```go-html-template

@@ -43,7 +43,7 @@ GitHub Pages には、以下の 2 種類あります。
 
 [GitHub Pages ドキュメント][ghorgs] を参照し、どの種類のサイトを作成するか決定してください。これにより、以下のどの方法を使用するかが決まります。
 
-## GitHub Actions 用ブランチ {#branches-for-github^actions}
+## GitHub Actions 用ブランチ {#branches-for-github-actions}
 
 この手順で使用する GitHub Actions は、`main` ブランチからソースのコンテンツを取得し、生成されたコンテンツを `gh-pages` ブランチにコミットします。これは、使用している GitHub Pages の種類に関係なく適用できます。 Hugo ファイルは 1 つのブランチに保存され、生成されたファイルは別のブランチに公開されるので、これはすっきりした設定です。
 

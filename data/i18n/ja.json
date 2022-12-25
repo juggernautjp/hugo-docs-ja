@@ -1,9 +1,9 @@
 {
   "count": {
-    "draft": 213,
-    "notdraft": 300,
-    "total": 513,
-    "ratio": 58.47953
+    "draft": 210,
+    "notdraft": 328,
+    "total": 538,
+    "ratio": 60.966545
   },
   "paths": {
     "files": [
@@ -388,11 +388,6 @@
         "draft": false
       },
       {
-        "path": "content\\ja\\contribute\\i18n.md",
-        "title": "Hugo ドキュメントの翻訳状況",
-        "draft": false
-      },
-      {
         "path": "content\\ja\\contribute\\themes.md",
         "title": "Hugo テーマをショーケースに追加する",
         "draft": false
@@ -483,6 +478,11 @@
         "draft": false
       },
       {
+        "path": "content\\ja\\functions\\crypto.FNV32a.md",
+        "title": "crypto.FNV32a",
+        "draft": false
+      },
+      {
         "path": "content\\ja\\functions\\dateformat.md",
         "title": "time.Format",
         "draft": false
@@ -500,6 +500,11 @@
       {
         "path": "content\\ja\\functions\\dict.md",
         "title": "dict",
+        "draft": false
+      },
+      {
+        "path": "content\\ja\\functions\\duration.md",
+        "title": "duration",
         "draft": false
       },
       {
@@ -943,8 +948,23 @@
         "draft": false
       },
       {
+        "path": "content\\ja\\functions\\strings.Contains.md",
+        "title": "strings.Contains",
+        "draft": false
+      },
+      {
+        "path": "content\\ja\\functions\\strings.ContainsAny.md",
+        "title": "strings.ContainsAny",
+        "draft": false
+      },
+      {
         "path": "content\\ja\\functions\\strings.Count.md",
         "title": "strings.Count",
+        "draft": false
+      },
+      {
+        "path": "content\\ja\\functions\\strings.FirstUpper.md",
+        "title": "strings.FirstUpper",
         "draft": false
       },
       {
@@ -998,6 +1018,11 @@
         "draft": false
       },
       {
+        "path": "content\\ja\\functions\\time.ParseDuration.md",
+        "title": "time.ParseDuration",
+        "draft": false
+      },
+      {
         "path": "content\\ja\\functions\\time.md",
         "title": "time",
         "draft": false
@@ -1048,6 +1073,11 @@
         "draft": false
       },
       {
+        "path": "content\\ja\\functions\\urlquery.md",
+        "title": "urlquery",
+        "draft": false
+      },
+      {
         "path": "content\\ja\\functions\\urls.Parse.md",
         "title": "urls.Parse",
         "draft": false
@@ -1088,11 +1118,6 @@
         "draft": false
       },
       {
-        "path": "content\\ja\\getting-started\\installing.md",
-        "title": "Hugo をインストールする",
-        "draft": false
-      },
-      {
         "path": "content\\ja\\getting-started\\quick-start.md",
         "title": "クイックスタート",
         "draft": false
@@ -1104,7 +1129,7 @@
       },
       {
         "path": "content\\ja\\hosting-and-deployment\\_index.md",
-        "title": "ホスティングとデプロイメント",
+        "title": "ホスティングとデプロイ",
         "draft": false
       },
       {
@@ -1130,6 +1155,11 @@
       {
         "path": "content\\ja\\hosting-and-deployment\\hosting-on-azure-static-web-apps.md",
         "title": "Azure Static Web Apps でのホスティング",
+        "draft": false
+      },
+      {
+        "path": "content\\ja\\hosting-and-deployment\\hosting-on-azure.md",
+        "title": "Azure Static Web Apps でのホスト",
         "draft": false
       },
       {
@@ -1170,6 +1200,46 @@
       {
         "path": "content\\ja\\hosting-and-deployment\\hugo-deploy.md",
         "title": "Hugo デプロイ",
+        "draft": false
+      },
+      {
+        "path": "content\\ja\\hugo-ja\\_index.md",
+        "title": "Hugo ドキュメントの日本語翻訳について",
+        "draft": false
+      },
+      {
+        "path": "content\\ja\\hugo-ja\\abount.md",
+        "title": "Hugo ドキュメントの日本語翻訳プロジェクト",
+        "draft": false
+      },
+      {
+        "path": "content\\ja\\hugo-ja\\changes.md",
+        "title": "ドキュメントの変更履歴",
+        "draft": false
+      },
+      {
+        "path": "content\\ja\\hugo-ja\\contribute.md",
+        "title": "本プロジェクトへの貢献について",
+        "draft": false
+      },
+      {
+        "path": "content\\ja\\hugo-ja\\glossary.md",
+        "title": "Hugo ドキュメント 日本語翻訳の用語集",
+        "draft": false
+      },
+      {
+        "path": "content\\ja\\hugo-ja\\i18n.md",
+        "title": "Hugo ドキュメントの翻訳状況 (詳細)",
+        "draft": false
+      },
+      {
+        "path": "content\\ja\\hugo-ja\\policy.md",
+        "title": "日本語翻訳プロジェクトの翻訳ポリシーについて",
+        "draft": false
+      },
+      {
+        "path": "content\\ja\\hugo-ja\\status.md",
+        "title": "翻訳状況",
         "draft": false
       },
       {
@@ -1250,6 +1320,66 @@
       {
         "path": "content\\ja\\hugo-pipes\\scss-sass.md",
         "title": "Sass / SCSS",
+        "draft": false
+      },
+      {
+        "path": "content\\ja\\installation\\_index.md",
+        "title": "インストール",
+        "draft": false
+      },
+      {
+        "path": "content\\ja\\installation\\bsd.md",
+        "title": "BSD",
+        "draft": false
+      },
+      {
+        "path": "content\\ja\\installation\\common\\01-editions.md",
+        "title": "",
+        "draft": false
+      },
+      {
+        "path": "content\\ja\\installation\\common\\02-prerequisites.md",
+        "title": "",
+        "draft": false
+      },
+      {
+        "path": "content\\ja\\installation\\common\\03-prebuilt-binaries.md",
+        "title": "",
+        "draft": false
+      },
+      {
+        "path": "content\\ja\\installation\\common\\04-docker.md",
+        "title": "",
+        "draft": false
+      },
+      {
+        "path": "content\\ja\\installation\\common\\05-build-from-source.md",
+        "title": "",
+        "draft": false
+      },
+      {
+        "path": "content\\ja\\installation\\common\\homebrew.md",
+        "title": "",
+        "draft": false
+      },
+      {
+        "path": "content\\ja\\installation\\common\\index.md",
+        "title": "",
+        "draft": false
+      },
+      {
+        "path": "content\\ja\\installation\\linux.md",
+        "title": "Linux",
+        "draft": false
+      },
+      {
+        "path": "content\\ja\\installation\\macos.md",
+        "title": "macOS",
+        "draft": false
+      },
+      {
+        "path": "content\\ja\\installation\\windows.md",
+        "title": "Windows",
         "draft": false
       },
       {
@@ -1415,7 +1545,7 @@
       {
         "path": "content\\ja\\news\\0.28-relnotes\\index.md",
         "title": "Hugo 0.28: High-speed Syntax Highlighting!",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\news\\0.29-relnotes\\index.md",
@@ -2175,12 +2305,12 @@
       {
         "path": "content\\ja\\showcase\\ampio-help\\bio.md",
         "title": "",
-        "draft": true
+        "draft": false
       },
       {
         "path": "content\\ja\\showcase\\ampio-help\\index.md",
-        "title": "Ampio Knowledge Base",
-        "draft": true
+        "title": "Alora Labs",
+        "draft": false
       },
       {
         "path": "content\\ja\\showcase\\bypasscensorship\\bio.md",
@@ -2355,11 +2485,6 @@
       {
         "path": "content\\ja\\templates\\_index.md",
         "title": "テンプレート",
-        "draft": false
-      },
-      {
-        "path": "content\\ja\\templates\\alternatives.md",
-        "title": "【非推奨】 - 代替テンプレート言語",
         "draft": false
       },
       {

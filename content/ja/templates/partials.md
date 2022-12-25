@@ -123,7 +123,7 @@ layouts/
 ```
 
 {{% note %}}
-Only one `return` statement is allowed per partial file.
+1つの 部分テンプレートファイルにつき、`return` 文は 1 つだけ許可されます。
 {{% /note %}}
 
 ## インライン部分テンプレート {#inline-partials}
@@ -197,8 +197,8 @@ Value: {{ partial "my-inline-partial.html" . }}
   <div>
     <p>
     &copy; 2013-14 Steve Francia.
-    <a href="https://creativecommons.org/licenses/by/3.0/" title="Creative Commons Attribution">Some rights reserved</a>;
-    please attribute properly and link back.
+    <a href="https://creativecommons.org/licenses/by/3.0/" title="Creative Commons Attribution">無断転載を禁じます</a>;
+    適切に属性を付けてリンクバックしてください。
     </p>
   </div>
 </footer>

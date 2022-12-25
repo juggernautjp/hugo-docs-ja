@@ -47,8 +47,8 @@ _次のドキュメントでは、デプロイに GitHub Actions を使用する
 
 11. [**GitHub でサインイン (Sign in with GitHub)**] ボタンをクリックします。
 12. リポジトリが存在する **組織 (Organization)** を選択します。
-13. Select the Hugo app you wish to deploy as the _Repository_ .
-14. For the _Branch_ select the branch you want to deploy (eg: **main**).
+13. デプロイしたい Hugo アプリを _リポジトリ (Repository)_ として選択します。
+14. _ブランチ (Branch)_ には、デプロイするブランチを選択します (たとえば、 **main**)。
 15. _ビルドプリセット (Build Presets)_ で **Hugo** を選択すると、設定ファイルに標準的な Hugo のビルドオプションが入力されます。
   * **App Location** は、Hugo の設定ファイルがある Git リポジトリのパスです
   * **Api Location** は、サーバーレス API があるパスです (または、API がない場合は空白のままにします)。

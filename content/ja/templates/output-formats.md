@@ -128,7 +128,7 @@ protocol = "bep://"
 : `Page` の `AlternativeOutputFormats` 形式リストにこの形式を含めることが意味をなさない場合 (たとえば、`CSS` を使用) に有効にします。 必ずしも他の形式を置き換えるとは限らないため、ここでは _alternate_ ではなく _alternative_ という用語を使用することに注意してください。 **デフォルト:** `false`.
 
 `permalinkable`
-: make `.Permalink` and `.RelPermalink` return the rendering Output Format rather than main ([see below](#link-to-output-formats)). This is enabled by default for `HTML` and `AMP`. **デフォルト:** `false`.
+: `.Permalink` と `.RelPermalink` がメインではなく、レンダリングの出力形式を返すようになりました ([下記参照](#link-to-output-formats))。これは、`HTML` と `AMP` に対してデフォルトで有効になっています。 **デフォルト:** `false`.
 
 `weight`
 : これをゼロ以外の値に設定すると、最初のソート基準として使用されます。

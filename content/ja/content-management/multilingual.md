@@ -412,7 +412,7 @@ English|Wednesday, November 3, 2021
 Français|mercredi 3 novembre 2021
 Deutsch|Mittwoch, 3. November 2021
 
-詳細については、[「time.Format」] を参照してください。
+詳細については、[time.Format] を参照してください。
 
 ### 通貨 {#currency}
 
@@ -430,7 +430,7 @@ English|$512.50
 Français|512,50 $US
 Deutsch|512,50 $
 
-詳細については、[「lang.FormatCurrency」] と [「lang.FormatAccounting」] を参照してください。
+詳細については、[lang.FormatCurrency] と [lang.FormatAccounting] を参照してください。
 
 ### 数値 {#numbers}
 
@@ -448,7 +448,7 @@ English|512.50
 Français|512,50
 Deutsch|512,50
 
-詳細については、[「lang.FormatNumber」] と [「lang.FormatNumberCustom」] を参照してください。
+詳細については、[lang.FormatNumber] と [lang.FormatNumberCustom] を参照してください。
 
 ### パーセント {#percentages}
 
@@ -466,7 +466,7 @@ English|512.50%
 Français|512,50 %
 Deutsch|512,50 %
 
-詳細については、[「lang.FormatPercent」] を参照してください。
+詳細については、[lang.FormatPercent] を参照してください。
 
 ## メニュー {#menus}
 
@@ -551,7 +551,7 @@ Hugo の Web サイトを翻訳しているとき、翻訳の欠落箇所を視�
 Hugo は、これらの不足している翻訳プレースホルダーを含む Web サイトを生成します。本番環境には適さないかもしれません。
 {{% /note %}}
 
-他の言語からのコンテンツのマージ (つまり、コンテンツの翻訳がない場合) については、[「lang.Merge」] を参照してください。
+他の言語からのコンテンツのマージ (つまり、コンテンツの翻訳がない場合) については、[lang.Merge] を参照してください。
 
 不足している翻訳文字列を追跡するには、以下のように、Hugo を `--printI18nWarnings` フラグ付きで実行してください。
 

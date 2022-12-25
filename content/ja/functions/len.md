@@ -4,7 +4,7 @@ categories:
 - functions
 date: "2017-02-01"
 deprecated: false
-description: Returns the length of a variable according to its type.
+description: 変数の型に応じた長さを返します。
 draft: false
 hugoversion: null
 keywords: []
@@ -25,23 +25,23 @@ workson:
 - terms
 ---
 
-`len` is a built-in function in Go that returns the length of a variable according to its type. From the Go documentation:
+`len` は Go の組み込み関数で、変数の型に応じた長さを返します。 Go のドキュメントから引用します。
 
-> Array: the number of elements in v.
+> 配列: v の要素数。
 >
-> Pointer to array: the number of elements in *v (even if v is nil).
+> 配列へのポインタ: *v の要素数 (v が nil の場合も含む)。
 >
-> Slice, or map: the number of elements in v; if v is nil, len(v) is zero.
+> スライス、またはマップ: v の要素数。v が nil の場合、 len(v) は 0 です。
 >
-> String: the number of bytes in v.
+> 文字列: v のバイト数。
 >
-> Channel: the number of elements queued (unread) in the channel buffer; if v is nil, len(v) is zero.
+> チャネル: チャネル バッファにキューに入れられた (未読の) 要素数。v が nil の場合，len(v) は 0 です。
 
-`len` is also considered a [fundamental function for Hugo templating][].
+`len` も [Hugo テンプレートの基本的な関数][fundamental function for Hugo templating] と見なされます。
 
-## `len` Example 1: Longer Headings
+## `len` の例 1: 長い見出し {#len-example-1-longer-headings}
 
-You may want to append a class to a heading according to the length of the string therein. The following templating checks to see if the title's length is greater than 80 characters and, if so, adds a `long-title` class to the `<h1>`:
+見出しに含まれる文字列の長さに応じてクラスを追加したい場合があります。 以下のテンプレートは、タイトルの長さが80文字以上かどうかをチェックし、80 文字以上であれば `<h1>` に `long-title` クラスを追加します。
 
 {{< code file="check-title-length.html" >}}
 <header>
@@ -49,17 +49,16 @@ You may want to append a class to a heading according to the length of the strin
 </header>
 {{< /code >}}
 
-## `len` Example 2: Counting Pages with `where`
+## `len` の例 2: `where` を使ってページ数を数える
 
-The following templating uses [`where`][] in conjunction with `len` to
-figure out the total number of content pages in a `posts` [section][]:
+以下のテンプレートでは、[`where`][] と`len` を組み合わせて使用して、`posts` [セクション][section] 内のコンテンツページの総数を計算します。
 
 {{< code file="how-many-posts.html" >}}
 {{ $posts := (where .Site.RegularPages "Section" "==" "posts") }}
 {{ $postCount := len $posts }}
 {{< /code >}}
 
-Note the use of `.RegularPages`, a [site variable][] that counts all regular content pages but not the `_index.md` pages used to add front matter and content to [list templates][].
+`.RegularPages` の使用方法に注意してください。これは [サイト変数][site variable] で、通常のコンテンツページをすべて数えますが、[リストテンプレート][list templates] にフロントマターとコンテンツを追加するために使用する `_index.md` ページは数えません。
 
 
 [fundamental function for Hugo templating]: /templates/introduction/

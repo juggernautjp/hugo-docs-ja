@@ -25,15 +25,15 @@ Hugo で構築された Web サイトは、非常に高速で安全です。Hugo
 
 Hugo は、ほぼ瞬時にビルドできる理想的な Web サイト作成ツールであり、変更が加えられるたびに再構築できると考えています。
 
-## Hugo の速さは? {#how-fast-is-hugo?}
+## Hugo の速さは? {#how-fast-is-hugo}
 
 {{< youtube "CdiDYZ51a2o" >}}
 
-## Hugo は何をしますか? {#what-does-hugo-do?}
+## Hugo は何をしますか? {#what-does-hugo-do}
 
 技術的に言えば、Hugo はファイルとテンプレートのソースディレクトリを受け取り、それらを入力として完全な Web サイトを作成します。
 
-## Hugo を使用すべきなのは誰ですか? {#who-should-use-hugo?}
+## Hugo を使用すべきなのは誰ですか? {#who-should-use-hugo}
 
 Hugo は、ブラウザよりもテキストエディタで書くことを好む人向けです。
 

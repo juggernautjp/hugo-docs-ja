@@ -249,15 +249,14 @@ https://www.instagram.com/p/BWNjjyYFxVx/
 {{< instagram BWNjjyYFxVx hidecaption >}}
 {{< /output >}}
 
-#### `instagram` 出力の例 {#example-instagram-display}
+#### `instagram` 表示の例 {#example-instagram-display}
 
 上記の `hidecaption` 付き `instagram` の例を用いて、以下はあなたの Web サイトへの訪問者のために表示される経験をシミュレートします。もちろん、最終的な表示は、スタイルシートや周辺のマークアップに依存します。
 
 {{< instagram BWNjjyYFxVx hidecaption >}}
 
-
 {{% note %}}
-`instagram` ショートコードは Instagram の API のエンドポイントを参照していますが、これは 2020年10月24日から非推奨となっています。そのため、この API エンドポイントから画像を取得することができず、結果として `instagram` ショートコードが使用されるとエラーになります。詳細については、、GitHub issue [#7879](https://github.com/gohugoio/hugo/issues/7879) を参照してください。
+`instagram` ショートコードは Instagram の API のエンドポイントを参照していますが、これは 2020年10月24日から非推奨となっています。そのため、この API エンドポイントから画像を取得することができず、結果として `instagram` ショートコードが使用されるとエラーになります。詳細については、GitHub issue [#7879](https://github.com/gohugoio/hugo/issues/7879) を参照してください。
 {{% /note %}}
 
 ### `param`
@@ -297,7 +296,7 @@ https://www.instagram.com/p/BWNjjyYFxVx/
 [Who]({{</* relref "about.md#who" */>}})
 ```
 
-#### `ref` と `relref` 入力の例 {#example-ref-and-relref-output}
+#### `ref` と `relref` 出力の例 {#example-ref-and-relref-output}
 
 標準の Hugo のプリティー URL がオンになっていると仮定します。
 

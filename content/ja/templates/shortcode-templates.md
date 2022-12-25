@@ -180,7 +180,7 @@ Markdown を継続的に確認することなく、コンテンツファイル�
 
 ### 単一の位置の例: `youtube` {#single-positional-example-youtube}
 
-埋め込み動画は Markdown コンテンツによくされるものですが、すぐに見苦しくなってしまいます。以下は、[Hugo の組み込み YouTube ショートコード][youtubeeshortcode] で使用されるコードです。
+埋め込み動画は Markdown コンテンツによくされるものですが、すぐに見苦しくなってしまいます。以下は、[Hugo の組み込み YouTube ショートコード][youtubeshortcode] で使用されるコードです。
 
 ```go-html-template
 {{</* youtube 09jf3ow9jfw */>}}
@@ -310,7 +310,7 @@ HTML サンプルのコードブロックのレンダリング出力は、以下
 
 Hugo の [`.Parent` ショートコード変数][parent] は、問題のショートコードが *親* ショートコードのコンテキスト内で呼び出されたときに、親ショートコード コンテキストへのアクセスを提供します。 これにより、共通のショートコード パラメータのための継承モデルを提供します。
 
-The following example is contrived but demonstrates the concept. Assume you have a `gallery` shortcode that expects one named `class` parameter:
+以下の例は不自然ですが、この概念を示しています。 `class` パラメータという名前の 1 つを必要とする `gallery` ショートコードがあるとします。
 
 {{< code file="layouts/shortcodes/gallery.html" >}}
 <div class="{{ .Get "class" }}">

@@ -110,7 +110,7 @@ _シャドウ_ は、ページがメニュー項目自体によって表され�
 {{</ code-toggle >}}
 
 {{% note %}}
-The `identifier` *must* match the section name.
+`identifier` は、セクション名と一致 *しなければなりません*。
 {{% /note %}}
 
 ## ページのフロントマターからのメニューエントリ {#menu-entries-from-the-pages-front-matter}
