@@ -33,5 +33,5 @@ Hugo モジュールは、Go モジュールによって提供されています
 
 これはすべて非常に新しいもので、プロジェクト例も数えるほどしかありません。
 
-- [https://github.com/bep/docuapi](https://github.com/bep/docuapi) は、この機能のテスト中に Hugo モジュールに移植されたテーマです。これは、非 Hugo プロジェクトが Hugo のフォルダーー構造にマウントされている良い例です。通常の Go テンプレートで JS Bundler の実装も示しています。
+- [https://github.com/bep/docuapi](https://github.com/bep/docuapi) は、この機能のテスト中に Hugo モジュールに移植されたテーマです。これは、非 Hugo プロジェクトが Hugo のフォルダー構造にマウントされている良い例です。通常の Go テンプレートで JS Bundler の実装も示しています。
 - [https://github.com/bep/my-modular-site](https://github.com/bep/my-modular-site) は、テストに使われる非常にシンプルなサイトです。

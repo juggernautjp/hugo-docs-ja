@@ -25,7 +25,7 @@ weight: 02
 ### オプション {#options}
 
 transpiler [string]
-: 使用する `transpiler` を指定します。有効な値は `libsass` (デフォルト) と `dartsass` です。 Embedded Dart Sass プロジェクトは、まだベータ版であることに注意してください。 安定版がリリースされたら、インストール方法を改善する予定ですが、Hugo を Dart Sass と一緒に使いたい場合は、[Embedded Dart Sass](https://github.com/sass/dart-sass-embedded/releases) (0.81.0 以降の Hugo にはベータ 6 以降が必要です) からリリースバイナリをダウンロードして、PC の `$PATH` (Windows では `%PATH%`) にそれが存在することを確認する必要があります。
+: 使用する `transpiler` を指定します。有効な値は `libsass` (デフォルト) と `dartsass` です。 Hugo を Dart Sass と一緒に使いたい場合は、[Embedded Dart Sass](https://github.com/sass/dart-sass-embedded/releases) からリリースバイナリをダウンロードして、PC の `$PATH` (Windows では `%PATH%`) に配置する必要があります。[^1]
 
 targetPath [string]
 : 設定されていない場合、リソースのターゲットパスはアセットファイルの元のパスであり、その拡張子は `.css` に置き換えられます。
@@ -53,3 +53,9 @@ includePaths [string slice]
 {{% note %}}
 `outputStyle` に `compressed` を設定すると、Sass/SCSS ファイルのミニファイ (minification) を、より一般的な [`resources.Minify`]({{< ref "minification">}}) よりも適切に処理できるようになります。
 {{% /note %}}
+
+
+
+## 訳注
+
+[^1]: [LibSass](https://sass-lang.com/libsass) は現在、**非推奨** となっており、その代わりに [Dart Sass](https://sass-lang.com/dart-sass) を使うようにアナウンスされています。インストールには、若干速度の遅い npm コマンド (`npm i sass-embedded`) でインストールするか、Mac なら brew、Windows なら Chocolatey でインストールできます。ただし、Dart Sass Embedded の最新版は、2023年1月2日現在、[1.57.1](https://github.com/sass/dart-sass-embedded/releases/tag/1.57.1) ですが、Chocolatey で配布されているバージョンは `1.56.1` です。
