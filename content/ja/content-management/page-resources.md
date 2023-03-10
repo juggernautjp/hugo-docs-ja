@@ -98,7 +98,7 @@ ByType
 {{ .Resources.ByType "image" }}
 ```
 Match
-: 指定された Glob パターン ([例](https://github.com/gobwas/glob/blob/master/readme.md)) に一致する `Name` を持つすべてのページリソースを (スライスとして) 返します。 マッチングは大文字と小文字を区別しません。
+: 指定された glob パターン ([例](https://github.com/gobwas/glob/blob/master/readme.md)) に一致する `Name` を持つすべてのページリソースを (スライスとして) 返します。 マッチングは大文字と小文字を区別しません。
 
 ```go-html-template
 {{ .Resources.Match "images/*" }}

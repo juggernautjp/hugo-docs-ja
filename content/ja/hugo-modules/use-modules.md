@@ -102,7 +102,7 @@ replace github.com/bep/hugotestmods/mypartials => /Users/bep/hugotestmods/mypart
 
 ## 依存関係グラフの印刷 {#print-dependency-graph}
 
-関連するモジュールディレクトリから `hugo mod graph` を使用すると、ベンダー化、モジュールの置き換え、無効化などの状態を含む依存関係グラフが表示されます。
+関連するモジュールディレクトリから `hugo mod graph` を使用すると、ベンダリング、モジュールの置き換え、無効化などの状態を含む依存関係グラフが表示されます。
 
 たとえば、以下のように出力されます。
 
@@ -127,7 +127,7 @@ github.com/bep/my-modular-site in-themesdir
 **注意事項**:
 
 * モジュールツリーのどのレベルでも `hugo mod vendor` を実行できます。
-* ベンダー化は `themes` フォルダーに保存されているモジュールを保存しません。
+* ベンダリングは、 `themes` フォルダーに保存されているモジュールを保存しません。
 * ほとんどのコマンドは `--ignoreVendorPaths` フラグを受け付け、指定された [Glob](https://github.com/gobwas/glob) パターンにマッチするモジュールパスに対して `_vendor` に含まれるベンダー モジュールを使用しないようにします。
 
 [CLI Doc](/commands/hugo_mod_vendor/) も参照してください。

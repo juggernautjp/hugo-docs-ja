@@ -308,7 +308,7 @@ true の場合、コンテンツ内の中国語/日本語/韓国語の自動検�
 
 ### markup
 
-[「マークアップを設定する」](/getting-started/configuration-markup) を参照してください。{{< new-in "0.60.0" >}}
+[「マークアップを設定する」](/getting-started/configuration-markup) を参照してください。
 
 ### mediaTypes
 
@@ -324,7 +324,7 @@ true の場合、コンテンツ内の中国語/日本語/韓国語の自動検�
 
 ### module
 
-モジュール設定です。[「モジュール設定」](/hugo-modules/configuration/) を参照してください。{{< new-in "0.56.0" >}}
+モジュール設定です。[「モジュール設定」](/hugo-modules/configuration/) を参照してください。
 
 ### newContentEditor
 
@@ -336,7 +336,7 @@ true の場合、コンテンツ内の中国語/日本語/韓国語の自動検�
 
 **デフォルト値:** false
 
-ファイルのパーミッションモードを同期させません。
+ファイルのパーミッション モードを同期させません。
 
 ### noTimes
 
@@ -516,7 +516,7 @@ noJSConfigInAssets
 
 ## サーバーを設定する {#configure-server}
 
-これは `hugo server` を実行するときにのみ関係し、開発中に HTTP ヘッダーを設定することができるので、コンテンツ セキュリティ ポリシーなどをテストすることができます。設定形式は、[Netlify の](https://docs.netlify.com/routing/headers/#syntax-for-the-netlify-configuration-file) と少し強力な [Glob マッチング](https://github.com/gobwas/glob) にマッチしています。
+これは `hugo server` を実行するときにのみ関係し、開発中に HTTP ヘッダーを設定することができるので、コンテンツ セキュリティ ポリシーなどをテストすることができます。設定形式は、[Netlify の](https://docs.netlify.com/routing/headers/#syntax-for-the-netlify-configuration-file) と少し強力な [glob マッチング](https://github.com/gobwas/glob) にマッチしています。
 
 
 {{< code-toggle file="config">}}

@@ -54,13 +54,13 @@ hugo [flags]
       --gc                         ビルド後にいくつかのクリーンアップ タスク (未使用のキャッシュ ファイルを削除する) を実行できるようにします。
   -h, --help                       hugo コマンドのヘルプ
       --ignoreCache                キャッシュディレクトリを無視します
-      --ignoreVendorPaths string   指定された Glob パターンに一致するモジュールパスの _vendor を無視します
+      --ignoreVendorPaths string   指定された glob パターンに一致するモジュールパスの _vendor を無視します
   -l, --layoutDir string           レイアウト ディレクトリへのファイルシステムのパス
       --log                        ロギングを有効にします
       --logFile string             ログファイルのパス (設定されている場合、ログが自動的に有効になります)
       --minify                     サポートされている出力形式 (HTML、XML など) をミニファイします
       --noBuildLock                .hugo_build.lock ファイルを作成しません
-      --noChmod                    ファイルのパーミッションモードを同期しません
+      --noChmod                    ファイルのパーミッション モードを同期しません
       --noTimes                    ファイルの更新時刻を同期しません
       --panicOnWarning             最初の警告 (WARNING) ログでパニック (panic) します
       --poll string                (たとえば --poll 700ms により) ポーリング間隔に設定して、ポーリング ベースのアプローチを使用してファイルシステムの変更を監視します。

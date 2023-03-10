@@ -26,7 +26,7 @@ Hugo モジュールの各種ヘルパーです。
 プロジェクトの依存関係グラフでモジュールを管理するのに役立つさまざまなヘルパーです。
 
 ここでのほとんどの操作は、システムにインストールされた Go バージョン (Go 1.12 以降) と関連する VCS クライアント (典型的には Git) を必要とします。
-テーマ内のモジュールだけを操作する場合や、"hugo mod vendor" でモジュールをベンダー化している場合は必要ありません。
+テーマ内のモジュールだけを操作する場合や、"hugo mod vendor" でモジュールをベンダリングしている場合は必要ありません。
 
 
 Hugo は常に、_vendor ディレクトリ (-ignoreVendorPaths フラグが指定されていない場合)、Go モジュール、または themes ディレクトリ内のフォルダの順で、サイト設定で定義されたコンポーネントを解決することから始めることに注意してください。
@@ -53,7 +53,7 @@ Hugo は常に、_vendor ディレクトリ (-ignoreVendorPaths フラグが指�
       --gc                         ビルド後にいくつかのクリーンアップ タスク (未使用のキャッシュ ファイルを削除する) を実行できるようにします
   -h, --help                       mod サブコマンドのヘルプ
       --ignoreCache                キャッシュ ディレクトリを無視します
-      --ignoreVendorPaths string   指定された Glob パターンに一致するモジュールパスの _vendor を無視します
+      --ignoreVendorPaths string   指定された glob パターンに一致するモジュールパスの _vendor を無視します
   -l, --layoutDir string           レイアウト ディレクトリへのファイルシステムのパス
       --minify                     サポートされている出力形式 (HTML、XML など) をミニファイします
       --noBuildLock                .hugo_build.lock ファイルを作成しません
@@ -89,12 +89,12 @@ Hugo は常に、_vendor ディレクトリ (-ignoreVendorPaths フラグが指�
 ### 関連項目 {#see-also}
 
 * [hugo](/commands/hugo/)	 - あなたのサイトをビルド (構築) します
-* [hugo mod clean](/commands/hugo_mod_clean/)	 - 現在のプロジェクトの Hugo モジュールのキャッシュを削除します
+* [hugo mod clean](/commands/hugo_mod_clean/)	 - 現在のプロジェクトの Hugo モジュールキャッシュを削除します
 * [hugo mod get](/commands/hugo_mod_get/)	 - 現在の Hugo プロジェクトにおける依存関係を解決します
 * [hugo mod graph](/commands/hugo_mod_graph/)	 - モジュールの依存関係グラフを表示します
 * [hugo mod init](/commands/hugo_mod_init/)	 - このプロジェクトを Hugo モジュールとして初期化します
 * [hugo mod npm](/commands/hugo_mod_npm/)	 - さまざまな npm ヘルパーです
 * [hugo mod tidy](/commands/hugo_mod_tidy/)	 - go.mod と go.sum の未使用のエントリを削除します
-* [hugo mod vendor](/commands/hugo_mod_vendor/)	 - すべてのモジュールの依存関係を _vendor ディレクトリにベンダー化します
+* [hugo mod vendor](/commands/hugo_mod_vendor/)	 - すべてのモジュールの依存関係を _vendor ディレクトリにベンダリングします
 * [hugo mod verify](/commands/hugo_mod_verify/)	 - 依存関係を確認します
 

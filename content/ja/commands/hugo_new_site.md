@@ -39,7 +39,7 @@ hugo new site [path] [flags]
       --force                      空でないディレクトリ内で初期化します
   -f, --format string              設定ファイルの形式 (デフォルトは、 "toml")
   -h, --help                       site サブコマンドのヘルプ
-      --ignoreVendorPaths string   指定された Glob パターンに一致するモジュールパスの _vendor を無視します
+      --ignoreVendorPaths string   指定された glob パターンに一致するモジュールパスの _vendor を無視します
   -s, --source string              ファイルの相対パスを読み取るファイルシステムのパス
       --themesDir string           テーマディレクトリへのファイルシステムのパス
 ```

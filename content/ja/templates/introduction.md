@@ -78,7 +78,7 @@ _定義済み変数_ とは、現在のスコープに既に存在する変数 (
 }}
 ```
 
-#### Raw (生) 文字列リテラルには改行を含めることができる {#raw-string-literals-can-include-newlines}
+#### 生の文字列リテラルには改行を含めることができる {#raw-string-literals-can-include-newlines}
 
 ```go-html-template
 {{ $msg := `Line one.

@@ -3,7 +3,7 @@ categories:
 - commands
 aliases: []
 date: "2017-02-01"
-description: hugo mod vendor サブコマンドは、すべてのモジュールの依存関係を _vendor ディレクトリにベンダー化します。
+description: hugo mod vendor サブコマンドは、すべてのモジュールの依存関係を _vendor ディレクトリにベンダリングします。
 lastmod: "2017-02-01"
 menu:
   docs:
@@ -19,13 +19,13 @@ title: hugo mod vendor
 ---
 ## hugo mod vendor
 
-すべてのモジュールの依存関係を _vendor ディレクトリにベンダー化します。
+すべてのモジュールの依存関係を _vendor ディレクトリにベンダリングします。
 
 ### 概要 {#synopsis}
 
-すべてのモジュールの依存関係を _vendor ディレクトリにベンダー化します。
+すべてのモジュールの依存関係を _vendor ディレクトリにベンダリングします。
 
-モジュールがベンダー化されている場合、Hugo はそこから依存関係を探します。
+モジュールがベンダリングされている場合、Hugo はそこから依存関係を探します。
 
 
 ```bash
@@ -46,7 +46,7 @@ hugo mod vendor [flags]
       --configDir string           設定ディレクトリ (デフォルトは、 "config")
       --debug                      デバッグ出力
   -e, --environment string         ビルド環境
-      --ignoreVendorPaths string   指定された Glob パターンに一致するモジュールパスの _vendor を無視します
+      --ignoreVendorPaths string   指定された glob パターンに一致するモジュールパスの _vendor を無視します
       --log                        ロギングを有効にします
       --logFile string             ログファイルのパス (設定されている場合、ログが自動的に有効になります)
       --quiet                      クワイエットモード (通知オフ) でビルドします

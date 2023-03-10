@@ -33,7 +33,7 @@ title: hugo convert
       --clock string               Hugo が使用する時計を設定します。たとえば、--clock 2021-11-06T22:30:00.00+09:00
   -e, --environment string         ビルド環境
   -h, --help                       convert サブコマンドのヘルプ
-      --ignoreVendorPaths string   指定された Glob パターンに一致するモジュールパスの _vendor を無視します
+      --ignoreVendorPaths string   指定された glob パターンに一致するモジュールパスの _vendor を無視します
   -o, --output string              ファイルを書き込むファイルシステムのパス
   -s, --source string              ファイルの相対パスを読み取るファイルシステムのパス
       --themesDir string           テーマディレクトリへのファイルシステムのパス

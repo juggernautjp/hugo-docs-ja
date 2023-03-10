@@ -25,7 +25,7 @@ title: hugo deploy
 
 サイトをクラウド プロバイダーにデプロイします。
 
-詳細なドキュメントについては、/hosting-and-deployment/hugo-deploy/ を参照してください。
+詳細なドキュメントについては、[Hugo デプロイ](/hosting-and-deployment/hugo-deploy/) を参照してください。
 
 ```bash
 hugo deploy [flags]
@@ -40,7 +40,7 @@ hugo deploy [flags]
   -e, --environment string         ビルド環境
       --force                      全ファイルの強制アップロード
   -h, --help                       deploy サブコマンドのヘルプ
-      --ignoreVendorPaths string   指定された Glob パターンに一致するモジュールパスの _vendor を無視します
+      --ignoreVendorPaths string   指定された glob パターンに一致するモジュールパスの _vendor を無視します
       --invalidateCDN              デプロイ ターゲットに記載されている CDN キャッシュを無効にします (デフォルトは、 true)
       --maxDeletes int             削除するファイルの最大数、または無効な場合は -1 (デフォルトは、256)
   -s, --source string              ファイルの相対パスを読み取るファイルシステムのパス

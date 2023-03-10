@@ -43,7 +43,7 @@ hugo convert toJSON [flags]
       --configDir string           設定ディレクトリ (デフォルトは、 "config")
       --debug                      デバッグ出力
   -e, --environment string         ビルド環境
-      --ignoreVendorPaths string   指定された Glob パターンに一致するモジュールパスの _vendor を無視します
+      --ignoreVendorPaths string   指定された glob パターンに一致するモジュールパスの _vendor を無視します
       --log                        ロギングを有効にします
       --logFile string             ログファイルのパス (設定されている場合、ログが自動的に有効になります)
   -o, --output string              ファイルを書き込むファイルシステムのパス

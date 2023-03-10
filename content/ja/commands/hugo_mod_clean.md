@@ -3,7 +3,7 @@ categories:
 - commands
 aliases: []
 date: "2017-02-01"
-description: hugo mod clean サブコマンドは、現在のプロジェクトの Hugo モジュールのキャッシュを削除します。
+description: hugo mod clean サブコマンドは、現在のプロジェクトの Hugo モジュールキャッシュを削除します。
 lastmod: "2017-02-01"
 menu:
   docs:
@@ -19,11 +19,11 @@ title: hugo mod clean
 ---
 ## hugo mod clean
 
-現在のプロジェクトの Hugo モジュールのキャッシュを削除します。
+現在のプロジェクトの Hugo モジュールキャッシュを削除します。
 
 ### 概要 {#synopsis}
 
-現在のプロジェクトの Hugo モジュールのキャッシュを削除します。
+現在のプロジェクトの Hugo モジュールキャッシュを削除します。
 
 このコマンドを実行した後、次回 "hugo" を実行したときに、すべての依存関係が再ダウンロードされることに注意してください。
 
@@ -51,7 +51,7 @@ hugo mod clean [flags]
       --configDir string           設定ディレクトリ (デフォルトは、 "config")
       --debug                      デバッグ出力
   -e, --environment string         ビルド環境
-      --ignoreVendorPaths string   指定された Glob パターンに一致するモジュールパスの _vendor を無視します
+      --ignoreVendorPaths string   指定された glob パターンに一致するモジュールパスの _vendor を無視します
       --log                        ロギングを有効にします
       --logFile string             ログファイルのパス (設定されている場合、ログが自動的に有効になります)
       --quiet                      クワイエットモード (通知オフ) でビルドします

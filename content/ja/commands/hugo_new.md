@@ -57,7 +57,7 @@ hugo new [path] [flags]
       --gc                         ビルド後にいくつかのクリーンアップ タスク (未使用のキャッシュ ファイルを削除する) を実行できるようにします
   -h, --help                       new サブコマンドのヘルプ
       --ignoreCache                キャッシュ ディレクトリを無視します
-      --ignoreVendorPaths string   指定された Glob パターンに一致するモジュールパスの _vendor を無視します
+      --ignoreVendorPaths string   指定された glob パターンに一致するモジュールパスの _vendor を無視します
   -k, --kind string                作成するコンテンツタイプ
   -l, --layoutDir string           レイアウト ディレクトリへのファイルシステムのパス
       --minify                     サポートされている出力形式 (HTML、XML など) をミニファイします

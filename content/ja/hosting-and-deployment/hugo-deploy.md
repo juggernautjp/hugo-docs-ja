@@ -87,7 +87,7 @@ name = "mydeployment"
 cloudFrontDistributionID = <ID>
 
 # オプションで、特定のファイルを含めたり、除外したりすることができます。
-# glob パターンの構文については、https://godoc.org/github.com/gobwas/glob#Glob を参照してください。
+# glob パターンの構文については、https://godoc.org/github.com/gobwas/glob#glob を参照してください。
 # 空でない場合、そのパターンはローカルパスとマッチングされます。
 # すべてのパスは、filepath.ToSlash 形式で照合されます。
 # exclude が空でなく、ローカルまたはリモート ファイルのパスが一致する場合、そのファイルは同期されません。

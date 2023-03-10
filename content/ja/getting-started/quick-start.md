@@ -69,13 +69,13 @@ hugo server
 hugo new site quickstart
 ```
 
-現在のディレクトリをプロジェクトのルートに変更します。
+カレントディレクトリをプロジェクトのルートに変更します。
 
 ```bash
 cd quickstart
 ```
 
-現在のディレクトリに、空の Git リポジトリを初期化します。
+カレントディレクトリに、空の Git リポジトリを初期化します。
 
 ```bash
 git init

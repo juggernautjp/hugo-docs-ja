@@ -59,7 +59,7 @@ hugo server [flags]
   -h, --help                       server サブコマンドのヘルプ
       --ignoreCache                キャッシュ ディレクトリを無視します
   -e, --environment string         ビルド環境
-      --ignoreVendorPaths string   指定された Glob パターンに一致するモジュールパスの _vendor を無視します
+      --ignoreVendorPaths string   指定された glob パターンに一致するモジュールパスの _vendor を無視します
   -l, --layoutDir string           レイアウト ディレクトリへのファイルシステムのパス
       --liveReloadPort int         ライブリロード用のポート (つまり、HTTPS プロキシの場合は、443) (デフォルトは、-1)
       --meminterval string         メモリ使用量をポーリングする間隔 (--memstats が必要)。有効な時間単位は、"ns"、"us" (または "µs")、"ms"、"s"、"m"、"h" です。 (デフォルトは、"100ms")

@@ -29,7 +29,7 @@ weight: 20
 
 ## ベーステンプレートの検索順序 {#base-template-lookup-order}
 
-sベーステンプレートの検索順序は、それが適用されるテンプレート (たとえば、 `_default/list.html`) の順序に厳密に従います
+ベーステンプレートの検索順序は、それが適用されるテンプレート (たとえば、 `_default/list.html`) の順序に厳密に従います
 
 詳細と例については、[テンプレート検索順序](/templates/lookup-order/) を参照してください。
 
